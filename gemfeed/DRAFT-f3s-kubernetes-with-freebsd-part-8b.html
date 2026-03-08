@@ -2,12 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>f3s: Kubernetes with FreeBSD - Part 9: Enabling etcd Metrics</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
-<body>
+<body class="rfx-boot">
+<div class="rfx-overlay-grid"></div>
+<div class="rfx-overlay-scanlines"></div>
+<div id="rfx-stars"></div>
+<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-8b.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-8b.gmi">Gemini</a>
 </p>
@@ -29,10 +34,10 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf.git
-$ cd conf
-$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
-$ cd f3s/prometheus/
+<pre><font color="#ff0000">$ git clone https</font><font color="#F3E651">:</font><font color="#ff0000">//codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/conf</font><font color="#F3E651">.</font><font color="#ff0000">git</font>
+<font color="#ff0000">$ cd conf</font>
+<font color="#ff0000">$ git checkout 15a86f3  </font><i><font color="#ababab"># Last commit before ArgoCD migration</font></i>
+<font color="#ff0000">$ cd f3s/prometheus</font><font color="#F3E651">/</font>
 </pre>
 <br />
 <span>**Current master branch** uses ArgoCD with:</span><br />
@@ -767,35 +772,35 @@ opentelemetry-instrumentation-requests==0.49b0
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">from</font></u></b> opentelemetry <b><u><font color="#000000">import</font></u></b> trace
-<b><u><font color="#000000">from</font></u></b> opentelemetry.sdk.trace <b><u><font color="#000000">import</font></u></b> TracerProvider
-<b><u><font color="#000000">from</font></u></b> opentelemetry.exporter.otlp.proto.grpc.trace_exporter <b><u><font color="#000000">import</font></u></b> OTLPSpanExporter
-<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.flask <b><u><font color="#000000">import</font></u></b> FlaskInstrumentor
-<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.requests <b><u><font color="#000000">import</font></u></b> RequestsInstrumentor
-<b><u><font color="#000000">from</font></u></b> opentelemetry.sdk.resources <b><u><font color="#000000">import</font></u></b> Resource
+<pre><font color="#ababab">from</font><font color="#ff0000"> opentelemetry </font><font color="#ababab">import</font><font color="#ff0000"> trace</font>
+<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">sdk</font><font color="#F3E651">.</font><font color="#ff0000">trace </font><font color="#ababab">import</font><font color="#ff0000"> TracerProvider</font>
+<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">exporter</font><font color="#F3E651">.</font><font color="#ff0000">otlp</font><font color="#F3E651">.</font><font color="#ff0000">proto</font><font color="#F3E651">.</font><font color="#ff0000">grpc</font><font color="#F3E651">.</font><font color="#ff0000">trace_exporter </font><font color="#ababab">import</font><font color="#ff0000"> OTLPSpanExporter</font>
+<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">instrumentation</font><font color="#F3E651">.</font><font color="#ff0000">flask </font><font color="#ababab">import</font><font color="#ff0000"> FlaskInstrumentor</font>
+<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">instrumentation</font><font color="#F3E651">.</font><font color="#ff0000">requests </font><font color="#ababab">import</font><font color="#ff0000"> RequestsInstrumentor</font>
+<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">sdk</font><font color="#F3E651">.</font><font color="#ff0000">resources </font><font color="#ababab">import</font><font color="#ff0000"> Resource</font>
 
-<i><font color="silver"># Define service identity</font></i>
-resource = Resource(attributes={
-    <font color="#808080">"service.name"</font>: <font color="#808080">"frontend"</font>,
-    <font color="#808080">"service.namespace"</font>: <font color="#808080">"tracing-demo"</font>,
-    <font color="#808080">"service.version"</font>: <font color="#808080">"1.0.0"</font>
-})
+<i><font color="#ababab"># Define service identity</font></i>
+<font color="#ff0000">resource </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">Resource</font><font color="#F3E651">(</font><font color="#ff0000">attributes</font><font color="#F3E651">={</font>
+<font color="#ff0000">    </font><font color="#bb00ff">"service.name"</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">"frontend"</font><font color="#F3E651">,</font>
+<font color="#ff0000">    </font><font color="#bb00ff">"service.namespace"</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">"tracing-demo"</font><font color="#F3E651">,</font>
+<font color="#ff0000">    </font><font color="#bb00ff">"service.version"</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">"1.0.0"</font>
+<font color="#F3E651">})</font>
 
-provider = TracerProvider(resource=resource)
+<font color="#ff0000">provider </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">TracerProvider</font><font color="#F3E651">(</font><font color="#ff0000">resource</font><font color="#F3E651">=</font><font color="#ff0000">resource</font><font color="#F3E651">)</font>
 
-<i><font color="silver"># Export to Alloy</font></i>
-otlp_exporter = OTLPSpanExporter(
-    endpoint=<font color="#808080">"http://alloy.monitoring.svc.cluster.local:4317"</font>,
-    insecure=True
-)
+<i><font color="#ababab"># Export to Alloy</font></i>
+<font color="#ff0000">otlp_exporter </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">OTLPSpanExporter</font><font color="#F3E651">(</font>
+<font color="#ff0000">    endpoint</font><font color="#F3E651">=</font><font color="#bb00ff">"http://alloy.monitoring.svc.cluster.local:4317"</font><font color="#F3E651">,</font>
+<font color="#ff0000">    insecure</font><font color="#F3E651">=</font><font color="#ff0000">True</font>
+<font color="#F3E651">)</font>
 
-processor = BatchSpanProcessor(otlp_exporter)
-provider.add_span_processor(processor)
-trace.set_tracer_provider(provider)
+<font color="#ff0000">processor </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">BatchSpanProcessor</font><font color="#F3E651">(</font><font color="#ff0000">otlp_exporter</font><font color="#F3E651">)</font>
+<font color="#ff0000">provider</font><font color="#F3E651">.</font><font color="#7bc710">add_span_processor</font><font color="#F3E651">(</font><font color="#ff0000">processor</font><font color="#F3E651">)</font>
+<font color="#ff0000">trace</font><font color="#F3E651">.</font><font color="#7bc710">set_tracer_provider</font><font color="#F3E651">(</font><font color="#ff0000">provider</font><font color="#F3E651">)</font>
 
-<i><font color="silver"># Auto-instrument Flask and requests</font></i>
-FlaskInstrumentor().instrument_app(app)
-RequestsInstrumentor().instrument()
+<i><font color="#ababab"># Auto-instrument Flask and requests</font></i>
+<font color="#7bc710">FlaskInstrumentor</font><font color="#F3E651">().</font><font color="#7bc710">instrument_app</font><font color="#F3E651">(</font><font color="#ff0000">app</font><font color="#F3E651">)</font>
+<font color="#7bc710">RequestsInstrumentor</font><font color="#F3E651">().</font><font color="#7bc710">instrument</font><font color="#F3E651">()</font>
 </pre>
 <br />
 <span>The auto-instrumentation automatically:</span><br />
@@ -972,29 +977,29 @@ curl -H "Host: tracing-demo.f3s.buetow.org" http://r0/api/process
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>{
-  "middleware_response": {
-    "backend_data": {
-      "data": {
-        "id": <font color="#000000">12345</font>,
-        "query_time_ms": <font color="#000000">100.0</font>,
-        "timestamp": "<font color="#808080">2025-12-28T18:35:01.064538</font>",
-        "value": "<font color="#808080">Sample data from backend service</font>"
-      },
-      "service": "<font color="#808080">backend</font>"
-    },
-    "middleware_processed": <b><u><font color="#000000">true</font></u></b>,
-    "original_data": {
-      "source": "<font color="#808080">GET request</font>"
-    },
-    "transformation_time_ms": <font color="#000000">50</font>
-  },
-  "request_data": {
-    "source": "<font color="#808080">GET request</font>"
-  },
-  "service": "<font color="#808080">frontend</font>",
-  "status": "<font color="#808080">success</font>"
-}
+<pre><font color="#F3E651">{</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">middleware_response</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">backend_data</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">data</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">        </font><font color="#ff0000">"</font><font color="#ff0000">id</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">12345</font><font color="#F3E651">,</font>
+<font color="#ff0000">        </font><font color="#ff0000">"</font><font color="#ff0000">query_time_ms</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">100.0</font><font color="#F3E651">,</font>
+<font color="#ff0000">        </font><font color="#ff0000">"</font><font color="#ff0000">timestamp</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">2025-12-28T18:35:01.064538</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">        </font><font color="#ff0000">"</font><font color="#ff0000">value</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">Sample data from backend service</font><font color="#ff0000">"</font>
+<font color="#ff0000">      </font><font color="#F3E651">},</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">service</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">backend</font><font color="#ff0000">"</font>
+<font color="#ff0000">    </font><font color="#F3E651">},</font>
+<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">middleware_processed</font><font color="#ff0000">"</font><font color="#ff0000">: </font><b><font color="#ffffff">true</font></b><font color="#F3E651">,</font>
+<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">original_data</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">source</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">GET request</font><font color="#ff0000">"</font>
+<font color="#ff0000">    </font><font color="#F3E651">},</font>
+<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">transformation_time_ms</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">50</font>
+<font color="#ff0000">  </font><font color="#F3E651">},</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">request_data</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
+<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">source</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">GET request</font><font color="#ff0000">"</font>
+<font color="#ff0000">  </font><font color="#F3E651">},</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">service</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">frontend</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">status</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">success</font><font color="#ff0000">"</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>**2. Find the trace in Tempo via API:**</span><br />
@@ -1013,12 +1018,12 @@ kubectl exec -n monitoring tempo-0 -- wget -qO- \
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>{
-  "traceID": "<font color="#808080">4be1151c0bdcd5625ac7e02b98d95bd5</font>",
-  "rootServiceName": "<font color="#808080">frontend</font>",
-  "rootTraceName": "<font color="#808080">GET /api/process</font>",
-  "durationMs": <font color="#000000">221</font>
-}
+<pre><font color="#F3E651">{</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">traceID</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">4be1151c0bdcd5625ac7e02b98d95bd5</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">rootServiceName</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">frontend</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">rootTraceName</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">GET /api/process</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
+<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">durationMs</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">221</font>
+<font color="#F3E651">}</font>
 </pre>
 <br />
 <span>**3. Fetch complete trace details:**</span><br />
@@ -1149,11 +1154,12 @@ kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
 <a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>Alloy configuration (updated for traces)</a><br />
 <a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tracing-demo'>Demo tracing application</a><br />
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+    <br />
+    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
+<script type="text/javascript" src="../retrofuturistic.js"></script>
 </body>
 </html>

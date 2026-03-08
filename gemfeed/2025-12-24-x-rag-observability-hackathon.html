@@ -2,12 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>X-RAG Observability Hackathon</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
-<body>
+<body class="rfx-boot">
+<div class="rfx-overlay-grid"></div>
+<div class="rfx-overlay-scanlines"></div>
+<div id="rfx-stars"></div>
+<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-12-24-x-rag-observability-hackathon.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.gmi">Gemini</a>
 </p>
@@ -259,20 +264,20 @@ loki.write "default" {
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">from</font></u></b> prometheus_client <b><u><font color="#000000">import</font></u></b> Histogram, Counter, Gauge
+<pre><font color="#ababab">from</font><font color="#ff0000"> prometheus_client </font><font color="#ababab">import</font><font color="#ff0000"> Histogram</font><font color="#F3E651">,</font><font color="#ff0000"> Counter</font><font color="#F3E651">,</font><font color="#ff0000"> Gauge</font>
 
-search_duration = Histogram(
-    <font color="#808080">"search_service_request_duration_seconds"</font>,
-    <font color="#808080">"Total duration of Search Service requests"</font>,
-    [<font color="#808080">"method"</font>],
-    buckets=[<font color="#000000">0.1</font>, <font color="#000000">0.25</font>, <font color="#000000">0.5</font>, <font color="#000000">1.0</font>, <font color="#000000">2.5</font>, <font color="#000000">5.0</font>, <font color="#000000">10.0</font>, <font color="#000000">20.0</font>, <font color="#000000">30.0</font>, <font color="#000000">60.0</font>],
-)
+<font color="#ff0000">search_duration </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">Histogram</font><font color="#F3E651">(</font>
+<font color="#ff0000">    </font><font color="#bb00ff">"search_service_request_duration_seconds"</font><font color="#F3E651">,</font>
+<font color="#ff0000">    </font><font color="#bb00ff">"Total duration of Search Service requests"</font><font color="#F3E651">,</font>
+<font color="#ff0000">    </font><font color="#F3E651">[</font><font color="#bb00ff">"method"</font><font color="#F3E651">],</font>
+<font color="#ff0000">    buckets</font><font color="#F3E651">=[</font><font color="#bb00ff">0.1</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">0.25</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">0.5</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">1.0</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">2.5</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">5.0</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">10.0</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">20.0</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">30.0</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">60.0</font><font color="#F3E651">],</font>
+<font color="#F3E651">)</font>
 
-errors_total = Counter(
-    <font color="#808080">"search_service_errors_total"</font>,
-    <font color="#808080">"Error count by type"</font>,
-    [<font color="#808080">"method"</font>, <font color="#808080">"error_type"</font>],
-)
+<font color="#ff0000">errors_total </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">Counter</font><font color="#F3E651">(</font>
+<font color="#ff0000">    </font><font color="#bb00ff">"search_service_errors_total"</font><font color="#F3E651">,</font>
+<font color="#ff0000">    </font><font color="#bb00ff">"Error count by type"</font><font color="#F3E651">,</font>
+<font color="#ff0000">    </font><font color="#F3E651">[</font><font color="#bb00ff">"method"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">"error_type"</font><font color="#F3E651">],</font>
+<font color="#F3E651">)</font>
 </pre>
 <br />
 <span>Initially, I used Prometheus scraping—each service exposed a /metrics endpoint, and Prometheus pulled metrics every 15 seconds. This worked, but I wanted a unified pipeline.</span><br />
@@ -515,17 +520,17 @@ traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.fastapi <b><u><font color="#000000">import</font></u></b> FastAPIInstrumentor
-<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.grpc <b><u><font color="#000000">import</font></u></b> GrpcAioInstrumentorClient
+<pre><font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">instrumentation</font><font color="#F3E651">.</font><font color="#ff0000">fastapi </font><font color="#ababab">import</font><font color="#ff0000"> FastAPIInstrumentor</font>
+<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">instrumentation</font><font color="#F3E651">.</font><font color="#ff0000">grpc </font><font color="#ababab">import</font><font color="#ff0000"> GrpcAioInstrumentorClient</font>
 
-<i><font color="silver"># Auto-instrument frameworks</font></i>
-FastAPIInstrumentor.instrument_app(app)
-GrpcAioInstrumentorClient().instrument()
+<i><font color="#ababab"># Auto-instrument frameworks</font></i>
+<font color="#ff0000">FastAPIInstrumentor</font><font color="#F3E651">.</font><font color="#7bc710">instrument_app</font><font color="#F3E651">(</font><font color="#ff0000">app</font><font color="#F3E651">)</font>
+<font color="#7bc710">GrpcAioInstrumentorClient</font><font color="#F3E651">().</font><font color="#7bc710">instrument</font><font color="#F3E651">()</font>
 
-<i><font color="silver"># Manual spans for custom operations</font></i>
-with tracer.start_as_current_span(<font color="#808080">"llm.rag_completion"</font>) as span:
-    span.set_attribute(<font color="#808080">"llm.model"</font>, model_name)
-    result = <b><u><font color="#000000">await</font></u></b> generate_answer(query, context)
+<i><font color="#ababab"># Manual spans for custom operations</font></i>
+<font color="#ff0000">with tracer</font><font color="#F3E651">.</font><font color="#7bc710">start_as_current_span</font><font color="#F3E651">(</font><font color="#bb00ff">"llm.rag_completion"</font><font color="#F3E651">)</font><font color="#ff0000"> as span</font><font color="#F3E651">:</font>
+<font color="#ff0000">    span</font><font color="#F3E651">.</font><font color="#7bc710">set_attribute</font><font color="#F3E651">(</font><font color="#bb00ff">"llm.model"</font><font color="#F3E651">,</font><font color="#ff0000"> model_name</font><font color="#F3E651">)</font>
+<font color="#ff0000">    result </font><font color="#F3E651">=</font><font color="#ff0000"> </font><b><font color="#ffffff">await</font></b><font color="#ff0000"> </font><font color="#7bc710">generate_answer</font><font color="#F3E651">(</font><font color="#ff0000">query</font><font color="#F3E651">,</font><font color="#ff0000"> context</font><font color="#F3E651">)</font>
 </pre>
 <br />
 <span><span class='inlinecode'>Auto-instrumentation</span> is the quick win: one line of code and you get spans for every HTTP request, gRPC call, or database query. The instrumentor patches the framework at runtime, so existing code works without modification. The downside? You only get what the library authors decided to capture—generic HTTP attributes like <span class='inlinecode'>http.method</span> and <span class='inlinecode'>http.status_code</span>, but nothing domain-specific. Auto-instrumented spans also can&#39;t know your business logic, so a slow request shows up as "POST /api/search took 5 seconds" without revealing which internal operation caused the delay.</span><br />
@@ -915,11 +920,12 @@ $ curl -s -G "http://localhost:3200/api/search" \
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+    <br />
+    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
+<script type="text/javascript" src="../retrofuturistic.js"></script>
 </body>
 </html>

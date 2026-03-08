@@ -2,12 +2,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
-<body>
+<body class="rfx-boot">
+<div class="rfx-overlay-grid"></div>
+<div class="rfx-overlay-scanlines"></div>
+<div id="rfx-stars"></div>
+<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-10-02-f3s-kubernetes-with-freebsd-part-7.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi">Gemini</a>
 </p>
@@ -82,10 +87,10 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf.git
-$ cd conf
-$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
-$ cd f3s/
+<pre><font color="#ff0000">$ git clone https</font><font color="#F3E651">:</font><font color="#ff0000">//codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/conf</font><font color="#F3E651">.</font><font color="#ff0000">git</font>
+<font color="#ff0000">$ cd conf</font>
+<font color="#ff0000">$ git checkout 15a86f3  </font><i><font color="#ababab"># Last commit before ArgoCD migration</font></i>
+<font color="#ff0000">$ cd f3s</font><font color="#F3E651">/</font>
 </pre>
 <br />
 <span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
@@ -104,8 +109,8 @@ $ cd f3s/
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>dnf update -y
-reboot
+<pre><font color="#ff0000">dnf update -y</font>
+<font color="#ff0000">reboot</font>
 </pre>
 <br />
 <span>On the FreeBSD hosts, I upgraded from FreeBSD 14.2 to 14.3-RELEASE, running this on all three hosts <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>:</span><br />
@@ -114,29 +119,29 @@ reboot
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f0:~ % doas freebsd-update fetch
-paul@f0:~ % doas freebsd-update install
-paul@f0:~ % doas reboot
-.
-.
-.
-paul@f0:~ % doas freebsd-update -r <font color="#000000">14.3</font>-RELEASE upgrade
-paul@f0:~ % doas freebsd-update install
-paul@f0:~ % doas freebsd-update install
-paul@f0:~ % doas reboot
-.
-.
-.
-paul@f0:~ % doas freebsd-update install
-paul@f0:~ % doas pkg update
-paul@f0:~ % doas pkg upgrade
-paul@f0:~ % doas reboot
-.
-.
-.
-paul@f0:~ % uname -a
-FreeBSD f0.lan.buetow.org <font color="#000000">14.3</font>-RELEASE FreeBSD <font color="#000000">14.3</font>-RELEASE
-        releng/<font color="#000000">14.3</font>-n<font color="#000000">271432</font>-8c9ce319fef7 GENERIC amd64
+<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas freebsd-update fetch</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas freebsd-update install</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas reboot</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">.</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas freebsd-update -r </font><font color="#bb00ff">14.3</font><font color="#ff0000">-RELEASE upgrade</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas freebsd-update install</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas freebsd-update install</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas reboot</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">.</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas freebsd-update install</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas pkg update</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas pkg upgrade</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas reboot</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">.</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> uname -a</font>
+<font color="#ff0000">FreeBSD f0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org </font><font color="#bb00ff">14.3</font><font color="#ff0000">-RELEASE FreeBSD </font><font color="#bb00ff">14.3</font><font color="#ff0000">-RELEASE</font>
+<font color="#ff0000">        releng</font><font color="#F3E651">/</font><font color="#bb00ff">14.3</font><font color="#ff0000">-n</font><font color="#bb00ff">271432</font><font color="#ff0000">-8c9ce319fef7 GENERIC amd64</font>
 </pre>
 <br />
 <h2 style='display: inline' id='installing-k3s'>Installing k3s</h2><br />
@@ -149,7 +154,7 @@ FreeBSD f0.lan.buetow.org <font color="#000000">14.3</font>-RELEASE FreeBSD <fon
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[root@r0 ~]<i><font color="silver"># echo -n SECRET_TOKEN &gt; ~/.k3s_token</font></i>
+<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># echo -n SECRET_TOKEN &gt; ~/.k3s_token</font></i>
 </pre>
 <br />
 <span>The following steps are also documented on the k3s website:</span><br />
@@ -162,17 +167,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[root@r0 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
-        sh -s - server --cluster-init \
-        --node-ip=<font color="#000000">192.168</font>.<font color="#000000">2.120</font> \
-        --advertise-address=<font color="#000000">192.168</font>.<font color="#000000">2.120</font> \
-        --tls-san=r0.wg0.wan.buetow.org
-[INFO]  Finding release <b><u><font color="#000000">for</font></u></b> channel stable
-[INFO]  Using v1.<font color="#000000">32.6</font>+k3s1 as release
-.
-.
-.
-[INFO]  systemd: Starting k3s
+<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
+<font color="#ff0000">        sh -s - server --cluster-init </font><font color="#F3E651">\</font>
+<font color="#ff0000">        --node-ip</font><font color="#F3E651">=</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.120</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">        --advertise-address</font><font color="#F3E651">=</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.120</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">        --tls-san</font><font color="#F3E651">=</font><font color="#ff0000">r0</font><font color="#F3E651">.</font><font color="#ff0000">wg0</font><font color="#F3E651">.</font><font color="#ff0000">wan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
+<font color="#F3E651">[</font><font color="#ff0000">INFO</font><font color="#F3E651">]</font><font color="#ff0000">  Finding release </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> channel stable</font>
+<font color="#F3E651">[</font><font color="#ff0000">INFO</font><font color="#F3E651">]</font><font color="#ff0000">  Using v1</font><font color="#F3E651">.</font><font color="#bb00ff">32.6</font><font color="#F3E651">+</font><font color="#ff0000">k3s1 as release</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">[</font><font color="#ff0000">INFO</font><font color="#F3E651">]</font><font color="#ff0000">  systemd</font><font color="#F3E651">:</font><font color="#ff0000"> Starting k3s</font>
 </pre>
 <br />
 <span>Note: The <span class='inlinecode'>--node-ip</span> and <span class='inlinecode'>--advertise-address</span> flags are important to ensure that the embedded etcd cluster communicates over the WireGuard interface (192.168.2.x) rather than the LAN interface (192.168.1.x). This ensures that all control plane traffic is encrypted via WireGuard.</span><br />
@@ -185,20 +190,20 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[root@r1 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
-        sh -s - server --server https://r<font color="#000000">0</font>.wg0.wan.buetow.org:<font color="#000000">6443</font> \
-        --node-ip=<font color="#000000">192.168</font>.<font color="#000000">2.121</font> \
-        --advertise-address=<font color="#000000">192.168</font>.<font color="#000000">2.121</font> \
-        --tls-san=r1.wg0.wan.buetow.org
+<pre><font color="#F3E651">[</font><font color="#ff0000">root@r1 </font><font color="#F3E651">~]</font><i><font color="#ababab"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
+<font color="#ff0000">        sh -s - server --server https</font><font color="#F3E651">:</font><font color="#ff0000">//r</font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">wg0</font><font color="#F3E651">.</font><font color="#ff0000">wan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">6443</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">        --node-ip</font><font color="#F3E651">=</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.121</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">        --advertise-address</font><font color="#F3E651">=</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.121</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">        --tls-san</font><font color="#F3E651">=</font><font color="#ff0000">r1</font><font color="#F3E651">.</font><font color="#ff0000">wg0</font><font color="#F3E651">.</font><font color="#ff0000">wan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
 
-[root@r2 ~]<i><font color="silver"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
-        sh -s - server --server https://r<font color="#000000">0</font>.wg0.wan.buetow.org:<font color="#000000">6443</font> \
-        --node-ip=<font color="#000000">192.168</font>.<font color="#000000">2.122</font> \
-        --advertise-address=<font color="#000000">192.168</font>.<font color="#000000">2.122</font> \
-        --tls-san=r2.wg0.wan.buetow.org
-.
-.
-.
+<font color="#F3E651">[</font><font color="#ff0000">root@r2 </font><font color="#F3E651">~]</font><i><font color="#ababab"># curl -sfL https://get.k3s.io | K3S_TOKEN=$(cat ~/.k3s_token) \</font></i>
+<font color="#ff0000">        sh -s - server --server https</font><font color="#F3E651">:</font><font color="#ff0000">//r</font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">wg0</font><font color="#F3E651">.</font><font color="#ff0000">wan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">6443</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">        --node-ip</font><font color="#F3E651">=</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.122</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">        --advertise-address</font><font color="#F3E651">=</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.122</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">        --tls-san</font><font color="#F3E651">=</font><font color="#ff0000">r2</font><font color="#F3E651">.</font><font color="#ff0000">wg0</font><font color="#F3E651">.</font><font color="#ff0000">wan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">.</font>
+<font color="#F3E651">.</font>
 
 </pre>
 <br />
@@ -208,23 +213,23 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[root@r0 ~]<i><font color="silver"># kubectl get nodes</font></i>
-NAME                STATUS   ROLES                       AGE     VERSION
-r0.lan.buetow.org   Ready    control-plane,etcd,master   4m44s   v1.<font color="#000000">32.6</font>+k3s1
-r1.lan.buetow.org   Ready    control-plane,etcd,master   3m13s   v1.<font color="#000000">32.6</font>+k3s1
-r2.lan.buetow.org   Ready    control-plane,etcd,master   30s     v1.<font color="#000000">32.6</font>+k3s1
+<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># kubectl get nodes</font></i>
+<font color="#ff0000">NAME                STATUS   ROLES                       AGE     VERSION</font>
+<font color="#ff0000">r0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org   Ready    control-plane</font><font color="#F3E651">,</font><font color="#ff0000">etcd</font><font color="#F3E651">,</font><font color="#ff0000">master   4m44s   v1</font><font color="#F3E651">.</font><font color="#bb00ff">32.6</font><font color="#F3E651">+</font><font color="#ff0000">k3s1</font>
+<font color="#ff0000">r1</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org   Ready    control-plane</font><font color="#F3E651">,</font><font color="#ff0000">etcd</font><font color="#F3E651">,</font><font color="#ff0000">master   3m13s   v1</font><font color="#F3E651">.</font><font color="#bb00ff">32.6</font><font color="#F3E651">+</font><font color="#ff0000">k3s1</font>
+<font color="#ff0000">r2</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org   Ready    control-plane</font><font color="#F3E651">,</font><font color="#ff0000">etcd</font><font color="#F3E651">,</font><font color="#ff0000">master   30s     v1</font><font color="#F3E651">.</font><font color="#bb00ff">32.6</font><font color="#F3E651">+</font><font color="#ff0000">k3s1</font>
 
-[root@r0 ~]<i><font color="silver"># kubectl get pods --all-namespaces</font></i>
-NAMESPACE     NAME                                      READY   STATUS      RESTARTS   AGE
-kube-system   coredns-5688667fd4-fs2jj                  <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          5m27s
-kube-system   helm-install-traefik-crd-f9hgd            <font color="#000000">0</font>/<font color="#000000">1</font>     Completed   <font color="#000000">0</font>          5m27s
-kube-system   helm-install-traefik-zqqqk                <font color="#000000">0</font>/<font color="#000000">1</font>     Completed   <font color="#000000">2</font>          5m27s
-kube-system   local-path-provisioner-774c6665dc-jqlnc   <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          5m27s
-kube-system   metrics-server-6f4c6675d5-5xpmp           <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          5m27s
-kube-system   svclb-traefik-411cec5b-cdp2l              <font color="#000000">2</font>/<font color="#000000">2</font>     Running     <font color="#000000">0</font>          78s
-kube-system   svclb-traefik-411cec5b-f625r              <font color="#000000">2</font>/<font color="#000000">2</font>     Running     <font color="#000000">0</font>          4m58s
-kube-system   svclb-traefik-411cec5b-twrd<font color="#000000">7</font>              <font color="#000000">2</font>/<font color="#000000">2</font>     Running     <font color="#000000">0</font>          4m2s
-kube-system   traefik-c98fdf6fb-lt6fx                   <font color="#000000">1</font>/<font color="#000000">1</font>     Running     <font color="#000000">0</font>          4m58s
+<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># kubectl get pods --all-namespaces</font></i>
+<font color="#ff0000">NAMESPACE     NAME                                      READY   STATUS      RESTARTS   AGE</font>
+<font color="#ff0000">kube-system   coredns-5688667fd4-fs2jj                  </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running     </font><font color="#bb00ff">0</font><font color="#ff0000">          5m27s</font>
+<font color="#ff0000">kube-system   helm-install-traefik-crd-f9hgd            </font><font color="#bb00ff">0</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Completed   </font><font color="#bb00ff">0</font><font color="#ff0000">          5m27s</font>
+<font color="#ff0000">kube-system   helm-install-traefik-zqqqk                </font><font color="#bb00ff">0</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Completed   </font><font color="#bb00ff">2</font><font color="#ff0000">          5m27s</font>
+<font color="#ff0000">kube-system   local-path-provisioner-774c6665dc-jqlnc   </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running     </font><font color="#bb00ff">0</font><font color="#ff0000">          5m27s</font>
+<font color="#ff0000">kube-system   metrics-server-6f4c6675d5-5xpmp           </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running     </font><font color="#bb00ff">0</font><font color="#ff0000">          5m27s</font>
+<font color="#ff0000">kube-system   svclb-traefik-411cec5b-cdp2l              </font><font color="#bb00ff">2</font><font color="#F3E651">/</font><font color="#bb00ff">2</font><font color="#ff0000">     Running     </font><font color="#bb00ff">0</font><font color="#ff0000">          78s</font>
+<font color="#ff0000">kube-system   svclb-traefik-411cec5b-f625r              </font><font color="#bb00ff">2</font><font color="#F3E651">/</font><font color="#bb00ff">2</font><font color="#ff0000">     Running     </font><font color="#bb00ff">0</font><font color="#ff0000">          4m58s</font>
+<font color="#ff0000">kube-system   svclb-traefik-411cec5b-twrd</font><font color="#bb00ff">7</font><font color="#ff0000">              </font><font color="#bb00ff">2</font><font color="#F3E651">/</font><font color="#bb00ff">2</font><font color="#ff0000">     Running     </font><font color="#bb00ff">0</font><font color="#ff0000">          4m2s</font>
+<font color="#ff0000">kube-system   traefik-c98fdf6fb-lt6fx                   </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running     </font><font color="#bb00ff">0</font><font color="#ff0000">          4m58s</font>
 </pre>
 <br />
 <span>In order to connect with <span class='inlinecode'>kubectl</span> from my Fedora laptop, I had to copy <span class='inlinecode'>/etc/rancher/k3s/k3s.yaml</span> from <span class='inlinecode'>r0</span> to <span class='inlinecode'>~/.kube/config</span> and then replace the value of the server field with <span class='inlinecode'>r0.lan.buetow.org</span>. kubectl can now manage the cluster. Note that this step has to be repeated when I want to connect to another node of the cluster (e.g. when <span class='inlinecode'>r0</span> is down).</span><br />
@@ -239,19 +244,19 @@ kube-system   traefik-c98fdf6fb-lt6fx                   <font color="#000000">1<
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ kubectl create namespace <b><u><font color="#000000">test</font></u></b>
-namespace/test created
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl create namespace </font><b><font color="#ffffff">test</font></b>
+<font color="#ff0000">namespace/test created</font>
 
-&gt; ~ kubectl get namespaces
-NAME              STATUS   AGE
-default           Active   6h11m
-kube-node-lease   Active   6h11m
-kube-public       Active   6h11m
-kube-system       Active   6h11m
-<b><u><font color="#000000">test</font></u></b>              Active   5s
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl get namespaces</font>
+<font color="#ff0000">NAME              STATUS   AGE</font>
+<font color="#ff0000">default           Active   6h11m</font>
+<font color="#ff0000">kube-node-lease   Active   6h11m</font>
+<font color="#ff0000">kube-public       Active   6h11m</font>
+<font color="#ff0000">kube-system       Active   6h11m</font>
+<b><font color="#ffffff">test</font></b><font color="#ff0000">              Active   5s</font>
 
-&gt; ~ kubectl config set-context --current --namespace=<b><u><font color="#000000">test</font></u></b>
-Context <font color="#808080">"default"</font> modified.
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl config set-context --current --namespace</font><font color="#F3E651">=</font><b><font color="#ffffff">test</font></b>
+<font color="#ff0000">Context </font><font color="#bb00ff">"default"</font><font color="#ff0000"> modified</font><font color="#F3E651">.</font>
 </pre>
 <br />
 <span>And let&#39;s also create an Apache test pod:</span><br />
@@ -260,42 +265,42 @@ Context <font color="#808080">"default"</font> modified.
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ cat &lt;&lt;END &gt; apache-deployment.yaml
-<i><font color="silver"># Apache HTTP Server Deployment</font></i>
-apiVersion: apps/v<font color="#000000">1</font>
-kind: Deployment
-metadata:
-  name: apache-deployment
-spec:
-  replicas: <font color="#000000">1</font>
-  selector:
-    matchLabels:
-      app: apache
-  template:
-    metadata:
-      labels:
-        app: apache
-    spec:
-      containers:
-      - name: apache
-        image: httpd:latest
-        ports:
-        <i><font color="silver"># Container port where Apache listens</font></i>
-        - containerPort: <font color="#000000">80</font>
-END
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> cat </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">END </font><font color="#F3E651">&gt;</font><font color="#ff0000"> apache-deployment</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<i><font color="#ababab"># Apache HTTP Server Deployment</font></i>
+<font color="#ff0000">apiVersion</font><font color="#F3E651">:</font><font color="#ff0000"> apps/v</font><font color="#bb00ff">1</font>
+<font color="#ff0000">kind</font><font color="#F3E651">:</font><font color="#ff0000"> Deployment</font>
+<font color="#ff0000">metadata</font><font color="#F3E651">:</font>
+<font color="#ff0000">  name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-deployment</font>
+<font color="#ff0000">spec</font><font color="#F3E651">:</font>
+<font color="#ff0000">  replicas</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
+<font color="#ff0000">  selector</font><font color="#F3E651">:</font>
+<font color="#ff0000">    matchLabels</font><font color="#F3E651">:</font>
+<font color="#ff0000">      app</font><font color="#F3E651">:</font><font color="#ff0000"> apache</font>
+<font color="#ff0000">  template</font><font color="#F3E651">:</font>
+<font color="#ff0000">    metadata</font><font color="#F3E651">:</font>
+<font color="#ff0000">      labels</font><font color="#F3E651">:</font>
+<font color="#ff0000">        app</font><font color="#F3E651">:</font><font color="#ff0000"> apache</font>
+<font color="#ff0000">    spec</font><font color="#F3E651">:</font>
+<font color="#ff0000">      containers</font><font color="#F3E651">:</font>
+<font color="#ff0000">      - name</font><font color="#F3E651">:</font><font color="#ff0000"> apache</font>
+<font color="#ff0000">        image</font><font color="#F3E651">:</font><font color="#ff0000"> httpd</font><font color="#F3E651">:</font><font color="#ff0000">latest</font>
+<font color="#ff0000">        ports</font><font color="#F3E651">:</font>
+<font color="#ff0000">        </font><i><font color="#ababab"># Container port where Apache listens</font></i>
+<font color="#ff0000">        - containerPort</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">END</font>
 
-&gt; ~ kubectl apply -f apache-deployment.yaml
-deployment.apps/apache-deployment created
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl apply -f apache-deployment</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">deployment</font><font color="#F3E651">.</font><font color="#ff0000">apps/apache-deployment created</font>
 
-&gt; ~ kubectl get all
-NAME                                     READY   STATUS    RESTARTS   AGE
-pod/apache-deployment-5fd955856f-4pjmf   <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          7s
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl get all</font>
+<font color="#ff0000">NAME                                     READY   STATUS    RESTARTS   AGE</font>
+<font color="#ff0000">pod/apache-deployment-5fd955856f-4pjmf   </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          7s</font>
 
-NAME                                READY   UP-TO-DATE   AVAILABLE   AGE
-deployment.apps/apache-deployment   <font color="#000000">1</font>/<font color="#000000">1</font>     <font color="#000000">1</font>            <font color="#000000">1</font>           7s
+<font color="#ff0000">NAME                                READY   UP-TO-DATE   AVAILABLE   AGE</font>
+<font color="#ff0000">deployment</font><font color="#F3E651">.</font><font color="#ff0000">apps/apache-deployment   </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     </font><font color="#bb00ff">1</font><font color="#ff0000">            </font><font color="#bb00ff">1</font><font color="#ff0000">           7s</font>
 
-NAME                                           DESIRED   CURRENT   READY   AGE
-replicaset.apps/apache-deployment-5fd955856f   <font color="#000000">1</font>         <font color="#000000">1</font>         <font color="#000000">1</font>       7s
+<font color="#ff0000">NAME                                           DESIRED   CURRENT   READY   AGE</font>
+<font color="#ff0000">replicaset</font><font color="#F3E651">.</font><font color="#ff0000">apps/apache-deployment-5fd955856f   </font><font color="#bb00ff">1</font><font color="#ff0000">         </font><font color="#bb00ff">1</font><font color="#ff0000">         </font><font color="#bb00ff">1</font><font color="#ff0000">       7s</font>
 </pre>
 <br />
 <span>Let&#39;s also create a service: </span><br />
@@ -304,31 +309,31 @@ replicaset.apps/apache-deployment-5fd955856f   <font color="#000000">1</font>   
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ cat &lt;&lt;END &gt; apache-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: apache
-  name: apache-service
-spec:
-  ports:
-    - name: web
-      port: <font color="#000000">80</font>
-      protocol: TCP
-      <i><font color="silver"># Expose port 80 on the service</font></i>
-      targetPort: <font color="#000000">80</font>
-  selector:
-  <i><font color="silver"># Link this service to pods with the label app=apache</font></i>
-    app: apache
-END
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> cat </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">END </font><font color="#F3E651">&gt;</font><font color="#ff0000"> apache-service</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">apiVersion</font><font color="#F3E651">:</font><font color="#ff0000"> v1</font>
+<font color="#ff0000">kind</font><font color="#F3E651">:</font><font color="#ff0000"> Service</font>
+<font color="#ff0000">metadata</font><font color="#F3E651">:</font>
+<font color="#ff0000">  labels</font><font color="#F3E651">:</font>
+<font color="#ff0000">    app</font><font color="#F3E651">:</font><font color="#ff0000"> apache</font>
+<font color="#ff0000">  name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-service</font>
+<font color="#ff0000">spec</font><font color="#F3E651">:</font>
+<font color="#ff0000">  ports</font><font color="#F3E651">:</font>
+<font color="#ff0000">    - name</font><font color="#F3E651">:</font><font color="#ff0000"> web</font>
+<font color="#ff0000">      port</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">      protocol</font><font color="#F3E651">:</font><font color="#ff0000"> TCP</font>
+<font color="#ff0000">      </font><i><font color="#ababab"># Expose port 80 on the service</font></i>
+<font color="#ff0000">      targetPort</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">  selector</font><font color="#F3E651">:</font>
+<font color="#ff0000">  </font><i><font color="#ababab"># Link this service to pods with the label app=apache</font></i>
+<font color="#ff0000">    app</font><font color="#F3E651">:</font><font color="#ff0000"> apache</font>
+<font color="#ff0000">END</font>
 
-&gt; ~ kubectl apply -f apache-service.yaml
-service/apache-service created
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl apply -f apache-service</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">service/apache-service created</font>
 
-&gt; ~ kubectl get service
-NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE
-apache-service   ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">249.165</font>   &lt;none&gt;        <font color="#000000">80</font>/TCP    4s
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl get service</font>
+<font color="#ff0000">NAME             TYPE        CLUSTER-IP      EXTERNAL-IP   PORT</font><font color="#F3E651">(</font><font color="#ff0000">S</font><font color="#F3E651">)</font><font color="#ff0000">   AGE</font>
+<font color="#ff0000">apache-service   ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">249.165</font><font color="#ff0000">   </font><font color="#F3E651">&lt;</font><font color="#ff0000">none</font><font color="#F3E651">&gt;</font><font color="#ff0000">        </font><font color="#bb00ff">80</font><font color="#ff0000">/TCP    4s</font>
 </pre>
 <br />
 <span>Now let&#39;s create an ingress:</span><br />
@@ -339,72 +344,72 @@ apache-service   ClusterIP   <font color="#000000">10.43</font>.<font color="#00
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ cat &lt;&lt;END &gt; apache-ingress.yaml
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> cat </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">END </font><font color="#F3E651">&gt;</font><font color="#ff0000"> apache-ingress</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
 
-apiVersion: networking.k8s.io/v<font color="#000000">1</font>
-kind: Ingress
-metadata:
-  name: apache-ingress
-  namespace: <b><u><font color="#000000">test</font></u></b>
-  annotations:
-    spec.ingressClassName: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-spec:
-  rules:
-    - host: f3s.foo.zone
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: apache-service
-                port:
-                  number: <font color="#000000">80</font>
-    - host: standby.f3s.foo.zone
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: apache-service
-                port:
-                  number: <font color="#000000">80</font>
-    - host: www.f3s.foo.zone
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: apache-service
-                port:
-                  number: <font color="#000000">80</font>
-END
+<font color="#ff0000">apiVersion</font><font color="#F3E651">:</font><font color="#ff0000"> networking</font><font color="#F3E651">.</font><font color="#ff0000">k8s</font><font color="#F3E651">.</font><font color="#ff0000">io/v</font><font color="#bb00ff">1</font>
+<font color="#ff0000">kind</font><font color="#F3E651">:</font><font color="#ff0000"> Ingress</font>
+<font color="#ff0000">metadata</font><font color="#F3E651">:</font>
+<font color="#ff0000">  name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-ingress</font>
+<font color="#ff0000">  namespace</font><font color="#F3E651">:</font><font color="#ff0000"> </font><b><font color="#ffffff">test</font></b>
+<font color="#ff0000">  annotations</font><font color="#F3E651">:</font>
+<font color="#ff0000">    spec</font><font color="#F3E651">.</font><font color="#ff0000">ingressClassName</font><font color="#F3E651">:</font><font color="#ff0000"> traefik</font>
+<font color="#ff0000">    traefik</font><font color="#F3E651">.</font><font color="#ff0000">ingress</font><font color="#F3E651">.</font><font color="#ff0000">kubernetes</font><font color="#F3E651">.</font><font color="#ff0000">io/router</font><font color="#F3E651">.</font><font color="#ff0000">entrypoints</font><font color="#F3E651">:</font><font color="#ff0000"> web</font>
+<font color="#ff0000">spec</font><font color="#F3E651">:</font>
+<font color="#ff0000">  rules</font><font color="#F3E651">:</font>
+<font color="#ff0000">    - host</font><font color="#F3E651">:</font><font color="#ff0000"> f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">      http</font><font color="#F3E651">:</font>
+<font color="#ff0000">        paths</font><font color="#F3E651">:</font>
+<font color="#ff0000">          - path</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">/</font>
+<font color="#ff0000">            pathType</font><font color="#F3E651">:</font><font color="#ff0000"> Prefix</font>
+<font color="#ff0000">            backend</font><font color="#F3E651">:</font>
+<font color="#ff0000">              service</font><font color="#F3E651">:</font>
+<font color="#ff0000">                name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-service</font>
+<font color="#ff0000">                port</font><font color="#F3E651">:</font>
+<font color="#ff0000">                  number</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">    - host</font><font color="#F3E651">:</font><font color="#ff0000"> standby</font><font color="#F3E651">.</font><font color="#ff0000">f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">      http</font><font color="#F3E651">:</font>
+<font color="#ff0000">        paths</font><font color="#F3E651">:</font>
+<font color="#ff0000">          - path</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">/</font>
+<font color="#ff0000">            pathType</font><font color="#F3E651">:</font><font color="#ff0000"> Prefix</font>
+<font color="#ff0000">            backend</font><font color="#F3E651">:</font>
+<font color="#ff0000">              service</font><font color="#F3E651">:</font>
+<font color="#ff0000">                name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-service</font>
+<font color="#ff0000">                port</font><font color="#F3E651">:</font>
+<font color="#ff0000">                  number</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">    - host</font><font color="#F3E651">:</font><font color="#ff0000"> www</font><font color="#F3E651">.</font><font color="#ff0000">f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">      http</font><font color="#F3E651">:</font>
+<font color="#ff0000">        paths</font><font color="#F3E651">:</font>
+<font color="#ff0000">          - path</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">/</font>
+<font color="#ff0000">            pathType</font><font color="#F3E651">:</font><font color="#ff0000"> Prefix</font>
+<font color="#ff0000">            backend</font><font color="#F3E651">:</font>
+<font color="#ff0000">              service</font><font color="#F3E651">:</font>
+<font color="#ff0000">                name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-service</font>
+<font color="#ff0000">                port</font><font color="#F3E651">:</font>
+<font color="#ff0000">                  number</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">END</font>
 
-&gt; ~ kubectl apply -f apache-ingress.yaml
-ingress.networking.k8s.io/apache-ingress created
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl apply -f apache-ingress</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">ingress</font><font color="#F3E651">.</font><font color="#ff0000">networking</font><font color="#F3E651">.</font><font color="#ff0000">k8s</font><font color="#F3E651">.</font><font color="#ff0000">io/apache-ingress created</font>
 
-&gt; ~ kubectl describe ingress
-Name:             apache-ingress
-Labels:           &lt;none&gt;
-Namespace:        <b><u><font color="#000000">test</font></u></b>
-Address:          <font color="#000000">192.168</font>.<font color="#000000">2.120</font>,<font color="#000000">192.168</font>.<font color="#000000">2.121</font>,<font color="#000000">192.168</font>.<font color="#000000">2.122</font>
-Ingress Class:    traefik
-Default backend:  &lt;default&gt;
-Rules:
-  Host                    Path  Backends
-  ----                    ----  --------
-  f3s.foo.zone
-                          /   apache-service:<font color="#000000">80</font> (<font color="#000000">10.42</font>.<font color="#000000">1.11</font>:<font color="#000000">80</font>)
-  standby.f3s.foo.zone
-                          /   apache-service:<font color="#000000">80</font> (<font color="#000000">10.42</font>.<font color="#000000">1.11</font>:<font color="#000000">80</font>)
-  www.f3s.foo.zone
-                          /   apache-service:<font color="#000000">80</font> (<font color="#000000">10.42</font>.<font color="#000000">1.11</font>:<font color="#000000">80</font>)
-Annotations:              spec.ingressClassName: traefik
-                          traefik.ingress.kubernetes.io/router.entrypoints: web
-Events:                   &lt;none&gt;
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl describe ingress</font>
+<font color="#ff0000">Name</font><font color="#F3E651">:</font><font color="#ff0000">             apache-ingress</font>
+<font color="#ff0000">Labels</font><font color="#F3E651">:</font><font color="#ff0000">           </font><font color="#F3E651">&lt;</font><font color="#ff0000">none</font><font color="#F3E651">&gt;</font>
+<font color="#ff0000">Namespace</font><font color="#F3E651">:</font><font color="#ff0000">        </font><b><font color="#ffffff">test</font></b>
+<font color="#ff0000">Address</font><font color="#F3E651">:</font><font color="#ff0000">          </font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.120</font><font color="#F3E651">,</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.121</font><font color="#F3E651">,</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.122</font>
+<font color="#ff0000">Ingress Class</font><font color="#F3E651">:</font><font color="#ff0000">    traefik</font>
+<font color="#ff0000">Default backend</font><font color="#F3E651">:</font><font color="#ff0000">  </font><font color="#F3E651">&lt;</font><font color="#ff0000">default</font><font color="#F3E651">&gt;</font>
+<font color="#ff0000">Rules</font><font color="#F3E651">:</font>
+<font color="#ff0000">  Host                    Path  Backends</font>
+<font color="#ff0000">  ----                    ----  --------</font>
+<font color="#ff0000">  f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">                          </font><font color="#F3E651">/</font><font color="#ff0000">   apache-service</font><font color="#F3E651">:</font><font color="#bb00ff">80</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#bb00ff">10.42</font><font color="#F3E651">.</font><font color="#bb00ff">1.11</font><font color="#F3E651">:</font><font color="#bb00ff">80</font><font color="#F3E651">)</font>
+<font color="#ff0000">  standby</font><font color="#F3E651">.</font><font color="#ff0000">f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">                          </font><font color="#F3E651">/</font><font color="#ff0000">   apache-service</font><font color="#F3E651">:</font><font color="#bb00ff">80</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#bb00ff">10.42</font><font color="#F3E651">.</font><font color="#bb00ff">1.11</font><font color="#F3E651">:</font><font color="#bb00ff">80</font><font color="#F3E651">)</font>
+<font color="#ff0000">  www</font><font color="#F3E651">.</font><font color="#ff0000">f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">                          </font><font color="#F3E651">/</font><font color="#ff0000">   apache-service</font><font color="#F3E651">:</font><font color="#bb00ff">80</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#bb00ff">10.42</font><font color="#F3E651">.</font><font color="#bb00ff">1.11</font><font color="#F3E651">:</font><font color="#bb00ff">80</font><font color="#F3E651">)</font>
+<font color="#ff0000">Annotations</font><font color="#F3E651">:</font><font color="#ff0000">              spec</font><font color="#F3E651">.</font><font color="#ff0000">ingressClassName</font><font color="#F3E651">:</font><font color="#ff0000"> traefik</font>
+<font color="#ff0000">                          traefik</font><font color="#F3E651">.</font><font color="#ff0000">ingress</font><font color="#F3E651">.</font><font color="#ff0000">kubernetes</font><font color="#F3E651">.</font><font color="#ff0000">io/router</font><font color="#F3E651">.</font><font color="#ff0000">entrypoints</font><font color="#F3E651">:</font><font color="#ff0000"> web</font>
+<font color="#ff0000">Events</font><font color="#F3E651">:</font><font color="#ff0000">                   </font><font color="#F3E651">&lt;</font><font color="#ff0000">none</font><font color="#F3E651">&gt;</font>
 </pre>
 <br />
 <span>Notes: </span><br />
@@ -418,8 +423,8 @@ Events:                   &lt;none&gt;
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ curl -H <font color="#808080">"Host: www.f3s.foo.zone"</font> http://r<font color="#000000">0</font>.lan.buetow.org:<font color="#000000">80</font>
-&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> curl -H </font><font color="#bb00ff">"Host: www.f3s.foo.zone"</font><font color="#ff0000"> http</font><font color="#F3E651">:</font><font color="#ff0000">//r</font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">80</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">html</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">body</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">h1</font><font color="#F3E651">&gt;</font><font color="#ff0000">It works</font><font color="#F3E651">!&lt;</font><font color="#ff0000">/h</font><font color="#bb00ff">1</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">/body</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">/html</font><font color="#F3E651">&gt;</font>
 </pre>
 <br />
 <h3 style='display: inline' id='test-deployment-with-persistent-volume-claim'>Test deployment with persistent volume claim</h3><br />
@@ -430,142 +435,142 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ cat &lt;&lt;END &gt; apache-deployment.yaml
-<i><font color="silver"># Apache HTTP Server Deployment</font></i>
-apiVersion: apps/v<font color="#000000">1</font>
-kind: Deployment
-metadata:
-  name: apache-deployment
-  namespace: <b><u><font color="#000000">test</font></u></b>
-spec:
-  replicas: <font color="#000000">2</font>
-  selector:
-    matchLabels:
-      app: apache
-  template:
-    metadata:
-      labels:
-        app: apache
-    spec:
-      containers:
-      - name: apache
-        image: httpd:latest
-        ports:
-        <i><font color="silver"># Container port where Apache listens</font></i>
-        - containerPort: <font color="#000000">80</font>
-        readinessProbe:
-          httpGet:
-            path: /
-            port: <font color="#000000">80</font>
-          initialDelaySeconds: <font color="#000000">5</font>
-          periodSeconds: <font color="#000000">10</font>
-        livenessProbe:
-          httpGet:
-            path: /
-            port: <font color="#000000">80</font>
-          initialDelaySeconds: <font color="#000000">15</font>
-          periodSeconds: <font color="#000000">10</font>
-        volumeMounts:
-        - name: apache-htdocs
-          mountPath: /usr/local/apache<font color="#000000">2</font>/htdocs/
-      volumes:
-      - name: apache-htdocs
-        persistentVolumeClaim:
-          claimName: example-apache-pvc
-END
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> cat </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">END </font><font color="#F3E651">&gt;</font><font color="#ff0000"> apache-deployment</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<i><font color="#ababab"># Apache HTTP Server Deployment</font></i>
+<font color="#ff0000">apiVersion</font><font color="#F3E651">:</font><font color="#ff0000"> apps/v</font><font color="#bb00ff">1</font>
+<font color="#ff0000">kind</font><font color="#F3E651">:</font><font color="#ff0000"> Deployment</font>
+<font color="#ff0000">metadata</font><font color="#F3E651">:</font>
+<font color="#ff0000">  name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-deployment</font>
+<font color="#ff0000">  namespace</font><font color="#F3E651">:</font><font color="#ff0000"> </font><b><font color="#ffffff">test</font></b>
+<font color="#ff0000">spec</font><font color="#F3E651">:</font>
+<font color="#ff0000">  replicas</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">2</font>
+<font color="#ff0000">  selector</font><font color="#F3E651">:</font>
+<font color="#ff0000">    matchLabels</font><font color="#F3E651">:</font>
+<font color="#ff0000">      app</font><font color="#F3E651">:</font><font color="#ff0000"> apache</font>
+<font color="#ff0000">  template</font><font color="#F3E651">:</font>
+<font color="#ff0000">    metadata</font><font color="#F3E651">:</font>
+<font color="#ff0000">      labels</font><font color="#F3E651">:</font>
+<font color="#ff0000">        app</font><font color="#F3E651">:</font><font color="#ff0000"> apache</font>
+<font color="#ff0000">    spec</font><font color="#F3E651">:</font>
+<font color="#ff0000">      containers</font><font color="#F3E651">:</font>
+<font color="#ff0000">      - name</font><font color="#F3E651">:</font><font color="#ff0000"> apache</font>
+<font color="#ff0000">        image</font><font color="#F3E651">:</font><font color="#ff0000"> httpd</font><font color="#F3E651">:</font><font color="#ff0000">latest</font>
+<font color="#ff0000">        ports</font><font color="#F3E651">:</font>
+<font color="#ff0000">        </font><i><font color="#ababab"># Container port where Apache listens</font></i>
+<font color="#ff0000">        - containerPort</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">        readinessProbe</font><font color="#F3E651">:</font>
+<font color="#ff0000">          httpGet</font><font color="#F3E651">:</font>
+<font color="#ff0000">            path</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">/</font>
+<font color="#ff0000">            port</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">          initialDelaySeconds</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">5</font>
+<font color="#ff0000">          periodSeconds</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">10</font>
+<font color="#ff0000">        livenessProbe</font><font color="#F3E651">:</font>
+<font color="#ff0000">          httpGet</font><font color="#F3E651">:</font>
+<font color="#ff0000">            path</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">/</font>
+<font color="#ff0000">            port</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">          initialDelaySeconds</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">15</font>
+<font color="#ff0000">          periodSeconds</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">10</font>
+<font color="#ff0000">        volumeMounts</font><font color="#F3E651">:</font>
+<font color="#ff0000">        - name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-htdocs</font>
+<font color="#ff0000">          mountPath</font><font color="#F3E651">:</font><font color="#ff0000"> /usr/local/apache</font><font color="#bb00ff">2</font><font color="#ff0000">/htdocs</font><font color="#F3E651">/</font>
+<font color="#ff0000">      volumes</font><font color="#F3E651">:</font>
+<font color="#ff0000">      - name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-htdocs</font>
+<font color="#ff0000">        persistentVolumeClaim</font><font color="#F3E651">:</font>
+<font color="#ff0000">          claimName</font><font color="#F3E651">:</font><font color="#ff0000"> example-apache-pvc</font>
+<font color="#ff0000">END</font>
 
-&gt; ~ cat &lt;&lt;END &gt; apache-ingress.yaml
-apiVersion: networking.k8s.io/v<font color="#000000">1</font>
-kind: Ingress
-metadata:
-  name: apache-ingress
-  namespace: <b><u><font color="#000000">test</font></u></b>
-  annotations:
-    spec.ingressClassName: traefik
-    traefik.ingress.kubernetes.io/router.entrypoints: web
-spec:
-  rules:
-    - host: f3s.foo.zone
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: apache-service
-                port:
-                  number: <font color="#000000">80</font>
-    - host: standby.f3s.foo.zone
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: apache-service
-                port:
-                  number: <font color="#000000">80</font>
-    - host: www.f3s.foo.zone
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: apache-service
-                port:
-                  number: <font color="#000000">80</font>
-END
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> cat </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">END </font><font color="#F3E651">&gt;</font><font color="#ff0000"> apache-ingress</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">apiVersion</font><font color="#F3E651">:</font><font color="#ff0000"> networking</font><font color="#F3E651">.</font><font color="#ff0000">k8s</font><font color="#F3E651">.</font><font color="#ff0000">io/v</font><font color="#bb00ff">1</font>
+<font color="#ff0000">kind</font><font color="#F3E651">:</font><font color="#ff0000"> Ingress</font>
+<font color="#ff0000">metadata</font><font color="#F3E651">:</font>
+<font color="#ff0000">  name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-ingress</font>
+<font color="#ff0000">  namespace</font><font color="#F3E651">:</font><font color="#ff0000"> </font><b><font color="#ffffff">test</font></b>
+<font color="#ff0000">  annotations</font><font color="#F3E651">:</font>
+<font color="#ff0000">    spec</font><font color="#F3E651">.</font><font color="#ff0000">ingressClassName</font><font color="#F3E651">:</font><font color="#ff0000"> traefik</font>
+<font color="#ff0000">    traefik</font><font color="#F3E651">.</font><font color="#ff0000">ingress</font><font color="#F3E651">.</font><font color="#ff0000">kubernetes</font><font color="#F3E651">.</font><font color="#ff0000">io/router</font><font color="#F3E651">.</font><font color="#ff0000">entrypoints</font><font color="#F3E651">:</font><font color="#ff0000"> web</font>
+<font color="#ff0000">spec</font><font color="#F3E651">:</font>
+<font color="#ff0000">  rules</font><font color="#F3E651">:</font>
+<font color="#ff0000">    - host</font><font color="#F3E651">:</font><font color="#ff0000"> f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">      http</font><font color="#F3E651">:</font>
+<font color="#ff0000">        paths</font><font color="#F3E651">:</font>
+<font color="#ff0000">          - path</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">/</font>
+<font color="#ff0000">            pathType</font><font color="#F3E651">:</font><font color="#ff0000"> Prefix</font>
+<font color="#ff0000">            backend</font><font color="#F3E651">:</font>
+<font color="#ff0000">              service</font><font color="#F3E651">:</font>
+<font color="#ff0000">                name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-service</font>
+<font color="#ff0000">                port</font><font color="#F3E651">:</font>
+<font color="#ff0000">                  number</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">    - host</font><font color="#F3E651">:</font><font color="#ff0000"> standby</font><font color="#F3E651">.</font><font color="#ff0000">f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">      http</font><font color="#F3E651">:</font>
+<font color="#ff0000">        paths</font><font color="#F3E651">:</font>
+<font color="#ff0000">          - path</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">/</font>
+<font color="#ff0000">            pathType</font><font color="#F3E651">:</font><font color="#ff0000"> Prefix</font>
+<font color="#ff0000">            backend</font><font color="#F3E651">:</font>
+<font color="#ff0000">              service</font><font color="#F3E651">:</font>
+<font color="#ff0000">                name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-service</font>
+<font color="#ff0000">                port</font><font color="#F3E651">:</font>
+<font color="#ff0000">                  number</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">    - host</font><font color="#F3E651">:</font><font color="#ff0000"> www</font><font color="#F3E651">.</font><font color="#ff0000">f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">      http</font><font color="#F3E651">:</font>
+<font color="#ff0000">        paths</font><font color="#F3E651">:</font>
+<font color="#ff0000">          - path</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">/</font>
+<font color="#ff0000">            pathType</font><font color="#F3E651">:</font><font color="#ff0000"> Prefix</font>
+<font color="#ff0000">            backend</font><font color="#F3E651">:</font>
+<font color="#ff0000">              service</font><font color="#F3E651">:</font>
+<font color="#ff0000">                name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-service</font>
+<font color="#ff0000">                port</font><font color="#F3E651">:</font>
+<font color="#ff0000">                  number</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">END</font>
 
-&gt; ~ cat &lt;&lt;END &gt; apache-persistent-volume.yaml
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: example-apache-pv
-spec:
-  capacity:
-    storage: 1Gi
-  volumeMode: Filesystem
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  hostPath:
-    path: /data/nfs/k3svolumes/example-apache-volume-claim
-    <b><u><font color="#000000">type</font></u></b>: Directory
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: example-apache-pvc
-  namespace: <b><u><font color="#000000">test</font></u></b>
-spec:
-  storageClassName: <font color="#808080">""</font>
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 1Gi
-END
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> cat </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">END </font><font color="#F3E651">&gt;</font><font color="#ff0000"> apache-persistent-volume</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">apiVersion</font><font color="#F3E651">:</font><font color="#ff0000"> v1</font>
+<font color="#ff0000">kind</font><font color="#F3E651">:</font><font color="#ff0000"> PersistentVolume</font>
+<font color="#ff0000">metadata</font><font color="#F3E651">:</font>
+<font color="#ff0000">  name</font><font color="#F3E651">:</font><font color="#ff0000"> example-apache-pv</font>
+<font color="#ff0000">spec</font><font color="#F3E651">:</font>
+<font color="#ff0000">  capacity</font><font color="#F3E651">:</font>
+<font color="#ff0000">    storage</font><font color="#F3E651">:</font><font color="#ff0000"> 1Gi</font>
+<font color="#ff0000">  volumeMode</font><font color="#F3E651">:</font><font color="#ff0000"> Filesystem</font>
+<font color="#ff0000">  accessModes</font><font color="#F3E651">:</font>
+<font color="#ff0000">    - ReadWriteOnce</font>
+<font color="#ff0000">  persistentVolumeReclaimPolicy</font><font color="#F3E651">:</font><font color="#ff0000"> Retain</font>
+<font color="#ff0000">  hostPath</font><font color="#F3E651">:</font>
+<font color="#ff0000">    path</font><font color="#F3E651">:</font><font color="#ff0000"> /data/nfs/k3svolumes/example-apache-volume-claim</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">type</font></b><font color="#F3E651">:</font><font color="#ff0000"> Directory</font>
+<font color="#ff0000">---</font>
+<font color="#ff0000">apiVersion</font><font color="#F3E651">:</font><font color="#ff0000"> v1</font>
+<font color="#ff0000">kind</font><font color="#F3E651">:</font><font color="#ff0000"> PersistentVolumeClaim</font>
+<font color="#ff0000">metadata</font><font color="#F3E651">:</font>
+<font color="#ff0000">  name</font><font color="#F3E651">:</font><font color="#ff0000"> example-apache-pvc</font>
+<font color="#ff0000">  namespace</font><font color="#F3E651">:</font><font color="#ff0000"> </font><b><font color="#ffffff">test</font></b>
+<font color="#ff0000">spec</font><font color="#F3E651">:</font>
+<font color="#ff0000">  storageClassName</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">""</font>
+<font color="#ff0000">  accessModes</font><font color="#F3E651">:</font>
+<font color="#ff0000">    - ReadWriteOnce</font>
+<font color="#ff0000">  resources</font><font color="#F3E651">:</font>
+<font color="#ff0000">    requests</font><font color="#F3E651">:</font>
+<font color="#ff0000">      storage</font><font color="#F3E651">:</font><font color="#ff0000"> 1Gi</font>
+<font color="#ff0000">END</font>
 
-&gt; ~ cat &lt;&lt;END &gt; apache-service.yaml
-apiVersion: v1
-kind: Service
-metadata:
-  labels:
-    app: apache
-  name: apache-service
-  namespace: <b><u><font color="#000000">test</font></u></b>
-spec:
-  ports:
-    - name: web
-      port: <font color="#000000">80</font>
-      protocol: TCP
-      <i><font color="silver"># Expose port 80 on the service</font></i>
-      targetPort: <font color="#000000">80</font>
-  selector:
-  <i><font color="silver"># Link this service to pods with the label app=apache</font></i>
-    app: apache
-END
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> cat </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">END </font><font color="#F3E651">&gt;</font><font color="#ff0000"> apache-service</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">apiVersion</font><font color="#F3E651">:</font><font color="#ff0000"> v1</font>
+<font color="#ff0000">kind</font><font color="#F3E651">:</font><font color="#ff0000"> Service</font>
+<font color="#ff0000">metadata</font><font color="#F3E651">:</font>
+<font color="#ff0000">  labels</font><font color="#F3E651">:</font>
+<font color="#ff0000">    app</font><font color="#F3E651">:</font><font color="#ff0000"> apache</font>
+<font color="#ff0000">  name</font><font color="#F3E651">:</font><font color="#ff0000"> apache-service</font>
+<font color="#ff0000">  namespace</font><font color="#F3E651">:</font><font color="#ff0000"> </font><b><font color="#ffffff">test</font></b>
+<font color="#ff0000">spec</font><font color="#F3E651">:</font>
+<font color="#ff0000">  ports</font><font color="#F3E651">:</font>
+<font color="#ff0000">    - name</font><font color="#F3E651">:</font><font color="#ff0000"> web</font>
+<font color="#ff0000">      port</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">      protocol</font><font color="#F3E651">:</font><font color="#ff0000"> TCP</font>
+<font color="#ff0000">      </font><i><font color="#ababab"># Expose port 80 on the service</font></i>
+<font color="#ff0000">      targetPort</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">80</font>
+<font color="#ff0000">  selector</font><font color="#F3E651">:</font>
+<font color="#ff0000">  </font><i><font color="#ababab"># Link this service to pods with the label app=apache</font></i>
+<font color="#ff0000">    app</font><font color="#F3E651">:</font><font color="#ff0000"> apache</font>
+<font color="#ff0000">END</font>
 </pre>
 <br />
 <span>I applied the manifests:</span><br />
@@ -574,10 +579,10 @@ END
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ kubectl apply -f apache-persistent-volume.yaml
-&gt; ~ kubectl apply -f apache-service.yaml
-&gt; ~ kubectl apply -f apache-deployment.yaml
-&gt; ~ kubectl apply -f apache-ingress.yaml
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl apply -f apache-persistent-volume</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl apply -f apache-service</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl apply -f apache-deployment</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl apply -f apache-ingress</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
 </pre>
 <br />
 <span>Looking at the deployment, I could see it failed because the directory didn&#39;t exist yet on the NFS share (note that I also increased the replica count to 2 so if one node goes down there&#39;s already a replica running on another node for faster failover):</span><br />
@@ -586,20 +591,20 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ kubectl get pods
-NAME                                 READY   STATUS              RESTARTS   AGE
-apache-deployment-5b96bd6b6b-fv2jx   <font color="#000000">0</font>/<font color="#000000">1</font>     ContainerCreating   <font color="#000000">0</font>          9m15s
-apache-deployment-5b96bd6b6b-ax2ji   <font color="#000000">0</font>/<font color="#000000">1</font>     ContainerCreating   <font color="#000000">0</font>          9m15s
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl get pods</font>
+<font color="#ff0000">NAME                                 READY   STATUS              RESTARTS   AGE</font>
+<font color="#ff0000">apache-deployment-5b96bd6b6b-fv2jx   </font><font color="#bb00ff">0</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     ContainerCreating   </font><font color="#bb00ff">0</font><font color="#ff0000">          9m15s</font>
+<font color="#ff0000">apache-deployment-5b96bd6b6b-ax2ji   </font><font color="#bb00ff">0</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     ContainerCreating   </font><font color="#bb00ff">0</font><font color="#ff0000">          9m15s</font>
 
-&gt; ~ kubectl describe pod apache-deployment-5b96bd6b6b-fv2jx | tail -n <font color="#000000">5</font>
-Events:
-  Type     Reason       Age                   From               Message
-  ----     ------       ----                  ----               -------
-  Normal   Scheduled    9m34s                 default-scheduler  Successfully
-    assigned test/apache-deployment-5b96bd6b6b-fv2jx to r2.lan.buetow.org
-  Warning  FailedMount  80s (x12 over 9m34s)  kubelet            MountVolume.SetUp
-    failed <b><u><font color="#000000">for</font></u></b> volume <font color="#808080">"example-apache-pv"</font> : hostPath <b><u><font color="#000000">type</font></u></b> check failed:
-    /data/nfs/k3svolumes/example-apache is not a directory
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl describe pod apache-deployment-5b96bd6b6b-fv2jx </font><font color="#F3E651">|</font><font color="#ff0000"> tail -n </font><font color="#bb00ff">5</font>
+<font color="#ff0000">Events</font><font color="#F3E651">:</font>
+<font color="#ff0000">  Type     Reason       Age                   From               Message</font>
+<font color="#ff0000">  ----     ------       ----                  ----               -------</font>
+<font color="#ff0000">  Normal   Scheduled    9m34s                 default-scheduler  Successfully</font>
+<font color="#ff0000">    assigned test/apache-deployment-5b96bd6b6b-fv2jx to r2</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
+<font color="#ff0000">  Warning  FailedMount  80s </font><font color="#F3E651">(</font><font color="#ff0000">x12 over 9m34s</font><font color="#F3E651">)</font><font color="#ff0000">  kubelet            MountVolume</font><font color="#F3E651">.</font><font color="#ff0000">SetUp</font>
+<font color="#ff0000">    failed </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> volume </font><font color="#bb00ff">"example-apache-pv"</font><font color="#ff0000"> </font><font color="#F3E651">:</font><font color="#ff0000"> hostPath </font><b><font color="#ffffff">type</font></b><font color="#ff0000"> check failed</font><font color="#F3E651">:</font>
+<font color="#ff0000">    /data/nfs/k3svolumes/example-apache is not a directory</font>
 </pre>
 <br />
 <span>That&#39;s intentional—I needed to create the directory on the NFS share first, so I did that (e.g. on <span class='inlinecode'>r0</span>):</span><br />
@@ -608,20 +613,20 @@ Events:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[root@r0 ~]<i><font color="silver"># mkdir /data/nfs/k3svolumes/example-apache-volume-claim/</font></i>
+<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># mkdir /data/nfs/k3svolumes/example-apache-volume-claim/</font></i>
 
-[root@r0 ~]<i><font color="silver"># cat &lt;&lt;END &gt; /data/nfs/k3svolumes/example-apache-volume-claim/index.html</font></i>
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;title&gt;Hello, it works&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1&gt;Hello, it works!&lt;/h<font color="#000000">1</font>&gt;
-  &lt;p&gt;This site is served via a PVC!&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-END
+<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># cat &lt;&lt;END &gt; /data/nfs/k3svolumes/example-apache-volume-claim/index.html</font></i>
+<font color="#F3E651">&lt;!</font><font color="#ff0000">DOCTYPE html</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">html</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">head</font><font color="#F3E651">&gt;</font>
+<font color="#ff0000">  </font><font color="#F3E651">&lt;</font><font color="#ff0000">title</font><font color="#F3E651">&gt;</font><font color="#ff0000">Hello</font><font color="#F3E651">,</font><font color="#ff0000"> it works</font><font color="#F3E651">&lt;</font><font color="#ff0000">/title</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">/head</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">body</font><font color="#F3E651">&gt;</font>
+<font color="#ff0000">  </font><font color="#F3E651">&lt;</font><font color="#ff0000">h1</font><font color="#F3E651">&gt;</font><font color="#ff0000">Hello</font><font color="#F3E651">,</font><font color="#ff0000"> it works</font><font color="#F3E651">!&lt;</font><font color="#ff0000">/h</font><font color="#bb00ff">1</font><font color="#F3E651">&gt;</font>
+<font color="#ff0000">  </font><font color="#F3E651">&lt;</font><font color="#ff0000">p</font><font color="#F3E651">&gt;</font><font color="#ff0000">This site is served via a PVC</font><font color="#F3E651">!&lt;</font><font color="#ff0000">/p</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">/body</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">/html</font><font color="#F3E651">&gt;</font>
+<font color="#ff0000">END</font>
 </pre>
 <br />
 <span>The <span class='inlinecode'>index.html</span> file gives us some actual content to serve. After deleting the pod, it recreates itself and the volume mounts correctly:</span><br />
@@ -630,19 +635,19 @@ END
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ kubectl delete pod apache-deployment-5b96bd6b6b-fv2jx
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl delete pod apache-deployment-5b96bd6b6b-fv2jx</font>
 
-&gt; ~ curl -H <font color="#808080">"Host: www.f3s.foo.zone"</font> http://r<font color="#000000">0</font>.lan.buetow.org:<font color="#000000">80</font>
-&lt;!DOCTYPE html&gt;
-&lt;html&gt;
-&lt;head&gt;
-  &lt;title&gt;Hello, it works&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-  &lt;h1&gt;Hello, it works!&lt;/h<font color="#000000">1</font>&gt;
-  &lt;p&gt;This site is served via a PVC!&lt;/p&gt;
-&lt;/body&gt;
-&lt;/html&gt;
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> curl -H </font><font color="#bb00ff">"Host: www.f3s.foo.zone"</font><font color="#ff0000"> http</font><font color="#F3E651">:</font><font color="#ff0000">//r</font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">80</font>
+<font color="#F3E651">&lt;!</font><font color="#ff0000">DOCTYPE html</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">html</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">head</font><font color="#F3E651">&gt;</font>
+<font color="#ff0000">  </font><font color="#F3E651">&lt;</font><font color="#ff0000">title</font><font color="#F3E651">&gt;</font><font color="#ff0000">Hello</font><font color="#F3E651">,</font><font color="#ff0000"> it works</font><font color="#F3E651">&lt;</font><font color="#ff0000">/title</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">/head</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">body</font><font color="#F3E651">&gt;</font>
+<font color="#ff0000">  </font><font color="#F3E651">&lt;</font><font color="#ff0000">h1</font><font color="#F3E651">&gt;</font><font color="#ff0000">Hello</font><font color="#F3E651">,</font><font color="#ff0000"> it works</font><font color="#F3E651">!&lt;</font><font color="#ff0000">/h</font><font color="#bb00ff">1</font><font color="#F3E651">&gt;</font>
+<font color="#ff0000">  </font><font color="#F3E651">&lt;</font><font color="#ff0000">p</font><font color="#F3E651">&gt;</font><font color="#ff0000">This site is served via a PVC</font><font color="#F3E651">!&lt;</font><font color="#ff0000">/p</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">/body</font><font color="#F3E651">&gt;</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">/html</font><font color="#F3E651">&gt;</font>
 </pre>
 <br />
 <h3 style='display: inline' id='scaling-traefik-for-faster-failover'>Scaling Traefik for faster failover</h3><br />
@@ -653,7 +658,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ kubectl -n kube-system scale deployment traefik --replicas=<font color="#000000">2</font>
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl -n kube-system scale deployment traefik --replicas</font><font color="#F3E651">=</font><font color="#bb00ff">2</font>
 </pre>
 <br />
 <span>And the result:</span><br />
@@ -662,9 +667,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ kubectl -n kube-system get pods -l app.kubernetes.io/name=traefik
-kube-system   traefik-c98fdf6fb-97kqk   <font color="#000000">1</font>/<font color="#000000">1</font>   Running   <font color="#000000">19</font> (53d ago)   64d
-kube-system   traefik-c98fdf6fb-9npg2   <font color="#000000">1</font>/<font color="#000000">1</font>   Running   <font color="#000000">11</font> (53d ago)   61d
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl -n kube-system get pods -l app</font><font color="#F3E651">.</font><font color="#ff0000">kubernetes</font><font color="#F3E651">.</font><font color="#ff0000">io/name</font><font color="#F3E651">=</font><font color="#ff0000">traefik</font>
+<font color="#ff0000">kube-system   traefik-c98fdf6fb-97kqk   </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">   Running   </font><font color="#bb00ff">19</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">53d ago</font><font color="#F3E651">)</font><font color="#ff0000">   64d</font>
+<font color="#ff0000">kube-system   traefik-c98fdf6fb-9npg2   </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">   Running   </font><font color="#bb00ff">11</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">53d ago</font><font color="#F3E651">)</font><font color="#ff0000">   61d</font>
 </pre>
 <br />
 <h2 style='display: inline' id='make-it-accessible-from-the-public-internet'>Make it accessible from the public internet</h2><br />
@@ -683,14 +688,14 @@ kube-system   traefik-c98fdf6fb-9npg2   <font color="#000000">1</font>/<font col
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ curl https://f3s.foo.zone
-&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> curl https</font><font color="#F3E651">:</font><font color="#ff0000">//f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">html</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">body</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">h1</font><font color="#F3E651">&gt;</font><font color="#ff0000">It works</font><font color="#F3E651">!&lt;</font><font color="#ff0000">/h</font><font color="#bb00ff">1</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">/body</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">/html</font><font color="#F3E651">&gt;</font>
 
-&gt; ~ curl https://www.f3s.foo.zone
-&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> curl https</font><font color="#F3E651">:</font><font color="#ff0000">//www</font><font color="#F3E651">.</font><font color="#ff0000">f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">html</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">body</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">h1</font><font color="#F3E651">&gt;</font><font color="#ff0000">It works</font><font color="#F3E651">!&lt;</font><font color="#ff0000">/h</font><font color="#bb00ff">1</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">/body</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">/html</font><font color="#F3E651">&gt;</font>
 
-&gt; ~ curl https://standby.f3s.foo.zone
-&lt;html&gt;&lt;body&gt;&lt;h1&gt;It works!&lt;/h<font color="#000000">1</font>&gt;&lt;/body&gt;&lt;/html&gt;
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> curl https</font><font color="#F3E651">:</font><font color="#ff0000">//standby</font><font color="#F3E651">.</font><font color="#ff0000">f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#F3E651">&lt;</font><font color="#ff0000">html</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">body</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">h1</font><font color="#F3E651">&gt;</font><font color="#ff0000">It works</font><font color="#F3E651">!&lt;</font><font color="#ff0000">/h</font><font color="#bb00ff">1</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">/body</font><font color="#F3E651">&gt;&lt;</font><font color="#ff0000">/html</font><font color="#F3E651">&gt;</font>
 </pre>
 <br />
 <span>This is how it works in <span class='inlinecode'>relayd.conf</span> on OpenBSD:</span><br />
@@ -864,32 +869,32 @@ server "anki.f3s.foo.zone" {
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">&lt;!DOCTYPE</font></u></b> <b><font color="#000000">html</font></b><b><u><font color="#000000">&gt;</font></u></b>
-<b><u><font color="#000000">&lt;html&gt;</font></u></b>
-<b><u><font color="#000000">&lt;head&gt;</font></u></b>
-    <b><u><font color="#000000">&lt;title&gt;</font></u></b>Server turned off<b><u><font color="#000000">&lt;/title&gt;</font></u></b>
-    <b><u><font color="#000000">&lt;style&gt;</font></u></b>
-        body {
-            font-family: <font color="#808080">sans-serif</font>;
-            text-align: <font color="#808080">center</font>;
-            padding-top: <font color="#808080">50px</font>;
-        }
-        .container {
-            max-width: <font color="#808080">600px</font>;
-            margin: <font color="#808080">0</font> <font color="#808080">auto</font>;
-        }
-    <b><u><font color="#000000">&lt;/style&gt;</font></u></b>
-<b><u><font color="#000000">&lt;/head&gt;</font></u></b>
-<b><u><font color="#000000">&lt;body&gt;</font></u></b>
-    <b><u><font color="#000000">&lt;div</font></u></b> <b><font color="#000000">class</font></b>=<font color="#808080">"container"</font><b><u><font color="#000000">&gt;</font></u></b>
-        <b><u><font color="#000000">&lt;h1&gt;</font></u></b>Server turned off<b><u><font color="#000000">&lt;/h1&gt;</font></u></b>
-        <b><u><font color="#000000">&lt;p&gt;</font></u></b>The servers are all currently turned off.<b><u><font color="#000000">&lt;/p&gt;</font></u></b>
-        <b><u><font color="#000000">&lt;p&gt;</font></u></b>Please try again later.<b><u><font color="#000000">&lt;/p&gt;</font></u></b>
-        <b><u><font color="#000000">&lt;p&gt;</font></u></b>Or email <b><u><font color="#000000">&lt;a</font></u></b> <b><font color="#000000">href</font></b>=<font color="#808080">"mailto:paul@nospam.buetow.org"</font><b><u><font color="#000000">&gt;</font></u></b>paul@nospam.buetow.org<b><u><font color="#000000">&lt;/a&gt;</font></u></b>
-           - so I can turn them back on for you!<b><u><font color="#000000">&lt;/p&gt;</font></u></b>
-    <b><u><font color="#000000">&lt;/div&gt;</font></u></b>
-<b><u><font color="#000000">&lt;/body&gt;</font></u></b>
-<b><u><font color="#000000">&lt;/html&gt;</font></u></b>
+<pre><font color="#ababab">&lt;!DOCTYPE</font><font color="#ff0000"> </font><b><font color="#F35E1E">html</font></b><font color="#ababab">&gt;</font>
+<b><font color="#ffffff">&lt;html&gt;</font></b>
+<b><font color="#ffffff">&lt;head&gt;</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">&lt;title&gt;</font></b><font color="#ff0000">Server turned off</font><b><font color="#ffffff">&lt;/title&gt;</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">&lt;style&gt;</font></b>
+<font color="#ff0000">        body </font><font color="#F3E651">{</font>
+<font color="#ff0000">            </font><font color="#ff0000">font-family:</font><font color="#ff0000"> </font><font color="#bb00ff">sans-serif</font><font color="#ff0000">;</font>
+<font color="#ff0000">            </font><font color="#ff0000">text-align:</font><font color="#ff0000"> </font><font color="#bb00ff">center</font><font color="#ff0000">;</font>
+<font color="#ff0000">            </font><font color="#ff0000">padding-top:</font><font color="#ff0000"> </font><font color="#bb00ff">50px</font><font color="#ff0000">;</font>
+<font color="#ff0000">        </font><font color="#F3E651">}</font>
+<font color="#ff0000">        </font><font color="#ff0000">.container</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
+<font color="#ff0000">            </font><font color="#ff0000">max-width:</font><font color="#ff0000"> </font><font color="#bb00ff">600px</font><font color="#ff0000">;</font>
+<font color="#ff0000">            </font><font color="#ff0000">margin:</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#bb00ff">auto</font><font color="#ff0000">;</font>
+<font color="#ff0000">        </font><font color="#F3E651">}</font>
+<font color="#ff0000">    </font><b><font color="#ffffff">&lt;/style&gt;</font></b>
+<b><font color="#ffffff">&lt;/head&gt;</font></b>
+<b><font color="#ffffff">&lt;body&gt;</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">&lt;div</font></b><font color="#ff0000"> </font><b><font color="#F35E1E">class</font></b><font color="#F3E651">=</font><font color="#bb00ff">"container"</font><b><font color="#ffffff">&gt;</font></b>
+<font color="#ff0000">        </font><b><font color="#ffffff">&lt;h1&gt;</font></b><font color="#ff0000">Server turned off</font><b><font color="#ffffff">&lt;/h1&gt;</font></b>
+<font color="#ff0000">        </font><b><font color="#ffffff">&lt;p&gt;</font></b><font color="#ff0000">The servers are all currently turned off.</font><b><font color="#ffffff">&lt;/p&gt;</font></b>
+<font color="#ff0000">        </font><b><font color="#ffffff">&lt;p&gt;</font></b><font color="#ff0000">Please try again later.</font><b><font color="#ffffff">&lt;/p&gt;</font></b>
+<font color="#ff0000">        </font><b><font color="#ffffff">&lt;p&gt;</font></b><font color="#ff0000">Or email </font><b><font color="#ffffff">&lt;a</font></b><font color="#ff0000"> </font><b><font color="#F35E1E">href</font></b><font color="#F3E651">=</font><font color="#bb00ff">"mailto:paul@nospam.buetow.org"</font><b><font color="#ffffff">&gt;</font></b><font color="#ff0000">paul@nospam.buetow.org</font><b><font color="#ffffff">&lt;/a&gt;</font></b>
+<font color="#ff0000">           - so I can turn them back on for you!</font><b><font color="#ffffff">&lt;/p&gt;</font></b>
+<font color="#ff0000">    </font><b><font color="#ffffff">&lt;/div&gt;</font></b>
+<b><font color="#ffffff">&lt;/body&gt;</font></b>
+<b><font color="#ffffff">&lt;/html&gt;</font></b>
 </pre>
 <br />
 <span>This approach provides several benefits:</span><br />
@@ -948,17 +953,17 @@ LAN → FreeBSD CARP VIP (192.168.1.138)
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ cd conf/f3s/cert-manager
-$ just install
-kubectl apply -f cert-manager.yaml
-<i><font color="silver"># ... cert-manager CRDs and resources created ...</font></i>
-kubectl apply -f self-signed-issuer.yaml
-clusterissuer.cert-manager.io/selfsigned-issuer created
-clusterissuer.cert-manager.io/selfsigned-ca-issuer created
-kubectl apply -f ca-certificate.yaml
-certificate.cert-manager.io/selfsigned-ca created
-kubectl apply -f wildcard-certificate.yaml
-certificate.cert-manager.io/f3s-lan-wildcard created
+<pre><font color="#ff0000">$ cd conf/f3s/cert-manager</font>
+<font color="#ff0000">$ just install</font>
+<font color="#ff0000">kubectl apply -f cert-manager</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<i><font color="#ababab"># ... cert-manager CRDs and resources created ...</font></i>
+<font color="#ff0000">kubectl apply -f self-signed-issuer</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">clusterissuer</font><font color="#F3E651">.</font><font color="#ff0000">cert-manager</font><font color="#F3E651">.</font><font color="#ff0000">io/selfsigned-issuer created</font>
+<font color="#ff0000">clusterissuer</font><font color="#F3E651">.</font><font color="#ff0000">cert-manager</font><font color="#F3E651">.</font><font color="#ff0000">io/selfsigned-ca-issuer created</font>
+<font color="#ff0000">kubectl apply -f ca-certificate</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">certificate</font><font color="#F3E651">.</font><font color="#ff0000">cert-manager</font><font color="#F3E651">.</font><font color="#ff0000">io/selfsigned-ca created</font>
+<font color="#ff0000">kubectl apply -f wildcard-certificate</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">certificate</font><font color="#F3E651">.</font><font color="#ff0000">cert-manager</font><font color="#F3E651">.</font><font color="#ff0000">io/f3s-lan-wildcard created</font>
 </pre>
 <br />
 <span>This creates:</span><br />
@@ -975,10 +980,10 @@ certificate.cert-manager.io/f3s-lan-wildcard created
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl get certificate -n cert-manager
-NAME               READY   SECRET                 AGE
-f3s-lan-wildcard   True    f3s-lan-tls            5m
-selfsigned-ca      True    selfsigned-ca-secret   5m
+<pre><font color="#ff0000">$ kubectl get certificate -n cert-manager</font>
+<font color="#ff0000">NAME               READY   SECRET                 AGE</font>
+<font color="#ff0000">f3s-lan-wildcard   True    f3s-lan-tls            5m</font>
+<font color="#ff0000">selfsigned-ca      True    selfsigned-ca-secret   5m</font>
 </pre>
 <br />
 <span>The wildcard certificate (<span class='inlinecode'>f3s-lan-tls</span>) needs to be copied to any namespace that uses it:</span><br />
@@ -987,9 +992,9 @@ selfsigned-ca      True    selfsigned-ca-secret   5m
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl get secret f3s-lan-tls -n cert-manager -o yaml | \
-    sed <font color="#808080">'s/namespace: cert-manager/namespace: services/'</font> | \
-    kubectl apply -f -
+<pre><font color="#ff0000">$ kubectl get secret f3s-lan-tls -n cert-manager -o yaml </font><font color="#F3E651">|</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    sed </font><font color="#bb00ff">'s/namespace: cert-manager/namespace: services/'</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    kubectl apply -f -</font>
 </pre>
 <br />
 <h3 style='display: inline' id='configuring-freebsd-relayd-for-lan-access'>Configuring FreeBSD relayd for LAN access</h3><br />
@@ -1000,7 +1005,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f0:~ % doas pkg install -y relayd
+<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas pkg install -y relayd</font>
 </pre>
 <br />
 <span>Create <span class='inlinecode'>/usr/local/etc/relayd.conf</span>:</span><br />
@@ -1036,10 +1041,10 @@ pass out quick
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f0:~ % doas sysrc pf_enable=YES pflog_enable=YES relayd_enable=YES
-paul@f0:~ % doas service pf start
-paul@f0:~ % doas service pflog start
-paul@f0:~ % doas service relayd start
+<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas sysrc </font><font color="#ff0000">pf_enable</font><font color="#F3E651">=</font><font color="#ff0000">YES </font><font color="#ff0000">pflog_enable</font><font color="#F3E651">=</font><font color="#ff0000">YES </font><font color="#ff0000">relayd_enable</font><font color="#F3E651">=</font><font color="#ff0000">YES</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas service pf start</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas service pflog start</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas service relayd start</font>
 </pre>
 <br />
 <span>Verify <span class='inlinecode'>relayd</span> is listening on the CARP VIP:</span><br />
@@ -1048,9 +1053,9 @@ paul@f0:~ % doas service relayd start
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f0:~ % doas sockstat -<font color="#000000">4</font> -l | grep <font color="#000000">192.168</font>.<font color="#000000">1.138</font>
-_relayd  relayd   <font color="#000000">2903</font>  <font color="#000000">11</font>  tcp4   <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">80</font>      *:*
-_relayd  relayd   <font color="#000000">2903</font>  <font color="#000000">12</font>  tcp4   <font color="#000000">192.168</font>.<font color="#000000">1.138</font>:<font color="#000000">443</font>     *:*
+<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas sockstat -</font><font color="#bb00ff">4</font><font color="#ff0000"> -l </font><font color="#F3E651">|</font><font color="#ff0000"> grep </font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.138</font>
+<font color="#ff0000">_relayd  relayd   </font><font color="#bb00ff">2903</font><font color="#ff0000">  </font><font color="#bb00ff">11</font><font color="#ff0000">  tcp4   </font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.138</font><font color="#F3E651">:</font><font color="#bb00ff">80</font><font color="#ff0000">      </font><font color="#F3E651">*:*</font>
+<font color="#ff0000">_relayd  relayd   </font><font color="#bb00ff">2903</font><font color="#ff0000">  </font><font color="#bb00ff">12</font><font color="#ff0000">  tcp4   </font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.138</font><font color="#F3E651">:</font><font color="#bb00ff">443</font><font color="#ff0000">     </font><font color="#F3E651">*:*</font>
 </pre>
 <br />
 <span>Repeat the same configuration on f1. Both hosts will run <span class='inlinecode'>relayd</span> listening on the CARP VIP, but only the CARP MASTER will respond to traffic. When failover occurs, the new MASTER takes over seamlessly.</span><br />
@@ -1102,12 +1107,12 @@ spec:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl apply -f ingress-lan.yaml
-ingress.networking.k8s.io/ingress-lan created
+<pre><font color="#ff0000">$ kubectl apply -f ingress-lan</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
+<font color="#ff0000">ingress</font><font color="#F3E651">.</font><font color="#ff0000">networking</font><font color="#F3E651">.</font><font color="#ff0000">k8s</font><font color="#F3E651">.</font><font color="#ff0000">io/ingress-lan created</font>
 
-$ curl -k https://f3s.lan.foo.zone
-HTTP/<font color="#000000">2</font> <font color="#000000">302</font> 
-location: /app/
+<font color="#ff0000">$ curl -k https</font><font color="#F3E651">:</font><font color="#ff0000">//f3s</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">HTTP</font><font color="#F3E651">/</font><font color="#bb00ff">2</font><font color="#ff0000"> </font><font color="#bb00ff">302</font><font color="#ff0000"> </font>
+<font color="#ff0000">location</font><font color="#F3E651">:</font><font color="#ff0000"> /app</font><font color="#F3E651">/</font>
 </pre>
 <br />
 <h3 style='display: inline' id='client-side-dns-and-ca-setup'>Client-side DNS and CA setup</h3><br />
@@ -1120,10 +1125,10 @@ location: /app/
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ sudo tee -a /etc/hosts &lt;&lt; <font color="#808080">'EOF'</font>
-<i><font color="silver"># f3s LAN services</font></i>
-<font color="#000000">192.168</font>.<font color="#000000">1.138</font>  f3s.lan.foo.zone
-EOF
+<pre><font color="#ff0000">$ sudo tee -a /etc/hosts </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000"> </font><font color="#bb00ff">'EOF'</font>
+<i><font color="#ababab"># f3s LAN services</font></i>
+<font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.138</font><font color="#ff0000">  f3s</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone</font>
+<font color="#ff0000">EOF</font>
 </pre>
 <br />
 <span>The CARP VIP <span class='inlinecode'>192.168.1.138</span> provides high availability—traffic automatically fails over to the backup host if the master goes down.</span><br />
@@ -1134,8 +1139,8 @@ EOF
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl get secret selfsigned-ca-secret -n cert-manager -o jsonpath=<font color="#808080">'{.data.ca</font>\.<font color="#808080">crt}'</font> | \
-    base64 -d &gt; f3s-lan-ca.crt
+<pre><font color="#ff0000">$ kubectl get secret selfsigned-ca-secret -n cert-manager -o </font><font color="#ff0000">jsonpath</font><font color="#F3E651">=</font><font color="#bb00ff">'{.data.ca</font><font color="#ffffff">\.</font><font color="#bb00ff">crt}'</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    base64 -d </font><font color="#F3E651">&gt;</font><font color="#ff0000"> f3s-lan-ca</font><font color="#F3E651">.</font><font color="#ff0000">crt</font>
 </pre>
 <br />
 <span>Install the CA certificate on Linux (Fedora/Rocky):</span><br />
@@ -1144,8 +1149,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ sudo cp f3s-lan-ca.crt /etc/pki/ca-trust/source/anchors/
-$ sudo update-ca-trust
+<pre><font color="#ff0000">$ sudo cp f3s-lan-ca</font><font color="#F3E651">.</font><font color="#ff0000">crt /etc/pki/ca-trust/source/anchors</font><font color="#F3E651">/</font>
+<font color="#ff0000">$ sudo update-ca-trust</font>
 </pre>
 <br />
 <span>After trusting the CA, browsers will accept the LAN certificates without warnings.</span><br />
@@ -1194,7 +1199,7 @@ $ sudo update-ca-trust
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes/registry</font></i>
+<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># mkdir -p /data/nfs/k3svolumes/registry</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='install-or-upgrade-the-chart'>Install (or upgrade) the chart</h3><br />
@@ -1205,9 +1210,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf/f3s.git
-$ cd conf/f3s/examples/conf/f3s/registry
-$ helm upgrade --install registry ./helm-chart --namespace infra --create-namespace
+<pre><font color="#ff0000">$ git clone https</font><font color="#F3E651">:</font><font color="#ff0000">//codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/conf/f3s</font><font color="#F3E651">.</font><font color="#ff0000">git</font>
+<font color="#ff0000">$ cd conf/f3s/examples/conf/f3s/registry</font>
+<font color="#ff0000">$ helm upgrade --install registry </font><font color="#F3E651">.</font><font color="#ff0000">/helm-chart --namespace infra --create-namespace</font>
 </pre>
 <br />
 <span>Helm creates the <span class='inlinecode'>infra</span> namespace if it does not exist, provisions a <span class='inlinecode'>PersistentVolume</span>/<span class='inlinecode'>PersistentVolumeClaim</span> pair that points at <span class='inlinecode'>/data/nfs/k3svolumes/registry</span>, and spins up a single registry pod exposed via the <span class='inlinecode'>docker-registry-service</span> NodePort (<span class='inlinecode'>30001</span>). Verify everything is up before continuing:</span><br />
@@ -1216,13 +1221,13 @@ $ helm upgrade --install registry ./helm-chart --namespace infra --create-namesp
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl get pods --namespace infra
-NAME                               READY   STATUS    RESTARTS      AGE
-docker-registry-6bc9bb46bb-6grkr   <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">6</font> (53d ago)   54d
+<pre><font color="#ff0000">$ kubectl get pods --namespace infra</font>
+<font color="#ff0000">NAME                               READY   STATUS    RESTARTS      AGE</font>
+<font color="#ff0000">docker-registry-6bc9bb46bb-6grkr   </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">6</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">53d ago</font><font color="#F3E651">)</font><font color="#ff0000">   54d</font>
 
-$ kubectl get svc docker-registry-service -n infra
-NAME                      TYPE       CLUSTER-IP     EXTERNAL-IP   PORT(S)          AGE
-docker-registry-service   NodePort   <font color="#000000">10.43</font>.<font color="#000000">141.56</font>   &lt;none&gt;        <font color="#000000">5000</font>:<font color="#000000">30001</font>/TCP   54d
+<font color="#ff0000">$ kubectl get svc docker-registry-service -n infra</font>
+<font color="#ff0000">NAME                      TYPE       CLUSTER-IP     EXTERNAL-IP   PORT</font><font color="#F3E651">(</font><font color="#ff0000">S</font><font color="#F3E651">)</font><font color="#ff0000">          AGE</font>
+<font color="#ff0000">docker-registry-service   NodePort   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">141.56</font><font color="#ff0000">   </font><font color="#F3E651">&lt;</font><font color="#ff0000">none</font><font color="#F3E651">&gt;</font><font color="#ff0000">        </font><font color="#bb00ff">5000</font><font color="#F3E651">:</font><font color="#bb00ff">30001</font><font color="#ff0000">/TCP   54d</font>
 </pre>
 <br />
 <h3 style='display: inline' id='allow-nodes-and-workstations-to-trust-the-registry'>Allow nodes and workstations to trust the registry</h3><br />
@@ -1240,16 +1245,16 @@ docker-registry-service   NodePort   <font color="#000000">10.43</font>.<font co
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ cat &lt;&lt;<font color="#808080">"EOF"</font> | sudo tee /etc/docker/daemon.json &gt;/dev/null
-{
-  <font color="#808080">"insecure-registries"</font>: [
-    <font color="#808080">"r0.lan.buetow.org:30001"</font>,
-    <font color="#808080">"r1.lan.buetow.org:30001"</font>,
-    <font color="#808080">"r2.lan.buetow.org:30001"</font>
-  ]
-}
-EOF
-$ sudo systemctl restart docker
+<pre><font color="#ff0000">$ cat </font><font color="#F3E651">&lt;&lt;</font><font color="#bb00ff">"EOF"</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> sudo tee /etc/docker/daemon</font><font color="#F3E651">.</font><font color="#ff0000">json </font><font color="#F3E651">&gt;</font><font color="#ff0000">/dev/null</font>
+<font color="#ff0000">{</font>
+<font color="#ff0000">  </font><font color="#bb00ff">"insecure-registries"</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">[</font>
+<font color="#ff0000">    </font><font color="#bb00ff">"r0.lan.buetow.org:30001"</font><font color="#F3E651">,</font>
+<font color="#ff0000">    </font><font color="#bb00ff">"r1.lan.buetow.org:30001"</font><font color="#F3E651">,</font>
+<font color="#ff0000">    </font><font color="#bb00ff">"r2.lan.buetow.org:30001"</font>
+<font color="#ff0000">  </font><font color="#F3E651">]</font>
+<font color="#ff0000">}</font>
+<font color="#ff0000">EOF</font>
+<font color="#ff0000">$ sudo systemctl restart docker</font>
 </pre>
 <br />
 <span>On each k3s node, make <span class='inlinecode'>registry.lan.buetow.org</span> resolve locally and point k3s at the NodePort:</span><br />
@@ -1258,19 +1263,19 @@ $ sudo systemctl restart docker
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ <b><u><font color="#000000">for</font></u></b> node <b><u><font color="#000000">in</font></u></b> r0 r1 r2; <b><u><font color="#000000">do</font></u></b>
-&gt;   ssh root@$node <font color="#808080">"echo '127.0.0.1 registry.lan.buetow.org' &gt;&gt; /etc/hosts"</font>
-&gt; <b><u><font color="#000000">done</font></u></b>
+<pre><font color="#ff0000">$ </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> node </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> r0 r1 r2</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
+<font color="#F3E651">&gt;</font><font color="#ff0000">   ssh root@</font><font color="#ff0000">$node</font><font color="#ff0000"> </font><font color="#bb00ff">"echo '127.0.0.1 registry.lan.buetow.org' &gt;&gt; /etc/hosts"</font>
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><b><font color="#ffffff">done</font></b>
 
-$ <b><u><font color="#000000">for</font></u></b> node <b><u><font color="#000000">in</font></u></b> r0 r1 r2; <b><u><font color="#000000">do</font></u></b>
-&gt; ssh root@$node <font color="#808080">"cat &lt;&lt;'EOF' &gt; /etc/rancher/k3s/registries.yaml</font>
-<font color="#808080">mirrors:</font>
-<font color="#808080">  "</font>registry.lan.buetow.org:<font color="#000000">30001</font><font color="#808080">":</font>
-<font color="#808080">    endpoint:</font>
-<font color="#808080">      - "</font>http://localhost:<font color="#000000">30001</font><font color="#808080">"</font>
-<font color="#808080">EOF</font>
-<font color="#808080">systemctl restart k3s"</font>
-&gt; <b><u><font color="#000000">done</font></u></b>
+<font color="#ff0000">$ </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> node </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> r0 r1 r2</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
+<font color="#F3E651">&gt;</font><font color="#ff0000"> ssh root@</font><font color="#ff0000">$node</font><font color="#ff0000"> </font><font color="#bb00ff">"cat &lt;&lt;'EOF' &gt; /etc/rancher/k3s/registries.yaml</font>
+<font color="#bb00ff">mirrors:</font>
+<font color="#bb00ff">  "</font><font color="#ff0000">registry</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">30001</font><font color="#bb00ff">":</font>
+<font color="#bb00ff">    endpoint:</font>
+<font color="#bb00ff">      - "</font><font color="#ff0000">http</font><font color="#F3E651">:</font><font color="#ff0000">//localhost</font><font color="#F3E651">:</font><font color="#bb00ff">30001</font><font color="#bb00ff">"</font>
+<font color="#bb00ff">EOF</font>
+<font color="#bb00ff">systemctl restart k3s"</font>
+<font color="#F3E651">&gt;</font><font color="#ff0000"> </font><b><font color="#ffffff">done</font></b>
 </pre>
 <br />
 <span>Thanks to the relayd configuration earlier in the post, the external hostnames (<span class='inlinecode'>f3s.foo.zone</span>, etc.) can already reach NodePort <span class='inlinecode'>30001</span>, so publishing the registry later to the outside world is just a matter of wiring the DNS the same way as the ingress hosts. But by default, that&#39;s not enabled for now due to security reasons.</span><br />
@@ -1283,8 +1288,8 @@ $ <b><u><font color="#000000">for</font></u></b> node <b><u><font color="#000000
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ docker tag my-app:latest r0.lan.buetow.org:<font color="#000000">30001</font>/my-app:latest
-$ docker push r0.lan.buetow.org:<font color="#000000">30001</font>/my-app:latest
+<pre><font color="#ff0000">$ docker tag my-app</font><font color="#F3E651">:</font><font color="#ff0000">latest r0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">30001</font><font color="#ff0000">/my-app</font><font color="#F3E651">:</font><font color="#ff0000">latest</font>
+<font color="#ff0000">$ docker push r0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">30001</font><font color="#ff0000">/my-app</font><font color="#F3E651">:</font><font color="#ff0000">latest</font>
 </pre>
 <br />
 <span>Inside the cluster (or from other nodes), reference the image via the service name that Helm created:</span><br />
@@ -1299,9 +1304,9 @@ image: docker-registry-service:5000/my-app:latest
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl run registry-test \
-&gt;   --image=docker-registry-service:<font color="#000000">5000</font>/my-app:latest \
-&gt;   --restart=Never -n <b><u><font color="#000000">test</font></u></b> --command -- sleep <font color="#000000">300</font>
+<pre><font color="#ff0000">$ kubectl run registry-test </font><font color="#F3E651">\</font>
+<font color="#F3E651">&gt;</font><font color="#ff0000">   --image</font><font color="#F3E651">=</font><font color="#ff0000">docker-registry-service</font><font color="#F3E651">:</font><font color="#bb00ff">5000</font><font color="#ff0000">/my-app</font><font color="#F3E651">:</font><font color="#ff0000">latest </font><font color="#F3E651">\</font>
+<font color="#F3E651">&gt;</font><font color="#ff0000">   --restart</font><font color="#F3E651">=</font><font color="#ff0000">Never -n </font><b><font color="#ffffff">test</font></b><font color="#ff0000"> --command -- sleep </font><font color="#bb00ff">300</font>
 </pre>
 <br />
 <span>If the pod pulls successfully, the private registry is ready for use by the rest of the workloads. Note, that the commands above actually don&#39;t work, they are only for illustration purpose mentioned here.</span><br />
@@ -1318,11 +1323,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ cd conf/f3s/examples/conf/f3s/anki-sync-server/docker-image
-$ docker build -t anki-sync-server:<font color="#000000">25.07</font>.5b --build-arg ANKI_VERSION=<font color="#000000">25.07</font>.<font color="#000000">5</font> .
-$ docker tag anki-sync-server:<font color="#000000">25.07</font>.5b \
-    r0.lan.buetow.org:<font color="#000000">30001</font>/anki-sync-server:<font color="#000000">25.07</font>.5b
-$ docker push r0.lan.buetow.org:<font color="#000000">30001</font>/anki-sync-server:<font color="#000000">25.07</font>.5b
+<pre><font color="#ff0000">$ cd conf/f3s/examples/conf/f3s/anki-sync-server/docker-image</font>
+<font color="#ff0000">$ docker build -t anki-sync-server</font><font color="#F3E651">:</font><font color="#bb00ff">25.07</font><font color="#F3E651">.</font><font color="#ff0000">5b --build-arg </font><font color="#ff0000">ANKI_VERSION</font><font color="#F3E651">=</font><font color="#bb00ff">25.07</font><font color="#F3E651">.</font><font color="#bb00ff">5</font><font color="#ff0000"> </font><font color="#F3E651">.</font>
+<font color="#ff0000">$ docker tag anki-sync-server</font><font color="#F3E651">:</font><font color="#bb00ff">25.07</font><font color="#F3E651">.</font><font color="#ff0000">5b </font><font color="#F3E651">\</font>
+<font color="#ff0000">    r0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">30001</font><font color="#ff0000">/anki-sync-server</font><font color="#F3E651">:</font><font color="#bb00ff">25.07</font><font color="#F3E651">.</font><font color="#ff0000">5b</font>
+<font color="#ff0000">$ docker push r0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">30001</font><font color="#ff0000">/anki-sync-server</font><font color="#F3E651">:</font><font color="#bb00ff">25.07</font><font color="#F3E651">.</font><font color="#ff0000">5b</font>
 </pre>
 <br />
 <span>Because every k3s node treats <span class='inlinecode'>registry.lan.buetow.org:30001</span> as an insecure mirror (see above), the push succeeds regardless of which node answers. If you prefer the shortcut, <span class='inlinecode'>just f3s</span> in that directory performs the same build/tag/push sequence.</span><br />
@@ -1335,11 +1340,11 @@ $ docker push r0.lan.buetow.org:<font color="#000000">30001</font>/anki-sync-ser
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ ssh root@r0 <font color="#808080">"mkdir -p /data/nfs/k3svolumes/anki-sync-server/anki_data"</font>
-$ kubectl create namespace services
-$ kubectl create secret generic anki-sync-server-secret \
-    --from-literal=SYNC_USER1=<font color="#808080">'paul:SECRETPASSWORD'</font> \
-    -n services
+<pre><font color="#ff0000">$ ssh root@r0 </font><font color="#bb00ff">"mkdir -p /data/nfs/k3svolumes/anki-sync-server/anki_data"</font>
+<font color="#ff0000">$ kubectl create namespace services</font>
+<font color="#ff0000">$ kubectl create secret generic anki-sync-server-secret </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --from-literal</font><font color="#F3E651">=</font><font color="#ff0000">SYNC_USER1</font><font color="#F3E651">=</font><font color="#bb00ff">'paul:SECRETPASSWORD'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
+<font color="#ff0000">    -n services</font>
 </pre>
 <br />
 <span>If the <span class='inlinecode'>services</span> namespace already exists, you can skip that line or let Kubernetes tell you the namespace is unchanged.</span><br />
@@ -1352,8 +1357,8 @@ $ kubectl create secret generic anki-sync-server-secret \
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ cd ../helm-chart
-$ helm upgrade --install anki-sync-server . -n services
+<pre><font color="#ff0000">$ cd </font><font color="#F3E651">..</font><font color="#ff0000">/helm-chart</font>
+<font color="#ff0000">$ helm upgrade --install anki-sync-server </font><font color="#F3E651">.</font><font color="#ff0000"> -n services</font>
 </pre>
 <br />
 <span>Helm provisions everything referenced in the templates:</span><br />
@@ -1372,9 +1377,9 @@ containers:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl get pods -n services
-$ kubectl get ingress anki-sync-server-ingress -n services
-$ curl https://anki.f3s.foo.zone/health
+<pre><font color="#ff0000">$ kubectl get pods -n services</font>
+<font color="#ff0000">$ kubectl get ingress anki-sync-server-ingress -n services</font>
+<font color="#ff0000">$ curl https</font><font color="#F3E651">:</font><font color="#ff0000">//anki</font><font color="#F3E651">.</font><font color="#ff0000">f3s</font><font color="#F3E651">.</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">zone/health</font>
 </pre>
 <br />
 <span>All of this runs solely on first-party images that now live in the private registry, proving the full flow from local bild to WireGuard-exposed service.</span><br />
@@ -1389,14 +1394,14 @@ $ curl https://anki.f3s.foo.zone/health
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; ~ kubectl <b><u><font color="#000000">exec</font></u></b> -n services deploy/miniflux-postgres -- id postgres
-uid=<font color="#000000">999</font>(postgres) gid=<font color="#000000">999</font>(postgres) groups=<font color="#000000">999</font>(postgres)
+<pre><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#F3E651">~</font><font color="#ff0000"> kubectl </font><b><font color="#ffffff">exec</font></b><font color="#ff0000"> -n services deploy/miniflux-postgres -- id postgres</font>
+<font color="#ff0000">uid</font><font color="#F3E651">=</font><font color="#bb00ff">999</font><font color="#F3E651">(</font><font color="#ff0000">postgres</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#ff0000">gid</font><font color="#F3E651">=</font><font color="#bb00ff">999</font><font color="#F3E651">(</font><font color="#ff0000">postgres</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#ff0000">groups</font><font color="#F3E651">=</font><font color="#bb00ff">999</font><font color="#F3E651">(</font><font color="#ff0000">postgres</font><font color="#F3E651">)</font>
 
-[root@r0 ~]<i><font color="silver"># id postgres</font></i>
-uid=<font color="#000000">999</font>(postgres) gid=<font color="#000000">999</font>(postgres) groups=<font color="#000000">999</font>(postgres)
+<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># id postgres</font></i>
+<font color="#ff0000">uid</font><font color="#F3E651">=</font><font color="#bb00ff">999</font><font color="#F3E651">(</font><font color="#ff0000">postgres</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#ff0000">gid</font><font color="#F3E651">=</font><font color="#bb00ff">999</font><font color="#F3E651">(</font><font color="#ff0000">postgres</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#ff0000">groups</font><font color="#F3E651">=</font><font color="#bb00ff">999</font><font color="#F3E651">(</font><font color="#ff0000">postgres</font><font color="#F3E651">)</font>
 
-paul@f0:~ % doas id postgres
-uid=<font color="#000000">999</font>(postgres) gid=<font color="#000000">99</font>(postgres) groups=<font color="#000000">999</font>(postgres)
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas id postgres</font>
+<font color="#ff0000">uid</font><font color="#F3E651">=</font><font color="#bb00ff">999</font><font color="#F3E651">(</font><font color="#ff0000">postgres</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#ff0000">gid</font><font color="#F3E651">=</font><font color="#bb00ff">99</font><font color="#F3E651">(</font><font color="#ff0000">postgres</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#ff0000">groups</font><font color="#F3E651">=</font><font color="#bb00ff">999</font><font color="#F3E651">(</font><font color="#ff0000">postgres</font><font color="#F3E651">)</font>
 </pre>
 <br />
 <span>The Rocky Linux workers get their matching user with plain <span class='inlinecode'>useradd</span>/<span class='inlinecode'>groupadd</span> (repeat on <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span>, and <span class='inlinecode'>r2</span>):</span><br />
@@ -1405,10 +1410,10 @@ uid=<font color="#000000">999</font>(postgres) gid=<font color="#000000">99</fon
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[root@r0 ~]<i><font color="silver"># groupadd --gid 999 postgres</font></i>
-[root@r0 ~]<i><font color="silver"># useradd --uid 999 --gid 999 \</font></i>
-                --home-dir /var/lib/pgsql \
-                --shell /sbin/nologin postgres
+<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># groupadd --gid 999 postgres</font></i>
+<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># useradd --uid 999 --gid 999 \</font></i>
+<font color="#ff0000">                --home-dir /var/lib/pgsql </font><font color="#F3E651">\</font>
+<font color="#ff0000">                --shell /sbin/nologin postgres</font>
 </pre>
 <br />
 <span>FreeBSD uses <span class='inlinecode'>pw</span>, so on each NFS server (<span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>) I created the same account and disabled shell access:</span><br />
@@ -1417,9 +1422,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul@f0:~ % doas pw groupadd postgres -g <font color="#000000">999</font>
-paul@f0:~ % doas pw useradd postgres -u <font color="#000000">999</font> -g postgres \
-                -d /var/db/postgres -s /usr/sbin/nologin
+<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas pw groupadd postgres -g </font><font color="#bb00ff">999</font>
+<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas pw useradd postgres -u </font><font color="#bb00ff">999</font><font color="#ff0000"> -g postgres </font><font color="#F3E651">\</font>
+<font color="#ff0000">                -d /var/db/postgres -s /usr/sbin/nologin</font>
 </pre>
 <br />
 <span>Once the UID/GID exist everywhere, the Miniflux chart in <span class='inlinecode'>examples/conf/f3s/miniflux</span> deploys cleanly. The chart provisions both the application and its bundled Postgres database, mounts the exported directory, and builds the DSN at runtime. The important bits live in <span class='inlinecode'>helm-chart/templates/persistent-volumes.yaml</span> and <span class='inlinecode'>deployment.yaml</span>:</span><br />
@@ -1444,13 +1449,13 @@ containers:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ cd examples/conf/f3s/miniflux/helm-chart
-$ mkdir -p /data/nfs/k3svolumes/miniflux/data
-$ kubectl create secret generic miniflux-db-password \
-    --from-literal=fluxdb_password=<font color="#808080">'YOUR_PASSWORD'</font> -n services
-$ kubectl create secret generic miniflux-admin-password \
-    --from-literal=admin_password=<font color="#808080">'YOUR_ADMIN_PASSWORD'</font> -n services
-$ helm upgrade --install miniflux . -n services --create-namespace
+<pre><font color="#ff0000">$ cd examples/conf/f3s/miniflux/helm-chart</font>
+<font color="#ff0000">$ mkdir -p /data/nfs/k3svolumes/miniflux/data</font>
+<font color="#ff0000">$ kubectl create secret generic miniflux-db-password </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --from-literal</font><font color="#F3E651">=</font><font color="#ff0000">fluxdb_password</font><font color="#F3E651">=</font><font color="#bb00ff">'YOUR_PASSWORD'</font><font color="#ff0000"> -n services</font>
+<font color="#ff0000">$ kubectl create secret generic miniflux-admin-password </font><font color="#F3E651">\</font>
+<font color="#ff0000">    --from-literal</font><font color="#F3E651">=</font><font color="#ff0000">admin_password</font><font color="#F3E651">=</font><font color="#bb00ff">'YOUR_ADMIN_PASSWORD'</font><font color="#ff0000"> -n services</font>
+<font color="#ff0000">$ helm upgrade --install miniflux </font><font color="#F3E651">.</font><font color="#ff0000"> -n services --create-namespace</font>
 </pre>
 <br />
 <span>And to verify it&#39;s all up:</span><br />
@@ -1510,11 +1515,12 @@ replicaset.apps/miniflux-server-85d7c64664     1         1         1       54d
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+    <br />
+    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
+<script type="text/javascript" src="../retrofuturistic.js"></script>
 </body>
 </html>
