@@ -283,8 +283,13 @@ li:before {
 pre {
     position: relative;
     isolation: isolate;
-    font-family: code, monospace;
+    font-family: code, 'DejaVu Sans Mono', 'Courier New', monospace;
     font-size: 0.95rem;
+    font-variant-ligatures: none;
+    letter-spacing: 0;
+    line-height: 1.35;
+    tab-size: 4;
+    white-space: pre;
     background: linear-gradient(180deg, rgba(5, 11, 30, 0.9), rgba(10, 17, 44, 0.92));
     border: 1px solid rgba(46, 247, 255, 0.4);
     border-left: 4px solid var(--neon-magenta);
@@ -335,7 +340,7 @@ pre::after {
 }
 
 span.inlinecode {
-    font-family: code, monospace;
+    font-family: code, 'DejaVu Sans Mono', 'Courier New', monospace;
     color: #a7f9ff;
     border: 1px solid rgba(46, 247, 255, 0.45);
     border-radius: 4px;
