@@ -67,14 +67,6 @@ body {
     animation: body-boot 0.8s ease-out forwards;
 }
 
-body.rfx-boot {
-    opacity: 0.02;
-}
-
-html.rfx-ready body {
-    opacity: 1;
-}
-
 body > :not(#rfx-stars):not(.rfx-overlay-grid):not(.rfx-overlay-scanlines):not(.rfx-vignette) {
     position: relative;
     z-index: 2;
@@ -289,6 +281,8 @@ li:before {
 }
 
 pre {
+    position: relative;
+    isolation: isolate;
     font-family: code, monospace;
     font-size: 0.95rem;
     background: linear-gradient(180deg, rgba(5, 11, 30, 0.9), rgba(10, 17, 44, 0.92));
@@ -298,7 +292,46 @@ pre {
     padding: 0.9rem;
     border-radius: 8px;
     overflow-x: auto;
+    text-shadow: 0 0 5px rgba(46, 247, 255, 0.4);
     box-shadow: inset 0 0 20px rgba(46, 247, 255, 0.12), 0 0 16px rgba(255, 47, 169, 0.18);
+    animation: crt-flicker 2.8s infinite;
+}
+
+pre::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+        0deg,
+        rgba(140, 255, 200, 0.1) 0px,
+        rgba(140, 255, 200, 0.06) 1px,
+        rgba(0, 0, 0, 0.07) 2px,
+        rgba(0, 0, 0, 0) 4px
+    );
+    mix-blend-mode: screen;
+    opacity: 0.75;
+}
+
+pre::after {
+    content: '';
+    position: absolute;
+    left: -38%;
+    top: 0;
+    width: 36%;
+    height: 100%;
+    pointer-events: none;
+    background: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0),
+        rgba(46, 247, 255, 0.16),
+        rgba(255, 47, 169, 0.2),
+        rgba(255, 255, 255, 0)
+    );
+    animation: crt-sweep 5.4s linear infinite;
 }
 
 span.inlinecode {
@@ -309,6 +342,8 @@ span.inlinecode {
     background: rgba(9, 20, 43, 0.88);
     padding: 0.07rem 0.26rem;
     box-shadow: inset 0 0 8px rgba(46, 247, 255, 0.2), 0 0 8px rgba(46, 247, 255, 0.13);
+    text-shadow: 0 0 4px rgba(46, 247, 255, 0.35);
+    animation: crt-flicker 4.2s infinite;
 }
 
 img {
@@ -422,6 +457,40 @@ img {
     }
 }
 
+@keyframes crt-flicker {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    18% {
+        opacity: 0.96;
+    }
+    19% {
+        opacity: 0.91;
+    }
+    20% {
+        opacity: 0.97;
+    }
+    50% {
+        opacity: 0.98;
+    }
+    51% {
+        opacity: 0.93;
+    }
+    52% {
+        opacity: 0.99;
+    }
+}
+
+@keyframes crt-sweep {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(420%);
+    }
+}
+
 @media (max-width: 800px) {
     body {
         margin: 0.4rem;
@@ -447,4 +516,12 @@ html.reduce-motion *::after {
 
 html.reduce-motion #rfx-stars .star:nth-child(n + 32) {
     display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0ms !important;
+    }
 }

@@ -5,6 +5,8 @@
     var root = doc.documentElement;
     var body = doc.body;
     var reduceMotion = false;
+    var isCoarsePointer = false;
+    var lowPowerMode = false;
     var starsResizeTimer = 0;
 
     try {
@@ -13,8 +15,19 @@
         reduceMotion = false;
     }
 
+    try {
+        isCoarsePointer = !!(window.matchMedia && window.matchMedia('(pointer: coarse)').matches);
+    } catch (err2) {
+        isCoarsePointer = false;
+    }
+
+    lowPowerMode = reduceMotion || isCoarsePointer || ((navigator.hardwareConcurrency || 0) > 0 && navigator.hardwareConcurrency <= 4);
+
     if (reduceMotion) {
         root.classList.add('reduce-motion');
+    }
+    if (lowPowerMode) {
+        root.classList.add('rfx-low-power');
     }
 
     function eachNode(nodeList, fn) {
@@ -25,7 +38,7 @@
     }
 
     function markRevealAnimations() {
-        var selector = 'p.header, h1, h2, h3, span, li, pre, img, p.footer';
+        var selector = 'p.header, h1, h2, h3, pre, ul, li, img, a.textlink, p.footer';
         var nodes = doc.querySelectorAll(selector);
         var delayMs = 0;
 
@@ -42,7 +55,7 @@
     function buildStars() {
         var container = doc.getElementById('rfx-stars');
         var palette = ['#ffffff', '#2ef7ff', '#ff2fa9', '#8eff58'];
-        var starCount = reduceMotion ? 30 : 130;
+        var starCount = reduceMotion ? 18 : (lowPowerMode ? 56 : 92);
         var i;
 
         if (!container) {
@@ -70,7 +83,7 @@
 
     function installGlitchPulse() {
         var headings = doc.querySelectorAll('h1, h2, h3');
-        var timerDelay = reduceMotion ? 3600 : 1300;
+        var timerDelay = reduceMotion ? 4200 : (lowPowerMode ? 2500 : 1400);
 
         eachNode(headings, function (heading) {
             heading.setAttribute('data-rfx-text', heading.textContent || '');
@@ -93,8 +106,9 @@
 
     function installCursorBurst() {
         var lastBurstAt = 0;
+        var activeSparks = 0;
 
-        if (reduceMotion) {
+        if (reduceMotion || lowPowerMode || isCoarsePointer) {
             return;
         }
 
@@ -102,7 +116,7 @@
             var now = Date.now();
             var spark;
 
-            if (now - lastBurstAt < 68) {
+            if (now - lastBurstAt < 120 || activeSparks > 14) {
                 return;
             }
             lastBurstAt = now;
@@ -113,36 +127,47 @@
             spark.style.top = String(event.clientY) + 'px';
 
             body.appendChild(spark);
+            activeSparks += 1;
             window.setTimeout(function () {
                 if (spark.parentNode) {
                     spark.parentNode.removeChild(spark);
                 }
+                activeSparks -= 1;
             }, 470);
         });
     }
 
     function installScrollTracking() {
+        var tick = false;
+
         function writeScrollDepth() {
             var scrollY = window.scrollY || window.pageYOffset || 0;
             root.style.setProperty('--rfx-scroll', String(scrollY) + 'px');
+            tick = false;
         }
 
         writeScrollDepth();
         doc.addEventListener('scroll', function () {
+            if (tick) {
+                return;
+            }
+            tick = true;
             window.requestAnimationFrame(writeScrollDepth);
         });
     }
 
     function installLinkPulses() {
-        var links = doc.querySelectorAll('a.textlink');
+        doc.addEventListener('mouseover', function (event) {
+            var link = event.target;
+            if (!link || !link.classList || !link.classList.contains('textlink')) {
+                return;
+            }
 
-        eachNode(links, function (link) {
-            link.addEventListener('mouseenter', function () {
-                link.classList.add('link-pulse');
-                window.setTimeout(function () {
-                    link.classList.remove('link-pulse');
-                }, 320);
-            });
+            link.classList.add('link-pulse');
+            window.clearTimeout(link._rfxPulseTimer);
+            link._rfxPulseTimer = window.setTimeout(function () {
+                link.classList.remove('link-pulse');
+            }, 260);
         });
     }
 
@@ -166,7 +191,6 @@
         installLinkPulses();
         installResizeRefresh();
         root.classList.add('rfx-ready');
-        body.classList.remove('rfx-boot');
     }
 
     if (doc.readyState === 'loading') {
