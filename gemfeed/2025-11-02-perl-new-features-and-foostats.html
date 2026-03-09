@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Perl New Features and Foostats</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="rfx-overlay-grid"></div>
-<div class="rfx-overlay-scanlines"></div>
-<div id="rfx-stars"></div>
-<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-11-02-perl-new-features-and-foostats.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-11-02-perl-new-features-and-foostats.gmi">Gemini</a>
 </p>
@@ -146,8 +141,8 @@ animation of sorts.
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">fishfinger$ grep foostats /etc/daily</font><font color="#F3E651">.</font><b><font color="#ffffff">local</font></b>
-<font color="#ff0000">perl /usr/local/bin/foostats</font><font color="#F3E651">.</font><font color="#ff0000">pl --parse-logs --replicate --report</font>
+<pre>fishfinger$ grep foostats /etc/daily.<b><u><font color="#000000">local</font></u></b>
+perl /usr/local/bin/foostats.pl --parse-logs --replicate --report
 </pre>
 <br />
 <span>Internally, <span class='inlinecode'>Foostats::Logreader</span> parses each line of the log files <span class='inlinecode'>/var/log/daemon*</span> and <span class='inlinecode'>/var/www/logs/access_log*</span>, turns timestamps into <span class='inlinecode'>YYYYMMDD/HHMMSS</span> values, hashes IP addresses with SHA3 (for anonymization), and hands a normalized event to <span class='inlinecode'>Foostats::Filter</span>. The filter compares the URI against entries in <span class='inlinecode'>fooodds.txt</span>, tracks how many times an IP address requests within the exact second, and drops anything suspicious (e.g., from web crawlers or malicious attackers). Valid events reach <span class='inlinecode'>Foostats::Aggregator</span>, which counts requests per protocol, records unique visitors for the Gemtext and Atom feeds, and remembers page-level IP sets. <span class='inlinecode'>Foostats::FileOutputter</span> writes the result as gzipped JSON files—one per day and per protocol—with IPv4/IPv6 splits, filtered counters, feed readership, and hashes for long URLs.</span><br />
@@ -205,17 +200,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> foo</font><font color="#F3E651">;</font>
+<pre><b><u><font color="#000000">package</font></u></b> foo;
 
-<b><font color="#ffffff">sub</font></b><font color="#ff0000"> hello </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><font color="#bb00ff">"Hello from package foo\n"</font><font color="#F3E651">;</font>
-<font color="#F3E651">}</font>
+<b><u><font color="#000000">sub</font></u></b> hello {
+    <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello from package foo\n"</font>;
+}
 
-<b><font color="#ffffff">package</font></b><font color="#ff0000"> bar</font><font color="#F3E651">;</font>
+<b><u><font color="#000000">package</font></u></b> bar;
 
-<b><font color="#ffffff">sub</font></b><font color="#ff0000"> hello </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><font color="#bb00ff">"Hello from package bar\n"</font><font color="#F3E651">;</font>
-<font color="#F3E651">}</font>
+<b><u><font color="#000000">sub</font></u></b> hello {
+    <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello from package bar\n"</font>;
+}
 </pre>
 <br />
 <span>But now it is also possible to do this:</span><br />
@@ -224,17 +219,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> foo </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">sub</font></b><font color="#ff0000"> hello </font><font color="#F3E651">{</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><font color="#bb00ff">"Hello from package foo\n"</font><font color="#F3E651">;</font>
-<font color="#ff0000">    </font><font color="#F3E651">}</font>
-<font color="#F3E651">}</font>
+<pre><b><u><font color="#000000">package</font></u></b> foo {
+    <b><u><font color="#000000">sub</font></u></b> hello {
+        <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello from package foo\n"</font>;
+    }
+}
 
-<b><font color="#ffffff">package</font></b><font color="#ff0000"> bar </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">sub</font></b><font color="#ff0000"> hello </font><font color="#F3E651">{</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><font color="#bb00ff">"Hello from package bar\n"</font><font color="#F3E651">;</font>
-<font color="#ff0000">    </font><font color="#F3E651">}</font>
-<font color="#F3E651">}</font>
+<b><u><font color="#000000">package</font></u></b> bar {
+    <b><u><font color="#000000">sub</font></u></b> hello {
+        <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello from package bar\n"</font>;
+    }
+}
 </pre>
 <br />
 <h2 style='display: inline' id='postfix-dereferencing-keeps-data-structures-tidy'>Postfix dereferencing keeps data structures tidy</h2><br />
@@ -249,9 +244,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">for</font></b><font color="#ff0000"> </font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$elem</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">@</font><font color="#F3E651">{</font><font color="#ff0000">$array_ref</font><font color="#F3E651">}</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><font color="#bb00ff">"$elem\n"</font><font color="#F3E651">;</font>
-<font color="#F3E651">}</font>
+<pre><b><u><font color="#000000">for</font></u></b> <b><u><font color="#000000">my</font></u></b> $elem (@{$array_ref}) {
+    <b><u><font color="#000000">print</font></u></b> <font color="#808080">"$elem\n"</font>;
+}
 </pre>
 <br />
 <span>one can now do:</span><br />
@@ -260,9 +255,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">for</font></b><font color="#ff0000"> </font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$elem</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">$array_ref</font><font color="#F3E651">-&gt;</font><font color="#ff0000">@</font><font color="#F3E651">*)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><font color="#bb00ff">"$elem\n"</font><font color="#F3E651">;</font>
-<font color="#F3E651">}</font>
+<pre><b><u><font color="#000000">for</font></u></b> <b><u><font color="#000000">my</font></u></b> $elem ($array_ref-&gt;@*) {
+    <b><u><font color="#000000">print</font></u></b> <font color="#808080">"$elem\n"</font>;
+}
 </pre>
 <br />
 <span>You see that this feature becomes increasingly useful with nested data structures, e.g. to print all keys of the nested hash:</span><br />
@@ -271,7 +266,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> </font><b><font color="#ffffff">keys</font></b><font color="#ff0000"> </font><font color="#ff0000">$hash</font><font color="#F3E651">-&gt;</font><font color="#F3E651">{</font><font color="#ff0000">stats</font><font color="#F3E651">}</font><font color="#F3E651">-&gt;%*;</font>
+<pre><b><u><font color="#000000">print</font></u></b> <b><u><font color="#000000">for</font></u></b> <b><u><font color="#000000">keys</font></u></b> $hash-&gt;{stats}-&gt;%*;
 </pre>
 <br />
 <span>Loops over like <span class='inlinecode'>$stats-&gt;{page_ips}-&gt;{urls}-&gt;%*</span> or <span class='inlinecode'>$merge{$key}-&gt;{$_}-&gt;%*</span> show which level of the structure is in play. The merger in Foostats updates host and URL statistics without building temporary arrays, and the reporter code mirrors the layout of the final tables. Before postfix dereferencing, the same code relied on braces within braces and was harder to read.</span><br />
@@ -284,10 +279,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">use</font></b><font color="#ff0000"> v5</font><font color="#F3E651">.</font><font color="#bb00ff">38</font><font color="#F3E651">;</font>
+<pre><b><u><font color="#000000">use</font></u></b> v5.<font color="#000000">38</font>;
 
-<b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><font color="#bb00ff">"Hello, world!\n"</font><font color="#F3E651">;</font><font color="#ff0000">    </font><i><font color="#ababab"># old way</font></i>
-<font color="#ff0000">say </font><font color="#bb00ff">"Hello, world!"</font><font color="#F3E651">;</font><font color="#ff0000">        </font><i><font color="#ababab"># new way</font></i>
+<b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello, world!\n"</font>;    <i><font color="silver"># old way</font></i>
+say <font color="#808080">"Hello, world!"</font>;        <i><font color="silver"># new way</font></i>
 </pre>
 <br />
 <h2 style='display: inline' id='lexical-subs-promote-local-reasoning'>Lexical subs promote local reasoning</h2><br />
@@ -300,18 +295,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">use</font></b><font color="#ff0000"> v5</font><font color="#F3E651">.</font><font color="#bb00ff">38</font><font color="#F3E651">;</font>
+<pre><b><u><font color="#000000">use</font></u></b> v5.<font color="#000000">38</font>;
 
-<b><font color="#ffffff">sub</font></b><font color="#ff0000"> </font><font color="#7bc710">process_lines</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">@lines</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><b><font color="#ffffff">sub</font></b><font color="#ff0000"> </font><font color="#7bc710">trim</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">$str</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">        </font><font color="#ff0000">$str</font><font color="#ff0000"> </font><font color="#F3E651">=~</font><font color="#ff0000"> </font><b><font color="#ffffff">s</font></b><font color="#bb00ff">/^\s+|\s+$//</font><font color="#ff0000">gr</font><font color="#F3E651">;</font>
-<font color="#ff0000">    </font><font color="#F3E651">}</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000"> </font><b><font color="#ffffff">map</font></b><font color="#ff0000"> </font><font color="#F3E651">{</font><font color="#ff0000"> </font><font color="#7bc710">trim</font><font color="#F3E651">(</font><font color="#ff0000">$_</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">}</font><font color="#ff0000"> </font><font color="#ff0000">@lines</font><font color="#ff0000"> </font><font color="#F3E651">];</font>
-<font color="#F3E651">}</font>
+<b><u><font color="#000000">sub</font></u></b> process_lines (@lines) {
+    <b><u><font color="#000000">my</font></u></b> <b><u><font color="#000000">sub</font></u></b> trim ($str) {
+        $str =~ <b><u><font color="#000000">s</font></u></b><font color="#808080">/^\s+|\s+$//</font>gr;
+    }
+    <b><u><font color="#000000">return</font></u></b> [ <b><u><font color="#000000">map</font></u></b> { trim($_) } @lines ];
+}
 
-<b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">@raw</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#bb00ff">"  foo  "</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">" bar"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">"baz "</font><font color="#F3E651">);</font>
-<b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$cleaned</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">process_lines</font><font color="#F3E651">(</font><font color="#ff0000">@raw</font><font color="#F3E651">);</font>
-<font color="#ff0000">say </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> @</font><font color="#ff0000">$cleaned</font><font color="#F3E651">;</font><font color="#ff0000"> </font><i><font color="#ababab"># prints "foo", "bar", "baz"</font></i>
+<b><u><font color="#000000">my</font></u></b> @raw = (<font color="#808080">"  foo  "</font>, <font color="#808080">" bar"</font>, <font color="#808080">"baz "</font>);
+<b><u><font color="#000000">my</font></u></b> $cleaned = process_lines(@raw);
+say <b><u><font color="#000000">for</font></u></b> @$cleaned; <i><font color="silver"># prints "foo", "bar", "baz"</font></i>
 </pre>
 <br />
 <h2 style='display: inline' id='reference-aliasing-makes-intent-explicit'>Reference aliasing makes intent explicit</h2><br />
@@ -322,13 +317,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">use</font></b><font color="#ff0000"> feature </font><b><font color="#ffffff">qw</font></b><font color="#F3E651">(</font><font color="#ff0000">refaliasing</font><font color="#F3E651">);</font>
+<pre><b><u><font color="#000000">use</font></u></b> feature <b><u><font color="#000000">qw</font></u></b>(refaliasing);
 
-<b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$hash</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">{</font><font color="#ff0000"> foo </font><font color="#F3E651">=&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">42</font><font color="#ff0000"> </font><font color="#F3E651">}</font><font color="#F3E651">;</font>
-<font color="#F3E651">\</font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$foo</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">\</font><font color="#ff0000">$hash</font><font color="#F3E651">-&gt;</font><font color="#F3E651">{</font><font color="#ff0000">foo</font><font color="#F3E651">}</font><font color="#F3E651">;</font>
+<b><u><font color="#000000">my</font></u></b> $hash = { foo =&gt; <font color="#000000">42</font> };
+\<b><u><font color="#000000">my</font></u></b> $foo = \$hash-&gt;{foo};
 
-<font color="#ff0000">$foo</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">99</font><font color="#F3E651">;</font>
-<b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><font color="#ff0000">$hash</font><font color="#F3E651">-&gt;</font><font color="#F3E651">{</font><font color="#ff0000">foo</font><font color="#F3E651">}</font><font color="#F3E651">;</font><font color="#ff0000"> </font><i><font color="#ababab"># prints 99</font></i>
+$foo = <font color="#000000">99</font>;
+<b><u><font color="#000000">print</font></u></b> $hash-&gt;{foo}; <i><font color="silver"># prints 99</font></i>
 </pre>
 <br />
 <span>The aggregator in Foostats aliases <span class='inlinecode'>$self-&gt;{stats}{$date_key}</span> before updating counters, so the structure remains intact. Combined with subroutine signatures, this makes it obvious when a piece of data is shared instead of copied, preventing silent bugs. This enables having shorter names for long nested data structures.</span><br />
@@ -343,15 +338,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">sub</font></b><font color="#ff0000"> counter </font><font color="#F3E651">{</font>
-<font color="#ff0000">    state </font><font color="#ff0000">$count</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font>
-<font color="#ff0000">    </font><font color="#ff0000">$count</font><font color="#F3E651">++;</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#ff0000">$count</font><font color="#F3E651">;</font>
-<font color="#F3E651">}</font>
+<pre><b><u><font color="#000000">sub</font></u></b> counter {
+    state $count = <font color="#000000">0</font>;
+    $count++;
+    <b><u><font color="#000000">return</font></u></b> $count;
+}
 
-<font color="#ff0000">say </font><font color="#7bc710">counter</font><font color="#F3E651">();</font><font color="#ff0000"> </font><i><font color="#ababab"># 1</font></i>
-<font color="#ff0000">say </font><font color="#7bc710">counter</font><font color="#F3E651">();</font><font color="#ff0000"> </font><i><font color="#ababab"># 2</font></i>
-<font color="#ff0000">say </font><font color="#7bc710">counter</font><font color="#F3E651">();</font><font color="#ff0000"> </font><i><font color="#ababab"># 3</font></i>
+say counter(); <i><font color="silver"># 1</font></i>
+say counter(); <i><font color="silver"># 2</font></i>
+say counter(); <i><font color="silver"># 3</font></i>
 </pre>
 <br />
 <span>Hash and array state variables have been supported since <span class='inlinecode'>state</span> arrived in Perl 5.10. Scalar state variables were already supported previously.</span><br />
@@ -372,16 +367,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab"># Old way</font></i>
-<b><font color="#ffffff">sub</font></b><font color="#ff0000"> greet_old </font><font color="#F3E651">{</font><font color="#ff0000"> </font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$name</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><font color="#bb00ff">"Hello, $name!\n"</font><font color="#ff0000"> </font><font color="#F3E651">}</font>
+<pre><i><font color="silver"># Old way</font></i>
+<b><u><font color="#000000">sub</font></u></b> greet_old { <b><u><font color="#000000">my</font></u></b> $name = <b><u><font color="#000000">shift</font></u></b>; <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello, $name!\n"</font> }
 
-<i><font color="#ababab"># Another old way</font></i>
-<b><font color="#ffffff">sub</font></b><font color="#ff0000"> </font><font color="#7bc710">greet_old2</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">$</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font><font color="#ff0000"> </font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$name</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><b><font color="#ffffff">shift</font></b><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">print</font></b><font color="#ff0000"> </font><font color="#bb00ff">"Hello, $name!\n"</font><font color="#ff0000"> </font><font color="#F3E651">}</font>
+<i><font color="silver"># Another old way</font></i>
+<b><u><font color="#000000">sub</font></u></b> greet_old2 ($) { <b><u><font color="#000000">my</font></u></b> $name = <b><u><font color="#000000">shift</font></u></b>; <b><u><font color="#000000">print</font></u></b> <font color="#808080">"Hello, $name!\n"</font> }
 
-<i><font color="#ababab"># New way</font></i>
-<b><font color="#ffffff">sub</font></b><font color="#ff0000"> </font><font color="#7bc710">greet</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">$name</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font><font color="#ff0000"> say </font><font color="#bb00ff">"Hello, $name!"</font><font color="#F3E651">;</font><font color="#ff0000"> </font><font color="#F3E651">}</font>
+<i><font color="silver"># New way</font></i>
+<b><u><font color="#000000">sub</font></u></b> greet ($name) { say <font color="#808080">"Hello, $name!"</font>; }
 
-<font color="#7bc710">greet</font><font color="#F3E651">(</font><font color="#bb00ff">"Alice"</font><font color="#F3E651">);</font><font color="#ff0000"> </font><i><font color="#ababab"># prints "Hello, Alice!"</font></i>
+greet(<font color="#808080">"Alice"</font>); <i><font color="silver"># prints "Hello, Alice!"</font></i>
 </pre>
 <br />
 <span>In Foostats, constructors declare <span class='inlinecode'>sub new ($class, $odds_file, $log_path)</span>, anonymous callbacks expose <span class='inlinecode'>sub ($event)</span>, and helper subs list the values they expect, e.g.:</span><br />
@@ -390,11 +385,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$anon</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><b><font color="#ffffff">sub</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">$name</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">    say </font><font color="#bb00ff">"Hello, $name!"</font><font color="#F3E651">;</font>
-<font color="#F3E651">}</font><font color="#F3E651">;</font>
+<pre><b><u><font color="#000000">my</font></u></b> $anon = <b><u><font color="#000000">sub</font></u></b> ($name) {
+    say <font color="#808080">"Hello, $name!"</font>;
+};
 
-<font color="#ff0000">$anon</font><font color="#F3E651">-&gt;(</font><font color="#bb00ff">"World"</font><font color="#F3E651">);</font><font color="#ff0000"> </font><i><font color="#ababab"># prints "Hello, World!"</font></i>
+$anon-&gt;(<font color="#808080">"World"</font>); <i><font color="silver"># prints "Hello, World!"</font></i>
 </pre>
 <br />
 <h2 style='display: inline' id='defined-or-assignment-for-defaults-without-boilerplate'>Defined-or assignment for defaults without boilerplate</h2><br />
@@ -405,12 +400,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$foo</font><font color="#F3E651">;</font>
-<font color="#ff0000">$foo</font><font color="#ff0000"> </font><font color="#bb00ff">//</font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">42</font><font color="#F3E651">;</font>
-<font color="#ff0000">say </font><font color="#ff0000">$foo</font><font color="#F3E651">;</font><font color="#ff0000"> </font><i><font color="#ababab"># prints 42</font></i>
+<pre><b><u><font color="#000000">my</font></u></b> $foo;
+$foo <font color="#808080">//</font>= <font color="#000000">42</font>;
+say $foo; <i><font color="silver"># prints 42</font></i>
 
-<font color="#ff0000">$foo</font><font color="#ff0000"> </font><font color="#bb00ff">//</font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">99</font><font color="#F3E651">;</font>
-<font color="#ff0000">say </font><font color="#ff0000">$foo</font><font color="#F3E651">;</font><font color="#ff0000"> </font><i><font color="#ababab"># still prints 42, because $foo was already defined</font></i>
+$foo <font color="#808080">//</font>= <font color="#000000">99</font>;
+say $foo; <i><font color="silver"># still prints 42, because $foo was already defined</font></i>
 </pre>
 <br />
 <h2 style='display: inline' id='cleanup-with-defer'>Cleanup with <span class='inlinecode'>defer</span></h2><br />
@@ -423,17 +418,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">use</font></b><font color="#ff0000"> feature </font><b><font color="#ffffff">qw</font></b><font color="#F3E651">(</font><font color="#ff0000">defer</font><font color="#F3E651">);</font>
+<pre><b><u><font color="#000000">use</font></u></b> feature <b><u><font color="#000000">qw</font></u></b>(defer);
 
-<b><font color="#ffffff">sub</font></b><font color="#ff0000"> </font><font color="#7bc710">parse_log_file</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">$path</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">open</font></b><font color="#ff0000"> </font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$fh</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">'&lt;'</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">$path</font><font color="#ff0000"> or </font><b><font color="#ffffff">die</font></b><font color="#ff0000"> </font><font color="#bb00ff">"Cannot open $path: $!"</font><font color="#F3E651">;</font>
-<font color="#ff0000">    defer </font><font color="#F3E651">{</font><font color="#ff0000"> </font><b><font color="#ffffff">close</font></b><font color="#ff0000"> </font><font color="#ff0000">$fh</font><font color="#ff0000"> </font><font color="#F3E651">}</font><font color="#F3E651">;</font>
+<b><u><font color="#000000">sub</font></u></b> parse_log_file ($path) {
+    <b><u><font color="#000000">open</font></u></b> <b><u><font color="#000000">my</font></u></b> $fh, <font color="#808080">'&lt;'</font>, $path or <b><u><font color="#000000">die</font></u></b> <font color="#808080">"Cannot open $path: $!"</font>;
+    defer { <b><u><font color="#000000">close</font></u></b> $fh };
 
-<font color="#ff0000">    </font><b><font color="#ffffff">while</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$line</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">&lt;$fh&gt;</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">        </font><i><font color="#ababab"># ... parsing logic that might throw an exception ...</font></i>
-<font color="#ff0000">    </font><font color="#F3E651">}</font>
-<font color="#ff0000">    </font><i><font color="#ababab"># $fh is automatically closed here</font></i>
-<font color="#F3E651">}</font>
+    <b><u><font color="#000000">while</font></u></b> (<b><u><font color="#000000">my</font></u></b> $line = <font color="#808080">&lt;$fh&gt;</font>) {
+        <i><font color="silver"># ... parsing logic that might throw an exception ...</font></i>
+    }
+    <i><font color="silver"># $fh is automatically closed here</font></i>
+}
 </pre>
 <br />
 <span>This pattern replaces manual <span class='inlinecode'>close</span> calls in every exit path of the subroutine and is more robust than relying solely on object destructors.</span><br />
@@ -462,11 +457,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-    <br />
-    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

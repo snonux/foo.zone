@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>The fibonacci.pl.raku.c Polyglot</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="rfx-overlay-grid"></div>
-<div class="rfx-overlay-scanlines"></div>
-<div id="rfx-stars"></div>
-<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2014-03-24-the-fibonacci.pl.c-polyglot.gmi">Gemini</a>
 </p>
@@ -32,47 +27,47 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab">#include &lt;stdio.h&gt;</font></i>
+<pre><i><font color="silver">#include &lt;stdio.h&gt;</font></i>
 
-<i><font color="#ababab">#define $arg function_argument</font></i>
-<i><font color="#ababab">#define my int</font></i>
-<i><font color="#ababab">#define sub int</font></i>
-<i><font color="#ababab">#define BEGIN int main(void)</font></i>
+<i><font color="silver">#define $arg function_argument</font></i>
+<i><font color="silver">#define my int</font></i>
+<i><font color="silver">#define sub int</font></i>
+<i><font color="silver">#define BEGIN int main(void)</font></i>
 
-<b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$arg</font><font color="#F3E651">;</font>
+<b><u><font color="#000000">my</font></u></b> $arg;
 
-<b><font color="#ffffff">sub</font></b><font color="#ff0000"> </font><font color="#7bc710">hello</font><font color="#F3E651">()</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">printf</font></b><font color="#F3E651">(</font><font color="#bb00ff">"Hello, welcome to the Fibonacci Numbers!\n"</font><font color="#F3E651">);</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">printf</font></b><font color="#F3E651">(</font><font color="#bb00ff">"This program is all, valid C and C++ and Perl and Raku code!\n"</font><font color="#F3E651">);</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">printf</font></b><font color="#F3E651">(</font><font color="#bb00ff">"It calculates all fibonacci numbers from 0 to 9!\n\n"</font><font color="#F3E651">);</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font>
-<font color="#F3E651">}</font>
+<b><u><font color="#000000">sub</font></u></b> hello() {
+    <b><u><font color="#000000">printf</font></u></b>(<font color="#808080">"Hello, welcome to the Fibonacci Numbers!\n"</font>);
+    <b><u><font color="#000000">printf</font></u></b>(<font color="#808080">"This program is all, valid C and C++ and Perl and Raku code!\n"</font>);
+    <b><u><font color="#000000">printf</font></u></b>(<font color="#808080">"It calculates all fibonacci numbers from 0 to 9!\n\n"</font>);
+    <b><u><font color="#000000">return</font></u></b> <font color="#000000">0</font>;
+}
 
-<b><font color="#ffffff">sub</font></b><font color="#ff0000"> </font><font color="#7bc710">fibonacci</font><font color="#F3E651">()</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$n</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#ff0000">$arg</font><font color="#F3E651">;</font>
+<b><u><font color="#000000">sub</font></u></b> fibonacci() {
+    <b><u><font color="#000000">my</font></u></b> $n = $arg;
 
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">$n</font><font color="#ff0000"> </font><font color="#F3E651">&lt;</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#ff0000">$n</font><font color="#F3E651">;</font>
-<font color="#ff0000">    </font><font color="#F3E651">}</font>
+    <b><u><font color="#000000">if</font></u></b> ($n &lt; <font color="#000000">2</font>) {
+        <b><u><font color="#000000">return</font></u></b> $n;
+    }
 
-<font color="#ff0000">    </font><font color="#ff0000">$arg</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#ff0000">$n</font><font color="#ff0000"> </font><font color="#F3E651">-</font><font color="#ff0000"> </font><font color="#bb00ff">1</font><font color="#F3E651">;</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$fib1</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">fibonacci</font><font color="#F3E651">();</font>
-<font color="#ff0000">    </font><font color="#ff0000">$arg</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#ff0000">$n</font><font color="#ff0000"> </font><font color="#F3E651">-</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#F3E651">;</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$fib2</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">fibonacci</font><font color="#F3E651">();</font>
+    $arg = $n - <font color="#000000">1</font>;
+    <b><u><font color="#000000">my</font></u></b> $fib1 = fibonacci();
+    $arg = $n - <font color="#000000">2</font>;
+    <b><u><font color="#000000">my</font></u></b> $fib2 = fibonacci();
 
-<font color="#ff0000">    </font><b><font color="#ffffff">return</font></b><font color="#ff0000"> </font><font color="#ff0000">$fib1</font><font color="#ff0000"> </font><font color="#F3E651">+</font><font color="#ff0000"> </font><font color="#ff0000">$fib2</font><font color="#F3E651">;</font>
-<font color="#F3E651">}</font>
+    <b><u><font color="#000000">return</font></u></b> $fib1 + $fib2;
+}
 
-<font color="#ff0000">BEGIN </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><font color="#7bc710">hello</font><font color="#F3E651">();</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">my</font></b><font color="#ff0000"> </font><font color="#ff0000">$i</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font>
+BEGIN {
+    hello();
+    <b><u><font color="#000000">my</font></u></b> $i = <font color="#000000">0</font>;
 
-<font color="#ff0000">    </font><b><font color="#ffffff">while</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">$i</font><font color="#ff0000"> </font><font color="#F3E651">&lt;=</font><font color="#ff0000"> </font><font color="#bb00ff">10</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">        </font><font color="#ff0000">$arg</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#ff0000">$i</font><font color="#F3E651">;</font>
-<font color="#ff0000">        </font><b><font color="#ffffff">printf</font></b><font color="#F3E651">(</font><font color="#bb00ff">"fib(%d) = %d\n"</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#ff0000">$i</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#7bc710">fibonacci</font><font color="#F3E651">());</font>
-<font color="#ff0000">        </font><font color="#ff0000">$i</font><font color="#F3E651">++;</font>
-<font color="#ff0000">    </font><font color="#F3E651">}</font>
-<font color="#F3E651">}</font>
+    <b><u><font color="#000000">while</font></u></b> ($i &lt;= <font color="#000000">10</font>) {
+        $arg = $i;
+        <b><u><font color="#000000">printf</font></u></b>(<font color="#808080">"fib(%d) = %d\n"</font>, $i, fibonacci());
+        $i++;
+    }
+}
 </pre>
 <br />
 <span>You can find the full source code at GitHub:</span><br />
@@ -85,41 +80,41 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> gcc fibonacci</font><font color="#F3E651">.</font><font color="#ff0000">pl</font><font color="#F3E651">.</font><font color="#ff0000">raku</font><font color="#F3E651">.</font><font color="#ff0000">c -o fibonacci</font>
-<font color="#F3E651">%</font><font color="#ff0000"> </font><font color="#F3E651">.</font><font color="#ff0000">/fibonacci</font>
-<font color="#ff0000">Hello</font><font color="#F3E651">,</font><font color="#ff0000"> welcome to the Fibonacci Numbers</font><font color="#F3E651">!</font>
-<font color="#ff0000">This program is all</font><font color="#F3E651">,</font><font color="#ff0000"> valid C and C</font><font color="#F3E651">++</font><font color="#ff0000"> and Perl and Raku code</font><font color="#F3E651">!</font>
-<font color="#ff0000">It calculates all fibonacci numbers from </font><font color="#bb00ff">0</font><font color="#ff0000"> to </font><font color="#bb00ff">9</font><font color="#F3E651">!</font>
+<pre>% gcc fibonacci.pl.raku.c -o fibonacci
+% ./fibonacci
+Hello, welcome to the Fibonacci Numbers!
+This program is all, valid C and C++ and Perl and Raku code!
+It calculates all fibonacci numbers from <font color="#000000">0</font> to <font color="#000000">9</font>!
 
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">1</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">2</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">3</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">2</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">4</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">3</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">5</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">5</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">6</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">8</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">7</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">13</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">8</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">21</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">9</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">34</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">10</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">55</font>
+fib(<font color="#000000">0</font>) = <font color="#000000">0</font>
+fib(<font color="#000000">1</font>) = <font color="#000000">1</font>
+fib(<font color="#000000">2</font>) = <font color="#000000">1</font>
+fib(<font color="#000000">3</font>) = <font color="#000000">2</font>
+fib(<font color="#000000">4</font>) = <font color="#000000">3</font>
+fib(<font color="#000000">5</font>) = <font color="#000000">5</font>
+fib(<font color="#000000">6</font>) = <font color="#000000">8</font>
+fib(<font color="#000000">7</font>) = <font color="#000000">13</font>
+fib(<font color="#000000">8</font>) = <font color="#000000">21</font>
+fib(<font color="#000000">9</font>) = <font color="#000000">34</font>
+fib(<font color="#000000">10</font>) = <font color="#000000">55</font>
 
-<font color="#F3E651">%</font><font color="#ff0000"> g</font><font color="#F3E651">++</font><font color="#ff0000"> fibonacci</font><font color="#F3E651">.</font><font color="#ff0000">pl</font><font color="#F3E651">.</font><font color="#ff0000">raku</font><font color="#F3E651">.</font><font color="#ff0000">c -o fibonacci</font>
-<font color="#F3E651">%</font><font color="#ff0000"> </font><font color="#F3E651">.</font><font color="#ff0000">/fibonacci</font>
-<font color="#ff0000">Hello</font><font color="#F3E651">,</font><font color="#ff0000"> welcome to the Fibonacci Numbers</font><font color="#F3E651">!</font>
-<font color="#ff0000">This program is all</font><font color="#F3E651">,</font><font color="#ff0000"> valid C and C</font><font color="#F3E651">++</font><font color="#ff0000"> and Perl and Raku code</font><font color="#F3E651">!</font>
-<font color="#ff0000">It calculates all fibonacci numbers from </font><font color="#bb00ff">0</font><font color="#ff0000"> to </font><font color="#bb00ff">9</font><font color="#F3E651">!</font>
+% g++ fibonacci.pl.raku.c -o fibonacci
+% ./fibonacci
+Hello, welcome to the Fibonacci Numbers!
+This program is all, valid C and C++ and Perl and Raku code!
+It calculates all fibonacci numbers from <font color="#000000">0</font> to <font color="#000000">9</font>!
 
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">1</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">2</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">3</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">2</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">4</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">3</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">5</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">5</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">6</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">8</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">7</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">13</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">8</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">21</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">9</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">34</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">10</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">55</font>
+fib(<font color="#000000">0</font>) = <font color="#000000">0</font>
+fib(<font color="#000000">1</font>) = <font color="#000000">1</font>
+fib(<font color="#000000">2</font>) = <font color="#000000">1</font>
+fib(<font color="#000000">3</font>) = <font color="#000000">2</font>
+fib(<font color="#000000">4</font>) = <font color="#000000">3</font>
+fib(<font color="#000000">5</font>) = <font color="#000000">5</font>
+fib(<font color="#000000">6</font>) = <font color="#000000">8</font>
+fib(<font color="#000000">7</font>) = <font color="#000000">13</font>
+fib(<font color="#000000">8</font>) = <font color="#000000">21</font>
+fib(<font color="#000000">9</font>) = <font color="#000000">34</font>
+fib(<font color="#000000">10</font>) = <font color="#000000">55</font>
 </pre>
 <br />
 <h3 style='display: inline' id='let-s-run-it-with-perl-and-raku'>Let&#39;s run it with Perl and Raku</h3><br />
@@ -128,39 +123,39 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> perl fibonacci</font><font color="#F3E651">.</font><font color="#ff0000">pl</font><font color="#F3E651">.</font><font color="#ff0000">raku</font><font color="#F3E651">.</font><font color="#ff0000">c</font>
-<font color="#ff0000">Hello</font><font color="#F3E651">,</font><font color="#ff0000"> welcome to the Fibonacci Numbers</font><font color="#F3E651">!</font>
-<font color="#ff0000">This program is all</font><font color="#F3E651">,</font><font color="#ff0000"> valid C and C</font><font color="#F3E651">++</font><font color="#ff0000"> and Perl and Raku code</font><font color="#F3E651">!</font>
-<font color="#ff0000">It calculates all fibonacci numbers from </font><font color="#bb00ff">0</font><font color="#ff0000"> to </font><font color="#bb00ff">9</font><font color="#F3E651">!</font>
+<pre>% perl fibonacci.pl.raku.c
+Hello, welcome to the Fibonacci Numbers!
+This program is all, valid C and C++ and Perl and Raku code!
+It calculates all fibonacci numbers from <font color="#000000">0</font> to <font color="#000000">9</font>!
 
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">1</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">2</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">3</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">2</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">4</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">3</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">5</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">5</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">6</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">8</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">7</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">13</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">8</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">21</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">9</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">34</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">10</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">55</font>
+fib(<font color="#000000">0</font>) = <font color="#000000">0</font>
+fib(<font color="#000000">1</font>) = <font color="#000000">1</font>
+fib(<font color="#000000">2</font>) = <font color="#000000">1</font>
+fib(<font color="#000000">3</font>) = <font color="#000000">2</font>
+fib(<font color="#000000">4</font>) = <font color="#000000">3</font>
+fib(<font color="#000000">5</font>) = <font color="#000000">5</font>
+fib(<font color="#000000">6</font>) = <font color="#000000">8</font>
+fib(<font color="#000000">7</font>) = <font color="#000000">13</font>
+fib(<font color="#000000">8</font>) = <font color="#000000">21</font>
+fib(<font color="#000000">9</font>) = <font color="#000000">34</font>
+fib(<font color="#000000">10</font>) = <font color="#000000">55</font>
 
-<font color="#F3E651">%</font><font color="#ff0000"> raku fibonacci</font><font color="#F3E651">.</font><font color="#ff0000">pl</font><font color="#F3E651">.</font><font color="#ff0000">raku</font><font color="#F3E651">.</font><font color="#ff0000">c</font>
-<font color="#ff0000">Hello</font><font color="#F3E651">,</font><font color="#ff0000"> welcome to the Fibonacci Numbers</font><font color="#F3E651">!</font>
-<font color="#ff0000">This program is all</font><font color="#F3E651">,</font><font color="#ff0000"> valid C and C</font><font color="#F3E651">++</font><font color="#ff0000"> and Perl and Raku code</font><font color="#F3E651">!</font>
-<font color="#ff0000">It calculates all fibonacci numbers from </font><font color="#bb00ff">0</font><font color="#ff0000"> to </font><font color="#bb00ff">9</font><font color="#F3E651">!</font>
+% raku fibonacci.pl.raku.c
+Hello, welcome to the Fibonacci Numbers!
+This program is all, valid C and C++ and Perl and Raku code!
+It calculates all fibonacci numbers from <font color="#000000">0</font> to <font color="#000000">9</font>!
 
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">1</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">2</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">3</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">2</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">4</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">3</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">5</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">5</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">6</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">8</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">7</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">13</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">8</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">21</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">9</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">34</font>
-<font color="#ff0000">fib</font><font color="#F3E651">(</font><font color="#bb00ff">10</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">55</font>
+fib(<font color="#000000">0</font>) = <font color="#000000">0</font>
+fib(<font color="#000000">1</font>) = <font color="#000000">1</font>
+fib(<font color="#000000">2</font>) = <font color="#000000">1</font>
+fib(<font color="#000000">3</font>) = <font color="#000000">2</font>
+fib(<font color="#000000">4</font>) = <font color="#000000">3</font>
+fib(<font color="#000000">5</font>) = <font color="#000000">5</font>
+fib(<font color="#000000">6</font>) = <font color="#000000">8</font>
+fib(<font color="#000000">7</font>) = <font color="#000000">13</font>
+fib(<font color="#000000">8</font>) = <font color="#000000">21</font>
+fib(<font color="#000000">9</font>) = <font color="#000000">34</font>
+fib(<font color="#000000">10</font>) = <font color="#000000">55</font>
 </pre>
 <br />
 <span>It&#39;s entertaining to play with :-).</span><br />
@@ -169,11 +164,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-    <br />
-    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

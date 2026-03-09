@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Terminal multiplexing with `tmux` - Fish edition</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="rfx-overlay-grid"></div>
-<div class="rfx-overlay-scanlines"></div>
-<div id="rfx-stars"></div>
-<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi">Gemini</a>
 </p>
@@ -197,14 +192,14 @@ set-option -g prefix C-g
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#7bc710">function tmux</font><font color="#F3E651">::</font><font color="#ff0000">search</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">set</font></b><font color="#ff0000"> -l session </font><font color="#F3E651">(</font><font color="#ff0000">tmux list-sessions </font><font color="#F3E651">|</font><font color="#ff0000"> fzf </font><font color="#F3E651">|</font><font color="#ff0000"> cut -d</font><font color="#F3E651">:</font><font color="#ff0000"> -f</font><font color="#bb00ff">1</font><font color="#F3E651">)</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">if</font></b><font color="#ff0000"> </font><b><font color="#ffffff">test</font></b><font color="#ff0000"> -z </font><font color="#bb00ff">"$TMUX"</font>
-<font color="#ff0000">        tmux attach-session -t </font><font color="#ff0000">$session</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">else</font></b>
-<font color="#ff0000">        tmux switch -t </font><font color="#ff0000">$session</font>
-<font color="#ff0000">    end</font>
-<font color="#ff0000">end</font>
+<pre>function tmux::search
+    <b><u><font color="#000000">set</font></u></b> -l session (tmux list-sessions | fzf | cut -d: -f<font color="#000000">1</font>)
+    <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">test</font></u></b> -z <font color="#808080">"$TMUX"</font>
+        tmux attach-session -t $session
+    <b><u><font color="#000000">else</font></u></b>
+        tmux switch -t $session
+    end
+end
 </pre>
 <br />
 <span>All it does is list all currently open sessions in <span class='inlinecode'>fzf</span>, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).</span><br />
@@ -413,11 +408,11 @@ bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf re
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-    <br />
-    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

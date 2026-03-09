@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="rfx-overlay-grid"></div>
-<div class="rfx-overlay-scanlines"></div>
-<div id="rfx-stars"></div>
-<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-04-05-f3s-kubernetes-with-freebsd-part-4.gmi">Gemini</a>
 </p>
@@ -88,10 +83,10 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> dmesg </font><font color="#F3E651">|</font><font color="#ff0000"> grep </font><font color="#bb00ff">'Features2=.*POPCNT'</font>
-<font color="#ff0000">  </font><font color="#ff0000">Features2</font><font color="#F3E651">=</font><font color="#bb00ff">0x7ffafbbf</font><font color="#F3E651">&lt;</font><font color="#ff0000">SSE3</font><font color="#F3E651">,</font><font color="#ff0000">PCLMULQDQ</font><font color="#F3E651">,</font><font color="#ff0000">DTES64</font><font color="#F3E651">,</font><font color="#ff0000">MON</font><font color="#F3E651">,</font><font color="#ff0000">DS_CPL</font><font color="#F3E651">,</font><font color="#ff0000">VMX</font><font color="#F3E651">,</font><font color="#ff0000">EST</font><font color="#F3E651">,</font><font color="#ff0000">TM2</font><font color="#F3E651">,</font><font color="#ff0000">SSSE3</font><font color="#F3E651">,</font><font color="#ff0000">SDBG</font><font color="#F3E651">,</font>
-<font color="#ff0000">	FMA</font><font color="#F3E651">,</font><font color="#ff0000">CX16</font><font color="#F3E651">,</font><font color="#ff0000">xTPR</font><font color="#F3E651">,</font><font color="#ff0000">PDCM</font><font color="#F3E651">,</font><font color="#ff0000">PCID</font><font color="#F3E651">,</font><font color="#ff0000">SSE4</font><font color="#F3E651">.</font><font color="#bb00ff">1</font><font color="#F3E651">,</font><font color="#ff0000">SSE4</font><font color="#F3E651">.</font><font color="#bb00ff">2</font><font color="#F3E651">,</font><font color="#ff0000">x2APIC</font><font color="#F3E651">,</font><font color="#ff0000">MOVBE</font><font color="#F3E651">,</font><font color="#ff0000">POPCNT</font><font color="#F3E651">,</font><font color="#ff0000">TSCDLT</font><font color="#F3E651">,</font><font color="#ff0000">AESNI</font><font color="#F3E651">,</font><font color="#ff0000">XSAVE</font><font color="#F3E651">,</font>
-<font color="#ff0000">	OSXSAVE</font><font color="#F3E651">,</font><font color="#ff0000">AVX</font><font color="#F3E651">,</font><font color="#ff0000">F16C</font><font color="#F3E651">,</font><font color="#ff0000">RDRAND</font><font color="#F3E651">&gt;</font>
+<pre>paul@f0:~ % dmesg | grep <font color="#808080">'Features2=.*POPCNT'</font>
+  Features2=<font color="#000000">0x7ffafbbf</font>&lt;SSE3,PCLMULQDQ,DTES64,MON,DS_CPL,VMX,EST,TM2,SSSE3,SDBG,
+	FMA,CX16,xTPR,PDCM,PCID,SSE4.<font color="#000000">1</font>,SSE4.<font color="#000000">2</font>,x2APIC,MOVBE,POPCNT,TSCDLT,AESNI,XSAVE,
+	OSXSAVE,AVX,F16C,RDRAND&gt;
 </pre>
 <br />
 <span>So it&#39;s there! All good.</span><br />
@@ -108,15 +103,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas pkg install vm-bhyve bhyve-firmware</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas sysrc </font><font color="#ff0000">vm_enable</font><font color="#F3E651">=</font><font color="#ff0000">YES</font>
-<font color="#ff0000">vm_enable</font><font color="#F3E651">:</font><font color="#ff0000">  -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> YES</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas sysrc </font><font color="#ff0000">vm_dir</font><font color="#F3E651">=</font><font color="#ff0000">zfs</font><font color="#F3E651">:</font><font color="#ff0000">zroot/bhyve</font>
-<font color="#ff0000">vm_dir</font><font color="#F3E651">:</font><font color="#ff0000">  -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> zfs</font><font color="#F3E651">:</font><font color="#ff0000">zroot/bhyve</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas zfs create zroot/bhyve</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm init</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm switch create public</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm switch add public re0</font>
+<pre>paul@f0:~ % doas pkg install vm-bhyve bhyve-firmware
+paul@f0:~ % doas sysrc vm_enable=YES
+vm_enable:  -&gt; YES
+paul@f0:~ % doas sysrc vm_dir=zfs:zroot/bhyve
+vm_dir:  -&gt; zfs:zroot/bhyve
+paul@f0:~ % doas zfs create zroot/bhyve
+paul@f0:~ % doas vm init
+paul@f0:~ % doas vm switch create public
+paul@f0:~ % doas vm switch add public re0
 </pre>
 <br />
 <span>Bhyve stores all its data in the <span class='inlinecode'>/bhyve</span> of the <span class='inlinecode'>zroot</span> ZFS pool:</span><br />
@@ -125,8 +120,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> zfs list </font><font color="#F3E651">|</font><font color="#ff0000"> grep bhyve</font>
-<font color="#ff0000">zroot/bhyve                                   </font><font color="#bb00ff">1</font><font color="#F3E651">.</font><font color="#ff0000">74M   453G  </font><font color="#bb00ff">1</font><font color="#F3E651">.</font><font color="#ff0000">74M  /zroot/bhyve</font>
+<pre>paul@f0:~ % zfs list | grep bhyve
+zroot/bhyve                                   <font color="#000000">1</font>.74M   453G  <font color="#000000">1</font>.74M  /zroot/bhyve
 </pre>
 <br />
 <span>For convenience, we also create this symlink:</span><br />
@@ -135,7 +130,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas ln -s /zroot/bhyve</font><font color="#F3E651">/</font><font color="#ff0000"> /bhyve</font>
+<pre>paul@f0:~ % doas ln -s /zroot/bhyve/ /bhyve
 
 </pre>
 <br />
@@ -145,8 +140,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm list</font>
-<font color="#ff0000">NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE</font>
+<pre>paul@f0:~ % doas vm list
+NAME  DATASTORE  LOADER  CPU  MEMORY  VNC  AUTO  STATE
 </pre>
 <br />
 <h2 style='display: inline' id='rocky-linux-vms'>Rocky Linux VMs</h2><br />
@@ -167,10 +162,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm iso </font><font color="#F3E651">\</font>
-<font color="#ff0000"> https</font><font color="#F3E651">:</font><font color="#ff0000">//download</font><font color="#F3E651">.</font><font color="#ff0000">rockylinux</font><font color="#F3E651">.</font><font color="#ff0000">org/pub/rocky</font><font color="#F3E651">/</font><font color="#bb00ff">9</font><font color="#ff0000">/isos/x86_64/Rocky-</font><font color="#bb00ff">9.5</font><font color="#ff0000">-x86_64-minimal</font><font color="#F3E651">.</font><font color="#ff0000">iso</font>
-<font color="#ff0000">/zroot/bhyve</font><font color="#F3E651">/.</font><font color="#ff0000">iso/Rocky-</font><font color="#bb00ff">9.5</font><font color="#ff0000">-x86_64-minimal</font><font color="#F3E651">.</font><font color="#ff0000">iso        </font><font color="#bb00ff">1808</font><font color="#ff0000"> MB </font><font color="#bb00ff">4780</font><font color="#ff0000"> kBps 06m28s</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:</font><font color="#ff0000">/bhyve </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm create rocky</font>
+<pre>paul@f0:~ % doas vm iso \
+ https://download.rockylinux.org/pub/rocky/<font color="#000000">9</font>/isos/x86_64/Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
+/zroot/bhyve/.iso/Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso        <font color="#000000">1808</font> MB <font color="#000000">4780</font> kBps 06m28s
+paul@f0:/bhyve % doas vm create rocky
 </pre>
 <br />
 <h3 style='display: inline' id='vm-configuration'>VM configuration</h3><br />
@@ -181,16 +176,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:</font><font color="#ff0000">/bhyve/rocky </font><font color="#F3E651">%</font><font color="#ff0000"> cat rocky</font><font color="#F3E651">.</font><font color="#ff0000">conf</font>
-<font color="#ff0000">loader</font><font color="#F3E651">=</font><font color="#bb00ff">"bhyveload"</font>
-<font color="#ff0000">cpu</font><font color="#F3E651">=</font><font color="#bb00ff">1</font>
-<font color="#ff0000">memory</font><font color="#F3E651">=</font><font color="#ff0000">256M</font>
-<font color="#ff0000">network0_type</font><font color="#F3E651">=</font><font color="#bb00ff">"virtio-net"</font>
-<font color="#ff0000">network0_switch</font><font color="#F3E651">=</font><font color="#bb00ff">"public"</font>
-<font color="#ff0000">disk0_type</font><font color="#F3E651">=</font><font color="#bb00ff">"virtio-blk"</font>
-<font color="#ff0000">disk0_name</font><font color="#F3E651">=</font><font color="#bb00ff">"disk0.img"</font>
-<font color="#ff0000">uuid</font><font color="#F3E651">=</font><font color="#bb00ff">"1c4655ac-c828-11ef-a920-e8ff1ed71ca0"</font>
-<font color="#ff0000">network0_mac</font><font color="#F3E651">=</font><font color="#bb00ff">"58:9c:fc:0d:13:3f"</font>
+<pre>paul@f0:/bhyve/rocky % cat rocky.conf
+loader=<font color="#808080">"bhyveload"</font>
+cpu=<font color="#000000">1</font>
+memory=256M
+network0_type=<font color="#808080">"virtio-net"</font>
+network0_switch=<font color="#808080">"public"</font>
+disk0_type=<font color="#808080">"virtio-blk"</font>
+disk0_name=<font color="#808080">"disk0.img"</font>
+uuid=<font color="#808080">"1c4655ac-c828-11ef-a920-e8ff1ed71ca0"</font>
+network0_mac=<font color="#808080">"58:9c:fc:0d:13:3f"</font>
 </pre>
 <br />
 <span>The <span class='inlinecode'>uuid</span> and the <span class='inlinecode'>network0_mac</span> differ for each of the three VMs (the ones being installed on <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>).</span><br />
@@ -221,17 +216,17 @@ network0_mac="58:9c:fc:0d:13:3f"
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm install rocky Rocky-</font><font color="#bb00ff">9.5</font><font color="#ff0000">-x86_64-minimal</font><font color="#F3E651">.</font><font color="#ff0000">iso</font>
-<font color="#ff0000">Starting rocky</font>
-<font color="#ff0000">  </font><font color="#F3E651">*</font><font color="#ff0000"> found guest </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> /zroot/bhyve/rocky</font>
-<font color="#ff0000">  </font><font color="#F3E651">*</font><font color="#ff0000"> booting</font><font color="#F3E651">...</font>
+<pre>paul@f0:~ % doas vm install rocky Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
+Starting rocky
+  * found guest <b><u><font color="#000000">in</font></u></b> /zroot/bhyve/rocky
+  * booting...
 
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:</font><font color="#ff0000">/bhyve/rocky </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm list</font>
-<font color="#ff0000">NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO  STATE</font>
-<font color="#ff0000">rocky  default    uefi    </font><font color="#bb00ff">4</font><font color="#ff0000">    14G     </font><font color="#bb00ff">0.0</font><font color="#F3E651">.</font><font color="#bb00ff">0.0</font><font color="#F3E651">:</font><font color="#bb00ff">5900</font><font color="#ff0000">  No    Locked </font><font color="#F3E651">(</font><font color="#ff0000">f0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">)</font>
+paul@f0:/bhyve/rocky % doas vm list
+NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO  STATE
+rocky  default    uefi    <font color="#000000">4</font>    14G     <font color="#000000">0.0</font>.<font color="#000000">0.0</font>:<font color="#000000">5900</font>  No    Locked (f0.lan.buetow.org)
 
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:</font><font color="#ff0000">/bhyve/rocky </font><font color="#F3E651">%</font><font color="#ff0000"> doas sockstat -</font><font color="#bb00ff">4</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000"> grep </font><font color="#bb00ff">5900</font>
-<font color="#ff0000">root     bhyve       </font><font color="#bb00ff">6079</font><font color="#ff0000"> </font><font color="#bb00ff">8</font><font color="#ff0000">   tcp4   </font><font color="#F3E651">*:</font><font color="#bb00ff">5900</font><font color="#ff0000">                </font><font color="#F3E651">*:*</font>
+paul@f0:/bhyve/rocky % doas sockstat -<font color="#000000">4</font> | grep <font color="#000000">5900</font>
+root     bhyve       <font color="#000000">6079</font> <font color="#000000">8</font>   tcp4   *:<font color="#000000">5900</font>                *:*
 </pre>
 <br />
 <span>Port 5900 now also opens for VNC connections, so I connected it with a VNC client and ran through the installation dialogues. This could be done unattended or more automated, but there are only three VMs to install, and the automation doesn&#39;t seem worth it as we do it only once a year or less often.</span><br />
@@ -244,9 +239,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:</font><font color="#ff0000">/bhyve/rocky </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm stop rocky</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:</font><font color="#ff0000">/bhyve/rocky </font><font color="#F3E651">%</font><font color="#ff0000"> doas truncate -s 100G disk0</font><font color="#F3E651">.</font><font color="#ff0000">img</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:</font><font color="#ff0000">/bhyve/rocky </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm install rocky Rocky-</font><font color="#bb00ff">9.5</font><font color="#ff0000">-x86_64-minimal</font><font color="#F3E651">.</font><font color="#ff0000">iso</font>
+<pre>paul@f0:/bhyve/rocky % doas vm stop rocky
+paul@f0:/bhyve/rocky % doas truncate -s 100G disk0.img
+paul@f0:/bhyve/rocky % doas vm install rocky Rocky-<font color="#000000">9.5</font>-x86_64-minimal.iso
 </pre>
 <br />
 <h3 style='display: inline' id='connect-to-vnc'>Connect to VNC</h3><br />
@@ -275,9 +270,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:</font><font color="#ff0000">/bhyve/rocky </font><font color="#F3E651">%</font><font color="#ff0000"> cat </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">END </font><font color="#F3E651">|</font><font color="#ff0000"> doas tee -a /etc/rc</font><font color="#F3E651">.</font><font color="#ff0000">conf</font>
-<font color="#ff0000">vm_list</font><font color="#F3E651">=</font><font color="#bb00ff">"rocky"</font>
-<font color="#ff0000">vm_delay</font><font color="#F3E651">=</font><font color="#bb00ff">"5"</font>
+<pre>paul@f0:/bhyve/rocky % cat &lt;&lt;END | doas tee -a /etc/rc.conf
+vm_list=<font color="#808080">"rocky"</font>
+vm_delay=<font color="#808080">"5"</font>
 </pre>
 <br />
 <span>The <span class='inlinecode'>vm_delay</span> isn&#39;t really required. It is used to wait 5 seconds before starting each VM, but there is currently only one VM per host. Maybe later, when there are more, this will be useful. After adding, there&#39;s now a <span class='inlinecode'>Yes</span> indicator in the <span class='inlinecode'>AUTO</span> column.</span><br />
@@ -286,9 +281,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm list</font>
-<font color="#ff0000">NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO     STATE</font>
-<font color="#ff0000">rocky  default    uefi    </font><font color="#bb00ff">4</font><font color="#ff0000">    14G     </font><font color="#bb00ff">0.0</font><font color="#F3E651">.</font><font color="#bb00ff">0.0</font><font color="#F3E651">:</font><font color="#bb00ff">5900</font><font color="#ff0000">  Yes </font><font color="#F3E651">[</font><font color="#bb00ff">1</font><font color="#F3E651">]</font><font color="#ff0000">  Running </font><font color="#F3E651">(</font><font color="#bb00ff">2063</font><font color="#F3E651">)</font>
+<pre>paul@f0:~ % doas vm list
+NAME   DATASTORE  LOADER  CPU  MEMORY  VNC           AUTO     STATE
+rocky  default    uefi    <font color="#000000">4</font>    14G     <font color="#000000">0.0</font>.<font color="#000000">0.0</font>:<font color="#000000">5900</font>  Yes [<font color="#000000">1</font>]  Running (<font color="#000000">2063</font>)
 </pre>
 <br />
 <h3 style='display: inline' id='static-ip-configuration'>Static IP configuration</h3><br />
@@ -307,11 +302,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:</font><font color="#ff0000">/bhyve/rocky </font><font color="#F3E651">%</font><font color="#ff0000"> cat </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">END </font><font color="#F3E651">|</font><font color="#ff0000"> doas tee -a /etc/hosts</font>
-<font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.120</font><font color="#ff0000"> r0 r0</font><font color="#F3E651">.</font><font color="#ff0000">lan r0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
-<font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.121</font><font color="#ff0000"> r1 r1</font><font color="#F3E651">.</font><font color="#ff0000">lan r1</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
-<font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.122</font><font color="#ff0000"> r2 r2</font><font color="#F3E651">.</font><font color="#ff0000">lan r2</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
-<font color="#ff0000">END</font>
+<pre>paul@f0:/bhyve/rocky % cat &lt;&lt;END | doas tee -a /etc/hosts
+<font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.121</font> r1 r1.lan r1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.122</font> r2 r2.lan r2.lan.buetow.org
+END
 </pre>
 <br />
 <span>And we configure the IPs accordingly on the VMs themselves by opening a root shell via SSH to the VMs and entering the following commands on each of the VMs:</span><br />
@@ -320,18 +315,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> nmcli connection modify enp0s5 ipv4</font><font color="#F3E651">.</font><font color="#ff0000">address </font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.120</font><font color="#F3E651">/</font><font color="#bb00ff">24</font>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> nmcli connection modify enp0s5 ipv4</font><font color="#F3E651">.</font><font color="#ff0000">gateway </font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.1</font>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> nmcli connection modify enp0s5 ipv4</font><font color="#F3E651">.</font><font color="#ff0000">DNS </font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.1</font>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> nmcli connection modify enp0s5 ipv4</font><font color="#F3E651">.</font><font color="#ff0000">method manual</font>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> nmcli connection down enp0s5</font>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> nmcli connection up enp0s5</font>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> hostnamectl set-hostname r0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> cat </font><font color="#F3E651">&lt;&lt;</font><font color="#ff0000">END </font><font color="#F3E651">&gt;&gt;</font><font color="#ff0000">/etc/hosts</font>
-<font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.120</font><font color="#ff0000"> r0 r0</font><font color="#F3E651">.</font><font color="#ff0000">lan r0</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
-<font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.121</font><font color="#ff0000"> r1 r1</font><font color="#F3E651">.</font><font color="#ff0000">lan r1</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
-<font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">1.122</font><font color="#ff0000"> r2 r2</font><font color="#F3E651">.</font><font color="#ff0000">lan r2</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font>
-<font color="#ff0000">END</font>
+<pre>[root@r0 ~] % nmcli connection modify enp0s5 ipv4.address <font color="#000000">192.168</font>.<font color="#000000">1.120</font>/<font color="#000000">24</font>
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.gateway <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.DNS <font color="#000000">192.168</font>.<font color="#000000">1.1</font>
+[root@r0 ~] % nmcli connection modify enp0s5 ipv4.method manual
+[root@r0 ~] % nmcli connection down enp0s5
+[root@r0 ~] % nmcli connection up enp0s5
+[root@r0 ~] % hostnamectl set-hostname r0.lan.buetow.org
+[root@r0 ~] % cat &lt;&lt;END &gt;&gt;/etc/hosts
+<font color="#000000">192.168</font>.<font color="#000000">1.120</font> r0 r0.lan r0.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.121</font> r1 r1.lan r1.lan.buetow.org
+<font color="#000000">192.168</font>.<font color="#000000">1.122</font> r2 r2.lan r2.lan.buetow.org
+END
 </pre>
 <br />
 <span>Whereas:</span><br />
@@ -352,7 +347,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><b><font color="#ffffff">in</font></b><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#bb00ff">1</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b><font color="#ff0000"> ssh-copy-id root@r</font><font color="#ff0000">$i</font><font color="#F3E651">.</font><font color="#ff0000">lan</font><font color="#F3E651">.</font><font color="#ff0000">buetow</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">;</font><font color="#ff0000"> </font><b><font color="#ffffff">done</font></b>
+<pre>% <b><u><font color="#000000">for</font></u></b> i <b><u><font color="#000000">in</font></u></b> <font color="#000000">0</font> <font color="#000000">1</font> <font color="#000000">2</font>; <b><u><font color="#000000">do</font></u></b> ssh-copy-id root@r$i.lan.buetow.org; <b><u><font color="#000000">done</font></u></b>
 </pre>
 <br />
 <span>Then, we edit the <span class='inlinecode'>/etc/ssh/sshd_config</span> file again on all three VMs and configure <span class='inlinecode'>PasswordAuthentication no</span> to only allow SSH key authentication from now on.</span><br />
@@ -363,8 +358,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> dnf update</font>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> reboot</font>
+<pre>[root@r0 ~] % dnf update
+[root@r0 ~] % reboot
 </pre>
 <br />
 <h2 style='display: inline' id='stress-testing-cpu'>Stress testing CPU</h2><br />
@@ -375,28 +370,28 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">package</font></b><font color="#ff0000"> main</font>
+<pre><b><u><font color="#000000">package</font></u></b> main
 
-<b><font color="#ffffff">import</font></b><font color="#ff0000"> </font><font color="#bb00ff">"testing"</font>
+<b><u><font color="#000000">import</font></u></b> <font color="#808080">"testing"</font>
 
-<b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#7bc710">BenchmarkCPUSilly1</font><font color="#F3E651">(</font><font color="#ff0000">b </font><font color="#F3E651">*</font><font color="#ff0000">testing</font><font color="#F3E651">.</font><font color="#ff0000">B</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> b</font><font color="#F3E651">.</font><font color="#ff0000">N</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">		_ </font><font color="#F3E651">=</font><font color="#ff0000"> i </font><font color="#F3E651">*</font><font color="#ff0000"> i</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-<font color="#F3E651">}</font>
+<b><u><font color="#000000">func</font></u></b> BenchmarkCPUSilly1(b *testing.B) {
+	<b><u><font color="#000000">for</font></u></b> i := <font color="#000000">0</font>; i &lt; b.N; i++ {
+		_ = i * i
+	}
+}
 
-<b><font color="#ffffff">func</font></b><font color="#ff0000"> </font><font color="#7bc710">BenchmarkCPUSilly2</font><font color="#F3E651">(</font><font color="#ff0000">b </font><font color="#F3E651">*</font><font color="#ff0000">testing</font><font color="#F3E651">.</font><font color="#ff0000">B</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">	</font><b><font color="#ffffff">var</font></b><font color="#ff0000"> sillyResult </font><b><font color="#F35E1E">float64</font></b>
-<font color="#ff0000">	</font><b><font color="#ffffff">for</font></b><font color="#ff0000"> i </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#F3E651">;</font><font color="#ff0000"> i </font><font color="#F3E651">&lt;</font><font color="#ff0000"> b</font><font color="#F3E651">.</font><font color="#ff0000">N</font><font color="#F3E651">;</font><font color="#ff0000"> i</font><font color="#F3E651">++</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">		sillyResult </font><font color="#F3E651">+=</font><font color="#ff0000"> </font><b><font color="#F35E1E">float64</font></b><font color="#F3E651">(</font><font color="#ff0000">i</font><font color="#F3E651">)</font>
-<font color="#ff0000">		sillyResult </font><font color="#F3E651">*=</font><font color="#ff0000"> </font><b><font color="#F35E1E">float64</font></b><font color="#F3E651">(</font><font color="#ff0000">i</font><font color="#F3E651">)</font>
-<font color="#ff0000">		divisor </font><font color="#F3E651">:=</font><font color="#ff0000"> </font><b><font color="#F35E1E">float64</font></b><font color="#F3E651">(</font><font color="#ff0000">i</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">+</font><font color="#ff0000"> </font><font color="#bb00ff">1</font>
-<font color="#ff0000">		</font><b><font color="#ffffff">if</font></b><font color="#ff0000"> divisor </font><font color="#F3E651">&gt;</font><font color="#ff0000"> </font><font color="#bb00ff">0</font><font color="#ff0000"> </font><font color="#F3E651">{</font>
-<font color="#ff0000">			sillyResult </font><font color="#F3E651">/=</font><font color="#ff0000"> divisor</font>
-<font color="#ff0000">		</font><font color="#F3E651">}</font>
-<font color="#ff0000">	</font><font color="#F3E651">}</font>
-<font color="#ff0000">	_ </font><font color="#F3E651">=</font><font color="#ff0000"> sillyResult </font><i><font color="#ababab">// to avoid compiler optimization</font></i>
-<font color="#F3E651">}</font>
+<b><u><font color="#000000">func</font></u></b> BenchmarkCPUSilly2(b *testing.B) {
+	<b><u><font color="#000000">var</font></u></b> sillyResult <b><font color="#000000">float64</font></b>
+	<b><u><font color="#000000">for</font></u></b> i := <font color="#000000">0</font>; i &lt; b.N; i++ {
+		sillyResult += <b><font color="#000000">float64</font></b>(i)
+		sillyResult *= <b><font color="#000000">float64</font></b>(i)
+		divisor := <b><font color="#000000">float64</font></b>(i) + <font color="#000000">1</font>
+		<b><u><font color="#000000">if</font></u></b> divisor &gt; <font color="#000000">0</font> {
+			sillyResult /= divisor
+		}
+	}
+	_ = sillyResult <i><font color="silver">// to avoid compiler optimization</font></i>
+}
 </pre>
 <br />
 <span>You can find the repository here:</span><br />
@@ -411,10 +406,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas pkg install git go</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> mkdir </font><font color="#F3E651">~</font><font color="#ff0000">/git </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> cd </font><font color="#F3E651">~</font><font color="#ff0000">/git </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">  git clone https</font><font color="#F3E651">:</font><font color="#ff0000">//codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/sillybench </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">  cd sillybench</font>
+<pre>paul@f0:~ % doas pkg install git go
+paul@f0:~ % mkdir ~/git &amp;&amp; cd ~/git &amp;&amp; \
+  git clone https://codeberg.org/snonux/sillybench &amp;&amp; \
+  cd sillybench
 </pre>
 <br />
 <span>And to run it:</span><br />
@@ -423,18 +418,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000">/git/sillybench </font><font color="#F3E651">%</font><font color="#ff0000"> go version</font>
-<font color="#ff0000">go version go1</font><font color="#F3E651">.</font><font color="#bb00ff">24.1</font><font color="#ff0000"> freebsd/amd</font><font color="#bb00ff">64</font>
+<pre>paul@f0:~/git/sillybench % go version
+go version go1.<font color="#000000">24.1</font> freebsd/amd<font color="#000000">64</font>
 
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000">/git/sillybench </font><font color="#F3E651">%</font><font color="#ff0000"> go </font><b><font color="#ffffff">test</font></b><font color="#ff0000"> -bench</font><font color="#F3E651">=.</font>
-<font color="#ff0000">goos</font><font color="#F3E651">:</font><font color="#ff0000"> freebsd</font>
-<font color="#ff0000">goarch</font><font color="#F3E651">:</font><font color="#ff0000"> amd64</font>
-<font color="#ff0000">pkg</font><font color="#F3E651">:</font><font color="#ff0000"> codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/sillybench</font>
-<font color="#ff0000">cpu</font><font color="#F3E651">:</font><font color="#ff0000"> Intel</font><font color="#F3E651">(</font><font color="#ff0000">R</font><font color="#F3E651">)</font><font color="#ff0000"> N100</font>
-<font color="#ff0000">BenchmarkCPUSilly1-</font><font color="#bb00ff">4</font><font color="#ff0000">    </font><font color="#bb00ff">1000000000</font><font color="#ff0000">               </font><font color="#bb00ff">0.4022</font><font color="#ff0000"> ns/op</font>
-<font color="#ff0000">BenchmarkCPUSilly2-</font><font color="#bb00ff">4</font><font color="#ff0000">    </font><font color="#bb00ff">1000000000</font><font color="#ff0000">               </font><font color="#bb00ff">0.4027</font><font color="#ff0000"> ns/op</font>
-<font color="#ff0000">PASS</font>
-<font color="#ff0000">ok      codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/sillybench </font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">891s</font>
+paul@f0:~/git/sillybench % go <b><u><font color="#000000">test</font></u></b> -bench=.
+goos: freebsd
+goarch: amd64
+pkg: codeberg.org/snonux/sillybench
+cpu: Intel(R) N100
+BenchmarkCPUSilly1-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4022</font> ns/op
+BenchmarkCPUSilly2-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4027</font> ns/op
+PASS
+ok      codeberg.org/snonux/sillybench <font color="#000000">0</font>.891s
 </pre>
 <br />
 <h3 style='display: inline' id='silly-rocky-linux-vm--bhyve-benchmark'>Silly Rocky Linux VM @ Bhyve benchmark</h3><br />
@@ -445,10 +440,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># dnf install golang git</font></i>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># mkdir ~/git &amp;&amp; cd ~/git &amp;&amp; \</font></i>
-<font color="#ff0000">  git clone https</font><font color="#F3E651">:</font><font color="#ff0000">//codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/sillybench </font><font color="#F3E651">&amp;&amp;</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">  cd sillybench</font>
+<pre>[root@r0 ~]<i><font color="silver"># dnf install golang git</font></i>
+[root@r0 ~]<i><font color="silver"># mkdir ~/git &amp;&amp; cd ~/git &amp;&amp; \</font></i>
+  git clone https://codeberg.org/snonux/sillybench &amp;&amp; \
+  cd sillybench
 </pre>
 <br />
 <span>And to run it:</span><br />
@@ -457,15 +452,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 sillybench</font><font color="#F3E651">]</font><i><font color="#ababab"># go version</font></i>
-<font color="#ff0000">go version go1</font><font color="#F3E651">.</font><font color="#bb00ff">22.9</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">Red Hat </font><font color="#bb00ff">1.22</font><font color="#F3E651">.</font><font color="#bb00ff">9</font><font color="#ff0000">-</font><font color="#bb00ff">2</font><font color="#F3E651">.</font><font color="#ff0000">el9_5</font><font color="#F3E651">)</font><font color="#ff0000"> linux/amd</font><font color="#bb00ff">64</font>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 sillybench</font><font color="#F3E651">]</font><i><font color="#ababab"># go test -bench=.</font></i>
-<font color="#ff0000">goos</font><font color="#F3E651">:</font><font color="#ff0000"> linux</font>
-<font color="#ff0000">goarch</font><font color="#F3E651">:</font><font color="#ff0000"> amd64</font>
-<font color="#ff0000">pkg</font><font color="#F3E651">:</font><font color="#ff0000"> codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/sillybench</font>
-<font color="#ff0000">cpu</font><font color="#F3E651">:</font><font color="#ff0000"> Intel</font><font color="#F3E651">(</font><font color="#ff0000">R</font><font color="#F3E651">)</font><font color="#ff0000"> N100</font>
-<font color="#ff0000">BenchmarkCPUSilly1-</font><font color="#bb00ff">4</font><font color="#ff0000">    </font><font color="#bb00ff">1000000000</font><font color="#ff0000">               </font><font color="#bb00ff">0.4347</font><font color="#ff0000"> ns/op</font>
-<font color="#ff0000">BenchmarkCPUSilly2-</font><font color="#bb00ff">4</font><font color="#ff0000">    </font><font color="#bb00ff">1000000000</font><font color="#ff0000">               </font><font color="#bb00ff">0.4345</font><font color="#ff0000"> ns/op</font>
+<pre>[root@r0 sillybench]<i><font color="silver"># go version</font></i>
+go version go1.<font color="#000000">22.9</font> (Red Hat <font color="#000000">1.22</font>.<font color="#000000">9</font>-<font color="#000000">2</font>.el9_5) linux/amd<font color="#000000">64</font>
+[root@r0 sillybench]<i><font color="silver"># go test -bench=.</font></i>
+goos: linux
+goarch: amd64
+pkg: codeberg.org/snonux/sillybench
+cpu: Intel(R) N100
+BenchmarkCPUSilly1-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4347</font> ns/op
+BenchmarkCPUSilly2-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4345</font> ns/op
 </pre>
 <br />
 <span>The Linux benchmark is slightly slower than the FreeBSD one. The Go version is also a bit older. I tried the same with the up-to-date version of Go (1.24.x) with similar results. There could be a slight Bhyve overhead, or FreeBSD is just slightly more efficient in this benchmark. Overall, this shows that Bhyve performs excellently.</span><br />
@@ -480,15 +475,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">root@freebsd</font><font color="#F3E651">:~</font><font color="#ff0000">/git/sillybench </font><i><font color="#ababab"># go test -bench=.</font></i>
-<font color="#ff0000">goos</font><font color="#F3E651">:</font><font color="#ff0000"> freebsd</font>
-<font color="#ff0000">goarch</font><font color="#F3E651">:</font><font color="#ff0000"> amd64</font>
-<font color="#ff0000">pkg</font><font color="#F3E651">:</font><font color="#ff0000"> codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/sillybench</font>
-<font color="#ff0000">cpu</font><font color="#F3E651">:</font><font color="#ff0000"> Intel</font><font color="#F3E651">(</font><font color="#ff0000">R</font><font color="#F3E651">)</font><font color="#ff0000"> N100</font>
-<font color="#ff0000">BenchmarkCPUSilly1      </font><font color="#bb00ff">1000000000</font><font color="#ff0000">               </font><font color="#bb00ff">0.4273</font><font color="#ff0000"> ns/op</font>
-<font color="#ff0000">BenchmarkCPUSilly2      </font><font color="#bb00ff">1000000000</font><font color="#ff0000">               </font><font color="#bb00ff">0.4286</font><font color="#ff0000"> ns/op</font>
-<font color="#ff0000">PASS</font>
-<font color="#ff0000">ok      codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/sillybench  </font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">949s</font>
+<pre>root@freebsd:~/git/sillybench <i><font color="silver"># go test -bench=.</font></i>
+goos: freebsd
+goarch: amd64
+pkg: codeberg.org/snonux/sillybench
+cpu: Intel(R) N100
+BenchmarkCPUSilly1      <font color="#000000">1000000000</font>               <font color="#000000">0.4273</font> ns/op
+BenchmarkCPUSilly2      <font color="#000000">1000000000</font>               <font color="#000000">0.4286</font> ns/op
+PASS
+ok      codeberg.org/snonux/sillybench  <font color="#000000">0</font>.949s
 </pre>
 <br />
 <span>It&#39;s a bit better than Linux! I am sure that this is not really a scientific benchmark, so take the results with a grain of salt!</span><br />
@@ -505,16 +500,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas ubench -s </font><font color="#bb00ff">1</font>
-<font color="#ff0000">Unix Benchmark Utility v</font><font color="#F3E651">.</font><font color="#bb00ff">0.3</font>
-<font color="#ff0000">Copyright </font><font color="#F3E651">(</font><font color="#ff0000">C</font><font color="#F3E651">)</font><font color="#ff0000"> July</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">1999</font><font color="#ff0000"> PhysTech</font><font color="#F3E651">,</font><font color="#ff0000"> Inc</font><font color="#F3E651">.</font>
-<font color="#ff0000">Author</font><font color="#F3E651">:</font><font color="#ff0000"> Sergei Viznyuk </font><font color="#F3E651">&lt;</font><font color="#ff0000">sv@phystech</font><font color="#F3E651">.</font><font color="#ff0000">com</font><font color="#F3E651">&gt;</font>
-<font color="#ff0000">http</font><font color="#F3E651">:</font><font color="#ff0000">//www</font><font color="#F3E651">.</font><font color="#ff0000">phystech</font><font color="#F3E651">.</font><font color="#ff0000">com/download/ubench</font><font color="#F3E651">.</font><font color="#ff0000">html</font>
-<font color="#ff0000">FreeBSD </font><font color="#bb00ff">14.2</font><font color="#ff0000">-RELEASE-p</font><font color="#bb00ff">1</font><font color="#ff0000"> FreeBSD </font><font color="#bb00ff">14.2</font><font color="#ff0000">-RELEASE-p</font><font color="#bb00ff">1</font><font color="#ff0000"> GENERIC amd64</font>
-<font color="#ff0000">Ubench Single CPU</font><font color="#F3E651">:</font><font color="#ff0000">   </font><font color="#bb00ff">671010</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">40s</font><font color="#F3E651">)</font>
-<font color="#ff0000">Ubench Single MEM</font><font color="#F3E651">:</font><font color="#ff0000">  </font><font color="#bb00ff">1705237</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">48s</font><font color="#F3E651">)</font>
-<font color="#ff0000">-----------------------------------</font>
-<font color="#ff0000">Ubench Single AVG</font><font color="#F3E651">:</font><font color="#ff0000">  </font><font color="#bb00ff">1188123</font>
+<pre>paul@f0:~ % doas ubench -s <font color="#000000">1</font>
+Unix Benchmark Utility v.<font color="#000000">0.3</font>
+Copyright (C) July, <font color="#000000">1999</font> PhysTech, Inc.
+Author: Sergei Viznyuk &lt;sv@phystech.com&gt;
+http://www.phystech.com/download/ubench.html
+FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> GENERIC amd64
+Ubench Single CPU:   <font color="#000000">671010</font> (<font color="#000000">0</font>.40s)
+Ubench Single MEM:  <font color="#000000">1705237</font> (<font color="#000000">0</font>.48s)
+-----------------------------------
+Ubench Single AVG:  <font color="#000000">1188123</font>
 
 </pre>
 <br />
@@ -524,16 +519,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas ubench</font>
-<font color="#ff0000">Unix Benchmark Utility v</font><font color="#F3E651">.</font><font color="#bb00ff">0.3</font>
-<font color="#ff0000">Copyright </font><font color="#F3E651">(</font><font color="#ff0000">C</font><font color="#F3E651">)</font><font color="#ff0000"> July</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">1999</font><font color="#ff0000"> PhysTech</font><font color="#F3E651">,</font><font color="#ff0000"> Inc</font><font color="#F3E651">.</font>
-<font color="#ff0000">Author</font><font color="#F3E651">:</font><font color="#ff0000"> Sergei Viznyuk </font><font color="#F3E651">&lt;</font><font color="#ff0000">sv@phystech</font><font color="#F3E651">.</font><font color="#ff0000">com</font><font color="#F3E651">&gt;</font>
-<font color="#ff0000">http</font><font color="#F3E651">:</font><font color="#ff0000">//www</font><font color="#F3E651">.</font><font color="#ff0000">phystech</font><font color="#F3E651">.</font><font color="#ff0000">com/download/ubench</font><font color="#F3E651">.</font><font color="#ff0000">html</font>
-<font color="#ff0000">FreeBSD </font><font color="#bb00ff">14.2</font><font color="#ff0000">-RELEASE-p</font><font color="#bb00ff">1</font><font color="#ff0000"> FreeBSD </font><font color="#bb00ff">14.2</font><font color="#ff0000">-RELEASE-p</font><font color="#bb00ff">1</font><font color="#ff0000"> GENERIC amd64</font>
-<font color="#ff0000">Ubench CPU</font><font color="#F3E651">:</font><font color="#ff0000">  </font><font color="#bb00ff">2660220</font>
-<font color="#ff0000">Ubench MEM</font><font color="#F3E651">:</font><font color="#ff0000">  </font><font color="#bb00ff">3095182</font>
-<font color="#ff0000">--------------------</font>
-<font color="#ff0000">Ubench AVG</font><font color="#F3E651">:</font><font color="#ff0000">  </font><font color="#bb00ff">2877701</font>
+<pre>paul@f0:~ % doas ubench
+Unix Benchmark Utility v.<font color="#000000">0.3</font>
+Copyright (C) July, <font color="#000000">1999</font> PhysTech, Inc.
+Author: Sergei Viznyuk &lt;sv@phystech.com&gt;
+http://www.phystech.com/download/ubench.html
+FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> GENERIC amd64
+Ubench CPU:  <font color="#000000">2660220</font>
+Ubench MEM:  <font color="#000000">3095182</font>
+--------------------
+Ubench AVG:  <font color="#000000">2877701</font>
 </pre>
 <br />
 <h3 style='display: inline' id='freebsd-vm--bhyve-ubench-benchmark'>FreeBSD VM @ Bhyve <span class='inlinecode'>ubench</span> benchmark</h3><br />
@@ -544,16 +539,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">root@freebsd</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># ubench -s 1</font></i>
-<font color="#ff0000">Unix Benchmark Utility v</font><font color="#F3E651">.</font><font color="#bb00ff">0.3</font>
-<font color="#ff0000">Copyright </font><font color="#F3E651">(</font><font color="#ff0000">C</font><font color="#F3E651">)</font><font color="#ff0000"> July</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">1999</font><font color="#ff0000"> PhysTech</font><font color="#F3E651">,</font><font color="#ff0000"> Inc</font><font color="#F3E651">.</font>
-<font color="#ff0000">Author</font><font color="#F3E651">:</font><font color="#ff0000"> Sergei Viznyuk </font><font color="#F3E651">&lt;</font><font color="#ff0000">sv@phystech</font><font color="#F3E651">.</font><font color="#ff0000">com</font><font color="#F3E651">&gt;</font>
-<font color="#ff0000">http</font><font color="#F3E651">:</font><font color="#ff0000">//www</font><font color="#F3E651">.</font><font color="#ff0000">phystech</font><font color="#F3E651">.</font><font color="#ff0000">com/download/ubench</font><font color="#F3E651">.</font><font color="#ff0000">html</font>
-<font color="#ff0000">FreeBSD </font><font color="#bb00ff">14.2</font><font color="#ff0000">-RELEASE-p</font><font color="#bb00ff">1</font><font color="#ff0000"> FreeBSD </font><font color="#bb00ff">14.2</font><font color="#ff0000">-RELEASE-p</font><font color="#bb00ff">1</font><font color="#ff0000"> GENERIC amd64</font>
-<font color="#ff0000">Ubench Single CPU</font><font color="#F3E651">:</font><font color="#ff0000">   </font><font color="#bb00ff">672792</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">40s</font><font color="#F3E651">)</font>
-<font color="#ff0000">Ubench Single MEM</font><font color="#F3E651">:</font><font color="#ff0000">   </font><font color="#bb00ff">852757</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">48s</font><font color="#F3E651">)</font>
-<font color="#ff0000">-----------------------------------</font>
-<font color="#ff0000">Ubench Single AVG</font><font color="#F3E651">:</font><font color="#ff0000">   </font><font color="#bb00ff">762774</font>
+<pre>root@freebsd:~ <i><font color="silver"># ubench -s 1</font></i>
+Unix Benchmark Utility v.<font color="#000000">0.3</font>
+Copyright (C) July, <font color="#000000">1999</font> PhysTech, Inc.
+Author: Sergei Viznyuk &lt;sv@phystech.com&gt;
+http://www.phystech.com/download/ubench.html
+FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> GENERIC amd64
+Ubench Single CPU:   <font color="#000000">672792</font> (<font color="#000000">0</font>.40s)
+Ubench Single MEM:   <font color="#000000">852757</font> (<font color="#000000">0</font>.48s)
+-----------------------------------
+Ubench Single AVG:   <font color="#000000">762774</font>
 </pre>
 <br />
 <span>Wow, the CPU in the VM was a tiny bit faster than on the host! So this was probably just a glitch in the matrix. Memory seems slower, though.</span><br />
@@ -564,24 +559,24 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">root@freebsd</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><i><font color="#ababab"># ubench</font></i>
-<font color="#ff0000">Unix Benchmark Utility v</font><font color="#F3E651">.</font><font color="#bb00ff">0.3</font>
-<font color="#ff0000">Copyright </font><font color="#F3E651">(</font><font color="#ff0000">C</font><font color="#F3E651">)</font><font color="#ff0000"> July</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">1999</font><font color="#ff0000"> PhysTech</font><font color="#F3E651">,</font><font color="#ff0000"> Inc</font><font color="#F3E651">.</font>
-<font color="#ff0000">Author</font><font color="#F3E651">:</font><font color="#ff0000"> Sergei Viznyuk </font><font color="#F3E651">&lt;</font><font color="#ff0000">sv@phystech</font><font color="#F3E651">.</font><font color="#ff0000">com</font><font color="#F3E651">&gt;</font>
-<font color="#ff0000">http</font><font color="#F3E651">:</font><font color="#ff0000">//www</font><font color="#F3E651">.</font><font color="#ff0000">phystech</font><font color="#F3E651">.</font><font color="#ff0000">com/download/ubench</font><font color="#F3E651">.</font><font color="#ff0000">html</font>
-<font color="#ff0000">FreeBSD </font><font color="#bb00ff">14.2</font><font color="#ff0000">-RELEASE-p</font><font color="#bb00ff">1</font><font color="#ff0000"> FreeBSD </font><font color="#bb00ff">14.2</font><font color="#ff0000">-RELEASE-p</font><font color="#bb00ff">1</font><font color="#ff0000"> GENERIC amd64</font>
-<font color="#ff0000">Ubench CPU</font><font color="#F3E651">:</font><font color="#ff0000">  </font><font color="#bb00ff">2652857</font>
-<font color="#ff0000">swap_pager</font><font color="#F3E651">:</font><font color="#ff0000"> out of swap space</font>
-<font color="#ff0000">swp_pager_getswapspace</font><font color="#F3E651">(</font><font color="#bb00ff">27</font><font color="#F3E651">):</font><font color="#ff0000"> failed</font>
-<font color="#ff0000">swap_pager</font><font color="#F3E651">:</font><font color="#ff0000"> out of swap space</font>
-<font color="#ff0000">swp_pager_getswapspace</font><font color="#F3E651">(</font><font color="#bb00ff">18</font><font color="#F3E651">):</font><font color="#ff0000"> failed</font>
-<font color="#ff0000">Apr  </font><font color="#bb00ff">4</font><font color="#ff0000"> </font><font color="#bb00ff">23</font><font color="#F3E651">:</font><font color="#bb00ff">02</font><font color="#F3E651">:</font><font color="#bb00ff">43</font><font color="#ff0000"> freebsd kernel</font><font color="#F3E651">:</font><font color="#ff0000"> pid </font><font color="#bb00ff">862</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">ubench</font><font color="#F3E651">),</font><font color="#ff0000"> jid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> uid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> was killed</font><font color="#F3E651">:</font><font color="#ff0000"> failed to reclaim memory</font>
-<font color="#ff0000">swp_pager_getswapspace</font><font color="#F3E651">(</font><font color="#bb00ff">6</font><font color="#F3E651">):</font><font color="#ff0000"> failed</font>
-<font color="#ff0000">Apr  </font><font color="#bb00ff">4</font><font color="#ff0000"> </font><font color="#bb00ff">23</font><font color="#F3E651">:</font><font color="#bb00ff">02</font><font color="#F3E651">:</font><font color="#bb00ff">46</font><font color="#ff0000"> freebsd kernel</font><font color="#F3E651">:</font><font color="#ff0000"> pid </font><font color="#bb00ff">863</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">ubench</font><font color="#F3E651">),</font><font color="#ff0000"> jid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> uid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> was killed</font><font color="#F3E651">:</font><font color="#ff0000"> failed to reclaim memory</font>
-<font color="#ff0000">Apr  </font><font color="#bb00ff">4</font><font color="#ff0000"> </font><font color="#bb00ff">23</font><font color="#F3E651">:</font><font color="#bb00ff">02</font><font color="#F3E651">:</font><font color="#bb00ff">47</font><font color="#ff0000"> freebsd kernel</font><font color="#F3E651">:</font><font color="#ff0000"> pid </font><font color="#bb00ff">864</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">ubench</font><font color="#F3E651">),</font><font color="#ff0000"> jid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> uid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> was killed</font><font color="#F3E651">:</font><font color="#ff0000"> failed to reclaim memory</font>
-<font color="#ff0000">Apr  </font><font color="#bb00ff">4</font><font color="#ff0000"> </font><font color="#bb00ff">23</font><font color="#F3E651">:</font><font color="#bb00ff">02</font><font color="#F3E651">:</font><font color="#bb00ff">48</font><font color="#ff0000"> freebsd kernel</font><font color="#F3E651">:</font><font color="#ff0000"> pid </font><font color="#bb00ff">865</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">ubench</font><font color="#F3E651">),</font><font color="#ff0000"> jid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> uid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> was killed</font><font color="#F3E651">:</font><font color="#ff0000"> failed to reclaim memory</font>
-<font color="#ff0000">Apr  </font><font color="#bb00ff">4</font><font color="#ff0000"> </font><font color="#bb00ff">23</font><font color="#F3E651">:</font><font color="#bb00ff">02</font><font color="#F3E651">:</font><font color="#bb00ff">49</font><font color="#ff0000"> freebsd kernel</font><font color="#F3E651">:</font><font color="#ff0000"> pid </font><font color="#bb00ff">861</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">ubench</font><font color="#F3E651">),</font><font color="#ff0000"> jid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> uid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> was killed</font><font color="#F3E651">:</font><font color="#ff0000"> failed to reclaim memory</font>
-<font color="#ff0000">Apr  </font><font color="#bb00ff">4</font><font color="#ff0000"> </font><font color="#bb00ff">23</font><font color="#F3E651">:</font><font color="#bb00ff">02</font><font color="#F3E651">:</font><font color="#bb00ff">51</font><font color="#ff0000"> freebsd kernel</font><font color="#F3E651">:</font><font color="#ff0000"> pid </font><font color="#bb00ff">839</font><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#ff0000">ubench</font><font color="#F3E651">),</font><font color="#ff0000"> jid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> uid </font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> was killed</font><font color="#F3E651">:</font><font color="#ff0000"> failed to reclaim memory</font>
+<pre>root@freebsd:~ <i><font color="silver"># ubench</font></i>
+Unix Benchmark Utility v.<font color="#000000">0.3</font>
+Copyright (C) July, <font color="#000000">1999</font> PhysTech, Inc.
+Author: Sergei Viznyuk &lt;sv@phystech.com&gt;
+http://www.phystech.com/download/ubench.html
+FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> FreeBSD <font color="#000000">14.2</font>-RELEASE-p<font color="#000000">1</font> GENERIC amd64
+Ubench CPU:  <font color="#000000">2652857</font>
+swap_pager: out of swap space
+swp_pager_getswapspace(<font color="#000000">27</font>): failed
+swap_pager: out of swap space
+swp_pager_getswapspace(<font color="#000000">18</font>): failed
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">43</font> freebsd kernel: pid <font color="#000000">862</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+swp_pager_getswapspace(<font color="#000000">6</font>): failed
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">46</font> freebsd kernel: pid <font color="#000000">863</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">47</font> freebsd kernel: pid <font color="#000000">864</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">48</font> freebsd kernel: pid <font color="#000000">865</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">49</font> freebsd kernel: pid <font color="#000000">861</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
+Apr  <font color="#000000">4</font> <font color="#000000">23</font>:<font color="#000000">02</font>:<font color="#000000">51</font> freebsd kernel: pid <font color="#000000">839</font> (ubench), jid <font color="#000000">0</font>, uid <font color="#000000">0</font>, was killed: failed to reclaim memory
 </pre>
 <br />
 <span>The multi-CPU benchmark in the Bhyve VM ran with almost identical results to the FreeBSD host system. However, the memory benchmark failed with out-of-swap space errors. I am unsure why, as the VM has 14GB RAM, but I am not investigating further.</span><br />
@@ -620,8 +615,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># dd if=/dev/zero of=/tmp/test bs=4k count=2000 oflag=dsync</font></i>
-<font color="#bb00ff">8192000</font><font color="#ff0000"> bytes copied</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">31.7058</font><font color="#ff0000"> s</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">258</font><font color="#ff0000"> kB/s</font>
+<pre>[root@r0 ~]<i><font color="silver"># dd if=/dev/zero of=/tmp/test bs=4k count=2000 oflag=dsync</font></i>
+<font color="#000000">8192000</font> bytes copied, <font color="#000000">31.7058</font> s, <font color="#000000">258</font> kB/s
 </pre>
 <br />
 <h3 style='display: inline' id='the-solution-switch-to-nvme-emulation'>The Solution: Switch to NVMe Emulation</h3><br />
@@ -636,14 +631,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># cat &gt; /etc/dracut.conf.d/nvme.conf &lt;&lt; EOF</font></i>
-<font color="#ff0000">add_drivers</font><font color="#F3E651">+=</font><font color="#bb00ff">" nvme nvme_core "</font>
-<font color="#ff0000">hostonly</font><font color="#F3E651">=</font><font color="#ff0000">no</font>
-<font color="#ff0000">EOF</font>
+<pre>[root@r0 ~]<i><font color="silver"># cat &gt; /etc/dracut.conf.d/nvme.conf &lt;&lt; EOF</font></i>
+add_drivers+=<font color="#808080">" nvme nvme_core "</font>
+hostonly=no
+EOF
 
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># sed -i 's/# use_devicesfile = 1/use_devicesfile = 0/' /etc/lvm/lvm.conf</font></i>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># dracut -f</font></i>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># shutdown -h now</font></i>
+[root@r0 ~]<i><font color="silver"># sed -i 's/# use_devicesfile = 1/use_devicesfile = 0/' /etc/lvm/lvm.conf</font></i>
+[root@r0 ~]<i><font color="silver"># dracut -f</font></i>
+[root@r0 ~]<i><font color="silver"># shutdown -h now</font></i>
 </pre>
 <br />
 <span>The <span class='inlinecode'>hostonly=no</span> setting ensures the initramfs includes drivers for hardware not currently present. The <span class='inlinecode'>use_devicesfile = 0</span> tells LVM to scan all block devices rather than only those recorded in <span class='inlinecode'>/etc/lvm/devices/system.devices</span> - this is important because the device path changes from <span class='inlinecode'>/dev/vda</span> to <span class='inlinecode'>/dev/nvme0n1</span>.</span><br />
@@ -656,8 +651,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm stop rocky</font>
-<font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm configure rocky</font>
+<pre>paul@f0:~ % doas vm stop rocky
+paul@f0:~ % doas vm configure rocky
 </pre>
 <br />
 <span>Change <span class='inlinecode'>disk0_type</span> from <span class='inlinecode'>virtio-blk</span> to <span class='inlinecode'>nvme</span>:</span><br />
@@ -672,7 +667,7 @@ disk0_type="nvme"
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas vm start rocky</font>
+<pre>paul@f0:~ % doas vm start rocky
 </pre>
 <br />
 <h3 style='display: inline' id='benchmark-results'>Benchmark Results</h3><br />
@@ -683,8 +678,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># dd if=/dev/zero of=/tmp/test bs=4k count=2000 oflag=dsync</font></i>
-<font color="#bb00ff">8192000</font><font color="#ff0000"> bytes copied</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">0.330718</font><font color="#ff0000"> s</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">24.8</font><font color="#ff0000"> MB/s</font>
+<pre>[root@r0 ~]<i><font color="silver"># dd if=/dev/zero of=/tmp/test bs=4k count=2000 oflag=dsync</font></i>
+<font color="#000000">8192000</font> bytes copied, <font color="#000000">0.330718</font> s, <font color="#000000">24.8</font> MB/s
 </pre>
 <br />
 <span>That&#39;s approximately **100x faster** than before (24.8 MB/s vs 258 kB/s).</span><br />
@@ -738,11 +733,11 @@ etcd_disk_wal_fsync_duration_seconds_bucket{le="0.004"} 408
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-    <br />
-    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>RCM: The Ruby Configuration Management DSL</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="rfx-overlay-grid"></div>
-<div class="rfx-overlay-scanlines"></div>
-<div id="rfx-stars"></div>
-<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-03-02-rcm-ruby-configuration-management-dsl.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-03-02-rcm-ruby-configuration-management-dsl.gmi">Gemini</a>
 </p>
@@ -69,20 +64,20 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  given </font><font color="#F3E651">{</font><font color="#ff0000"> hostname is </font><font color="#F3E651">:</font><font color="#ff0000">earth </font><font color="#F3E651">}</font>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  given { hostname is :earth }
 
-<font color="#ff0000">  file </font><font color="#bb00ff">'/tmp/test/wg0.conf'</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    requires file </font><font color="#bb00ff">'/etc/hosts.test'</font>
-<font color="#ff0000">    manage directory</font>
-<font color="#ff0000">    from template</font>
-<font color="#ff0000">    </font><font color="#bb00ff">'content with &lt;%= 1 + 2 %&gt;'</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
+  file <font color="#808080">'/tmp/test/wg0.conf'</font> <b><u><font color="#000000">do</font></u></b>
+    requires file <font color="#808080">'/etc/hosts.test'</font>
+    manage directory
+    from template
+    <font color="#808080">'content with &lt;%= 1 + 2 %&gt;'</font>
+  <b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">  file </font><font color="#bb00ff">'/etc/hosts.test'</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    line </font><font color="#bb00ff">'192.168.1.101 earth'</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+  file <font color="#808080">'/etc/hosts.test'</font> <b><u><font color="#000000">do</font></u></b>
+    line <font color="#808080">'192.168.1.101 earth'</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <span>Which would look like this when run:</span><br />
@@ -91,14 +86,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> sudo ruby example</font><font color="#F3E651">.</font><font color="#ff0000">rb</font>
-<font color="#ff0000">INFO </font><font color="#bb00ff">20260301</font><font color="#ff0000">-</font><font color="#bb00ff">213817</font><font color="#ff0000"> dsl</font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=&gt;</font><font color="#ff0000"> Configuring</font><font color="#F3E651">...</font>
-<font color="#ff0000">INFO </font><font color="#bb00ff">20260301</font><font color="#ff0000">-</font><font color="#bb00ff">213817</font><font color="#ff0000"> file</font><font color="#F3E651">(</font><font color="#bb00ff">'/tmp/test/wg0.conf'</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=&gt;</font><font color="#ff0000"> Registered dependency on file</font><font color="#F3E651">(</font><font color="#bb00ff">'/etc/hosts.test'</font><font color="#F3E651">)</font>
-<font color="#ff0000">INFO </font><font color="#bb00ff">20260301</font><font color="#ff0000">-</font><font color="#bb00ff">213817</font><font color="#ff0000"> file</font><font color="#F3E651">(</font><font color="#bb00ff">'/tmp/test/wg0.conf'</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=&gt;</font><font color="#ff0000"> Evaluating</font><font color="#F3E651">...</font>
-<font color="#ff0000">INFO </font><font color="#bb00ff">20260301</font><font color="#ff0000">-</font><font color="#bb00ff">213817</font><font color="#ff0000"> file</font><font color="#F3E651">(</font><font color="#bb00ff">'/etc/hosts.test'</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=&gt;</font><font color="#ff0000"> Evaluating</font><font color="#F3E651">...</font>
-<font color="#ff0000">INFO </font><font color="#bb00ff">20260301</font><font color="#ff0000">-</font><font color="#bb00ff">213817</font><font color="#ff0000"> file</font><font color="#F3E651">(</font><font color="#bb00ff">'/etc/hosts.test'</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=&gt;</font><font color="#ff0000"> Writing file /etc/hosts</font><font color="#F3E651">.</font><b><font color="#ffffff">test</font></b>
-<font color="#ff0000">INFO </font><font color="#bb00ff">20260301</font><font color="#ff0000">-</font><font color="#bb00ff">213817</font><font color="#ff0000"> file</font><font color="#F3E651">(</font><font color="#bb00ff">'/tmp/test/wg0.conf'</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=&gt;</font><font color="#ff0000"> Creating parent directory /tmp/test</font>
-<font color="#ff0000">INFO </font><font color="#bb00ff">20260301</font><font color="#ff0000">-</font><font color="#bb00ff">213817</font><font color="#ff0000"> file</font><font color="#F3E651">(</font><font color="#bb00ff">'/tmp/test/wg0.conf'</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">=&gt;</font><font color="#ff0000"> Writing file /tmp/test/wg</font><font color="#bb00ff">0</font><font color="#F3E651">.</font><font color="#ff0000">conf</font>
+<pre>% sudo ruby example.rb
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> dsl(<font color="#000000">0</font>) =&gt; Configuring...
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/tmp/test/wg0.conf'</font>) =&gt; Registered dependency on file(<font color="#808080">'/etc/hosts.test'</font>)
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/tmp/test/wg0.conf'</font>) =&gt; Evaluating...
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/etc/hosts.test'</font>) =&gt; Evaluating...
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/etc/hosts.test'</font>) =&gt; Writing file /etc/hosts.<b><u><font color="#000000">test</font></u></b>
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/tmp/test/wg0.conf'</font>) =&gt; Creating parent directory /tmp/test
+INFO <font color="#000000">20260301</font>-<font color="#000000">213817</font> file(<font color="#808080">'/tmp/test/wg0.conf'</font>) =&gt; Writing file /tmp/test/wg<font color="#000000">0</font>.conf
 </pre>
 <br />
 <span>The idea is that you describe the desired state and RCM worries about the steps. The <span class='inlinecode'>given</span> block can short‑circuit the whole run (for example, only run on a specific hostname). Each <span class='inlinecode'>file</span> resource can either manage a complete file (from a template) or just make sure individual lines are present.</span><br />
@@ -134,9 +129,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">file </font><font color="#bb00ff">'/etc/hosts.test'</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  line </font><font color="#bb00ff">'192.168.1.101 earth'</font>
-<b><font color="#ffffff">end</font></b>
+<pre>file <font color="#808080">'/etc/hosts.test'</font> <b><u><font color="#000000">do</font></u></b>
+  line <font color="#808080">'192.168.1.101 earth'</font>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <span>Ruby turns <span class='inlinecode'>file</span> into a method call and <span class='inlinecode'>&#39;/etc/hosts.test&#39;</span> into a normal argument. Inside RCM, that method builds a <span class='inlinecode'>File</span> resource object and stores it for later. The block you pass is just a Ruby block; RCM calls it with the file resource as <span class='inlinecode'>self</span>, so method calls like <span class='inlinecode'>line</span> configure that resource. There is no special parser here, just plain Ruby method and block dispatch.</span><br />
@@ -147,7 +142,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">given </font><font color="#F3E651">{</font><font color="#ff0000"> hostname is </font><font color="#F3E651">:</font><font color="#ff0000">earth </font><font color="#F3E651">}</font>
+<pre>given { hostname is :earth }
 </pre>
 <br />
 <span>RCM uses Ruby&#39;s dynamic method lookup to interpret <span class='inlinecode'>hostname</span> and <span class='inlinecode'>is</span> in that block and to decide whether the rest of the configuration should run at all. Features like <span class='inlinecode'>method_missing</span>, blocks, and the ability to change what <span class='inlinecode'>self</span> means in a block make this kind of DSL possible with very little code. You still get all the power of Ruby (conditionals, loops, helper methods), but the surface reads like a small language of its own.</span><br />
@@ -162,7 +157,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">given </font><font color="#F3E651">{</font><font color="#ff0000"> hostname is </font><font color="#F3E651">:</font><font color="#ff0000">earth </font><font color="#F3E651">}</font>
+<pre>given { hostname is :earth }
 </pre>
 <br />
 <span>Inside that block, calls such as <span class='inlinecode'>hostname</span> and <span class='inlinecode'>is</span> don&#39;t map to normal Ruby methods. Instead, RCM&#39;s DSL objects see those calls in <span class='inlinecode'>method_missing</span>, and interpret them as "check the current hostname" and "compare it to this symbol". This lets the DSL stay small and flexible: adding a new keyword can be as simple as handling another case in <span class='inlinecode'>method_missing</span>, without changing the Ruby syntax at all.</span><br />
@@ -175,25 +170,25 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">class</font></b><font color="#ff0000"> HostCondition</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">def</font></b><font color="#ff0000"> initialize</font>
-<font color="#ff0000">    </font><b><font color="#F35E1E">@current_hostname</font></b><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> Socket</font><font color="#F3E651">.</font><font color="#ff0000">gethostname</font><font color="#F3E651">.</font><font color="#ff0000">to_sym</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
+<pre><b><u><font color="#000000">class</font></u></b> HostCondition
+  <b><u><font color="#000000">def</font></u></b> initialize
+    <b><font color="#000000">@current_hostname</font></b> = Socket.gethostname.to_sym
+  <b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">  </font><b><font color="#ffffff">def</font></b><font color="#ff0000"> method_missing</font><font color="#F3E651">(</font><font color="#ff0000">name</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#F3E651">*</font><font color="#ff0000">args</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#F3E651">&amp;)</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">case</font></b><font color="#ff0000"> name</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">when</font></b><font color="#ff0000"> </font><font color="#F3E651">:</font><font color="#ff0000">hostname</font>
-<font color="#ff0000">      </font><b><font color="#F35E1E">@left</font></b><font color="#ff0000"> </font><font color="#F3E651">=</font><font color="#ff0000"> </font><b><font color="#F35E1E">@current_hostname</font></b>
-<font color="#ff0000">      </font><b><font color="#ffffff">self</font></b><font color="#ff0000">               </font><i><font color="#ababab"># allow chaining: hostname is :earth</font></i>
-<font color="#ff0000">    </font><b><font color="#ffffff">when</font></b><font color="#ff0000"> </font><font color="#F3E651">:</font><font color="#ff0000">is</font>
-<font color="#ff0000">      </font><b><font color="#F35E1E">@left</font></b><font color="#ff0000"> </font><font color="#F3E651">==</font><font color="#ff0000"> args</font><font color="#F3E651">.</font><font color="#ff0000">first</font>
-<font color="#ff0000">    </font><b><font color="#ffffff">else</font></b>
-<font color="#ff0000">      </font><b><font color="#ffffff">super</font></b>
-<font color="#ff0000">    </font><b><font color="#ffffff">end</font></b>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+  <b><u><font color="#000000">def</font></u></b> method_missing(name, *args, &amp;)
+    <b><u><font color="#000000">case</font></u></b> name
+    <b><u><font color="#000000">when</font></u></b> :hostname
+      <b><font color="#000000">@left</font></b> = <b><font color="#000000">@current_hostname</font></b>
+      <b><u><font color="#000000">self</font></u></b>               <i><font color="silver"># allow chaining: hostname is :earth</font></i>
+    <b><u><font color="#000000">when</font></u></b> :is
+      <b><font color="#000000">@left</font></b> == args.first
+    <b><u><font color="#000000">else</font></u></b>
+      <b><u><font color="#000000">super</font></u></b>
+    <b><u><font color="#000000">end</font></u></b>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">HostCondition</font><font color="#F3E651">.</font><font color="#ff0000">new</font><font color="#F3E651">.</font><font color="#ff0000">hostname</font><font color="#F3E651">.</font><font color="#ff0000">is</font><font color="#F3E651">(:</font><font color="#ff0000">earth</font><font color="#F3E651">)</font>
+HostCondition.new.hostname.is(:earth)
 </pre>
 <br />
 <span>RCM&#39;s real code is more sophisticated, but the idea is the same: Ruby happily calls <span class='inlinecode'>method_missing</span> for unknown methods like <span class='inlinecode'>hostname</span> and <span class='inlinecode'>is</span>, and the DSL turns those calls into a value (<span class='inlinecode'>true</span>/<span class='inlinecode'>false</span>) that decides whether the rest of the configuration should run.</span><br />
@@ -264,12 +259,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  file </font><font color="#bb00ff">'./.file_example.rcmtmp'</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    from template</font>
-<font color="#ff0000">    </font><font color="#bb00ff">'One plus two is &lt;%= 1 + 2 %&gt;!'</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  file <font color="#808080">'./.file_example.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    from template
+    <font color="#808080">'One plus two is &lt;%= 1 + 2 %&gt;!'</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <h3 style='display: inline' id='ensuring-a-line-is-absent-from-a-file'>Ensuring a line is absent from a file</h3><br />
@@ -278,12 +273,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  file </font><font color="#bb00ff">'./.file_example.rcmtmp'</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    line </font><font color="#bb00ff">'Whats up?'</font>
-<font color="#ff0000">    is absent</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  file <font color="#808080">'./.file_example.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    line <font color="#808080">'Whats up?'</font>
+    is absent
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <h3 style='display: inline' id='guarding-a-configuration-run-on-the-current-hostname'>Guarding a configuration run on the current hostname</h3><br />
@@ -292,10 +287,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  given </font><font color="#F3E651">{</font><font color="#ff0000"> hostname Socket</font><font color="#F3E651">.</font><font color="#ff0000">gethostname </font><font color="#F3E651">}</font>
-<font color="#ff0000">  </font><font color="#F3E651">...</font>
-<b><font color="#ffffff">end</font></b>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  given { hostname Socket.gethostname }
+  ...
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <h3 style='display: inline' id='creating-and-deleting-directories-and-purging-a-directory-tree'>Creating and deleting directories, and purging a directory tree</h3><br />
@@ -304,16 +299,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  directory </font><font color="#bb00ff">'./.directory_example.rcmtmp'</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    is present</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  directory <font color="#808080">'./.directory_example.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    is present
+  <b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">  directory delete </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    path </font><font color="#bb00ff">'./.directory_example.rcmtmp'</font>
-<font color="#ff0000">    is absent</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+  directory delete <b><u><font color="#000000">do</font></u></b>
+    path <font color="#808080">'./.directory_example.rcmtmp'</font>
+    is absent
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <h3 style='display: inline' id='managing-file-and-directory-modes-and-ownership'>Managing file and directory modes and ownership</h3><br />
@@ -322,15 +317,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  touch </font><font color="#bb00ff">'./.mode_example.rcmtmp'</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    mode 0o600</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  touch <font color="#808080">'./.mode_example.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    mode 0o600
+  <b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">  directory </font><font color="#bb00ff">'./.mode_example_dir.rcmtmp'</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    mode 0o705</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+  directory <font color="#808080">'./.mode_example_dir.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    mode 0o705
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <h3 style='display: inline' id='using-a-chained-more-natural-language-style-for-notifications'>Using a chained, more natural language style for notifications</h3><br />
@@ -341,11 +336,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  notify hello dear world </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    thank you to be part of you</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  notify hello dear world <b><u><font color="#000000">do</font></u></b>
+    thank you to be part of you
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <h3 style='display: inline' id='touching-files-and-updating-their-timestamps'>Touching files and updating their timestamps</h3><br />
@@ -354,9 +349,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  touch </font><font color="#bb00ff">'./.touch_example.rcmtmp'</font>
-<b><font color="#ffffff">end</font></b>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  touch <font color="#808080">'./.touch_example.rcmtmp'</font>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <h3 style='display: inline' id='expressing-dependencies-between-notifications'>Expressing dependencies between notifications</h3><br />
@@ -365,19 +360,19 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  notify foo </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    requires notify bar </font><b><font color="#ffffff">and</font></b><font color="#ff0000"> requires notify baz</font>
-<font color="#ff0000">    </font><font color="#bb00ff">'foo_message'</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  notify foo <b><u><font color="#000000">do</font></u></b>
+    requires notify bar <b><u><font color="#000000">and</font></u></b> requires notify baz
+    <font color="#808080">'foo_message'</font>
+  <b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">  notify bar</font>
+  notify bar
 
-<font color="#ff0000">  notify baz </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    requires notify bar</font>
-<font color="#ff0000">    </font><font color="#bb00ff">'baz_message'</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+  notify baz <b><u><font color="#000000">do</font></u></b>
+    requires notify bar
+    <font color="#808080">'baz_message'</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <h3 style='display: inline' id='creating-and-updating-symbolic-links'>Creating and updating symbolic links</h3><br />
@@ -386,12 +381,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  symlink </font><font color="#bb00ff">'./.symlink_example.rcmtmp'</font><font color="#ff0000"> </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">    manage directory</font>
-<font color="#ff0000">    </font><font color="#bb00ff">'./.symlink_target_example.rcmtmp'</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  symlink <font color="#808080">'./.symlink_example.rcmtmp'</font> <b><u><font color="#000000">do</font></u></b>
+    manage directory
+    <font color="#808080">'./.symlink_target_example.rcmtmp'</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <h3 style='display: inline' id='detecting-duplicate-resource-definitions-at-configure-time'>Detecting duplicate resource definitions at configure time</h3><br />
@@ -400,10 +395,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">configure </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  notify </font><font color="#F3E651">:</font><font color="#ff0000">foo</font>
-<font color="#ff0000">  notify </font><font color="#F3E651">:</font><font color="#ff0000">foo </font><i><font color="#ababab"># raises RCM::DSL::DuplicateResource</font></i>
-<b><font color="#ffffff">end</font></b>
+<pre>configure <b><u><font color="#000000">do</font></u></b>
+  notify :foo
+  notify :foo <i><font color="silver"># raises RCM::DSL::DuplicateResource</font></i>
+<b><u><font color="#000000">end</font></u></b>
 </pre>
 <br />
 <span>If you find RCM interesting, feel free to browse the code, adapt it to your own setup, or just steal ideas for your own Ruby DSLs. I will probably extend it with more features over time as my own needs evolve.</span><br />
@@ -419,11 +414,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-    <br />
-    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

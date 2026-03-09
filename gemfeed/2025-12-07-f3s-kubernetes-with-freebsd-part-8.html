@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>f3s: Kubernetes with FreeBSD - Part 8: Observability</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="rfx-overlay-grid"></div>
-<div class="rfx-overlay-scanlines"></div>
-<div id="rfx-stars"></div>
-<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-12-07-f3s-kubernetes-with-freebsd-part-8.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi">Gemini</a>
 </p>
@@ -125,10 +120,10 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ git clone https</font><font color="#F3E651">:</font><font color="#ff0000">//codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/conf</font><font color="#F3E651">.</font><font color="#ff0000">git</font>
-<font color="#ff0000">$ cd conf</font>
-<font color="#ff0000">$ git checkout 15a86f3  </font><i><font color="#ababab"># Last commit before ArgoCD migration</font></i>
-<font color="#ff0000">$ cd f3s/prometheus</font><font color="#F3E651">/</font>
+<pre>$ git clone https://codeberg.org/snonux/conf.git
+$ cd conf
+$ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
+$ cd f3s/prometheus/
 </pre>
 <br />
 <span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
@@ -165,8 +160,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ kubectl create namespace monitoring</font>
-<font color="#ff0000">namespace/monitoring created</font>
+<pre>$ kubectl create namespace monitoring
+namespace/monitoring created
 </pre>
 <br />
 <h2 style='display: inline' id='installing-prometheus-and-grafana'>Installing Prometheus and Grafana</h2><br />
@@ -181,8 +176,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ helm repo add prometheus-community https</font><font color="#F3E651">:</font><font color="#ff0000">//prometheus-community</font><font color="#F3E651">.</font><font color="#ff0000">github</font><font color="#F3E651">.</font><font color="#ff0000">io/helm-charts</font>
-<font color="#ff0000">$ helm repo update</font>
+<pre>$ helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+$ helm repo update
 </pre>
 <br />
 <span>Create the directories on the NFS server for persistent storage:</span><br />
@@ -191,8 +186,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># mkdir -p /data/nfs/k3svolumes/prometheus/data</font></i>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># mkdir -p /data/nfs/k3svolumes/grafana/data</font></i>
+<pre>[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes/prometheus/data</font></i>
+[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes/grafana/data</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='deploying-with-the-justfile'>Deploying with the Justfile</h3><br />
@@ -208,18 +203,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ cd conf/f3s/prometheus</font>
-<font color="#ff0000">$ just install</font>
-<font color="#ff0000">kubectl apply -f persistent-volumes</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
-<font color="#ff0000">persistentvolume/prometheus-data-pv created</font>
-<font color="#ff0000">persistentvolume/grafana-data-pv created</font>
-<font color="#ff0000">persistentvolumeclaim/grafana-data-pvc created</font>
-<font color="#ff0000">helm install prometheus prometheus-community/kube-prometheus-stack </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --namespace monitoring -f persistence-values</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
-<font color="#ff0000">NAME</font><font color="#F3E651">:</font><font color="#ff0000"> prometheus</font>
-<font color="#ff0000">LAST DEPLOYED</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">...</font>
-<font color="#ff0000">NAMESPACE</font><font color="#F3E651">:</font><font color="#ff0000"> monitoring</font>
-<font color="#ff0000">STATUS</font><font color="#F3E651">:</font><font color="#ff0000"> deployed</font>
+<pre>$ cd conf/f3s/prometheus
+$ just install
+kubectl apply -f persistent-volumes.yaml
+persistentvolume/prometheus-data-pv created
+persistentvolume/grafana-data-pv created
+persistentvolumeclaim/grafana-data-pvc created
+helm install prometheus prometheus-community/kube-prometheus-stack \
+    --namespace monitoring -f persistence-values.yaml
+NAME: prometheus
+LAST DEPLOYED: ...
+NAMESPACE: monitoring
+STATUS: deployed
 </pre>
 <br />
 <span>The <span class='inlinecode'>persistence-values.yaml</span> configures Prometheus and Grafana to use the NFS-backed persistent volumes I mentioned earlier, ensuring data survives pod restarts. It also enables scraping of etcd and kube-controller-manager metrics:</span><br />
@@ -258,12 +253,12 @@ kubeControllerManager:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># cat &gt;&gt; /etc/rancher/k3s/config.yaml &lt;&lt; 'EOF'</font></i>
-<font color="#ff0000">kube-controller-manager-arg</font><font color="#F3E651">:</font>
-<font color="#ff0000">  - bind-address</font><font color="#F3E651">=</font><font color="#bb00ff">0.0</font><font color="#F3E651">.</font><font color="#bb00ff">0.0</font>
-<font color="#ff0000">etcd-expose-metrics</font><font color="#F3E651">:</font><font color="#ff0000"> </font><b><font color="#ffffff">true</font></b>
-<font color="#ff0000">EOF</font>
-<font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># systemctl restart k3s</font></i>
+<pre>[root@r0 ~]<i><font color="silver"># cat &gt;&gt; /etc/rancher/k3s/config.yaml &lt;&lt; 'EOF'</font></i>
+kube-controller-manager-arg:
+  - bind-address=<font color="#000000">0.0</font>.<font color="#000000">0.0</font>
+etcd-expose-metrics: <b><u><font color="#000000">true</font></u></b>
+EOF
+[root@r0 ~]<i><font color="silver"># systemctl restart k3s</font></i>
 </pre>
 <br />
 <span>Repeat for <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span>. After restarting all nodes, the controller-manager metrics endpoint will be accessible and etcd metrics are available on port 2381. Prometheus can now scrape both.</span><br />
@@ -274,8 +269,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># curl -s http://127.0.0.1:2381/metrics | grep etcd_server_has_leader</font></i>
-<font color="#ff0000">etcd_server_has_leader </font><font color="#bb00ff">1</font>
+<pre>[root@r0 ~]<i><font color="silver"># curl -s http://127.0.0.1:2381/metrics | grep etcd_server_has_leader</font></i>
+etcd_server_has_leader <font color="#000000">1</font>
 </pre>
 <br />
 <span>The full <span class='inlinecode'>persistence-values.yaml</span> and all other Prometheus configuration files are available on Codeberg:</span><br />
@@ -296,9 +291,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus</font>
-<font color="#ff0000">NAME                                    TYPE        CLUSTER-IP      PORT</font><font color="#F3E651">(</font><font color="#ff0000">S</font><font color="#F3E651">)</font>
-<font color="#ff0000">prometheus-kube-prometheus-prometheus   ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">152.163</font><font color="#ff0000">   </font><font color="#bb00ff">9090</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">8080</font><font color="#ff0000">/TCP</font>
+<pre>$ kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus
+NAME                                    TYPE        CLUSTER-IP      PORT(S)
+prometheus-kube-prometheus-prometheus   ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">152.163</font>   <font color="#000000">9090</font>/TCP,<font color="#000000">8080</font>/TCP
 </pre>
 <br />
 <span>Grafana connects to Prometheus using the internal service URL <span class='inlinecode'>http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090</span>. The default Grafana credentials are <span class='inlinecode'>admin</span>/<span class='inlinecode'>prom-operator</span>, which should be changed immediately after first login.</span><br />
@@ -323,7 +318,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># mkdir -p /data/nfs/k3svolumes/loki/data</font></i>
+<pre>[root@r0 ~]<i><font color="silver"># mkdir -p /data/nfs/k3svolumes/loki/data</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='deploying-loki-and-alloy'>Deploying Loki and Alloy</h3><br />
@@ -338,24 +333,24 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ cd conf/f3s/loki</font>
-<font color="#ff0000">$ just install</font>
-<font color="#ff0000">helm repo add grafana https</font><font color="#F3E651">:</font><font color="#ff0000">//grafana</font><font color="#F3E651">.</font><font color="#ff0000">github</font><font color="#F3E651">.</font><font color="#ff0000">io/helm-charts </font><font color="#F3E651">||</font><font color="#ff0000"> </font><b><font color="#ffffff">true</font></b>
-<font color="#ff0000">helm repo update</font>
-<font color="#ff0000">kubectl apply -f persistent-volumes</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
-<font color="#ff0000">persistentvolume/loki-data-pv created</font>
-<font color="#ff0000">persistentvolumeclaim/loki-data-pvc created</font>
-<font color="#ff0000">helm install loki grafana/loki --namespace monitoring -f values</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
-<font color="#ff0000">NAME</font><font color="#F3E651">:</font><font color="#ff0000"> loki</font>
-<font color="#ff0000">LAST DEPLOYED</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">...</font>
-<font color="#ff0000">NAMESPACE</font><font color="#F3E651">:</font><font color="#ff0000"> monitoring</font>
-<font color="#ff0000">STATUS</font><font color="#F3E651">:</font><font color="#ff0000"> deployed</font>
-<font color="#F3E651">...</font>
-<font color="#ff0000">helm install alloy grafana/alloy --namespace monitoring -f alloy-values</font><font color="#F3E651">.</font><font color="#ff0000">yaml</font>
-<font color="#ff0000">NAME</font><font color="#F3E651">:</font><font color="#ff0000"> alloy</font>
-<font color="#ff0000">LAST DEPLOYED</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#F3E651">...</font>
-<font color="#ff0000">NAMESPACE</font><font color="#F3E651">:</font><font color="#ff0000"> monitoring</font>
-<font color="#ff0000">STATUS</font><font color="#F3E651">:</font><font color="#ff0000"> deployed</font>
+<pre>$ cd conf/f3s/loki
+$ just install
+helm repo add grafana https://grafana.github.io/helm-charts || <b><u><font color="#000000">true</font></u></b>
+helm repo update
+kubectl apply -f persistent-volumes.yaml
+persistentvolume/loki-data-pv created
+persistentvolumeclaim/loki-data-pvc created
+helm install loki grafana/loki --namespace monitoring -f values.yaml
+NAME: loki
+LAST DEPLOYED: ...
+NAMESPACE: monitoring
+STATUS: deployed
+...
+helm install alloy grafana/alloy --namespace monitoring -f alloy-values.yaml
+NAME: alloy
+LAST DEPLOYED: ...
+NAMESPACE: monitoring
+STATUS: deployed
 </pre>
 <br />
 <span>Loki runs in single-binary mode with a single replica (<span class='inlinecode'>loki-0</span>), which is appropriate for a home lab cluster. This means there&#39;s only one Loki pod running at any time. If the node hosting Loki fails, Kubernetes will automatically reschedule the pod to another worker node—but there will be a brief downtime (typically under a minute) while this happens. For my home lab use case, this is perfectly acceptable.</span><br />
@@ -370,44 +365,44 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">discovery</font><font color="#F3E651">.</font><font color="#ff0000">kubernetes </font><font color="#bb00ff">"pods"</font><font color="#ff0000"> {</font>
-<font color="#ff0000">  role </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"pod"</font>
-<font color="#ff0000">}</font>
+<pre>discovery.kubernetes <font color="#808080">"pods"</font> {
+  role = <font color="#808080">"pod"</font>
+}
 
-<font color="#ff0000">discovery</font><font color="#F3E651">.</font><font color="#ff0000">relabel </font><font color="#bb00ff">"pods"</font><font color="#ff0000"> {</font>
-<font color="#ff0000">  targets </font><font color="#F3E651">=</font><font color="#ff0000"> discovery</font><font color="#F3E651">.</font><font color="#ff0000">kubernetes</font><font color="#F3E651">.</font><font color="#ff0000">pods</font><font color="#F3E651">.</font><font color="#ff0000">targets</font>
+discovery.relabel <font color="#808080">"pods"</font> {
+  targets = discovery.kubernetes.pods.targets
 
-<font color="#ff0000">  rule {</font>
-<font color="#ff0000">    source_labels </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#bb00ff">"__meta_kubernetes_namespace"</font><font color="#F3E651">]</font>
-<font color="#ff0000">    target_label  </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"namespace"</font>
-<font color="#ff0000">  }</font>
+  rule {
+    source_labels = [<font color="#808080">"__meta_kubernetes_namespace"</font>]
+    target_label  = <font color="#808080">"namespace"</font>
+  }
 
-<font color="#ff0000">  rule {</font>
-<font color="#ff0000">    source_labels </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#bb00ff">"__meta_kubernetes_pod_name"</font><font color="#F3E651">]</font>
-<font color="#ff0000">    target_label  </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"pod"</font>
-<font color="#ff0000">  }</font>
+  rule {
+    source_labels = [<font color="#808080">"__meta_kubernetes_pod_name"</font>]
+    target_label  = <font color="#808080">"pod"</font>
+  }
 
-<font color="#ff0000">  rule {</font>
-<font color="#ff0000">    source_labels </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#bb00ff">"__meta_kubernetes_pod_container_name"</font><font color="#F3E651">]</font>
-<font color="#ff0000">    target_label  </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"container"</font>
-<font color="#ff0000">  }</font>
+  rule {
+    source_labels = [<font color="#808080">"__meta_kubernetes_pod_container_name"</font>]
+    target_label  = <font color="#808080">"container"</font>
+  }
 
-<font color="#ff0000">  rule {</font>
-<font color="#ff0000">    source_labels </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#bb00ff">"__meta_kubernetes_pod_label_app"</font><font color="#F3E651">]</font>
-<font color="#ff0000">    target_label  </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"app"</font>
-<font color="#ff0000">  }</font>
-<font color="#ff0000">}</font>
+  rule {
+    source_labels = [<font color="#808080">"__meta_kubernetes_pod_label_app"</font>]
+    target_label  = <font color="#808080">"app"</font>
+  }
+}
 
-<font color="#ff0000">loki</font><font color="#F3E651">.</font><b><font color="#ffffff">source</font></b><font color="#F3E651">.</font><font color="#ff0000">kubernetes </font><font color="#bb00ff">"pods"</font><font color="#ff0000"> {</font>
-<font color="#ff0000">  targets    </font><font color="#F3E651">=</font><font color="#ff0000"> discovery</font><font color="#F3E651">.</font><font color="#ff0000">relabel</font><font color="#F3E651">.</font><font color="#ff0000">pods</font><font color="#F3E651">.</font><font color="#ff0000">output</font>
-<font color="#ff0000">  forward_to </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#ff0000">loki</font><font color="#F3E651">.</font><font color="#ff0000">write</font><font color="#F3E651">.</font><font color="#ff0000">default</font><font color="#F3E651">.</font><font color="#ff0000">receiver</font><font color="#F3E651">]</font>
-<font color="#ff0000">}</font>
+loki.<b><u><font color="#000000">source</font></u></b>.kubernetes <font color="#808080">"pods"</font> {
+  targets    = discovery.relabel.pods.output
+  forward_to = [loki.write.default.receiver]
+}
 
-<font color="#ff0000">loki</font><font color="#F3E651">.</font><font color="#ff0000">write </font><font color="#bb00ff">"default"</font><font color="#ff0000"> {</font>
-<font color="#ff0000">  endpoint {</font>
-<font color="#ff0000">    url </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push"</font>
-<font color="#ff0000">  }</font>
-<font color="#ff0000">}</font>
+loki.write <font color="#808080">"default"</font> {
+  endpoint {
+    url = <font color="#808080">"http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push"</font>
+  }
+}
 </pre>
 <br />
 <span>This configuration automatically labels each log line with the namespace, pod name, container name, and app label, making it easy to filter logs in Grafana.</span><br />
@@ -420,9 +415,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ kubectl get svc -n monitoring loki</font>
-<font color="#ff0000">NAME   TYPE        CLUSTER-IP    PORT</font><font color="#F3E651">(</font><font color="#ff0000">S</font><font color="#F3E651">)</font>
-<font color="#ff0000">loki   ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">64.60</font><font color="#ff0000">   </font><font color="#bb00ff">3100</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">9095</font><font color="#ff0000">/TCP</font>
+<pre>$ kubectl get svc -n monitoring loki
+NAME   TYPE        CLUSTER-IP    PORT(S)
+loki   ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">64.60</font>   <font color="#000000">3100</font>/TCP,<font color="#000000">9095</font>/TCP
 </pre>
 <br />
 <span>To add Loki as a data source in Grafana:</span><br />
@@ -446,21 +441,21 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ kubectl get pods -n monitoring</font>
-<font color="#ff0000">NAME                                                     READY   STATUS    RESTARTS   AGE</font>
-<font color="#ff0000">alertmanager-prometheus-kube-prometheus-alertmanager-</font><font color="#bb00ff">0</font><font color="#ff0000">   </font><font color="#bb00ff">2</font><font color="#F3E651">/</font><font color="#bb00ff">2</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
-<font color="#ff0000">alloy-g5fgj                                              </font><font color="#bb00ff">2</font><font color="#F3E651">/</font><font color="#bb00ff">2</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          29m</font>
-<font color="#ff0000">alloy-nfw8w                                              </font><font color="#bb00ff">2</font><font color="#F3E651">/</font><font color="#bb00ff">2</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          29m</font>
-<font color="#ff0000">alloy-tg9vj                                              </font><font color="#bb00ff">2</font><font color="#F3E651">/</font><font color="#bb00ff">2</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          29m</font>
-<font color="#ff0000">loki-</font><font color="#bb00ff">0</font><font color="#ff0000">                                                   </font><font color="#bb00ff">2</font><font color="#F3E651">/</font><font color="#bb00ff">2</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          25m</font>
-<font color="#ff0000">prometheus-grafana-868f9dc7cf-lg2vl                      </font><font color="#bb00ff">3</font><font color="#F3E651">/</font><font color="#bb00ff">3</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
-<font color="#ff0000">prometheus-kube-prometheus-operator-8d7bbc48c-p4sf4      </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
-<font color="#ff0000">prometheus-kube-state-metrics-7c5fb9d798-hh2fx           </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
-<font color="#ff0000">prometheus-prometheus-kube-prometheus-prometheus-</font><font color="#bb00ff">0</font><font color="#ff0000">       </font><font color="#bb00ff">2</font><font color="#F3E651">/</font><font color="#bb00ff">2</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
-<font color="#ff0000">prometheus-prometheus-node-exporter-2nsg9                </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
-<font color="#ff0000">prometheus-prometheus-node-exporter-mqr</font><font color="#bb00ff">25</font><font color="#ff0000">                </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
-<font color="#ff0000">prometheus-prometheus-node-exporter-wp4ds                </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
-<font color="#ff0000">tempo-</font><font color="#bb00ff">0</font><font color="#ff0000">                                                  </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          1d</font>
+<pre>$ kubectl get pods -n monitoring
+NAME                                                     READY   STATUS    RESTARTS   AGE
+alertmanager-prometheus-kube-prometheus-alertmanager-<font color="#000000">0</font>   <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          42d
+alloy-g5fgj                                              <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          29m
+alloy-nfw8w                                              <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          29m
+alloy-tg9vj                                              <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          29m
+loki-<font color="#000000">0</font>                                                   <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          25m
+prometheus-grafana-868f9dc7cf-lg2vl                      <font color="#000000">3</font>/<font color="#000000">3</font>     Running   <font color="#000000">0</font>          42d
+prometheus-kube-prometheus-operator-8d7bbc48c-p4sf4      <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          42d
+prometheus-kube-state-metrics-7c5fb9d798-hh2fx           <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          42d
+prometheus-prometheus-kube-prometheus-prometheus-<font color="#000000">0</font>       <font color="#000000">2</font>/<font color="#000000">2</font>     Running   <font color="#000000">0</font>          42d
+prometheus-prometheus-node-exporter-2nsg9                <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          42d
+prometheus-prometheus-node-exporter-mqr<font color="#000000">25</font>                <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          42d
+prometheus-prometheus-node-exporter-wp4ds                <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          42d
+tempo-<font color="#000000">0</font>                                                  <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          1d
 </pre>
 <br />
 <span>Note: Tempo (<span class='inlinecode'>tempo-0</span>) is deployed later in this post in the "Distributed Tracing with Grafana Tempo" section. It is included in the pod listing here for completeness.</span><br />
@@ -471,19 +466,19 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ kubectl get svc -n monitoring</font>
-<font color="#ff0000">NAME                                      TYPE        CLUSTER-IP      PORT</font><font color="#F3E651">(</font><font color="#ff0000">S</font><font color="#F3E651">)</font>
-<font color="#ff0000">alertmanager-operated                     ClusterIP   None            </font><font color="#bb00ff">9093</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">9094</font><font color="#ff0000">/TCP</font>
-<font color="#ff0000">alloy                                     ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">74.14</font><font color="#ff0000">     </font><font color="#bb00ff">12345</font><font color="#ff0000">/TCP</font>
-<font color="#ff0000">loki                                      ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">64.60</font><font color="#ff0000">     </font><font color="#bb00ff">3100</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">9095</font><font color="#ff0000">/TCP</font>
-<font color="#ff0000">loki-headless                             ClusterIP   None            </font><font color="#bb00ff">3100</font><font color="#ff0000">/TCP</font>
-<font color="#ff0000">prometheus-grafana                        ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">46.82</font><font color="#ff0000">     </font><font color="#bb00ff">80</font><font color="#ff0000">/TCP</font>
-<font color="#ff0000">prometheus-kube-prometheus-alertmanager   ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">208.43</font><font color="#ff0000">    </font><font color="#bb00ff">9093</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">8080</font><font color="#ff0000">/TCP</font>
-<font color="#ff0000">prometheus-kube-prometheus-operator       ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">246.121</font><font color="#ff0000">   </font><font color="#bb00ff">443</font><font color="#ff0000">/TCP</font>
-<font color="#ff0000">prometheus-kube-prometheus-prometheus     ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">152.163</font><font color="#ff0000">   </font><font color="#bb00ff">9090</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">8080</font><font color="#ff0000">/TCP</font>
-<font color="#ff0000">prometheus-kube-state-metrics             ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">64.26</font><font color="#ff0000">     </font><font color="#bb00ff">8080</font><font color="#ff0000">/TCP</font>
-<font color="#ff0000">prometheus-prometheus-node-exporter       ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">127.242</font><font color="#ff0000">   </font><font color="#bb00ff">9100</font><font color="#ff0000">/TCP</font>
-<font color="#ff0000">tempo                                     ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">91.44</font><font color="#ff0000">     </font><font color="#bb00ff">3200</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">4317</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">4318</font><font color="#ff0000">/TCP</font>
+<pre>$ kubectl get svc -n monitoring
+NAME                                      TYPE        CLUSTER-IP      PORT(S)
+alertmanager-operated                     ClusterIP   None            <font color="#000000">9093</font>/TCP,<font color="#000000">9094</font>/TCP
+alloy                                     ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">74.14</font>     <font color="#000000">12345</font>/TCP
+loki                                      ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">64.60</font>     <font color="#000000">3100</font>/TCP,<font color="#000000">9095</font>/TCP
+loki-headless                             ClusterIP   None            <font color="#000000">3100</font>/TCP
+prometheus-grafana                        ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">46.82</font>     <font color="#000000">80</font>/TCP
+prometheus-kube-prometheus-alertmanager   ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">208.43</font>    <font color="#000000">9093</font>/TCP,<font color="#000000">8080</font>/TCP
+prometheus-kube-prometheus-operator       ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">246.121</font>   <font color="#000000">443</font>/TCP
+prometheus-kube-prometheus-prometheus     ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">152.163</font>   <font color="#000000">9090</font>/TCP,<font color="#000000">8080</font>/TCP
+prometheus-kube-state-metrics             ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">64.26</font>     <font color="#000000">8080</font>/TCP
+prometheus-prometheus-node-exporter       ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">127.242</font>   <font color="#000000">9100</font>/TCP
+tempo                                     ClusterIP   <font color="#000000">10.43</font>.<font color="#000000">91.44</font>     <font color="#000000">3200</font>/TCP,<font color="#000000">4317</font>/TCP,<font color="#000000">4318</font>/TCP
 </pre>
 <br />
 <span>Let me break down what each pod does:</span><br />
@@ -560,7 +555,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas pkg install -y node_exporter</font>
+<pre>paul@f0:~ % doas pkg install -y node_exporter
 </pre>
 <br />
 <span>Enable the service to start at boot:</span><br />
@@ -569,8 +564,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas sysrc </font><font color="#ff0000">node_exporter_enable</font><font color="#F3E651">=</font><font color="#ff0000">YES</font>
-<font color="#ff0000">node_exporter_enable</font><font color="#F3E651">:</font><font color="#ff0000">  -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> YES</font>
+<pre>paul@f0:~ % doas sysrc node_exporter_enable=YES
+node_exporter_enable:  -&gt; YES
 </pre>
 <br />
 <span>Configure node_exporter to listen on the WireGuard interface. This ensures metrics are only accessible through the secure tunnel, not the public network. Replace the IP with the host&#39;s WireGuard address:</span><br />
@@ -579,8 +574,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas sysrc </font><font color="#ff0000">node_exporter_args</font><font color="#F3E651">=</font><font color="#bb00ff">'--web.listen-address=192.168.2.130:9100'</font>
-<font color="#ff0000">node_exporter_args</font><font color="#F3E651">:</font><font color="#ff0000">  -</font><font color="#F3E651">&gt;</font><font color="#ff0000"> --web</font><font color="#F3E651">.</font><font color="#ff0000">listen-address</font><font color="#F3E651">=</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.130</font><font color="#F3E651">:</font><font color="#bb00ff">9100</font>
+<pre>paul@f0:~ % doas sysrc node_exporter_args=<font color="#808080">'--web.listen-address=192.168.2.130:9100'</font>
+node_exporter_args:  -&gt; --web.listen-address=<font color="#000000">192.168</font>.<font color="#000000">2.130</font>:<font color="#000000">9100</font>
 </pre>
 <br />
 <span>Start the service:</span><br />
@@ -589,8 +584,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> doas service node_exporter start</font>
-<font color="#ff0000">Starting node_exporter</font><font color="#F3E651">.</font>
+<pre>paul@f0:~ % doas service node_exporter start
+Starting node_exporter.
 </pre>
 <br />
 <span>Verify it&#39;s running:</span><br />
@@ -599,10 +594,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">paul@f0</font><font color="#F3E651">:~</font><font color="#ff0000"> </font><font color="#F3E651">%</font><font color="#ff0000"> curl -s http</font><font color="#F3E651">://</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.130</font><font color="#F3E651">:</font><font color="#bb00ff">9100</font><font color="#ff0000">/metrics </font><font color="#F3E651">|</font><font color="#ff0000"> head -</font><font color="#bb00ff">3</font>
-<i><font color="#ababab"># HELP go_gc_duration_seconds A summary of the wall-time pause...</font></i>
-<i><font color="#ababab"># TYPE go_gc_duration_seconds summary</font></i>
-<font color="#ff0000">go_gc_duration_seconds{</font><font color="#ff0000">quantile</font><font color="#F3E651">=</font><font color="#bb00ff">"0"</font><font color="#ff0000">} </font><font color="#bb00ff">0</font>
+<pre>paul@f0:~ % curl -s http://<font color="#000000">192.168</font>.<font color="#000000">2.130</font>:<font color="#000000">9100</font>/metrics | head -<font color="#000000">3</font>
+<i><font color="silver"># HELP go_gc_duration_seconds A summary of the wall-time pause...</font></i>
+<i><font color="silver"># TYPE go_gc_duration_seconds summary</font></i>
+go_gc_duration_seconds{quantile=<font color="#808080">"0"</font>} <font color="#000000">0</font>
 </pre>
 <br />
 <span>Repeat for the other FreeBSD hosts (<span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>) with their respective WireGuard IPs.</span><br />
@@ -630,9 +625,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ kubectl create secret generic additional-scrape-configs </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --from-file</font><font color="#F3E651">=</font><font color="#ff0000">additional-scrape-configs</font><font color="#F3E651">.</font><font color="#ff0000">yaml </font><font color="#F3E651">\</font>
-<font color="#ff0000">    -n monitoring</font>
+<pre>$ kubectl create secret generic additional-scrape-configs \
+    --from-file=additional-scrape-configs.yaml \
+    -n monitoring
 </pre>
 <br />
 <span>Update <span class='inlinecode'>persistence-values.yaml</span> to reference the secret:</span><br />
@@ -652,7 +647,7 @@ prometheus:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">$ just upgrade</font>
+<pre>$ just upgrade
 </pre>
 <br />
 <span>After a minute or so, the FreeBSD hosts appear in the Prometheus targets and in the Node Exporter dashboards in Grafana.</span><br />
@@ -1020,10 +1015,10 @@ zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">blowfish</font><font color="#F3E651">:~</font><font color="#ff0000"> $ doas pkg_add node_exporter</font>
-<font color="#ff0000">quirks-</font><font color="#bb00ff">7.103</font><font color="#ff0000"> signed on </font><font color="#bb00ff">2025</font><font color="#ff0000">-</font><font color="#bb00ff">10</font><font color="#ff0000">-13T22</font><font color="#F3E651">:</font><font color="#bb00ff">55</font><font color="#F3E651">:</font><font color="#ff0000">16Z</font>
-<font color="#ff0000">The following new rcscripts were installed</font><font color="#F3E651">:</font><font color="#ff0000"> /etc/rc</font><font color="#F3E651">.</font><font color="#ff0000">d/node_exporter</font>
-<font color="#ff0000">See rcctl</font><font color="#F3E651">(</font><font color="#bb00ff">8</font><font color="#F3E651">)</font><font color="#ff0000"> </font><b><font color="#ffffff">for</font></b><font color="#ff0000"> details</font><font color="#F3E651">.</font>
+<pre>blowfish:~ $ doas pkg_add node_exporter
+quirks-<font color="#000000">7.103</font> signed on <font color="#000000">2025</font>-<font color="#000000">10</font>-13T22:<font color="#000000">55</font>:16Z
+The following new rcscripts were installed: /etc/rc.d/node_exporter
+See rcctl(<font color="#000000">8</font>) <b><u><font color="#000000">for</font></u></b> details.
 </pre>
 <br />
 <span>Enable the service to start at boot:</span><br />
@@ -1032,7 +1027,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">blowfish</font><font color="#F3E651">:~</font><font color="#ff0000"> $ doas rcctl </font><b><font color="#ffffff">enable</font></b><font color="#ff0000"> node_exporter</font>
+<pre>blowfish:~ $ doas rcctl <b><u><font color="#000000">enable</font></u></b> node_exporter
 </pre>
 <br />
 <span>Configure node_exporter to listen on the WireGuard interface. This ensures metrics are only accessible through the secure tunnel, not the public network. Replace the IP with the host&#39;s WireGuard address:</span><br />
@@ -1041,7 +1036,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">blowfish</font><font color="#F3E651">:~</font><font color="#ff0000"> $ doas rcctl </font><b><font color="#ffffff">set</font></b><font color="#ff0000"> node_exporter flags </font><font color="#bb00ff">'--web.listen-address=192.168.2.110:9100'</font>
+<pre>blowfish:~ $ doas rcctl <b><u><font color="#000000">set</font></u></b> node_exporter flags <font color="#808080">'--web.listen-address=192.168.2.110:9100'</font>
 </pre>
 <br />
 <span>Start the service:</span><br />
@@ -1050,8 +1045,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">blowfish</font><font color="#F3E651">:~</font><font color="#ff0000"> $ doas rcctl start node_exporter</font>
-<font color="#ff0000">node_exporter</font><font color="#F3E651">(</font><font color="#ff0000">ok</font><font color="#F3E651">)</font>
+<pre>blowfish:~ $ doas rcctl start node_exporter
+node_exporter(ok)
 </pre>
 <br />
 <span>Verify it&#39;s running:</span><br />
@@ -1060,10 +1055,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">blowfish</font><font color="#F3E651">:~</font><font color="#ff0000"> $ curl -s http</font><font color="#F3E651">://</font><font color="#bb00ff">192.168</font><font color="#F3E651">.</font><font color="#bb00ff">2.110</font><font color="#F3E651">:</font><font color="#bb00ff">9100</font><font color="#ff0000">/metrics </font><font color="#F3E651">|</font><font color="#ff0000"> head -</font><font color="#bb00ff">3</font>
-<i><font color="#ababab"># HELP go_gc_duration_seconds A summary of the wall-time pause...</font></i>
-<i><font color="#ababab"># TYPE go_gc_duration_seconds summary</font></i>
-<font color="#ff0000">go_gc_duration_seconds{</font><font color="#ff0000">quantile</font><font color="#F3E651">=</font><font color="#bb00ff">"0"</font><font color="#ff0000">} </font><font color="#bb00ff">0</font>
+<pre>blowfish:~ $ curl -s http://<font color="#000000">192.168</font>.<font color="#000000">2.110</font>:<font color="#000000">9100</font>/metrics | head -<font color="#000000">3</font>
+<i><font color="silver"># HELP go_gc_duration_seconds A summary of the wall-time pause...</font></i>
+<i><font color="silver"># TYPE go_gc_duration_seconds summary</font></i>
+go_gc_duration_seconds{quantile=<font color="#808080">"0"</font>} <font color="#000000">0</font>
 </pre>
 <br />
 <span>Repeat for the other OpenBSD host (<span class='inlinecode'>fishfinger</span>) with its respective WireGuard IP (<span class='inlinecode'>192.168.2.111</span>).</span><br />
@@ -1425,35 +1420,35 @@ opentelemetry-instrumentation-requests==0.49b0
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ababab">from</font><font color="#ff0000"> opentelemetry </font><font color="#ababab">import</font><font color="#ff0000"> trace</font>
-<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">sdk</font><font color="#F3E651">.</font><font color="#ff0000">trace </font><font color="#ababab">import</font><font color="#ff0000"> TracerProvider</font>
-<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">exporter</font><font color="#F3E651">.</font><font color="#ff0000">otlp</font><font color="#F3E651">.</font><font color="#ff0000">proto</font><font color="#F3E651">.</font><font color="#ff0000">grpc</font><font color="#F3E651">.</font><font color="#ff0000">trace_exporter </font><font color="#ababab">import</font><font color="#ff0000"> OTLPSpanExporter</font>
-<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">instrumentation</font><font color="#F3E651">.</font><font color="#ff0000">flask </font><font color="#ababab">import</font><font color="#ff0000"> FlaskInstrumentor</font>
-<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">instrumentation</font><font color="#F3E651">.</font><font color="#ff0000">requests </font><font color="#ababab">import</font><font color="#ff0000"> RequestsInstrumentor</font>
-<font color="#ababab">from</font><font color="#ff0000"> opentelemetry</font><font color="#F3E651">.</font><font color="#ff0000">sdk</font><font color="#F3E651">.</font><font color="#ff0000">resources </font><font color="#ababab">import</font><font color="#ff0000"> Resource</font>
+<pre><b><u><font color="#000000">from</font></u></b> opentelemetry <b><u><font color="#000000">import</font></u></b> trace
+<b><u><font color="#000000">from</font></u></b> opentelemetry.sdk.trace <b><u><font color="#000000">import</font></u></b> TracerProvider
+<b><u><font color="#000000">from</font></u></b> opentelemetry.exporter.otlp.proto.grpc.trace_exporter <b><u><font color="#000000">import</font></u></b> OTLPSpanExporter
+<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.flask <b><u><font color="#000000">import</font></u></b> FlaskInstrumentor
+<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.requests <b><u><font color="#000000">import</font></u></b> RequestsInstrumentor
+<b><u><font color="#000000">from</font></u></b> opentelemetry.sdk.resources <b><u><font color="#000000">import</font></u></b> Resource
 
-<i><font color="#ababab"># Define service identity</font></i>
-<font color="#ff0000">resource </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">Resource</font><font color="#F3E651">(</font><font color="#ff0000">attributes</font><font color="#F3E651">={</font>
-<font color="#ff0000">    </font><font color="#bb00ff">"service.name"</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">"frontend"</font><font color="#F3E651">,</font>
-<font color="#ff0000">    </font><font color="#bb00ff">"service.namespace"</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">"tracing-demo"</font><font color="#F3E651">,</font>
-<font color="#ff0000">    </font><font color="#bb00ff">"service.version"</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">"1.0.0"</font>
-<font color="#F3E651">})</font>
+<i><font color="silver"># Define service identity</font></i>
+resource = Resource(attributes={
+    <font color="#808080">"service.name"</font>: <font color="#808080">"frontend"</font>,
+    <font color="#808080">"service.namespace"</font>: <font color="#808080">"tracing-demo"</font>,
+    <font color="#808080">"service.version"</font>: <font color="#808080">"1.0.0"</font>
+})
 
-<font color="#ff0000">provider </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">TracerProvider</font><font color="#F3E651">(</font><font color="#ff0000">resource</font><font color="#F3E651">=</font><font color="#ff0000">resource</font><font color="#F3E651">)</font>
+provider = TracerProvider(resource=resource)
 
-<i><font color="#ababab"># Export to Alloy</font></i>
-<font color="#ff0000">otlp_exporter </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">OTLPSpanExporter</font><font color="#F3E651">(</font>
-<font color="#ff0000">    endpoint</font><font color="#F3E651">=</font><font color="#bb00ff">"http://alloy.monitoring.svc.cluster.local:4317"</font><font color="#F3E651">,</font>
-<font color="#ff0000">    insecure</font><font color="#F3E651">=</font><font color="#ff0000">True</font>
-<font color="#F3E651">)</font>
+<i><font color="silver"># Export to Alloy</font></i>
+otlp_exporter = OTLPSpanExporter(
+    endpoint=<font color="#808080">"http://alloy.monitoring.svc.cluster.local:4317"</font>,
+    insecure=True
+)
 
-<font color="#ff0000">processor </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#7bc710">BatchSpanProcessor</font><font color="#F3E651">(</font><font color="#ff0000">otlp_exporter</font><font color="#F3E651">)</font>
-<font color="#ff0000">provider</font><font color="#F3E651">.</font><font color="#7bc710">add_span_processor</font><font color="#F3E651">(</font><font color="#ff0000">processor</font><font color="#F3E651">)</font>
-<font color="#ff0000">trace</font><font color="#F3E651">.</font><font color="#7bc710">set_tracer_provider</font><font color="#F3E651">(</font><font color="#ff0000">provider</font><font color="#F3E651">)</font>
+processor = BatchSpanProcessor(otlp_exporter)
+provider.add_span_processor(processor)
+trace.set_tracer_provider(provider)
 
-<i><font color="#ababab"># Auto-instrument Flask and requests</font></i>
-<font color="#7bc710">FlaskInstrumentor</font><font color="#F3E651">().</font><font color="#7bc710">instrument_app</font><font color="#F3E651">(</font><font color="#ff0000">app</font><font color="#F3E651">)</font>
-<font color="#7bc710">RequestsInstrumentor</font><font color="#F3E651">().</font><font color="#7bc710">instrument</font><font color="#F3E651">()</font>
+<i><font color="silver"># Auto-instrument Flask and requests</font></i>
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
 </pre>
 <br />
 <span>The auto-instrumentation automatically:</span><br />
@@ -1630,29 +1625,29 @@ curl -H "Host: tracing-demo.f3s.buetow.org" http://r0/api/process
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">{</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">middleware_response</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">backend_data</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">data</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">        </font><font color="#ff0000">"</font><font color="#ff0000">id</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">12345</font><font color="#F3E651">,</font>
-<font color="#ff0000">        </font><font color="#ff0000">"</font><font color="#ff0000">query_time_ms</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">100.0</font><font color="#F3E651">,</font>
-<font color="#ff0000">        </font><font color="#ff0000">"</font><font color="#ff0000">timestamp</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">2025-12-28T18:35:01.064538</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">        </font><font color="#ff0000">"</font><font color="#ff0000">value</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">Sample data from backend service</font><font color="#ff0000">"</font>
-<font color="#ff0000">      </font><font color="#F3E651">},</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">service</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">backend</font><font color="#ff0000">"</font>
-<font color="#ff0000">    </font><font color="#F3E651">},</font>
-<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">middleware_processed</font><font color="#ff0000">"</font><font color="#ff0000">: </font><b><font color="#ffffff">true</font></b><font color="#F3E651">,</font>
-<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">original_data</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">      </font><font color="#ff0000">"</font><font color="#ff0000">source</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">GET request</font><font color="#ff0000">"</font>
-<font color="#ff0000">    </font><font color="#F3E651">},</font>
-<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">transformation_time_ms</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">50</font>
-<font color="#ff0000">  </font><font color="#F3E651">},</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">request_data</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#F3E651">{</font>
-<font color="#ff0000">    </font><font color="#ff0000">"</font><font color="#ff0000">source</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">GET request</font><font color="#ff0000">"</font>
-<font color="#ff0000">  </font><font color="#F3E651">},</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">service</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">frontend</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">status</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">success</font><font color="#ff0000">"</font>
-<font color="#F3E651">}</font>
+<pre>{
+  "middleware_response": {
+    "backend_data": {
+      "data": {
+        "id": <font color="#000000">12345</font>,
+        "query_time_ms": <font color="#000000">100.0</font>,
+        "timestamp": "<font color="#808080">2025-12-28T18:35:01.064538</font>",
+        "value": "<font color="#808080">Sample data from backend service</font>"
+      },
+      "service": "<font color="#808080">backend</font>"
+    },
+    "middleware_processed": <b><u><font color="#000000">true</font></u></b>,
+    "original_data": {
+      "source": "<font color="#808080">GET request</font>"
+    },
+    "transformation_time_ms": <font color="#000000">50</font>
+  },
+  "request_data": {
+    "source": "<font color="#808080">GET request</font>"
+  },
+  "service": "<font color="#808080">frontend</font>",
+  "status": "<font color="#808080">success</font>"
+}
 </pre>
 <br />
 <span>**2. Find the trace in Tempo via API:**</span><br />
@@ -1671,12 +1666,12 @@ kubectl exec -n monitoring tempo-0 -- wget -qO- \
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">{</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">traceID</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">4be1151c0bdcd5625ac7e02b98d95bd5</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">rootServiceName</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">frontend</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">rootTraceName</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">GET /api/process</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">durationMs</font><font color="#ff0000">"</font><font color="#ff0000">: </font><font color="#bb00ff">221</font>
-<font color="#F3E651">}</font>
+<pre>{
+  "traceID": "<font color="#808080">4be1151c0bdcd5625ac7e02b98d95bd5</font>",
+  "rootServiceName": "<font color="#808080">frontend</font>",
+  "rootTraceName": "<font color="#808080">GET /api/process</font>",
+  "durationMs": <font color="#000000">221</font>
+}
 </pre>
 <br />
 <span>**3. Fetch complete trace details:**</span><br />
@@ -1818,11 +1813,11 @@ kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-    <br />
-    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

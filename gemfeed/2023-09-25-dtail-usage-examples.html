@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>DTail usage examples</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="rfx-overlay-grid"></div>
-<div class="rfx-overlay-scanlines"></div>
-<div id="rfx-stars"></div>
-<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-09-25-dtail-usage-examples.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2023-09-25-dtail-usage-examples.gmi">Gemini</a>
 </p>
@@ -75,7 +70,7 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt --grep INFO --files </font><font color="#bb00ff">"/var/log/dserver/*.log"</font>
+<pre>% dtail --servers serverlist.txt --grep INFO --files <font color="#808080">"/var/log/dserver/*.log"</font>
 </pre>
 <br />
 <span>Hint: you can also provide a comma separated server list, e.g.: <span class='inlinecode'>servers server1.example.org,server2.example.org:PORT,...</span></span><br />
@@ -88,7 +83,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt --grep INFO </font><font color="#bb00ff">"/var/log/dserver/*.log"</font>
+<pre>% dtail --servers serverlist.txt --grep INFO <font color="#808080">"/var/log/dserver/*.log"</font>
 </pre>
 <br />
 <h2 style='display: inline' id='aggregating-logs'>Aggregating logs</h2><br />
@@ -101,10 +96,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --files </font><font color="#bb00ff">'/var/log/dserver/*.log'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select sum($goroutines),sum($cgocalls),</font>
-<font color="#bb00ff">             last($time),max(lifetimeConnections)'</font>
+<pre>% dtail --servers serverlist.txt \
+    --files <font color="#808080">'/var/log/dserver/*.log'</font> \
+    --query <font color="#808080">'from STATS select sum($goroutines),sum($cgocalls),</font>
+<font color="#808080">             last($time),max(lifetimeConnections)'</font>
 </pre>
 <br />
 <span>Beware: For map-reduce queries to work, you have to ensure that DTail supports your log format. Check out the documentaiton of the DTail query language and the DTail log formats on the DTail homepage for more information.</span><br />
@@ -117,10 +112,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --files </font><font color="#bb00ff">'/var/log/dserver/*.log'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">    </font><font color="#bb00ff">'from STATS select sum($goroutines),sum($cgocalls),</font>
-<font color="#bb00ff">     last($time),max(lifetimeConnections)'</font>
+<pre>% dtail --servers serverlist.txt \
+    --files <font color="#808080">'/var/log/dserver/*.log'</font> \
+    <font color="#808080">'from STATS select sum($goroutines),sum($cgocalls),</font>
+<font color="#808080">     last($time),max(lifetimeConnections)'</font>
 </pre>
 <br />
 <span>Here is another example:</span><br />
@@ -129,10 +124,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --files </font><font color="#bb00ff">'/var/log/dserver/*.log'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#bb00ff">             lifetimeConnections group by $hostname order by max($cgocalls)'</font>
+<pre>% dtail --servers serverlist.txt \
+    --files <font color="#808080">'/var/log/dserver/*.log'</font> \
+    --query <font color="#808080">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
+<font color="#808080">             lifetimeConnections group by $hostname order by max($cgocalls)'</font>
 </pre>
 <br />
 <a href='./dtail-usage-examples/dtail-map2.gif'><img alt='Tail map-reduce example 2' title='Tail map-reduce example 2' src='./dtail-usage-examples/dtail-map2.gif' /></a><br />
@@ -143,9 +138,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --files </font><font color="#bb00ff">'/var/log/dserver/*.log'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select ... outfile append result.csv'</font>
+<pre>% dtail --servers serverlist.txt \
+    --files <font color="#808080">'/var/log/dserver/*.log'</font> \
+    --query <font color="#808080">'from STATS select ... outfile append result.csv'</font>
 </pre>
 <br />
 <h2 style='display: inline' id='how-to-use-dcat'>How to use <span class='inlinecode'>dcat</span></h2><br />
@@ -158,7 +153,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dcat --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt --files /etc/hostname</font>
+<pre>% dcat --servers serverlist.txt --files /etc/hostname
 </pre>
 <br />
 <a href='./dtail-usage-examples/dcat.gif'><img alt='Cat example' title='Cat example' src='./dtail-usage-examples/dcat.gif' /></a><br />
@@ -169,7 +164,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dcat --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt /etc/hostname</font>
+<pre>% dcat --servers serverlist.txt /etc/hostname
 </pre>
 <br />
 <h2 style='display: inline' id='how-to-use-dgrep'>How to use <span class='inlinecode'>dgrep</span></h2><br />
@@ -180,9 +175,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dgrep --servers server1</font><font color="#F3E651">.</font><font color="#ff0000">example</font><font color="#F3E651">.</font><font color="#ff0000">org</font><font color="#F3E651">:</font><font color="#bb00ff">2223</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --files /etc/passwd </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --regex nologin</font>
+<pre>% dgrep --servers server1.example.org:<font color="#000000">2223</font> \
+    --files /etc/passwd \
+    --regex nologin
 </pre>
 <br />
 <span>Generally, <span class='inlinecode'>dgrep</span> is also a very useful way to search historic application logs for certain content.</span><br />
@@ -199,10 +194,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dmap --servers serverlist</font><font color="#F3E651">.</font><font color="#ff0000">txt </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --files </font><font color="#bb00ff">'/var/log/dserver/*.log'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#bb00ff">             lifetimeConnections group by $hostname order by max($cgocalls)'</font>
+<pre>% dmap --servers serverlist.txt \
+    --files <font color="#808080">'/var/log/dserver/*.log'</font> \
+    --query <font color="#808080">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
+<font color="#808080">             lifetimeConnections group by $hostname order by max($cgocalls)'</font>
 </pre>
 <br />
 <span>Remember: For that to work, you have to make sure that DTail supports your log format. You can either use the ones already defined in <span class='inlinecode'>internal/mapr/logformat</span> or add an extension to support a custom log format. The example here works out of the box though, as DTail understands its own log format already. </span><br />
@@ -225,9 +220,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dmap --files /var/log/dserver/dserver</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
-<font color="#ff0000">    --query </font><font color="#bb00ff">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#bb00ff">              lifetimeConnections group by $hostname order by max($cgocalls)'</font>
+<pre>% dmap --files /var/log/dserver/dserver.log
+    --query <font color="#808080">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
+<font color="#808080">              lifetimeConnections group by $hostname order by max($cgocalls)'</font>
 </pre>
 <br />
 <span>As a shorthand version the following command can be used:</span><br />
@@ -236,9 +231,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dmap </font><font color="#bb00ff">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#bb00ff">        lifetimeConnections group by $hostname order by max($cgocalls)'</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">        /var/log/dsever/dserver</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
+<pre>% dmap <font color="#808080">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
+<font color="#808080">        lifetimeConnections group by $hostname order by max($cgocalls)'</font> \
+        /var/log/dsever/dserver.log
 </pre>
 <br />
 <span>You can also use a file input pipe as follows:</span><br />
@@ -247,9 +242,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> cat /var/log/dserver/dserver</font><font color="#F3E651">.</font><font color="#ff0000">log </font><font color="#F3E651">|</font><font color="#ff0000"> </font><font color="#F3E651">\</font>
-<font color="#ff0000">    dmap </font><font color="#bb00ff">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
-<font color="#bb00ff">          lifetimeConnections group by $hostname order by max($cgocalls)'</font>
+<pre>% cat /var/log/dserver/dserver.log | \
+    dmap <font color="#808080">'from STATS select $hostname,max($goroutines),max($cgocalls),$loadavg,</font>
+<font color="#808080">          lifetimeConnections group by $hostname order by max($cgocalls)'</font>
 </pre>
 <br />
 <h3 style='display: inline' id='aggregating-csv-files'>Aggregating CSV files</h3><br />
@@ -260,16 +255,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> cat example</font><font color="#F3E651">.</font><font color="#ff0000">csv</font>
-<font color="#ff0000">name</font><font color="#F3E651">,</font><font color="#ff0000">lastname</font><font color="#F3E651">,</font><font color="#ff0000">age</font><font color="#F3E651">,</font><font color="#ff0000">profession</font>
-<font color="#ff0000">Michael</font><font color="#F3E651">,</font><font color="#ff0000">Jordan</font><font color="#F3E651">,</font><font color="#bb00ff">40</font><font color="#F3E651">,</font><font color="#ff0000">Basketball player</font>
-<font color="#ff0000">Michael</font><font color="#F3E651">,</font><font color="#ff0000">Jackson</font><font color="#F3E651">,</font><font color="#bb00ff">100</font><font color="#F3E651">,</font><font color="#ff0000">Singer</font>
-<font color="#ff0000">Albert</font><font color="#F3E651">,</font><font color="#ff0000">Einstein</font><font color="#F3E651">,</font><font color="#bb00ff">200</font><font color="#F3E651">,</font><font color="#ff0000">Physician</font>
-<font color="#F3E651">%</font><font color="#ff0000"> dmap --query </font><font color="#bb00ff">'select lastname,name where age &gt; 40 logformat csv outfile result.csv'</font><font color="#ff0000"> example</font><font color="#F3E651">.</font><font color="#ff0000">csv</font>
-<font color="#F3E651">%</font><font color="#ff0000"> cat result</font><font color="#F3E651">.</font><font color="#ff0000">csv</font>
-<font color="#ff0000">lastname</font><font color="#F3E651">,</font><font color="#ff0000">name</font>
-<font color="#ff0000">Jackson</font><font color="#F3E651">,</font><font color="#ff0000">Michael</font>
-<font color="#ff0000">Einstein</font><font color="#F3E651">,</font><font color="#ff0000">Albert</font>
+<pre>% cat example.csv
+name,lastname,age,profession
+Michael,Jordan,<font color="#000000">40</font>,Basketball player
+Michael,Jackson,<font color="#000000">100</font>,Singer
+Albert,Einstein,<font color="#000000">200</font>,Physician
+% dmap --query <font color="#808080">'select lastname,name where age &gt; 40 logformat csv outfile result.csv'</font> example.csv
+% cat result.csv
+lastname,name
+Jackson,Michael
+Einstein,Albert
 </pre>
 <br />
 <span>DMap can also be used to query and aggregate CSV files from remote servers.</span><br />
@@ -282,44 +277,44 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail /var/log/dserver/dserver</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
+<pre>% dtail /var/log/dserver/dserver.log
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dtail --logLevel trace /var/log/dserver/dserver</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
+<pre>% dtail --logLevel trace /var/log/dserver/dserver.log
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dcat /etc/passwd</font>
+<pre>% dcat /etc/passwd
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dcat --plain /etc/passwd </font><font color="#F3E651">&gt;</font><font color="#ff0000"> /etc/test</font>
-<i><font color="#ababab"># Should show no differences.</font></i>
-<font color="#ff0000">diff /etc/test /etc/passwd </font>
+<pre>% dcat --plain /etc/passwd &gt; /etc/test
+<i><font color="silver"># Should show no differences.</font></i>
+diff /etc/test /etc/passwd 
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dgrep --regex ERROR --files /var/log/dserver/dsever</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
+<pre>% dgrep --regex ERROR --files /var/log/dserver/dsever.log
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">%</font><font color="#ff0000"> dgrep --before </font><font color="#bb00ff">10</font><font color="#ff0000"> --after </font><font color="#bb00ff">10</font><font color="#ff0000"> --max </font><font color="#bb00ff">10</font><font color="#ff0000"> --grep ERROR /var/log/dserver/dsever</font><font color="#F3E651">.</font><font color="#ff0000">log</font>
+<pre>% dgrep --before <font color="#000000">10</font> --after <font color="#000000">10</font> --max <font color="#000000">10</font> --grep ERROR /var/log/dserver/dsever.log
 </pre>
 <br />
 <span>Use <span class='inlinecode'>--help</span> for more available options. Or go to the DTail page for more information! Hope you find DTail useful!</span><br />
@@ -339,11 +334,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-    <br />
-    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

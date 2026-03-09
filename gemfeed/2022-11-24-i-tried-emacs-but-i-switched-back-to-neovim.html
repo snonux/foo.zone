@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>I tried (Doom) Emacs, but I switched back to (Neo)Vim</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="rfx-overlay-grid"></div>
-<div class="rfx-overlay-scanlines"></div>
-<div id="rfx-stars"></div>
-<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi">Gemini</a>
 </p>
@@ -99,10 +94,10 @@ Art by      \ \_!  / __!
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab">" Clipboard</font></i>
-<font color="#ff0000">vnoremap ,</font><b><font color="#ffffff">y</font></b><font color="#ff0000"> !pbcopy</font><font color="#ff0000">&lt;CR&gt;</font><font color="#ff0000">ugv</font>
-<font color="#ff0000">vnoremap ,</font><b><font color="#ffffff">i</font></b><font color="#ff0000"> !pbpaste</font><font color="#ff0000">&lt;CR&gt;</font>
-<font color="#ff0000">nmap ,</font><b><font color="#ffffff">i</font></b><font color="#ff0000"> !wpbpaste</font><font color="#ff0000">&lt;CR&gt;</font>
+<pre><i><font color="silver">" Clipboard</font></i>
+vnoremap ,<b><u><font color="#000000">y</font></u></b> !pbcopy&lt;CR&gt;ugv
+vnoremap ,<b><u><font color="#000000">i</font></u></b> !pbpaste&lt;CR&gt;
+nmap ,<b><u><font color="#000000">i</font></u></b> !wpbpaste&lt;CR&gt;
 </pre>
 <br />
 <span>That&#39;s only a very few lines and does precisely what I want. It&#39;s quick and dirty but get&#39;s the job done! If VimScript becomes too cumbersome, I can use Lua for NeoVim scripting.</span><br />
@@ -147,11 +142,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-    <br />
-    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

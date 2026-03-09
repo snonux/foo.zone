@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Sharing on Social Media with Gos v1.0.0</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="rfx-overlay-grid"></div>
-<div class="rfx-overlay-scanlines"></div>
-<div id="rfx-stars"></div>
-<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-03-05-sharing-on-social-media-with-gos.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-03-05-sharing-on-social-media-with-gos.gmi">Gemini</a>
 </p>
@@ -89,8 +84,8 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">git clone https</font><font color="#F3E651">:</font><font color="#ff0000">//codeberg</font><font color="#F3E651">.</font><font color="#ff0000">org/snonux/gos</font><font color="#F3E651">.</font><font color="#ff0000">git</font>
-<font color="#ff0000">cd gos</font>
+<pre>git clone https://codeberg.org/snonux/gos.git
+cd gos
 </pre>
 <br />
 <span>Build the binaries:</span><br />
@@ -99,10 +94,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">go build -o gos </font><font color="#F3E651">.</font><font color="#ff0000">/cmd/gos</font>
-<font color="#ff0000">go build -o gosc </font><font color="#F3E651">.</font><font color="#ff0000">/cmd/gosc</font>
-<font color="#ff0000">sudo mv gos </font><font color="#F3E651">~</font><font color="#ff0000">/go/bin</font>
-<font color="#ff0000">sudo mv gosc </font><font color="#F3E651">~</font><font color="#ff0000">/go/bin</font>
+<pre>go build -o gos ./cmd/gos
+go build -o gosc ./cmd/gosc
+sudo mv gos ~/go/bin
+sudo mv gosc ~/go/bin
 </pre>
 <br />
 <span>Or, if you want to use the <span class='inlinecode'>Taskfile</span>:</span><br />
@@ -111,7 +106,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">go-task install</font>
+<pre>go-task install
 </pre>
 <br />
 <h2 style='display: inline' id='configuration'>Configuration</h2><br />
@@ -124,13 +119,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">{</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">MastodonURL</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">https://mastodon.example.com</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">MastodonAccessToken</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">your-mastodon-access-token</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">LinkedInClientID</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">your-linkedin-client-id</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">LinkedInSecret</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">your-linkedin-client-secret</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#ff0000">  </font><font color="#ff0000">"</font><font color="#ff0000">LinkedInRedirectURL</font><font color="#ff0000">"</font><font color="#ff0000">:</font><font color="#ff0000"> "</font><font color="#bb00ff">http://localhost:8080/callback</font><font color="#ff0000">"</font><font color="#F3E651">,</font>
-<font color="#F3E651">}</font>
+<pre>{
+  "MastodonURL": "<font color="#808080">https://mastodon.example.com</font>",
+  "MastodonAccessToken": "<font color="#808080">your-mastodon-access-token</font>",
+  "LinkedInClientID": "<font color="#808080">your-linkedin-client-id</font>",
+  "LinkedInSecret": "<font color="#808080">your-linkedin-client-secret</font>",
+  "LinkedInRedirectURL": "<font color="#808080">http://localhost:8080/callback</font>",
+}
 </pre>
 <br />
 <h3 style='display: inline' id='configuration-fields'>Configuration fields</h3><br />
@@ -186,7 +181,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">.</font><font color="#ff0000">/gos --dry</font>
+<pre>./gos --dry
 </pre>
 <br />
 <span>*Normal run*</span><br />
@@ -197,7 +192,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#F3E651">.</font><font color="#ff0000">/gos </font>
+<pre>./gos 
 </pre>
 <br />
 <span>:-)</span><br />
@@ -362,7 +357,7 @@ Hello World :-)
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">gos --geminiSummaryFor </font><font color="#bb00ff">202410</font><font color="#F3E651">,</font><font color="#bb00ff">202411</font><font color="#F3E651">,</font><font color="#bb00ff">202412</font>
+<pre>gos --geminiSummaryFor <font color="#000000">202410</font>,<font color="#000000">202411</font>,<font color="#000000">202412</font>
 </pre>
 <br />
 <span>This outputs the summary for the three specified months, as shown in the example. The summary includes posts from all social media networks but removes duplicates.</span><br />
@@ -374,7 +369,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">gos --gemtexterEnable --geminiSummaryFor </font><font color="#bb00ff">202410</font><font color="#F3E651">,</font><font color="#bb00ff">202411</font><font color="#F3E651">,</font><font color="#bb00ff">202412</font>
+<pre>gos --gemtexterEnable --geminiSummaryFor <font color="#000000">202410</font>,<font color="#000000">202411</font>,<font color="#000000">202412</font>
 </pre>
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/gemtexter'>Gemtexter</a><br />
@@ -385,7 +380,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">gos --gemtexterEnable --geminiSummaryFor </font><font color="#bb00ff">202410</font><font color="#F3E651">,</font><font color="#bb00ff">202411</font><font color="#F3E651">,</font><font color="#bb00ff">202412</font><font color="#ff0000"> --geminiCapsules </font><font color="#bb00ff">"foo.zone,paul.buetow.org"</font>
+<pre>gos --gemtexterEnable --geminiSummaryFor <font color="#000000">202410</font>,<font color="#000000">202411</font>,<font color="#000000">202412</font> --geminiCapsules <font color="#808080">"foo.zone,paul.buetow.org"</font>
 </pre>
 <br />
 <span>It will then also generate Gemini Gemtext links in the summary page and flag them with <span class='inlinecode'>(Gemini)</span>.</span><br />
@@ -398,11 +393,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-    <br />
-    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

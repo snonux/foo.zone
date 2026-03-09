@@ -2,17 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Key Takeaways from The Well-Grounded Rubyist</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="rfx-overlay-grid"></div>
-<div class="rfx-overlay-scanlines"></div>
-<div id="rfx-stars"></div>
-<div class="rfx-vignette"></div>
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-10-11-key-takeaways-from-the-well-grounded-rubyist.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-10-11-key-takeaways-from-the-well-grounded-rubyist.gmi">Gemini</a>
 </p>
@@ -59,19 +54,19 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab"># At the top level, self is the main object</font></i>
-<font color="#ff0000">p </font><b><font color="#ffffff">self</font></b>
-<i><font color="#ababab"># =&gt; main</font></i>
-<font color="#ff0000">p </font><b><font color="#ffffff">self</font></b><font color="#F3E651">.</font><b><font color="#ffffff">class</font></b>
-<i><font color="#ababab"># =&gt; Object</font></i>
+<pre><i><font color="silver"># At the top level, self is the main object</font></i>
+p <b><u><font color="#000000">self</font></u></b>
+<i><font color="silver"># =&gt; main</font></i>
+p <b><u><font color="#000000">self</font></u></b>.<b><u><font color="#000000">class</font></u></b>
+<i><font color="silver"># =&gt; Object</font></i>
 
-<b><font color="#ffffff">def</font></b><font color="#ff0000"> foo</font>
-<font color="#ff0000">  </font><i><font color="#ababab"># Inside a method, self is the object that received the call</font></i>
-<font color="#ff0000">  p </font><b><font color="#ffffff">self</font></b>
-<b><font color="#ffffff">end</font></b>
+<b><u><font color="#000000">def</font></u></b> foo
+  <i><font color="silver"># Inside a method, self is the object that received the call</font></i>
+  p <b><u><font color="#000000">self</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">foo</font>
-<i><font color="#ababab"># =&gt; main</font></i>
+foo
+<i><font color="silver"># =&gt; main</font></i>
 </pre>
 <br />
 <span>This code demonstrates how <span class='inlinecode'>self</span> changes depending on the context. At the top level, it&#39;s <span class='inlinecode'>main</span>, an instance of <span class='inlinecode'>Object</span>. When <span class='inlinecode'>foo</span> is called without a receiver, it&#39;s called on <span class='inlinecode'>main</span>.</span><br />
@@ -84,17 +79,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">obj </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"a string"</font>
+<pre>obj = <font color="#808080">"a string"</font>
 
-<b><font color="#ffffff">def</font></b><font color="#ff0000"> obj</font><font color="#F3E651">.</font><font color="#ff0000">shout</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">self</font></b><font color="#F3E651">.</font><font color="#ff0000">upcase </font><font color="#F3E651">+</font><font color="#ff0000"> </font><font color="#bb00ff">"!"</font>
-<b><font color="#ffffff">end</font></b>
+<b><u><font color="#000000">def</font></u></b> obj.shout
+  <b><u><font color="#000000">self</font></u></b>.upcase + <font color="#808080">"!"</font>
+<b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">p obj</font><font color="#F3E651">.</font><font color="#ff0000">shout</font>
-<i><font color="#ababab"># =&gt; "A STRING!"</font></i>
+p obj.shout
+<i><font color="silver"># =&gt; "A STRING!"</font></i>
 
-<font color="#ff0000">obj2 </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#bb00ff">"another string"</font>
-<i><font color="#ababab"># obj2.shout would raise a NoMethodError</font></i>
+obj2 = <font color="#808080">"another string"</font>
+<i><font color="silver"># obj2.shout would raise a NoMethodError</font></i>
 </pre>
 <br />
 <span>Here, the <span class='inlinecode'>shout</span> method is only available on the <span class='inlinecode'>obj</span> object. This is a powerful feature for adding behavior to specific instances.</span><br />
@@ -107,15 +102,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">MyClass </font><font color="#F3E651">=</font><font color="#ff0000"> Class</font><font color="#F3E651">.</font><font color="#ff0000">new </font><b><font color="#ffffff">do</font></b>
-<font color="#ff0000">  </font><b><font color="#ffffff">def</font></b><font color="#ff0000"> say_hello</font>
-<font color="#ff0000">    puts </font><font color="#bb00ff">"Hello from a dynamically created class!"</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+<pre>MyClass = Class.new <b><u><font color="#000000">do</font></u></b>
+  <b><u><font color="#000000">def</font></u></b> say_hello
+    puts <font color="#808080">"Hello from a dynamically created class!"</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">instance </font><font color="#F3E651">=</font><font color="#ff0000"> MyClass</font><font color="#F3E651">.</font><font color="#ff0000">new</font>
-<font color="#ff0000">instance</font><font color="#F3E651">.</font><font color="#ff0000">say_hello</font>
-<i><font color="#ababab"># =&gt; Hello from a dynamically created class!</font></i>
+instance = MyClass.new
+instance.say_hello
+<i><font color="silver"># =&gt; Hello from a dynamically created class!</font></i>
 </pre>
 <br />
 <span>This shows how to create a new class and assign it to a constant. This is what happens behind the scenes when you use the <span class='inlinecode'>class</span> keyword.</span><br />
@@ -132,27 +127,27 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab"># For ranges, it checks for inclusion</font></i>
-<font color="#ff0000">p </font><font color="#F3E651">(</font><font color="#bb00ff">1</font><font color="#F3E651">..</font><font color="#bb00ff">5</font><font color="#F3E651">)</font><font color="#ff0000"> </font><font color="#F3E651">===</font><font color="#ff0000"> </font><font color="#bb00ff">3</font><font color="#ff0000"> </font><i><font color="#ababab"># =&gt; true</font></i>
+<pre><i><font color="silver"># For ranges, it checks for inclusion</font></i>
+p (<font color="#000000">1</font>..<font color="#000000">5</font>) === <font color="#000000">3</font> <i><font color="silver"># =&gt; true</font></i>
 
-<i><font color="#ababab"># For classes, it checks if the object is an instance of the class</font></i>
-<font color="#ff0000">p String </font><font color="#F3E651">===</font><font color="#ff0000"> </font><font color="#bb00ff">"hello"</font><font color="#ff0000"> </font><i><font color="#ababab"># =&gt; true</font></i>
+<i><font color="silver"># For classes, it checks if the object is an instance of the class</font></i>
+p String === <font color="#808080">"hello"</font> <i><font color="silver"># =&gt; true</font></i>
 
-<i><font color="#ababab"># For regexes, it checks for a match</font></i>
-<font color="#ff0000">p </font><font color="#ff0000">/llo/</font><font color="#ff0000"> </font><font color="#F3E651">===</font><font color="#ff0000"> </font><font color="#bb00ff">"hello"</font><font color="#ff0000"> </font><i><font color="#ababab"># =&gt; true</font></i>
+<i><font color="silver"># For regexes, it checks for a match</font></i>
+p /llo/ === <font color="#808080">"hello"</font> <i><font color="silver"># =&gt; true</font></i>
 
-<b><font color="#ffffff">def</font></b><font color="#ff0000"> check</font><font color="#F3E651">(</font><font color="#ff0000">value</font><font color="#F3E651">)</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">case</font></b><font color="#ff0000"> value</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">when</font></b><font color="#ff0000"> String</font>
-<font color="#ff0000">    </font><font color="#bb00ff">"It's a string"</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">when</font></b><font color="#ff0000"> </font><font color="#F3E651">(</font><font color="#bb00ff">1</font><font color="#F3E651">..</font><font color="#bb00ff">10</font><font color="#F3E651">)</font>
-<font color="#ff0000">    </font><font color="#bb00ff">"It's a number between 1 and 10"</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">else</font></b>
-<font color="#ff0000">    </font><font color="#bb00ff">"Something else"</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">end</font></b>
-<b><font color="#ffffff">end</font></b>
+<b><u><font color="#000000">def</font></u></b> check(value)
+  <b><u><font color="#000000">case</font></u></b> value
+  <b><u><font color="#000000">when</font></u></b> String
+    <font color="#808080">"It's a string"</font>
+  <b><u><font color="#000000">when</font></u></b> (<font color="#000000">1</font>..<font color="#000000">10</font>)
+    <font color="#808080">"It's a number between 1 and 10"</font>
+  <b><u><font color="#000000">else</font></u></b>
+    <font color="#808080">"Something else"</font>
+  <b><u><font color="#000000">end</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">p check</font><font color="#F3E651">(</font><font color="#bb00ff">5</font><font color="#F3E651">)</font><font color="#ff0000"> </font><i><font color="#ababab"># =&gt; "It's a number between 1 and 10"</font></i>
+p check(<font color="#000000">5</font>) <i><font color="silver"># =&gt; "It's a number between 1 and 10"</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='blocks-and-yield'>Blocks and <span class='inlinecode'>yield</span></h3><br />
@@ -163,18 +158,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">def</font></b><font color="#ff0000"> my_iterator</font>
-<font color="#ff0000">  puts </font><font color="#bb00ff">"Entering the method"</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">yield</font></b>
-<font color="#ff0000">  puts </font><font color="#bb00ff">"Back in the method"</font>
-<font color="#ff0000">  </font><b><font color="#ffffff">yield</font></b>
-<b><font color="#ffffff">end</font></b>
+<pre><b><u><font color="#000000">def</font></u></b> my_iterator
+  puts <font color="#808080">"Entering the method"</font>
+  <b><u><font color="#000000">yield</font></u></b>
+  puts <font color="#808080">"Back in the method"</font>
+  <b><u><font color="#000000">yield</font></u></b>
+<b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">my_iterator </font><font color="#F3E651">{</font><font color="#ff0000"> puts </font><font color="#bb00ff">"Inside the block"</font><font color="#ff0000"> </font><font color="#F3E651">}</font>
-<i><font color="#ababab"># Entering the method</font></i>
-<i><font color="#ababab"># Inside the block</font></i>
-<i><font color="#ababab"># Back in the method</font></i>
-<i><font color="#ababab"># Inside the block</font></i>
+my_iterator { puts <font color="#808080">"Inside the block"</font> }
+<i><font color="silver"># Entering the method</font></i>
+<i><font color="silver"># Inside the block</font></i>
+<i><font color="silver"># Back in the method</font></i>
+<i><font color="silver"># Inside the block</font></i>
 </pre>
 <br />
 <span>This simple iterator shows how <span class='inlinecode'>yield</span> transfers control to the block. You can also pass arguments to <span class='inlinecode'>yield</span> and get a return value from the block.</span><br />
@@ -183,13 +178,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#ffffff">def</font></b><font color="#ff0000"> with_return</font>
-<font color="#ff0000">  result </font><font color="#F3E651">=</font><font color="#ff0000"> </font><b><font color="#ffffff">yield</font></b><font color="#F3E651">(</font><font color="#bb00ff">5</font><font color="#F3E651">)</font>
-<font color="#ff0000">  puts </font><font color="#bb00ff">"The block returned #{result}"</font>
-<b><font color="#ffffff">end</font></b>
+<pre><b><u><font color="#000000">def</font></u></b> with_return
+  result = <b><u><font color="#000000">yield</font></u></b>(<font color="#000000">5</font>)
+  puts <font color="#808080">"The block returned #{result}"</font>
+<b><u><font color="#000000">end</font></u></b>
 
-<font color="#ff0000">with_return </font><font color="#F3E651">{</font><font color="#ff0000"> </font><font color="#F3E651">|</font><font color="#ff0000">n</font><font color="#F3E651">|</font><font color="#ff0000"> n </font><font color="#F3E651">*</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#ff0000"> </font><font color="#F3E651">}</font>
-<i><font color="#ababab"># =&gt; The block returned 10</font></i>
+with_return { |n| n * <font color="#000000">2</font> }
+<i><font color="silver"># =&gt; The block returned 10</font></i>
 </pre>
 <br />
 <span>This demonstrates passing an argument to the block and using its return value.</span><br />
@@ -206,17 +201,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab"># Two strings with the same content are different objects</font></i>
-<font color="#ff0000">p </font><font color="#bb00ff">"foo"</font><font color="#F3E651">.</font><font color="#ff0000">object_id</font>
-<font color="#ff0000">p </font><font color="#bb00ff">"foo"</font><font color="#F3E651">.</font><font color="#ff0000">object_id</font>
+<pre><i><font color="silver"># Two strings with the same content are different objects</font></i>
+p <font color="#808080">"foo"</font>.object_id
+p <font color="#808080">"foo"</font>.object_id
 
-<i><font color="#ababab"># Two symbols with the same content are the same object</font></i>
-<font color="#ff0000">p </font><font color="#F3E651">:</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">object_id</font>
-<font color="#ff0000">p </font><font color="#F3E651">:</font><font color="#ff0000">foo</font><font color="#F3E651">.</font><font color="#ff0000">object_id</font>
+<i><font color="silver"># Two symbols with the same content are the same object</font></i>
+p :foo.object_id
+p :foo.object_id
 
-<i><font color="#ababab"># Modern hash syntax uses symbols as keys</font></i>
-<font color="#ff0000">my_hash </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">{</font><font color="#ff0000"> name</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">"Paul"</font><font color="#F3E651">,</font><font color="#ff0000"> language</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">"Ruby"</font><font color="#ff0000"> </font><font color="#F3E651">}</font>
-<font color="#ff0000">p my_hash</font><font color="#F3E651">[:</font><font color="#ff0000">name</font><font color="#F3E651">]</font><font color="#ff0000"> </font><i><font color="#ababab"># =&gt; "Paul"</font></i>
+<i><font color="silver"># Modern hash syntax uses symbols as keys</font></i>
+my_hash = { name: <font color="#808080">"Paul"</font>, language: <font color="#808080">"Ruby"</font> }
+p my_hash[:name] <i><font color="silver"># =&gt; "Paul"</font></i>
 </pre>
 <br />
 <span>This code highlights the difference between strings and symbols and shows the convenient hash syntax.</span><br />
@@ -229,13 +224,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#ababab"># Array of strings</font></i>
-<font color="#ff0000">p </font><font color="#F3E651">%</font><font color="#ff0000">w</font><font color="#F3E651">[</font><font color="#ff0000">one two three</font><font color="#F3E651">]</font>
-<i><font color="#ababab"># =&gt; ["one", "two", "three"]</font></i>
+<pre><i><font color="silver"># Array of strings</font></i>
+p %w[one two three]
+<i><font color="silver"># =&gt; ["one", "two", "three"]</font></i>
 
-<i><font color="#ababab"># Array of symbols</font></i>
-<font color="#ff0000">p </font><font color="#F3E651">%</font><font color="#ff0000">i</font><font color="#F3E651">[</font><font color="#ff0000">one two three</font><font color="#F3E651">]</font>
-<i><font color="#ababab"># =&gt; [:one, :two, :three]</font></i>
+<i><font color="silver"># Array of symbols</font></i>
+p %i[one two three]
+<i><font color="silver"># =&gt; [:one, :two, :three]</font></i>
 </pre>
 <br />
 <span>A quick way to create arrays. You can also retrieve multiple values at once.</span><br />
@@ -244,13 +239,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#ff0000">arr </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">[</font><font color="#bb00ff">10</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">20</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">30</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">40</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">50</font><font color="#F3E651">]</font>
-<font color="#ff0000">p arr</font><font color="#F3E651">.</font><font color="#ff0000">values_at</font><font color="#F3E651">(</font><font color="#bb00ff">0</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#bb00ff">4</font><font color="#F3E651">)</font>
-<i><font color="#ababab"># =&gt; [10, 30, 50]</font></i>
+<pre>arr = [<font color="#000000">10</font>, <font color="#000000">20</font>, <font color="#000000">30</font>, <font color="#000000">40</font>, <font color="#000000">50</font>]
+p arr.values_at(<font color="#000000">0</font>, <font color="#000000">2</font>, <font color="#000000">4</font>)
+<i><font color="silver"># =&gt; [10, 30, 50]</font></i>
 
-<font color="#ff0000">hash </font><font color="#F3E651">=</font><font color="#ff0000"> </font><font color="#F3E651">{</font><font color="#ff0000"> a</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">1</font><font color="#F3E651">,</font><font color="#ff0000"> b</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">2</font><font color="#F3E651">,</font><font color="#ff0000"> c</font><font color="#F3E651">:</font><font color="#ff0000"> </font><font color="#bb00ff">3</font><font color="#ff0000"> </font><font color="#F3E651">}</font>
-<font color="#ff0000">p hash</font><font color="#F3E651">.</font><font color="#ff0000">values_at</font><font color="#F3E651">(:</font><font color="#ff0000">a</font><font color="#F3E651">,</font><font color="#ff0000"> </font><font color="#F3E651">:</font><font color="#ff0000">c</font><font color="#F3E651">)</font>
-<i><font color="#ababab"># =&gt; [1, 3]</font></i>
+hash = { a: <font color="#000000">1</font>, b: <font color="#000000">2</font>, c: <font color="#000000">3</font> }
+p hash.values_at(:a, :c)
+<i><font color="silver"># =&gt; [1, 3]</font></i>
 </pre>
 <br />
 <span>The <span class='inlinecode'>values_at</span> method is a concise way to get multiple elements.</span><br />
@@ -269,11 +264,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
-    Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-    served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-    <a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-    <br />
-    Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>
