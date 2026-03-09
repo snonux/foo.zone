@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-03-09T08:44:03+02:00</updated>
+    <updated>2026-03-09T09:06:40+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -3573,14 +3573,6 @@ $ curl -s -G "http://localhost:3200/api/search" \
 <li>⇢ ⇢ <a href='#adding-freebsd-hosts-to-prometheus'>Adding FreeBSD hosts to Prometheus</a></li>
 <li>⇢ ⇢ <a href='#freebsd-memory-metrics-compatibility'>FreeBSD memory metrics compatibility</a></li>
 <li>⇢ ⇢ <a href='#disk-io-metrics-limitation'>Disk I/O metrics limitation</a></li>
-<li>⇢ <a href='#monitoring-external-openbsd-hosts'>Monitoring external OpenBSD hosts</a></li>
-<li>⇢ ⇢ <a href='#installing-node-exporter-on-openbsd'>Installing Node Exporter on OpenBSD</a></li>
-<li>⇢ ⇢ <a href='#adding-openbsd-hosts-to-prometheus'>Adding OpenBSD hosts to Prometheus</a></li>
-<li>⇢ ⇢ <a href='#openbsd-memory-metrics-compatibility'>OpenBSD memory metrics compatibility</a></li>
-<li>⇢ <a href='#enabling-etcd-metrics-in-k3s'>Enabling etcd metrics in k3s</a></li>
-<li>⇢ ⇢ <a href='#configuring-prometheus-to-scrape-etcd'>Configuring Prometheus to scrape etcd</a></li>
-<li>⇢ ⇢ <a href='#verifying-etcd-metrics'>Verifying etcd metrics</a></li>
-<li>⇢ ⇢ <a href='#complete-persistence-valuesyaml'>Complete persistence-values.yaml</a></li>
 <li>⇢ <a href='#zfs-monitoring-for-freebsd-servers'>ZFS Monitoring for FreeBSD Servers</a></li>
 <li>⇢ ⇢ <a href='#node-exporter-zfs-collector'>Node Exporter ZFS Collector</a></li>
 <li>⇢ ⇢ <a href='#verifying-zfs-metrics'>Verifying ZFS Metrics</a></li>
@@ -3588,9 +3580,12 @@ $ curl -s -G "http://localhost:3200/api/search" \
 <li>⇢ ⇢ <a href='#grafana-dashboards'>Grafana Dashboards</a></li>
 <li>⇢ ⇢ <a href='#deployment'>Deployment</a></li>
 <li>⇢ ⇢ <a href='#verifying-zfs-metrics-in-prometheus'>Verifying ZFS Metrics in Prometheus</a></li>
-<li>⇢ ⇢ <a href='#accessing-the-dashboards'>Accessing the Dashboards</a></li>
 <li>⇢ ⇢ <a href='#key-metrics-to-monitor'>Key Metrics to Monitor</a></li>
 <li>⇢ ⇢ <a href='#zfs-pool-and-dataset-metrics-via-textfile-collector'>ZFS Pool and Dataset Metrics via Textfile Collector</a></li>
+<li>⇢ <a href='#monitoring-external-openbsd-hosts'>Monitoring external OpenBSD hosts</a></li>
+<li>⇢ ⇢ <a href='#installing-node-exporter-on-openbsd'>Installing Node Exporter on OpenBSD</a></li>
+<li>⇢ ⇢ <a href='#adding-openbsd-hosts-to-prometheus'>Adding OpenBSD hosts to Prometheus</a></li>
+<li>⇢ ⇢ <a href='#openbsd-memory-metrics-compatibility'>OpenBSD memory metrics compatibility</a></li>
 <li>⇢ <a href='#distributed-tracing-with-grafana-tempo'>Distributed Tracing with Grafana Tempo</a></li>
 <li>⇢ ⇢ <a href='#why-distributed-tracing'>Why Distributed Tracing?</a></li>
 <li>⇢ ⇢ <a href='#deploying-grafana-tempo'>Deploying Grafana Tempo</a></li>
@@ -3602,8 +3597,6 @@ $ curl -s -G "http://localhost:3200/api/search" \
 <li>⇢ <a href='#-upgrade-alloy'>⇢# Upgrade Alloy</a></li>
 <li>⇢ ⇢ <a href='#demo-tracing-application'>Demo Tracing Application</a></li>
 <li>⇢ <a href='#-application-architecture'>⇢# Application Architecture</a></li>
-<li>⇢ <a href='#-opentelemetry-instrumentation'>⇢# OpenTelemetry Instrumentation</a></li>
-<li>⇢ <a href='#-deployment'>⇢# Deployment</a></li>
 <li>⇢ ⇢ <a href='#visualizing-traces-in-grafana'>Visualizing Traces in Grafana</a></li>
 <li>⇢ <a href='#-accessing-traces'>⇢# Accessing Traces</a></li>
 <li>⇢ <a href='#-service-graph-visualization'>⇢# Service Graph Visualization</a></li>
@@ -3615,21 +3608,21 @@ $ curl -s -G "http://localhost:3200/api/search" \
 <li>⇢ ⇢ <a href='#verifying-the-complete-pipeline'>Verifying the Complete Pipeline</a></li>
 <li>⇢ ⇢ <a href='#practical-example-viewing-a-distributed-trace'>Practical Example: Viewing a Distributed Trace</a></li>
 <li>⇢ ⇢ <a href='#storage-and-retention'>Storage and Retention</a></li>
-<li>⇢ ⇢ <a href='#complete-observability-stack'>Complete Observability Stack</a></li>
 <li>⇢ ⇢ <a href='#configuration-files'>Configuration Files</a></li>
 <li>⇢ <a href='#summary'>Summary</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
-<span>In this blog post, I set up a complete observability stack for the k3s cluster. Observability is crucial for understanding what&#39;s happening inside the cluster—whether its tracking resource usage, debugging issues, or analysing application behaviour. The stack consists of four main components, all deployed into the <span class='inlinecode'>monitoring</span> namespace:</span><br />
+<span>In this blog post, I set up a complete observability stack for the k3s cluster. Observability is crucial for understanding what&#39;s happening inside the cluster—whether its tracking resource usage, debugging issues, or analysing application behaviour. The stack consists of five main components, all deployed into the <span class='inlinecode'>monitoring</span> namespace:</span><br />
 <br />
 <ul>
 <li>Prometheus: time-series database for metrics collection and alerting</li>
 <li>Grafana: visualisation and dashboarding frontend</li>
 <li>Loki: log aggregation system (like Prometheus, but for logs)</li>
-<li>Alloy: telemetry collector that ships logs from all pods to Loki</li>
+<li>Alloy: telemetry collector that ships logs and traces from all pods to Loki and Tempo</li>
+<li>Tempo: distributed tracing backend for request flow analysis across microservices</li>
 </ul><br />
-<span>Together, these form the "PLG" stack (Prometheus, Loki, Grafana), which is a popular open-source alternative to commercial observability platforms.</span><br />
+<span>Together, these form the "PLG" stack (Prometheus, Loki, Grafana) extended with Tempo for distributed tracing, which is a popular open-source alternative to commercial observability platforms.</span><br />
 <br />
 <span>All manifests for the f3s stack live in my configuration repository:</span><br />
 <br />
@@ -3673,6 +3666,7 @@ http://www.gnu.org/software/src-highlite -->
 <li><span class='inlinecode'>/data/nfs/k3svolumes/prometheus/data</span> — Prometheus time-series database</li>
 <li><span class='inlinecode'>/data/nfs/k3svolumes/grafana/data</span> — Grafana configuration, dashboards, and plugins</li>
 <li><span class='inlinecode'>/data/nfs/k3svolumes/loki/data</span> — Loki log chunks and index</li>
+<li><span class='inlinecode'>/data/nfs/k3svolumes/tempo/data</span> — Tempo trace data and WAL</li>
 </ul><br />
 <span>Each path gets a corresponding <span class='inlinecode'>PersistentVolume</span> and <span class='inlinecode'>PersistentVolumeClaim</span> in Kubernetes, allowing pods to mount them as regular volumes. Because the underlying storage is ZFS with replication, we get snapshots and redundancy for free.</span><br />
 <br />
@@ -3771,7 +3765,7 @@ kubeControllerManager:
     insecureSkipVerify: true
 </pre>
 <br />
-<span>By default, k3s binds the controller-manager to localhost only, so the "Kubernetes / Controller Manager" dashboard in Grafana will show no data. To expose the metrics endpoint, add the following to <span class='inlinecode'>/etc/rancher/k3s/config.yaml</span> on each k3s server node:</span><br />
+<span>By default, k3s binds the controller-manager to localhost only and doesn&#39;t expose etcd metrics, so the "Kubernetes / Controller Manager" and "etcd" dashboards in Grafana will show no data. To fix both, add the following to <span class='inlinecode'>/etc/rancher/k3s/config.yaml</span> on each k3s server node:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -3780,11 +3774,26 @@ http://www.gnu.org/software/src-highlite -->
 <pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># cat &gt;&gt; /etc/rancher/k3s/config.yaml &lt;&lt; 'EOF'</font></i>
 <font color="#ff0000">kube-controller-manager-arg</font><font color="#F3E651">:</font>
 <font color="#ff0000">  - bind-address</font><font color="#F3E651">=</font><font color="#bb00ff">0.0</font><font color="#F3E651">.</font><font color="#bb00ff">0.0</font>
+<font color="#ff0000">etcd-expose-metrics</font><font color="#F3E651">:</font><font color="#ff0000"> </font><b><font color="#ffffff">true</font></b>
 <font color="#ff0000">EOF</font>
 <font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># systemctl restart k3s</font></i>
 </pre>
 <br />
-<span>Repeat for <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span>. After restarting all nodes, the controller-manager metrics endpoint will be accessible and Prometheus can scrape it.</span><br />
+<span>Repeat for <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span>. After restarting all nodes, the controller-manager metrics endpoint will be accessible and etcd metrics are available on port 2381. Prometheus can now scrape both.</span><br />
+<br />
+<span>Verify etcd metrics are exposed:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#F3E651">[</font><font color="#ff0000">root@r0 </font><font color="#F3E651">~]</font><i><font color="#ababab"># curl -s http://127.0.0.1:2381/metrics | grep etcd_server_has_leader</font></i>
+<font color="#ff0000">etcd_server_has_leader </font><font color="#bb00ff">1</font>
+</pre>
+<br />
+<span>The full <span class='inlinecode'>persistence-values.yaml</span> and all other Prometheus configuration files are available on Codeberg:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>codeberg.org/snonux/conf/f3s/prometheus</a><br />
 <br />
 <span>The persistent volume definitions bind to specific paths on the NFS share using <span class='inlinecode'>hostPath</span> volumes—the same pattern used for other services in Part 7:</span><br />
 <br />
@@ -3810,6 +3819,8 @@ http://www.gnu.org/software/src-highlite -->
 <a href='./f3s-kubernetes-with-freebsd-part-8/grafana-prometheus.png'><img alt='Grafana dashboard showing Prometheus metrics' title='Grafana dashboard showing Prometheus metrics' src='./f3s-kubernetes-with-freebsd-part-8/grafana-prometheus.png' /></a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-8/grafana-dashboard.png'><img alt='Grafana dashboard showing cluster metrics' title='Grafana dashboard showing cluster metrics' src='./f3s-kubernetes-with-freebsd-part-8/grafana-dashboard.png' /></a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-etcd-dashboard.png'><img alt='Grafana etcd dashboard showing cluster health, RPC rate, disk sync duration, and peer round trip times' title='Grafana etcd dashboard showing cluster health, RPC rate, disk sync duration, and peer round trip times' src='./f3s-kubernetes-with-freebsd-part-8/grafana-etcd-dashboard.png' /></a><br />
 <br />
 <h2 style='display: inline' id='installing-loki-and-alloy'>Installing Loki and Alloy</h2><br />
 <br />
@@ -3962,7 +3973,10 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">prometheus-prometheus-node-exporter-2nsg9                </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
 <font color="#ff0000">prometheus-prometheus-node-exporter-mqr</font><font color="#bb00ff">25</font><font color="#ff0000">                </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
 <font color="#ff0000">prometheus-prometheus-node-exporter-wp4ds                </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          42d</font>
+<font color="#ff0000">tempo-</font><font color="#bb00ff">0</font><font color="#ff0000">                                                  </font><font color="#bb00ff">1</font><font color="#F3E651">/</font><font color="#bb00ff">1</font><font color="#ff0000">     Running   </font><font color="#bb00ff">0</font><font color="#ff0000">          1d</font>
 </pre>
+<br />
+<span>Note: Tempo (<span class='inlinecode'>tempo-0</span>) is deployed later in this post in the "Distributed Tracing with Grafana Tempo" section. It is included in the pod listing here for completeness.</span><br />
 <br />
 <span>And the services:</span><br />
 <br />
@@ -3982,6 +3996,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#ff0000">prometheus-kube-prometheus-prometheus     ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">152.163</font><font color="#ff0000">   </font><font color="#bb00ff">9090</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">8080</font><font color="#ff0000">/TCP</font>
 <font color="#ff0000">prometheus-kube-state-metrics             ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">64.26</font><font color="#ff0000">     </font><font color="#bb00ff">8080</font><font color="#ff0000">/TCP</font>
 <font color="#ff0000">prometheus-prometheus-node-exporter       ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">127.242</font><font color="#ff0000">   </font><font color="#bb00ff">9100</font><font color="#ff0000">/TCP</font>
+<font color="#ff0000">tempo                                     ClusterIP   </font><font color="#bb00ff">10.43</font><font color="#F3E651">.</font><font color="#bb00ff">91.44</font><font color="#ff0000">     </font><font color="#bb00ff">3200</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">4317</font><font color="#ff0000">/TCP</font><font color="#F3E651">,</font><font color="#bb00ff">4318</font><font color="#ff0000">/TCP</font>
 </pre>
 <br />
 <span>Let me break down what each pod does:</span><br />
@@ -4009,6 +4024,9 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <ul>
 <li><span class='inlinecode'>prometheus-prometheus-node-exporter-...</span>: three Node Exporter pods running as a DaemonSet, one on each node. They expose hardware and OS-level metrics: CPU usage, memory, disk I/O, filesystem usage, network statistics, and more. These feed the "Node Exporter" dashboards in Grafana.</li>
+</ul><br />
+<ul>
+<li><span class='inlinecode'>tempo-0</span>: the Grafana Tempo instance for distributed tracing. It receives trace data from Alloy via OTLP (OpenTelemetry Protocol), stores traces on the NFS-backed persistent volume, and serves queries to Grafana. Tempo is covered in detail in the "Distributed Tracing with Grafana Tempo" section later in this post.</li>
 </ul><br />
 <h2 style='display: inline' id='using-the-observability-stack'>Using the observability stack</h2><br />
 <br />
@@ -4195,7 +4213,313 @@ spec:
 <br />
 <span>Unlike memory metrics, disk I/O metrics (<span class='inlinecode'>node_disk_read_bytes_total</span>, <span class='inlinecode'>node_disk_written_bytes_total</span>, etc.) are not available on FreeBSD. The Linux diskstats collector that provides these metrics doesn&#39;t have a FreeBSD equivalent in the node_exporter.</span><br />
 <br />
-<span>The disk I/O panels in the Node Exporter dashboards will show "No data" for FreeBSD hosts. FreeBSD does expose ZFS-specific metrics (<span class='inlinecode'>node_zfs_arcstats_*</span>) for ARC cache performance, and per-dataset I/O stats are available via <span class='inlinecode'>sysctl kstat.zfs</span>, but mapping these to the Linux-style metrics the dashboards expect is non-trivial. Custom ZFS-specific dashboards are covered later in this post.</span><br />
+<span>The disk I/O panels in the Node Exporter dashboards will show "No data" for FreeBSD hosts. FreeBSD does expose ZFS-specific metrics (<span class='inlinecode'>node_zfs_arcstats_*</span>) for ARC cache performance, and per-dataset I/O stats are available via <span class='inlinecode'>sysctl kstat.zfs</span>, but mapping these to the Linux-style metrics the dashboards expect is non-trivial. To address this, I created custom ZFS-specific dashboards, covered in the next section.</span><br />
+<br />
+<h2 style='display: inline' id='zfs-monitoring-for-freebsd-servers'>ZFS Monitoring for FreeBSD Servers</h2><br />
+<br />
+<span>The FreeBSD servers (f0, f1, f2) that provide NFS storage to the k3s cluster have ZFS filesystems. Monitoring ZFS performance is crucial for understanding storage performance and cache efficiency.</span><br />
+<br />
+<h3 style='display: inline' id='node-exporter-zfs-collector'>Node Exporter ZFS Collector</h3><br />
+<br />
+<span>The node_exporter running on each FreeBSD server (v1.9.1) includes a built-in ZFS collector that exposes metrics via sysctls. The ZFS collector is enabled by default and provides:</span><br />
+<br />
+<ul>
+<li>ARC (Adaptive Replacement Cache) statistics</li>
+<li>Cache hit/miss rates</li>
+<li>Memory usage and allocation</li>
+<li>MRU/MFU cache breakdown</li>
+<li>Data vs metadata distribution</li>
+</ul><br />
+<h3 style='display: inline' id='verifying-zfs-metrics'>Verifying ZFS Metrics</h3><br />
+<br />
+<span>On any FreeBSD server, check that ZFS metrics are being exposed:</span><br />
+<br />
+<pre>
+paul@f0:~ % curl -s http://localhost:9100/metrics | grep node_zfs_arcstats | wc -l
+      69
+</pre>
+<br />
+<span>The metrics are automatically scraped by Prometheus through the existing static configuration in additional-scrape-configs.yaml which targets all FreeBSD servers on port 9100 with the os: freebsd label.</span><br />
+<br />
+<h3 style='display: inline' id='zfs-recording-rules'>ZFS Recording Rules</h3><br />
+<br />
+<span>Created recording rules for easier dashboard consumption in zfs-recording-rules.yaml:</span><br />
+<br />
+<pre>
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: freebsd-zfs-rules
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  groups:
+    - name: freebsd-zfs-arc
+      interval: 30s
+      rules:
+        - record: node_zfs_arc_hit_rate_percent
+          expr: |
+            100 * (
+              rate(node_zfs_arcstats_hits_total{os="freebsd"}[5m]) /
+              (rate(node_zfs_arcstats_hits_total{os="freebsd"}[5m]) +
+               rate(node_zfs_arcstats_misses_total{os="freebsd"}[5m]))
+            )
+          labels:
+            os: freebsd
+        - record: node_zfs_arc_memory_usage_percent
+          expr: |
+            100 * (
+              node_zfs_arcstats_size_bytes{os="freebsd"} /
+              node_zfs_arcstats_c_max_bytes{os="freebsd"}
+            )
+          labels:
+            os: freebsd
+        # Additional rules for metadata %, target %, MRU/MFU %, etc.
+</pre>
+<br />
+<span>These recording rules calculate:</span><br />
+<br />
+<ul>
+<li>ARC hit rate percentage</li>
+<li>ARC memory usage percentage (current vs maximum)</li>
+<li>ARC target percentage (target vs maximum)</li>
+<li>Metadata vs data percentages</li>
+<li>MRU vs MFU cache percentages</li>
+<li>Demand data and metadata hit rates</li>
+</ul><br />
+<h3 style='display: inline' id='grafana-dashboards'>Grafana Dashboards</h3><br />
+<br />
+<span>Created two comprehensive ZFS monitoring dashboards (zfs-dashboards.yaml):</span><br />
+<br />
+<span>**Dashboard 1: FreeBSD ZFS (per-host detailed view)**</span><br />
+<br />
+<span>Includes variables to select:</span><br />
+<br />
+<ul>
+<li>FreeBSD server (f0, f1, or f2)</li>
+<li>ZFS pool (zdata, zroot, or all)</li>
+</ul><br />
+<span>Pool Overview Row:</span><br />
+<br />
+<ul>
+<li>Pool Capacity gauge (with thresholds: green &lt;70%, yellow &lt;85%, red &gt;85%)</li>
+<li>Pool Health status (ONLINE/DEGRADED/FAULTED with color coding)</li>
+<li>Total Pool Size stat</li>
+<li>Free Space stat</li>
+<li>Pool Space Usage Over Time (stacked: used + free)</li>
+<li>Pool Capacity Trend time series</li>
+</ul><br />
+<span>Dataset Statistics Row:</span><br />
+<br />
+<ul>
+<li>Table showing all datasets with columns: Pool, Dataset, Used, Available, Referenced</li>
+<li>Automatically filters by selected pool</li>
+</ul><br />
+<span>ARC Cache Statistics Row:</span><br />
+<br />
+<ul>
+<li>ARC Hit Rate gauge (red &lt;70%, yellow &lt;90%, green &gt;=90%)</li>
+<li>ARC Size time series (current, target, max)</li>
+<li>ARC Memory Usage percentage gauge</li>
+<li>ARC Hits vs Misses rate</li>
+<li>ARC Data vs Metadata stacked time series</li>
+</ul><br />
+<span>**Dashboard 2: FreeBSD ZFS Summary (cluster-wide overview)**</span><br />
+<br />
+<span>Cluster-Wide Pool Statistics Row:</span><br />
+<br />
+<ul>
+<li>Total Storage Capacity across all servers</li>
+<li>Total Used space</li>
+<li>Total Free space</li>
+<li>Average Pool Capacity gauge</li>
+<li>Pool Health Status (worst case across cluster)</li>
+<li>Total Pool Space Usage Over Time</li>
+<li>Per-Pool Capacity time series (all pools on all hosts)</li>
+</ul><br />
+<span>Per-Host Pool Breakdown Row:</span><br />
+<br />
+<ul>
+<li>Bar gauge showing capacity by host and pool</li>
+<li>Table with all pools: Host, Pool, Size, Used, Free, Capacity %, Health</li>
+</ul><br />
+<span>Cluster-Wide ARC Statistics Row:</span><br />
+<br />
+<ul>
+<li>Average ARC Hit Rate gauge across all hosts</li>
+<li>ARC Hit Rate by Host time series</li>
+<li>Total ARC Size Across Cluster</li>
+<li>Total ARC Hits vs Misses (cluster-wide sum)</li>
+<li>ARC Size by Host</li>
+</ul><br />
+<span>Dashboard Visualization:</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-dashboard.png'><img alt='ZFS monitoring dashboard in Grafana showing pool capacity, health, and I/O throughput' title='ZFS monitoring dashboard in Grafana showing pool capacity, health, and I/O throughput' src='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-dashboard.png' /></a><br />
+<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-arc-stats.png'><img alt='ZFS ARC cache statistics showing hit rate, memory usage, and size trends' title='ZFS ARC cache statistics showing hit rate, memory usage, and size trends' src='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-arc-stats.png' /></a><br />
+<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-datasets.png'><img alt='ZFS datasets table and ARC data vs metadata breakdown' title='ZFS datasets table and ARC data vs metadata breakdown' src='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-datasets.png' /></a><br />
+<br />
+<h3 style='display: inline' id='deployment'>Deployment</h3><br />
+<br />
+<span>Applied the resources to the cluster:</span><br />
+<br />
+<pre>
+cd /home/paul/git/conf/f3s/prometheus
+kubectl apply -f zfs-recording-rules.yaml
+kubectl apply -f zfs-dashboards.yaml
+</pre>
+<br />
+<span>Updated Justfile to include ZFS recording rules in install and upgrade targets:</span><br />
+<br />
+<pre>
+install:
+    kubectl apply -f persistent-volumes.yaml
+    kubectl create secret generic additional-scrape-configs --from-file=additional-scrape-configs.yaml -n monitoring --dry-run=client -o yaml | kubectl apply -f -
+    helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring -f persistence-values.yaml
+    kubectl apply -f freebsd-recording-rules.yaml
+    kubectl apply -f openbsd-recording-rules.yaml
+    kubectl apply -f zfs-recording-rules.yaml
+    just -f grafana-ingress/Justfile install
+</pre>
+<br />
+<h3 style='display: inline' id='verifying-zfs-metrics-in-prometheus'>Verifying ZFS Metrics in Prometheus</h3><br />
+<br />
+<span>Check that ZFS metrics are being collected:</span><br />
+<br />
+<pre>
+kubectl exec -n monitoring prometheus-prometheus-kube-prometheus-prometheus-0 -c prometheus -- \
+  wget -qO- &#39;http://localhost:9090/api/v1/query?query=node_zfs_arcstats_size_bytes&#39;
+</pre>
+<br />
+<span>Check recording rules are calculating correctly:</span><br />
+<br />
+<pre>
+kubectl exec -n monitoring prometheus-prometheus-kube-prometheus-prometheus-0 -c prometheus -- \
+  wget -qO- &#39;http://localhost:9090/api/v1/query?query=node_zfs_arc_memory_usage_percent&#39;
+</pre>
+<br />
+<span>Example output shows memory usage percentage for each FreeBSD server:</span><br />
+<br />
+<pre>
+"result":[
+  {"metric":{"instance":"192.168.2.130:9100","os":"freebsd"},"value":[...,"37.58"]},
+  {"metric":{"instance":"192.168.2.131:9100","os":"freebsd"},"value":[...,"12.85"]},
+  {"metric":{"instance":"192.168.2.132:9100","os":"freebsd"},"value":[...,"13.44"]}
+]
+</pre>
+<br />
+<h3 style='display: inline' id='key-metrics-to-monitor'>Key Metrics to Monitor</h3><br />
+<br />
+<ul>
+<li>ARC Hit Rate: Should typically be above 90% for optimal performance. Lower hit rates indicate the ARC cache is too small or workload has poor locality.</li>
+<li>ARC Memory Usage: Shows how much of the maximum ARC size is being used. If consistently at or near maximum, the ARC is effectively utilizing available memory.</li>
+<li>Data vs Metadata: Typically data should dominate, but workloads with many small files will show higher metadata percentages.</li>
+<li>MRU vs MFU: Most Recently Used vs Most Frequently Used cache. The ratio depends on workload characteristics.</li>
+<li>Pool Capacity: Monitor pool usage to ensure adequate free space. ZFS performance degrades when pools exceed 80% capacity.</li>
+<li>Pool Health: Should always show ONLINE (green). DEGRADED (yellow) indicates a disk issue requiring attention. FAULTED (red) requires immediate action.</li>
+<li>Dataset Usage: Track which datasets are consuming the most space to identify growth trends and plan capacity.</li>
+</ul><br />
+<h3 style='display: inline' id='zfs-pool-and-dataset-metrics-via-textfile-collector'>ZFS Pool and Dataset Metrics via Textfile Collector</h3><br />
+<br />
+<span>To complement the ARC statistics from node_exporter&#39;s built-in ZFS collector, I added pool capacity and dataset metrics using the textfile collector feature.</span><br />
+<br />
+<span>Created a script at <span class='inlinecode'>/usr/local/bin/zfs_pool_metrics.sh</span> on each FreeBSD server:</span><br />
+<br />
+<pre>
+#!/bin/sh
+# ZFS Pool and Dataset Metrics Collector for Prometheus
+
+OUTPUT_FILE="/var/tmp/node_exporter/zfs_pools.prom.$$"
+FINAL_FILE="/var/tmp/node_exporter/zfs_pools.prom"
+
+mkdir -p /var/tmp/node_exporter
+
+{
+    # Pool metrics
+    echo "# HELP zfs_pool_size_bytes Total size of ZFS pool"
+    echo "# TYPE zfs_pool_size_bytes gauge"
+    echo "# HELP zfs_pool_allocated_bytes Allocated space in ZFS pool"
+    echo "# TYPE zfs_pool_allocated_bytes gauge"
+    echo "# HELP zfs_pool_free_bytes Free space in ZFS pool"
+    echo "# TYPE zfs_pool_free_bytes gauge"
+    echo "# HELP zfs_pool_capacity_percent Capacity percentage"
+    echo "# TYPE zfs_pool_capacity_percent gauge"
+    echo "# HELP zfs_pool_health Pool health (0=ONLINE, 1=DEGRADED, 2=FAULTED)"
+    echo "# TYPE zfs_pool_health gauge"
+
+    zpool list -Hp -o name,size,allocated,free,capacity,health | \
+    while IFS=$&#39;\t&#39; read name size alloc free cap health; do
+        case "$health" in
+            ONLINE)   health_val=0 ;;
+            DEGRADED) health_val=1 ;;
+            FAULTED)  health_val=2 ;;
+            *)        health_val=6 ;;
+        esac
+        cap_num=$(echo "$cap" | sed &#39;s/%//&#39;)
+
+        echo "zfs_pool_size_bytes{pool=\"$name\"} $size"
+        echo "zfs_pool_allocated_bytes{pool=\"$name\"} $alloc"
+        echo "zfs_pool_free_bytes{pool=\"$name\"} $free"
+        echo "zfs_pool_capacity_percent{pool=\"$name\"} $cap_num"
+        echo "zfs_pool_health{pool=\"$name\"} $health_val"
+    done
+
+    # Dataset metrics
+    echo "# HELP zfs_dataset_used_bytes Used space in dataset"
+    echo "# TYPE zfs_dataset_used_bytes gauge"
+    echo "# HELP zfs_dataset_available_bytes Available space"
+    echo "# TYPE zfs_dataset_available_bytes gauge"
+    echo "# HELP zfs_dataset_referenced_bytes Referenced space"
+    echo "# TYPE zfs_dataset_referenced_bytes gauge"
+
+    zfs list -Hp -t filesystem -o name,used,available,referenced | \
+    while IFS=$&#39;\t&#39; read name used avail ref; do
+        pool=$(echo "$name" | cut -d/ -f1)
+        echo "zfs_dataset_used_bytes{pool=\"$pool\",dataset=\"$name\"} $used"
+        echo "zfs_dataset_available_bytes{pool=\"$pool\",dataset=\"$name\"} $avail"
+        echo "zfs_dataset_referenced_bytes{pool=\"$pool\",dataset=\"$name\"} $ref"
+    done
+} &gt; "$OUTPUT_FILE"
+
+mv "$OUTPUT_FILE" "$FINAL_FILE"
+</pre>
+<br />
+<span>Deployed to all FreeBSD servers:</span><br />
+<br />
+<pre>
+for host in f0 f1 f2; do
+    scp /tmp/zfs_pool_metrics.sh paul@$host:/tmp/
+    ssh paul@$host &#39;doas mv /tmp/zfs_pool_metrics.sh /usr/local/bin/ &amp;&amp; \
+                    doas chmod +x /usr/local/bin/zfs_pool_metrics.sh&#39;
+done
+</pre>
+<br />
+<span>Set up cron jobs to run every minute:</span><br />
+<br />
+<pre>
+for host in f0 f1 f2; do
+    ssh paul@$host &#39;echo "* * * * * /usr/local/bin/zfs_pool_metrics.sh &gt;/dev/null 2&gt;&amp;1" | \
+                    doas crontab -&#39;
+done
+</pre>
+<br />
+<span>The textfile collector (already configured with --collector.textfile.directory=/var/tmp/node_exporter) automatically picks up the metrics.</span><br />
+<br />
+<span>Verify metrics are being exposed:</span><br />
+<br />
+<pre>
+paul@f0:~ % curl -s http://localhost:9100/metrics | grep "^zfs_pool" | head -5
+zfs_pool_allocated_bytes{pool="zdata"} 6.47622733824e+11
+zfs_pool_allocated_bytes{pool="zroot"} 5.3338578944e+10
+zfs_pool_capacity_percent{pool="zdata"} 64
+zfs_pool_capacity_percent{pool="zroot"} 10
+zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
+</pre>
+<br />
+<span>All ZFS-related configuration files are available on Codeberg:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/zfs-recording-rules.yaml'>zfs-recording-rules.yaml on Codeberg</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/zfs-dashboards.yaml'>zfs-dashboards.yaml on Codeberg</a><br />
 <br />
 <h2 style='display: inline' id='monitoring-external-openbsd-hosts'>Monitoring external OpenBSD hosts</h2><br />
 <br />
@@ -4322,446 +4646,11 @@ spec:
 <br />
 <span>After running <span class='inlinecode'>just upgrade</span>, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.</span><br />
 <br />
-<span class='quote'>Updated Mon 09 Mar: Added section about enabling etcd metrics</span><br />
-<br />
-<h2 style='display: inline' id='enabling-etcd-metrics-in-k3s'>Enabling etcd metrics in k3s</h2><br />
-<br />
-<span>The etcd dashboard in Grafana initially showed no data because k3s uses an embedded etcd that doesn&#39;t expose metrics by default.</span><br />
-<br />
-<span>On each control-plane node (r0, r1, r2), create /etc/rancher/k3s/config.yaml:</span><br />
-<br />
-<pre>
-etcd-expose-metrics: true
-</pre>
-<br />
-<span>Then restart k3s on each node:</span><br />
-<br />
-<pre>
-systemctl restart k3s
-</pre>
-<br />
-<span>After restarting, etcd metrics are available on port 2381:</span><br />
-<br />
-<pre>
-curl http://127.0.0.1:2381/metrics | grep etcd
-</pre>
-<br />
-<h3 style='display: inline' id='configuring-prometheus-to-scrape-etcd'>Configuring Prometheus to scrape etcd</h3><br />
-<br />
-<span>In persistence-values.yaml, enable kubeEtcd with the node IP addresses:</span><br />
-<br />
-<pre>
-kubeEtcd:
-  enabled: true
-  endpoints:
-    - 192.168.1.120
-    - 192.168.1.121
-    - 192.168.1.122
-  service:
-    enabled: true
-    port: 2381
-    targetPort: 2381
-</pre>
-<br />
-<span>Apply the changes:</span><br />
-<br />
-<pre>
-just upgrade
-</pre>
-<br />
-<h3 style='display: inline' id='verifying-etcd-metrics'>Verifying etcd metrics</h3><br />
-<br />
-<span>After the changes, all etcd targets are being scraped:</span><br />
-<br />
-<pre>
-kubectl exec -n monitoring prometheus-prometheus-kube-prometheus-prometheus-0 \
-  -c prometheus -- wget -qO- &#39;http://localhost:9090/api/v1/query?query=etcd_server_has_leader&#39; | \
-  jq -r &#39;.data.result[] | "\(.metric.instance): \(.value[1])"&#39;
-</pre>
-<br />
-<span>Output:</span><br />
-<br />
-<pre>
-192.168.1.120:2381: 1
-192.168.1.121:2381: 1
-192.168.1.122:2381: 1
-</pre>
-<br />
-<span>The etcd dashboard in Grafana now displays metrics including Raft proposals, leader elections, and peer round trip times.</span><br />
-<br />
-<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-etcd-dashboard.png'><img alt='Grafana etcd dashboard showing cluster health, RPC rate, disk sync duration, and peer round trip times' title='Grafana etcd dashboard showing cluster health, RPC rate, disk sync duration, and peer round trip times' src='./f3s-kubernetes-with-freebsd-part-8/grafana-etcd-dashboard.png' /></a><br />
-<br />
-<h3 style='display: inline' id='complete-persistence-valuesyaml'>Complete persistence-values.yaml</h3><br />
-<br />
-<span>The complete updated persistence-values.yaml:</span><br />
-<br />
-<pre>
-kubeEtcd:
-  enabled: true
-  endpoints:
-    - 192.168.1.120
-    - 192.168.1.121
-    - 192.168.1.122
-  service:
-    enabled: true
-    port: 2381
-    targetPort: 2381
-
-prometheus:
-  prometheusSpec:
-    additionalScrapeConfigsSecret:
-      enabled: true
-      name: additional-scrape-configs
-      key: additional-scrape-configs.yaml
-    storageSpec:
-      volumeClaimTemplate:
-        spec:
-          storageClassName: ""
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 10Gi
-          selector:
-            matchLabels:
-              type: local
-              app: prometheus
-
-grafana:
-  persistence:
-    enabled: true
-    type: pvc
-    existingClaim: "grafana-data-pvc"
-
-  initChownData:
-    enabled: false
-
-  podSecurityContext:
-    fsGroup: 911
-    runAsUser: 911
-    runAsGroup: 911
-</pre>
-<br />
-<span class='quote'>Updated Mon 09 Mar: Added section about ZFS monitoring for FreeBSD servers</span><br />
-<br />
-<h2 style='display: inline' id='zfs-monitoring-for-freebsd-servers'>ZFS Monitoring for FreeBSD Servers</h2><br />
-<br />
-<span>The FreeBSD servers (f0, f1, f2) that provide NFS storage to the k3s cluster have ZFS filesystems. Monitoring ZFS performance is crucial for understanding storage performance and cache efficiency.</span><br />
-<br />
-<h3 style='display: inline' id='node-exporter-zfs-collector'>Node Exporter ZFS Collector</h3><br />
-<br />
-<span>The node_exporter running on each FreeBSD server (v1.9.1) includes a built-in ZFS collector that exposes metrics via sysctls. The ZFS collector is enabled by default and provides:</span><br />
-<br />
-<ul>
-<li>ARC (Adaptive Replacement Cache) statistics</li>
-<li>Cache hit/miss rates</li>
-<li>Memory usage and allocation</li>
-<li>MRU/MFU cache breakdown</li>
-<li>Data vs metadata distribution</li>
-</ul><br />
-<h3 style='display: inline' id='verifying-zfs-metrics'>Verifying ZFS Metrics</h3><br />
-<br />
-<span>On any FreeBSD server, check that ZFS metrics are being exposed:</span><br />
-<br />
-<pre>
-paul@f0:~ % curl -s http://localhost:9100/metrics | grep node_zfs_arcstats | wc -l
-      69
-</pre>
-<br />
-<span>The metrics are automatically scraped by Prometheus through the existing static configuration in additional-scrape-configs.yaml which targets all FreeBSD servers on port 9100 with the os: freebsd label.</span><br />
-<br />
-<h3 style='display: inline' id='zfs-recording-rules'>ZFS Recording Rules</h3><br />
-<br />
-<span>Created recording rules for easier dashboard consumption in zfs-recording-rules.yaml:</span><br />
-<br />
-<pre>
-apiVersion: monitoring.coreos.com/v1
-kind: PrometheusRule
-metadata:
-  name: freebsd-zfs-rules
-  namespace: monitoring
-  labels:
-    release: prometheus
-spec:
-  groups:
-    - name: freebsd-zfs-arc
-      interval: 30s
-      rules:
-        - record: node_zfs_arc_hit_rate_percent
-          expr: |
-            100 * (
-              rate(node_zfs_arcstats_hits_total{os="freebsd"}[5m]) /
-              (rate(node_zfs_arcstats_hits_total{os="freebsd"}[5m]) +
-               rate(node_zfs_arcstats_misses_total{os="freebsd"}[5m]))
-            )
-          labels:
-            os: freebsd
-        - record: node_zfs_arc_memory_usage_percent
-          expr: |
-            100 * (
-              node_zfs_arcstats_size_bytes{os="freebsd"} /
-              node_zfs_arcstats_c_max_bytes{os="freebsd"}
-            )
-          labels:
-            os: freebsd
-        # Additional rules for metadata %, target %, MRU/MFU %, etc.
-</pre>
-<br />
-<span>These recording rules calculate:</span><br />
-<br />
-<ul>
-<li>ARC hit rate percentage</li>
-<li>ARC memory usage percentage (current vs maximum)</li>
-<li>ARC target percentage (target vs maximum)</li>
-<li>Metadata vs data percentages</li>
-<li>MRU vs MFU cache percentages</li>
-<li>Demand data and metadata hit rates</li>
-</ul><br />
-<h3 style='display: inline' id='grafana-dashboards'>Grafana Dashboards</h3><br />
-<br />
-<span>Created two comprehensive ZFS monitoring dashboards (zfs-dashboards.yaml):</span><br />
-<br />
-<span>**Dashboard 1: FreeBSD ZFS (per-host detailed view)**</span><br />
-<br />
-<span>Includes variables to select:</span><br />
-<ul>
-<li>FreeBSD server (f0, f1, or f2)</li>
-<li>ZFS pool (zdata, zroot, or all)</li>
-</ul><br />
-<span>**Pool Overview Row:**</span><br />
-<ul>
-<li>Pool Capacity gauge (with thresholds: green &lt;70%, yellow &lt;85%, red &gt;85%)</li>
-<li>Pool Health status (ONLINE/DEGRADED/FAULTED with color coding)</li>
-<li>Total Pool Size stat</li>
-<li>Free Space stat</li>
-<li>Pool Space Usage Over Time (stacked: used + free)</li>
-<li>Pool Capacity Trend time series</li>
-</ul><br />
-<span>**Dataset Statistics Row:**</span><br />
-<ul>
-<li>Table showing all datasets with columns: Pool, Dataset, Used, Available, Referenced</li>
-<li>Automatically filters by selected pool</li>
-</ul><br />
-<span>**ARC Cache Statistics Row:**</span><br />
-<ul>
-<li>ARC Hit Rate gauge (red &lt;70%, yellow &lt;90%, green &gt;=90%)</li>
-<li>ARC Size time series (current, target, max)</li>
-<li>ARC Memory Usage percentage gauge</li>
-<li>ARC Hits vs Misses rate</li>
-<li>ARC Data vs Metadata stacked time series</li>
-</ul><br />
-<span>**Dashboard 2: FreeBSD ZFS Summary (cluster-wide overview)**</span><br />
-<br />
-<span>**Cluster-Wide Pool Statistics Row:**</span><br />
-<ul>
-<li>Total Storage Capacity across all servers</li>
-<li>Total Used space</li>
-<li>Total Free space</li>
-<li>Average Pool Capacity gauge</li>
-<li>Pool Health Status (worst case across cluster)</li>
-<li>Total Pool Space Usage Over Time</li>
-<li>Per-Pool Capacity time series (all pools on all hosts)</li>
-</ul><br />
-<span>**Per-Host Pool Breakdown Row:**</span><br />
-<ul>
-<li>Bar gauge showing capacity by host and pool</li>
-<li>Table with all pools: Host, Pool, Size, Used, Free, Capacity %, Health</li>
-</ul><br />
-<span>**Cluster-Wide ARC Statistics Row:**</span><br />
-<ul>
-<li>Average ARC Hit Rate gauge across all hosts</li>
-<li>ARC Hit Rate by Host time series</li>
-<li>Total ARC Size Across Cluster</li>
-<li>Total ARC Hits vs Misses (cluster-wide sum)</li>
-<li>ARC Size by Host</li>
-</ul><br />
-<span>**Dashboard Visualization:**</span><br />
-<br />
-<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-dashboard.png'><img alt='ZFS monitoring dashboard in Grafana showing pool capacity, health, and I/O throughput' title='ZFS monitoring dashboard in Grafana showing pool capacity, health, and I/O throughput' src='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-dashboard.png' /></a><br />
-<br />
-<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-arc-stats.png'><img alt='ZFS ARC cache statistics showing hit rate, memory usage, and size trends' title='ZFS ARC cache statistics showing hit rate, memory usage, and size trends' src='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-arc-stats.png' /></a><br />
-<br />
-<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-datasets.png'><img alt='ZFS datasets table and ARC data vs metadata breakdown' title='ZFS datasets table and ARC data vs metadata breakdown' src='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-datasets.png' /></a><br />
-<br />
-<h3 style='display: inline' id='deployment'>Deployment</h3><br />
-<br />
-<span>Applied the resources to the cluster:</span><br />
-<br />
-<pre>
-cd /home/paul/git/conf/f3s/prometheus
-kubectl apply -f zfs-recording-rules.yaml
-kubectl apply -f zfs-dashboards.yaml
-</pre>
-<br />
-<span>Updated Justfile to include ZFS recording rules in install and upgrade targets:</span><br />
-<br />
-<pre>
-install:
-    kubectl apply -f persistent-volumes.yaml
-    kubectl create secret generic additional-scrape-configs --from-file=additional-scrape-configs.yaml -n monitoring --dry-run=client -o yaml | kubectl apply -f -
-    helm install prometheus prometheus-community/kube-prometheus-stack --namespace monitoring -f persistence-values.yaml
-    kubectl apply -f freebsd-recording-rules.yaml
-    kubectl apply -f openbsd-recording-rules.yaml
-    kubectl apply -f zfs-recording-rules.yaml
-    just -f grafana-ingress/Justfile install
-</pre>
-<br />
-<h3 style='display: inline' id='verifying-zfs-metrics-in-prometheus'>Verifying ZFS Metrics in Prometheus</h3><br />
-<br />
-<span>Check that ZFS metrics are being collected:</span><br />
-<br />
-<pre>
-kubectl exec -n monitoring prometheus-prometheus-kube-prometheus-prometheus-0 -c prometheus -- \
-  wget -qO- &#39;http://localhost:9090/api/v1/query?query=node_zfs_arcstats_size_bytes&#39;
-</pre>
-<br />
-<span>Check recording rules are calculating correctly:</span><br />
-<br />
-<pre>
-kubectl exec -n monitoring prometheus-prometheus-kube-prometheus-prometheus-0 -c prometheus -- \
-  wget -qO- &#39;http://localhost:9090/api/v1/query?query=node_zfs_arc_memory_usage_percent&#39;
-</pre>
-<br />
-<span>Example output shows memory usage percentage for each FreeBSD server:</span><br />
-<br />
-<pre>
-"result":[
-  {"metric":{"instance":"192.168.2.130:9100","os":"freebsd"},"value":[...,"37.58"]},
-  {"metric":{"instance":"192.168.2.131:9100","os":"freebsd"},"value":[...,"12.85"]},
-  {"metric":{"instance":"192.168.2.132:9100","os":"freebsd"},"value":[...,"13.44"]}
-]
-</pre>
-<br />
-<h3 style='display: inline' id='accessing-the-dashboards'>Accessing the Dashboards</h3><br />
-<br />
-<span>The dashboards are automatically imported by the Grafana sidecar and accessible at:</span><br />
-<br />
-<a class='textlink' href='https://grafana.f3s.buetow.org'>https://grafana.f3s.buetow.org</a><br />
-<br />
-<span>Navigate to Dashboards and search for:</span><br />
-<ul>
-<li>"FreeBSD ZFS" - detailed per-host view with pool and dataset breakdowns</li>
-<li>"FreeBSD ZFS Summary" - cluster-wide overview of all ZFS storage</li>
-</ul><br />
-<h3 style='display: inline' id='key-metrics-to-monitor'>Key Metrics to Monitor</h3><br />
-<br />
-<span>**ARC Hit Rate:** Should typically be above 90% for optimal performance. Lower hit rates indicate the ARC cache is too small or workload has poor locality.</span><br />
-<br />
-<span>**ARC Memory Usage:** Shows how much of the maximum ARC size is being used. If consistently at or near maximum, the ARC is effectively utilizing available memory.</span><br />
-<br />
-<span>**Data vs Metadata:** Typically data should dominate, but workloads with many small files will show higher metadata percentages.</span><br />
-<br />
-<span>**MRU vs MFU:** Most Recently Used vs Most Frequently Used cache. The ratio depends on workload characteristics.</span><br />
-<br />
-<span>**Pool Capacity:** Monitor pool usage to ensure adequate free space. ZFS performance degrades when pools exceed 80% capacity.</span><br />
-<br />
-<span>**Pool Health:** Should always show ONLINE (green). DEGRADED (yellow) indicates a disk issue requiring attention. FAULTED (red) requires immediate action.</span><br />
-<br />
-<span>**Dataset Usage:** Track which datasets are consuming the most space to identify growth trends and plan capacity.</span><br />
-<br />
-<h3 style='display: inline' id='zfs-pool-and-dataset-metrics-via-textfile-collector'>ZFS Pool and Dataset Metrics via Textfile Collector</h3><br />
-<br />
-<span>To complement the ARC statistics from node_exporter&#39;s built-in ZFS collector, I added pool capacity and dataset metrics using the textfile collector feature.</span><br />
-<br />
-<span>Created a script at /usr/local/bin/zfs_pool_metrics.sh on each FreeBSD server:</span><br />
-<br />
-<pre>
-#!/bin/sh
-# ZFS Pool and Dataset Metrics Collector for Prometheus
-
-OUTPUT_FILE="/var/tmp/node_exporter/zfs_pools.prom.$$"
-FINAL_FILE="/var/tmp/node_exporter/zfs_pools.prom"
-
-mkdir -p /var/tmp/node_exporter
-
-{
-    # Pool metrics
-    echo "# HELP zfs_pool_size_bytes Total size of ZFS pool"
-    echo "# TYPE zfs_pool_size_bytes gauge"
-    echo "# HELP zfs_pool_allocated_bytes Allocated space in ZFS pool"
-    echo "# TYPE zfs_pool_allocated_bytes gauge"
-    echo "# HELP zfs_pool_free_bytes Free space in ZFS pool"
-    echo "# TYPE zfs_pool_free_bytes gauge"
-    echo "# HELP zfs_pool_capacity_percent Capacity percentage"
-    echo "# TYPE zfs_pool_capacity_percent gauge"
-    echo "# HELP zfs_pool_health Pool health (0=ONLINE, 1=DEGRADED, 2=FAULTED)"
-    echo "# TYPE zfs_pool_health gauge"
-
-    zpool list -Hp -o name,size,allocated,free,capacity,health | \
-    while IFS=$&#39;\t&#39; read name size alloc free cap health; do
-        case "$health" in
-            ONLINE)   health_val=0 ;;
-            DEGRADED) health_val=1 ;;
-            FAULTED)  health_val=2 ;;
-            *)        health_val=6 ;;
-        esac
-        cap_num=$(echo "$cap" | sed &#39;s/%//&#39;)
-
-        echo "zfs_pool_size_bytes{pool=\"$name\"} $size"
-        echo "zfs_pool_allocated_bytes{pool=\"$name\"} $alloc"
-        echo "zfs_pool_free_bytes{pool=\"$name\"} $free"
-        echo "zfs_pool_capacity_percent{pool=\"$name\"} $cap_num"
-        echo "zfs_pool_health{pool=\"$name\"} $health_val"
-    done
-
-    # Dataset metrics
-    echo "# HELP zfs_dataset_used_bytes Used space in dataset"
-    echo "# TYPE zfs_dataset_used_bytes gauge"
-    echo "# HELP zfs_dataset_available_bytes Available space"
-    echo "# TYPE zfs_dataset_available_bytes gauge"
-    echo "# HELP zfs_dataset_referenced_bytes Referenced space"
-    echo "# TYPE zfs_dataset_referenced_bytes gauge"
-
-    zfs list -Hp -t filesystem -o name,used,available,referenced | \
-    while IFS=$&#39;\t&#39; read name used avail ref; do
-        pool=$(echo "$name" | cut -d/ -f1)
-        echo "zfs_dataset_used_bytes{pool=\"$pool\",dataset=\"$name\"} $used"
-        echo "zfs_dataset_available_bytes{pool=\"$pool\",dataset=\"$name\"} $avail"
-        echo "zfs_dataset_referenced_bytes{pool=\"$pool\",dataset=\"$name\"} $ref"
-    done
-} &gt; "$OUTPUT_FILE"
-
-mv "$OUTPUT_FILE" "$FINAL_FILE"
-</pre>
-<br />
-<span>Deployed to all FreeBSD servers:</span><br />
-<br />
-<pre>
-for host in f0 f1 f2; do
-    scp /tmp/zfs_pool_metrics.sh paul@$host:/tmp/
-    ssh paul@$host &#39;doas mv /tmp/zfs_pool_metrics.sh /usr/local/bin/ &amp;&amp; \
-                    doas chmod +x /usr/local/bin/zfs_pool_metrics.sh&#39;
-done
-</pre>
-<br />
-<span>Set up cron jobs to run every minute:</span><br />
-<br />
-<pre>
-for host in f0 f1 f2; do
-    ssh paul@$host &#39;echo "* * * * * /usr/local/bin/zfs_pool_metrics.sh &gt;/dev/null 2&gt;&amp;1" | \
-                    doas crontab -&#39;
-done
-</pre>
-<br />
-<span>The textfile collector (already configured with --collector.textfile.directory=/var/tmp/node_exporter) automatically picks up the metrics.</span><br />
-<br />
-<span>Verify metrics are being exposed:</span><br />
-<br />
-<pre>
-paul@f0:~ % curl -s http://localhost:9100/metrics | grep "^zfs_pool" | head -5
-zfs_pool_allocated_bytes{pool="zdata"} 6.47622733824e+11
-zfs_pool_allocated_bytes{pool="zroot"} 5.3338578944e+10
-zfs_pool_capacity_percent{pool="zdata"} 64
-zfs_pool_capacity_percent{pool="zroot"} 10
-zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
-</pre>
-<br />
-<span class='quote'>Updated Mon 09 Mar: Added section about distributed tracing with Grafana Tempo</span><br />
-<br />
 <h2 style='display: inline' id='distributed-tracing-with-grafana-tempo'>Distributed Tracing with Grafana Tempo</h2><br />
 <br />
 <span>After implementing logs (Loki) and metrics (Prometheus), the final pillar of observability is distributed tracing. Grafana Tempo provides distributed tracing capabilities that help understand request flows across microservices.</span><br />
 <br />
-<span>How will this look tracing with Tempo like in Grafana? Have a look at the X-RAG blog post of mine:</span><br />
+<span>For a preview of what distributed tracing with Tempo looks like in Grafana, see the X-RAG blog post:</span><br />
 <br />
 <a class='textlink' href='./2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon</a><br />
 <br />
@@ -5008,25 +4897,28 @@ User → Frontend (Flask:5000) → Middleware (Flask:5001) → Backend (Flask:50
                     Alloy (OTLP:4317) → Tempo → Grafana
 </pre>
 <br />
-<span>**Frontend Service:**</span><br />
+<span>Frontend Service:</span><br />
+<br />
 <ul>
 <li>Receives HTTP requests at /api/process</li>
 <li>Forwards to middleware service</li>
 <li>Creates parent span for the entire request</li>
 </ul><br />
-<span>**Middleware Service:**</span><br />
+<span>Middleware Service:</span><br />
+<br />
 <ul>
 <li>Transforms data at /api/transform</li>
 <li>Calls backend service</li>
 <li>Creates child span linked to frontend</li>
 </ul><br />
-<span>**Backend Service:**</span><br />
+<span>Backend Service:</span><br />
+<br />
 <ul>
 <li>Returns data at /api/data</li>
 <li>Simulates database query (100ms sleep)</li>
 <li>Creates leaf span in the trace</li>
 </ul><br />
-<span>#### OpenTelemetry Instrumentation</span><br />
+<span>OpenTelemetry Instrumentation:</span><br />
 <br />
 <span>All services use Python OpenTelemetry libraries:</span><br />
 <br />
@@ -5083,7 +4975,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>Propagates trace context via W3C Trace Context headers</li>
 <li>Links parent and child spans across service boundaries</li>
 </ul><br />
-<span>#### Deployment</span><br />
+<span>Deployment:</span><br />
 <br />
 <span>Created Helm chart in /home/paul/git/conf/f3s/tracing-demo/ with three separate deployments, services, and an ingress.</span><br />
 <br />
@@ -5354,20 +5246,22 @@ Service: backend
 <a class='textlink' href='https://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon (more Grafana Tempo screenshots)</a><br />
 <br />
 <span>The trace reveals the distributed request flow:</span><br />
+<br />
 <ul>
-<li>**Frontend (221ms)**: Receives GET /api/process, executes business logic, calls middleware</li>
-<li>**Middleware (186ms)**: Receives POST /api/transform, transforms data, calls backend</li>
-<li>**Backend (104ms)**: Receives GET /api/data, simulates database query with 100ms sleep</li>
-<li>**Total request time**: 221ms end-to-end</li>
-<li>**Span propagation**: W3C Trace Context headers automatically link all spans</li>
+<li>Frontend (221ms): Receives GET /api/process, executes business logic, calls middleware</li>
+<li>Middleware (186ms): Receives POST /api/transform, transforms data, calls backend</li>
+<li>Backend (104ms): Receives GET /api/data, simulates database query with 100ms sleep</li>
+<li>Total request time: 221ms end-to-end</li>
+<li>Span propagation: W3C Trace Context headers automatically link all spans</li>
 </ul><br />
 <span>**6. Service graph visualization:**</span><br />
 <br />
 <span>The service graph is automatically generated from traces and shows service dependencies. For examples of service graph visualization in Grafana, see the screenshots in the X-RAG Observability Hackathon blog post.</span><br />
 <br />
-<a class='textlink' href='https://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon (includes service graph screenshots)</a><br />
+<a class='textlink' href='./2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon (includes service graph screenshots)</a><br />
 <br />
 <span>This visualization helps identify:</span><br />
+<br />
 <ul>
 <li>Request rates between services</li>
 <li>Average latency for each hop</li>
@@ -5388,37 +5282,6 @@ kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
 <li>Reduce retention to 72h (3 days)</li>
 <li>Implement sampling in Alloy</li>
 <li>Increase PV size</li>
-</ul><br />
-<h3 style='display: inline' id='complete-observability-stack'>Complete Observability Stack</h3><br />
-<br />
-<span>The f3s cluster now has complete observability:</span><br />
-<br />
-<span>**Metrics** (Prometheus):</span><br />
-<ul>
-<li>Cluster resource usage</li>
-<li>Application metrics</li>
-<li>Node metrics (FreeBSD ZFS, OpenBSD edge)</li>
-<li>etcd health</li>
-</ul><br />
-<span>**Logs** (Loki):</span><br />
-<ul>
-<li>All pod logs</li>
-<li>Structured log collection</li>
-<li>Log aggregation and search</li>
-</ul><br />
-<span>**Traces** (Tempo):</span><br />
-<ul>
-<li>Distributed request tracing</li>
-<li>Service dependency mapping</li>
-<li>Performance profiling</li>
-<li>Error tracking</li>
-</ul><br />
-<span>**Visualization** (Grafana):</span><br />
-<ul>
-<li>Unified dashboards</li>
-<li>Correlation between metrics, logs, and traces</li>
-<li>Service graphs</li>
-<li>Alerts</li>
 </ul><br />
 <h3 style='display: inline' id='configuration-files'>Configuration Files</h3><br />
 <br />
@@ -5441,7 +5304,12 @@ kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
 </ul><br />
 <span>This observability stack runs entirely on the home lab infrastructure, with data persisted to the NFS share. It&#39;s lightweight enough for a three-node cluster but provides the same capabilities as production-grade setups.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>prometheus configuration on Codeberg</a><br />
+<span>All configuration files are available on Codeberg:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>Prometheus, Grafana, and recording rules configuration</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>Loki and Alloy configuration</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tempo'>Tempo configuration</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tracing-demo'>Demo tracing application</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />

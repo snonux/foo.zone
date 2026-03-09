@@ -12,14 +12,15 @@ This is the 8th blog post about the f3s series for my self-hosting demands in a 
 
 ## Introduction
 
-In this blog post, I set up a complete observability stack for the k3s cluster. Observability is crucial for understanding what's happening inside the cluster—whether its tracking resource usage, debugging issues, or analysing application behaviour. The stack consists of four main components, all deployed into the `monitoring` namespace:
+In this blog post, I set up a complete observability stack for the k3s cluster. Observability is crucial for understanding what's happening inside the cluster—whether its tracking resource usage, debugging issues, or analysing application behaviour. The stack consists of five main components, all deployed into the `monitoring` namespace:
 
 * Prometheus: time-series database for metrics collection and alerting
 * Grafana: visualisation and dashboarding frontend
 * Loki: log aggregation system (like Prometheus, but for logs)
-* Alloy: telemetry collector that ships logs from all pods to Loki
+* Alloy: telemetry collector that ships logs and traces from all pods to Loki and Tempo
+* Tempo: distributed tracing backend for request flow analysis across microservices
 
-Together, these form the "PLG" stack (Prometheus, Loki, Grafana), which is a popular open-source alternative to commercial observability platforms.
+Together, these form the "PLG" stack (Prometheus, Loki, Grafana) extended with Tempo for distributed tracing, which is a popular open-source alternative to commercial observability platforms.
 
 All manifests for the f3s stack live in my configuration repository:
 
@@ -58,6 +59,7 @@ For example, the observability stack uses these paths on the NFS share:
 * `/data/nfs/k3svolumes/prometheus/data` — Prometheus time-series database
 * `/data/nfs/k3svolumes/grafana/data` — Grafana configuration, dashboards, and plugins
 * `/data/nfs/k3svolumes/loki/data` — Loki log chunks and index
+* `/data/nfs/k3svolumes/tempo/data` — Tempo trace data and WAL
 
 Each path gets a corresponding `PersistentVolume` and `PersistentVolumeClaim` in Kubernetes, allowing pods to mount them as regular volumes. Because the underlying storage is ZFS with replication, we get snapshots and redundancy for free.
 
@@ -144,17 +146,29 @@ kubeControllerManager:
     insecureSkipVerify: true
 ```
 
-By default, k3s binds the controller-manager to localhost only, so the "Kubernetes / Controller Manager" dashboard in Grafana will show no data. To expose the metrics endpoint, add the following to `/etc/rancher/k3s/config.yaml` on each k3s server node:
+By default, k3s binds the controller-manager to localhost only and doesn't expose etcd metrics, so the "Kubernetes / Controller Manager" and "etcd" dashboards in Grafana will show no data. To fix both, add the following to `/etc/rancher/k3s/config.yaml` on each k3s server node:
 
 ```sh
 [root@r0 ~]# cat >> /etc/rancher/k3s/config.yaml << 'EOF'
 kube-controller-manager-arg:
   - bind-address=0.0.0.0
+etcd-expose-metrics: true
 EOF
 [root@r0 ~]# systemctl restart k3s
 ```
 
-Repeat for `r1` and `r2`. After restarting all nodes, the controller-manager metrics endpoint will be accessible and Prometheus can scrape it.
+Repeat for `r1` and `r2`. After restarting all nodes, the controller-manager metrics endpoint will be accessible and etcd metrics are available on port 2381. Prometheus can now scrape both.
+
+Verify etcd metrics are exposed:
+
+```sh
+[root@r0 ~]# curl -s http://127.0.0.1:2381/metrics | grep etcd_server_has_leader
+etcd_server_has_leader 1
+```
+
+The full `persistence-values.yaml` and all other Prometheus configuration files are available on Codeberg:
+
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus codeberg.org/snonux/conf/f3s/prometheus
 
 The persistent volume definitions bind to specific paths on the NFS share using `hostPath` volumes—the same pattern used for other services in Part 7:
 
@@ -177,6 +191,8 @@ Grafana connects to Prometheus using the internal service URL `http://prometheus
 => ./f3s-kubernetes-with-freebsd-part-8/grafana-prometheus.png Grafana dashboard showing Prometheus metrics
 
 => ./f3s-kubernetes-with-freebsd-part-8/grafana-dashboard.png Grafana dashboard showing cluster metrics
+
+=> ./f3s-kubernetes-with-freebsd-part-8/grafana-etcd-dashboard.png Grafana etcd dashboard showing cluster health, RPC rate, disk sync duration, and peer round trip times
 
 ## Installing Loki and Alloy
 
@@ -313,7 +329,10 @@ prometheus-prometheus-kube-prometheus-prometheus-0       2/2     Running   0    
 prometheus-prometheus-node-exporter-2nsg9                1/1     Running   0          42d
 prometheus-prometheus-node-exporter-mqr25                1/1     Running   0          42d
 prometheus-prometheus-node-exporter-wp4ds                1/1     Running   0          42d
+tempo-0                                                  1/1     Running   0          1d
 ```
+
+Note: Tempo (`tempo-0`) is deployed later in this post in the "Distributed Tracing with Grafana Tempo" section. It is included in the pod listing here for completeness.
 
 And the services:
 
@@ -330,6 +349,7 @@ prometheus-kube-prometheus-operator       ClusterIP   10.43.246.121   443/TCP
 prometheus-kube-prometheus-prometheus     ClusterIP   10.43.152.163   9090/TCP,8080/TCP
 prometheus-kube-state-metrics             ClusterIP   10.43.64.26     8080/TCP
 prometheus-prometheus-node-exporter       ClusterIP   10.43.127.242   9100/TCP
+tempo                                     ClusterIP   10.43.91.44     3200/TCP,4317/TCP,4318/TCP
 ```
 
 Let me break down what each pod does:
@@ -349,6 +369,8 @@ Let me break down what each pod does:
 * `prometheus-prometheus-kube-prometheus-prometheus-0`: the Prometheus server that scrapes metrics from all configured targets (pods, services, nodes), stores them in a time-series database, evaluates alerting rules, and serves queries to Grafana.
 
 * `prometheus-prometheus-node-exporter-...`: three Node Exporter pods running as a DaemonSet, one on each node. They expose hardware and OS-level metrics: CPU usage, memory, disk I/O, filesystem usage, network statistics, and more. These feed the "Node Exporter" dashboards in Grafana.
+
+* `tempo-0`: the Grafana Tempo instance for distributed tracing. It receives trace data from Alloy via OTLP (OpenTelemetry Protocol), stores traces on the NFS-backed persistent volume, and serves queries to Grafana. Tempo is covered in detail in the "Distributed Tracing with Grafana Tempo" section later in this post.
 
 ## Using the observability stack
 
@@ -513,238 +535,7 @@ This file is saved as `freebsd-recording-rules.yaml` and applied as part of the 
 
 Unlike memory metrics, disk I/O metrics (`node_disk_read_bytes_total`, `node_disk_written_bytes_total`, etc.) are not available on FreeBSD. The Linux diskstats collector that provides these metrics doesn't have a FreeBSD equivalent in the node_exporter.
 
-The disk I/O panels in the Node Exporter dashboards will show "No data" for FreeBSD hosts. FreeBSD does expose ZFS-specific metrics (`node_zfs_arcstats_*`) for ARC cache performance, and per-dataset I/O stats are available via `sysctl kstat.zfs`, but mapping these to the Linux-style metrics the dashboards expect is non-trivial. Custom ZFS-specific dashboards are covered later in this post.
-
-## Monitoring external OpenBSD hosts
-
-The same approach works for OpenBSD hosts. I have two OpenBSD edge relay servers (`blowfish`, `fishfinger`) that handle TLS termination and forward traffic through WireGuard to the cluster. These can also be monitored with Node Exporter.
-
-### Installing Node Exporter on OpenBSD
-
-On each OpenBSD host, install the node_exporter package:
-
-```sh
-blowfish:~ $ doas pkg_add node_exporter
-quirks-7.103 signed on 2025-10-13T22:55:16Z
-The following new rcscripts were installed: /etc/rc.d/node_exporter
-See rcctl(8) for details.
-```
-
-Enable the service to start at boot:
-
-```sh
-blowfish:~ $ doas rcctl enable node_exporter
-```
-
-Configure node_exporter to listen on the WireGuard interface. This ensures metrics are only accessible through the secure tunnel, not the public network. Replace the IP with the host's WireGuard address:
-
-```sh
-blowfish:~ $ doas rcctl set node_exporter flags '--web.listen-address=192.168.2.110:9100'
-```
-
-Start the service:
-
-```sh
-blowfish:~ $ doas rcctl start node_exporter
-node_exporter(ok)
-```
-
-Verify it's running:
-
-```sh
-blowfish:~ $ curl -s http://192.168.2.110:9100/metrics | head -3
-# HELP go_gc_duration_seconds A summary of the wall-time pause...
-# TYPE go_gc_duration_seconds summary
-go_gc_duration_seconds{quantile="0"} 0
-```
-
-Repeat for the other OpenBSD host (`fishfinger`) with its respective WireGuard IP (`192.168.2.111`).
-
-### Adding OpenBSD hosts to Prometheus
-
-Update `additional-scrape-configs.yaml` to include the OpenBSD targets:
-
-```yaml
-- job_name: 'node-exporter'
-  static_configs:
-    - targets:
-      - '192.168.2.130:9100'  # f0 via WireGuard
-      - '192.168.2.131:9100'  # f1 via WireGuard
-      - '192.168.2.132:9100'  # f2 via WireGuard
-      labels:
-        os: freebsd
-    - targets:
-      - '192.168.2.110:9100'  # blowfish via WireGuard
-      - '192.168.2.111:9100'  # fishfinger via WireGuard
-      labels:
-        os: openbsd
-```
-
-The `os: openbsd` label allows filtering these hosts separately from FreeBSD and Linux nodes.
-
-### OpenBSD memory metrics compatibility
-
-OpenBSD uses the same memory metric names as FreeBSD (`node_memory_size_bytes`, `node_memory_free_bytes`, etc.), so a similar PrometheusRule is needed to generate Linux-compatible metrics:
-
-```yaml
-apiVersion: monitoring.coreos.com/v1
-kind: PrometheusRule
-metadata:
-  name: openbsd-memory-rules
-  namespace: monitoring
-  labels:
-    release: prometheus
-spec:
-  groups:
-    - name: openbsd-memory
-      rules:
-        - record: node_memory_MemTotal_bytes
-          expr: node_memory_size_bytes{os="openbsd"}
-          labels:
-            os: openbsd
-        - record: node_memory_MemAvailable_bytes
-          expr: |
-            node_memory_free_bytes{os="openbsd"}
-              + node_memory_inactive_bytes{os="openbsd"}
-              + node_memory_cache_bytes{os="openbsd"}
-          labels:
-            os: openbsd
-        - record: node_memory_MemFree_bytes
-          expr: node_memory_free_bytes{os="openbsd"}
-          labels:
-            os: openbsd
-        - record: node_memory_Cached_bytes
-          expr: node_memory_cache_bytes{os="openbsd"}
-          labels:
-            os: openbsd
-```
-
-This file is saved as `openbsd-recording-rules.yaml` and applied alongside the FreeBSD rules. Note that OpenBSD doesn't expose a buffer memory metric, so that rule is omitted.
-
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml openbsd-recording-rules.yaml on Codeberg
-
-After running `just upgrade`, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.
-
-> Updated Mon 09 Mar: Added section about enabling etcd metrics
-
-## Enabling etcd metrics in k3s
-
-The etcd dashboard in Grafana initially showed no data because k3s uses an embedded etcd that doesn't expose metrics by default.
-
-On each control-plane node (r0, r1, r2), create /etc/rancher/k3s/config.yaml:
-
-```
-etcd-expose-metrics: true
-```
-
-Then restart k3s on each node:
-
-```
-systemctl restart k3s
-```
-
-After restarting, etcd metrics are available on port 2381:
-
-```
-curl http://127.0.0.1:2381/metrics | grep etcd
-```
-
-### Configuring Prometheus to scrape etcd
-
-In persistence-values.yaml, enable kubeEtcd with the node IP addresses:
-
-```
-kubeEtcd:
-  enabled: true
-  endpoints:
-    - 192.168.1.120
-    - 192.168.1.121
-    - 192.168.1.122
-  service:
-    enabled: true
-    port: 2381
-    targetPort: 2381
-```
-
-Apply the changes:
-
-```
-just upgrade
-```
-
-### Verifying etcd metrics
-
-After the changes, all etcd targets are being scraped:
-
-```
-kubectl exec -n monitoring prometheus-prometheus-kube-prometheus-prometheus-0 \
-  -c prometheus -- wget -qO- 'http://localhost:9090/api/v1/query?query=etcd_server_has_leader' | \
-  jq -r '.data.result[] | "\(.metric.instance): \(.value[1])"'
-```
-
-Output:
-
-```
-192.168.1.120:2381: 1
-192.168.1.121:2381: 1
-192.168.1.122:2381: 1
-```
-
-The etcd dashboard in Grafana now displays metrics including Raft proposals, leader elections, and peer round trip times.
-
-=> ./f3s-kubernetes-with-freebsd-part-8/grafana-etcd-dashboard.png Grafana etcd dashboard showing cluster health, RPC rate, disk sync duration, and peer round trip times
-
-### Complete persistence-values.yaml
-
-The complete updated persistence-values.yaml:
-
-```
-kubeEtcd:
-  enabled: true
-  endpoints:
-    - 192.168.1.120
-    - 192.168.1.121
-    - 192.168.1.122
-  service:
-    enabled: true
-    port: 2381
-    targetPort: 2381
-
-prometheus:
-  prometheusSpec:
-    additionalScrapeConfigsSecret:
-      enabled: true
-      name: additional-scrape-configs
-      key: additional-scrape-configs.yaml
-    storageSpec:
-      volumeClaimTemplate:
-        spec:
-          storageClassName: ""
-          accessModes: ["ReadWriteOnce"]
-          resources:
-            requests:
-              storage: 10Gi
-          selector:
-            matchLabels:
-              type: local
-              app: prometheus
-
-grafana:
-  persistence:
-    enabled: true
-    type: pvc
-    existingClaim: "grafana-data-pvc"
-
-  initChownData:
-    enabled: false
-
-  podSecurityContext:
-    fsGroup: 911
-    runAsUser: 911
-    runAsGroup: 911
-```
-
-> Updated Mon 09 Mar: Added section about ZFS monitoring for FreeBSD servers
+The disk I/O panels in the Node Exporter dashboards will show "No data" for FreeBSD hosts. FreeBSD does expose ZFS-specific metrics (`node_zfs_arcstats_*`) for ARC cache performance, and per-dataset I/O stats are available via `sysctl kstat.zfs`, but mapping these to the Linux-style metrics the dashboards expect is non-trivial. To address this, I created custom ZFS-specific dashboards, covered in the next section.
 
 ## ZFS Monitoring for FreeBSD Servers
 
@@ -1037,13 +828,126 @@ zfs_pool_capacity_percent{pool="zroot"} 10
 zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
 ```
 
-> Updated Mon 09 Mar: Added section about distributed tracing with Grafana Tempo
+All ZFS-related configuration files are available on Codeberg:
+
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/zfs-recording-rules.yaml zfs-recording-rules.yaml on Codeberg
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/zfs-dashboards.yaml zfs-dashboards.yaml on Codeberg
+
+## Monitoring external OpenBSD hosts
+
+The same approach works for OpenBSD hosts. I have two OpenBSD edge relay servers (`blowfish`, `fishfinger`) that handle TLS termination and forward traffic through WireGuard to the cluster. These can also be monitored with Node Exporter.
+
+### Installing Node Exporter on OpenBSD
+
+On each OpenBSD host, install the node_exporter package:
+
+```sh
+blowfish:~ $ doas pkg_add node_exporter
+quirks-7.103 signed on 2025-10-13T22:55:16Z
+The following new rcscripts were installed: /etc/rc.d/node_exporter
+See rcctl(8) for details.
+```
+
+Enable the service to start at boot:
+
+```sh
+blowfish:~ $ doas rcctl enable node_exporter
+```
+
+Configure node_exporter to listen on the WireGuard interface. This ensures metrics are only accessible through the secure tunnel, not the public network. Replace the IP with the host's WireGuard address:
+
+```sh
+blowfish:~ $ doas rcctl set node_exporter flags '--web.listen-address=192.168.2.110:9100'
+```
+
+Start the service:
+
+```sh
+blowfish:~ $ doas rcctl start node_exporter
+node_exporter(ok)
+```
+
+Verify it's running:
+
+```sh
+blowfish:~ $ curl -s http://192.168.2.110:9100/metrics | head -3
+# HELP go_gc_duration_seconds A summary of the wall-time pause...
+# TYPE go_gc_duration_seconds summary
+go_gc_duration_seconds{quantile="0"} 0
+```
+
+Repeat for the other OpenBSD host (`fishfinger`) with its respective WireGuard IP (`192.168.2.111`).
+
+### Adding OpenBSD hosts to Prometheus
+
+Update `additional-scrape-configs.yaml` to include the OpenBSD targets:
+
+```yaml
+- job_name: 'node-exporter'
+  static_configs:
+    - targets:
+      - '192.168.2.130:9100'  # f0 via WireGuard
+      - '192.168.2.131:9100'  # f1 via WireGuard
+      - '192.168.2.132:9100'  # f2 via WireGuard
+      labels:
+        os: freebsd
+    - targets:
+      - '192.168.2.110:9100'  # blowfish via WireGuard
+      - '192.168.2.111:9100'  # fishfinger via WireGuard
+      labels:
+        os: openbsd
+```
+
+The `os: openbsd` label allows filtering these hosts separately from FreeBSD and Linux nodes.
+
+### OpenBSD memory metrics compatibility
+
+OpenBSD uses the same memory metric names as FreeBSD (`node_memory_size_bytes`, `node_memory_free_bytes`, etc.), so a similar PrometheusRule is needed to generate Linux-compatible metrics:
+
+```yaml
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: openbsd-memory-rules
+  namespace: monitoring
+  labels:
+    release: prometheus
+spec:
+  groups:
+    - name: openbsd-memory
+      rules:
+        - record: node_memory_MemTotal_bytes
+          expr: node_memory_size_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+        - record: node_memory_MemAvailable_bytes
+          expr: |
+            node_memory_free_bytes{os="openbsd"}
+              + node_memory_inactive_bytes{os="openbsd"}
+              + node_memory_cache_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+        - record: node_memory_MemFree_bytes
+          expr: node_memory_free_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+        - record: node_memory_Cached_bytes
+          expr: node_memory_cache_bytes{os="openbsd"}
+          labels:
+            os: openbsd
+```
+
+This file is saved as `openbsd-recording-rules.yaml` and applied alongside the FreeBSD rules. Note that OpenBSD doesn't expose a buffer memory metric, so that rule is omitted.
+
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml openbsd-recording-rules.yaml on Codeberg
+
+After running `just upgrade`, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.
 
 ## Distributed Tracing with Grafana Tempo
 
 After implementing logs (Loki) and metrics (Prometheus), the final pillar of observability is distributed tracing. Grafana Tempo provides distributed tracing capabilities that help understand request flows across microservices.
 
-How will this look tracing with Tempo like in Grafana? Have a look at the X-RAG blog post of mine:
+For a preview of what distributed tracing with Tempo looks like in Grafana, see the X-RAG blog post:
 
 => ./2025-12-24-x-rag-observability-hackathon.gmi X-RAG Observability Hackathon
 
@@ -1674,7 +1578,12 @@ With Prometheus, Grafana, Loki, Alloy, and Tempo deployed, I now have complete v
 
 This observability stack runs entirely on the home lab infrastructure, with data persisted to the NFS share. It's lightweight enough for a three-node cluster but provides the same capabilities as production-grade setups.
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus prometheus configuration on Codeberg
+All configuration files are available on Codeberg:
+
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus Prometheus, Grafana, and recording rules configuration
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s/loki Loki and Alloy configuration
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s/tempo Tempo configuration
+=> https://codeberg.org/snonux/conf/src/branch/master/f3s/tracing-demo Demo tracing application
 
 Other *BSD-related posts:
 
