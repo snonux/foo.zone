@@ -8,6 +8,8 @@
 * Education: Diplom-Informatiker (FH) (Diploma from a German University of Applied Sciences,  before they had international Bachelor and Masters programs)
 * E-Mail: `paul@nospam.buetow.org`
 
+[![Paul Buetow](./paul.jpg "Paul Buetow")](./paul.jpg)  
+
 ## My sites
 
 [My blog here at foo.zone](../)  
