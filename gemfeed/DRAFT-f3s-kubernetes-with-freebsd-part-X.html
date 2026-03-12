@@ -42,49 +42,32 @@
 <li>⇢ ⇢ <a href='#accessing-argocd'>Accessing ArgoCD</a></li>
 <li>⇢ <a href='#argocd-application-structure'>ArgoCD Application Structure</a></li>
 <li>⇢ <a href='#repository-organization'>Repository Organization</a></li>
-<li>⇢ <a href='#migration-strategy-incremental-one-app-at-a-time'>Migration Strategy: Incremental, One App at a Time</a></li>
 <li>⇢ ⇢ <a href='#migration-phases'>Migration Phases</a></li>
 <li>⇢ <a href='#example-migration-miniflux'>Example Migration: Miniflux</a></li>
 <li>⇢ ⇢ <a href='#before-imperative-helm-deployment'>Before: Imperative Helm deployment</a></li>
 <li>⇢ ⇢ <a href='#after-declarative-gitops-with-argocd'>After: Declarative GitOps with ArgoCD</a></li>
 <li>⇢ ⇢ <a href='#migration-procedure'>Migration procedure</a></li>
-<li>⇢ <a href='#complex-migration-prometheus-with-multi-source'>Complex Migration: Prometheus with Multi-Source</a></li>
-<li>⇢ ⇢ <a href='#sync-waves-and-hooks'>Sync Waves and Hooks</a></li>
-<li>⇢ <a href='#migration-results'>Migration Results</a></li>
-<li>⇢ <a href='#benefits-realized'>Benefits Realized</a></li>
-<li>⇢ ⇢ <a href='#1-single-source-of-truth'>1. Single Source of Truth</a></li>
-<li>⇢ ⇢ <a href='#2-automatic-synchronization'>2. Automatic Synchronization</a></li>
-<li>⇢ ⇢ <a href='#3-drift-detection-and-self-healing'>3. Drift Detection and Self-Healing</a></li>
-<li>⇢ ⇢ <a href='#4-easy-rollbacks'>4. Easy Rollbacks</a></li>
-<li>⇢ ⇢ <a href='#5-disaster-recovery'>5. Disaster Recovery</a></li>
-<li>⇢ ⇢ <a href='#6-documentation-by-default'>6. Documentation by Default</a></li>
-<li>⇢ ⇢ <a href='#7-safe-experimentation'>7. Safe Experimentation</a></li>
-<li>⇢ <a href='#challenges-and-solutions'>Challenges and Solutions</a></li>
-<li>⇢ ⇢ <a href='#challenge-1-helm-release-adoption'>Challenge 1: Helm Release Adoption</a></li>
-<li>⇢ ⇢ <a href='#challenge-2-persistent-volumes-not-tracked-by-helm'>Challenge 2: Persistent Volumes Not Tracked by Helm</a></li>
-<li>⇢ ⇢ <a href='#challenge-3-secrets-management'>Challenge 3: Secrets Management</a></li>
-<li>⇢ ⇢ <a href='#challenge-4-grafana-not-reloading-datasources'>Challenge 4: Grafana Not Reloading Datasources</a></li>
-<li>⇢ ⇢ <a href='#challenge-5-prometheus-with-multiple-sources'>Challenge 5: Prometheus With Multiple Sources</a></li>
-<li>⇢ ⇢ <a href='#challenge-6-sync-ordering-for-prometheus'>Challenge 6: Sync Ordering for Prometheus</a></li>
-<li>⇢ <a href='#justfile-evolution'>Justfile Evolution</a></li>
-<li>⇢ <a href='#lessons-learned'>Lessons Learned</a></li>
-<li>⇢ <a href='#future-improvements'>Future Improvements</a></li>
-<li>⇢ ⇢ <a href='#1-external-secrets-operator'>1. External Secrets Operator</a></li>
-<li>⇢ ⇢ <a href='#2-applicationset-for-similar-apps'>2. ApplicationSet for Similar Apps</a></li>
-<li>⇢ ⇢ <a href='#3-app-of-apps-pattern'>3. App-of-Apps Pattern</a></li>
-<li>⇢ ⇢ <a href='#4-argocd-image-updater'>4. ArgoCD Image Updater</a></li>
-<li>⇢ <a href='#summary'>Summary</a></li>
+<li><a href='#argocd-detects-change-within-3-minutes-and-syncs-automatically'>ArgoCD detects change within 3 minutes and syncs automatically</a></li>
+<li><a href='#argocd-detects-drift-within-3-minutes'>ArgoCD detects drift within 3 minutes</a></li>
+<li><a href='#argocd-automatically-rolls-back-to-the-previous-state'>ArgoCD automatically rolls back to the previous state</a></li>
+<li><a href='#temporarily-point-argocd-at-the-feature-branch'>Temporarily point ArgoCD at the feature branch</a></li>
+<li><a href='#verify-changes-in-argocd-web-ui'>Verify changes in ArgoCD Web UI</a></li>
+<li><a href='#if-good-merge-to-master'>If good: merge to master</a></li>
+<li><a href='#if-bad-revert-the-patch'>If bad: revert the patch</a></li>
+<li><a href='#root-monitoringyaml'>root-monitoring.yaml</a></li>
+<li><a href='#root-app-deploys-all-21-applications-automatically'>Root app deploys all 21 applications automatically</a></li>
+<li><a href='#or-apply-by-namespace'>Or apply by namespace</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>In the previous posts, I deployed applications to the k3s cluster using Helm charts and Justfiles—running <span class='inlinecode'>just install</span> or <span class='inlinecode'>just upgrade</span> to imperatively push changes to the cluster. While this approach works, it has several drawbacks:</span><br />
 <br />
 <ul>
-<li>**No single source of truth**: The cluster state depends on which commands were run and when</li>
-<li>**Manual synchronization**: Every change requires manually running commands</li>
-<li>**Drift detection is hard**: No easy way to know if cluster state matches the desired configuration</li>
-<li>**Rollback complexity**: Rolling back changes means re-running old Helm commands</li>
-<li>**No audit trail**: Hard to track who changed what and when</li>
+<li>No single source of truth: The cluster state depends on which commands were run and when</li>
+<li>Manual synchronization: Every change requires manually running commands</li>
+<li>Drift detection is hard: No easy way to know if cluster state matches the desired configuration</li>
+<li>Rollback complexity: Rolling back changes means re-running old Helm commands</li>
+<li>No audit trail: Hard to track who changed what and when</li>
 </ul><br />
 <span>This blog post covers the migration from imperative Helm deployments to declarative GitOps using ArgoCD. After this migration, the Git repository becomes the single source of truth, and ArgoCD automatically ensures the cluster matches what&#39;s defined in Git.</span><br />
 <br />
@@ -95,18 +78,19 @@
 <span>Key principles:</span><br />
 <br />
 <ul>
-<li>**Declarative**: The system&#39;s desired state is described declaratively (YAML manifests, Helm values)</li>
-<li>**Versioned and immutable**: All changes are committed to Git, providing a complete history</li>
-<li>**Pulled automatically**: An agent in the cluster continuously pulls the desired state from Git</li>
-<li>**Continuously reconciled**: The agent ensures the actual state matches the desired state, automatically correcting drift</li>
+<li>Declarative: The system&#39;s desired state is described declaratively (YAML manifests, Helm values)</li>
+<li>Versioned and immutable: All changes are committed to Git, providing a complete history</li>
+<li>Pulled automatically: An agent in the cluster continuously pulls the desired state from Git</li>
+<li>Continuously reconciled: The agent ensures the actual state matches the desired state, automatically correcting drift</li>
 </ul><br />
 <span>For Kubernetes, this means:</span><br />
 <br />
-<span>1. All manifests, Helm charts, and configuration live in a Git repository</span><br />
-<span>2. A tool (ArgoCD in our case) watches the repository</span><br />
-<span>3. When changes are pushed to Git, ArgoCD automatically applies them to the cluster</span><br />
-<span>4. If someone manually changes resources in the cluster, ArgoCD detects the drift and can automatically revert it</span><br />
-<br />
+<ul>
+<li>1. All manifests, Helm charts, and configuration live in a Git repository</li>
+<li>2. A tool (ArgoCD in our case) watches the repository</li>
+<li>3. When changes are pushed to Git, ArgoCD automatically applies them to the cluster</li>
+<li>4. If someone manually changes resources in the cluster, ArgoCD detects the drift and can automatically revert it</li>
+</ul><br />
 <h2 style='display: inline' id='what-is-argocd'>What is ArgoCD?</h2><br />
 <br />
 <span>ArgoCD is a declarative, GitOps continuous delivery tool for Kubernetes. It&#39;s implemented as a Kubernetes controller that continuously monitors running applications and compares the current, live state against the desired target state defined in Git.</span><br />
@@ -116,32 +100,34 @@
 <span>Key features:</span><br />
 <br />
 <ul>
-<li>**Automated deployment**: Monitors Git repositories and automatically syncs changes to the cluster</li>
-<li>**Application definitions**: Defines applications as CRDs (Custom Resource Definitions)</li>
-<li>**Health assessment**: Understands Kubernetes resources and can determine if an application is healthy</li>
-<li>**Web UI and CLI**: Provides both a web interface and command-line tool for managing applications</li>
-<li>**RBAC**: Role-based access control for team collaboration</li>
-<li>**SSO integration**: Can integrate with existing authentication systems</li>
-<li>**Multi-cluster support**: Can manage applications across multiple Kubernetes clusters</li>
-<li>**Sync waves and hooks**: Control the order of resource deployment and run jobs at specific lifecycle points</li>
+<li>Automated deployment: Monitors Git repositories and automatically syncs changes to the cluster</li>
+<li>Application definitions: Defines applications as CRDs (Custom Resource Definitions)</li>
+<li>Health assessment: Understands Kubernetes resources and can determine if an application is healthy</li>
+<li>Web UI and CLI: Provides both a web interface and command-line tool for managing applications</li>
+<li>RBAC: Role-based access control for team collaboration</li>
+<li>SSO integration: Can integrate with existing authentication systems</li>
+<li>Multi-cluster support: Can manage applications across multiple Kubernetes clusters</li>
+<li>Sync waves and hooks: Control the order of resource deployment and run jobs at specific lifecycle points</li>
 </ul><br />
 <h2 style='display: inline' id='why-argocd-for-f3s'>Why ArgoCD for f3s?</h2><br />
 <br />
 <span>For a home lab cluster, ArgoCD provides several benefits:</span><br />
 <br />
-<span>**Disaster recovery**: If the entire cluster is lost, I can rebuild it by:</span><br />
-<span>1. Bootstrapping a new k3s cluster</span><br />
-<span>2. Installing ArgoCD</span><br />
-<span>3. Pointing ArgoCD at the Git repository</span><br />
-<span>4. All applications automatically deploy to the desired state</span><br />
+<span>Disaster recovery: If the entire cluster is lost, I can rebuild it by:</span><br />
 <br />
-<span>**Experimentation safety**: I can test changes in a separate Git branch without affecting the running cluster. Once validated, merge to master and ArgoCD applies the changes.</span><br />
+<ul>
+<li>1. Bootstrapping a new k3s cluster</li>
+<li>2. Installing ArgoCD</li>
+<li>3. Pointing ArgoCD at the Git repository</li>
+<li>4. All applications automatically deploy to the desired state</li>
+</ul><br />
+<span>Experimentation safety: I can test changes in a separate Git branch without affecting the running cluster. Once validated, merge to master and ArgoCD applies the changes.</span><br />
+<span> </span><br />
+<span>Drift detection: If I manually change something in the cluster (for debugging), ArgoCD shows the difference and can automatically revert it.</span><br />
 <br />
-<span>**Drift detection**: If I manually change something in the cluster (for debugging), ArgoCD shows the difference and can automatically revert it.</span><br />
+<span>Declarative configuration: The Git repository documents the entire cluster configuration. No need to remember which <span class='inlinecode'>just</span> commands to run or in which order.</span><br />
 <br />
-<span>**Declarative configuration**: The Git repository documents the entire cluster configuration. No need to remember which <span class='inlinecode'>just</span> commands to run or in which order.</span><br />
-<br />
-<span>**Automatic sync**: Push to Git, and changes deploy automatically. No need to SSH to a workstation and run Helm commands.</span><br />
+<span>Automatic sync: Push to Git, and changes deploy automatically. No need to SSH to a workstation and run Helm commands.</span><br />
 <br />
 <h2 style='display: inline' id='deploying-argocd'>Deploying ArgoCD</h2><br />
 <br />
@@ -187,7 +173,7 @@ STATUS: deployed
 <br />
 <span>The <span class='inlinecode'>values.yaml</span> file configures several important aspects:</span><br />
 <br />
-<span>**Persistent storage for the repo-server**: ArgoCD clones Git repositories to cache them locally. I configured a persistent volume so the cache survives pod restarts:</span><br />
+<span>Persistent storage for the repo-server: ArgoCD clones Git repositories to cache them locally. I configured a persistent volume so the cache survives pod restarts:</span><br />
 <br />
 <pre>
 repoServer:
@@ -200,7 +186,7 @@ repoServer:
       mountPath: /tmp
 </pre>
 <br />
-<span>**Admin password preservation**: By default, the admin password is auto-generated and stored in a secret. To ensure it persists across Helm upgrades:</span><br />
+<span>Admin password preservation: By default, the admin password is auto-generated and stored in a secret. To ensure it persists across Helm upgrades:</span><br />
 <br />
 <pre>
 configs:
@@ -222,7 +208,7 @@ $ kubectl create secret generic argocd-secret \
 $ echo <font color="#808080">"ArgoCD admin password: $ARGOCD_ADMIN_PASSWORD"</font>
 </pre>
 <br />
-<span>**Server configuration**: Enabled insecure mode since TLS is handled by the OpenBSD edge relays:</span><br />
+<span>Server configuration: Enabled insecure mode since TLS is handled by the OpenBSD edge relays:</span><br />
 <br />
 <pre>
 server:
@@ -261,7 +247,7 @@ metadata:
     traefik.ingress.kubernetes.io/router.entrypoints: web
 spec:
   rules:
-    - host: argocd.f3s.buetow.org
+    - host: argocd.f3s.foo.zone
       http:
         paths:
           - path: /
@@ -275,15 +261,13 @@ spec:
 <br />
 <span>Following the same pattern as other services, the OpenBSD edge relays terminate TLS and forward traffic through WireGuard to the cluster. ArgoCD is now accessible at:</span><br />
 <br />
-<a class='textlink' href='https://argocd.f3s.buetow.org'>ArgoCD Web UI</a><br />
-<br />
 <span>The ArgoCD CLI can also be used for operations:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ argocd login argocd.f3s.buetow.org
+<pre>$ argocd login argocd.f3s.foo.zone
 $ argocd app list
 </pre>
 <br />
@@ -292,15 +276,13 @@ $ argocd app list
 <span>ArgoCD uses a CRD called <span class='inlinecode'>Application</span> to define what should be deployed. Each application specifies:</span><br />
 <br />
 <ul>
-<li>**Source**: Where the manifests live (Git repo, Helm chart repository, or both)</li>
-<li>**Destination**: Which cluster and namespace to deploy to</li>
-<li>**Sync policy**: Whether to automatically sync changes</li>
+<li>Source: Where the manifests live (Git repo, Helm chart repository, or both)</li>
+<li>Destination: Which cluster and namespace to deploy to</li>
 </ul><br />
 <span>Here&#39;s a simple example for the miniflux application:</span><br />
 <br />
 <pre>
-apiVersion: argoproj.io/v1alpha1
-kind: Application
+ind: Application
 metadata:
   name: miniflux
   namespace: cicd
@@ -310,9 +292,11 @@ spec:
   project: default
   source:
     repoURL: https://codeberg.org/snonux/conf.git
+    
     targetRevision: master
     path: f3s/miniflux/helm-chart
   destination:
+  
     server: https://kubernetes.default.svc
     namespace: services
   syncPolicy:
@@ -389,57 +373,44 @@ spec:
 <br />
 <span>The application directories (miniflux, prometheus, etc.) remained mostly unchanged—ArgoCD references the same Helm charts. The main additions:</span><br />
 <br />
-<span>1. **argocd-apps/**: Application manifests organized by Kubernetes namespace for better clarity</span><br />
-<span>   - <span class='inlinecode'>monitoring/</span>: 6 observability applications</span><br />
-<span>   - <span class='inlinecode'>services/</span>: 13 user-facing applications</span><br />
-<span>   - <span class='inlinecode'>infra/</span>: 1 infrastructure application (registry)</span><br />
-<span>   - <span class='inlinecode'>test/</span>: 1 test application</span><br />
-<span>2. ***/manifests/**: Additional Kubernetes manifests for complex apps (like Prometheus)</span><br />
-<span>3. **Justfiles updated**: Changed from <span class='inlinecode'>helm install/upgrade</span> to <span class='inlinecode'>argocd app sync</span></span><br />
+<span>1. argocd-apps/: Application manifests organized by Kubernetes namespace for better clarity</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>monitoring/</span>: 6 observability applications</li>
+<li><span class='inlinecode'>services/</span>: 13 user-facing applications</li>
+<li><span class='inlinecode'>infra/</span>: 1 infrastructure application (registry)</li>
+<li><span class='inlinecode'>test/</span>: 1 test application</li>
+</ul><br />
+<span>2. */manifests/: Additional Kubernetes manifests for complex apps (like Prometheus)</span><br />
+<span>3. Justfiles updated: Changed from <span class='inlinecode'>helm install/upgrade</span> to <span class='inlinecode'>argocd app sync</span></span><br />
 <br />
 <span>This organization makes it easy to apply all applications in a specific namespace or manage them independently.</span><br />
 <br />
-<h2 style='display: inline' id='migration-strategy-incremental-one-app-at-a-time'>Migration Strategy: Incremental, One App at a Time</h2><br />
-<br />
-<span>Rather than attempting a "big bang" migration of all 21 applications at once, I migrated them incrementally:</span><br />
-<br />
-<span>1. **Start with a simple app**: Validate the pattern with a low-risk application</span><br />
-<span>2. **Migrate in waves**: Group similar applications and migrate together</span><br />
-<span>3. **Validate thoroughly**: Ensure each app is healthy before moving to the next</span><br />
-<span>4. **Learn and iterate**: Apply lessons from earlier migrations to later ones</span><br />
-<br />
-<span>This approach reduced risk and allowed me to refine the migration process.</span><br />
-<br />
 <h3 style='display: inline' id='migration-phases'>Migration Phases</h3><br />
 <br />
-<span>**Phase 1: Simple services** (13 apps)</span><br />
-<ul>
-<li>miniflux, freshrss, wallabag</li>
-<li>anki-sync-server, kobo-sync-server, opodsync</li>
-<li>radicale, syncthing, audiobookshelf</li>
-<li>filebrowser, keybr, webdav</li>
-<li>example-apache, example-apache-volume-claim</li>
-</ul><br />
 <span>These apps have straightforward Helm charts with no complex dependencies. Pattern established:</span><br />
-<span>1. Create Application manifest in <span class='inlinecode'>argocd-apps/</span></span><br />
-<span>2. Apply with <span class='inlinecode'>kubectl apply -f argocd-apps/&lt;app&gt;.yaml</span></span><br />
-<span>3. Verify sync status: <span class='inlinecode'>argocd app get &lt;app&gt;</span></span><br />
-<span>4. Update Justfile to use ArgoCD commands</span><br />
 <br />
-<span>**Phase 2: Infrastructure apps** (3 apps)</span><br />
+<ul>
+<li>1. Create Application manifest in <span class='inlinecode'>argocd-apps/</span></li>
+<li>2. Apply with <span class='inlinecode'>kubectl apply -f argocd-apps/&lt;app&gt;.yaml</span></li>
+<li>3. Verify sync status: <span class='inlinecode'>argocd app get &lt;app&gt;</span></li>
+<li>4. Update Justfile to use ArgoCD commands</li>
+</ul><br />
+<span>Phase 2: Infrastructure apps (3 apps)</span><br />
+<br />
 <ul>
 <li>registry (Docker image registry)</li>
 <li>pushgateway (Prometheus metrics ingestion)</li>
 <li>immich (photo management with complex dependencies)</li>
 </ul><br />
-<span>**Phase 3: Monitoring stack** (4 apps)</span><br />
+<span>Phase 3: Monitoring stack (4 apps)</span><br />
 <ul>
 <li>tempo (distributed tracing)</li>
 <li>loki (log aggregation)</li>
 <li>alloy (log collection)</li>
 <li>prometheus (metrics and monitoring)</li>
 </ul><br />
-<span>**Phase 4: Monitoring addons** (1 app)</span><br />
+<span>Phase 4: Monitoring addons (1 app)</span><br />
 <ul>
 <li>grafana-ingress (separate ingress for Grafana)</li>
 </ul><br />
@@ -553,7 +524,7 @@ logs:
 <br />
 <h3 style='display: inline' id='migration-procedure'>Migration procedure</h3><br />
 <br />
-<span>1. **Backup current state**:</span><br />
+<span>1. Backup current state:</span><br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -562,7 +533,7 @@ http://www.gnu.org/software/src-highlite -->
 $ kubectl get all,ingress -n services -o yaml &gt; /tmp/miniflux-backup.yaml
 </pre>
 <br />
-<span>2. **Create Application manifest**:</span><br />
+<span>2. Create Application manifest:</span><br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -571,7 +542,7 @@ http://www.gnu.org/software/src-highlite -->
 application.argoproj.io/miniflux created
 </pre>
 <br />
-<span>3. **Verify ArgoCD adopted the resources**:</span><br />
+<span>3. Verify ArgoCD adopted the resources:</span><br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -581,7 +552,7 @@ Name:               miniflux
 Project:            default
 Server:             https://kubernetes.default.svc
 Namespace:          services
-URL:                https://argocd.f3s.buetow.org/applications/miniflux
+URL:                https://argocd.f3s.foo.zone/applications/miniflux
 Repo:               https://codeberg.org/snonux/conf.git
 Target:             master
 Path:               f3s/miniflux/helm-chart
@@ -591,7 +562,7 @@ Sync Status:        Synced to master (4e3c216)
 Health Status:      Healthy
 </pre>
 <br />
-<span>4. **Monitor for issues**:</span><br />
+<span>4. Monitor for issues:</span><br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -599,623 +570,500 @@ http://www.gnu.org/software/src-highlite -->
 <pre>$ kubectl get pods -n services -l app=miniflux -w
 NAME                                READY   STATUS    RESTARTS   AGE
 miniflux-postgres-556444cb8d-xvv2p  <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          54d
-miniflux-server-85d7c64664-stmt<font color="#000000">9</font>    <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          54d
+``
+
+<font color="#000000">5</font>. Test the application:
 </pre>
-<br />
-<span>5. **Test the application**:</span><br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ curl -I https://flux.f3s.buetow.org
-HTTP/<font color="#000000">2</font> <font color="#000000">200</font>
-</pre>
-<br />
-<span>6. **Update Justfile** and commit changes</span><br />
-<br />
-<span>Total time: 10 minutes. Zero downtime.</span><br />
-<br />
-<h2 style='display: inline' id='complex-migration-prometheus-with-multi-source'>Complex Migration: Prometheus with Multi-Source</h2><br />
-<br />
-<span>The Prometheus migration was more complex because it combines:</span><br />
-<ul>
-<li>Upstream Helm chart (kube-prometheus-stack)</li>
-<li>Custom manifests (PersistentVolumes, recording rules, dashboards)</li>
-<li>Sync hooks (PostSync job to restart Grafana)</li>
-</ul><br />
-<span>ArgoCD supports "multi-source" Applications that combine multiple sources:</span><br />
-<br />
+<span>$ curl -I https://flux.f3s.foo.zone</span><br />
+<span>HTTP/2 200</span><br />
 <pre>
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: prometheus
-  namespace: cicd
-  finalizers:
-    - resources-finalizer.argocd.argoproj.io
-spec:
-  project: default
-  sources:
-    # Source 1: Upstream Helm chart from prometheus-community
-    - repoURL: https://prometheus-community.github.io/helm-charts
-      chart: kube-prometheus-stack
-      targetRevision: 55.5.0
-      helm:
-        releaseName: prometheus
-        valuesObject:
-          # Full Prometheus configuration embedded here
-          kubeEtcd:
-            enabled: true
-            endpoints:
-              - 192.168.2.120
-              - 192.168.2.121
-              - 192.168.2.122
-          # ... (hundreds of lines of configuration)
+6. Update Justfile and commit changes
 
-    # Source 2: Additional manifests from Git repository
-    - repoURL: https://codeberg.org/snonux/conf.git
-      targetRevision: master
-      path: f3s/prometheus/manifests
+Total time: 10 minutes. Zero downtime.
 
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: monitoring
+## Complex Migration: Prometheus with Multi-Source
 
-  syncPolicy:
-    automated:
-      prune: false  # Manual pruning for safety on complex stack
-      selfHeal: true
-    syncOptions:
-      - CreateNamespace=false
-      - ServerSideApply=true
-    retry:
-      limit: 3
-      backoff:
-        duration: 10s
-        factor: 2
-        maxDuration: 3m
+
+The Prometheus migration was more complex because it combines:
+* Upstream Helm chart (kube-prometheus-stack)
+* Custom manifests (PersistentVolumes, recording rules, dashboards)
+* Sync hooks (PostSync job to restart Grafana)
+
 </pre>
+<span>apiVersion: argoproj.io/v1alpha1</span><br />
+<span>kind: Application</span><br />
+<span>metadata:</span><br />
+<span>  name: prometheus</span><br />
+<span>  namespace: cicd</span><br />
+<span>  finalizers:</span><br />
+<span>    - resources-finalizer.argocd.argoproj.io</span><br />
+<span>spec:</span><br />
+<span>  project: default</span><br />
+<span>  sources:</span><br />
+<span>    # Source 1: Upstream Helm chart from prometheus-community</span><br />
+<span>    - repoURL: https://prometheus-community.github.io/helm-charts</span><br />
+<span>    </span><br />
+<span>      chart: kube-prometheus-stack</span><br />
+<span>      targetRevision: 55.5.0</span><br />
+<span>      helm:</span><br />
+<span>        releaseName: prometheus</span><br />
+<span>        valuesObject:</span><br />
+<span>          # Full Prometheus configuration embedded here</span><br />
+<span>          kubeEtcd:</span><br />
+<span>            enabled: true</span><br />
+<span>            endpoints:</span><br />
+<span>              - 192.168.2.120</span><br />
+<span>              - 192.168.2.121</span><br />
+<span>              - 192.168.2.122</span><br />
+<span>          # ... (hundreds of lines of configuration)</span><br />
 <br />
-<span>The <span class='inlinecode'>prometheus/manifests/</span> directory contains:</span><br />
+<span>    # Source 2: Additional manifests from Git repository</span><br />
+<span>    - repoURL: https://codeberg.org/snonux/conf.git</span><br />
+<span>      targetRevision: master</span><br />
+<span>      path: f3s/prometheus/manifests</span><br />
 <br />
+<span>  destination:</span><br />
+<span>    server: https://kubernetes.default.svc</span><br />
+<span>    namespace: monitoring</span><br />
+<br />
+<span>  syncPolicy:</span><br />
+<span>    automated:</span><br />
+<span>      prune: false  # Manual pruning for safety on complex stack</span><br />
+<span>      selfHeal: true</span><br />
+<span>    syncOptions:</span><br />
+<span>      - CreateNamespace=false</span><br />
+<span>      - ServerSideApply=true</span><br />
+<span>    retry:</span><br />
+<span>      limit: 3</span><br />
+<span>      backoff:</span><br />
+<span>        duration: 10s</span><br />
+<span>        factor: 2</span><br />
+<span>        maxDuration: 3m</span><br />
 <pre>
-f3s/prometheus/manifests/
-├── persistent-volumes.yaml              # Sync wave 0
-├── additional-scrape-configs-secret.yaml # Sync wave 1
-├── grafana-datasources-configmap.yaml   # Sync wave 1
-├── freebsd-recording-rules.yaml         # Sync wave 3
-├── openbsd-recording-rules.yaml         # Sync wave 3
-├── zfs-recording-rules.yaml             # Sync wave 3
-├── epimetheus-dashboard.yaml            # Sync wave 4
-├── zfs-dashboards.yaml                  # Sync wave 4
-├── grafana-restart-hook.yaml            # Sync wave 10 (PostSync)
-└── grafana-restart-rbac.yaml            # Sync wave 0
+The `prometheus/manifests/` directory contains:
+
 </pre>
-<br />
-<h3 style='display: inline' id='sync-waves-and-hooks'>Sync Waves and Hooks</h3><br />
-<br />
-<span>ArgoCD allows controlling the order of resource deployment using sync waves (the <span class='inlinecode'>argocd.argoproj.io/sync-wave</span> annotation):</span><br />
-<br />
-<ul>
-<li>**Wave 0**: Infrastructure (PersistentVolumes, RBAC)</li>
-<li>**Wave 1**: Configuration (Secrets, ConfigMaps)</li>
-<li>**Wave 3**: Recording rules (PrometheusRule CRDs)</li>
-<li>**Wave 4**: Dashboards (ConfigMaps with <span class='inlinecode'>grafana_dashboard: &#39;1&#39;</span> label)</li>
-<li>**Wave 10**: PostSync hooks (Jobs that run after everything else)</li>
-</ul><br />
-<span>The Grafana restart hook ensures Grafana reloads datasources after they&#39;re updated:</span><br />
-<br />
+<span>f3s/prometheus/manifests/</span><br />
+<span>├── persistent-volumes.yaml              # Sync wave 0</span><br />
+<span>├── additional-scrape-configs-secret.yaml # Sync wave 1</span><br />
+<span>├── grafana-datasources-configmap.yaml   # Sync wave 1</span><br />
+<span>├── freebsd-recording-rules.yaml         # Sync wave 3</span><br />
+<span>├── openbsd-recording-rules.yaml         # Sync wave 3</span><br />
+<span>├── zfs-recording-rules.yaml             # Sync wave 3</span><br />
+<span>├── epimetheus-dashboard.yaml            # Sync wave 4</span><br />
+<span>├── zfs-dashboards.yaml                  # Sync wave 4</span><br />
+<span>├── grafana-restart-hook.yaml            # Sync wave 10 (PostSync)</span><br />
+<span>└── grafana-restart-rbac.yaml            # Sync wave 0</span><br />
 <pre>
-apiVersion: batch/v1
-kind: Job
-metadata:
-  name: grafana-restart-hook
-  namespace: monitoring
-  annotations:
-    argocd.argoproj.io/hook: PostSync
-    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-    argocd.argoproj.io/sync-wave: "10"
-spec:
-  template:
-    spec:
-      serviceAccountName: grafana-restart-sa
-      restartPolicy: OnFailure
-      containers:
-        - name: kubectl
-          image: bitnami/kubectl:latest
-          command:
-            - /bin/sh
-            - -c
-            - |
-              kubectl wait --for=condition=available --timeout=300s deployment/prometheus-grafana -n monitoring || true
-              kubectl delete pod -n monitoring -l app.kubernetes.io/name=grafana --ignore-not-found=true
-  backoffLimit: 2
-</pre>
-<br />
-<span>This replaces the manual step in the old Justfile that required running <span class='inlinecode'>kubectl delete pod</span> after every upgrade.</span><br />
-<br />
-<h2 style='display: inline' id='migration-results'>Migration Results</h2><br />
-<br />
-<span>After migrating all 21 applications to ArgoCD:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ argocd app list
-NAME                      CLUSTER                         NAMESPACE    PROJECT  STATUS  HEALTH   SYNCPOLICY
-alloy                     https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
-anki-sync-server          https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-audiobookshelf            https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-example-apache            https://kubernetes.default.svc  <b><u><font color="#000000">test</font></u></b>         default  Synced  Healthy  Auto-Prune
-example-apache-volume-... https://kubernetes.default.svc  <b><u><font color="#000000">test</font></u></b>         default  Synced  Healthy  Auto-Prune
-filebrowser               https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-freshrss                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-grafana-ingress           https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
-immich                    https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-keybr                     https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-kobo-sync-server          https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-loki                      https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
-miniflux                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-opodsync                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-prometheus                https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto
-pushgateway               https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
-radicale                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-registry                  https://kubernetes.default.svc  infra        default  Synced  Healthy  Auto-Prune
-syncthing                 https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-tempo                     https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
-wallabag                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-webdav                    https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-</pre>
-<br />
-<span>All 21 applications: **Synced** and **Healthy**.</span><br />
-<br />
-<span>ArgoCD Web UI:</span><br />
-<br />
-<a href='./f3s-kubernetes-with-freebsd-part-X/argocd-apps-list.png'><img alt='ArgoCD Applications List' title='ArgoCD Applications List' src='./f3s-kubernetes-with-freebsd-part-X/argocd-apps-list.png' /></a><br />
-<br />
-<a href='./f3s-kubernetes-with-freebsd-part-X/argocd-app-tree.png'><img alt='ArgoCD Application Resource Tree' title='ArgoCD Application Resource Tree' src='./f3s-kubernetes-with-freebsd-part-X/argocd-app-tree.png' /></a><br />
-<br />
-<h2 style='display: inline' id='benefits-realized'>Benefits Realized</h2><br />
-<br />
-<h3 style='display: inline' id='1-single-source-of-truth'>1. Single Source of Truth</h3><br />
-<br />
-<span>The Git repository at <span class='inlinecode'>https://codeberg.org/snonux/conf</span> now contains the complete cluster configuration. Anyone can clone it and see exactly what&#39;s deployed:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf.git
-$ cd conf/f3s
-$ ls argocd-apps/
-alloy.yaml  anki-sync-server.yaml  audiobookshelf.yaml  ...
-</pre>
-<br />
-<h3 style='display: inline' id='2-automatic-synchronization'>2. Automatic Synchronization</h3><br />
-<br />
-<span>Push to Git, and changes deploy automatically:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ cd conf/f3s/miniflux/helm-chart
-$ vim values.yaml  <i><font color="silver"># Change replica count from 1 to 2</font></i>
-$ git add values.yaml
-$ git commit -m <font color="#808080">"Scale miniflux to 2 replicas"</font>
-$ git push
-<i><font color="silver"># ArgoCD detects change within 3 minutes and syncs automatically</font></i>
-</pre>
-<br />
-<span>No need to SSH to a workstation, pull the repo, and run <span class='inlinecode'>just upgrade</span>.</span><br />
-<br />
-<h3 style='display: inline' id='3-drift-detection-and-self-healing'>3. Drift Detection and Self-Healing</h3><br />
-<br />
-<span>If someone manually changes a resource in the cluster, ArgoCD detects it:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl scale deployment miniflux-server -n services --replicas=<font color="#000000">3</font>
-deployment.apps/miniflux-server scaled
+### Sync Waves and Hooks
 
-<i><font color="silver"># ArgoCD detects drift within 3 minutes</font></i>
-$ argocd app get miniflux
-...
-Sync Status:        OutOfSync from master (4e3c216)
-</pre>
-<br />
-<span>With <span class='inlinecode'>selfHeal: true</span>, ArgoCD automatically reverts the change back to 2 replicas (the value in Git).</span><br />
-<br />
-<h3 style='display: inline' id='4-easy-rollbacks'>4. Easy Rollbacks</h3><br />
-<br />
-<span>To rollback a change:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ git revert HEAD
-$ git push
-<i><font color="silver"># ArgoCD automatically rolls back to the previous state</font></i>
-</pre>
-<br />
-<span>Or rollback to a specific commit:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ argocd app rollback miniflux &lt;revision-id&gt;
-</pre>
-<br />
-<h3 style='display: inline' id='5-disaster-recovery'>5. Disaster Recovery</h3><br />
-<br />
-<span>If the entire cluster is destroyed, recovery is straightforward:</span><br />
-<br />
-<span>1. Bootstrap a new k3s cluster</span><br />
-<span>2. Create namespaces</span><br />
-<span>3. Install ArgoCD</span><br />
-<span>4. Apply all Application manifests:</span><br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl apply -f argocd-apps/
-</pre>
-<span>5. ArgoCD deploys all 21 applications to their desired state</span><br />
-<br />
-<span>Total recovery time: ~30 minutes (mostly waiting for pods to pull images and start).</span><br />
-<br />
-<h3 style='display: inline' id='6-documentation-by-default'>6. Documentation by Default</h3><br />
-<br />
-<span>The Application manifests serve as documentation:</span><br />
-<br />
-<ul>
-<li>Which Helm chart version is deployed? → Check <span class='inlinecode'>targetRevision</span></li>
-<li>What custom values are configured? → Check <span class='inlinecode'>valuesObject</span></li>
-<li>Which namespace does this deploy to? → Check <span class='inlinecode'>destination.namespace</span></li>
-<li>Is auto-sync enabled? → Check <span class='inlinecode'>syncPolicy.automated</span></li>
-</ul><br />
-<span>No more guessing or checking <span class='inlinecode'>helm list</span> output.</span><br />
-<br />
-<h3 style='display: inline' id='7-safe-experimentation'>7. Safe Experimentation</h3><br />
-<br />
-<span>Create a feature branch, make changes, and preview them:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ git checkout -b test-prometheus-upgrade
-$ vim argocd-apps/prometheus.yaml  <i><font color="silver"># Bump chart version</font></i>
-$ git commit -am <font color="#808080">"Test Prometheus 56.0.0"</font>
-$ git push origin test-prometheus-upgrade
+ArgoCD allows controlling the order of resource deployment using sync waves (the `argocd.argoproj.io/sync-wave` annotation):
 
-<i><font color="silver"># Temporarily point ArgoCD at the feature branch</font></i>
-$ kubectl patch application prometheus -n cicd \
-    --type merge \
-    -p <font color="#808080">'{"spec":{"source":{"targetRevision":"test-prometheus-upgrade"}}}'</font>
+* Wave 0: Infrastructure (PersistentVolumes, RBAC)
+* Wave 1: Configuration (Secrets, ConfigMaps)
+* Wave 3: Recording rules (PrometheusRule CRDs)
+* Wave 4: Dashboards (ConfigMaps with `grafana_dashboard: &#39;1&#39;` label)
+* Wave 10: PostSync hooks (Jobs that run after everything else)
 
-<i><font color="silver"># Verify changes in ArgoCD Web UI</font></i>
-<i><font color="silver"># If good: merge to master</font></i>
-<i><font color="silver"># If bad: revert the patch</font></i>
+The Grafana restart hook ensures Grafana reloads datasources after they&#39;re updated:
+
 </pre>
-<br />
-<h2 style='display: inline' id='challenges-and-solutions'>Challenges and Solutions</h2><br />
-<br />
-<h3 style='display: inline' id='challenge-1-helm-release-adoption'>Challenge 1: Helm Release Adoption</h3><br />
-<br />
-<span>When creating an Application for an existing Helm release, ArgoCD needs to "adopt" the resources. This failed initially with errors like:</span><br />
-<br />
+<span>apiVersion: batch/v1</span><br />
+<span>kind: Job</span><br />
+<span>metadata:</span><br />
+<span>  name: grafana-restart-hook</span><br />
+<span>  namespace: monitoring</span><br />
+<span>  annotations:</span><br />
+<span>    argocd.argoproj.io/hook: PostSync</span><br />
+<span>*rgocd.argoproj.io/hook-delete-policy: BeforeHookCreation</span><br />
+<span>*rgocd.argoproj.io/sync-wave: "10"</span><br />
+<span>*</span><br />
+<span>  *plate:</span><br />
+<span>    spec:</span><br />
+<span>      serviceAccountName: grafana-restart-sa</span><br />
+<span>      restartPolicy: OnFailure</span><br />
+<span>      containers:</span><br />
+<span>        - name: kubectl</span><br />
+<span>          image: bitnami/kubectl:latest</span><br />
+<span>          command:</span><br />
+<span>            - /bin/sh</span><br />
+<span>            - -c</span><br />
+<span>            - |</span><br />
+<span>              kubectl wait --for=condition=available --timeout=300s deployment/prometheus-grafana -n monitoring || true</span><br />
+<span>              kubectl delete pod -n monitoring -l app.kubernetes.io/name=grafana --ignore-not-found=true</span><br />
+<span>  backoffLimit: 2</span><br />
 <pre>
-The Helm operation failed with an error: release miniflux failed, and has been uninstalled due to atomic being set: timed out waiting for the condition
+This *he manual step in the old Justfile that required running `kubectl delete pod` after every upgrade.
+
+## Migration *sults
+
+After * all 21 applications to ArgoCD:
+
 </pre>
-<br />
-<span>**Solution**: For existing Helm releases, I first ensured the Application manifest matched the current Helm values exactly. ArgoCD then recognized the resources were already in the desired state and adopted them without re-deploying.</span><br />
-<br />
-<h3 style='display: inline' id='challenge-2-persistent-volumes-not-tracked-by-helm'>Challenge 2: Persistent Volumes Not Tracked by Helm</h3><br />
-<br />
-<span>PersistentVolumes are cluster-scoped resources, not namespace-scoped. Many of my Helm charts created PVs using <span class='inlinecode'>kubectl apply -f persistent-volumes.yaml</span> outside of Helm.</span><br />
-<br />
-<span>**Solution**: For simple apps, I moved the PV definitions into the Helm chart templates. For complex apps (like Prometheus), I used the multi-source pattern with PVs in the <span class='inlinecode'>manifests/</span> directory with sync wave 0.</span><br />
-<br />
-<h3 style='display: inline' id='challenge-3-secrets-management'>Challenge 3: Secrets Management</h3><br />
-<br />
-<span>ArgoCD stores Application manifests in Git, but secrets shouldn&#39;t be committed in plaintext.</span><br />
-<br />
-<span>**Solution (current)**: Secrets are created manually with <span class='inlinecode'>kubectl create secret</span> and referenced by the Helm charts. The secrets themselves aren&#39;t managed by ArgoCD.</span><br />
-<br />
-<span>**Future enhancement**: Migrate to External Secrets Operator (ESO) to manage secrets declaratively while storing the actual secrets in a separate backend (Kubernetes secrets in a separate namespace, or eventually Vault).</span><br />
-<br />
-<h3 style='display: inline' id='challenge-4-grafana-not-reloading-datasources'>Challenge 4: Grafana Not Reloading Datasources</h3><br />
-<br />
-<span>After updating the Grafana datasources ConfigMap, Grafana wouldn&#39;t detect the changes until pods were manually deleted.</span><br />
-<br />
-<span>**Solution**: Created a PostSync hook that automatically restarts Grafana pods after every ArgoCD sync. This runs as a Kubernetes Job in sync wave 10, ensuring it executes after all other resources are deployed.</span><br />
-<br />
-<h3 style='display: inline' id='challenge-5-prometheus-with-multiple-sources'>Challenge 5: Prometheus With Multiple Sources</h3><br />
-<br />
-<span>Prometheus needed both the upstream Helm chart and custom manifests (recording rules, dashboards, PVs).</span><br />
-<br />
-<span>**Solution**: Used ArgoCD&#39;s multi-source feature to combine:</span><br />
-<ul>
-<li>Helm chart from <span class='inlinecode'>prometheus-community.github.io/helm-charts</span></li>
-<li>Additional manifests from <span class='inlinecode'>codeberg.org/snonux/conf.git</span> at path <span class='inlinecode'>f3s/prometheus/manifests</span></li>
-</ul><br />
-<span>This keeps the upstream chart cleanly separated from custom configuration.</span><br />
-<br />
-<h3 style='display: inline' id='challenge-6-sync-ordering-for-prometheus'>Challenge 6: Sync Ordering for Prometheus</h3><br />
-<br />
-<span>Prometheus resources have dependencies:</span><br />
-<ul>
-<li>PVs before PVCs</li>
-<li>Secrets before Prometheus Operator</li>
-<li>PrometheusRule CRDs before Prometheus Operator can process them</li>
-<li>Grafana must be running before the restart hook executes</li>
-</ul><br />
-<span>**Solution**: Added sync wave annotations to all resources in <span class='inlinecode'>prometheus/manifests/</span>:</span><br />
-<ul>
-<li>Wave 0: PVs, RBAC</li>
-<li>Wave 1: Secrets, ConfigMaps</li>
-<li>Wave 3: PrometheusRule CRDs (recording rules)</li>
-<li>Wave 4: Dashboard ConfigMaps</li>
-<li>Wave 10: PostSync hook (Grafana restart)</li>
-</ul><br />
-<span>ArgoCD deploys resources in wave order, ensuring correct sequencing.</span><br />
-<br />
-<h2 style='display: inline' id='justfile-evolution'>Justfile Evolution</h2><br />
-<br />
-<span>The Justfiles evolved from deployment tools to utility scripts:</span><br />
-<br />
-<span>**Before (Helm deployment)**:</span><br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>install:
-    helm install miniflux ./helm-chart -n services
-
-upgrade:
-    helm upgrade miniflux ./helm-chart -n services
-
-uninstall:
-    helm uninstall miniflux -n services
-</pre>
-<br />
-<span>**After (ArgoCD utilities)**:</span><br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>status:
-    @kubectl get pods -n services -l app=miniflux
-    @kubectl get application miniflux -n cicd -o jsonpath=<font color="#808080">'Sync: {.status.sync.status}, Health: {.status.health.status}'</font>
-
-sync:
-    @kubectl annotate application miniflux -n cicd argocd.argoproj.io/refresh=normal --overwrite
-
-argocd-status:
-    argocd app get miniflux --core
-
-logs:
-    kubectl logs -n services -l app=miniflux --tail=<font color="#000000">100</font> -f
-</pre>
-<br />
-<span>The Justfiles now provide:</span><br />
-<ul>
-<li><span class='inlinecode'>status</span>: Quick health check</li>
-<li><span class='inlinecode'>sync</span>: Force immediate ArgoCD sync (instead of waiting 3 minutes)</li>
-<li><span class='inlinecode'>argocd-status</span>: Detailed ArgoCD application status</li>
-<li><span class='inlinecode'>logs</span>: Tail application logs</li>
-<li>Application-specific utilities (e.g., <span class='inlinecode'>port-forward</span>, <span class='inlinecode'>restart</span>)</li>
-</ul><br />
-<h2 style='display: inline' id='lessons-learned'>Lessons Learned</h2><br />
-<br />
-<span>1. **Incremental migration is safer than big-bang**: Migrating one app at a time allowed me to validate the pattern and fix issues before they affected all apps.</span><br />
-<br />
-<span>2. **Start with simple apps**: The first migration (simple services) established the basic pattern. Complex apps (Prometheus) came later after the pattern was proven.</span><br />
-<br />
-<span>3. **Sync waves are essential for complex apps**: Without sync waves, resources deployed in random order and caused failures. Proper ordering eliminated all deployment issues.</span><br />
-<br />
-<span>4. **Multi-source is powerful**: Combining upstream Helm charts with custom manifests keeps configuration clean and maintainable.</span><br />
-<br />
-<span>5. **PostSync hooks replace manual steps**: The Grafana restart hook eliminated a manual step that was easy to forget.</span><br />
-<br />
-<span>6. **Documentation in Git is better than tribal knowledge**: The Application manifests document exactly what&#39;s deployed and how. No more "let me check my shell history to remember how I deployed this."</span><br />
-<br />
-<span>7. **Self-healing prevents configuration drift**: Multiple times I&#39;ve manually tweaked something for debugging, forgotten about it, and ArgoCD automatically reverted it back to the desired state.</span><br />
-<br />
-<span>8. **ArgoCD Web UI is invaluable**: Seeing the resource tree, sync status, and health status at a glance is much better than running multiple <span class='inlinecode'>kubectl</span> commands.</span><br />
-<br />
-<h2 style='display: inline' id='future-improvements'>Future Improvements</h2><br />
-<br />
-<h3 style='display: inline' id='1-external-secrets-operator'>1. External Secrets Operator</h3><br />
-<br />
-<span>Currently, secrets are manually created with <span class='inlinecode'>kubectl create secret</span>. This works but isn&#39;t declarative. Plan:</span><br />
-<br />
-<ul>
-<li>Deploy External Secrets Operator (ESO)</li>
-<li>Store actual secrets in a Kubernetes Secret in a separate <span class='inlinecode'>secrets</span> namespace</li>
-<li>Create ExternalSecret CRDs that reference the backend secrets</li>
-<li>ArgoCD manages the ExternalSecret CRDs, ESO creates the actual Secrets</li>
-</ul><br />
-<span>This makes secrets declarative while keeping them out of Git.</span><br />
-<br />
-<h3 style='display: inline' id='2-applicationset-for-similar-apps'>2. ApplicationSet for Similar Apps</h3><br />
-<br />
-<span>Many apps have nearly identical Application manifests (miniflux, freshrss, wallabag, etc.). ArgoCD ApplicationSets can generate multiple Applications from a template:</span><br />
-<br />
+<span>$ argocd app *st</span><br />
+<span>NAME                      CLUSTER                         NAMESPACE    PROJECT  STATUS  HEALTH   SYNCPOLICY</span><br />
+<span>alloy                     https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune</span><br />
+<span>anki-sync-server          https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>audiobookshelf            https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>example-apache            https://kubernetes.default.svc  test         default  Synced  Healthy  Auto-Prune</span><br />
+<span>example-apache-volume-... https://kubernetes.default.svc  test         default  Synced  Healthy  Auto-Prune</span><br />
+<span>filebrowser               https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>freshrss                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>grafana-ingress           https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune</span><br />
+<span>immich                    https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>keybr                     https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>kobo-sync-server          https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>loki                      https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune</span><br />
+<span>miniflux                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>opodsync                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>prometheus                https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto</span><br />
+<span>pushgateway               https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune</span><br />
+<span>radicale                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>registry                  https://kubernetes.default.svc  infra        default  Synced  Healthy  Auto-Prune</span><br />
+<span>syncthing                 https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>tempo                     https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune</span><br />
+<span>wallabag                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
+<span>webdav                    https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune</span><br />
 <pre>
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: simple-services
-  namespace: cicd
-spec:
-  generators:
-    - list:
-        elements:
-          - app: miniflux
-          - app: freshrss
-          - app: wallabag
-  template:
-    metadata:
-      name: &#39;{{app}}&#39;
-    spec:
-      project: default
-      source:
-        repoURL: https://codeberg.org/snonux/conf.git
-        targetRevision: master
-        path: &#39;f3s/{{app}}/helm-chart&#39;
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: services
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-</pre>
-<br />
-<span>One ApplicationSet could replace 10+ individual Application manifests.</span><br />
-<br />
-<h3 style='display: inline' id='3-app-of-apps-pattern'>3. App-of-Apps Pattern</h3><br />
-<br />
-<span>Currently, all Application manifests are applied manually with <span class='inlinecode'>kubectl apply -f argocd-apps/ -R</span>. An alternative is the "app-of-apps" pattern:</span><br />
-<br />
-<span>Create a root Application that deploys all other Applications. With the namespace-organized structure, this could be done per-namespace or for the entire cluster:</span><br />
-<br />
-<pre>
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: root
-  namespace: cicd
-spec:
-  source:
-    repoURL: https://codeberg.org/snonux/conf.git
-    targetRevision: master
-    path: f3s/argocd-apps
-    directory:
-      recurse: true  # Recursively find all manifests in subdirectories
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: cicd
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-</pre>
-<br />
-<span>Or create separate root apps per namespace:</span><br />
-<br />
-<pre>
-# root-monitoring.yaml
-apiVersion: argoproj.io/v1alpha1
-kind: Application
-metadata:
-  name: root-monitoring
-  namespace: cicd
-spec:
-  source:
-    repoURL: https://codeberg.org/snonux/conf.git
-    targetRevision: master
-    path: f3s/argocd-apps/monitoring
-  destination:
-    server: https://kubernetes.default.svc
-    namespace: cicd
-  syncPolicy:
-    automated:
-      prune: true
-      selfHeal: true
-</pre>
-<br />
-<span>Then disaster recovery becomes:</span><br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl apply -f root-app.yaml
-<i><font color="silver"># Root app deploys all 21 applications automatically</font></i>
+All 21 applications: Synced and Healthy.
 
-<i><font color="silver"># Or apply by namespace</font></i>
-$ kubectl apply -f root-monitoring.yaml
-$ kubectl apply -f root-services.yaml
-$ kubectl apply -f root-infra.yaml
+ArgoCD Web UI:
+
+=&gt; ./f3s-kubernetes-with-freebsd-part-X/argocd-apps-list.png ArgoCD Applications List
+
+=&gt; ./f3s-kubernetes-with-freebsd-part-X/argocd-app-tree.png ArgoCD Application Resource Tree
+
+## Benefits Realized
+
+### 1. Single Source of Truth
+
+The Git repository at `https://codeberg.org/snonux/conf` now contains the complete cluster configuration. Anyone can clone it and see exactly what&#39;s deployed:
+
 </pre>
-<br />
-<h3 style='display: inline' id='4-argocd-image-updater'>4. ArgoCD Image Updater</h3><br />
-<br />
-<span>For applications with custom Docker images (like the registry, tracing-demo), ArgoCD Image Updater can automatically update the image tag in Git when a new image is pushed:</span><br />
-<br />
+<span>$ git clone https://codeberg.org/snonux/conf.git</span><br />
+<span>$ cd conf/f3s</span><br />
+<span>$ ls argocd-apps/</span><br />
+<span>alloy.yaml  anki-sync-server.yaml  audiobookshelf.yaml  ...</span><br />
 <pre>
-metadata:
-  annotations:
-    argocd-image-updater.argoproj.io/image-list: |
-      app=registry.f3s.buetow.org/miniflux:~^v
-    argocd-image-updater.argoproj.io/write-back-method: git
+### 2. Automatic Synchronization
+
+Push to Git, and changes deploy automatically:
+
 </pre>
+<span>$ cd conf/f3s/miniflux/helm-chart</span><br />
+<span>$ vim values.yaml  # Change replica count from 1 to 2</span><br />
+<span>$ git add values.yaml</span><br />
+<span>$ git commit -m "Scale miniflux to 2 replicas"</span><br />
+<span>$ git push</span><br />
+<h1 style='display: inline' id='argocd-detects-change-within-3-minutes-and-syncs-automatically'>ArgoCD detects change within 3 minutes and syncs automatically</h1><br />
+<pre>
+No need to SSH to a workstation, pull the repo, and run `just upgrade`.
+
+### 3. Drift Detection and Self-Healing
+
+If someone manually changes a resource in the cluster, ArgoCD detects it:
+
+</pre>
+<span>$ kubectl scale deployment miniflux-server -n services --replicas=3</span><br />
+<span>deployment.apps/miniflux-server scaled</span><br />
 <br />
-<span>When a new image <span class='inlinecode'>registry.f3s.buetow.org/miniflux:v2.1.0</span> is pushed, Image Updater automatically:</span><br />
-<span>1. Updates the Helm values in Git</span><br />
-<span>2. Commits the change</span><br />
-<span>3. ArgoCD syncs the new image</span><br />
+<h1 style='display: inline' id='argocd-detects-drift-within-3-minutes'>ArgoCD detects drift within 3 minutes</h1><br />
+<span>$ argocd app get miniflux</span><br />
+<span>...</span><br />
+<span>Sync Status:        OutOfSync from master (4e3c216)</span><br />
+<pre>
+With `selfHeal: true`, ArgoCD automatically reverts the change back to 2 replicas (the value in Git).
+
+### 4. Easy Rollbacks
+
+To rollback a change:
+
+</pre>
+<span>$ git revert HEAD</span><br />
+<span>$ git push</span><br />
+<h1 style='display: inline' id='argocd-automatically-rolls-back-to-the-previous-state'>ArgoCD automatically rolls back to the previous state</h1><br />
+<pre>
+Or rollback to a specific commit:
+
+</pre>
+<span>$ argocd app rollback miniflux &lt;revision-id&gt;</span><br />
+<pre>
+### 5. Disaster Recovery
+
+If the entire cluster is destroyed, recovery is straightforward:
+
+1. Bootstrap a new k3s cluster
+2. Create namespaces
+3. Install ArgoCD
+4. Apply all Application manifests:
+</pre>
+<span>$ kubectl apply -f argocd-apps/</span><br />
+<pre>
+5. ArgoCD deploys all 21 applications to their desired state
+
+Total recovery time: ~30 minutes (mostly waiting for pods to pull images and start).
+
+### 6. Documentation by Default
+
+The Application manifests serve as documentation:
+
+* Which Helm chart version is deployed? → Check `targetRevision`
+* What custom values are configured? → Check `valuesObject`
+* Which namespace does this deploy to? → Check `destination.namespace`
+* Is auto-sync enabled? → Check `syncPolicy.automated`
+
+No more guessing or checking `helm list` output.
+
+### 7. Safe Experimentation
+
+Create a feature branch, make changes, and preview them:
+
+</pre>
+<span>$ git checkout -b test-prometheus-upgrade</span><br />
+<span>$ vim argocd-apps/prometheus.yaml  # Bump chart version</span><br />
+<span>$ git commit -am "Test Prometheus 56.0.0"</span><br />
+<span>$ git push origin test-prometheus-upgrade</span><br />
 <br />
-<span>This creates a fully automated CI/CD pipeline.</span><br />
+<h1 style='display: inline' id='temporarily-point-argocd-at-the-feature-branch'>Temporarily point ArgoCD at the feature branch</h1><br />
+<span>$ kubectl patch application prometheus -n cicd \</span><br />
+<span>    --type merge \</span><br />
+<span>    -p &#39;{"spec":{"source":{"targetRevision":"test-prometheus-upgrade"}}}&#39;</span><br />
 <br />
-<h2 style='display: inline' id='summary'>Summary</h2><br />
+<h1 style='display: inline' id='verify-changes-in-argocd-web-ui'>Verify changes in ArgoCD Web UI</h1><br />
+<h1 style='display: inline' id='if-good-merge-to-master'>If good: merge to master</h1><br />
+<h1 style='display: inline' id='if-bad-revert-the-patch'>If bad: revert the patch</h1><br />
+<pre>
+## Challenges and Solutions
+
+### Challenge 1: Helm Release Adoption
+
+When creating an Application for an existing Helm release, ArgoCD needs to "adopt" the resources. This failed initially with errors like:
+
+</pre>
+<span>The Helm operation failed with an error: release miniflux failed, and has been uninstalled due to atomic being set: timed out waiting for the condition</span><br />
+<pre>
+Solution: For existing Helm releases, I first ensured the Application manifest matched the current Helm values exactly. ArgoCD then recognized the resources were already in the desired state and adopted them without re-deploying.
+
+### Challenge 2: Persistent Volumes Not Tracked by Helm
+
+PersistentVolumes are cluster-scoped resources, not namespace-scoped. Many of my Helm charts created PVs using `kubectl apply -f persistent-volumes.yaml` outside of Helm.
+
+Solution: For simple apps, I moved the PV definitions into the Helm chart templates. For complex apps (like Prometheus), I used the multi-source pattern with PVs in the `manifests/` directory with sync wave 0.
+
+### Challenge 3: Secrets Management
+
+ArgoCD stores Application manifests in Git, but secrets shouldn&#39;t be committed in plaintext.
+
+Solution (current): Secrets are created manually with `kubectl create secret` and referenced by the Helm charts. The secrets themselves aren&#39;t managed by ArgoCD.
+
+Future enhancement: Migrate to External Secrets Operator (ESO) to manage secrets declaratively while storing the actual secrets in a separate backend (Kubernetes secrets in a separate namespace, or eventually Vault).
+
+### Challenge 4: Grafana Not Reloading Datasources
+
+After updating the Grafana datasources ConfigMap, Grafana wouldn&#39;t detect the changes until pods were manually deleted.
+
+Solution: Created a PostSync hook that automatically restarts Grafana pods after every ArgoCD sync. This runs as a Kubernetes Job in sync wave 10, ensuring it executes after all other resources are deployed.
+
+### Challenge 5: Prometheus With Multiple Sources
+
+Prometheus needed both the upstream Helm chart and custom manifests (recording rules, dashboards, PVs).
+
+Solution: Used ArgoCD&#39;s multi-source feature to combine:
+* Helm chart from `prometheus-community.github.io/helm-charts`
+* Additional manifests from `codeberg.org/snonux/conf.git` at path `f3s/prometheus/manifests`
+
+This keeps the upstream chart cleanly separated from custom configuration.
+
+### Challenge 6: Sync Ordering for Prometheus
+
+Prometheus resources have dependencies:
+* PVs before PVCs
+* Secrets before Prometheus Operator
+* PrometheusRule CRDs before Prometheus Operator can process them
+* Grafana must be running before the restart hook executes
+
+Solution: Added sync wave annotations to all resources in `prometheus/manifests/`:
+* Wave 0: PVs, RBAC
+* Wave 1: Secrets, ConfigMaps
+* Wave 3: PrometheusRule CRDs (recording rules)
+* Wave 4: Dashboard ConfigMaps
+* Wave 10: PostSync hook (Grafana restart)
+
+ArgoCD deploys resources in wave order, ensuring correct sequencing.
+
+## Justfile Evolution
+
+The Justfiles evolved from deployment tools to utility scripts:
+
+Before (Helm deployment):
+</pre>
+<span>install:</span><br />
+<span>    helm install miniflux ./helm-chart -n services</span><br />
 <br />
-<span>Migrating from imperative Helm deployments to declarative GitOps with ArgoCD transformed how I manage the f3s cluster:</span><br />
+<span>upgrade:</span><br />
+<span>    helm upgrade miniflux ./helm-chart -n services</span><br />
 <br />
-<span>**Before**:</span><br />
-<ul>
-<li>Manual Helm commands for every change</li>
-<li>No visibility into cluster state</li>
-<li>Difficult to track what changed and when</li>
-<li>Disaster recovery required rebuilding from memory/notes</li>
-</ul><br />
-<span>**After**:</span><br />
-<ul>
-<li>Git is the single source of truth</li>
-<li>Automatic synchronization of changes</li>
-<li>Complete audit trail in Git history</li>
-<li>Drift detection and self-healing</li>
-<li>Disaster recovery: deploy ArgoCD, apply Application manifests, done</li>
-<li>Organized by namespace for clarity</li>
-</ul><br />
-<span>The migration took several days spread over a few weeks, migrating one application at a time. The result is a more maintainable, reliable, and recoverable cluster.</span><br />
+<span>uninstall:</span><br />
+<span>    helm uninstall miniflux -n services</span><br />
+<pre>
+After (ArgoCD utilities):
+</pre>
+<span>status:</span><br />
+<span>    @kubectl get pods -n services -l app=miniflux</span><br />
+<span>    @kubectl get application miniflux -n cicd -o jsonpath=&#39;Sync: {.status.sync.status}, Health: {.status.health.status}&#39;</span><br />
 <br />
-<span>All 21 applications are now managed via GitOps, with the configuration living in:</span><br />
+<span>sync:</span><br />
+<span>    @kubectl annotate application miniflux -n cicd argocd.argoproj.io/refresh=normal --overwrite</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<span>argocd-status:</span><br />
+<span>    argocd app get miniflux --core</span><br />
 <br />
-<span>The ArgoCD Application manifests are organized by namespace:</span><br />
+<span>logs:</span><br />
+<span>    kubectl logs -n services -l app=miniflux --tail=100 -f</span><br />
+<pre>
+The Justfiles now provide:
+* `status`: Quick health check
+* `sync`: Force immediate ArgoCD sync (instead of waiting 3 minutes)
+* `argocd-status`: Detailed ArgoCD application status
+* `logs`: Tail application logs
+* Application-specific utilities (e.g., `port-forward`, `restart`)
+
+## Lessons Learned
+
+1. Incremental migration is safer than big-bang: Migrating one app at a time allowed me to validate the pattern and fix issues before they affected all apps.
+
+2. Start with simple apps: The first migration (simple services) established the basic pattern. Complex apps (Prometheus) came later after the pattern was proven.
+
+3. Sync waves are essential for complex apps: Without sync waves, resources deployed in random order and caused failures. Proper ordering eliminated all deployment issues.
+
+4. Multi-source is powerful: Combining upstream Helm charts with custom manifests keeps configuration clean and maintainable.
+
+5. PostSync hooks replace manual steps: The Grafana restart hook eliminated a manual step that was easy to forget.
+
+6. Documentation in Git is better than tribal knowledge: The Application manifests document exactly what&#39;s deployed and how. No more "let me check my shell history to remember how I deployed this."
+
+7. Self-healing prevents configuration drift: Multiple times I&#39;ve manually tweaked something for debugging, forgotten about it, and ArgoCD automatically reverted it back to the desired state.
+
+8. ArgoCD Web UI is invaluable: Seeing the resource tree, sync status, and health status at a glance is much better than running multiple `kubectl` commands.
+
+## Future Improvements
+
+### 1. External Secrets Operator
+
+Currently, secrets are manually created with `kubectl create secret`. This works but isn&#39;t declarative. Plan:
+
+* Deploy External Secrets Operator (ESO)
+* Store actual secrets in a Kubernetes Secret in a separate `secrets` namespace
+* Create ExternalSecret CRDs that reference the backend secrets
+* ArgoCD manages the ExternalSecret CRDs, ESO creates the actual Secrets
+
+This makes secrets declarative while keeping them out of Git.
+
+### 2. ApplicationSet for Similar Apps
+
+Many apps have nearly identical Application manifests (miniflux, freshrss, wallabag, etc.). ArgoCD ApplicationSets can generate multiple Applications from a template:
+
+</pre>
+<span>apiVersion: argoproj.io/v1alpha1</span><br />
+<span>kind: ApplicationSet</span><br />
+<span>metadata:</span><br />
+<span>  name: simple-services</span><br />
+<span>  namespace: cicd</span><br />
+<span>spec:</span><br />
+<span>  generators:</span><br />
+<span>    - list:</span><br />
+<span>        elements:</span><br />
+<span>          - app: miniflux</span><br />
+<span>          - app: freshrss</span><br />
+<span>          - app: wallabag</span><br />
+<span>  template:</span><br />
+<span>    metadata:</span><br />
+<span>      name: &#39;{{app}}&#39;</span><br />
+<span>    spec:</span><br />
+<span>      project: default</span><br />
+<span>      source:</span><br />
+<span>        repoURL: https://codeberg.org/snonux/conf.git</span><br />
+<span>        targetRevision: master</span><br />
+<span>        path: &#39;f3s/{{app}}/helm-chart&#39;</span><br />
+<span>      destination:</span><br />
+<span>        server: https://kubernetes.default.svc</span><br />
+<span>        namespace: services</span><br />
+<span>      syncPolicy:</span><br />
+<span>        automated:</span><br />
+<span>          prune: true</span><br />
+<span>          selfHeal: true</span><br />
+<pre>
+One ApplicationSet could replace 10+ individual Application manifests.
+
+### 3. App-of-Apps Pattern
+
+Currently, all Application manifests are applied manually with `kubectl apply -f argocd-apps/ -R`. An alternative is the "app-of-apps" pattern:
+
+Create a root Application that deploys all other Applications. With the namespace-organized structure, this could be done per-namespace or for the entire cluster:
+
+</pre>
+<span>apiVersion: argoproj.io/v1alpha1</span><br />
+<span>kind: Application</span><br />
+<span>metadata:</span><br />
+<span>  name: root</span><br />
+<span>  namespace: cicd</span><br />
+<span>spec:</span><br />
+<span>  source:</span><br />
+<span>    repoURL: https://codeberg.org/snonux/conf.git</span><br />
+<span>    targetRevision: master</span><br />
+<span>    path: f3s/argocd-apps</span><br />
+<span>    directory:</span><br />
+<span>      recurse: true  # Recursively find all manifests in subdirectories</span><br />
+<span>  destination:</span><br />
+<span>    server: https://kubernetes.default.svc</span><br />
+<span>    namespace: cicd</span><br />
+<span>  syncPolicy:</span><br />
+<span>    automated:</span><br />
+<span>      prune: true</span><br />
+<span>      selfHeal: true</span><br />
+<pre>
+Or create separate root apps per namespace:
+
+</pre>
+<h1 style='display: inline' id='root-monitoringyaml'>root-monitoring.yaml</h1><br />
+<span>apiVersion: argoproj.io/v1alpha1</span><br />
+<span>kind: Application</span><br />
+<span>metadata:</span><br />
+<span>  name: root-monitoring</span><br />
+<span>  namespace: cicd</span><br />
+<span>spec:</span><br />
+<span>  source:</span><br />
+<span>    repoURL: https://codeberg.org/snonux/conf.git</span><br />
+<span>    targetRevision: master</span><br />
+<span>    path: f3s/argocd-apps/monitoring</span><br />
+<span>  destination:</span><br />
+<span>    server: https://kubernetes.default.svc</span><br />
+<span>    namespace: cicd</span><br />
+<span>  syncPolicy:</span><br />
+<span>    automated:</span><br />
+<span>      prune: true</span><br />
+<span>      selfHeal: true</span><br />
+<pre>
+Then disaster recovery becomes:
+</pre>
+<span>$ kubectl apply -f root-app.yaml</span><br />
+<h1 style='display: inline' id='root-app-deploys-all-21-applications-automatically'>Root app deploys all 21 applications automatically</h1><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/argocd-apps'>codeberg.org/snonux/conf/f3s/argocd-apps</a><br />
-<br />
-<span>ArgoCD has become an essential part of the f3s infrastructure, and I can&#39;t imagine managing the cluster without it.</span><br />
-<br />
-<span>Other *BSD-related posts:</span><br />
-<br />
-<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
-<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
-<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
-<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
-<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
-<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
+<h1 style='display: inline' id='or-apply-by-namespace'>Or apply by namespace</h1><br />
+<span>$ kubectl apply -f root-monitoring.yaml</span><br />
+<span>$ kubectl apply -f root-services.yaml</span><br />
+<span>$ kubectl apply -f root-infra.yaml</span><br />
+<pre>
+### 4. ArgoCD Image Updater
+
+For applications with custom Docker images (like the registry, tracing-demo), ArgoCD Image Updater can automatically update the image tag in Git when a new image is pushed:
+
+</pre>
+<span>metadata:</span><br />
+<span>  annotations:</span><br />
+<span>    argocd-image-updater.argoproj.io/image-list: |</span><br />
+<span>      app=registry.f3s.foo.zone/miniflux:~^v</span><br />
+<span>    argocd-image-updater.argoproj.io/write-back-method: git</span><br />
 <p class="footer">
 	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
 	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
