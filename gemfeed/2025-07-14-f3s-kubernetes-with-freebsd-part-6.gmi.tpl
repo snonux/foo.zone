@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 6: Storage
 
-> Published at 2025-07-13T16:44:29+03:00, last updated Tue 27 Jan 10:09:08 EET 2026
+> Published at 2025-07-13T16:44:29+03:00, last updated Wed 19 Mar 2026
 
 This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
@@ -1581,6 +1581,8 @@ fi
 touch "$LOCK_FILE"
 trap "rm -f $LOCK_FILE" EXIT
 
+MOUNT_FIXED=0
+
 fix_mount () {
     echo "Attempting to remount NFS mount $MOUNT_POINT"
     if mount -o remount -f "$MOUNT_POINT" 2>/dev/null; then
@@ -1596,6 +1598,7 @@ fix_mount () {
         echo "$MOUNT_POINT is not a valid mountpoint, attempting mount"
         if mount "$MOUNT_POINT"; then
             echo "Successfully mounted $MOUNT_POINT"
+            MOUNT_FIXED=1
             return
         else
             echo "Failed to mount $MOUNT_POINT"
@@ -1612,6 +1615,7 @@ fix_mount () {
     echo "Attempting to mount $MOUNT_POINT"
     if mount "$MOUNT_POINT"; then
         echo "NFS mount $MOUNT_POINT mounted successfully"
+        MOUNT_FIXED=1
         return
     else
         echo "Failed to mount NFS mount $MOUNT_POINT"
@@ -1629,6 +1633,30 @@ fi
 if ! timeout 2s stat "$MOUNT_POINT" >/dev/null 2>&1; then
     echo "NFS mount $MOUNT_POINT appears to be unresponsive"
     fix_mount
+fi
+
+# After a successful remount, delete pods stuck on this node
+if [ "$MOUNT_FIXED" -eq 1 ]; then
+    echo "Mount was fixed, checking for stuck pods on this node..."
+    NODE=$(hostname)
+    export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+    kubectl get pods --all-namespaces \
+      --field-selector="spec.nodeName=$NODE" \
+      -o json 2>/dev/null | jq -r '
+        .items[] |
+        select(
+          .status.phase == "Unknown" or
+          .status.phase == "Pending" or
+          (.status.conditions // [] |
+            any(.type == "Ready" and .status == "False")) or
+          (.status.containerStatuses // [] |
+            any(.state.waiting.reason == "ContainerCreating"))
+        ) | "\(.metadata.namespace) \(.metadata.name)"' | \
+      while read ns pod; do
+        echo "Deleting stuck pod $ns/$pod"
+        kubectl delete pod -n "$ns" "$pod" \
+          --grace-period=0 --force 2>&1
+      done
 fi
 EOF
 
@@ -1688,6 +1716,10 @@ To enable and start the timer, we run:
 ```
 
 Note: Stale file handles are inherent to NFS failover because file handles are server-specific. The best approach depends on your application's tolerance for brief disruptions. Of course, all the changes made to `r0` above must also be applied to `r1` and `r2`.
+
+> Updated Wed 19 Mar 2026: Added automatic pod restart after NFS remount
+
+The script now also tracks whether a mount was fixed via the `MOUNT_FIXED` variable. After a successful remount, it queries kubectl for pods on the local node that are stuck in `Unknown`, `Pending`, or `ContainerCreating` state and force-deletes them. Kubernetes then automatically reschedules these pods, which will now succeed because the NFS mount is healthy again. Without this, pods that hit a stale mount would remain broken until manually deleted, even after the underlying NFS issue was resolved.
 
 ### Complete Failover Test
 
