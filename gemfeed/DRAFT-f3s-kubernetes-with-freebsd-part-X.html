@@ -60,20 +60,20 @@
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
-<span>In the previous posts, I deployed applications to the k3s cluster using Helm charts and Justfiles—running <span class='inlinecode'>just install</span> or <span class='inlinecode'>just upgrade</span> to imperatively push changes to the cluster. While this approach works, it has several drawbacks:</span><br />
+<span>In previous posts, I deployed applications to the k3s cluster using Helm charts and Justfiles—running <span class='inlinecode'>just install</span> or <span class='inlinecode'>just upgrade</span> to imperatively push changes to the cluster. Works fine, but has some drawbacks:</span><br />
 <br />
 <ul>
 <li>No single source of truth: The cluster state depends on which commands were run and when</li>
 <li>Manual synchronization: Every change requires manually running commands</li>
 <li>Drift detection is hard: No easy way to know if cluster state matches the desired configuration</li>
-<li>Rollback complexity: Rolling back changes means re-running old Helm commands</li>
+<li>Rollback complexity: Rolling back means re-running old Helm commands</li>
 <li>No audit trail: Hard to track who changed what and when</li>
 </ul><br />
-<span>This blog post covers the migration from imperative Helm deployments to declarative GitOps using ArgoCD. After this migration, the Git repository becomes the single source of truth, and ArgoCD automatically ensures the cluster matches what&#39;s defined in Git.</span><br />
+<span>This post covers migrating from imperative Helm deployments to declarative GitOps using ArgoCD. After this, the Git repository becomes the single source of truth, and ArgoCD automatically ensures the cluster matches what&#39;s defined in Git.</span><br />
 <br />
 <h2 style='display: inline' id='what-is-gitops'>What is GitOps?</h2><br />
 <br />
-<span>GitOps is an operational framework that applies DevOps best practices—like version control, collaboration, and CI/CD—to infrastructure automation. The core idea is simple: the entire desired state of your infrastructure is stored in Git, and automated processes ensure the actual state matches the desired state.</span><br />
+<span>GitOps is an operational framework that applies DevOps best practices—version control, collaboration, CI/CD—to infrastructure automation. The core idea: the entire desired state lives in Git, and automated processes ensure the actual state matches it.</span><br />
 <br />
 <span>Key principles:</span><br />
 <br />
