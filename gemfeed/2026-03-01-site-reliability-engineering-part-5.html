@@ -45,11 +45,11 @@
 </ul><br />
 <h2 style='display: inline' id='system-design-and-incident-analysis'>System Design and Incident Analysis</h2><br />
 <br />
-<span>A big chunk of SRE work revolves around system design and incident analysis. What separates a well-designed system from a mediocre one is its ability to minimise and contain cascading failures. Unchecked, those can spiral into global outages.</span><br />
+<span>In my experience, a big chunk of SRE work revolves around system design and incident analysis. The thing that really matters is whether your system can contain cascading failures—because if it can&#39;t, one bad component can take everything down.</span><br />
 <br />
 <h3 style='display: inline' id='resilience-and-cascading-failures'>Resilience and cascading failures</h3><br />
 <br />
-<span>There&#39;s a growing emphasis on building resilient systems so that when something fails, the blast radius stays small. That resilience needs to be baked in at design time: we identify weak points and address them before production. The goal is to keep services dependable and uninterrupted.</span><br />
+<span>What I&#39;ve seen work well is thinking about resilience early—at design time, not after the first outage. You look for the weak points, address them before production, and try to keep the blast radius small when (not if) something fails.</span><br />
 <br />
 <h3 style='display: inline' id='learning-from-incidents'>Learning from incidents</h3><br />
 <br />
@@ -59,11 +59,11 @@
 <br />
 <h2 style='display: inline' id='observability-don-t-leave-it-for-when-it-s-too-late'>Observability: Don&#39;t leave it for when it&#39;s too late</h2><br />
 <br />
-<span>Product and features often get the spotlight; observability is often an afterthought. Teams agree that "we need better observability" when they&#39;re already in the middle of an incident—and by then it&#39;s too late. Good observability needs to be in place before things go wrong. Tools that can query high-cardinality data and give granular insight into system behaviour are what let us diagnose problems quickly when chaos hits. So invest in observability early. When the next incident happens, you&#39;ll be glad you did.</span><br />
+<span>Here&#39;s something I&#39;ve seen over and over: teams agree that "we need better observability" when they&#39;re already in the middle of an incident—and by then it&#39;s too late. Observability is always an afterthought compared to product features. But you really need it in place before things go wrong. Tools that can query high-cardinality data and give you granular insight into what&#39;s happening—that&#39;s what saves you when chaos hits. So invest in it early. Trust me on this one.</span><br />
 <br />
 <h2 style='display: inline' id='the-iterative-spirit'>The iterative spirit</h2><br />
 <br />
-<span>We also accept that system design is never "done." We refine it based on real-world performance, incident learnings, and changing needs. Every incident is a chance to learn and improve; the emphasis is on learning, not blame. SREs work with developers, backend teams, and incident response so that the whole system keeps getting better. Perfection is a journey, not a destination.</span><br />
+<span>We also accept that system design is never "done." We refine it based on real-world performance, incident learnings, and changing needs. Every incident is a chance to learn and improve; the emphasis is on learning, not blame. SREs work with developers, backend teams, and incident response so that the whole system keeps getting better. It&#39;s never perfect, but that&#39;s kind of the point.</span><br />
 <br />
 <h2 style='display: inline' id='book-tips'>Book tips</h2><br />
 <br />

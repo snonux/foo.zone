@@ -60,8 +60,6 @@
 <li><a href='#wake-on-lan-setup'>Wake-on-LAN Setup</a></li>
 <li>⇢ <a href='#setting-up-wol-on-the-laptop'>Setting up WoL on the laptop</a></li>
 <li>⇢ <a href='#testing-wol-and-shutdown'>Testing WoL and Shutdown</a></li>
-<li>⇢ <a href='#wol-from-wifi'>WoL from WiFi</a></li>
-<li>⇢ <a href='#remote-shutdown-via-ssh'>Remote Shutdown via SSH</a></li>
 <li>⇢ <a href='#bios-configuration'>BIOS Configuration</a></li>
 <li><a href='#conclusion'>Conclusion</a></li>
 </ul><br />
@@ -491,26 +489,7 @@ Waking up e8:ff:1e:d7:1c:a0...
 <br />
 <span>Within 30-50 seconds, all three machines successfully booted up and became accessible via SSH!</span><br />
 <br />
-<h2 style='display: inline' id='wol-from-wifi'>WoL from WiFi</h2><br />
-<br />
-<span>An important note: **Wake-on-LAN works perfectly even when the laptop is connected via WiFi**. As long as both the laptop and the Beelinks are on the same local network (192.168.1.x), the router bridges the WiFi and wired networks together, allowing the WoL broadcast packets to reach the machines.</span><br />
-<br />
-<span>This makes WoL very convenient - I can wake the cluster from anywhere in my home, whether I&#39;m on WiFi or ethernet.</span><br />
-<br />
-<h2 style='display: inline' id='remote-shutdown-via-ssh'>Remote Shutdown via SSH</h2><br />
-<br />
-<span>While Wake-on-LAN handles powering on the machines remotely, I also added a shutdown function to the script for convenience. The <span class='inlinecode'>wol-f3s shutdown</span> command uses SSH to connect to each machine and execute <span class='inlinecode'>doas poweroff</span>, gracefully shutting them all down.</span><br />
-<br />
-<span>This is particularly useful for power saving - when I&#39;m done working with the cluster for the day, I can simply run:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>[paul@earth]~% wol-f3s shutdown
-</pre>
-<br />
-<span>And all three machines will shut down cleanly. The next time I need them, a simple <span class='inlinecode'>wol-f3s</span> command wakes them all back up. This combination makes the cluster very energy-efficient while maintaining quick access when needed.</span><br />
+<span>This also works fine over WiFi, by the way — as long as the laptop and the Beelinks are on the same local network, the router bridges everything. And <span class='inlinecode'>wol-f3s shutdown</span> does the reverse (SSH + <span class='inlinecode'>doas poweroff</span>), so I can spin the whole cluster up and down pretty quickly.</span><br />
 <br />
 <h2 style='display: inline' id='bios-configuration'>BIOS Configuration</h2><br />
 <br />
@@ -525,7 +504,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h1 style='display: inline' id='conclusion'>Conclusion</h1><br />
 <br />
-<span>The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project: Compact, efficient, expandable, and affordable. Its compatibility with both Linux and FreeBSD makes it versatile for other use cases, whether as part of your cluster or as a standalone system. If you’re looking for hardware that punches above its weight for Kubernetes, this little device deserves a spot on your shortlist.</span><br />
+<span>Honestly, the Beelink S12 Pro with the N100 is kind of perfect for this — tiny, cheap, sips power, and runs both Linux and FreeBSD without drama. I&#39;m pretty happy with it.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg'><img alt='Beelinks stacked' title='Beelinks stacked' src='./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg' /></a><br />
 <br />

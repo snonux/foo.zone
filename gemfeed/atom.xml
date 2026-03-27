@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-03-19T08:39:53+02:00</updated>
+    <updated>2026-03-28T00:01:50+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -469,11 +469,11 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <h2 style='display: inline' id='system-design-and-incident-analysis'>System Design and Incident Analysis</h2><br />
 <br />
-<span>A big chunk of SRE work revolves around system design and incident analysis. What separates a well-designed system from a mediocre one is its ability to minimise and contain cascading failures. Unchecked, those can spiral into global outages.</span><br />
+<span>In my experience, a big chunk of SRE work revolves around system design and incident analysis. The thing that really matters is whether your system can contain cascading failures—because if it can&#39;t, one bad component can take everything down.</span><br />
 <br />
 <h3 style='display: inline' id='resilience-and-cascading-failures'>Resilience and cascading failures</h3><br />
 <br />
-<span>There&#39;s a growing emphasis on building resilient systems so that when something fails, the blast radius stays small. That resilience needs to be baked in at design time: we identify weak points and address them before production. The goal is to keep services dependable and uninterrupted.</span><br />
+<span>What I&#39;ve seen work well is thinking about resilience early—at design time, not after the first outage. You look for the weak points, address them before production, and try to keep the blast radius small when (not if) something fails.</span><br />
 <br />
 <h3 style='display: inline' id='learning-from-incidents'>Learning from incidents</h3><br />
 <br />
@@ -483,11 +483,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='observability-don-t-leave-it-for-when-it-s-too-late'>Observability: Don&#39;t leave it for when it&#39;s too late</h2><br />
 <br />
-<span>Product and features often get the spotlight; observability is often an afterthought. Teams agree that "we need better observability" when they&#39;re already in the middle of an incident—and by then it&#39;s too late. Good observability needs to be in place before things go wrong. Tools that can query high-cardinality data and give granular insight into system behaviour are what let us diagnose problems quickly when chaos hits. So invest in observability early. When the next incident happens, you&#39;ll be glad you did.</span><br />
+<span>Here&#39;s something I&#39;ve seen over and over: teams agree that "we need better observability" when they&#39;re already in the middle of an incident—and by then it&#39;s too late. Observability is always an afterthought compared to product features. But you really need it in place before things go wrong. Tools that can query high-cardinality data and give you granular insight into what&#39;s happening—that&#39;s what saves you when chaos hits. So invest in it early. Trust me on this one.</span><br />
 <br />
 <h2 style='display: inline' id='the-iterative-spirit'>The iterative spirit</h2><br />
 <br />
-<span>We also accept that system design is never "done." We refine it based on real-world performance, incident learnings, and changing needs. Every incident is a chance to learn and improve; the emphasis is on learning, not blame. SREs work with developers, backend teams, and incident response so that the whole system keeps getting better. Perfection is a journey, not a destination.</span><br />
+<span>We also accept that system design is never "done." We refine it based on real-world performance, incident learnings, and changing needs. Every incident is a chance to learn and improve; the emphasis is on learning, not blame. SREs work with developers, backend teams, and incident response so that the whole system keeps getting better. It&#39;s never perfect, but that&#39;s kind of the point.</span><br />
 <br />
 <h2 style='display: inline' id='book-tips'>Book tips</h2><br />
 <br />
@@ -1299,11 +1299,11 @@ main <font color="#808080">"$@"</font>
 </ul><br />
 <h2 style='display: inline' id='the-joy-of-being-offline'>The Joy of Being Offline</h2><br />
 <br />
-<span>In a world of constant connectivity, the Supernote Nomad offers a sanctuary. By keeping it offline, I can focus on my thoughts and notes without compromise of my privacy.</span><br />
+<span>I keep my Supernote Nomad offline at all times. No Wi-Fi, no cloud sync, just me and my notes. And honestly, it&#39;s great.</span><br />
 <br />
-<span>One of the most significant advantages of keeping Wi-Fi off is the battery life. The Supernote Nomad can last a week, on a single charge when it&#39;s not constantly searching for a network. This makes it a good companion for long trips or intense note-taking sessions.</span><br />
+<span>With Wi-Fi off, the battery lasts about a week on a single charge (how convenient :-)).</span><br />
 <br />
-<span>Privacy was my main concern. By not syncing my notes to Retta&#39;s cloud service, I retain full ownership and control over my data. There&#39;s no risk of my personal thoughts and ideas being accessed or mined by third parties. It&#39;s a simple and effective way to ensure my privacy.</span><br />
+<span>Privacy was my main concern, though. I don&#39;t sync anything to Retta&#39;s cloud, so my notes stay mine. No one&#39;s reading or mining my stuff. Simple as that.</span><br />
 <br />
 <a href='./using-supernote-nomad-offline/nomad2.jpg'><img alt='A picture of the Supernote Nomad' title='A picture of the Supernote Nomad' src='./using-supernote-nomad-offline/nomad2.jpg' /></a><br />
 <br />
@@ -2502,7 +2502,7 @@ Art by Donovan Bake
 <br />
 <h2 style='display: inline' id='koreader-to-the-rescue'>KOReader to the Rescue</h2><br />
 <br />
-<span>In a world of constant connectivity, the Kobo Forma with the KOReader software offers a way out. By keeping it disconnected from the cloud, I can focus on my reading without compromising my privacy. KOReader is a versatile, open-source document and image viewer which can also be installed on some E Ink reader devices like the Kobo Forma.</span><br />
+<span>I keep my Kobo Forma disconnected from the cloud entirely, and KOReader makes that possible. KOReader is a versatile, open-source document and image viewer which can also be installed on some E Ink reader devices like the Kobo Forma. No cloud sync, no tracking, just reading.</span><br />
 <br />
 <a class='textlink' href='https://koreader.rocks/'>KOReader</a><br />
 <br />
@@ -2586,7 +2586,7 @@ SideloadedMode=true
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
-<span>The Kobo Forma with KOReader has become an indispensable tool for me. By using it offline and with self-hosted services, I&#39;ve created a distraction-free and private reading environment. The simple, manual workflow for transferring books gives me full control over my data, and the reading experience is second to none. If you&#39;re looking for a digital e-reader that respects your privacy and helps you focus, I highly recommend giving the Kobo a try with an offline-first approach using KOReader.</span><br />
+<span>I&#39;m really happy with this setup. Offline Kobo with KOReader, manual book transfers, self-hosted services—it&#39;s simple, private, and the reading experience is just great. If you care about owning your data (and not getting distracted), give it a try.</span><br />
 <br />
 <span>Other related posts:</span><br />
 <br />
@@ -8964,7 +8964,7 @@ content = "{CODE}"
 <br />
 <span>I found GitHub Copilot to be still faster than <span class='inlinecode'>qwen2.5-coder:14b</span>, but the local LLM one is actually workable for me already. And, as mentioned earlier, things will likely improve in the future regarding local LLMs. So I am excited about the future of local LLMs and coding tools like Ollama and Helix.</span><br />
 <br />
-<span class='quote'>After trying <span class='inlinecode'>qwen3-coder:30b-a3b-q4_K_M</span> (following the publication of this blog post), I found it to be significantly faster and more capable than the previous model, making it a promising option for local coding tasks. Experimentation reveals that even current local setups are surprisingly effective for routine coding tasks, offering a glimpse into the future of on-machine AI assistance.</span><br />
+<span class='quote'>After trying <span class='inlinecode'>qwen3-coder:30b-a3b-q4_K_M</span> (following the publication of this blog post), I found it to be significantly faster and more capable than the previous model, making it a promising option for local coding tasks. Honestly, even my current local setup already handles routine coding stuff pretty well—better than I expected.</span><br />
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
@@ -11990,7 +11990,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <a class='textlink' href='https://openai.com/codex/'>https://openai.com/codex/</a><br />
 <br />
-<span>Given the current industry trend and the rapid advancements in technology, it has become clear that experimenting with AI-assisted coding tools is almost a necessity to stay relevant. Embracing these new developments doesn&#39;t mean abandoning traditional coding; instead, it means integrating new capabilities into your workflow to stay ahead in a fast-evolving field.</span><br />
+<span>I&#39;ve been curious about agentic coding for a while and wanted to see what it&#39;s actually like to build something with it. So I gave it a go (no pun intended).</span><br />
 <br />
 <h3 style='display: inline' id='how-it-works'>How it works</h3><br />
 <br />
@@ -15544,15 +15544,13 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='12-official-go-font'>12. Official Go font</h3><br />
 <br />
-<span>The Go programming language has an official font called "Go Font." It was created to complement the aesthetic of the Go language, ensuring clear and legible rendering of code. The font includes a monospace version for code and a proportional version for general text, supporting consistent look and readability in Go-related materials and development environments. </span><br />
+<span>The Go programming language has its own official font, called "Go Font." There&#39;s a monospace version for code and a proportional one for regular text.</span><br />
 <br />
 <span>Check out some Go code displayed using the Go font:</span><br />
 <br />
 <a href='./random-weird-things-ii/go-font-code.png'><img alt='Go font code' title='Go font code' src='./random-weird-things-ii/go-font-code.png' /></a><br />
 <br />
 <a class='textlink' href='https://go.dev/blog/go-fonts'>https://go.dev/blog/go-fonts</a><br />
-<br />
-<span>The design emphasizes simplicity and readability, reflecting Go&#39;s philosophy of clarity and efficiency.</span><br />
 <br />
 <span>I found it interesting and/or weird, as Go is a programming language. Why should it bother having its own font? I have never seen another open-source project like Go do this. But I also like it. Maybe I will use it in the future for this blog :-) </span><br />
 <br />
@@ -15645,7 +15643,7 @@ ADFS::4.$.Documents.Techwriter.Myfile
 <br />
 <h2 style='display: inline' id='16-polyglots---programs-written-in-multiple-languages'>16. Polyglots - programs written in multiple languages</h2><br />
 <br />
-<span>A coding polyglot is a program or script written so that it can be executed in multiple programming languages without modification. This is typically achieved by leveraging syntax overlaps or crafting valid and meaningful code in each targeted language. Polyglot programs are often created as a challenge or for demonstration purposes to showcase language similarities or clever coding techniques.</span><br />
+<span>A coding polyglot is a program that runs in multiple programming languages without any changes. People usually write them as a fun challenge — you exploit syntax overlaps between languages to make the same file valid (and meaningful) in each one.</span><br />
 <br />
 <span>Check out my very own polyglot:</span><br />
 <br />
@@ -15740,11 +15738,9 @@ This is perl, v5.<font color="#000000">8.8</font> built <b><u><font color="#0000
 <br />
 <h2 style='display: inline' id='19-css3-is-turing-complete'>19. CSS3 is turing complete</h2><br />
 <br />
-<span>CSS3 is Turing complete because it can simulate a Turing machine using only CSS animations and styles without any JavaScript or external logic. This is achieved by using keyframe animations to change the styles of HTML elements in a way that encodes computation, performing calculations and state transitions. </span><br />
+<span>Turns out CSS3 is Turing complete — you can simulate a Turing machine using nothing but CSS animations and styles, no JavaScript needed. Keyframe animations can encode state transitions and perform calculations, which is wild considering CSS is supposed to just make things look pretty.</span><br />
 <br />
 <a class='textlink' href='https://stackoverflow.com/questions/2497146/is-css-turing-complete'>Is CSS turing complete?</a><br />
-<br />
-<span>It is surprising because CSS is primarily a styling language intended for the presentation layer of web pages, not for computation or logic. Its capability to perform complex computations defies its typical use case and showcases the unintended computational power that can emerge from the creative use of seemingly straightforward technologies.</span><br />
 <br />
 <span>Check out this 100% CSS implementation of the Conways Game of Life:</span><br />
 <br />
@@ -16252,7 +16248,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 </ul><br />
 <h2 style='display: inline' id='preamble-'>Preamble </h2><br />
 <br />
-<span>In this insightful interview, Paul Bütow, a Principal Site Reliability Engineer at Mimecast, shares over a decade of experience in the field. Paul highlights the role of an Embedded SRE, emphasizing the importance of automation, observability, and effective incident management. We also focused on the key question of how you can work effectively with an SRE weather you are an individual contributor or a manager, a software engineer or data scientist. And how you can learn more about site reliability engineering.</span><br />
+<span>Florian from Cracking AI Engineering interviewed me about my work as a Principal SRE at Mimecast. We talked about what an Embedded SRE actually does, automation, observability, incident management, and how to work well with an SRE — whether you&#39;re a developer, data scientist, or manager.</span><br />
 <br />
 <h2 style='display: inline' id='introducing-paul'>Introducing Paul</h2><br />
 <br />
@@ -16399,7 +16395,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <br />
 <h2 style='display: inline' id='closing-comments'>Closing comments</h2><br />
 <br />
-<span>Dear reader, I hope this conversation with Paul Bütow provided an exciting peak into the world of Site Reliability Engineering. Whether you’re a software developer, data scientist, ML engineer, or manager, reliable systems are always a team effort. Hopefully, you’ve taken some insights or tips from Paul’s experiences for your own team or next project. Thanks for joining us, and best of luck refining your own SRE practices!</span><br />
+<span>Thanks for reading! Hopefully there’s something useful in here for your own work. Reliable systems are a team effort, after all.</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> or contact Florian via the Cracking AI Engineering :-)</span><br />
 <br />
@@ -16857,8 +16853,6 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <li><a href='#wake-on-lan-setup'>Wake-on-LAN Setup</a></li>
 <li>⇢ <a href='#setting-up-wol-on-the-laptop'>Setting up WoL on the laptop</a></li>
 <li>⇢ <a href='#testing-wol-and-shutdown'>Testing WoL and Shutdown</a></li>
-<li>⇢ <a href='#wol-from-wifi'>WoL from WiFi</a></li>
-<li>⇢ <a href='#remote-shutdown-via-ssh'>Remote Shutdown via SSH</a></li>
 <li>⇢ <a href='#bios-configuration'>BIOS Configuration</a></li>
 <li><a href='#conclusion'>Conclusion</a></li>
 </ul><br />
@@ -17288,26 +17282,7 @@ Waking up e8:ff:1e:d7:1c:a0...
 <br />
 <span>Within 30-50 seconds, all three machines successfully booted up and became accessible via SSH!</span><br />
 <br />
-<h2 style='display: inline' id='wol-from-wifi'>WoL from WiFi</h2><br />
-<br />
-<span>An important note: **Wake-on-LAN works perfectly even when the laptop is connected via WiFi**. As long as both the laptop and the Beelinks are on the same local network (192.168.1.x), the router bridges the WiFi and wired networks together, allowing the WoL broadcast packets to reach the machines.</span><br />
-<br />
-<span>This makes WoL very convenient - I can wake the cluster from anywhere in my home, whether I&#39;m on WiFi or ethernet.</span><br />
-<br />
-<h2 style='display: inline' id='remote-shutdown-via-ssh'>Remote Shutdown via SSH</h2><br />
-<br />
-<span>While Wake-on-LAN handles powering on the machines remotely, I also added a shutdown function to the script for convenience. The <span class='inlinecode'>wol-f3s shutdown</span> command uses SSH to connect to each machine and execute <span class='inlinecode'>doas poweroff</span>, gracefully shutting them all down.</span><br />
-<br />
-<span>This is particularly useful for power saving - when I&#39;m done working with the cluster for the day, I can simply run:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>[paul@earth]~% wol-f3s shutdown
-</pre>
-<br />
-<span>And all three machines will shut down cleanly. The next time I need them, a simple <span class='inlinecode'>wol-f3s</span> command wakes them all back up. This combination makes the cluster very energy-efficient while maintaining quick access when needed.</span><br />
+<span>This also works fine over WiFi, by the way — as long as the laptop and the Beelinks are on the same local network, the router bridges everything. And <span class='inlinecode'>wol-f3s shutdown</span> does the reverse (SSH + <span class='inlinecode'>doas poweroff</span>), so I can spin the whole cluster up and down pretty quickly.</span><br />
 <br />
 <h2 style='display: inline' id='bios-configuration'>BIOS Configuration</h2><br />
 <br />
@@ -17322,7 +17297,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h1 style='display: inline' id='conclusion'>Conclusion</h1><br />
 <br />
-<span>The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project: Compact, efficient, expandable, and affordable. Its compatibility with both Linux and FreeBSD makes it versatile for other use cases, whether as part of your cluster or as a standalone system. If you’re looking for hardware that punches above its weight for Kubernetes, this little device deserves a spot on your shortlist.</span><br />
+<span>Honestly, the Beelink S12 Pro with the N100 is kind of perfect for this — tiny, cheap, sips power, and runs both Linux and FreeBSD without drama. I&#39;m pretty happy with it.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg'><img alt='Beelinks stacked' title='Beelinks stacked' src='./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg' /></a><br />
 <br />
@@ -17497,7 +17472,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='monitoring-keeping-an-eye-on-everything'>Monitoring: Keeping an eye on everything</h2><br />
 <br />
-<span>Robust monitoring is vital to any infrastructure, especially one as distributed as mine. I&#39;ve thought about a setup that ensures I&#39;ll always be aware of what&#39;s happening in my environment.</span><br />
+<span>I want to know when stuff breaks (ideally before it breaks), so monitoring is a big part of the plan.</span><br />
 <br />
 <h3 style='display: inline' id='prometheus-and-grafana'>Prometheus and Grafana</h3><br />
 <br />
@@ -17505,7 +17480,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='https://prometheus.io'>https://prometheus.io</a><br />
 <br />
-<span>For visualization, Grafana will be deployed alongside Prometheus. Grafana lets me build dynamic, customizable dashboards that provide a real-time view of everything from resource utilization to application performance. Whether it&#39;s keeping track of CPU load, memory usage, or the health of Kubernetes pods, Grafana has it covered. This will also make troubleshooting easier, as I can quickly pinpoint where issues are arising.</span><br />
+<span>For visualization, Grafana will be deployed alongside Prometheus. I mostly just want dashboards for CPU, memory, and pod health — the usual stuff. Makes it way easier to figure out what&#39;s going wrong when something inevitably does.</span><br />
 <br />
 <a class='textlink' href='https://grafana.com'>https://grafana.com</a><br />
 <br />
@@ -17527,7 +17502,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <span>For now, though, I&#39;m focused on completing the migration from AWS ECS and getting all my Docker containers running smoothly in k3s.</span><br />
 <br />
-<span>What&#39;s your take on self-hosting? Are you planning to move away from managed cloud services? Stay tuned for the second part of this series, where I will likely write about the hardware and the OS setups.</span><br />
+<span>Anyway, stay tuned — in part 2 I&#39;ll probably get into the hardware and OS setup.</span><br />
 <br />
 <span>Read the next post of this series:</span><br />
 <br />
@@ -17606,55 +17581,55 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <h2 style='display: inline' id='the-four-archetypes-of-a-staff-engineer'>The Four Archetypes of a Staff Engineer</h2><br />
 <br />
-<span>Larson breaks down the role of a Staff Engineer into four main archetypes, which can help frame how you approach the role:</span><br />
+<span>Larson defines four archetypes. You&#39;ll probably recognize yourself in one (or a mix):</span><br />
 <br />
 <ul>
-<li>Tech Lead: Focuses on the technical direction of a team, ensuring high-quality execution, architecture, and aligning the team around shared goals.</li>
-<li>Solver: Gets pulled into complex, high-impact problems that often involve many teams or systems, operating as a fixer or troubleshooter.</li>
-<li>Architect: Works on the long-term technical vision for an organization, setting standards and designing systems that will scale and last over time.</li>
-<li>Right Hand: Functions as a trusted technical advisor to leadership, providing input on strategy, long-term decisions, and navigating organizational politics.</li>
+<li>Tech Lead: You own the technical direction of a team. Architecture, quality, keeping everyone aligned.</li>
+<li>Solver: You get thrown at the hard cross-team problems. Basically a firefighter for gnarly stuff.</li>
+<li>Architect: Long-term technical vision. Standards, system design, things that need to last.</li>
+<li>Right Hand: Trusted technical advisor to leadership. Strategy, org politics, the stuff nobody else wants to touch.</li>
 </ul><br />
 <h2 style='display: inline' id='influence-and-impact-over-authority'>Influence and Impact over Authority</h2><br />
 <br />
-<span>As a Staff Engineer, influence is often more important than formal authority. You’ll rarely have direct control over teams or projects but will need to drive outcomes by influencing peers, other teams, and leadership. It’s about understanding how to persuade, align, and mentor others to achieve technical outcomes.</span><br />
+<span>You won&#39;t have direct authority over most people or teams you work with. Influence is the actual tool here. You have to persuade, align, sometimes just nudge people in the right direction. No one reports to you, but you still need to drive outcomes.</span><br />
 <br />
 <h2 style='display: inline' id='breadth-and-depth-of-knowledge'>Breadth and Depth of Knowledge</h2><br />
 <br />
-<span>Staff Engineers often need to maintain a breadth of knowledge across various areas while maintaining depth in a few. This can mean keeping a high-level understanding of several domains (e.g., infrastructure, security, product development) but being able to dive deep when needed in certain core areas.</span><br />
+<span>You need to know a bit about a lot of things (infra, security, product, etc.) but still be able to go deep in a few areas. The tricky part is keeping that breadth current without spreading yourself too thin.</span><br />
 <br />
 <h2 style='display: inline' id='mentorship-and-sponsorship'>Mentorship and Sponsorship</h2><br />
 <br />
-<span>An important part of a Staff Engineer’s role is mentoring others, not just in technical matters but in career development as well. Sponsorship goes a step beyond mentorship, where you actively advocate for others, create opportunities for them, and push them toward growth.</span><br />
+<span>Mentoring is obvious -- help people grow technically and career-wise. But sponsorship is the one that surprised me: actively advocating for people, creating opportunities for them, pushing them forward. It&#39;s not just answering questions, it&#39;s putting your reputation behind someone.</span><br />
 <br />
 <h2 style='display: inline' id='managing-up-and-across'>Managing Up and Across</h2><br />
 <br />
-<span>Success as a Staff Engineer often depends on managing up (influencing leadership and setting expectations) and managing across (working effectively with peers and other teams). This is often tied to communication skills, the ability to advocate for technical needs, and fostering alignment across departments or organizations.</span><br />
+<span>You have to manage up (set expectations with leadership, advocate for technical needs) and across (work with peer teams, build alignment). Basically a lot of communication and relationship building. Easy to underestimate this one.</span><br />
 <br />
 <h2 style='display: inline' id='strategic-thinking'>Strategic Thinking</h2><br />
 <br />
-<span>While Senior Engineers may focus on execution, Staff Engineers are expected to think strategically, making decisions that will affect the company or product months or years down the line. This means balancing short-term execution needs with long-term architectural decisions, which may require challenging short-term pressures.</span><br />
+<span>Senior engineers focus on execution. Staff engineers need to think about what happens months or years from now. That means sometimes pushing back on short-term pressures in favor of longer-term architectural decisions. Not always a popular move.</span><br />
 <br />
 <h2 style='display: inline' id='emotional-intelligence'>Emotional Intelligence</h2><br />
 <br />
-<span>The higher you go in engineering roles, the more soft skills, particularly emotional intelligence (EQ), come into play. Building relationships, resolving conflicts, and understanding the broader emotional dynamics of the team and organization become key parts of your role.</span><br />
+<span>The higher you go, the more soft skills matter. Building relationships, resolving conflicts, reading the room. I think this catches a lot of engineers off guard -- you can&#39;t just be the smartest person technically anymore.</span><br />
 <br />
 <h2 style='display: inline' id='navigating-ambiguity'>Navigating Ambiguity</h2><br />
 <br />
-<span>Staff Engineers are often placed in situations with high ambiguity—whether in defining the problem space, coming up with a solution, or aligning stakeholders. The ability to operate effectively in these unclear areas is critical to success.</span><br />
+<span>A lot of the problems you deal with are poorly defined. Nobody knows exactly what the problem is, let alone the solution. You have to be comfortable operating in that fog and still making progress.</span><br />
 <br />
 <h2 style='display: inline' id='visible-and-invisible-work'>Visible and Invisible Work</h2><br />
 <br />
-<span>Much of the work done by Staff Engineers is invisible. Solving complex problems, creating alignment, or influencing decisions doesn’t always result in tangible code, but it can have a massive impact. Larson emphasizes that part of the role is being comfortable with this type of invisible contribution.</span><br />
+<span>A huge chunk of Staff Engineer work is invisible. Aligning teams, influencing decisions, resolving conflicts -- none of that shows up as commits. Larson says you need to get comfortable with that, which I think is genuinely hard for engineers who are used to shipping things.</span><br />
 <br />
 <h2 style='display: inline' id='scaling-yourself'>Scaling Yourself</h2><br />
 <br />
-<span>At the Staff Engineer level, you must scale your impact beyond direct contribution. This can involve improving documentation, developing repeatable processes, mentoring others, or automating parts of the workflow. The idea is to enable teams and individuals to be more effective, even when you’re not directly involved.</span><br />
+<span>You can&#39;t do everything yourself anymore. Write things down, build repeatable processes, mentor others, automate what you can. The goal is to make teams more effective even when you&#39;re not in the room.</span><br />
 <br />
 <h2 style='display: inline' id='career-progression-and-title-inflation'>Career Progression and Title Inflation</h2><br />
 <br />
-<span>Larson touches on how different companies have varying definitions of "Staff Engineer," and titles don’t always correlate directly with responsibility or skill. He emphasizes the importance of focusing more on the work you&#39;re doing and the impact you&#39;re having, rather than the title itself.</span><br />
+<span>"Staff Engineer" means wildly different things at different companies. Titles don&#39;t always match actual responsibility or skill. Focus on the work and impact, not the title.</span><br />
 <br />
-<span>These additional points reflect more of the strategic, interpersonal, and leadership aspects that go beyond the technical expertise expected at this level. The role of a Staff Engineer is often about balancing high-level strategy with technical execution, while influencing teams and projects in a sustainable, long-term way.</span><br />
+<span>Some of the above is less about technical chops and more about the strategic and interpersonal side of things. Anyway, here are some more concrete takeaways:</span><br />
 <br />
 <h2 style='display: inline' id='not-a-faster-senior-engineer'>Not a faster Senior Engineer</h2><br />
 <br />
