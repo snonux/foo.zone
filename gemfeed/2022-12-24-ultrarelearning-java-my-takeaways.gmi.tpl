@@ -104,6 +104,10 @@ Java needs a clean cut. The clean cut shall be incompatible with previous versio
 
 Am I a Java expert now? No, by far not. But I am better now than before :-).
 
+Other related posts are:
+
+<< template::inline::rindex java object-oriented-programming
+
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site
