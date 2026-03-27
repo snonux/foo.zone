@@ -127,7 +127,7 @@ Power outages are regularly in my area, so a UPS keeps the infrastructure runnin
 
 ## Monitoring: Keeping an eye on everything
 
-Robust monitoring is vital to any infrastructure, especially one as distributed as mine. I've thought about a setup that ensures I'll always be aware of what's happening in my environment.
+I want to know when stuff breaks (ideally before it breaks), so monitoring is a big part of the plan.
 
 ### Prometheus and Grafana
 
@@ -135,7 +135,7 @@ Inside the k3s cluster, Prometheus will be deployed to handle metrics collection
 
 => https://prometheus.io
 
-For visualization, Grafana will be deployed alongside Prometheus. Grafana lets me build dynamic, customizable dashboards that provide a real-time view of everything from resource utilization to application performance. Whether it's keeping track of CPU load, memory usage, or the health of Kubernetes pods, Grafana has it covered. This will also make troubleshooting easier, as I can quickly pinpoint where issues are arising.
+For visualization, Grafana will be deployed alongside Prometheus. I mostly just want dashboards for CPU, memory, and pod health — the usual stuff. Makes it way easier to figure out what's going wrong when something inevitably does.
 
 => https://grafana.com
 
@@ -156,7 +156,7 @@ This setup may be just the beginning. Some ideas I'm thinking about for the futu
 
 For now, though, I'm focused on completing the migration from AWS ECS and getting all my Docker containers running smoothly in k3s.
 
-What's your take on self-hosting? Are you planning to move away from managed cloud services? Stay tuned for the second part of this series, where I will likely write about the hardware and the OS setups.
+Anyway, stay tuned — in part 2 I'll probably get into the hardware and OS setup.
 
 Read the next post of this series:
 

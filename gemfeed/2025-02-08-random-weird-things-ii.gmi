@@ -46,15 +46,13 @@ Source:
 
 ### 12. Official Go font
 
-The Go programming language has an official font called "Go Font." It was created to complement the aesthetic of the Go language, ensuring clear and legible rendering of code. The font includes a monospace version for code and a proportional version for general text, supporting consistent look and readability in Go-related materials and development environments. 
+The Go programming language has its own official font, called "Go Font." There's a monospace version for code and a proportional one for regular text.
 
 Check out some Go code displayed using the Go font:
 
 => ./random-weird-things-ii/go-font-code.png Go font code
 
 => https://go.dev/blog/go-fonts
-
-The design emphasizes simplicity and readability, reflecting Go's philosophy of clarity and efficiency.
 
 I found it interesting and/or weird, as Go is a programming language. Why should it bother having its own font? I have never seen another open-source project like Go do this. But I also like it. Maybe I will use it in the future for this blog :-) 
 
@@ -138,7 +136,7 @@ I can't reproduce this on my (work) Mac, though, as it now uses the APFS file sy
 
 ## 16. Polyglots - programs written in multiple languages
 
-A coding polyglot is a program or script written so that it can be executed in multiple programming languages without modification. This is typically achieved by leveraging syntax overlaps or crafting valid and meaningful code in each targeted language. Polyglot programs are often created as a challenge or for demonstration purposes to showcase language similarities or clever coding techniques.
+A coding polyglot is a program that runs in multiple programming languages without any changes. People usually write them as a fun challenge — you exploit syntax overlaps between languages to make the same file valid (and meaningful) in each one.
 
 Check out my very own polyglot:
 
@@ -223,11 +221,9 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 
 ## 19. CSS3 is turing complete
 
-CSS3 is Turing complete because it can simulate a Turing machine using only CSS animations and styles without any JavaScript or external logic. This is achieved by using keyframe animations to change the styles of HTML elements in a way that encodes computation, performing calculations and state transitions. 
+Turns out CSS3 is Turing complete — you can simulate a Turing machine using nothing but CSS animations and styles, no JavaScript needed. Keyframe animations can encode state transitions and perform calculations, which is wild considering CSS is supposed to just make things look pretty.
 
 => https://stackoverflow.com/questions/2497146/is-css-turing-complete Is CSS turing complete?
-
-It is surprising because CSS is primarily a styling language intended for the presentation layer of web pages, not for computation or logic. Its capability to perform complex computations defies its typical use case and showcases the unintended computational power that can emerge from the creative use of seemingly straightforward technologies.
 
 Check out this 100% CSS implementation of the Conways Game of Life:
 

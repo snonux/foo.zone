@@ -387,23 +387,7 @@ Waking up e8:ff:1e:d7:1c:a0...
 
 Within 30-50 seconds, all three machines successfully booted up and became accessible via SSH!
 
-## WoL from WiFi
-
-An important note: **Wake-on-LAN works perfectly even when the laptop is connected via WiFi**. As long as both the laptop and the Beelinks are on the same local network (192.168.1.x), the router bridges the WiFi and wired networks together, allowing the WoL broadcast packets to reach the machines.
-
-This makes WoL very convenient - I can wake the cluster from anywhere in my home, whether I'm on WiFi or ethernet.
-
-## Remote Shutdown via SSH
-
-While Wake-on-LAN handles powering on the machines remotely, I also added a shutdown function to the script for convenience. The `wol-f3s shutdown` command uses SSH to connect to each machine and execute `doas poweroff`, gracefully shutting them all down.
-
-This is particularly useful for power saving - when I'm done working with the cluster for the day, I can simply run:
-
-```sh
-[paul@earth]~% wol-f3s shutdown
-```
-
-And all three machines will shut down cleanly. The next time I need them, a simple `wol-f3s` command wakes them all back up. This combination makes the cluster very energy-efficient while maintaining quick access when needed.
+This also works fine over WiFi, by the way — as long as the laptop and the Beelinks are on the same local network, the router bridges everything. And `wol-f3s shutdown` does the reverse (SSH + `doas poweroff`), so I can spin the whole cluster up and down pretty quickly.
 
 ## BIOS Configuration
 
@@ -417,7 +401,7 @@ The exact menu names vary, but these settings are typically found in the Power M
 
 # Conclusion
 
-The Beelink S12 Pro with Intel N100 CPUs checks all the boxes for a k3s project: Compact, efficient, expandable, and affordable. Its compatibility with both Linux and FreeBSD makes it versatile for other use cases, whether as part of your cluster or as a standalone system. If you’re looking for hardware that punches above its weight for Kubernetes, this little device deserves a spot on your shortlist.
+Honestly, the Beelink S12 Pro with the N100 is kind of perfect for this — tiny, cheap, sips power, and runs both Linux and FreeBSD without drama. I'm pretty happy with it.
 
 => ./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg Beelinks stacked
 

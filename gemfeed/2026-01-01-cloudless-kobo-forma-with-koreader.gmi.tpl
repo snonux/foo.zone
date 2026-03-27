@@ -31,7 +31,7 @@ Note: Some of the screenshots in this post are taken from my Kobo Clara HD, whic
 
 ## KOReader to the Rescue
 
-In a world of constant connectivity, the Kobo Forma with the KOReader software offers a way out. By keeping it disconnected from the cloud, I can focus on my reading without compromising my privacy. KOReader is a versatile, open-source document and image viewer which can also be installed on some E Ink reader devices like the Kobo Forma.
+I keep my Kobo Forma disconnected from the cloud entirely, and KOReader makes that possible. KOReader is a versatile, open-source document and image viewer which can also be installed on some E Ink reader devices like the Kobo Forma. No cloud sync, no tracking, just reading.
 
 => https://koreader.rocks/ KOReader
 
@@ -115,7 +115,7 @@ All the books I read you can see here:
 
 ## Conclusion
 
-The Kobo Forma with KOReader has become an indispensable tool for me. By using it offline and with self-hosted services, I've created a distraction-free and private reading environment. The simple, manual workflow for transferring books gives me full control over my data, and the reading experience is second to none. If you're looking for a digital e-reader that respects your privacy and helps you focus, I highly recommend giving the Kobo a try with an offline-first approach using KOReader.
+I'm really happy with this setup. Offline Kobo with KOReader, manual book transfers, self-hosted services—it's simple, private, and the reading experience is just great. If you care about owning your data (and not getting distracted), give it a try.
 
 Other related posts:
 

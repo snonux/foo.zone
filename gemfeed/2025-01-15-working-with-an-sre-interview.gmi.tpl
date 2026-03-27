@@ -13,7 +13,7 @@ Below, I am posting the interview here on my blog as well.
 
 ## Preamble 
 
-In this insightful interview, Paul Bütow, a Principal Site Reliability Engineer at Mimecast, shares over a decade of experience in the field. Paul highlights the role of an Embedded SRE, emphasizing the importance of automation, observability, and effective incident management. We also focused on the key question of how you can work effectively with an SRE weather you are an individual contributor or a manager, a software engineer or data scientist. And how you can learn more about site reliability engineering.
+Florian from Cracking AI Engineering interviewed me about my work as a Principal SRE at Mimecast. We talked about what an Embedded SRE actually does, automation, observability, incident management, and how to work well with an SRE — whether you're a developer, data scientist, or manager.
 
 ## Introducing Paul
 
@@ -158,7 +158,7 @@ Thank you very much for your time and this insightful interview into the world o
 
 ## Closing comments
 
-Dear reader, I hope this conversation with Paul Bütow provided an exciting peak into the world of Site Reliability Engineering. Whether you’re a software developer, data scientist, ML engineer, or manager, reliable systems are always a team effort. Hopefully, you’ve taken some insights or tips from Paul’s experiences for your own team or next project. Thanks for joining us, and best of luck refining your own SRE practices!
+Thanks for reading! Hopefully there’s something useful in here for your own work. Reliable systems are a team effort, after all.
 
 E-Mail your comments to `paul@nospam.buetow.org` or contact Florian via the Cracking AI Engineering :-)
 
