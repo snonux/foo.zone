@@ -1,4 +1,4 @@
-# Distributed Systems Simulator
+# Distributed Systems Simulator v1.1.0 released
 
 > DRAFT - Not yet published
 
@@ -796,6 +796,10 @@ The modernized successor ds-sim (version 1.1.0) has been updated to Java 21 and 
 
 => https://codeberg.org/snonux/ds-sim ds-sim source code on Codeberg
 => https://codeberg.org/snonux/vs-sim vs-sim source code on Codeberg (original German version, 2008)
+
+Other related posts are:
+
+<< template::inline::rindex java object-oriented-programming release
 
 E-Mail your comments to `paul@nospam.buetow.org`
 
