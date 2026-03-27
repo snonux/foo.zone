@@ -219,6 +219,8 @@ By deactivating the logging switch, message logging can be temporarily disabled.
 
 ### Expert Mode
 
+=> ./distributed-systems-simulator/ds-sim-screenshot.png Screenshot: The Distributed Systems Simulator in expert mode, showing a Broadcast protocol simulation with 6 processes. The visualization shows message lines between process bars, with blue indicating delivered messages and green indicating messages still in transit.
+
 The simulator can be operated in two different modes: simple mode and expert mode. The simulator starts in simple mode by default, so users don't have to deal with the simulator's full functionality all at once. Simple mode is clearer but offers fewer functions. Expert mode is more suitable for experienced users and accordingly offers more flexibility. Expert mode can be activated or deactivated via the switch of the same name below the log window or via the simulation settings.
 
 In expert mode, the following additional features become available:
@@ -793,6 +795,7 @@ The modernized successor ds-sim (version 1.1.0) has been updated to Java 21 and 
 * 269 configurable settings
 
 => https://codeberg.org/snonux/ds-sim ds-sim source code on Codeberg
+=> https://codeberg.org/snonux/vs-sim vs-sim source code on Codeberg (original German version, 2008)
 
 E-Mail your comments to `paul@nospam.buetow.org`
 
