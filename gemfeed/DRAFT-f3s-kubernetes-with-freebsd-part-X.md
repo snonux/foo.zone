@@ -46,19 +46,19 @@ This is part X of the f3s series for my self-hosting demands in a home lab. f3s?
 
 ## Introduction
 
-In the previous posts, I deployed applications to the k3s cluster using Helm charts and Justfiles—running `just install` or `just upgrade` to imperatively push changes to the cluster. While this approach works, it has several drawbacks:
+In previous posts, I deployed applications to the k3s cluster using Helm charts and Justfiles—running `just install` or `just upgrade` to imperatively push changes to the cluster. Works fine, but has some drawbacks:
 
 * No single source of truth: The cluster state depends on which commands were run and when
 * Manual synchronization: Every change requires manually running commands
 * Drift detection is hard: No easy way to know if cluster state matches the desired configuration
-* Rollback complexity: Rolling back changes means re-running old Helm commands
+* Rollback complexity: Rolling back means re-running old Helm commands
 * No audit trail: Hard to track who changed what and when
 
-This blog post covers the migration from imperative Helm deployments to declarative GitOps using ArgoCD. After this migration, the Git repository becomes the single source of truth, and ArgoCD automatically ensures the cluster matches what's defined in Git.
+This post covers migrating from imperative Helm deployments to declarative GitOps using ArgoCD. After this, the Git repository becomes the single source of truth, and ArgoCD automatically ensures the cluster matches what's defined in Git.
 
 ## What is GitOps?
 
-GitOps is an operational framework that applies DevOps best practices—like version control, collaboration, and CI/CD—to infrastructure automation. The core idea is simple: the entire desired state of your infrastructure is stored in Git, and automated processes ensure the actual state matches the desired state.
+GitOps is an operational framework that applies DevOps best practices—version control, collaboration, CI/CD—to infrastructure automation. The core idea: the entire desired state lives in Git, and automated processes ensure the actual state matches it.
 
 Key principles:
 

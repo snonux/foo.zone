@@ -2,7 +2,7 @@
 
 > Published at 2025-12-24T09:45:29+02:00
 
-This blog post describes my hackathon efforts adding observability to X-RAG, the extensible Retrieval-Augmented Generation (RAG) platform built by my brother Florian. I especially made time available over the weekend to join his 3-day hackathon (attending 2 days) with the goal of instrumenting his existing distributed system with observability. What started as "let's add some metrics" turned into a comprehensive implementation of the three pillars of observability: tracing, metrics, and logs.
+This post describes my hackathon efforts adding observability to X-RAG, the extensible Retrieval-Augmented Generation (RAG) platform built by my brother Florian. I made time over the weekend to join his 3-day hackathon (attending 2 days) with the goal of instrumenting his existing distributed system with observability. What started as "let's add some metrics" turned into a comprehensive implementation of the three pillars of observability: tracing, metrics, and logs.
 
 [X-RAG source code on GitHub](https://github.com/florianbuetow/x-rag)  
 

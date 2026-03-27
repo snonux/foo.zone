@@ -2,9 +2,9 @@
 
 ## Introduction
 
-This post covers deploying a simple IPv6/IPv4 connectivity test application to the f3s Kubernetes cluster. The application displays visitors' IP addresses and determines whether they're connecting via IPv6 or IPv4—useful for testing dual-stack connectivity.
+Deploying a simple IPv6/IPv4 connectivity test application to the f3s Kubernetes cluster. It displays visitors' IP addresses and tells them whether they're connecting via IPv6 or IPv4—useful for testing dual-stack connectivity.
 
-The interesting technical challenge was preserving the original client IP address through multiple reverse proxies: from the OpenBSD relayd frontends, through Traefik ingress, to the Apache CGI backend.
+The interesting bit was preserving the original client IP address through multiple reverse proxies: from the OpenBSD relayd frontends, through Traefik ingress, to the Apache CGI backend.
 
 [f3s series](./2024-11-17-f3s-kubernetes-with-freebsd-part-1.md)  
 
