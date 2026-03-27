@@ -1,4 +1,4 @@
-# Distributed Systems Simulator
+# Distributed Systems Simulator v1.1.0 released
 
 > DRAFT - Not yet published
 
@@ -10,7 +10,7 @@ This blog explores the Java-based Distributed Systems Simulator program I create
 
 ## Table of Contents
 
-* ⇢ Distributed Systems Simulator
+* ⇢ Distributed Systems Simulator v1.1.0 released
 * ⇢ ⇢ Motivation
 * ⇢ ⇢ Installation
 * ⇢ ⇢ Fundamentals
@@ -260,6 +260,8 @@ The log window (at the bottom) logs all occurring events in chronological order.
 By deactivating the logging switch, message logging can be temporarily disabled. With logging deactivated, no new messages are written to the log window. After reactivating the switch, all omitted messages are subsequently written to the window. Deactivated logging can lead to improved simulator performance.
 
 ### Expert Mode
+
+=> ./distributed-systems-simulator/ds-sim-screenshot.png Screenshot: The Distributed Systems Simulator in expert mode, showing a Broadcast protocol simulation with 6 processes. The visualization shows message lines between process bars, with blue indicating delivered messages and green indicating messages still in transit.
 
 The simulator can be operated in two different modes: simple mode and expert mode. The simulator starts in simple mode by default, so users don't have to deal with the simulator's full functionality all at once. Simple mode is clearer but offers fewer functions. Expert mode is more suitable for experienced users and accordingly offers more flexibility. Expert mode can be activated or deactivated via the switch of the same name below the log window or via the simulation settings.
 
@@ -835,6 +837,14 @@ The modernized successor ds-sim (version 1.1.0) has been updated to Java 21 and 
 * 269 configurable settings
 
 => https://codeberg.org/snonux/ds-sim ds-sim source code on Codeberg
+=> https://codeberg.org/snonux/vs-sim vs-sim source code on Codeberg (original German version, 2008)
+
+Other related posts are:
+
+=> ./2026-03-01-loadbars-0.13.0-released.gmi 2026-03-01 Loadbars 0.13.0 released
+=> ./2022-12-24-ultrarelearning-java-my-takeaways.gmi 2022-12-24 (Re)learning Java - My takeaways
+=> ./2022-03-06-the-release-of-dtail-4.0.0.gmi 2022-03-06 The release of DTail 4.0.0
+=> ./2016-11-20-object-oriented-programming-with-ansi-c.gmi 2016-11-20 Object oriented programming with ANSI C
 
 E-Mail your comments to `paul@nospam.buetow.org`
 

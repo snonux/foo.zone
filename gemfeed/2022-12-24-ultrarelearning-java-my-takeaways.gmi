@@ -117,6 +117,11 @@ Java needs a clean cut. The clean cut shall be incompatible with previous versio
 
 Am I a Java expert now? No, by far not. But I am better now than before :-).
 
+Other related posts are:
+
+=> ./2022-12-24-ultrarelearning-java-my-takeaways.gmi 2022-12-24 (Re)learning Java - My takeaways (You are currently reading this)
+=> ./2016-11-20-object-oriented-programming-with-ansi-c.gmi 2016-11-20 Object oriented programming with ANSI C
+
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 => ../ Back to the main site
