@@ -26,6 +26,40 @@ To achieve this goal, a simulator was developed, particularly for teaching and l
 
 The original simulator (VS-Sim) was written in Java 6 in 2008 with a German-language UI. In 2025, I revamped and modernized it as ds-sim: The entire codebase and UI were translated from German to English. The build system was migrated from hand-rolled Ant scripts to Maven. The Java baseline was upgraded from Java 6 to Java 21, adopting modern language features such as sealed class hierarchies, record types, formatted strings, and pattern matching. A proper exception hierarchy and consistent error handling were introduced. Comprehensive Javadoc documentation was added to all public APIs. A headless testing framework was implemented, bringing the project to 141 unit tests covering core components, the event system, and all protocol implementations. The project structure was reorganized to follow standard Maven conventions, and architecture documentation was added. In total, the modernization touched 199 files with over 15,000 lines of new code. Back in 2008, I wrote every single line by hand using the Vim editor. For the 2025 modernization, I could rely on Claude Code for most of the heavy lifting -- the translation, the refactoring, the test generation, the documentation. It is insane how times have changed.
 
+## Installation
+
+The modernized ds-sim requires Java 21 or higher and Maven 3.8 or higher.
+
+```
+# Clone the repository
+git clone https://codeberg.org/snonux/ds-sim.git
+cd ds-sim
+
+# Set JAVA_HOME if needed (e.g. on Fedora Linux)
+export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
+
+# Build the project
+mvn clean package
+
+# Run the simulator
+java -jar target/ds-sim-*.jar
+```
+
+For a faster development build without running tests:
+
+```
+mvn package -DskipTests
+```
+
+After building, the following artifacts are available in the `target/` directory:
+
+* `ds-sim-1.0.1.jar` - Executable JAR with all dependencies bundled
+* `original-ds-sim-1.0.1.jar` - JAR without dependencies
+
+The project also includes 141 unit tests that can be run with `mvn test`. Example simulation files for all built-in protocols are included in the `saved-simulations/` directory.
+
+=> https://codeberg.org/snonux/ds-sim ds-sim source code on Codeberg
+
 ## Fundamentals
 
 For basic understanding, some fundamentals are explained below. A deeper exploration will follow in later chapters.
@@ -738,40 +772,6 @@ public class VSReliableMulticastProtocol extends VSAbstractProtocol {
     public void onClientSchedule() { onClientStart(); }
 }
 ```
-
-## Installation
-
-The modernized ds-sim requires Java 21 or higher and Maven 3.8 or higher.
-
-```
-# Clone the repository
-git clone https://codeberg.org/snonux/ds-sim.git
-cd ds-sim
-
-# Set JAVA_HOME if needed (e.g. on Fedora Linux)
-export JAVA_HOME=/usr/lib/jvm/java-21-openjdk
-
-# Build the project
-mvn clean package
-
-# Run the simulator
-java -jar target/ds-sim-*.jar
-```
-
-For a faster development build without running tests:
-
-```
-mvn package -DskipTests
-```
-
-After building, the following artifacts are available in the `target/` directory:
-
-* `ds-sim-1.0.1.jar` - Executable JAR with all dependencies bundled
-* `original-ds-sim-1.0.1.jar` - JAR without dependencies
-
-The project also includes 141 unit tests that can be run with `mvn test`. Example simulation files for all built-in protocols are included in the `saved-simulations/` directory.
-
-=> https://codeberg.org/snonux/ds-sim ds-sim source code on Codeberg
 
 ## Project Statistics
 
