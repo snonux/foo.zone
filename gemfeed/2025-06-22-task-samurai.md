@@ -37,7 +37,7 @@ I wanted to tinker with agentic coding. This project was implemented entirely us
 
 [https://openai.com/codex/](https://openai.com/codex/)  
 
-Given the current industry trend and the rapid advancements in technology, it has become clear that experimenting with AI-assisted coding tools is almost a necessity to stay relevant. Embracing these new developments doesn't mean abandoning traditional coding; instead, it means integrating new capabilities into your workflow to stay ahead in a fast-evolving field.
+I've been curious about agentic coding for a while and wanted to see what it's actually like to build something with it. So I gave it a go (no pun intended).
 
 ### How it works
 
