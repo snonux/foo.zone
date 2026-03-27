@@ -24,7 +24,7 @@ This thesis aims to make it easier for users to view distributed systems from a 
 
 To achieve this goal, a simulator was developed, particularly for teaching and learning purposes at the University of Applied Sciences Aachen. With the simulator, protocols from distributed systems with their most important influencing factors can be replicated through simulations. At the same time, there is ample room for personal experiments, with no restriction to a fixed number of protocols. It is therefore important that users are enabled to design their own protocols.
 
-The original simulator (VS-Sim) was written in Java 6 in 2008 with a German-language UI. In 2025, I revamped and modernized it as ds-sim: The entire codebase and UI were translated from German to English. The build system was migrated from hand-rolled Ant scripts to Maven. The Java baseline was upgraded from Java 6 to Java 21, adopting modern language features such as sealed class hierarchies, record types, formatted strings, and pattern matching. A proper exception hierarchy and consistent error handling were introduced. Comprehensive Javadoc documentation was added to all public APIs. A headless testing framework was implemented, bringing the project to 141 unit tests covering core components, the event system, and all protocol implementations. The project structure was reorganized to follow standard Maven conventions, and architecture documentation was added. In total, the modernization touched 199 files with over 15,000 lines of new code. Back in 2008, I wrote every single line by hand using the Vim editor. For the 2025 modernization, I could rely on Claude Code for most of the heavy lifting -- the translation, the refactoring, the test generation, the documentation. It is insane how times have changed.
+The original simulator (VS-Sim) was written in Java 6 in 2008 with a German-language UI. In 2025, I revamped and modernized it as ds-sim: The entire codebase and UI were translated from German to English. The build system was migrated from hand-rolled Ant scripts to Maven. The Java baseline was upgraded from Java 6 to Java 21, adopting modern language features such as sealed class hierarchies, record types, formatted strings, and pattern matching. A proper exception hierarchy and consistent error handling were introduced. Comprehensive Javadoc documentation was added to all public APIs. A headless testing framework was implemented, bringing the project to 208 unit tests covering core components, the event system, and all protocol implementations. The project structure was reorganized to follow standard Maven conventions, and architecture documentation was added. In total, the modernization touched 199 files with over 15,000 lines of new code. Back in 2008, I wrote every single line by hand using the Vim editor. For the 2025 modernization, I could rely on Claude Code for most of the heavy lifting -- the translation, the refactoring, the test generation, the documentation. It is insane how times have changed.
 
 ## Installation
 
@@ -53,10 +53,10 @@ mvn package -DskipTests
 
 After building, the following artifacts are available in the `target/` directory:
 
-* `ds-sim-1.0.1.jar` - Executable JAR with all dependencies bundled
-* `original-ds-sim-1.0.1.jar` - JAR without dependencies
+* `ds-sim-1.1.0.jar` - Executable JAR with all dependencies bundled
+* `original-ds-sim-1.1.0.jar` - JAR without dependencies
 
-The project also includes 141 unit tests that can be run with `mvn test`. Example simulation files for all built-in protocols are included in the `saved-simulations/` directory.
+The project also includes 208 unit tests that can be run with `mvn test`. Example simulation files for all built-in protocols are included in the `saved-simulations/` directory.
 
 => https://codeberg.org/snonux/ds-sim ds-sim source code on Codeberg
 
@@ -784,7 +784,13 @@ The original VS-Sim project (August 2008) was written in Java 6 and consisted of
 * 10 built-in protocols
 * 163 configurable settings
 
-The modernized successor ds-sim has been updated to Java 21 and translated to English.
+The modernized successor ds-sim (version 1.1.0) has been updated to Java 21 and translated to English:
+
+* 146 source files (117 main + 29 test) across 19 Java packages
+* Approximately 27,900 lines of code (22,400 main + 5,500 test)
+* 12 built-in protocols
+* 208 unit tests
+* 269 configurable settings
 
 => https://codeberg.org/snonux/ds-sim ds-sim source code on Codeberg
 
