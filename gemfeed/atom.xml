@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-03-09T09:06:40+02:00</updated>
+    <updated>2026-03-19T08:39:53+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -8989,7 +8989,7 @@ content = "{CODE}"
         <title>f3s: Kubernetes with FreeBSD - Part 6: Storage</title>
         <link href="https://foo.zone/gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.html" />
         <id>https://foo.zone/gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.html</id>
-        <updated>2025-07-13T16:44:29+03:00, last updated Tue 27 Jan 10:09:08 EET 2026</updated>
+        <updated>2025-07-13T16:44:29+03:00, last updated Wed 19 Mar 2026</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -8999,7 +8999,7 @@ content = "{CODE}"
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</h1><br />
 <br />
-<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated Tue 27 Jan 10:09:08 EET 2026</span><br />
+<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated Wed 19 Mar 2026</span><br />
 <br />
 <span>This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -10843,6 +10843,8 @@ LOCK_FILE=<font color="#808080">"/var/run/nfs-mount-check.lock"</font>
 touch <font color="#808080">"$LOCK_FILE"</font>
 <b><u><font color="#000000">trap</font></u></b> <font color="#808080">"rm -f $LOCK_FILE"</font> EXIT
 
+MOUNT_FIXED=<font color="#000000">0</font>
+
 fix_mount () {
     echo <font color="#808080">"Attempting to remount NFS mount $MOUNT_POINT"</font>
     <b><u><font color="#000000">if</font></u></b> mount -o remount -f <font color="#808080">"$MOUNT_POINT"</font> <font color="#000000">2</font>&gt;/dev/null; <b><u><font color="#000000">then</font></u></b>
@@ -10858,6 +10860,7 @@ fix_mount () {
         echo <font color="#808080">"$MOUNT_POINT is not a valid mountpoint, attempting mount"</font>
         <b><u><font color="#000000">if</font></u></b> mount <font color="#808080">"$MOUNT_POINT"</font>; <b><u><font color="#000000">then</font></u></b>
             echo <font color="#808080">"Successfully mounted $MOUNT_POINT"</font>
+            MOUNT_FIXED=<font color="#000000">1</font>
             <b><u><font color="#000000">return</font></u></b>
         <b><u><font color="#000000">else</font></u></b>
             echo <font color="#808080">"Failed to mount $MOUNT_POINT"</font>
@@ -10874,6 +10877,7 @@ fix_mount () {
     echo <font color="#808080">"Attempting to mount $MOUNT_POINT"</font>
     <b><u><font color="#000000">if</font></u></b> mount <font color="#808080">"$MOUNT_POINT"</font>; <b><u><font color="#000000">then</font></u></b>
         echo <font color="#808080">"NFS mount $MOUNT_POINT mounted successfully"</font>
+        MOUNT_FIXED=<font color="#000000">1</font>
         <b><u><font color="#000000">return</font></u></b>
     <b><u><font color="#000000">else</font></u></b>
         echo <font color="#808080">"Failed to mount NFS mount $MOUNT_POINT"</font>
@@ -10891,6 +10895,30 @@ fix_mount () {
 <b><u><font color="#000000">if</font></u></b> ! timeout 2s stat <font color="#808080">"$MOUNT_POINT"</font> &gt;/dev/null <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>; <b><u><font color="#000000">then</font></u></b>
     echo <font color="#808080">"NFS mount $MOUNT_POINT appears to be unresponsive"</font>
     fix_mount
+<b><u><font color="#000000">fi</font></u></b>
+
+<i><font color="silver"># After a successful remount, delete pods stuck on this node</font></i>
+<b><u><font color="#000000">if</font></u></b> [ <font color="#808080">"$MOUNT_FIXED"</font> -eq <font color="#000000">1</font> ]; <b><u><font color="#000000">then</font></u></b>
+    echo <font color="#808080">"Mount was fixed, checking for stuck pods on this node..."</font>
+    NODE=$(hostname)
+    <b><u><font color="#000000">export</font></u></b> KUBECONFIG=/etc/rancher/k3s/k3s.yaml
+    kubectl get pods --all-namespaces \
+      --field-selector=<font color="#808080">"spec.nodeName=$NODE"</font> \
+      -o json <font color="#000000">2</font>&gt;/dev/null | jq -r <font color="#808080">'</font>
+<font color="#808080">        .items[] |</font>
+<font color="#808080">        select(</font>
+<font color="#808080">          .status.phase == "Unknown" or</font>
+<font color="#808080">          .status.phase == "Pending" or</font>
+<font color="#808080">          (.status.conditions // [] |</font>
+<font color="#808080">            any(.type == "Ready" and .status == "False")) or</font>
+<font color="#808080">          (.status.containerStatuses // [] |</font>
+<font color="#808080">            any(.state.waiting.reason == "ContainerCreating"))</font>
+<font color="#808080">        ) | "</font>\(<font color="#808080">.metadata.namespace) </font>\(<font color="#808080">.metadata.name)"'</font> | \
+      <b><u><font color="#000000">while</font></u></b> <b><u><font color="#000000">read</font></u></b> ns pod; <b><u><font color="#000000">do</font></u></b>
+        echo <font color="#808080">"Deleting stuck pod $ns/$pod"</font>
+        kubectl delete pod -n <font color="#808080">"$ns"</font> <font color="#808080">"$pod"</font> \
+          --grace-period=<font color="#000000">0</font> --force <font color="#000000">2</font>&gt;&amp;<font color="#000000">1</font>
+      <b><u><font color="#000000">done</font></u></b>
 <b><u><font color="#000000">fi</font></u></b>
 EOF
 
@@ -10959,6 +10987,10 @@ http://www.gnu.org/software/src-highlite -->
 </pre>
 <br />
 <span>Note: Stale file handles are inherent to NFS failover because file handles are server-specific. The best approach depends on your application&#39;s tolerance for brief disruptions. Of course, all the changes made to <span class='inlinecode'>r0</span> above must also be applied to <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span>.</span><br />
+<br />
+<span class='quote'>Updated Wed 19 Mar 2026: Added automatic pod restart after NFS remount</span><br />
+<br />
+<span>The script now also tracks whether a mount was fixed via the <span class='inlinecode'>MOUNT_FIXED</span> variable. After a successful remount, it queries kubectl for pods on the local node that are stuck in <span class='inlinecode'>Unknown</span>, <span class='inlinecode'>Pending</span>, or <span class='inlinecode'>ContainerCreating</span> state and force-deletes them. Kubernetes then automatically reschedules these pods, which will now succeed because the NFS mount is healthy again. Without this, pods that hit a stale mount would remain broken until manually deleted, even after the underlying NFS issue was resolved.</span><br />
 <br />
 <h3 style='display: inline' id='complete-failover-test'>Complete Failover Test</h3><br />
 <br />
