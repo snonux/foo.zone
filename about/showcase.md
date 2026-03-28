@@ -16,58 +16,32 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ 5. snonux 5](#5-snonux-5)
 * [⇢ ⇢ ⇢ 6. dtail 6↙2↖21↙20](#6-dtail-622120)
 * [⇢ ⇢ ⇢ 7. conf 7↖9↙8↙5](#7-conf-7985)
-* [⇢ ⇢ ⇢ 8. ior 8↙4↙1←1](#8-ior-8411)
-* [⇢ ⇢ ⇢ 9. timesamurai 9↙5↙2](#9-timesamurai-952)
-* [⇢ ⇢ ⇢ 10. loadbars 10↙6↙5↖47](#10-loadbars-106547)
-* [⇢ ⇢ ⇢ 11. foo.zone 11↖64←64↙6](#11-foozone-1164646)
-* [⇢ ⇢ ⇢ 12. foostore 12↙7↙6↖7](#12-foostore-12767)
-* [⇢ ⇢ ⇢ 13. ds-sim 13↖25←25↙21](#13-ds-sim-13252521)
-* [⇢ ⇢ ⇢ 14. epimetheus 14↙8↙7↙4](#14-epimetheus-14874)
-* [⇢ ⇢ ⇢ 15. gitsyncer 15↙11↙10↖15](#15-gitsyncer-15111015)
-* # Project Showcase
-
-Generated on: 2026-03-28
-
-This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, releases, and licensing. The projects are ranked by score, which combines recent activity, project size, tag history, and whether the project has shipped a release.
-
-## Table of Contents
-
-* [⇢ Project Showcase](#project-showcase)
-* [⇢ ⇢ Overall Statistics](#overall-statistics)
-* [⇢ ⇢ Projects](#projects)
-* [⇢ ⇢ ⇢ 1. hexai 1←1↖3↙2](#1-hexai-1132)
-* [⇢ ⇢ ⇢ 2. gt 2](#2-gt-2)
-* [⇢ ⇢ ⇢ 3. hypr 3](#3-hypr-3)
-* [⇢ ⇢ ⇢ 4. dotfiles 4↙3↖4↙3](#4-dotfiles-4343)
-* [⇢ ⇢ ⇢ 5. snonux 5](#5-snonux-5)
-* [⇢ ⇢ ⇢ 6. dtail 6↙2↖21↙20](#6-dtail-622120)
-* [⇢ ⇢ ⇢ 7. conf 7↖9↙8↙5](#7-conf-7985)
-* [⇢ ⇢ ⇢ 8. ior 8↙4↙1←1](#8-ior-8411)
-* [⇢ ⇢ ⇢ 9. timesamurai 9↙5↙2](#9-timesamurai-952)
-* [⇢ ⇢ ⇢ 10. loadbars 10↙6↙5↖47](#10-loadbars-106547)
-* [⇢ ⇢ ⇢ 11. foo.zone 11↖64←64↙6](#11-foozone-1164646)
-* [⇢ ⇢ ⇢ 12. foostore 12↙7↙6↖7](#12-foostore-12767)
-* [⇢ ⇢ ⇢ 13. ds-sim 13↖25←25↙21](#13-ds-sim-13252521)
-* [⇢ ⇢ ⇢ 14. epimetheus 14↙8↙7↙4](#14-epimetheus-14874)
-* [⇢ ⇢ ⇢ 15. gitsyncer 15↙11↙10↖15](#15-gitsyncer-15111015)
+* [⇢ ⇢ ⇢ 8. foo.zone 8↖64←64↙6](#8-foozone-864646)
+* [⇢ ⇢ ⇢ 9. ior 9↙4↙1←1](#9-ior-9411)
+* [⇢ ⇢ ⇢ 10. timesamurai 10↙5↙2](#10-timesamurai-1052)
+* [⇢ ⇢ ⇢ 11. foostore 11↙7↙6↖7](#11-foostore-11767)
+* [⇢ ⇢ ⇢ 12. ds-sim 12↖25←25↙21](#12-ds-sim-12252521)
+* [⇢ ⇢ ⇢ 13. epimetheus 13↙8↙7↙4](#13-epimetheus-13874)
+* [⇢ ⇢ ⇢ 14. gitsyncer 14↙11↙10↖15](#14-gitsyncer-14111015)
+* [⇢ ⇢ ⇢ 15. rcm 15↙12←12↙10](#15-rcm-15121210)
 * [⇢ ⇢ ⇢ 16. scifi 16↙10↙9↙8](#16-scifi-161098)
-* [⇢ ⇢ ⇢ 17. rcm 17↙12←12↙10](#17-rcm-17121210)
-* [⇢ ⇢ ⇢ 18. yoga 18↙13←13↙12](#18-yoga-18131312)
-* [⇢ ⇢ ⇢ 19. totalrecall 19↙15←15↙14](#19-totalrecall-19151514)
-* [⇢ ⇢ ⇢ 20. gogios 20↙16↙14↙11](#20-gogios-20161411)
-* [⇢ ⇢ ⇢ 21. log4jbench 21↙14↙11↙9](#21-log4jbench-2114119)
-* [⇢ ⇢ ⇢ 22. perc 22↙17↙16↙13](#22-perc-22171613)
-* [⇢ ⇢ ⇢ 23. tasksamurai 23↙18↙17↙16](#23-tasksamurai-23181716)
-* [⇢ ⇢ ⇢ 24. gos 24↙19↙18←18](#24-gos-24191818)
-* [⇢ ⇢ ⇢ 25. foostats 25↙20↙19↙17](#25-foostats-25201917)
-* [⇢ ⇢ ⇢ 26. timr 26↙21↙20↙19](#26-timr-26212019)
-* [⇢ ⇢ ⇢ 27. gemtexter 27↙22↖23↙22](#27-gemtexter-27222322)
-* [⇢ ⇢ ⇢ 28. wireguardmeshgenerator 28↙23↙22↖23](#28-wireguardmeshgenerator-28232223)
-* [⇢ ⇢ ⇢ 29. goprecords 29↙24←24←24](#29-goprecords-29242424)
-* [⇢ ⇢ ⇢ 30. ioriot 30↖34↖35←35](#30-ioriot-30343535)
-* [⇢ ⇢ ⇢ 31. quicklogger 31↙26←26↙25](#31-quicklogger-31262625)
-* [⇢ ⇢ ⇢ 32. sillybench 32↙27←27←27](#32-sillybench-32272727)
-* [⇢ ⇢ ⇢ 33. terraform 33↙28←28↙26](#33-terraform-33282826)
+* [⇢ ⇢ ⇢ 17. yoga 17↙13←13↙12](#17-yoga-17131312)
+* [⇢ ⇢ ⇢ 18. totalrecall 18↙15←15↙14](#18-totalrecall-18151514)
+* [⇢ ⇢ ⇢ 19. gogios 19↙16↙14↙11](#19-gogios-19161411)
+* [⇢ ⇢ ⇢ 20. log4jbench 20↙14↙11↙9](#20-log4jbench-2014119)
+* [⇢ ⇢ ⇢ 21. perc 21↙17↙16↙13](#21-perc-21171613)
+* [⇢ ⇢ ⇢ 22. tasksamurai 22↙18↙17↙16](#22-tasksamurai-22181716)
+* [⇢ ⇢ ⇢ 23. gos 23↙19↙18←18](#23-gos-23191818)
+* [⇢ ⇢ ⇢ 24. foostats 24↙20↙19↙17](#24-foostats-24201917)
+* [⇢ ⇢ ⇢ 25. timr 25↙21↙20↙19](#25-timr-25212019)
+* [⇢ ⇢ ⇢ 26. gemtexter 26↙22↖23↙22](#26-gemtexter-26222322)
+* [⇢ ⇢ ⇢ 27. wireguardmeshgenerator 27↙23↙22↖23](#27-wireguardmeshgenerator-27232223)
+* [⇢ ⇢ ⇢ 28. goprecords 28↙24←24←24](#28-goprecords-28242424)
+* [⇢ ⇢ ⇢ 29. ioriot 29↖34↖35←35](#29-ioriot-29343535)
+* [⇢ ⇢ ⇢ 30. quicklogger 30↙26←26↙25](#30-quicklogger-30262625)
+* [⇢ ⇢ ⇢ 31. sillybench 31↙27←27←27](#31-sillybench-31272727)
+* [⇢ ⇢ ⇢ 32. terraform 32↙28←28↙26](#32-terraform-32282826)
+* [⇢ ⇢ ⇢ 33. guprecords 33↖39↙29←29](#33-guprecords-33392929)
 * [⇢ ⇢ ⇢ 34. geheim 34↙29↖30←30](#34-geheim-34293030)
 * [⇢ ⇢ ⇢ 35. gorum 35↙30↖31↙28](#35-gorum-35303128)
 * [⇢ ⇢ ⇢ 36. docker-radicale-server 36↙31↖32↙31](#36-docker-radicale-server-36313231)
@@ -80,39 +54,39 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ 43. mon 43↙40←40↙39](#43-mon-43404039)
 * [⇢ ⇢ ⇢ 44. fapi 44↙41←41↖44](#44-fapi-44414144)
 * [⇢ ⇢ ⇢ 45. pingdomfetch 45↙42←42↙41](#45-pingdomfetch-45424241)
-* [⇢ ⇢ ⇢ 46. fype 46↙43←43↙37](#46-fype-46434337)
+* [⇢ ⇢ ⇢ 46. loadbars 46↙6↙5↖47](#46-loadbars-466547)
 * [⇢ ⇢ ⇢ 47. pwgrep 47↙44←44↖50](#47-pwgrep-47444450)
 * [⇢ ⇢ ⇢ 48. xerl 48↙45←45↙42](#48-xerl-48454542)
-* [⇢ ⇢ ⇢ 49. guprecords 49↙39↙29←29](#49-guprecords-49392929)
-* [⇢ ⇢ ⇢ 50. awksite 50↙46←46↖61](#50-awksite-50464661)
-* [⇢ ⇢ ⇢ 51. gotop 51↙47←47↖48](#51-gotop-51474748)
-* [⇢ ⇢ ⇢ 52. japi 52↙48←48↖53](#52-japi-52484853)
+* [⇢ ⇢ ⇢ 49. awksite 49↙46←46↖61](#49-awksite-49464661)
+* [⇢ ⇢ ⇢ 50. gotop 50↙47←47↖48](#50-gotop-50474748)
+* [⇢ ⇢ ⇢ 51. japi 51↙48←48↖53](#51-japi-51484853)
+* [⇢ ⇢ ⇢ 52. perldaemon 52←52↙49↖51](#52-perldaemon-52524951)
 * [⇢ ⇢ ⇢ 53. rubyfy 53↙49↖50↙49](#53-rubyfy-53495049)
 * [⇢ ⇢ ⇢ 54. perl-c-fibonacci 54↙50↖51↙45](#54-perl-c-fibonacci-54505145)
 * [⇢ ⇢ ⇢ 55. netdiff 55↙51↖52↖56](#55-netdiff-55515256)
-* [⇢ ⇢ ⇢ 56. perldaemon 56↙52↙49↖51](#56-perldaemon-56524951)
-* [⇢ ⇢ ⇢ 57. muttdelay 57↙54←54↖55](#57-muttdelay-57545455)
-* [⇢ ⇢ ⇢ 58. cpuinfo 58↙57↙56↖59](#58-cpuinfo-58575659)
-* [⇢ ⇢ ⇢ 59. template 59↙58↙57↖60](#59-template-59585760)
-* [⇢ ⇢ ⇢ 60. dyndns 60↙59↙58↖62](#60-dyndns-60595862)
-* [⇢ ⇢ ⇢ 61. debroid 61↙60↙59↙57](#61-debroid-61605957)
-* [⇢ ⇢ ⇢ 62. netcalendar 62↙55←55↙46](#62-netcalendar-62555546)
-* [⇢ ⇢ ⇢ 63. jsmstrade 63↙53←53↙52](#63-jsmstrade-63535352)
+* [⇢ ⇢ ⇢ 56. muttdelay 56↙54←54↖55](#56-muttdelay-56545455)
+* [⇢ ⇢ ⇢ 57. cpuinfo 57←57↙56↖59](#57-cpuinfo-57575659)
+* [⇢ ⇢ ⇢ 58. template 58←58↙57↖60](#58-template-58585760)
+* [⇢ ⇢ ⇢ 59. dyndns 59←59↙58↖62](#59-dyndns-59595862)
+* [⇢ ⇢ ⇢ 60. debroid 60←60↙59↙57](#60-debroid-60605957)
+* [⇢ ⇢ ⇢ 61. netcalendar 61↙55←55↙46](#61-netcalendar-61555546)
+* [⇢ ⇢ ⇢ 62. jsmstrade 62↙53←53↙52](#62-jsmstrade-62535352)
+* [⇢ ⇢ ⇢ 63. ychat 63←63↙62↙43](#63-ychat-63636243)
 * [⇢ ⇢ ⇢ 64. vs-sim 64↙56↖63←63](#64-vs-sim-64566363)
 * [⇢ ⇢ ⇢ 65. perl-poetry 65↙61↙60↙54](#65-perl-poetry-65616054)
-* [⇢ ⇢ ⇢ 66. hsbot 66↙62↙61↙58](#66-hsbot-66626158)
-* [⇢ ⇢ ⇢ 67. snonux.foo 67](#67-snonuxfoo-67)
-* [⇢ ⇢ ⇢ 68. ychat 68↙63↙62↙43](#68-ychat-68636243)
+* [⇢ ⇢ ⇢ 66. fype 66↙43←43↙37](#66-fype-66434337)
+* [⇢ ⇢ ⇢ 67. hsbot 67↙62↙61↙58](#67-hsbot-67626158)
+* [⇢ ⇢ ⇢ 68. snonux.foo 68](#68-snonuxfoo-68)
 
 ## Overall Statistics
 
 * 📦 Total Projects: 68
-* 📊 Total Commits: 10,988
-* 📈 Total Lines of Code: 406,165
-* 📄 Total Lines of Documentation: 270,443
-* 💻 Languages: Go (55.1%), Java (14.7%), C (5.0%), XML (5.0%), YAML (3.9%), Perl (3.5%), Shell (2.6%), Ruby (1.8%), TypeScript (1.4%), HTML (1.3%), C/C++ (1.1%), CSS (0.9%), Config (0.7%), Python (0.7%), HCL (0.7%), JSON (0.5%), Make (0.3%), TOML (0.3%), Haskell (0.1%), JavaScript (0.1%)
-* 📚 Documentation: Text (82.7%), Markdown (16.0%), LaTeX (1.3%)
-* 🚀 Release Status: 39 released, 29 experimental (57.4% with releases, 42.6% experimental)
+* 📊 Total Commits: 11,014
+* 📈 Total Lines of Code: 444,985
+* 📄 Total Lines of Documentation: 269,276
+* 💻 Languages: Go (49.1%), Java (13.5%), C (4.7%), XML (4.6%), C++ (4.5%), Shell (4.3%), Perl (3.9%), YAML (3.6%), C/C++ (3.0%), Ruby (1.8%), HTML (1.3%), TypeScript (1.3%), Config (0.9%), CSS (0.9%), Python (0.6%), HCL (0.6%), JSON (0.5%), Make (0.4%), TOML (0.3%), Haskell (0.1%), JavaScript (0.1%)
+* 📚 Documentation: Text (82.8%), Markdown (16.0%), LaTeX (1.3%)
+* 🚀 Release Status: 40 released, 28 experimental (58.8% with releases, 41.2% experimental)
 
 ## Projects
 
@@ -120,14 +94,14 @@ This page showcases my side projects, providing an overview of what each project
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 458
-* 📈 Lines of Code: 43837
-* 📄 Lines of Documentation: 4368
-* 🏷️ Tags: 66
+* 📊 Commits: 459
+* 📈 Lines of Code: 44403
+* 📄 Lines of Documentation: 4381
+* 🏷️ Tags: 67
 * 📅 Development Period: 2025-08-01 to 2026-03-27
-* 🏆 Score: 309.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 316.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
-* 🏷️ Latest Release: v0.27.1 (2026-03-27)
+* 🏷️ Latest Release: v0.27.2 (2026-03-27)
 
 
 [![hexai screenshot](showcase/hexai/image-1.png "hexai screenshot")](showcase/hexai/image-1.png)  
@@ -136,6 +110,7 @@ Hexai, the AI addition for your Helix Editor (https://helix-editor.com) .. Other
 
 [View on Codeberg](https://codeberg.org/snonux/hexai)  
 [View on GitHub](https://github.com/snonux/hexai)  
+[View in cgit](https://cgit.f3s.buetow.org/hexai/)  
 
 ---
 
@@ -148,7 +123,7 @@ Hexai, the AI addition for your Helix Editor (https://helix-editor.com) .. Other
 * 📄 Lines of Documentation: 301
 * 🏷️ Tags: 5
 * 📅 Development Period: 2025-11-25 to 2026-03-26
-* 🏆 Score: 173.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 171.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.4.1 (2026-03-26)
 
@@ -157,6 +132,7 @@ A simple AI-engineered command-line percentage calculator written in Go. No fron
 
 [View on Codeberg](https://codeberg.org/snonux/gt)  
 [View on GitHub](https://github.com/snonux/gt)  
+[View in cgit](https://cgit.f3s.buetow.org/gt/)  
 
 ---
 
@@ -169,7 +145,7 @@ A simple AI-engineered command-line percentage calculator written in Go. No fron
 * 📄 Lines of Documentation: 3062
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-03-21 to 2026-03-27
-* 🏆 Score: 96.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 95.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -181,19 +157,20 @@ Runs two A100 VMs concurrently — each serving a different model — with [Pi](
 
 [View on Codeberg](https://codeberg.org/snonux/hypr)  
 [View on GitHub](https://github.com/snonux/hypr)  
+[View in cgit](https://cgit.f3s.buetow.org/hypr/)  
 
 ---
 
 ### 4. dotfiles 4↙3↖4↙3
 
-* 💻 Languages: Shell (65.1%), CSS (10.5%), Config (9.9%), TOML (9.7%), JSON (3.6%), Ruby (1.0%), INI (0.2%)
+* 💻 Languages: Shell (65.0%), CSS (10.5%), Config (9.9%), TOML (9.6%), JSON (3.7%), Ruby (1.0%), INI (0.2%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 897
-* 📈 Lines of Code: 3107
-* 📄 Lines of Documentation: 7850
+* 📊 Commits: 900
+* 📈 Lines of Code: 3110
+* 📄 Lines of Documentation: 8140
 * 🏷️ Tags: 0
-* 📅 Development Period: 2023-07-30 to 2026-03-27
-* 🏆 Score: 52.6 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2023-07-30 to 2026-03-28
+* 🏆 Score: 58.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -202,6 +179,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 
 [View on Codeberg](https://codeberg.org/snonux/dotfiles)  
 [View on GitHub](https://github.com/snonux/dotfiles)  
+[View in cgit](https://cgit.f3s.buetow.org/dotfiles/)  
 
 ---
 
@@ -214,7 +192,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 * 📄 Lines of Documentation: 205
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-03-21 to 2026-03-22
-* 🏆 Score: 47.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 46.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -223,6 +201,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 
 [View on Codeberg](https://codeberg.org/snonux/snonux)  
 [View on GitHub](https://github.com/snonux/snonux)  
+[View in cgit](https://cgit.f3s.buetow.org/snonux/)  
 
 ---
 
@@ -235,7 +214,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 * 📄 Lines of Documentation: 220523
 * 🏷️ Tags: 27
 * 📅 Development Period: 2020-01-09 to 2026-03-20
-* 🏆 Score: 41.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 41.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.3.3 (2024-08-23)
 
@@ -246,6 +225,7 @@ DTail (a distributed tail program) is a DevOps tool for engineers programmed in 
 
 [View on Codeberg](https://codeberg.org/snonux/dtail)  
 [View on GitHub](https://github.com/snonux/dtail)  
+[View in cgit](https://cgit.f3s.buetow.org/dtail/)  
 
 ---
 
@@ -258,7 +238,7 @@ DTail (a distributed tail program) is a DevOps tool for engineers programmed in 
 * 📄 Lines of Documentation: 6305
 * 🏷️ Tags: 0
 * 📅 Development Period: 2021-12-28 to 2026-03-22
-* 🏆 Score: 29.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 29.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -267,10 +247,33 @@ This is my personal config repository. Including...
 
 [View on Codeberg](https://codeberg.org/snonux/conf)  
 [View on GitHub](https://github.com/snonux/conf)  
+[View in cgit](https://cgit.f3s.buetow.org/conf/)  
 
 ---
 
-### 8. ior 8↙4↙1←1
+### 8. foo.zone 8↖64←64↙6
+
+* 💻 Languages: XML (98.2%), Shell (1.5%), Go (0.3%)
+* 📚 Documentation: Text (86.2%), Markdown (13.8%)
+* 📊 Commits: 1759
+* 📈 Lines of Code: 19881
+* 📄 Lines of Documentation: 174
+* 🏷️ Tags: 0
+* 📅 Development Period: 2021-04-29 to 2026-03-28
+* 🏆 Score: 26.7 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+Each format is in it's own branch in this repository. E.g.:
+
+[View on Codeberg](https://codeberg.org/snonux/foo.zone)  
+[View on GitHub](https://github.com/snonux/foo.zone)  
+[View in cgit](https://cgit.f3s.buetow.org/foo.zone/)  
+
+---
+
+### 9. ior 9↙4↙1←1
 
 * 💻 Languages: Go (89.5%), C (10.0%), JSON (0.3%), C/C++ (0.2%)
 * 📚 Documentation: Markdown (82.7%), Text (17.3%)
@@ -290,10 +293,11 @@ This is my personal config repository. Including...
 
 [View on Codeberg](https://codeberg.org/snonux/ior)  
 [View on GitHub](https://github.com/snonux/ior)  
+[View in cgit](https://cgit.f3s.buetow.org/ior/)  
 
 ---
 
-### 9. timesamurai 9↙5↙2
+### 10. timesamurai 10↙5↙2
 
 * 💻 Languages: Go (99.3%), Shell (0.6%), YAML (0.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -302,7 +306,7 @@ This is my personal config repository. Including...
 * 📄 Lines of Documentation: 112
 * 🏷️ Tags: 5
 * 📅 Development Period: 2025-06-25 to 2026-03-26
-* 🏆 Score: 25.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 25.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.8.0 (2026-03-26)
 
@@ -311,54 +315,11 @@ This is my personal config repository. Including...
 
 [View on Codeberg](https://codeberg.org/snonux/timesamurai)  
 [View on GitHub](https://github.com/snonux/timesamurai)  
+[View in cgit](https://cgit.f3s.buetow.org/timesamurai/)  
 
 ---
 
-### 10. loadbars 10↙6↙5↖47
-
-* 💻 Languages: Go (92.8%), Shell (7.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 537
-* 📈 Lines of Code: 6595
-* 📄 Lines of Documentation: 328
-* 🏷️ Tags: 38
-* 📅 Development Period: 2010-11-05 to 2026-03-02
-* 🏆 Score: 15.6 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v0.11.1 (2026-02-17)
-
-
-[![loadbars screenshot](showcase/loadbars/image-1.gif "loadbars screenshot")](showcase/loadbars/image-1.gif)  
-
-Loadbars is a tool that can be used to observe CPU loads of several remote servers at once in real time. It connects with SSH (using SSH public/private key auth) to several servers at once and vizualizes all server CPUs and memory statistics right next each other (either summarized or each core separately). Loadbars is not a tool for collecting CPU loads and drawing graphs for later analysis. However, since such tools require a significant amount of time before producing results, Loadbars lets you observe the current state immediately. Loadbars does not remember or record any load information. It just shows the current CPU usages like top or vmstat does.
-
-[View on Codeberg](https://codeberg.org/snonux/loadbars)  
-[View on GitHub](https://github.com/snonux/loadbars)  
-
----
-
-### 11. foo.zone 11↖64←64↙6
-
-* 💻 Languages: XML (98.2%), Shell (1.5%), Go (0.3%)
-* 📚 Documentation: Markdown (73.4%), Text (26.6%)
-* 📊 Commits: 1736
-* 📈 Lines of Code: 19874
-* 📄 Lines of Documentation: 563
-* 🏷️ Tags: 0
-* 📅 Development Period: 2021-04-29 to 2026-03-11
-* 🏆 Score: 13.9 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-Each format is in it's own branch in this repository. E.g.:
-
-[View on Codeberg](https://codeberg.org/snonux/foo.zone)  
-[View on GitHub](https://github.com/snonux/foo.zone)  
-
----
-
-### 12. foostore 12↙7↙6↖7
+### 11. foostore 11↙7↙6↖7
 
 * 💻 Languages: Go (98.4%), Shell (1.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -367,7 +328,7 @@ Each format is in it's own branch in this repository. E.g.:
 * 📄 Lines of Documentation: 250
 * 🏷️ Tags: 9
 * 📅 Development Period: 2018-05-26 to 2026-03-07
-* 🏆 Score: 12.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 11.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.5.3 (2026-03-02)
 
@@ -376,10 +337,11 @@ Each format is in it's own branch in this repository. E.g.:
 
 [View on Codeberg](https://codeberg.org/snonux/foostore)  
 [View on GitHub](https://github.com/snonux/foostore)  
+[View in cgit](https://cgit.f3s.buetow.org/foostore/)  
 
 ---
 
-### 13. ds-sim 13↖25←25↙21
+### 12. ds-sim 12↖25←25↙21
 
 * 💻 Languages: Java (98.6%), Shell (0.9%), CSS (0.4%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -399,10 +361,11 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 
 [View on Codeberg](https://codeberg.org/snonux/ds-sim)  
 [View on GitHub](https://github.com/snonux/ds-sim)  
+[View in cgit](https://cgit.f3s.buetow.org/ds-sim/)  
 
 ---
 
-### 14. epimetheus 14↙8↙7↙4
+### 13. epimetheus 13↙8↙7↙4
 
 * 💻 Languages: Go (85.2%), Shell (14.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -422,27 +385,53 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 
 [View on Codeberg](https://codeberg.org/snonux/epimetheus)  
 [View on GitHub](https://github.com/snonux/epimetheus)  
+[View in cgit](https://cgit.f3s.buetow.org/epimetheus/)  
 
 ---
 
-### 15. gitsyncer 15↙11↙10↖15
+### 14. gitsyncer 14↙11↙10↖15
 
-* 💻 Languages: Go (93.5%), Shell (6.2%), JSON (0.3%)
+* 💻 Languages: Go (93.6%), Shell (6.1%), JSON (0.3%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 135
-* 📈 Lines of Code: 11973
-* 📄 Lines of Documentation: 2456
-* 🏷️ Tags: 37
-* 📅 Development Period: 2025-06-23 to 2026-03-19
-* 🏆 Score: 6.2 (combines recent activity, code size, tags, and release status)
+* 📊 Commits: 136
+* 📈 Lines of Code: 12295
+* 📄 Lines of Documentation: 2480
+* 🏷️ Tags: 38
+* 📅 Development Period: 2025-06-23 to 2026-03-28
+* 🏆 Score: 6.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.15.8 (2026-03-19)
+* 🏷️ Latest Release: v0.16.0 (2026-03-28)
 
 
 GitSyncer is a tool for synchronizing git repositories between multiple organizations (e.g., GitHub and Codeberg). It automatically keeps all branches in sync across different git hosting platforms.
 
 [View on Codeberg](https://codeberg.org/snonux/gitsyncer)  
 [View on GitHub](https://github.com/snonux/gitsyncer)  
+[View in cgit](https://cgit.f3s.buetow.org/gitsyncer/)  
+
+---
+
+### 15. rcm 15↙12←12↙10
+
+* 💻 Languages: Ruby (99.7%), TOML (0.3%)
+* 📚 Documentation: Markdown (99.9%), Text (0.1%)
+* 📊 Commits: 113
+* 📈 Lines of Code: 2438
+* 📄 Lines of Documentation: 800
+* 🏷️ Tags: 3
+* 📅 Development Period: 2024-12-05 to 2026-03-14
+* 🏆 Score: 6.4 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v0.1.1 (2026-03-01)
+
+
+[![rcm screenshot](showcase/rcm/image-1.png "rcm screenshot")](showcase/rcm/image-1.png)  
+
+A KISS (Keep It Simple, Stupid) configuration management system written in Ruby, designed for personal use.
+
+[View on Codeberg](https://codeberg.org/snonux/rcm)  
+[View on GitHub](https://github.com/snonux/rcm)  
+[View in cgit](https://cgit.f3s.buetow.org/rcm/)  
 
 ---
 
@@ -464,33 +453,11 @@ A static HTML page showcasing a science fiction book collection. Works fully off
 
 [View on Codeberg](https://codeberg.org/snonux/scifi)  
 [View on GitHub](https://github.com/snonux/scifi)  
+[View in cgit](https://cgit.f3s.buetow.org/scifi/)  
 
 ---
 
-### 17. rcm 17↙12←12↙10
-
-* 💻 Languages: Ruby (99.6%), TOML (0.4%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 109
-* 📈 Lines of Code: 1719
-* 📄 Lines of Documentation: 778
-* 🏷️ Tags: 3
-* 📅 Development Period: 2024-12-05 to 2026-03-02
-* 🏆 Score: 4.3 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v0.1.1 (2026-03-01)
-
-
-[![rcm screenshot](showcase/rcm/image-1.png "rcm screenshot")](showcase/rcm/image-1.png)  
-
-A KISS (Keep It Simple, Stupid) configuration management system written in Ruby, designed for personal use.
-
-[View on Codeberg](https://codeberg.org/snonux/rcm)  
-[View on GitHub](https://github.com/snonux/rcm)  
-
----
-
-### 18. yoga 18↙13←13↙12
+### 17. yoga 17↙13←13↙12
 
 * 💻 Languages: Go (69.1%), HTML (30.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -510,10 +477,11 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 [View on Codeberg](https://codeberg.org/snonux/yoga)  
 [View on GitHub](https://github.com/snonux/yoga)  
+[View in cgit](https://cgit.f3s.buetow.org/yoga/)  
 
 ---
 
-### 19. totalrecall 19↙15←15↙14
+### 18. totalrecall 18↙15←15↙14
 
 * 💻 Languages: Go (99.0%), Shell (0.5%), YAML (0.4%)
 * 📚 Documentation: Markdown (99.5%), Text (0.5%)
@@ -533,10 +501,11 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 [View on Codeberg](https://codeberg.org/snonux/totalrecall)  
 [View on GitHub](https://github.com/snonux/totalrecall)  
+[View in cgit](https://cgit.f3s.buetow.org/totalrecall/)  
 
 ---
 
-### 20. gogios 20↙16↙14↙11
+### 19. gogios 19↙16↙14↙11
 
 * 💻 Languages: Go (98.9%), JSON (0.6%), YAML (0.5%)
 * 📚 Documentation: Markdown (94.9%), Text (5.1%)
@@ -556,10 +525,11 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 
 [View on Codeberg](https://codeberg.org/snonux/gogios)  
 [View on GitHub](https://github.com/snonux/gogios)  
+[View in cgit](https://cgit.f3s.buetow.org/gogios/)  
 
 ---
 
-### 21. log4jbench 21↙14↙11↙9
+### 20. log4jbench 20↙14↙11↙9
 
 * 💻 Languages: Java (78.9%), XML (21.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -577,10 +547,11 @@ A minimal Java tool to benchmark Log4j2 logging throughput with configurable con
 
 [View on Codeberg](https://codeberg.org/snonux/log4jbench)  
 [View on GitHub](https://github.com/snonux/log4jbench)  
+[View in cgit](https://cgit.f3s.buetow.org/log4jbench/)  
 
 ---
 
-### 22. perc 22↙17↙16↙13
+### 21. perc 21↙17↙16↙13
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -598,10 +569,11 @@ A simple vibe-coded command-line percentage calculator written in Go.
 
 [View on Codeberg](https://codeberg.org/snonux/perc)  
 [View on GitHub](https://github.com/snonux/perc)  
+[View in cgit](https://cgit.f3s.buetow.org/perc/)  
 
 ---
 
-### 23. tasksamurai 23↙18↙17↙16
+### 22. tasksamurai 22↙18↙17↙16
 
 * 💻 Languages: Go (99.8%), YAML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -621,10 +593,11 @@ Task Samurai invokes the `task` command to read and modify tasks. The tasks are 
 
 [View on Codeberg](https://codeberg.org/snonux/tasksamurai)  
 [View on GitHub](https://github.com/snonux/tasksamurai)  
+[View in cgit](https://cgit.f3s.buetow.org/tasksamurai/)  
 
 ---
 
-### 24. gos 24↙19↙18←18
+### 23. gos 23↙19↙18←18
 
 * 💻 Languages: Go (99.5%), JSON (0.2%), Shell (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -644,10 +617,11 @@ Gos is a Go-based replacement for Buffer.com, providing the ability to schedule 
 
 [View on Codeberg](https://codeberg.org/snonux/gos)  
 [View on GitHub](https://github.com/snonux/gos)  
+[View in cgit](https://cgit.f3s.buetow.org/gos/)  
 
 ---
 
-### 25. foostats 25↙20↙19↙17
+### 24. foostats 24↙20↙19↙17
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -665,10 +639,11 @@ A privacy-respecting web analytics tool for OpenBSD that processes HTTP/HTTPS an
 
 [View on Codeberg](https://codeberg.org/snonux/foostats)  
 [View on GitHub](https://github.com/snonux/foostats)  
+[View in cgit](https://cgit.f3s.buetow.org/foostats/)  
 
 ---
 
-### 26. timr 26↙21↙20↙19
+### 25. timr 25↙21↙20↙19
 
 * 💻 Languages: Go (96.0%), Shell (4.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -686,10 +661,11 @@ A simple command-line tool to track time spent on tasks. It has been primarily c
 
 [View on Codeberg](https://codeberg.org/snonux/timr)  
 [View on GitHub](https://github.com/snonux/timr)  
+[View in cgit](https://cgit.f3s.buetow.org/timr/)  
 
 ---
 
-### 27. gemtexter 27↙22↖23↙22
+### 26. gemtexter 26↙22↖23↙22
 
 * 💻 Languages: Shell (70.8%), CSS (26.2%), Config (1.8%), HTML (1.2%)
 * 📚 Documentation: Text (76.1%), Markdown (23.9%)
@@ -707,10 +683,11 @@ This is the source code of my personal internet site and blog engine. All conten
 
 [View on Codeberg](https://codeberg.org/snonux/gemtexter)  
 [View on GitHub](https://github.com/snonux/gemtexter)  
+[View in cgit](https://cgit.f3s.buetow.org/gemtexter/)  
 
 ---
 
-### 28. wireguardmeshgenerator 28↙23↙22↖23
+### 27. wireguardmeshgenerator 27↙23↙22↖23
 
 * 💻 Languages: Ruby (63.5%), YAML (36.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -728,10 +705,11 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 [View on Codeberg](https://codeberg.org/snonux/wireguardmeshgenerator)  
 [View on GitHub](https://github.com/snonux/wireguardmeshgenerator)  
+[View in cgit](https://cgit.f3s.buetow.org/wireguardmeshgenerator/)  
 
 ---
 
-### 29. goprecords 29↙24←24←24
+### 28. goprecords 28↙24←24←24
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -749,10 +727,11 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 [View on Codeberg](https://codeberg.org/snonux/goprecords)  
 [View on GitHub](https://github.com/snonux/goprecords)  
+[View in cgit](https://cgit.f3s.buetow.org/goprecords/)  
 
 ---
 
-### 30. ioriot 30↖34↖35←35
+### 29. ioriot 29↖34↖35←35
 
 * 💻 Languages: C (58.7%), C/C++ (22.5%), Config (17.9%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -772,10 +751,11 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 [View on Codeberg](https://codeberg.org/snonux/ioriot)  
 [View on GitHub](https://github.com/snonux/ioriot)  
+[View in cgit](https://cgit.f3s.buetow.org/ioriot/)  
 
 ---
 
-### 31. quicklogger 31↙26←26↙25
+### 30. quicklogger 30↙26←26↙25
 
 * 💻 Languages: Go (96.4%), XML (1.8%), Shell (1.1%), TOML (0.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -795,10 +775,11 @@ This is a tiny GUI app written in Go using the Fyne framework to quickly log a m
 
 [View on Codeberg](https://codeberg.org/snonux/quicklogger)  
 [View on GitHub](https://github.com/snonux/quicklogger)  
+[View in cgit](https://cgit.f3s.buetow.org/quicklogger/)  
 
 ---
 
-### 32. sillybench 32↙27←27←27
+### 31. sillybench 31↙27←27←27
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -816,10 +797,11 @@ To compare how fast this runs on FreeBSD vs a Linux Bhyve VM
 
 [View on Codeberg](https://codeberg.org/snonux/sillybench)  
 [View on GitHub](https://github.com/snonux/sillybench)  
+[View in cgit](https://cgit.f3s.buetow.org/sillybench/)  
 
 ---
 
-### 33. terraform 33↙28←28↙26
+### 32. terraform 32↙28←28↙26
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -837,6 +819,29 @@ Go to AWS Secrets manager manually and create it!
 
 [View on Codeberg](https://codeberg.org/snonux/terraform)  
 [View on GitHub](https://github.com/snonux/terraform)  
+[View in cgit](https://cgit.f3s.buetow.org/terraform/)  
+
+---
+
+### 33. guprecords 33↖39↙29←29
+
+* 💻 Languages: Raku (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 97
+* 📈 Lines of Code: 383
+* 📄 Lines of Documentation: 425
+* 🏷️ Tags: 1
+* 📅 Development Period: 2013-03-22 to 2026-03-07
+* 🏆 Score: 0.4 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v1.0.0 (2023-04-29)
+
+
+guprecords: source code repository.
+
+[View on Codeberg](https://codeberg.org/snonux/guprecords)  
+[View on GitHub](https://github.com/snonux/guprecords)  
+[View in cgit](https://cgit.f3s.buetow.org/guprecords/)  
 
 ---
 
@@ -858,6 +863,7 @@ Go to AWS Secrets manager manually and create it!
 
 [View on Codeberg](https://codeberg.org/snonux/geheim)  
 [View on GitHub](https://github.com/snonux/geheim)  
+[View in cgit](https://cgit.f3s.buetow.org/geheim/)  
 
 ---
 
@@ -879,6 +885,7 @@ Gogios is a minimalistic quorum manager.
 
 [View on Codeberg](https://codeberg.org/snonux/gorum)  
 [View on GitHub](https://github.com/snonux/gorum)  
+[View in cgit](https://cgit.f3s.buetow.org/gorum/)  
 
 ---
 
@@ -900,6 +907,7 @@ For the Radicale server https://radicale.org
 
 [View on Codeberg](https://codeberg.org/snonux/docker-radicale-server)  
 [View on GitHub](https://github.com/snonux/docker-radicale-server)  
+[View in cgit](https://cgit.f3s.buetow.org/docker-radicale-server/)  
 
 ---
 
@@ -923,6 +931,7 @@ The resulting static photo album is pure HTML+CSS (without any JavaScript!).
 
 [View on Codeberg](https://codeberg.org/snonux/photoalbum)  
 [View on GitHub](https://github.com/snonux/photoalbum)  
+[View in cgit](https://cgit.f3s.buetow.org/photoalbum/)  
 
 ---
 
@@ -945,6 +954,7 @@ This is a quick and dirty script which I use personally to grab a random PDF fil
 
 [View on Codeberg](https://codeberg.org/snonux/randomjournalpage)  
 [View on GitHub](https://github.com/snonux/randomjournalpage)  
+[View in cgit](https://cgit.f3s.buetow.org/randomjournalpage/)  
 
 ---
 
@@ -967,6 +977,7 @@ This includes exercises from the Algorithms lecture. Well, this is just a refres
 
 [View on Codeberg](https://codeberg.org/snonux/algorithms)  
 [View on GitHub](https://github.com/snonux/algorithms)  
+[View in cgit](https://cgit.f3s.buetow.org/algorithms/)  
 
 ---
 
@@ -988,6 +999,7 @@ This is a quick and dirty Perl-based IPv6 test website.
 
 [View on Codeberg](https://codeberg.org/snonux/ipv6test)  
 [View on GitHub](https://github.com/snonux/ipv6test)  
+[View in cgit](https://cgit.f3s.buetow.org/ipv6test/)  
 
 ---
 
@@ -1011,6 +1023,7 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/staticfarm-apache-handlers)  
 [View on GitHub](https://github.com/snonux/staticfarm-apache-handlers)  
+[View in cgit](https://cgit.f3s.buetow.org/staticfarm-apache-handlers/)  
 
 ---
 
@@ -1032,6 +1045,7 @@ This is a fork of https://github.com/tedk0n/autorotate_sway_script
 
 [View on Codeberg](https://codeberg.org/snonux/sway-autorotate)  
 [View on GitHub](https://github.com/snonux/sway-autorotate)  
+[View in cgit](https://cgit.f3s.buetow.org/sway-autorotate/)  
 
 ---
 
@@ -1055,6 +1069,7 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/mon)  
 [View on GitHub](https://github.com/snonux/mon)  
+[View in cgit](https://cgit.f3s.buetow.org/mon/)  
 
 ---
 
@@ -1078,6 +1093,7 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/fapi)  
 [View on GitHub](https://github.com/snonux/fapi)  
+[View in cgit](https://cgit.f3s.buetow.org/fapi/)  
 
 ---
 
@@ -1101,27 +1117,30 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/pingdomfetch)  
 [View on GitHub](https://github.com/snonux/pingdomfetch)  
+[View in cgit](https://cgit.f3s.buetow.org/pingdomfetch/)  
 
 ---
 
-### 46. fype 46↙43←43↙37
+### 46. loadbars 46↙6↙5↖47
 
-* 💻 Languages: C (77.3%), C/C++ (13.1%), HTML (7.5%), Make (2.1%)
-* 📚 Documentation: Text (65.8%), LaTeX (20.5%), Markdown (13.7%)
-* 📊 Commits: 93
-* 📈 Lines of Code: 7904
-* 📄 Lines of Documentation: 2774
-* 🏷️ Tags: 0
-* 📅 Development Period: 2008-05-15 to 2026-02-28
+* 💻 Languages: Perl (97.4%), Make (2.6%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 501
+* 📈 Lines of Code: 1828
+* 📄 Lines of Documentation: 100
+* 🏷️ Tags: 24
+* 📅 Development Period: 2010-11-05 to 2015-05-23
 * 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🧪 Status: Experimental (no releases yet)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.7.5 (2014-06-22)
 
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
-**F**or **Y**our **P**rogram **E**xecution — a lightweight scripting language.
+Loadbars is a tool that can be used to observe CPU loads of several remote servers at once in real time. It connects with SSH (using SSH public/private key auth) to several servers at once and vizualizes all server CPUs and memory statistics right next each other (either summarized or each core separately). Loadbars is not a tool for collecting CPU loads and drawing graphs for later analysis. However, since such tools require a significant amount of time before producing results, Loadbars lets you observe the current state immediately. Loadbars does not remember or record any load information. It just shows the current CPU usages like top or vmstat does.
 
-[View on Codeberg](https://codeberg.org/snonux/fype)  
-[View on GitHub](https://github.com/snonux/fype)  
+[View on Codeberg](https://codeberg.org/snonux/loadbars)  
+[View on GitHub](https://github.com/snonux/loadbars)  
+[View in cgit](https://cgit.f3s.buetow.org/loadbars/)  
 
 ---
 
@@ -1143,6 +1162,7 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/pwgrep)  
 [View on GitHub](https://github.com/snonux/pwgrep)  
+[View in cgit](https://cgit.f3s.buetow.org/pwgrep/)  
 
 ---
 
@@ -1162,33 +1182,14 @@ Those are the host templates to be used with Xerl itself.
 
 [View on Codeberg](https://codeberg.org/snonux/xerl)  
 [View on GitHub](https://github.com/snonux/xerl)  
+[View in cgit](https://cgit.f3s.buetow.org/xerl/)  
 
 ---
 
-### 49. guprecords 49↙39↙29←29
-
-* 💻 Languages: Raku (100.0%)
-* 📊 Commits: 55
-* 📈 Lines of Code: 195
-* 🏷️ Tags: 0
-* 📅 Development Period: 2013-03-22 to 2023-03-09
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-guprecords: source code repository.
-
-[View on Codeberg](https://codeberg.org/snonux/guprecords)  
-[View on GitHub](https://github.com/snonux/guprecords)  
-
----
-
-### 50. awksite 50↙46←46↖61
+### 49. awksite 49↙46←46↖61
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
-* 📚 Documentation: Text (50.0%), Markdown (50.0%)
+* 📚 Documentation: Markdown (50.0%), Text (50.0%)
 * 📊 Commits: 3
 * 📈 Lines of Code: 122
 * 📄 Lines of Documentation: 12
@@ -1203,10 +1204,11 @@ guprecords: source code repository.
 
 [View on Codeberg](https://codeberg.org/snonux/awksite)  
 [View on GitHub](https://github.com/snonux/awksite)  
+[View in cgit](https://cgit.f3s.buetow.org/awksite/)  
 
 ---
 
-### 51. gotop 51↙47←47↖48
+### 50. gotop 50↙47←47↖48
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
 * 📚 Documentation: Markdown (60.0%), Text (40.0%)
@@ -1224,10 +1226,11 @@ guprecords: source code repository.
 
 [View on Codeberg](https://codeberg.org/snonux/gotop)  
 [View on GitHub](https://github.com/snonux/gotop)  
+[View in cgit](https://cgit.f3s.buetow.org/gotop/)  
 
 ---
 
-### 52. japi 52↙48←48↖53
+### 51. japi 51↙48←48↖53
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1247,6 +1250,28 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/japi)  
 [View on GitHub](https://github.com/snonux/japi)  
+[View in cgit](https://cgit.f3s.buetow.org/japi/)  
+
+---
+
+### 52. perldaemon 52←52↙49↖51
+
+* 💻 Languages: Perl (72.7%), Shell (23.9%), Config (3.4%)
+* 📊 Commits: 111
+* 📈 Lines of Code: 611
+* 🏷️ Tags: 6
+* 📅 Development Period: 2011-02-05 to 2026-03-07
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v1.4 (2022-04-29)
+
+
+PerlDaemon is a minimal daemon for Linux and other UNIX a like operating system
+programmed in Perl.  It can be extended to fit any task...
+
+[View on Codeberg](https://codeberg.org/snonux/perldaemon)  
+[View on GitHub](https://github.com/snonux/perldaemon)  
+[View in cgit](https://cgit.f3s.buetow.org/perldaemon/)  
 
 ---
 
@@ -1268,6 +1293,7 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/rubyfy)  
 [View on GitHub](https://github.com/snonux/rubyfy)  
+[View in cgit](https://cgit.f3s.buetow.org/rubyfy/)  
 
 ---
 
@@ -1290,6 +1316,7 @@ perl-c-fibonacci: source code repository.
 
 [View on Codeberg](https://codeberg.org/snonux/perl-c-fibonacci)  
 [View on GitHub](https://github.com/snonux/perl-c-fibonacci)  
+[View in cgit](https://cgit.f3s.buetow.org/perl-c-fibonacci/)  
 
 ---
 
@@ -1313,31 +1340,11 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/netdiff)  
 [View on GitHub](https://github.com/snonux/netdiff)  
+[View in cgit](https://cgit.f3s.buetow.org/netdiff/)  
 
 ---
 
-### 56. perldaemon 56↙52↙49↖51
-
-* 💻 Languages: Perl (74.2%), Shell (22.2%), Config (3.6%)
-* 📊 Commits: 107
-* 📈 Lines of Code: 659
-* 🏷️ Tags: 4
-* 📅 Development Period: 2011-02-05 to 2022-04-21
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.2.1 (2011-11-19)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-PerlDaemon is a minimal daemon for Linux and other UNIX a like operating system
-programmed in Perl.  It can be extended to fit any task...
-
-[View on Codeberg](https://codeberg.org/snonux/perldaemon)  
-[View on GitHub](https://github.com/snonux/perldaemon)  
-
----
-
-### 57. muttdelay 57↙54←54↖55
+### 56. muttdelay 56↙54←54↖55
 
 * 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1357,10 +1364,11 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/muttdelay)  
 [View on GitHub](https://github.com/snonux/muttdelay)  
+[View in cgit](https://cgit.f3s.buetow.org/muttdelay/)  
 
 ---
 
-### 58. cpuinfo 58↙57↙56↖59
+### 57. cpuinfo 57←57↙56↖59
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1379,10 +1387,11 @@ cpuinfo - A small and humble tool to print out CPU data
 
 [View on Codeberg](https://codeberg.org/snonux/cpuinfo)  
 [View on GitHub](https://github.com/snonux/cpuinfo)  
+[View in cgit](https://cgit.f3s.buetow.org/cpuinfo/)  
 
 ---
 
-### 59. template 59↙58↙57↖60
+### 58. template 58←58↙57↖60
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1402,10 +1411,11 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/template)  
 [View on GitHub](https://github.com/snonux/template)  
+[View in cgit](https://cgit.f3s.buetow.org/template/)  
 
 ---
 
-### 60. dyndns 60↙59↙58↖62
+### 59. dyndns 59←59↙58↖62
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1425,10 +1435,11 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/dyndns)  
 [View on GitHub](https://github.com/snonux/dyndns)  
+[View in cgit](https://cgit.f3s.buetow.org/dyndns/)  
 
 ---
 
-### 61. debroid 61↙60↙59↙57
+### 60. debroid 60←60↙59↙57
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1448,10 +1459,11 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/debroid)  
 [View on GitHub](https://github.com/snonux/debroid)  
+[View in cgit](https://cgit.f3s.buetow.org/debroid/)  
 
 ---
 
-### 62. netcalendar 62↙55←55↙46
+### 61. netcalendar 61↙55←55↙46
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
 * 📚 Documentation: Text (89.5%), Markdown (10.5%)
@@ -1471,10 +1483,11 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/netcalendar)  
 [View on GitHub](https://github.com/snonux/netcalendar)  
+[View in cgit](https://cgit.f3s.buetow.org/netcalendar/)  
 
 ---
 
-### 63. jsmstrade 63↙53←53↙52
+### 62. jsmstrade 62↙53←53↙52
 
 * 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1494,6 +1507,30 @@ DEPRECATED
 
 [View on Codeberg](https://codeberg.org/snonux/jsmstrade)  
 [View on GitHub](https://github.com/snonux/jsmstrade)  
+[View in cgit](https://cgit.f3s.buetow.org/jsmstrade/)  
+
+---
+
+### 63. ychat 63←63↙62↙43
+
+* 💻 Languages: C++ (49.6%), Shell (21.8%), C/C++ (20.3%), Perl (2.8%), Config (2.2%), HTML (2.0%), Make (1.1%), CSS (0.2%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 13
+* 📈 Lines of Code: 40780
+* 📄 Lines of Documentation: 27
+* 🏷️ Tags: 0
+* 📅 Development Period: 2008-05-15 to 2010-11-21
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+ychat: source code repository.
+
+[View on Codeberg](https://codeberg.org/snonux/ychat)  
+[View on GitHub](https://github.com/snonux/ychat)  
+[View in cgit](https://cgit.f3s.buetow.org/ychat/)  
 
 ---
 
@@ -1517,6 +1554,7 @@ VS-Sim is an open source simulator programmed in Java for distributed systems. V
 
 [View on Codeberg](https://codeberg.org/snonux/vs-sim)  
 [View on GitHub](https://github.com/snonux/vs-sim)  
+[View in cgit](https://cgit.f3s.buetow.org/vs-sim/)  
 
 ---
 
@@ -1539,10 +1577,34 @@ Here you find some Poetry written in Perl.
 
 [View on Codeberg](https://codeberg.org/snonux/perl-poetry)  
 [View on GitHub](https://github.com/snonux/perl-poetry)  
+[View in cgit](https://cgit.f3s.buetow.org/perl-poetry/)  
 
 ---
 
-### 66. hsbot 66↙62↙61↙58
+### 66. fype 66↙43←43↙37
+
+* 💻 Languages: C (71.2%), C/C++ (20.7%), HTML (6.6%), Make (1.5%)
+* 📚 Documentation: Text (60.3%), LaTeX (39.7%)
+* 📊 Commits: 78
+* 📈 Lines of Code: 8954
+* 📄 Lines of Documentation: 1432
+* 🏷️ Tags: 0
+* 📅 Development Period: 2008-05-15 to 2014-06-30
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+**F**or **Y**our **P**rogram **E**xecution — a lightweight scripting language.
+
+[View on Codeberg](https://codeberg.org/snonux/fype)  
+[View on GitHub](https://github.com/snonux/fype)  
+[View in cgit](https://cgit.f3s.buetow.org/fype/)  
+
+---
+
+### 67. hsbot 67↙62↙61↙58
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 81
@@ -1559,10 +1621,11 @@ feature additions will be made. Use at your own risk.
 
 [View on Codeberg](https://codeberg.org/snonux/hsbot)  
 [View on GitHub](https://github.com/snonux/hsbot)  
+[View in cgit](https://cgit.f3s.buetow.org/hsbot/)  
 
 ---
 
-### 67. snonux.foo 67
+### 68. snonux.foo 68
 
 * 📚 Documentation: Markdown (100.0%)
 * 📊 Commits: 1
@@ -1579,24 +1642,4 @@ This directory belongs to the [snonux](https://codeberg.org/snonux/snonux) micro
 
 [View on Codeberg](https://codeberg.org/snonux/snonux.foo)  
 [View on GitHub](https://github.com/snonux/snonux.foo)  
-
----
-
-### 68. ychat 68↙63↙62↙43
-
-* 📚 Documentation: Text (100.0%)
-* 📊 Commits: 14
-* 📈 Lines of Code: 0
-* 📄 Lines of Documentation: 9
-* 🏷️ Tags: 0
-* 📅 Development Period: 2008-05-15 to 2013-12-15
-* 🏆 Score: 0.0 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-ychat: source code repository.
-
-[View on Codeberg](https://codeberg.org/snonux/ychat)  
-[View on GitHub](https://github.com/snonux/ychat)  
+[View in cgit](https://cgit.f3s.buetow.org/snonux.foo/)  
