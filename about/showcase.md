@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-03-27
+Generated on: 2026-03-28
 
 This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, releases, and licensing. The projects are ranked by score, which combines recent activity, project size, tag history, and whether the project has shipped a release.
 
@@ -19,74 +19,100 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ 8. ior 8↙4↙1←1](#8-ior-8411)
 * [⇢ ⇢ ⇢ 9. timesamurai 9↙5↙2](#9-timesamurai-952)
 * [⇢ ⇢ ⇢ 10. loadbars 10↙6↙5↖47](#10-loadbars-106547)
-* [⇢ ⇢ ⇢ 11. foostore 11↙7↙6↖7](#11-foostore-11767)
-* [⇢ ⇢ ⇢ 12. ds-sim 12↖25←25↙21](#12-ds-sim-12252521)
-* [⇢ ⇢ ⇢ 13. epimetheus 13↙8↙7↙4](#13-epimetheus-13874)
-* [⇢ ⇢ ⇢ 14. gitsyncer 14↙11↙10↖15](#14-gitsyncer-14111015)
-* [⇢ ⇢ ⇢ 15. scifi 15↙10↙9↙8](#15-scifi-151098)
-* [⇢ ⇢ ⇢ 16. rcm 16↙12←12↙10](#16-rcm-16121210)
-* [⇢ ⇢ ⇢ 17. yoga 17↙13←13↙12](#17-yoga-17131312)
-* [⇢ ⇢ ⇢ 18. totalrecall 18↙15←15↙14](#18-totalrecall-18151514)
-* [⇢ ⇢ ⇢ 19. gogios 19↙16↙14↙11](#19-gogios-19161411)
-* [⇢ ⇢ ⇢ 20. log4jbench 20↙14↙11↙9](#20-log4jbench-2014119)
-* [⇢ ⇢ ⇢ 21. perc 21↙17↙16↙13](#21-perc-21171613)
-* [⇢ ⇢ ⇢ 22. tasksamurai 22↙18↙17↙16](#22-tasksamurai-22181716)
-* [⇢ ⇢ ⇢ 23. gos 23↙19↙18←18](#23-gos-23191818)
-* [⇢ ⇢ ⇢ 24. foostats 24↙20↙19↙17](#24-foostats-24201917)
-* [⇢ ⇢ ⇢ 25. timr 25↙21↙20↙19](#25-timr-25212019)
-* [⇢ ⇢ ⇢ 26. gemtexter 26↙22↖23↙22](#26-gemtexter-26222322)
-* [⇢ ⇢ ⇢ 27. wireguardmeshgenerator 27↙23↙22↖23](#27-wireguardmeshgenerator-27232223)
-* [⇢ ⇢ ⇢ 28. goprecords 28↙24←24←24](#28-goprecords-28242424)
-* [⇢ ⇢ ⇢ 29. ioriot 29↖34↖35←35](#29-ioriot-29343535)
-* [⇢ ⇢ ⇢ 30. quicklogger 30↙26←26↙25](#30-quicklogger-30262625)
-* [⇢ ⇢ ⇢ 31. sillybench 31↙27←27←27](#31-sillybench-31272727)
-* [⇢ ⇢ ⇢ 32. terraform 32↙28←28↙26](#32-terraform-32282826)
-* [⇢ ⇢ ⇢ 33. geheim 33↙29↖30←30](#33-geheim-33293030)
-* [⇢ ⇢ ⇢ 34. gorum 34↙30↖31↙28](#34-gorum-34303128)
-* [⇢ ⇢ ⇢ 35. docker-radicale-server 35↙31↖32↙31](#35-docker-radicale-server-35313231)
-* [⇢ ⇢ ⇢ 36. photoalbum 36↙32↖33↖34](#36-photoalbum-36323334)
-* [⇢ ⇢ ⇢ 37. randomjournalpage 37↙33↖34↙33](#37-randomjournalpage-37333433)
-* [⇢ ⇢ ⇢ 38. algorithms 38↙35↖36↙32](#38-algorithms-38353632)
-* [⇢ ⇢ ⇢ 39. ipv6test 39↙36↖37↙36](#39-ipv6test-39363736)
-* [⇢ ⇢ ⇢ 40. staticfarm-apache-handlers 40↙37↖38↖40](#40-staticfarm-apache-handlers-40373840)
-* [⇢ ⇢ ⇢ 41. sway-autorotate 41↙38↖39↙38](#41-sway-autorotate-41383938)
-* [⇢ ⇢ ⇢ 42. guprecords 42↙39↙29←29](#42-guprecords-42392929)
+* [⇢ ⇢ ⇢ 11. foo.zone 11↖64←64↙6](#11-foozone-1164646)
+* [⇢ ⇢ ⇢ 12. foostore 12↙7↙6↖7](#12-foostore-12767)
+* [⇢ ⇢ ⇢ 13. ds-sim 13↖25←25↙21](#13-ds-sim-13252521)
+* [⇢ ⇢ ⇢ 14. epimetheus 14↙8↙7↙4](#14-epimetheus-14874)
+* [⇢ ⇢ ⇢ 15. gitsyncer 15↙11↙10↖15](#15-gitsyncer-15111015)
+* # Project Showcase
+
+Generated on: 2026-03-28
+
+This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, releases, and licensing. The projects are ranked by score, which combines recent activity, project size, tag history, and whether the project has shipped a release.
+
+## Table of Contents
+
+* [⇢ Project Showcase](#project-showcase)
+* [⇢ ⇢ Overall Statistics](#overall-statistics)
+* [⇢ ⇢ Projects](#projects)
+* [⇢ ⇢ ⇢ 1. hexai 1←1↖3↙2](#1-hexai-1132)
+* [⇢ ⇢ ⇢ 2. gt 2](#2-gt-2)
+* [⇢ ⇢ ⇢ 3. hypr 3](#3-hypr-3)
+* [⇢ ⇢ ⇢ 4. dotfiles 4↙3↖4↙3](#4-dotfiles-4343)
+* [⇢ ⇢ ⇢ 5. snonux 5](#5-snonux-5)
+* [⇢ ⇢ ⇢ 6. dtail 6↙2↖21↙20](#6-dtail-622120)
+* [⇢ ⇢ ⇢ 7. conf 7↖9↙8↙5](#7-conf-7985)
+* [⇢ ⇢ ⇢ 8. ior 8↙4↙1←1](#8-ior-8411)
+* [⇢ ⇢ ⇢ 9. timesamurai 9↙5↙2](#9-timesamurai-952)
+* [⇢ ⇢ ⇢ 10. loadbars 10↙6↙5↖47](#10-loadbars-106547)
+* [⇢ ⇢ ⇢ 11. foo.zone 11↖64←64↙6](#11-foozone-1164646)
+* [⇢ ⇢ ⇢ 12. foostore 12↙7↙6↖7](#12-foostore-12767)
+* [⇢ ⇢ ⇢ 13. ds-sim 13↖25←25↙21](#13-ds-sim-13252521)
+* [⇢ ⇢ ⇢ 14. epimetheus 14↙8↙7↙4](#14-epimetheus-14874)
+* [⇢ ⇢ ⇢ 15. gitsyncer 15↙11↙10↖15](#15-gitsyncer-15111015)
+* [⇢ ⇢ ⇢ 16. scifi 16↙10↙9↙8](#16-scifi-161098)
+* [⇢ ⇢ ⇢ 17. rcm 17↙12←12↙10](#17-rcm-17121210)
+* [⇢ ⇢ ⇢ 18. yoga 18↙13←13↙12](#18-yoga-18131312)
+* [⇢ ⇢ ⇢ 19. totalrecall 19↙15←15↙14](#19-totalrecall-19151514)
+* [⇢ ⇢ ⇢ 20. gogios 20↙16↙14↙11](#20-gogios-20161411)
+* [⇢ ⇢ ⇢ 21. log4jbench 21↙14↙11↙9](#21-log4jbench-2114119)
+* [⇢ ⇢ ⇢ 22. perc 22↙17↙16↙13](#22-perc-22171613)
+* [⇢ ⇢ ⇢ 23. tasksamurai 23↙18↙17↙16](#23-tasksamurai-23181716)
+* [⇢ ⇢ ⇢ 24. gos 24↙19↙18←18](#24-gos-24191818)
+* [⇢ ⇢ ⇢ 25. foostats 25↙20↙19↙17](#25-foostats-25201917)
+* [⇢ ⇢ ⇢ 26. timr 26↙21↙20↙19](#26-timr-26212019)
+* [⇢ ⇢ ⇢ 27. gemtexter 27↙22↖23↙22](#27-gemtexter-27222322)
+* [⇢ ⇢ ⇢ 28. wireguardmeshgenerator 28↙23↙22↖23](#28-wireguardmeshgenerator-28232223)
+* [⇢ ⇢ ⇢ 29. goprecords 29↙24←24←24](#29-goprecords-29242424)
+* [⇢ ⇢ ⇢ 30. ioriot 30↖34↖35←35](#30-ioriot-30343535)
+* [⇢ ⇢ ⇢ 31. quicklogger 31↙26←26↙25](#31-quicklogger-31262625)
+* [⇢ ⇢ ⇢ 32. sillybench 32↙27←27←27](#32-sillybench-32272727)
+* [⇢ ⇢ ⇢ 33. terraform 33↙28←28↙26](#33-terraform-33282826)
+* [⇢ ⇢ ⇢ 34. geheim 34↙29↖30←30](#34-geheim-34293030)
+* [⇢ ⇢ ⇢ 35. gorum 35↙30↖31↙28](#35-gorum-35303128)
+* [⇢ ⇢ ⇢ 36. docker-radicale-server 36↙31↖32↙31](#36-docker-radicale-server-36313231)
+* [⇢ ⇢ ⇢ 37. photoalbum 37↙32↖33↖34](#37-photoalbum-37323334)
+* [⇢ ⇢ ⇢ 38. randomjournalpage 38↙33↖34↙33](#38-randomjournalpage-38333433)
+* [⇢ ⇢ ⇢ 39. algorithms 39↙35↖36↙32](#39-algorithms-39353632)
+* [⇢ ⇢ ⇢ 40. ipv6test 40↙36↖37↙36](#40-ipv6test-40363736)
+* [⇢ ⇢ ⇢ 41. staticfarm-apache-handlers 41↙37↖38↖40](#41-staticfarm-apache-handlers-41373840)
+* [⇢ ⇢ ⇢ 42. sway-autorotate 42↙38↖39↙38](#42-sway-autorotate-42383938)
 * [⇢ ⇢ ⇢ 43. mon 43↙40←40↙39](#43-mon-43404039)
 * [⇢ ⇢ ⇢ 44. fapi 44↙41←41↖44](#44-fapi-44414144)
 * [⇢ ⇢ ⇢ 45. pingdomfetch 45↙42←42↙41](#45-pingdomfetch-45424241)
 * [⇢ ⇢ ⇢ 46. fype 46↙43←43↙37](#46-fype-46434337)
 * [⇢ ⇢ ⇢ 47. pwgrep 47↙44←44↖50](#47-pwgrep-47444450)
 * [⇢ ⇢ ⇢ 48. xerl 48↙45←45↙42](#48-xerl-48454542)
-* [⇢ ⇢ ⇢ 49. awksite 49↙46←46↖61](#49-awksite-49464661)
-* [⇢ ⇢ ⇢ 50. gotop 50↙47←47↖48](#50-gotop-50474748)
-* [⇢ ⇢ ⇢ 51. japi 51↙48←48↖53](#51-japi-51484853)
-* [⇢ ⇢ ⇢ 52. rubyfy 52↙49↖50↙49](#52-rubyfy-52495049)
-* [⇢ ⇢ ⇢ 53. perl-c-fibonacci 53↙50↖51↙45](#53-perl-c-fibonacci-53505145)
-* [⇢ ⇢ ⇢ 54. netdiff 54↙51↖52↖56](#54-netdiff-54515256)
-* [⇢ ⇢ ⇢ 55. perldaemon 55↙52↙49↖51](#55-perldaemon-55524951)
-* [⇢ ⇢ ⇢ 56. jsmstrade 56↙53←53↙52](#56-jsmstrade-56535352)
+* [⇢ ⇢ ⇢ 49. guprecords 49↙39↙29←29](#49-guprecords-49392929)
+* [⇢ ⇢ ⇢ 50. awksite 50↙46←46↖61](#50-awksite-50464661)
+* [⇢ ⇢ ⇢ 51. gotop 51↙47←47↖48](#51-gotop-51474748)
+* [⇢ ⇢ ⇢ 52. japi 52↙48←48↖53](#52-japi-52484853)
+* [⇢ ⇢ ⇢ 53. rubyfy 53↙49↖50↙49](#53-rubyfy-53495049)
+* [⇢ ⇢ ⇢ 54. perl-c-fibonacci 54↙50↖51↙45](#54-perl-c-fibonacci-54505145)
+* [⇢ ⇢ ⇢ 55. netdiff 55↙51↖52↖56](#55-netdiff-55515256)
+* [⇢ ⇢ ⇢ 56. perldaemon 56↙52↙49↖51](#56-perldaemon-56524951)
 * [⇢ ⇢ ⇢ 57. muttdelay 57↙54←54↖55](#57-muttdelay-57545455)
-* [⇢ ⇢ ⇢ 58. netcalendar 58↙55←55↙46](#58-netcalendar-58555546)
-* [⇢ ⇢ ⇢ 59. vs-sim 59↙56↖63←63](#59-vs-sim-59566363)
-* [⇢ ⇢ ⇢ 60. cpuinfo 60↙57↙56↖59](#60-cpuinfo-60575659)
-* [⇢ ⇢ ⇢ 61. template 61↙58↙57↖60](#61-template-61585760)
-* [⇢ ⇢ ⇢ 62. dyndns 62↙59↙58↖62](#62-dyndns-62595862)
-* [⇢ ⇢ ⇢ 63. debroid 63↙60↙59↙57](#63-debroid-63605957)
-* [⇢ ⇢ ⇢ 64. perl-poetry 64↙61↙60↙54](#64-perl-poetry-64616054)
-* [⇢ ⇢ ⇢ 65. hsbot 65↙62↙61↙58](#65-hsbot-65626158)
-* [⇢ ⇢ ⇢ 66. ychat 66↙63↙62↙43](#66-ychat-66636243)
+* [⇢ ⇢ ⇢ 58. cpuinfo 58↙57↙56↖59](#58-cpuinfo-58575659)
+* [⇢ ⇢ ⇢ 59. template 59↙58↙57↖60](#59-template-59585760)
+* [⇢ ⇢ ⇢ 60. dyndns 60↙59↙58↖62](#60-dyndns-60595862)
+* [⇢ ⇢ ⇢ 61. debroid 61↙60↙59↙57](#61-debroid-61605957)
+* [⇢ ⇢ ⇢ 62. netcalendar 62↙55←55↙46](#62-netcalendar-62555546)
+* [⇢ ⇢ ⇢ 63. jsmstrade 63↙53←53↙52](#63-jsmstrade-63535352)
+* [⇢ ⇢ ⇢ 64. vs-sim 64↙56↖63←63](#64-vs-sim-64566363)
+* [⇢ ⇢ ⇢ 65. perl-poetry 65↙61↙60↙54](#65-perl-poetry-65616054)
+* [⇢ ⇢ ⇢ 66. hsbot 66↙62↙61↙58](#66-hsbot-66626158)
 * [⇢ ⇢ ⇢ 67. snonux.foo 67](#67-snonuxfoo-67)
-* [⇢ ⇢ ⇢ 68. foo.zone 68↙64←64↙6](#68-foozone-6864646)
+* [⇢ ⇢ ⇢ 68. ychat 68↙63↙62↙43](#68-ychat-68636243)
 
 ## Overall Statistics
 
 * 📦 Total Projects: 68
-* 📊 Total Commits: 13,714
-* 📈 Total Lines of Code: 386,291
-* 📄 Total Lines of Documentation: 269,903
-* 💻 Languages: Go (57.9%), Java (15.5%), C (5.3%), YAML (4.1%), Perl (3.7%), Shell (2.7%), Ruby (1.9%), TypeScript (1.4%), HTML (1.3%), C/C++ (1.1%), CSS (1.0%), Config (0.8%), Python (0.7%), HCL (0.7%), JSON (0.5%), Make (0.4%), TOML (0.3%), XML (0.2%), Haskell (0.2%), JavaScript (0.1%)
-* 📚 Documentation: Text (82.8%), Markdown (15.9%), LaTeX (1.3%)
-* 🚀 Release Status: 44 released, 24 experimental (64.7% with releases, 35.3% experimental)
+* 📊 Total Commits: 10,988
+* 📈 Total Lines of Code: 406,165
+* 📄 Total Lines of Documentation: 270,443
+* 💻 Languages: Go (55.1%), Java (14.7%), C (5.0%), XML (5.0%), YAML (3.9%), Perl (3.5%), Shell (2.6%), Ruby (1.8%), TypeScript (1.4%), HTML (1.3%), C/C++ (1.1%), CSS (0.9%), Config (0.7%), Python (0.7%), HCL (0.7%), JSON (0.5%), Make (0.3%), TOML (0.3%), Haskell (0.1%), JavaScript (0.1%)
+* 📚 Documentation: Text (82.7%), Markdown (16.0%), LaTeX (1.3%)
+* 🚀 Release Status: 39 released, 29 experimental (57.4% with releases, 42.6% experimental)
 
 ## Projects
 
@@ -94,12 +120,12 @@ This page showcases my side projects, providing an overview of what each project
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 503
+* 📊 Commits: 458
 * 📈 Lines of Code: 43837
 * 📄 Lines of Documentation: 4368
-* 🏷️ Tags: 76
+* 🏷️ Tags: 66
 * 📅 Development Period: 2025-08-01 to 2026-03-27
-* 🏆 Score: 436.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 309.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.27.1 (2026-03-27)
 
@@ -117,12 +143,12 @@ Hexai, the AI addition for your Helix Editor (https://helix-editor.com) .. Other
 
 * 💻 Languages: Go (99.4%), YAML (0.6%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 168
+* 📊 Commits: 150
 * 📈 Lines of Code: 10028
 * 📄 Lines of Documentation: 301
-* 🏷️ Tags: 6
+* 🏷️ Tags: 5
 * 📅 Development Period: 2025-11-25 to 2026-03-26
-* 🏆 Score: 219.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 173.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.4.1 (2026-03-26)
 
@@ -143,7 +169,7 @@ A simple AI-engineered command-line percentage calculator written in Go. No fron
 * 📄 Lines of Documentation: 3062
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-03-21 to 2026-03-27
-* 🏆 Score: 115.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 96.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -167,7 +193,7 @@ Runs two A100 VMs concurrently — each serving a different model — with [Pi](
 * 📄 Lines of Documentation: 7850
 * 🏷️ Tags: 0
 * 📅 Development Period: 2023-07-30 to 2026-03-27
-* 🏆 Score: 58.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 52.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -188,7 +214,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 * 📄 Lines of Documentation: 205
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-03-21 to 2026-03-22
-* 🏆 Score: 51.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 47.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -209,7 +235,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 * 📄 Lines of Documentation: 220523
 * 🏷️ Tags: 27
 * 📅 Development Period: 2020-01-09 to 2026-03-20
-* 🏆 Score: 43.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 41.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.3.3 (2024-08-23)
 
@@ -232,7 +258,7 @@ DTail (a distributed tail program) is a DevOps tool for engineers programmed in 
 * 📄 Lines of Documentation: 6305
 * 🏷️ Tags: 0
 * 📅 Development Period: 2021-12-28 to 2026-03-22
-* 🏆 Score: 31.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 29.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -253,7 +279,7 @@ This is my personal config repository. Including...
 * 📄 Lines of Documentation: 2789
 * 🏷️ Tags: 0
 * 📅 Development Period: 2024-01-18 to 2026-03-19
-* 🏆 Score: 27.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 25.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -276,7 +302,7 @@ This is my personal config repository. Including...
 * 📄 Lines of Documentation: 112
 * 🏷️ Tags: 5
 * 📅 Development Period: 2025-06-25 to 2026-03-26
-* 🏆 Score: 26.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 25.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.8.0 (2026-03-26)
 
@@ -292,12 +318,12 @@ This is my personal config repository. Including...
 
 * 💻 Languages: Go (92.8%), Shell (7.2%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 577
+* 📊 Commits: 537
 * 📈 Lines of Code: 6595
 * 📄 Lines of Documentation: 328
-* 🏷️ Tags: 47
+* 🏷️ Tags: 38
 * 📅 Development Period: 2010-11-05 to 2026-03-02
-* 🏆 Score: 16.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 15.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.11.1 (2026-02-17)
 
@@ -311,7 +337,28 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 
 ---
 
-### 11. foostore 11↙7↙6↖7
+### 11. foo.zone 11↖64←64↙6
+
+* 💻 Languages: XML (98.2%), Shell (1.5%), Go (0.3%)
+* 📚 Documentation: Markdown (73.4%), Text (26.6%)
+* 📊 Commits: 1736
+* 📈 Lines of Code: 19874
+* 📄 Lines of Documentation: 563
+* 🏷️ Tags: 0
+* 📅 Development Period: 2021-04-29 to 2026-03-11
+* 🏆 Score: 13.9 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+Each format is in it's own branch in this repository. E.g.:
+
+[View on Codeberg](https://codeberg.org/snonux/foo.zone)  
+[View on GitHub](https://github.com/snonux/foo.zone)  
+
+---
+
+### 12. foostore 12↙7↙6↖7
 
 * 💻 Languages: Go (98.4%), Shell (1.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -320,7 +367,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 * 📄 Lines of Documentation: 250
 * 🏷️ Tags: 9
 * 📅 Development Period: 2018-05-26 to 2026-03-07
-* 🏆 Score: 12.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 12.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.5.3 (2026-03-02)
 
@@ -332,7 +379,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 
 ---
 
-### 12. ds-sim 12↖25←25↙21
+### 13. ds-sim 13↖25←25↙21
 
 * 💻 Languages: Java (98.6%), Shell (0.9%), CSS (0.4%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -341,7 +388,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 * 📄 Lines of Documentation: 3101
 * 🏷️ Tags: 2
 * 📅 Development Period: 2008-05-15 to 2026-03-27
-* 🏆 Score: 12.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 11.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: 1.1.0 (2026-03-27)
 
@@ -355,7 +402,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 
 ---
 
-### 13. epimetheus 13↙8↙7↙4
+### 14. epimetheus 14↙8↙7↙4
 
 * 💻 Languages: Go (85.2%), Shell (14.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -364,7 +411,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 * 📄 Lines of Documentation: 1736
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-02-07 to 2026-03-07
-* 🏆 Score: 9.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 8.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -378,16 +425,16 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 
 ---
 
-### 14. gitsyncer 14↙11↙10↖15
+### 15. gitsyncer 15↙11↙10↖15
 
 * 💻 Languages: Go (93.5%), Shell (6.2%), JSON (0.3%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 137
+* 📊 Commits: 135
 * 📈 Lines of Code: 11973
 * 📄 Lines of Documentation: 2456
-* 🏷️ Tags: 38
+* 🏷️ Tags: 37
 * 📅 Development Period: 2025-06-23 to 2026-03-19
-* 🏆 Score: 6.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 6.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.15.8 (2026-03-19)
 
@@ -399,7 +446,7 @@ GitSyncer is a tool for synchronizing git repositories between multiple organiza
 
 ---
 
-### 15. scifi 15↙10↙9↙8
+### 16. scifi 16↙10↙9↙8
 
 * 💻 Languages: JSON (36.6%), JavaScript (30.2%), CSS (29.6%), HTML (3.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -408,7 +455,7 @@ GitSyncer is a tool for synchronizing git repositories between multiple organiza
 * 📄 Lines of Documentation: 874
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-01-25 to 2026-03-13
-* 🏆 Score: 6.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 6.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -420,11 +467,11 @@ A static HTML page showcasing a science fiction book collection. Works fully off
 
 ---
 
-### 16. rcm 16↙12←12↙10
+### 17. rcm 17↙12←12↙10
 
 * 💻 Languages: Ruby (99.6%), TOML (0.4%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 113
+* 📊 Commits: 109
 * 📈 Lines of Code: 1719
 * 📄 Lines of Documentation: 778
 * 🏷️ Tags: 3
@@ -443,7 +490,7 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 ---
 
-### 17. yoga 17↙13←13↙12
+### 18. yoga 18↙13←13↙12
 
 * 💻 Languages: Go (69.1%), HTML (30.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -466,7 +513,7 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 ---
 
-### 18. totalrecall 18↙15←15↙14
+### 19. totalrecall 19↙15←15↙14
 
 * 💻 Languages: Go (99.0%), Shell (0.5%), YAML (0.4%)
 * 📚 Documentation: Markdown (99.5%), Text (0.5%)
@@ -489,7 +536,7 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 ---
 
-### 19. gogios 19↙16↙14↙11
+### 20. gogios 20↙16↙14↙11
 
 * 💻 Languages: Go (98.9%), JSON (0.6%), YAML (0.5%)
 * 📚 Documentation: Markdown (94.9%), Text (5.1%)
@@ -512,7 +559,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 
 ---
 
-### 20. log4jbench 20↙14↙11↙9
+### 21. log4jbench 21↙14↙11↙9
 
 * 💻 Languages: Java (78.9%), XML (21.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -533,7 +580,7 @@ A minimal Java tool to benchmark Log4j2 logging throughput with configurable con
 
 ---
 
-### 21. perc 21↙17↙16↙13
+### 22. perc 22↙17↙16↙13
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -542,7 +589,7 @@ A minimal Java tool to benchmark Log4j2 logging throughput with configurable con
 * 📄 Lines of Documentation: 80
 * 🏷️ Tags: 3
 * 📅 Development Period: 2025-11-25 to 2025-11-25
-* 🏆 Score: 3.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.1.0 (2025-11-25)
 
@@ -554,7 +601,7 @@ A simple vibe-coded command-line percentage calculator written in Go.
 
 ---
 
-### 22. tasksamurai 22↙18↙17↙16
+### 23. tasksamurai 23↙18↙17↙16
 
 * 💻 Languages: Go (99.8%), YAML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -577,7 +624,7 @@ Task Samurai invokes the `task` command to read and modify tasks. The tasks are 
 
 ---
 
-### 23. gos 23↙19↙18←18
+### 24. gos 24↙19↙18←18
 
 * 💻 Languages: Go (99.5%), JSON (0.2%), Shell (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -600,7 +647,7 @@ Gos is a Go-based replacement for Buffer.com, providing the ability to schedule 
 
 ---
 
-### 24. foostats 24↙20↙19↙17
+### 25. foostats 25↙20↙19↙17
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -621,7 +668,7 @@ A privacy-respecting web analytics tool for OpenBSD that processes HTTP/HTTPS an
 
 ---
 
-### 25. timr 25↙21↙20↙19
+### 26. timr 26↙21↙20↙19
 
 * 💻 Languages: Go (96.0%), Shell (4.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -642,7 +689,7 @@ A simple command-line tool to track time spent on tasks. It has been primarily c
 
 ---
 
-### 26. gemtexter 26↙22↖23↙22
+### 27. gemtexter 27↙22↖23↙22
 
 * 💻 Languages: Shell (70.8%), CSS (26.2%), Config (1.8%), HTML (1.2%)
 * 📚 Documentation: Text (76.1%), Markdown (23.9%)
@@ -663,7 +710,7 @@ This is the source code of my personal internet site and blog engine. All conten
 
 ---
 
-### 27. wireguardmeshgenerator 27↙23↙22↖23
+### 28. wireguardmeshgenerator 28↙23↙22↖23
 
 * 💻 Languages: Ruby (63.5%), YAML (36.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -684,7 +731,7 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 ---
 
-### 28. goprecords 28↙24←24←24
+### 29. goprecords 29↙24←24←24
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -705,14 +752,14 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 ---
 
-### 29. ioriot 29↖34↖35←35
+### 30. ioriot 30↖34↖35←35
 
 * 💻 Languages: C (58.7%), C/C++ (22.5%), Config (17.9%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 84
+* 📊 Commits: 80
 * 📈 Lines of Code: 13609
 * 📄 Lines of Documentation: 899
-* 🏷️ Tags: 8
+* 🏷️ Tags: 7
 * 📅 Development Period: 2018-03-01 to 2026-03-19
 * 🏆 Score: 1.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Apache-2.0
@@ -728,7 +775,7 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 ---
 
-### 30. quicklogger 30↙26←26↙25
+### 31. quicklogger 31↙26←26↙25
 
 * 💻 Languages: Go (96.4%), XML (1.8%), Shell (1.1%), TOML (0.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -751,7 +798,7 @@ This is a tiny GUI app written in Go using the Fyne framework to quickly log a m
 
 ---
 
-### 31. sillybench 31↙27←27←27
+### 32. sillybench 32↙27←27←27
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -772,7 +819,7 @@ To compare how fast this runs on FreeBSD vs a Linux Bhyve VM
 
 ---
 
-### 32. terraform 32↙28←28↙26
+### 33. terraform 33↙28←28↙26
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -793,7 +840,7 @@ Go to AWS Secrets manager manually and create it!
 
 ---
 
-### 33. geheim 33↙29↖30←30
+### 34. geheim 34↙29↖30←30
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -814,7 +861,7 @@ Go to AWS Secrets manager manually and create it!
 
 ---
 
-### 34. gorum 34↙30↖31↙28
+### 35. gorum 35↙30↖31↙28
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -835,7 +882,7 @@ Gogios is a minimalistic quorum manager.
 
 ---
 
-### 35. docker-radicale-server 35↙31↖32↙31
+### 36. docker-radicale-server 36↙31↖32↙31
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -856,7 +903,7 @@ For the Radicale server https://radicale.org
 
 ---
 
-### 36. photoalbum 36↙32↖33↖34
+### 37. photoalbum 37↙32↖33↖34
 
 * 💻 Languages: Shell (80.1%), Make (12.3%), Config (7.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -879,7 +926,7 @@ The resulting static photo album is pure HTML+CSS (without any JavaScript!).
 
 ---
 
-### 37. randomjournalpage 37↙33↖34↙33
+### 38. randomjournalpage 38↙33↖34↙33
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -901,7 +948,7 @@ This is a quick and dirty script which I use personally to grab a random PDF fil
 
 ---
 
-### 38. algorithms 38↙35↖36↙32
+### 39. algorithms 39↙35↖36↙32
 
 * 💻 Languages: Go (99.2%), Make (0.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -923,7 +970,7 @@ This includes exercises from the Algorithms lecture. Well, this is just a refres
 
 ---
 
-### 39. ipv6test 39↙36↖37↙36
+### 40. ipv6test 40↙36↖37↙36
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -944,7 +991,7 @@ This is a quick and dirty Perl-based IPv6 test website.
 
 ---
 
-### 40. staticfarm-apache-handlers 40↙37↖38↖40
+### 41. staticfarm-apache-handlers 41↙37↖38↖40
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -967,7 +1014,7 @@ DEPRECATED
 
 ---
 
-### 41. sway-autorotate 41↙38↖39↙38
+### 42. sway-autorotate 42↙38↖39↙38
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -985,26 +1032,6 @@ This is a fork of https://github.com/tedk0n/autorotate_sway_script
 
 [View on Codeberg](https://codeberg.org/snonux/sway-autorotate)  
 [View on GitHub](https://github.com/snonux/sway-autorotate)  
-
----
-
-### 42. guprecords 42↙39↙29←29
-
-* 💻 Languages: Raku (100.0%)
-* 📊 Commits: 97
-* 📈 Lines of Code: 195
-* 🏷️ Tags: 1
-* 📅 Development Period: 2013-03-22 to 2023-03-09
-* 🏆 Score: 0.2 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v1.0.0 (2023-04-29)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-guprecords: source code repository.
-
-[View on Codeberg](https://codeberg.org/snonux/guprecords)  
-[View on GitHub](https://github.com/snonux/guprecords)  
 
 ---
 
@@ -1081,7 +1108,7 @@ DEPRECATED
 
 * 💻 Languages: C (77.3%), C/C++ (13.1%), HTML (7.5%), Make (2.1%)
 * 📚 Documentation: Text (65.8%), LaTeX (20.5%), Markdown (13.7%)
-* 📊 Commits: 120
+* 📊 Commits: 93
 * 📈 Lines of Code: 7904
 * 📄 Lines of Documentation: 2774
 * 🏷️ Tags: 0
@@ -1102,10 +1129,10 @@ DEPRECATED
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (75.0%), Markdown (25.0%)
-* 📊 Commits: 143
+* 📊 Commits: 115
 * 📈 Lines of Code: 493
 * 📄 Lines of Documentation: 28
-* 🏷️ Tags: 33
+* 🏷️ Tags: 22
 * 📅 Development Period: 2009-09-27 to 2026-03-07
 * 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
@@ -1122,7 +1149,7 @@ DEPRECATED
 ### 48. xerl 48↙45←45↙42
 
 * 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
-* 📊 Commits: 671
+* 📊 Commits: 143
 * 📈 Lines of Code: 1675
 * 🏷️ Tags: 1
 * 📅 Development Period: 2011-03-06 to 2026-03-07
@@ -1138,14 +1165,34 @@ Those are the host templates to be used with Xerl itself.
 
 ---
 
-### 49. awksite 49↙46←46↖61
+### 49. guprecords 49↙39↙29←29
+
+* 💻 Languages: Raku (100.0%)
+* 📊 Commits: 55
+* 📈 Lines of Code: 195
+* 🏷️ Tags: 0
+* 📅 Development Period: 2013-03-22 to 2023-03-09
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+guprecords: source code repository.
+
+[View on Codeberg](https://codeberg.org/snonux/guprecords)  
+[View on GitHub](https://github.com/snonux/guprecords)  
+
+---
+
+### 50. awksite 50↙46←46↖61
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
-* 📚 Documentation: Markdown (50.0%), Text (50.0%)
-* 📊 Commits: 4
+* 📚 Documentation: Text (50.0%), Markdown (50.0%)
+* 📊 Commits: 3
 * 📈 Lines of Code: 122
 * 📄 Lines of Documentation: 12
-* 🏷️ Tags: 2
+* 🏷️ Tags: 1
 * 📅 Development Period: 2011-01-27 to 2026-03-07
 * 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
@@ -1159,7 +1206,7 @@ Those are the host templates to be used with Xerl itself.
 
 ---
 
-### 50. gotop 50↙47←47↖48
+### 51. gotop 51↙47←47↖48
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
 * 📚 Documentation: Markdown (60.0%), Text (40.0%)
@@ -1180,7 +1227,7 @@ Those are the host templates to be used with Xerl itself.
 
 ---
 
-### 51. japi 51↙48←48↖53
+### 52. japi 52↙48←48↖53
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1203,7 +1250,7 @@ DEPRECATED
 
 ---
 
-### 52. rubyfy 52↙49↖50↙49
+### 53. rubyfy 53↙49↖50↙49
 
 * 💻 Languages: Ruby (98.5%), JSON (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1224,7 +1271,7 @@ DEPRECATED
 
 ---
 
-### 53. perl-c-fibonacci 53↙50↖51↙45
+### 54. perl-c-fibonacci 54↙50↖51↙45
 
 * 💻 Languages: C (80.4%), Make (19.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1246,7 +1293,7 @@ perl-c-fibonacci: source code repository.
 
 ---
 
-### 54. netdiff 54↙51↖52↖56
+### 55. netdiff 55↙51↖52↖56
 
 * 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
 * 📚 Documentation: Text (100.0%)
@@ -1269,16 +1316,16 @@ DEPRECATED
 
 ---
 
-### 55. perldaemon 55↙52↙49↖51
+### 56. perldaemon 56↙52↙49↖51
 
 * 💻 Languages: Perl (74.2%), Shell (22.2%), Config (3.6%)
-* 📊 Commits: 111
+* 📊 Commits: 107
 * 📈 Lines of Code: 659
-* 🏷️ Tags: 6
+* 🏷️ Tags: 4
 * 📅 Development Period: 2011-02-05 to 2022-04-21
 * 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.4 (2022-04-29)
+* 🏷️ Latest Release: v1.2.1 (2011-11-19)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
@@ -1287,29 +1334,6 @@ programmed in Perl.  It can be extended to fit any task...
 
 [View on Codeberg](https://codeberg.org/snonux/perldaemon)  
 [View on GitHub](https://github.com/snonux/perldaemon)  
-
----
-
-### 56. jsmstrade 56↙53←53↙52
-
-* 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 21
-* 📈 Lines of Code: 720
-* 📄 Lines of Documentation: 8
-* 🏷️ Tags: 3
-* 📅 Development Period: 2008-06-21 to 2026-03-07
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v0.3 (2009-02-08)
-
-
-[![jsmstrade screenshot](showcase/jsmstrade/image-1.png "jsmstrade screenshot")](showcase/jsmstrade/image-1.png)  
-
-> **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
-
-[View on Codeberg](https://codeberg.org/snonux/jsmstrade)  
-[View on GitHub](https://github.com/snonux/jsmstrade)  
 
 ---
 
@@ -1336,60 +1360,14 @@ DEPRECATED
 
 ---
 
-### 58. netcalendar 58↙55←55↙46
-
-* 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
-* 📚 Documentation: Text (89.5%), Markdown (10.5%)
-* 📊 Commits: 51
-* 📈 Lines of Code: 17380
-* 📄 Lines of Documentation: 949
-* 🏷️ Tags: 1
-* 📅 Development Period: 2009-02-07 to 2026-03-07
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: GPL-2.0
-* 🏷️ Latest Release: v0.1 (2009-02-08)
-
-
-[![netcalendar screenshot](showcase/netcalendar/image-1.png "netcalendar screenshot")](showcase/netcalendar/image-1.png)  
-
-> **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
-
-[View on Codeberg](https://codeberg.org/snonux/netcalendar)  
-[View on GitHub](https://github.com/snonux/netcalendar)  
-
----
-
-### 59. vs-sim 59↙56↖63←63
-
-* 💻 Languages: Java (98.8%), Shell (0.7%), XML (0.4%)
-* 📚 Documentation: LaTeX (98.3%), Text (1.4%), Markdown (0.3%)
-* 📊 Commits: 409
-* 📈 Lines of Code: 16303
-* 📄 Lines of Documentation: 2905
-* 🏷️ Tags: 4
-* 📅 Development Period: 2008-05-15 to 2026-03-07
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.0 (2008-08-24)
-
-
-[![vs-sim screenshot](showcase/vs-sim/image-1.jpg "vs-sim screenshot")](showcase/vs-sim/image-1.jpg)  
-
-VS-Sim is an open source simulator programmed in Java for distributed systems. VS-Sim stands for "Verteilte Systeme Simulator" which is the german translation for "Distributed Sytstems Simulator".
-
-[View on Codeberg](https://codeberg.org/snonux/vs-sim)  
-[View on GitHub](https://github.com/snonux/vs-sim)  
-
----
-
-### 60. cpuinfo 60↙57↙56↖59
+### 58. cpuinfo 58↙57↙56↖59
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
-* 📊 Commits: 28
+* 📊 Commits: 26
 * 📈 Lines of Code: 124
 * 📄 Lines of Documentation: 75
-* 🏷️ Tags: 4
+* 🏷️ Tags: 3
 * 📅 Development Period: 2010-11-05 to 2021-11-05
 * 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
@@ -1404,7 +1382,7 @@ cpuinfo - A small and humble tool to print out CPU data
 
 ---
 
-### 61. template 61↙58↙57↖60
+### 59. template 59↙58↙57↖60
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1427,7 +1405,7 @@ DEPRECATED
 
 ---
 
-### 62. dyndns 62↙59↙58↖62
+### 60. dyndns 60↙59↙58↖62
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1450,7 +1428,7 @@ DEPRECATED
 
 ---
 
-### 63. debroid 63↙60↙59↙57
+### 61. debroid 61↙60↙59↙57
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1473,7 +1451,76 @@ DEPRECATED
 
 ---
 
-### 64. perl-poetry 64↙61↙60↙54
+### 62. netcalendar 62↙55←55↙46
+
+* 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
+* 📚 Documentation: Text (89.5%), Markdown (10.5%)
+* 📊 Commits: 50
+* 📈 Lines of Code: 17380
+* 📄 Lines of Documentation: 949
+* 🏷️ Tags: 0
+* 📅 Development Period: 2009-02-07 to 2026-03-07
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: GPL-2.0
+* 🧪 Status: Experimental (no releases yet)
+
+
+[![netcalendar screenshot](showcase/netcalendar/image-1.png "netcalendar screenshot")](showcase/netcalendar/image-1.png)  
+
+> **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
+
+[View on Codeberg](https://codeberg.org/snonux/netcalendar)  
+[View on GitHub](https://github.com/snonux/netcalendar)  
+
+---
+
+### 63. jsmstrade 63↙53←53↙52
+
+* 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 14
+* 📈 Lines of Code: 720
+* 📄 Lines of Documentation: 8
+* 🏷️ Tags: 0
+* 📅 Development Period: 2008-06-21 to 2026-03-07
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+
+[![jsmstrade screenshot](showcase/jsmstrade/image-1.png "jsmstrade screenshot")](showcase/jsmstrade/image-1.png)  
+
+> **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
+
+[View on Codeberg](https://codeberg.org/snonux/jsmstrade)  
+[View on GitHub](https://github.com/snonux/jsmstrade)  
+
+---
+
+### 64. vs-sim 64↙56↖63←63
+
+* 💻 Languages: Java (98.8%), Shell (0.7%), XML (0.4%)
+* 📚 Documentation: LaTeX (98.3%), Text (1.4%), Markdown (0.3%)
+* 📊 Commits: 396
+* 📈 Lines of Code: 16303
+* 📄 Lines of Documentation: 2905
+* 🏷️ Tags: 0
+* 📅 Development Period: 2008-05-15 to 2026-03-07
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+
+[![vs-sim screenshot](showcase/vs-sim/image-1.jpg "vs-sim screenshot")](showcase/vs-sim/image-1.jpg)  
+
+VS-Sim is an open source simulator programmed in Java for distributed systems. VS-Sim stands for "Verteilte Systeme Simulator" which is the german translation for "Distributed Sytstems Simulator".
+
+[View on Codeberg](https://codeberg.org/snonux/vs-sim)  
+[View on GitHub](https://github.com/snonux/vs-sim)  
+
+---
+
+### 65. perl-poetry 65↙61↙60↙54
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1495,7 +1542,7 @@ Here you find some Poetry written in Perl.
 
 ---
 
-### 65. hsbot 65↙62↙61↙58
+### 66. hsbot 66↙62↙61↙58
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 81
@@ -1512,27 +1559,6 @@ feature additions will be made. Use at your own risk.
 
 [View on Codeberg](https://codeberg.org/snonux/hsbot)  
 [View on GitHub](https://github.com/snonux/hsbot)  
-
----
-
-### 66. ychat 66↙63↙62↙43
-
-* 📚 Documentation: Text (100.0%)
-* 📊 Commits: 67
-* 📈 Lines of Code: 0
-* 📄 Lines of Documentation: 9
-* 🏷️ Tags: 34
-* 📅 Development Period: 2008-05-15 to 2013-12-15
-* 🏆 Score: 0.0 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: yhttpd-0.7.2 (2013-04-06)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-ychat: source code repository.
-
-[View on Codeberg](https://codeberg.org/snonux/ychat)  
-[View on GitHub](https://github.com/snonux/ychat)  
 
 ---
 
@@ -1556,21 +1582,21 @@ This directory belongs to the [snonux](https://codeberg.org/snonux/snonux) micro
 
 ---
 
-### 68. foo.zone 68↙64←64↙6
+### 68. ychat 68↙63↙62↙43
 
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 3643
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 14
 * 📈 Lines of Code: 0
-* 📄 Lines of Documentation: 23
+* 📄 Lines of Documentation: 9
 * 🏷️ Tags: 0
-* 📅 Development Period: 2021-05-21 to 2022-04-02
+* 📅 Development Period: 2008-05-15 to 2013-12-15
 * 🏆 Score: 0.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
 ⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
 
-Each format is in it's own branch in this repository. E.g.:
+ychat: source code repository.
 
-[View on Codeberg](https://codeberg.org/snonux/foo.zone)  
-[View on GitHub](https://github.com/snonux/foo.zone)  
+[View on Codeberg](https://codeberg.org/snonux/ychat)  
+[View on GitHub](https://github.com/snonux/ychat)  
