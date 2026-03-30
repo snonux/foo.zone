@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-03-30T22:42:23+03:00</updated>
+    <updated>2026-03-30T22:46:37+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -75,11 +75,11 @@
 <li>Rolling back means re-running old Helm commands</li>
 <li>No audit trail for who changed what</li>
 </ul><br />
-<span>This post covers the migration to GitOps with ArgoCD. After this, the Git repo is the single source of truth, and ArgoCD keeps the cluster in sync automatically.</span><br />
+<span>So I migrated everything to GitOps with ArgoCD. Now the Git repo is the single source of truth, and ArgoCD keeps the cluster in sync automatically.</span><br />
 <br />
 <h2 style='display: inline' id='gitops-in-a-nutshell'>GitOps in a Nutshell</h2><br />
 <br />
-<span>The idea behind GitOps is simple: describe your entire desired state in Git, and let an agent in the cluster pull that state and reconcile it continuously. Every change goes through a commit, so you get version history, collaboration, and rollback for free.</span><br />
+<span>Describe your entire desired state in Git, and let an agent in the cluster pull that state and reconcile it continuously. Every change goes through a commit, so you get version history, collaboration, and rollback for free.</span><br />
 <br />
 <span>For Kubernetes specifically:</span><br />
 <br />
@@ -91,7 +91,7 @@
 </ul><br />
 <h2 style='display: inline' id='argocd'>ArgoCD</h2><br />
 <br />
-<span>ArgoCD is a GitOps continuous delivery tool for Kubernetes. It runs as a controller in the cluster, continuously comparing live state against what&#39;s defined in Git.</span><br />
+<span>ArgoCD is a GitOps CD tool for Kubernetes. It runs as a controller in the cluster, constantly comparing what&#39;s running against what&#39;s in Git.</span><br />
 <br />
 <a class='textlink' href='https://argo-cd.readthedocs.io'>ArgoCD Documentation</a><br />
 <br />
@@ -145,7 +145,7 @@ helm install argocd argo/argo-cd --namespace cicd -f values.yaml
 kubectl apply -f ingress.yaml
 </pre>
 <br />
-<span>A few things worth noting in the <span class='inlinecode'>values.yaml</span>:</span><br />
+<span>Some highlights from <span class='inlinecode'>values.yaml</span>:</span><br />
 <br />
 <span>Persistent storage for the repo-server so cloned Git repos survive pod restarts:</span><br />
 <br />
@@ -266,7 +266,7 @@ $ git push f3s master
 <br />
 <h2 style='display: inline' id='repository-organization'>Repository Organization</h2><br />
 <br />
-<span>I reorganized the config repo to support GitOps. Application manifests are grouped by Kubernetes namespace:</span><br />
+<span>I reorganized the config repo for GitOps. Application manifests are grouped by namespace:</span><br />
 <br />
 <pre>
 /home/paul/git/conf/f3s/
@@ -318,11 +318,11 @@ $ git push f3s master
 └── ...
 </pre>
 <br />
-<span>The per-app directories (miniflux, prometheus, etc.) stayed mostly the same--ArgoCD points at the same Helm charts. The main additions are the <span class='inlinecode'>argocd-apps/</span> directory structure and <span class='inlinecode'>manifests/</span> subdirectories for complex apps.</span><br />
+<span>The per-app directories (miniflux, prometheus, etc.) stayed the same--ArgoCD just points at the existing Helm charts. The main addition is the <span class='inlinecode'>argocd-apps/</span> tree and <span class='inlinecode'>manifests/</span> subdirectories for complex apps.</span><br />
 <br />
 <h2 style='display: inline' id='migrating-an-app-miniflux-as-example'>Migrating an App: Miniflux as Example</h2><br />
 <br />
-<span>I migrated all apps incrementally, one at a time. The procedure was the same for each. Here&#39;s miniflux as a concrete example.</span><br />
+<span>I migrated all apps one at a time. Same procedure for each--here&#39;s miniflux as an example.</span><br />
 <br />
 <span>Before ArgoCD, the Justfile looked like this:</span><br />
 <br />
@@ -343,7 +343,7 @@ uninstall:
 <br />
 <span>Workflow: edit chart, run <span class='inlinecode'>just upgrade</span>, hope you didn&#39;t forget anything.</span><br />
 <br />
-<span>To migrate, I created an Application manifest telling ArgoCD where the Helm chart lives and how to sync it:</span><br />
+<span>I created an Application manifest--this tells ArgoCD where the Helm chart lives and how to sync it:</span><br />
 <br />
 <pre>
 apiVersion: argoproj.io/v1alpha1
@@ -397,9 +397,9 @@ $ curl -I https://flux.f3s.foo.zone
 HTTP/<font color="#000000">2</font> <font color="#000000">200</font>
 </pre>
 <br />
-<span>About 10 minutes, zero downtime. ArgoCD recognised the already-running resources matched the Helm chart in Git and adopted them without re-deploying.</span><br />
+<span>About 10 minutes, zero downtime. ArgoCD saw that the running resources already matched the Helm chart in Git and just adopted them.</span><br />
 <br />
-<span>After the migration, the Justfile turned into utility commands--no more install/upgrade/uninstall:</span><br />
+<span>After that, the Justfile is just utility commands--no more install/upgrade/uninstall:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -438,9 +438,9 @@ psql:
 <br />
 <h2 style='display: inline' id='complex-migration-prometheus-multi-source'>Complex Migration: Prometheus Multi-Source</h2><br />
 <br />
-<span>Prometheus was the tricky one. It combines an upstream Helm chart with a bunch of custom manifests--recording rules, dashboards, persistent volumes, and a post-sync hook to restart Grafana.</span><br />
+<span>Prometheus was the tricky one--it combines an upstream Helm chart with a bunch of custom manifests (recording rules, dashboards, persistent volumes, a post-sync hook to restart Grafana).</span><br />
 <br />
-<span>ArgoCD&#39;s multi-source feature handles this cleanly:</span><br />
+<span>ArgoCD&#39;s multi-source feature made this manageable:</span><br />
 <br />
 <pre>
 apiVersion: argoproj.io/v1alpha1
@@ -478,7 +478,7 @@ spec:
       - ServerSideApply=true
 </pre>
 <br />
-<span>The <span class='inlinecode'>prometheus/manifests/</span> directory has 13 files, each with a sync wave annotation to control deployment order:</span><br />
+<span>The <span class='inlinecode'>prometheus/manifests/</span> directory has 13 files. Each one has a sync wave annotation that controls when it gets deployed:</span><br />
 <br />
 <pre>
 f3s/prometheus/manifests/
@@ -500,9 +500,9 @@ f3s/prometheus/manifests/
 <br />
 <h3 style='display: inline' id='sync-waves'>Sync Waves</h3><br />
 <br />
-<span>Without sync waves, ArgoCD deploys all resources at once in no particular order. That&#39;s fine for simple apps, but for something like Prometheus it causes failures--a PersistentVolumeClaim can&#39;t bind if the PersistentVolume doesn&#39;t exist yet, and a PrometheusRule can&#39;t be created if the CRD hasn&#39;t been registered.</span><br />
+<span>By default, ArgoCD deploys everything at once in no particular order. Fine for simple apps, but Prometheus breaks--a PVC can&#39;t bind if the PV doesn&#39;t exist yet, and a PrometheusRule can&#39;t be created if the CRD hasn&#39;t been registered.</span><br />
 <br />
-<span>Sync waves fix this. You annotate each resource with a wave number:</span><br />
+<span>Sync waves fix this. You slap an annotation on each resource:</span><br />
 <br />
 <pre>
 annotations:
@@ -520,7 +520,7 @@ annotations:
 <li>Wave 4: Dashboard ConfigMaps and nodeport config</li>
 <li>Wave 10: PostSync hook--a Job that runs after all waves complete</li>
 </ul><br />
-<span>The PostSync hook is worth explaining. ArgoCD supports lifecycle hooks (<span class='inlinecode'>PreSync</span>, <span class='inlinecode'>Sync</span>, <span class='inlinecode'>PostSync</span>) that run Jobs at specific points. The Grafana restart hook is a good example--it restarts Grafana after every sync so it picks up updated datasources and dashboards:</span><br />
+<span>ArgoCD also supports lifecycle hooks (<span class='inlinecode'>PreSync</span>, <span class='inlinecode'>Sync</span>, <span class='inlinecode'>PostSync</span>) that run Jobs at specific points. The Grafana restart hook runs after every sync so Grafana picks up updated datasources and dashboards:</span><br />
 <br />
 <pre>
 apiVersion: batch/v1
@@ -611,7 +611,7 @@ webdav                    https://kubernetes.default.svc  services     default  
 <br />
 <h3 style='display: inline' id='helm-release-adoption'>Helm Release Adoption</h3><br />
 <br />
-<span>When ArgoCD tries to manage resources already deployed by Helm, it can get confused. The fix: make sure the Application manifest matches the current Helm values exactly. ArgoCD then recognizes the resources and adopts them without re-deploying.</span><br />
+<span>When ArgoCD tries to manage resources already deployed by Helm, it can get confused. Fix: make sure the Application manifest matches the current Helm values exactly. ArgoCD then recognizes the resources and adopts them.</span><br />
 <br />
 <h3 style='display: inline' id='persistentvolumes'>PersistentVolumes</h3><br />
 <br />
@@ -619,7 +619,7 @@ webdav                    https://kubernetes.default.svc  services     default  
 <br />
 <h3 style='display: inline' id='secrets'>Secrets</h3><br />
 <br />
-<span>Secrets shouldn&#39;t live in Git as plaintext. For now, I create them manually with <span class='inlinecode'>kubectl create secret</span> and reference them from Helm charts. ArgoCD doesn&#39;t manage the secrets themselves. This works fine but isn&#39;t fully declarative--External Secrets Operator is on the list for the future.</span><br />
+<span>Secrets shouldn&#39;t live in Git as plaintext. For now, I create them manually with <span class='inlinecode'>kubectl create secret</span> and reference them from Helm charts. ArgoCD doesn&#39;t manage the secrets themselves. Works, but isn&#39;t fully declarative--External Secrets Operator is on the list.</span><br />
 <br />
 <h3 style='display: inline' id='grafana-not-reloading'>Grafana Not Reloading</h3><br />
 <br />
@@ -627,7 +627,7 @@ webdav                    https://kubernetes.default.svc  services     default  
 <br />
 <h3 style='display: inline' id='prometheus-multi-source-ordering'>Prometheus Multi-Source Ordering</h3><br />
 <br />
-<span>Without sync waves, Prometheus resources deployed in random order and things broke. PVs need to exist before PVCs, secrets before the operator, recording rules after the CRDs are registered. Adding sync wave annotations to everything in <span class='inlinecode'>prometheus/manifests/</span> fixed all the ordering issues.</span><br />
+<span>Without sync waves, Prometheus resources deployed in random order and things broke. PVs before PVCs, secrets before the operator, recording rules after the CRDs. Adding sync wave annotations to everything in <span class='inlinecode'>prometheus/manifests/</span> fixed it.</span><br />
 <br />
 <h2 style='display: inline' id='wrapping-up'>Wrapping Up</h2><br />
 <br />
