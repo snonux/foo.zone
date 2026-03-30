@@ -22,11 +22,11 @@ In previous posts, I deployed applications to the k3s cluster using Helm charts 
 * Rolling back means re-running old Helm commands
 * No audit trail for who changed what
 
-This post covers the migration to GitOps with ArgoCD. After this, the Git repo is the single source of truth, and ArgoCD keeps the cluster in sync automatically.
+So I migrated everything to GitOps with ArgoCD. Now the Git repo is the single source of truth, and ArgoCD keeps the cluster in sync automatically.
 
 ## GitOps in a Nutshell
 
-The idea behind GitOps is simple: describe your entire desired state in Git, and let an agent in the cluster pull that state and reconcile it continuously. Every change goes through a commit, so you get version history, collaboration, and rollback for free.
+Describe your entire desired state in Git, and let an agent in the cluster pull that state and reconcile it continuously. Every change goes through a commit, so you get version history, collaboration, and rollback for free.
 
 For Kubernetes specifically:
 
@@ -37,7 +37,7 @@ For Kubernetes specifically:
 
 ## ArgoCD
 
-ArgoCD is a GitOps continuous delivery tool for Kubernetes. It runs as a controller in the cluster, continuously comparing live state against what's defined in Git.
+ArgoCD is a GitOps CD tool for Kubernetes. It runs as a controller in the cluster, constantly comparing what's running against what's in Git.
 
 => https://argo-cd.readthedocs.io ArgoCD Documentation
 
@@ -86,7 +86,7 @@ helm install argocd argo/argo-cd --namespace cicd -f values.yaml
 kubectl apply -f ingress.yaml
 ```
 
-A few things worth noting in the `values.yaml`:
+Some highlights from `values.yaml`:
 
 Persistent storage for the repo-server so cloned Git repos survive pod restarts:
 
@@ -197,7 +197,7 @@ ArgoCD detects the change within a few minutes and syncs. No internet required. 
 
 ## Repository Organization
 
-I reorganized the config repo to support GitOps. Application manifests are grouped by Kubernetes namespace:
+I reorganized the config repo for GitOps. Application manifests are grouped by namespace:
 
 ```
 /home/paul/git/conf/f3s/
@@ -249,11 +249,11 @@ I reorganized the config repo to support GitOps. Application manifests are group
 └── ...
 ```
 
-The per-app directories (miniflux, prometheus, etc.) stayed mostly the same--ArgoCD points at the same Helm charts. The main additions are the `argocd-apps/` directory structure and `manifests/` subdirectories for complex apps.
+The per-app directories (miniflux, prometheus, etc.) stayed the same--ArgoCD just points at the existing Helm charts. The main addition is the `argocd-apps/` tree and `manifests/` subdirectories for complex apps.
 
 ## Migrating an App: Miniflux as Example
 
-I migrated all apps incrementally, one at a time. The procedure was the same for each. Here's miniflux as a concrete example.
+I migrated all apps one at a time. Same procedure for each--here's miniflux as an example.
 
 Before ArgoCD, the Justfile looked like this:
 
@@ -271,7 +271,7 @@ uninstall:
 
 Workflow: edit chart, run `just upgrade`, hope you didn't forget anything.
 
-To migrate, I created an Application manifest telling ArgoCD where the Helm chart lives and how to sync it:
+I created an Application manifest--this tells ArgoCD where the Helm chart lives and how to sync it:
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -322,9 +322,9 @@ $ curl -I https://flux.f3s.foo.zone
 HTTP/2 200
 ```
 
-About 10 minutes, zero downtime. ArgoCD recognised the already-running resources matched the Helm chart in Git and adopted them without re-deploying.
+About 10 minutes, zero downtime. ArgoCD saw that the running resources already matched the Helm chart in Git and just adopted them.
 
-After the migration, the Justfile turned into utility commands--no more install/upgrade/uninstall:
+After that, the Justfile is just utility commands--no more install/upgrade/uninstall:
 
 ```makefile
 status:
@@ -360,9 +360,9 @@ After that: infrastructure apps (registry, cert-manager, pkgrepo, traefik-config
 
 ## Complex Migration: Prometheus Multi-Source
 
-Prometheus was the tricky one. It combines an upstream Helm chart with a bunch of custom manifests--recording rules, dashboards, persistent volumes, and a post-sync hook to restart Grafana.
+Prometheus was the tricky one--it combines an upstream Helm chart with a bunch of custom manifests (recording rules, dashboards, persistent volumes, a post-sync hook to restart Grafana).
 
-ArgoCD's multi-source feature handles this cleanly:
+ArgoCD's multi-source feature made this manageable:
 
 ```yaml
 apiVersion: argoproj.io/v1alpha1
@@ -400,7 +400,7 @@ spec:
       - ServerSideApply=true
 ```
 
-The `prometheus/manifests/` directory has 13 files, each with a sync wave annotation to control deployment order:
+The `prometheus/manifests/` directory has 13 files. Each one has a sync wave annotation that controls when it gets deployed:
 
 ```
 f3s/prometheus/manifests/
@@ -422,9 +422,9 @@ f3s/prometheus/manifests/
 
 ### Sync Waves
 
-Without sync waves, ArgoCD deploys all resources at once in no particular order. That's fine for simple apps, but for something like Prometheus it causes failures--a PersistentVolumeClaim can't bind if the PersistentVolume doesn't exist yet, and a PrometheusRule can't be created if the CRD hasn't been registered.
+By default, ArgoCD deploys everything at once in no particular order. Fine for simple apps, but Prometheus breaks--a PVC can't bind if the PV doesn't exist yet, and a PrometheusRule can't be created if the CRD hasn't been registered.
 
-Sync waves fix this. You annotate each resource with a wave number:
+Sync waves fix this. You slap an annotation on each resource:
 
 ```yaml
 annotations:
@@ -441,7 +441,7 @@ For the Prometheus stack, the waves look like this:
 * Wave 4: Dashboard ConfigMaps and nodeport config
 * Wave 10: PostSync hook--a Job that runs after all waves complete
 
-The PostSync hook is worth explaining. ArgoCD supports lifecycle hooks (`PreSync`, `Sync`, `PostSync`) that run Jobs at specific points. The Grafana restart hook is a good example--it restarts Grafana after every sync so it picks up updated datasources and dashboards:
+ArgoCD also supports lifecycle hooks (`PreSync`, `Sync`, `PostSync`) that run Jobs at specific points. The Grafana restart hook runs after every sync so Grafana picks up updated datasources and dashboards:
 
 ```yaml
 apiVersion: batch/v1
@@ -528,7 +528,7 @@ The practical difference is pretty big:
 
 ### Helm Release Adoption
 
-When ArgoCD tries to manage resources already deployed by Helm, it can get confused. The fix: make sure the Application manifest matches the current Helm values exactly. ArgoCD then recognizes the resources and adopts them without re-deploying.
+When ArgoCD tries to manage resources already deployed by Helm, it can get confused. Fix: make sure the Application manifest matches the current Helm values exactly. ArgoCD then recognizes the resources and adopts them.
 
 ### PersistentVolumes
 
@@ -536,7 +536,7 @@ PVs are cluster-scoped, and many of my Helm charts created them with `kubectl ap
 
 ### Secrets
 
-Secrets shouldn't live in Git as plaintext. For now, I create them manually with `kubectl create secret` and reference them from Helm charts. ArgoCD doesn't manage the secrets themselves. This works fine but isn't fully declarative--External Secrets Operator is on the list for the future.
+Secrets shouldn't live in Git as plaintext. For now, I create them manually with `kubectl create secret` and reference them from Helm charts. ArgoCD doesn't manage the secrets themselves. Works, but isn't fully declarative--External Secrets Operator is on the list.
 
 ### Grafana Not Reloading
 
@@ -544,7 +544,7 @@ After updating datasource ConfigMaps, Grafana wouldn't notice until the pod was 
 
 ### Prometheus Multi-Source Ordering
 
-Without sync waves, Prometheus resources deployed in random order and things broke. PVs need to exist before PVCs, secrets before the operator, recording rules after the CRDs are registered. Adding sync wave annotations to everything in `prometheus/manifests/` fixed all the ordering issues.
+Without sync waves, Prometheus resources deployed in random order and things broke. PVs before PVCs, secrets before the operator, recording rules after the CRDs. Adding sync wave annotations to everything in `prometheus/manifests/` fixed it.
 
 ## Wrapping Up
 
