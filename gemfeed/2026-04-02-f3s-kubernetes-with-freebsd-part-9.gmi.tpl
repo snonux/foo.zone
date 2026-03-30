@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD
 
-> DRAFT - Not yet published
+> Published at 2026-04-02T00:00:00+03:00
 
 This is the 9th post in the f3s series about my self-hosting home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.
 

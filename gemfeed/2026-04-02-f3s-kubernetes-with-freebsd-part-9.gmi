@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD
 
-> DRAFT - Not yet published
+> Published at 2026-04-02T00:00:00+03:00
 
 This is the 9th post in the f3s series about my self-hosting home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.
 
@@ -12,6 +12,7 @@ This is the 9th post in the f3s series about my self-hosting home lab. f3s? The 
 => ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage
 => ./2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi 2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments
 => ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi 2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability
+=> ./2026-04-02-f3s-kubernetes-with-freebsd-part-9.gmi 2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD (You are currently reading this)
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
@@ -40,8 +41,6 @@ This is the 9th post in the f3s series about my self-hosting home lab. f3s? The 
 * ⇢ ⇢ ⇢ Secrets
 * ⇢ ⇢ ⇢ Grafana Not Reloading
 * ⇢ ⇢ ⇢ Prometheus Multi-Source Ordering
-* ⇢ ⇢ Future Ideas
-* ⇢ ⇢ Lessons Learned
 * ⇢ ⇢ Wrapping Up
 
 ## Introduction
@@ -549,17 +548,12 @@ webdav                    https://kubernetes.default.svc  services     default  
 
 The practical difference is pretty big:
 
-Single source of truth. Clone the repo, look at `argocd-apps/`, and you know exactly what's running. No more `helm list` or guessing.
-
-Push and forget. Edit a Helm value, commit, push. ArgoCD picks it up within a few minutes. No SSH, no `just upgrade`.
-
-Self-healing. I've tweaked things manually for debugging, forgotten about it, and ArgoCD quietly reverted it. That's saved me from some confusing "why is this behaving differently?" moments.
-
-Rollback = git revert. That's it. `git revert HEAD && git push` and ArgoCD syncs back to the previous state.
-
-Disaster recovery. Bootstrap k3s, install ArgoCD, apply the Application manifests, wait. The cluster rebuilds itself. I haven't had to do this for real yet, but I've tested it and it works.
-
-Drift detection. The ArgoCD UI shows immediately if something is out of sync. Much better than running `kubectl` commands and comparing output manually.
+* Single source of truth--clone the repo, look at `argocd-apps/`, and you know exactly what's running. No more `helm list` or guessing.
+* Push and forget--edit a Helm value, commit, push. ArgoCD picks it up within a few minutes. No SSH, no `just upgrade`.
+* Self-healing--I've tweaked things manually for debugging, forgotten about it, and ArgoCD quietly reverted it. That's saved me from some confusing "why is this behaving differently?" moments.
+* Rollback = git revert--`git revert HEAD && git push` and ArgoCD syncs back to the previous state.
+* Disaster recovery--bootstrap k3s, install ArgoCD, apply the Application manifests, wait. The cluster rebuilds itself. I haven't had to do this for real yet, but I've tested it and it works.
+* Drift detection--the ArgoCD UI shows immediately if something is out of sync. Much better than running `kubectl` commands and comparing output manually.
 
 ## Challenges Along the Way
 
@@ -583,68 +577,9 @@ After updating datasource ConfigMaps, Grafana wouldn't notice until the pod was 
 
 Without sync waves, Prometheus resources deployed in random order and things broke. PVs need to exist before PVCs, secrets before the operator, recording rules after the CRDs are registered. Adding sync wave annotations to everything in `prometheus/manifests/` fixed all the ordering issues.
 
-## Future Ideas
-
-External Secrets Operator to manage secrets declaratively without committing them to Git.
-
-ApplicationSets for apps with nearly identical manifests. One template could replace 10+ individual Application files:
-
-```yaml
-apiVersion: argoproj.io/v1alpha1
-kind: ApplicationSet
-metadata:
-  name: simple-services
-  namespace: cicd
-spec:
-  generators:
-    - list:
-        elements:
-          - app: miniflux
-          - app: wallabag
-          - app: radicale
-  template:
-    metadata:
-      name: '{{app}}'
-    spec:
-      source:
-        repoURL: http://git-server.cicd.svc.cluster.local/conf.git
-        targetRevision: master
-        path: 'f3s/{{app}}/helm-chart'
-      destination:
-        server: https://kubernetes.default.svc
-        namespace: services
-      syncPolicy:
-        automated:
-          prune: true
-          selfHeal: true
-```
-
-App-of-Apps pattern so even the Application manifests themselves are managed by ArgoCD. One root Application watches `f3s/argocd-apps/` and deploys everything inside. Disaster recovery then becomes a single `kubectl apply`:
-
-```sh
-$ kubectl apply -f root-app.yaml
-# ArgoCD deploys all 30 applications automatically
-```
-
-ArgoCD Image Updater for apps with custom Docker images--automatically update the image tag in Git when a new image is pushed to the registry.
-
-## Lessons Learned
-
-Migrate incrementally, one app at a time. It lets you validate the pattern before it affects everything.
-
-Start with the boring apps. Complex stuff like Prometheus should come last, after you've gotten comfortable with the basics.
-
-Sync waves matter for anything non-trivial. Random deployment order causes weird failures.
-
-Multi-source is great for combining upstream charts with custom config. Keeps things cleanly separated.
-
-PostSync hooks replace the manual steps you'll inevitably forget. Automate them.
-
-The ArgoCD Web UI is surprisingly useful. Seeing the resource tree and health status at a glance beats running `kubectl` commands.
-
 ## Wrapping Up
 
-The migration took a few weeks, doing one or two apps at a time. The result: 30 applications across 5 namespaces, all managed declaratively through Git. Push a change, it deploys. Break something, `git revert`. Cluster dies, rebuild from the repo.
+The migration took a couple of days, doing one or two apps at a time. The result: 30 applications across 5 namespaces, all managed declaratively through Git. Push a change, it deploys. Break something, `git revert`. Cluster dies, rebuild from the repo.
 
 All the config lives here:
 
@@ -658,6 +593,7 @@ I can't imagine going back to running Helm commands manually.
 
 Other *BSD-related posts:
 
+=> ./2026-04-02-f3s-kubernetes-with-freebsd-part-9.gmi 2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD (You are currently reading this)
 => ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi 2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability
 => ./2025-10-02-f3s-kubernetes-with-freebsd-part-7.gmi 2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments
 => ./2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi 2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage
