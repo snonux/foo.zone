@@ -43,6 +43,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 [2026-01-01 - Posts from July to December 2025](./gemfeed/2026-01-01-posts-from-july-to-december-2025.md)  
 [2026-01-01 - Cloudless Kobo Forma with KOReader](./gemfeed/2026-01-01-cloudless-kobo-forma-with-koreader.md)  
 [2025-12-24 - X-RAG Observability Hackathon](./gemfeed/2025-12-24-x-rag-observability-hackathon.md)  
+[2025-12-14 - f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo](./gemfeed/2025-12-14-f3s-kubernetes-with-freebsd-part-8b.md)  
 [2025-12-07 - f3s: Kubernetes with FreeBSD - Part 8: Observability](./gemfeed/2025-12-07-f3s-kubernetes-with-freebsd-part-8.md)  
 [2025-11-02 - 'The Courage To Be Disliked' book notes](./gemfeed/2025-11-02-the-courage-to-be-disliked-book-notes.md)  
 [2025-11-02 - Perl New Features and Foostats](./gemfeed/2025-11-02-perl-new-features-and-foostats.md)  
