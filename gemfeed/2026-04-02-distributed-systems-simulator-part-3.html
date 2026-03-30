@@ -1,0 +1,297 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Distributed Systems Simulator - Part 3: Advanced Examples and Protocol API</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-04-02-distributed-systems-simulator-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-04-02-distributed-systems-simulator-part-3.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='distributed-systems-simulator---part-3-advanced-examples-and-protocol-api'>Distributed Systems Simulator - Part 3: Advanced Examples and Protocol API</h1><br />
+<br />
+<span class='quote'>Published at 2026-04-02T00:00:00+03:00</span><br />
+<br />
+<span>This is the third and final blog post of the Distributed Systems Simulator series. This part covers advanced simulation examples, the Raft consensus protocol, and the extensible Protocol API.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/ds-sim'>ds-sim on Codeberg (modernized, English-translated version)</a><br />
+<br />
+<span>These are all the posts of this series:</span><br />
+<br />
+<a class='textlink' href='./2026-03-31-distributed-systems-simulator-part-1.html'>2026-03-31 Distributed Systems Simulator - Part 1: Introduction and GUI</a><br />
+<a class='textlink' href='./2026-04-01-distributed-systems-simulator-part-2.html'>2026-04-01 Distributed Systems Simulator - Part 2: Built-in Protocols</a><br />
+<a class='textlink' href='./2026-04-02-distributed-systems-simulator-part-3.html'>2026-04-02 Distributed Systems Simulator - Part 3: Advanced Examples and Protocol API (You are currently reading this)</a><br />
+<br />
+<a href='./distributed-systems-simulator/ds-sim-screenshot.png'><img alt='Screenshot: The Distributed Systems Simulator running a Broadcast protocol simulation with 6 processes. The visualization shows message lines between process bars, with blue indicating delivered messages and green indicating messages still in transit.' title='Screenshot: The Distributed Systems Simulator running a Broadcast protocol simulation with 6 processes. The visualization shows message lines between process bars, with blue indicating delivered messages and green indicating messages still in transit.' src='./distributed-systems-simulator/ds-sim-screenshot.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#distributed-systems-simulator---part-3-advanced-examples-and-protocol-api'>Distributed Systems Simulator - Part 3: Advanced Examples and Protocol API</a></li>
+<li>⇢ <a href='#additional-examples'>Additional Examples</a></li>
+<li>⇢ ⇢ <a href='#lamport-and-vector-timestamps'>Lamport and Vector Timestamps</a></li>
+<li>⇢ ⇢ <a href='#simulating-slow-connections'>Simulating Slow Connections</a></li>
+<li>⇢ ⇢ <a href='#raft-consensus-failover'>Raft Consensus Failover</a></li>
+<li>⇢ <a href='#protocol-api'>Protocol API</a></li>
+<li>⇢ ⇢ <a href='#class-hierarchy'>Class Hierarchy</a></li>
+<li>⇢ ⇢ <a href='#implementing-a-custom-protocol'>Implementing a Custom Protocol</a></li>
+<li>⇢ ⇢ <a href='#available-api-methods'>Available API Methods</a></li>
+<li>⇢ ⇢ <a href='#example-reliable-multicast-implementation'>Example: Reliable Multicast Implementation</a></li>
+<li>⇢ <a href='#project-statistics'>Project Statistics</a></li>
+</ul><br />
+<h2 style='display: inline' id='additional-examples'>Additional Examples</h2><br />
+<br />
+<h3 style='display: inline' id='lamport-and-vector-timestamps'>Lamport and Vector Timestamps</h3><br />
+<br />
+<a href='./distributed-systems-simulator/lamport-timestamps.png'><img alt='Visualization: Lamport Timestamps displayed on the Berkeley Algorithm simulation. Each event on a process bar shows its Lamport timestamp as a number in parentheses. The timestamps increase monotonically and are updated according to the Lamport clock rules when messages are sent and received between P1, P2, and P3.' title='Visualization: Lamport Timestamps displayed on the Berkeley Algorithm simulation. Each event on a process bar shows its Lamport timestamp as a number in parentheses. The timestamps increase monotonically and are updated according to the Lamport clock rules when messages are sent and received between P1, P2, and P3.' src='./distributed-systems-simulator/lamport-timestamps.png' /></a><br />
+<br />
+<span class='quote'>"For many purposes, it is sufficient that all machines agree on the same time. It is not necessary that this time also agrees with real time, like every hour announced on the radio... For a certain class of algorithms, only the internal consistency of clocks is important." - Andrew Tanenbaum</span><br />
+<br />
+<span>Clocks that provide such a time are also known as logical clocks. Two implementations are realized in the simulator: Lamport timestamps and vector timestamps.</span><br />
+<br />
+<span>After activating the Lamport time switch in expert mode, the current Lamport timestamp appears at every event of a process. Each process has its own Lamport timestamp that is incremented when a message is sent or received. Each message carries the current Lamport time t_l(i) of the sending process i. When another process j receives this message, its Lamport timestamp t_l(j) is recalculated as:</span><br />
+<br />
+<pre>
+t_l(j) := 1 + max(t_l(j), t_l(i))
+</pre>
+<br />
+<span>The larger Lamport time of the sender and receiver process is used and then incremented by 1. After the Berkeley simulation shown here, P1 has Lamport timestamp 16, P2 has 14, and P3 has 15.</span><br />
+<br />
+<a href='./distributed-systems-simulator/vector-timestamps.png'><img alt='Visualization: Vector Timestamps displayed on the same Berkeley Algorithm simulation. Each event shows its vector timestamp as a tuple (v1,v2,v3) representing the known state of all three processes. The tuples grow as processes communicate and merge their knowledge of each other&#39;s progress.' title='Visualization: Vector Timestamps displayed on the same Berkeley Algorithm simulation. Each event shows its vector timestamp as a tuple (v1,v2,v3) representing the known state of all three processes. The tuples grow as processes communicate and merge their knowledge of each other&#39;s progress.' src='./distributed-systems-simulator/vector-timestamps.png' /></a><br />
+<br />
+<span>With the active vector time switch, all vector timestamps are displayed. Like the Lamport timestamp, each message includes the current vector timestamp of the sending process. With n participating processes, the vector timestamp v has size n. Each participating process i has its own index, accessible via v(i). When v is the vector timestamp of the receiving process j and w is the vector timestamp of the sending process, the new local vector timestamp of process j is calculated as follows:</span><br />
+<br />
+<pre>
+for (i := 0; i &lt; n; i++) {
+    if (i = j) {
+        v(i)++;
+    } else if (v(i) &lt; w(i)) {
+        v(i) := w(i);
+    }
+}
+</pre>
+<br />
+<span>By default, the vector timestamp is only incremented when a message is sent or received. In both cases, the sender and receiver each increment their own index in the vector timestamp by 1. Upon receiving a message, the local vector timestamp is then compared with the sender&#39;s, and the larger value is taken for all indices.</span><br />
+<br />
+<span>After the simulation, P1 has vector timestamp (8,10,6), P2 has (6,10,6), and P3 has (6,10,8).</span><br />
+<br />
+<span>The simulation settings include boolean variables "Lamport times affect all events" and "Vector times affect all events" (both default to false). When set to true, all events (not just message send/receive) will update the timestamps.</span><br />
+<br />
+<h3 style='display: inline' id='simulating-slow-connections'>Simulating Slow Connections</h3><br />
+<br />
+<a href='./distributed-systems-simulator/slow-connection.png'><img alt='Visualization: Slow connection simulation comparing Internal Synchronization (P1) and Christian&#39;s Method (P3) with P2 as server. P3 has high transmission times (2000-8000ms) simulating a slow network connection. P1 synchronizes to 21446ms (error: -1446ms) while P3 only reaches 16557ms (error: -3443ms), showing how slow connections degrade synchronization quality.' title='Visualization: Slow connection simulation comparing Internal Synchronization (P1) and Christian&#39;s Method (P3) with P2 as server. P3 has high transmission times (2000-8000ms) simulating a slow network connection. P1 synchronizes to 21446ms (error: -1446ms) while P3 only reaches 16557ms (error: -3443ms), showing how slow connections degrade synchronization quality.' src='./distributed-systems-simulator/slow-connection.png' /></a><br />
+<br />
+<span>The simulator can also simulate slow connections to a specific process. This example revisits the comparison of Internal Synchronization (P1) and Christian&#39;s Method (P3), with P2 serving both. In this scenario, P3 has a poor network connection, so messages to and from P3 always require a longer transmission time.</span><br />
+<br />
+<span>P3&#39;s minimum transmission time is set to 2000ms and maximum to 8000ms, while P1 and P2 keep the defaults (500ms/2000ms). The simulation duration is 20000ms. With the "Average transmission times" setting enabled, the effective transmission time for messages involving P3 is:</span><br />
+<br />
+<pre>
+1/2 * (rand(500,2000) + rand(2000,8000)) = 1/2 * rand(2500,10000) = rand(1250,5000)ms
+</pre>
+<br />
+<span>Because P3 starts a new request before receiving the answer to its previous one, and because it always associates server responses with its most recently sent request, its RTT calculations become incorrect on each round, and its local time is poorly synchronized. P1 synchronizes to 21446ms (error: -1446ms) while P3 only reaches 16557ms (error: -3443ms).</span><br />
+<br />
+<h3 style='display: inline' id='raft-consensus-failover'>Raft Consensus Failover</h3><br />
+<br />
+<a href='./distributed-systems-simulator/raft-consensus-failover.png'><img alt='Screenshot: A 60-second Raft simulation with three processes. P1 starts as the initial leader, crashes at 3500ms, later recovers, P2 wins the reelection and remains leader, and P3 crashes later. The blue and red message lines show the continuing heartbeat and acknowledgment traffic during and after failover.' title='Screenshot: A 60-second Raft simulation with three processes. P1 starts as the initial leader, crashes at 3500ms, later recovers, P2 wins the reelection and remains leader, and P3 crashes later. The blue and red message lines show the continuing heartbeat and acknowledgment traffic during and after failover.' src='./distributed-systems-simulator/raft-consensus-failover.png' /></a><br />
+<br />
+<span>While modernizing ds-sim, I also added a simplified Raft Consensus example. The simulation is intentionally small: three processes, one initial leader, one crash, a clean reelection, a recovery of the old leader, and then another crash later in the run. This makes it possible to see the most important Raft transitions without being overwhelmed by cluster size.</span><br />
+<br />
+<span>The event log tells a very readable story. At <span class='inlinecode'>0ms</span>, <span class='inlinecode'>P1</span> starts as the initial leader in <span class='inlinecode'>term 0</span>. It immediately sends a heartbeat and an <span class='inlinecode'>appendEntry</span> message carrying the log entry <span class='inlinecode'>cmd1</span>. <span class='inlinecode'>P2</span> joins at <span class='inlinecode'>100ms</span>, <span class='inlinecode'>P3</span> at <span class='inlinecode'>1700ms</span>, and both acknowledge the leader&#39;s traffic. At that point the cluster is healthy: one leader, two followers, successful heartbeats, and successful log replication.</span><br />
+<br />
+<span>At <span class='inlinecode'>3500ms</span>, <span class='inlinecode'>P1</span> crashes. The followers still process the last in-flight messages, but once the election timeout expires, <span class='inlinecode'>P2</span> becomes a candidate and sends a <span class='inlinecode'>voteRequest</span> for <span class='inlinecode'>term 1</span>. <span class='inlinecode'>P3</span> grants that vote, and at <span class='inlinecode'>9395ms</span> the log records the decisive line:</span><br />
+<br />
+<pre>
+009395ms: PID: 2; ... Leader elected by majority vote: process 2 (term 1)
+</pre>
+<br />
+<span>That transition is followed immediately by new heartbeats and a new <span class='inlinecode'>appendEntry</span>, which is exactly what you want to see in a Raft simulation: leadership is not just declared, it is exercised.</span><br />
+<br />
+<span>At <span class='inlinecode'>12002ms</span>, the old leader <span class='inlinecode'>P1</span> recovers. Importantly, it does not try to reclaim control. Instead, it receives heartbeats from <span class='inlinecode'>P2</span> and answers with <span class='inlinecode'>heartbeatAck</span> messages, rejoining the cluster as a follower. That is one of the most useful teaching moments in the log, because it makes the term-based leadership model concrete: the recovered node does not become leader again just because it used to be one.</span><br />
+<br />
+<span>At <span class='inlinecode'>20000ms</span>, <span class='inlinecode'>P3</span> crashes. The cluster continues running with <span class='inlinecode'>P2</span> as leader and <span class='inlinecode'>P1</span> as follower for the rest of the 60-second simulation. The log remains dominated by periodic heartbeats from <span class='inlinecode'>P2</span> and acknowledgments from <span class='inlinecode'>P1</span>, showing that the system stays stable even after a second failure.</span><br />
+<br />
+<span>This single scenario demonstrates several core Raft properties in one replay:</span><br />
+<br />
+<ul>
+<li>Stable startup leadership</li>
+<li>Heartbeats and follower acknowledgments</li>
+<li>Log replication</li>
+<li>Leader failure detection</li>
+<li>Majority-based reelection</li>
+<li>Safe reintegration of a recovered former leader</li>
+<li>Continued service after a later follower crash</li>
+</ul><br />
+<span>It is also a good example of why a simulator is useful for distributed systems. In a real production system, reconstructing this sort of sequence would require stitching together logs from multiple nodes. Here, the message flow, the crashes, the recoveries, and the Lamport/vector timestamps are all visible in one place.</span><br />
+<br />
+<h2 style='display: inline' id='protocol-api'>Protocol API</h2><br />
+<br />
+<span>The simulator was designed from the ground up to be extensible. Users can implement their own protocols in Java by extending the <span class='inlinecode'>VSAbstractProtocol</span> base class. Each protocol has its own class in the <span class='inlinecode'>protocols.implementations</span> package.</span><br />
+<br />
+<h3 style='display: inline' id='class-hierarchy'>Class Hierarchy</h3><br />
+<br />
+<pre>
+VSAbstractEvent
+  +-- VSAbstractProtocol (base class for all protocols)
+        +-- VSDummyProtocol
+        +-- VSPingPongProtocol
+        +-- VSBroadcastProtocol
+        +-- VSInternalTimeSyncProtocol
+        +-- VSExternalTimeSyncProtocol
+        +-- VSBerkeleyTimeProtocol
+        +-- VSOnePhaseCommitProtocol
+        +-- VSTwoPhaseCommitProtocol
+        +-- VSBasicMulticastProtocol
+        +-- VSReliableMulticastProtocol
+</pre>
+<br />
+<h3 style='display: inline' id='implementing-a-custom-protocol'>Implementing a Custom Protocol</h3><br />
+<br />
+<span>Each protocol class must implement the following methods:</span><br />
+<br />
+<ul>
+<li>A public constructor: Must specify whether the client or the server initiates requests, using <span class='inlinecode'>VSAbstractProtocol.HAS_ON_CLIENT_START</span> or <span class='inlinecode'>VSAbstractProtocol.HAS_ON_SERVER_START</span>.</li>
+<li><span class='inlinecode'>onClientInit()</span> / <span class='inlinecode'>onServerInit()</span>: Called once before the protocol is first used. Used to initialize protocol variables and attributes via the VSPrefs methods (e.g. <span class='inlinecode'>initVector</span>, <span class='inlinecode'>initLong</span>). Variables initialized this way appear in the process editor and can be configured by the user.</li>
+<li><span class='inlinecode'>onClientReset()</span> / <span class='inlinecode'>onServerReset()</span>: Called each time the simulation is reset.</li>
+<li><span class='inlinecode'>onClientStart()</span> / <span class='inlinecode'>onServerStart()</span>: Called when the client/server initiates a request. Typically creates and sends a <span class='inlinecode'>VSMessage</span> object.</li>
+<li><span class='inlinecode'>onClientRecv(VSMessage)</span> / <span class='inlinecode'>onServerRecv(VSMessage)</span>: Called when a message arrives.</li>
+<li><span class='inlinecode'>onClientSchedule()</span> / <span class='inlinecode'>onServerSchedule()</span>: Called when a scheduled alarm fires.</li>
+<li><span class='inlinecode'>toString()</span>: Optional. Customizes log output for this protocol.</li>
+</ul><br />
+<h3 style='display: inline' id='available-api-methods'>Available API Methods</h3><br />
+<br />
+<span>Methods inherited from <span class='inlinecode'>VSAbstractProtocol</span>:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>sendMessage(VSMessage message)</span>: Sends a protocol message (automatically updates Lamport and Vector timestamps)</li>
+<li><span class='inlinecode'>hasOnServerStart()</span>: Whether the server or client initiates requests</li>
+<li><span class='inlinecode'>isServer()</span> / <span class='inlinecode'>isClient()</span>: Whether the current process has the protocol activated as server/client</li>
+<li><span class='inlinecode'>scheduleAt(long time)</span>: Creates an alarm that fires at the given local process time, triggering <span class='inlinecode'>onClientSchedule()</span> or <span class='inlinecode'>onServerSchedule()</span></li>
+<li><span class='inlinecode'>removeSchedules()</span>: Cancels all pending alarms in the current context</li>
+<li><span class='inlinecode'>getNumProcesses()</span>: Returns the total number of processes in the simulation</li>
+</ul><br />
+<span>Process methods available via the inherited <span class='inlinecode'>process</span> attribute:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>getTime()</span> / <span class='inlinecode'>setTime(long)</span>: Get/set the local process time</li>
+<li><span class='inlinecode'>getGlobalTime()</span>: Get the current global simulation time</li>
+<li><span class='inlinecode'>getClockVariance()</span> / <span class='inlinecode'>setClockVariance(float)</span>: Get/set the clock drift</li>
+<li><span class='inlinecode'>getLamportTime()</span> / <span class='inlinecode'>setLamportTime(long)</span>: Get/set the Lamport timestamp</li>
+<li><span class='inlinecode'>getVectorTime()</span> / <span class='inlinecode'>updateVectorTime(VSVectorTime)</span>: Get/update the vector timestamp</li>
+<li><span class='inlinecode'>getProcessID()</span>: Get the process PID</li>
+<li><span class='inlinecode'>isCrashed()</span> / <span class='inlinecode'>isCrashed(boolean)</span>: Check or set crash state</li>
+<li><span class='inlinecode'>getRandomPercentage()</span>: Get a random value between 0 and 100</li>
+</ul><br />
+<span>Message methods (<span class='inlinecode'>VSMessage</span>):</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>new VSMessage()</span>: Create a new message</li>
+<li><span class='inlinecode'>getMessageID()</span>: Get the message NID</li>
+<li><span class='inlinecode'>setBoolean(key, value)</span> / <span class='inlinecode'>getBoolean(key)</span>: Set/get boolean data</li>
+<li><span class='inlinecode'>setInteger(key, value)</span> / <span class='inlinecode'>getInteger(key)</span>: Set/get integer data</li>
+<li><span class='inlinecode'>setLong(key, value)</span> / <span class='inlinecode'>getLong(key)</span>: Set/get long data</li>
+<li><span class='inlinecode'>setString(key, value)</span> / <span class='inlinecode'>getString(key)</span>: Set/get string data</li>
+<li><span class='inlinecode'>getSendingProcess()</span>: Get a reference to the sending process</li>
+<li><span class='inlinecode'>isServerMessage()</span>: Whether it&#39;s a server or client message</li>
+</ul><br />
+<h3 style='display: inline' id='example-reliable-multicast-implementation'>Example: Reliable Multicast Implementation</h3><br />
+<br />
+<span>Here is a condensed example showing key parts of the Reliable Multicast Protocol implementation:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">public</font></u></b> <b><u><font color="#000000">class</font></u></b> VSReliableMulticastProtocol <b><u><font color="#000000">extends</font></u></b> VSAbstractProtocol {
+    <b><u><font color="#000000">public</font></u></b> VSReliableMulticastProtocol() {
+        <i><font color="silver">// The client initiates requests</font></i>
+        <b><u><font color="#000000">super</font></u></b>(VSAbstractProtocol.HAS_ON_CLIENT_START);
+        <b><u><font color="#000000">super</font></u></b>.setClassname(<b><u><font color="#000000">super</font></u></b>.getClass().toString());
+    }
+
+    <b><u><font color="#000000">private</font></u></b> ArrayList&lt;Integer&gt; pids;
+
+    <i><font color="silver">// Initialize protocol variables (editable in the process editor)</font></i>
+    <b><u><font color="#000000">public</font></u></b> <b><font color="#000000">void</font></b> onClientInit() {
+        Vector&lt;Integer&gt; vec = <b><u><font color="#000000">new</font></u></b> Vector&lt;Integer&gt;();
+        vec.add(<font color="#000000">1</font>); vec.add(<font color="#000000">3</font>);
+        <b><u><font color="#000000">super</font></u></b>.initVector(<font color="#808080">"pids"</font>, vec, <font color="#808080">"PIDs of participating processes"</font>);
+        <b><u><font color="#000000">super</font></u></b>.initLong(<font color="#808080">"timeout"</font>, <font color="#000000">2500</font>, <font color="#808080">"Time until resend"</font>, <font color="#808080">"ms"</font>);
+    }
+
+    <i><font color="silver">// Send multicast to all servers that haven't ACKed yet</font></i>
+    <b><u><font color="#000000">public</font></u></b> <b><font color="#000000">void</font></b> onClientStart() {
+        <b><u><font color="#000000">if</font></u></b> (pids.size() != <font color="#000000">0</font>) {
+            <b><font color="#000000">long</font></b> timeout = <b><u><font color="#000000">super</font></u></b>.getLong(<font color="#808080">"timeout"</font>) + process.getTime();
+            <b><u><font color="#000000">super</font></u></b>.scheduleAt(timeout);
+            VSMessage message = <b><u><font color="#000000">new</font></u></b> VSMessage();
+            message.setBoolean(<font color="#808080">"isMulticast"</font>, <b><u><font color="#000000">true</font></u></b>);
+            <b><u><font color="#000000">super</font></u></b>.sendMessage(message);
+        }
+    }
+
+    <i><font color="silver">// Handle ACK from a server</font></i>
+    <b><u><font color="#000000">public</font></u></b> <b><font color="#000000">void</font></b> onClientRecv(VSMessage recvMessage) {
+        <b><u><font color="#000000">if</font></u></b> (pids.size() != <font color="#000000">0</font> &amp;&amp; recvMessage.getBoolean(<font color="#808080">"isAck"</font>)) {
+            Integer pid = recvMessage.getIntegerObj(<font color="#808080">"pid"</font>);
+            <b><u><font color="#000000">if</font></u></b> (pids.contains(pid))
+                pids.remove(pid);
+            <b><u><font color="#000000">super</font></u></b>.log(<font color="#808080">"ACK from Process "</font> + pid + <font color="#808080">" received!"</font>);
+            <b><u><font color="#000000">if</font></u></b> (pids.size() == <font color="#000000">0</font>) {
+                <b><u><font color="#000000">super</font></u></b>.log(<font color="#808080">"ACKs from all processes received!"</font>);
+                <b><u><font color="#000000">super</font></u></b>.removeSchedules();
+            }
+        }
+    }
+
+    <i><font color="silver">// Retry on timeout</font></i>
+    <b><u><font color="#000000">public</font></u></b> <b><font color="#000000">void</font></b> onClientSchedule() { onClientStart(); }
+}
+</pre>
+<br />
+<h2 style='display: inline' id='project-statistics'>Project Statistics</h2><br />
+<br />
+<span>The original VS-Sim project (August 2008) was written in Java 6 and consisted of:</span><br />
+<br />
+<ul>
+<li>61 source files across 12 Java packages</li>
+<li>Approximately 15,710 lines of code</li>
+<li>2.2 MB of generated Javadoc documentation</li>
+<li>142 KB compiled JAR file</li>
+<li>10 built-in protocols</li>
+<li>163 configurable settings</li>
+</ul><br />
+<span>The modernized successor ds-sim (version 1.1.0) has been updated to Java 21 and translated to English:</span><br />
+<br />
+<ul>
+<li>146 source files (117 main + 29 test) across 19 Java packages</li>
+<li>Approximately 27,900 lines of code (22,400 main + 5,500 test)</li>
+<li>12 built-in protocols</li>
+<li>208 unit tests</li>
+<li>269 configurable settings</li>
+</ul><br />
+<a class='textlink' href='https://codeberg.org/snonux/ds-sim'>ds-sim source code on Codeberg</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/vs-sim'>vs-sim source code on Codeberg (original German version, 2008)</a><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2026-03-01-loadbars-0.13.0-released.html'>2026-03-01 Loadbars 0.13.0 released</a><br />
+<a class='textlink' href='./2022-12-24-ultrarelearning-java-my-takeaways.html'>2022-12-24 (Re)learning Java - My takeaways</a><br />
+<a class='textlink' href='./2022-03-06-the-release-of-dtail-4.0.0.html'>2022-03-06 The release of DTail 4.0.0</a><br />
+<a class='textlink' href='./2016-11-20-object-oriented-programming-with-ansi-c.html'>2016-11-20 Object oriented programming with ANSI C</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
