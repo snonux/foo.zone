@@ -1,0 +1,532 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-12-14-f3s-kubernetes-with-freebsd-part-8b.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-12-14-f3s-kubernetes-with-freebsd-part-8b.gmi">Gemini</a>
+</p>
+<h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-8b-distributed-tracing-with-tempo'>f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</h1><br />
+<br />
+<span class='quote'>Published at 2025-12-14T20:00:00+02:00</span><br />
+<br />
+<span>This is a follow-up to Part 8 of the f3s series, where I covered Prometheus, Grafana, Loki, and Alloy. Now it&#39;s time for the last pillar of observability: distributed tracing with Grafana Tempo.</span><br />
+<br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>Part 8: Observability (Prometheus, Grafana, Loki, Alloy)</a><br />
+<br />
+<span>For a preview of what distributed tracing with Tempo looks like in Grafana, check out the X-RAG blog post:</span><br />
+<br />
+<a class='textlink' href='./2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-8b-distributed-tracing-with-tempo'>f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a></li>
+<li>⇢ <a href='#why-distributed-tracing'>Why Distributed Tracing?</a></li>
+<li>⇢ <a href='#deploying-grafana-tempo'>Deploying Grafana Tempo</a></li>
+<li>⇢ ⇢ <a href='#tempo-helm-values'>Tempo Helm Values</a></li>
+<li>⇢ ⇢ <a href='#persistent-volumes'>Persistent Volumes</a></li>
+<li>⇢ ⇢ <a href='#grafana-datasource-provisioning'>Grafana Datasource Provisioning</a></li>
+<li>⇢ ⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ <a href='#configuring-alloy-for-trace-collection'>Configuring Alloy for Trace Collection</a></li>
+<li>⇢ <a href='#demo-tracing-application'>Demo Tracing Application</a></li>
+<li>⇢ ⇢ <a href='#architecture'>Architecture</a></li>
+<li>⇢ ⇢ <a href='#opentelemetry-instrumentation'>OpenTelemetry Instrumentation</a></li>
+<li>⇢ ⇢ <a href='#deployment'>Deployment</a></li>
+<li>⇢ <a href='#visualizing-traces-in-grafana'>Visualizing Traces in Grafana</a></li>
+<li>⇢ ⇢ <a href='#searching-for-traces'>Searching for Traces</a></li>
+<li>⇢ ⇢ <a href='#service-graph'>Service Graph</a></li>
+<li>⇢ <a href='#practical-example-end-to-end-trace'>Practical Example: End-to-End Trace</a></li>
+<li>⇢ <a href='#correlation-between-signals'>Correlation Between Signals</a></li>
+<li>⇢ <a href='#storage-and-retention'>Storage and Retention</a></li>
+<li>⇢ <a href='#configuration-files'>Configuration Files</a></li>
+</ul><br />
+<h2 style='display: inline' id='why-distributed-tracing'>Why Distributed Tracing?</h2><br />
+<br />
+<span>In a microservices setup, a single user request can hop through multiple services. Tracing gives you:</span><br />
+<br />
+<ul>
+<li>Request tracking across service boundaries</li>
+<li>Performance bottleneck identification</li>
+<li>Service dependency visualization</li>
+<li>Correlation with logs and metrics</li>
+</ul><br />
+<span>Without it, you&#39;re basically guessing where time gets spent.</span><br />
+<br />
+<h2 style='display: inline' id='deploying-grafana-tempo'>Deploying Grafana Tempo</h2><br />
+<br />
+<span>Tempo runs in monolithic mode — all components in one process, same pattern as Loki&#39;s SingleBinary deployment. Keeps things simple for a home lab.</span><br />
+<br />
+<span>The setup:</span><br />
+<br />
+<ul>
+<li>Filesystem backend using hostPath (10Gi at <span class='inlinecode'>/data/nfs/k3svolumes/tempo/data</span>)</li>
+<li>7-day retention (168h)</li>
+<li>OTLP receivers on gRPC (4317) and HTTP (4318)</li>
+<li>Bind to <span class='inlinecode'>0.0.0.0</span> to avoid Tempo 2.7+ localhost-only binding issue</li>
+</ul><br />
+<h3 style='display: inline' id='tempo-helm-values'>Tempo Helm Values</h3><br />
+<br />
+<pre>
+tempo:
+  retention: 168h
+  storage:
+    trace:
+      backend: local
+      local:
+        path: /var/tempo/traces
+      wal:
+        path: /var/tempo/wal
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+
+persistence:
+  enabled: true
+  size: 10Gi
+  storageClassName: ""
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+</pre>
+<br />
+<h3 style='display: inline' id='persistent-volumes'>Persistent Volumes</h3><br />
+<br />
+<pre>
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tempo-data-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /data/nfs/k3svolumes/tempo/data
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tempo-data-pvc
+  namespace: monitoring
+spec:
+  storageClassName: ""
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+</pre>
+<br />
+<h3 style='display: inline' id='grafana-datasource-provisioning'>Grafana Datasource Provisioning</h3><br />
+<br />
+<span>All Grafana datasources (Prometheus, Alertmanager, Loki, Tempo) are provisioned via a single ConfigMap mounted directly to the Grafana pod. No sidecar discovery needed.</span><br />
+<br />
+<span>In <span class='inlinecode'>grafana-datasources-all.yaml</span>:</span><br />
+<br />
+<pre>
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasources-all
+  namespace: monitoring
+data:
+  datasources.yaml: |
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        uid: prometheus
+        url: http://prometheus-kube-prometheus-prometheus.monitoring:9090/
+        access: proxy
+        isDefault: true
+      - name: Alertmanager
+        type: alertmanager
+        uid: alertmanager
+        url: http://prometheus-kube-prometheus-alertmanager.monitoring:9093/
+      - name: Loki
+        type: loki
+        uid: loki
+        url: http://loki.monitoring.svc.cluster.local:3100
+      - name: Tempo
+        type: tempo
+        uid: tempo
+        url: http://tempo.monitoring.svc.cluster.local:3200
+        jsonData:
+          tracesToLogsV2:
+            datasourceUid: loki
+            spanStartTimeShift: -1h
+            spanEndTimeShift: 1h
+          tracesToMetrics:
+            datasourceUid: prometheus
+          serviceMap:
+            datasourceUid: prometheus
+          nodeGraph:
+            enabled: true
+</pre>
+<br />
+<span>The Tempo datasource config links traces to Loki logs and Prometheus metrics — so you can jump between signals directly in Grafana.</span><br />
+<br />
+<span>The kube-prometheus-stack Helm values disable sidecar-based discovery and mount this ConfigMap directly to <span class='inlinecode'>/etc/grafana/provisioning/datasources/</span>.</span><br />
+<br />
+<h3 style='display: inline' id='installation'>Installation</h3><br />
+<br />
+<pre>
+cd /home/paul/git/conf/f3s/tempo
+just install
+</pre>
+<br />
+<span>Verify it&#39;s running:</span><br />
+<br />
+<pre>
+kubectl get pods -n monitoring -l app.kubernetes.io/name=tempo
+kubectl exec -n monitoring &lt;tempo-pod&gt; -- wget -qO- http://localhost:3200/ready
+</pre>
+<br />
+<h2 style='display: inline' id='configuring-alloy-for-trace-collection'>Configuring Alloy for Trace Collection</h2><br />
+<br />
+<span>I updated the Alloy values to add OTLP receivers for traces alongside the existing log collection.</span><br />
+<br />
+<span>Added to the Alloy config:</span><br />
+<br />
+<pre>
+// OTLP receiver for traces via gRPC and HTTP
+otelcol.receiver.otlp "default" {
+  grpc {
+    endpoint = "0.0.0.0:4317"
+  }
+  http {
+    endpoint = "0.0.0.0:4318"
+  }
+  output {
+    traces = [otelcol.processor.batch.default.input]
+  }
+}
+
+// Batch processor — accumulates spans before forwarding to Tempo
+otelcol.processor.batch "default" {
+  timeout = "5s"
+  send_batch_size = 100
+  send_batch_max_size = 200
+  output {
+    traces = [otelcol.exporter.otlp.tempo.input]
+  }
+}
+
+// OTLP exporter to Tempo
+otelcol.exporter.otlp "tempo" {
+  client {
+    endpoint = "tempo.monitoring.svc.cluster.local:4317"
+    tls {
+      insecure = true
+    }
+    compression = "gzip"
+  }
+}
+</pre>
+<br />
+<span>Upgrade Alloy:</span><br />
+<br />
+<pre>
+cd /home/paul/git/conf/f3s/loki
+just upgrade
+</pre>
+<br />
+<h2 style='display: inline' id='demo-tracing-application'>Demo Tracing Application</h2><br />
+<br />
+<span>To actually see traces, I built a three-tier Python app. Nothing fancy — just enough to generate real distributed traces.</span><br />
+<br />
+<h3 style='display: inline' id='architecture'>Architecture</h3><br />
+<br />
+<pre>
+User -&gt; Frontend (Flask:5000) -&gt; Middleware (Flask:5001) -&gt; Backend (Flask:5002)
+           |                          |                        |
+                    Alloy (OTLP:4317) -&gt; Tempo -&gt; Grafana
+</pre>
+<br />
+<ul>
+<li>Frontend: receives requests at <span class='inlinecode'>/api/process</span>, forwards to middleware</li>
+<li>Middleware: transforms data at <span class='inlinecode'>/api/transform</span>, calls backend</li>
+<li>Backend: returns data at <span class='inlinecode'>/api/data</span>, simulates a 100ms database query</li>
+</ul><br />
+<h3 style='display: inline' id='opentelemetry-instrumentation'>OpenTelemetry Instrumentation</h3><br />
+<br />
+<span>All three services use Python OpenTelemetry libraries:</span><br />
+<br />
+<span>Dependencies:</span><br />
+<br />
+<pre>
+flask==3.0.0
+requests==2.31.0
+opentelemetry-distro==0.49b0
+opentelemetry-exporter-otlp==1.28.0
+opentelemetry-instrumentation-flask==0.49b0
+opentelemetry-instrumentation-requests==0.49b0
+</pre>
+<br />
+<span>Auto-instrumentation pattern (same across all services, just change the service name):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">from</font></u></b> opentelemetry <b><u><font color="#000000">import</font></u></b> trace
+<b><u><font color="#000000">from</font></u></b> opentelemetry.sdk.trace <b><u><font color="#000000">import</font></u></b> TracerProvider
+<b><u><font color="#000000">from</font></u></b> opentelemetry.exporter.otlp.proto.grpc.trace_exporter <b><u><font color="#000000">import</font></u></b> OTLPSpanExporter
+<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.flask <b><u><font color="#000000">import</font></u></b> FlaskInstrumentor
+<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.requests <b><u><font color="#000000">import</font></u></b> RequestsInstrumentor
+<b><u><font color="#000000">from</font></u></b> opentelemetry.sdk.resources <b><u><font color="#000000">import</font></u></b> Resource
+
+resource = Resource(attributes={
+    <font color="#808080">"service.name"</font>: <font color="#808080">"frontend"</font>,
+    <font color="#808080">"service.namespace"</font>: <font color="#808080">"tracing-demo"</font>,
+    <font color="#808080">"service.version"</font>: <font color="#808080">"1.0.0"</font>
+})
+
+provider = TracerProvider(resource=resource)
+
+otlp_exporter = OTLPSpanExporter(
+    endpoint=<font color="#808080">"http://alloy.monitoring.svc.cluster.local:4317"</font>,
+    insecure=True
+)
+
+processor = BatchSpanProcessor(otlp_exporter)
+provider.add_span_processor(processor)
+trace.set_tracer_provider(provider)
+
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
+</pre>
+<br />
+<span>The auto-instrumentation creates spans for HTTP requests, propagates trace context via W3C headers, and links parent/child spans across services automatically.</span><br />
+<br />
+<h3 style='display: inline' id='deployment'>Deployment</h3><br />
+<br />
+<span>The demo app has a Helm chart in the conf repo. Build, import the container images, and install:</span><br />
+<br />
+<pre>
+cd /home/paul/git/conf/f3s/tracing-demo
+just build
+just import
+just install
+</pre>
+<br />
+<span>Verify:</span><br />
+<br />
+<pre>
+kubectl get pods -n services | grep tracing-demo
+kubectl get ingress -n services tracing-demo-ingress
+</pre>
+<br />
+<span>Access at:</span><br />
+<br />
+<a class='textlink' href='http://tracing-demo.f3s.foo.zone'>http://tracing-demo.f3s.foo.zone</a><br />
+<br />
+<h2 style='display: inline' id='visualizing-traces-in-grafana'>Visualizing Traces in Grafana</h2><br />
+<br />
+<h3 style='display: inline' id='searching-for-traces'>Searching for Traces</h3><br />
+<br />
+<span>In Grafana, go to Explore, select the Tempo datasource, and you can search by trace ID, service name, or tags.</span><br />
+<br />
+<span>Some useful TraceQL queries:</span><br />
+<br />
+<span>Find all traces from the demo app:</span><br />
+<pre>
+{ resource.service.namespace = "tracing-demo" }
+</pre>
+<br />
+<span>Find slow requests (&gt;200ms):</span><br />
+<pre>
+{ duration &gt; 200ms }
+</pre>
+<br />
+<span>Find traces from a specific service:</span><br />
+<pre>
+{ resource.service.name = "frontend" }
+</pre>
+<br />
+<span>Find errors:</span><br />
+<pre>
+{ status = error }
+</pre>
+<br />
+<span>Frontend traces with server errors:</span><br />
+<pre>
+{ resource.service.namespace = "tracing-demo" } &amp;&amp; { span.http.status_code &gt;= 500 }
+</pre>
+<br />
+<h3 style='display: inline' id='service-graph'>Service Graph</h3><br />
+<br />
+<span>The service graph view shows visual connections between services — Frontend to Middleware to Backend — with request rates and latencies. It&#39;s generated automatically from trace data using Prometheus metrics.</span><br />
+<br />
+<h2 style='display: inline' id='practical-example-end-to-end-trace'>Practical Example: End-to-End Trace</h2><br />
+<br />
+<span>Here&#39;s what it looks like to generate and examine a trace.</span><br />
+<br />
+<span>Generate a trace:</span><br />
+<br />
+<pre>
+curl -H "Host: tracing-demo.f3s.foo.zone" http://r0/api/process
+</pre>
+<br />
+<span>Response (HTTP 200):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>{
+  "middleware_response": {
+    "backend_data": {
+      "data": {
+        "id": <font color="#000000">12345</font>,
+        "query_time_ms": <font color="#000000">100.0</font>,
+        "timestamp": "<font color="#808080">2025-12-28T18:35:01.064538</font>",
+        "value": "<font color="#808080">Sample data from backend service</font>"
+      },
+      "service": "<font color="#808080">backend</font>"
+    },
+    "middleware_processed": <b><u><font color="#000000">true</font></u></b>,
+    "original_data": {
+      "source": "<font color="#808080">GET request</font>"
+    },
+    "transformation_time_ms": <font color="#000000">50</font>
+  },
+  "request_data": {
+    "source": "<font color="#808080">GET request</font>"
+  },
+  "service": "<font color="#808080">frontend</font>",
+  "status": "<font color="#808080">success</font>"
+}
+</pre>
+<br />
+<span>After a few seconds (batch export delay), search for traces via Tempo API:</span><br />
+<br />
+<pre>
+kubectl exec -n monitoring tempo-0 -- wget -qO- \
+  &#39;http://localhost:3200/api/search?tags=service.namespace%3Dtracing-demo&amp;limit=5&#39; 2&gt;/dev/null | \
+  python3 -m json.tool
+</pre>
+<br />
+<span>Returns something like:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>{
+  "traceID": "<font color="#808080">4be1151c0bdcd5625ac7e02b98d95bd5</font>",
+  "rootServiceName": "<font color="#808080">frontend</font>",
+  "rootTraceName": "<font color="#808080">GET /api/process</font>",
+  "durationMs": <font color="#000000">221</font>
+}
+</pre>
+<br />
+<span>The full trace has 8 spans across 3 services:</span><br />
+<br />
+<pre>
+Trace ID: 4be1151c0bdcd5625ac7e02b98d95bd5
+
+Service: frontend
+  GET /api/process                 221.10ms  (HTTP server span)
+  frontend-process                 216.23ms  (business logic)
+  POST                             209.97ms  (HTTP client -&gt; middleware)
+
+Service: middleware
+  POST /api/transform              186.02ms  (HTTP server span)
+  middleware-transform             180.96ms  (business logic)
+  GET                              127.52ms  (HTTP client -&gt; backend)
+
+Service: backend
+  GET /api/data                    103.93ms  (HTTP server span)
+  backend-get-data                 102.11ms  (business logic, 100ms sleep)
+</pre>
+<br />
+<span>In Grafana, paste the trace ID in the Tempo search box or use TraceQL:</span><br />
+<br />
+<pre>
+{ resource.service.namespace = "tracing-demo" }
+</pre>
+<br />
+<span>The waterfall view shows the complete request flow with timing:</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-tempo-trace.png'><img alt='Distributed trace in Grafana Tempo: Frontend -&gt; Middleware -&gt; Backend' title='Distributed trace in Grafana Tempo: Frontend -&gt; Middleware -&gt; Backend' src='./f3s-kubernetes-with-freebsd-part-8/grafana-tempo-trace.png' /></a><br />
+<br />
+<span>More Tempo trace screenshots in the X-RAG blog post:</span><br />
+<br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon</a><br />
+<br />
+<h2 style='display: inline' id='correlation-between-signals'>Correlation Between Signals</h2><br />
+<br />
+<span>This is where the observability stack really comes together. Tempo integrates with Loki and Prometheus so you can jump between traces, logs, and metrics.</span><br />
+<br />
+<span>Traces to logs: click on any span and select "Logs for this span." Loki filters by time range, service name, namespace, and pod. Super useful for figuring out what a service was doing during a specific request.</span><br />
+<br />
+<span>Traces to metrics: from a trace view, the "Metrics" tab shows Prometheus data like request rate, error rate, and duration percentiles for the services involved.</span><br />
+<br />
+<span>Logs to traces: in Loki, logs containing trace IDs are automatically linked. Click the trace ID and you jump straight to the full trace in Tempo.</span><br />
+<br />
+<h2 style='display: inline' id='storage-and-retention'>Storage and Retention</h2><br />
+<br />
+<span>With 10Gi storage and 7-day retention, the system handles moderate trace volumes. Check usage:</span><br />
+<br />
+<pre>
+kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
+</pre>
+<br />
+<span>If storage fills up, you can reduce retention to 72h, add sampling in Alloy, or increase the PV size.</span><br />
+<br />
+<h2 style='display: inline' id='configuration-files'>Configuration Files</h2><br />
+<br />
+<span>All config files are on Codeberg:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tempo'>Tempo configuration</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>Alloy configuration (updated for traces)</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tracing-demo'>Demo tracing application</a><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
