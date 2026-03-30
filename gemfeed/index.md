@@ -2,6 +2,9 @@
 
 ## To be in the .zone!
 
+[2026-04-02 - Distributed Systems Simulator - Part 3: Advanced Examples and Protocol API](./2026-04-02-distributed-systems-simulator-part-3.md)  
+[2026-04-01 - Distributed Systems Simulator - Part 2: Built-in Protocols](./2026-04-01-distributed-systems-simulator-part-2.md)  
+[2026-03-31 - Distributed Systems Simulator - Part 1: Introduction and GUI](./2026-03-31-distributed-systems-simulator-part-1.md)  
 [2026-03-02 - RCM: The Ruby Configuration Management DSL](./2026-03-02-rcm-ruby-configuration-management-dsl.md)  
 [2026-03-01 - Site Reliability Engineering - Part 5: System Design, Incidents, and Learning](./2026-03-01-site-reliability-engineering-part-5.md)  
 [2026-03-01 - Loadbars 0.13.0 released](./2026-03-01-loadbars-0.13.0-released.md)  
