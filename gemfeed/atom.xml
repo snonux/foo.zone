@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-03-30T22:46:37+03:00</updated>
+    <updated>2026-03-30T22:55:17+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -32,6 +32,7 @@
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD (You are currently reading this)</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
@@ -646,6 +647,7 @@ webdav                    https://kubernetes.default.svc  services     default  
 <span>Other *BSD-related posts:</span><br />
 <br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
@@ -5174,6 +5176,531 @@ $ curl -s -G "http://localhost:3200/api/search" \
         </content>
     </entry>
     <entry>
+        <title>f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</title>
+        <link href="gemini://foo.zone/gemfeed/2025-12-14-f3s-kubernetes-with-freebsd-part-8b.gmi" />
+        <id>gemini://foo.zone/gemfeed/2025-12-14-f3s-kubernetes-with-freebsd-part-8b.gmi</id>
+        <updated>2025-12-14T20:00:00+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is a follow-up to Part 8 of the f3s series, where I covered Prometheus, Grafana, Loki, and Alloy. Now it's time for the last pillar of observability: distributed tracing with Grafana Tempo.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-8b-distributed-tracing-with-tempo'>f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</h1><br />
+<br />
+<span class='quote'>Published at 2025-12-14T20:00:00+02:00</span><br />
+<br />
+<span>This is a follow-up to Part 8 of the f3s series, where I covered Prometheus, Grafana, Loki, and Alloy. Now it&#39;s time for the last pillar of observability: distributed tracing with Grafana Tempo.</span><br />
+<br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>Part 8: Observability (Prometheus, Grafana, Loki, Alloy)</a><br />
+<br />
+<span>For a preview of what distributed tracing with Tempo looks like in Grafana, check out the X-RAG blog post:</span><br />
+<br />
+<a class='textlink' href='./2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-8b-distributed-tracing-with-tempo'>f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a></li>
+<li>⇢ <a href='#why-distributed-tracing'>Why Distributed Tracing?</a></li>
+<li>⇢ <a href='#deploying-grafana-tempo'>Deploying Grafana Tempo</a></li>
+<li>⇢ ⇢ <a href='#tempo-helm-values'>Tempo Helm Values</a></li>
+<li>⇢ ⇢ <a href='#persistent-volumes'>Persistent Volumes</a></li>
+<li>⇢ ⇢ <a href='#grafana-datasource-provisioning'>Grafana Datasource Provisioning</a></li>
+<li>⇢ ⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ <a href='#configuring-alloy-for-trace-collection'>Configuring Alloy for Trace Collection</a></li>
+<li>⇢ <a href='#demo-tracing-application'>Demo Tracing Application</a></li>
+<li>⇢ ⇢ <a href='#architecture'>Architecture</a></li>
+<li>⇢ ⇢ <a href='#opentelemetry-instrumentation'>OpenTelemetry Instrumentation</a></li>
+<li>⇢ ⇢ <a href='#deployment'>Deployment</a></li>
+<li>⇢ <a href='#visualizing-traces-in-grafana'>Visualizing Traces in Grafana</a></li>
+<li>⇢ ⇢ <a href='#searching-for-traces'>Searching for Traces</a></li>
+<li>⇢ ⇢ <a href='#service-graph'>Service Graph</a></li>
+<li>⇢ <a href='#practical-example-end-to-end-trace'>Practical Example: End-to-End Trace</a></li>
+<li>⇢ <a href='#correlation-between-signals'>Correlation Between Signals</a></li>
+<li>⇢ <a href='#storage-and-retention'>Storage and Retention</a></li>
+<li>⇢ <a href='#configuration-files'>Configuration Files</a></li>
+</ul><br />
+<h2 style='display: inline' id='why-distributed-tracing'>Why Distributed Tracing?</h2><br />
+<br />
+<span>In a microservices setup, a single user request can hop through multiple services. Tracing gives you:</span><br />
+<br />
+<ul>
+<li>Request tracking across service boundaries</li>
+<li>Performance bottleneck identification</li>
+<li>Service dependency visualization</li>
+<li>Correlation with logs and metrics</li>
+</ul><br />
+<span>Without it, you&#39;re basically guessing where time gets spent.</span><br />
+<br />
+<h2 style='display: inline' id='deploying-grafana-tempo'>Deploying Grafana Tempo</h2><br />
+<br />
+<span>Tempo runs in monolithic mode — all components in one process, same pattern as Loki&#39;s SingleBinary deployment. Keeps things simple for a home lab.</span><br />
+<br />
+<span>The setup:</span><br />
+<br />
+<ul>
+<li>Filesystem backend using hostPath (10Gi at <span class='inlinecode'>/data/nfs/k3svolumes/tempo/data</span>)</li>
+<li>7-day retention (168h)</li>
+<li>OTLP receivers on gRPC (4317) and HTTP (4318)</li>
+<li>Bind to <span class='inlinecode'>0.0.0.0</span> to avoid Tempo 2.7+ localhost-only binding issue</li>
+</ul><br />
+<h3 style='display: inline' id='tempo-helm-values'>Tempo Helm Values</h3><br />
+<br />
+<pre>
+tempo:
+  retention: 168h
+  storage:
+    trace:
+      backend: local
+      local:
+        path: /var/tempo/traces
+      wal:
+        path: /var/tempo/wal
+  receivers:
+    otlp:
+      protocols:
+        grpc:
+          endpoint: 0.0.0.0:4317
+        http:
+          endpoint: 0.0.0.0:4318
+
+persistence:
+  enabled: true
+  size: 10Gi
+  storageClassName: ""
+
+resources:
+  limits:
+    cpu: 1000m
+    memory: 2Gi
+  requests:
+    cpu: 500m
+    memory: 1Gi
+</pre>
+<br />
+<h3 style='display: inline' id='persistent-volumes'>Persistent Volumes</h3><br />
+<br />
+<pre>
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: tempo-data-pv
+spec:
+  capacity:
+    storage: 10Gi
+  accessModes:
+    - ReadWriteOnce
+  persistentVolumeReclaimPolicy: Retain
+  hostPath:
+    path: /data/nfs/k3svolumes/tempo/data
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: tempo-data-pvc
+  namespace: monitoring
+spec:
+  storageClassName: ""
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 10Gi
+</pre>
+<br />
+<h3 style='display: inline' id='grafana-datasource-provisioning'>Grafana Datasource Provisioning</h3><br />
+<br />
+<span>All Grafana datasources (Prometheus, Alertmanager, Loki, Tempo) are provisioned via a single ConfigMap mounted directly to the Grafana pod. No sidecar discovery needed.</span><br />
+<br />
+<span>In <span class='inlinecode'>grafana-datasources-all.yaml</span>:</span><br />
+<br />
+<pre>
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: grafana-datasources-all
+  namespace: monitoring
+data:
+  datasources.yaml: |
+    apiVersion: 1
+    datasources:
+      - name: Prometheus
+        type: prometheus
+        uid: prometheus
+        url: http://prometheus-kube-prometheus-prometheus.monitoring:9090/
+        access: proxy
+        isDefault: true
+      - name: Alertmanager
+        type: alertmanager
+        uid: alertmanager
+        url: http://prometheus-kube-prometheus-alertmanager.monitoring:9093/
+      - name: Loki
+        type: loki
+        uid: loki
+        url: http://loki.monitoring.svc.cluster.local:3100
+      - name: Tempo
+        type: tempo
+        uid: tempo
+        url: http://tempo.monitoring.svc.cluster.local:3200
+        jsonData:
+          tracesToLogsV2:
+            datasourceUid: loki
+            spanStartTimeShift: -1h
+            spanEndTimeShift: 1h
+          tracesToMetrics:
+            datasourceUid: prometheus
+          serviceMap:
+            datasourceUid: prometheus
+          nodeGraph:
+            enabled: true
+</pre>
+<br />
+<span>The Tempo datasource config links traces to Loki logs and Prometheus metrics — so you can jump between signals directly in Grafana.</span><br />
+<br />
+<span>The kube-prometheus-stack Helm values disable sidecar-based discovery and mount this ConfigMap directly to <span class='inlinecode'>/etc/grafana/provisioning/datasources/</span>.</span><br />
+<br />
+<h3 style='display: inline' id='installation'>Installation</h3><br />
+<br />
+<pre>
+cd /home/paul/git/conf/f3s/tempo
+just install
+</pre>
+<br />
+<span>Verify it&#39;s running:</span><br />
+<br />
+<pre>
+kubectl get pods -n monitoring -l app.kubernetes.io/name=tempo
+kubectl exec -n monitoring &lt;tempo-pod&gt; -- wget -qO- http://localhost:3200/ready
+</pre>
+<br />
+<h2 style='display: inline' id='configuring-alloy-for-trace-collection'>Configuring Alloy for Trace Collection</h2><br />
+<br />
+<span>I updated the Alloy values to add OTLP receivers for traces alongside the existing log collection.</span><br />
+<br />
+<span>Added to the Alloy config:</span><br />
+<br />
+<pre>
+// OTLP receiver for traces via gRPC and HTTP
+otelcol.receiver.otlp "default" {
+  grpc {
+    endpoint = "0.0.0.0:4317"
+  }
+  http {
+    endpoint = "0.0.0.0:4318"
+  }
+  output {
+    traces = [otelcol.processor.batch.default.input]
+  }
+}
+
+// Batch processor — accumulates spans before forwarding to Tempo
+otelcol.processor.batch "default" {
+  timeout = "5s"
+  send_batch_size = 100
+  send_batch_max_size = 200
+  output {
+    traces = [otelcol.exporter.otlp.tempo.input]
+  }
+}
+
+// OTLP exporter to Tempo
+otelcol.exporter.otlp "tempo" {
+  client {
+    endpoint = "tempo.monitoring.svc.cluster.local:4317"
+    tls {
+      insecure = true
+    }
+    compression = "gzip"
+  }
+}
+</pre>
+<br />
+<span>Upgrade Alloy:</span><br />
+<br />
+<pre>
+cd /home/paul/git/conf/f3s/loki
+just upgrade
+</pre>
+<br />
+<h2 style='display: inline' id='demo-tracing-application'>Demo Tracing Application</h2><br />
+<br />
+<span>To actually see traces, I built a three-tier Python app. Nothing fancy — just enough to generate real distributed traces.</span><br />
+<br />
+<h3 style='display: inline' id='architecture'>Architecture</h3><br />
+<br />
+<pre>
+User -&gt; Frontend (Flask:5000) -&gt; Middleware (Flask:5001) -&gt; Backend (Flask:5002)
+           |                          |                        |
+                    Alloy (OTLP:4317) -&gt; Tempo -&gt; Grafana
+</pre>
+<br />
+<ul>
+<li>Frontend: receives requests at <span class='inlinecode'>/api/process</span>, forwards to middleware</li>
+<li>Middleware: transforms data at <span class='inlinecode'>/api/transform</span>, calls backend</li>
+<li>Backend: returns data at <span class='inlinecode'>/api/data</span>, simulates a 100ms database query</li>
+</ul><br />
+<h3 style='display: inline' id='opentelemetry-instrumentation'>OpenTelemetry Instrumentation</h3><br />
+<br />
+<span>All three services use Python OpenTelemetry libraries:</span><br />
+<br />
+<span>Dependencies:</span><br />
+<br />
+<pre>
+flask==3.0.0
+requests==2.31.0
+opentelemetry-distro==0.49b0
+opentelemetry-exporter-otlp==1.28.0
+opentelemetry-instrumentation-flask==0.49b0
+opentelemetry-instrumentation-requests==0.49b0
+</pre>
+<br />
+<span>Auto-instrumentation pattern (same across all services, just change the service name):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><b><u><font color="#000000">from</font></u></b> opentelemetry <b><u><font color="#000000">import</font></u></b> trace
+<b><u><font color="#000000">from</font></u></b> opentelemetry.sdk.trace <b><u><font color="#000000">import</font></u></b> TracerProvider
+<b><u><font color="#000000">from</font></u></b> opentelemetry.exporter.otlp.proto.grpc.trace_exporter <b><u><font color="#000000">import</font></u></b> OTLPSpanExporter
+<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.flask <b><u><font color="#000000">import</font></u></b> FlaskInstrumentor
+<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.requests <b><u><font color="#000000">import</font></u></b> RequestsInstrumentor
+<b><u><font color="#000000">from</font></u></b> opentelemetry.sdk.resources <b><u><font color="#000000">import</font></u></b> Resource
+
+resource = Resource(attributes={
+    <font color="#808080">"service.name"</font>: <font color="#808080">"frontend"</font>,
+    <font color="#808080">"service.namespace"</font>: <font color="#808080">"tracing-demo"</font>,
+    <font color="#808080">"service.version"</font>: <font color="#808080">"1.0.0"</font>
+})
+
+provider = TracerProvider(resource=resource)
+
+otlp_exporter = OTLPSpanExporter(
+    endpoint=<font color="#808080">"http://alloy.monitoring.svc.cluster.local:4317"</font>,
+    insecure=True
+)
+
+processor = BatchSpanProcessor(otlp_exporter)
+provider.add_span_processor(processor)
+trace.set_tracer_provider(provider)
+
+FlaskInstrumentor().instrument_app(app)
+RequestsInstrumentor().instrument()
+</pre>
+<br />
+<span>The auto-instrumentation creates spans for HTTP requests, propagates trace context via W3C headers, and links parent/child spans across services automatically.</span><br />
+<br />
+<h3 style='display: inline' id='deployment'>Deployment</h3><br />
+<br />
+<span>The demo app has a Helm chart in the conf repo. Build, import the container images, and install:</span><br />
+<br />
+<pre>
+cd /home/paul/git/conf/f3s/tracing-demo
+just build
+just import
+just install
+</pre>
+<br />
+<span>Verify:</span><br />
+<br />
+<pre>
+kubectl get pods -n services | grep tracing-demo
+kubectl get ingress -n services tracing-demo-ingress
+</pre>
+<br />
+<span>Access at:</span><br />
+<br />
+<a class='textlink' href='http://tracing-demo.f3s.foo.zone'>http://tracing-demo.f3s.foo.zone</a><br />
+<br />
+<h2 style='display: inline' id='visualizing-traces-in-grafana'>Visualizing Traces in Grafana</h2><br />
+<br />
+<h3 style='display: inline' id='searching-for-traces'>Searching for Traces</h3><br />
+<br />
+<span>In Grafana, go to Explore, select the Tempo datasource, and you can search by trace ID, service name, or tags.</span><br />
+<br />
+<span>Some useful TraceQL queries:</span><br />
+<br />
+<span>Find all traces from the demo app:</span><br />
+<pre>
+{ resource.service.namespace = "tracing-demo" }
+</pre>
+<br />
+<span>Find slow requests (&gt;200ms):</span><br />
+<pre>
+{ duration &gt; 200ms }
+</pre>
+<br />
+<span>Find traces from a specific service:</span><br />
+<pre>
+{ resource.service.name = "frontend" }
+</pre>
+<br />
+<span>Find errors:</span><br />
+<pre>
+{ status = error }
+</pre>
+<br />
+<span>Frontend traces with server errors:</span><br />
+<pre>
+{ resource.service.namespace = "tracing-demo" } &amp;&amp; { span.http.status_code &gt;= 500 }
+</pre>
+<br />
+<h3 style='display: inline' id='service-graph'>Service Graph</h3><br />
+<br />
+<span>The service graph view shows visual connections between services — Frontend to Middleware to Backend — with request rates and latencies. It&#39;s generated automatically from trace data using Prometheus metrics.</span><br />
+<br />
+<h2 style='display: inline' id='practical-example-end-to-end-trace'>Practical Example: End-to-End Trace</h2><br />
+<br />
+<span>Here&#39;s what it looks like to generate and examine a trace.</span><br />
+<br />
+<span>Generate a trace:</span><br />
+<br />
+<pre>
+curl -H "Host: tracing-demo.f3s.foo.zone" http://r0/api/process
+</pre>
+<br />
+<span>Response (HTTP 200):</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>{
+  "middleware_response": {
+    "backend_data": {
+      "data": {
+        "id": <font color="#000000">12345</font>,
+        "query_time_ms": <font color="#000000">100.0</font>,
+        "timestamp": "<font color="#808080">2025-12-28T18:35:01.064538</font>",
+        "value": "<font color="#808080">Sample data from backend service</font>"
+      },
+      "service": "<font color="#808080">backend</font>"
+    },
+    "middleware_processed": <b><u><font color="#000000">true</font></u></b>,
+    "original_data": {
+      "source": "<font color="#808080">GET request</font>"
+    },
+    "transformation_time_ms": <font color="#000000">50</font>
+  },
+  "request_data": {
+    "source": "<font color="#808080">GET request</font>"
+  },
+  "service": "<font color="#808080">frontend</font>",
+  "status": "<font color="#808080">success</font>"
+}
+</pre>
+<br />
+<span>After a few seconds (batch export delay), search for traces via Tempo API:</span><br />
+<br />
+<pre>
+kubectl exec -n monitoring tempo-0 -- wget -qO- \
+  &#39;http://localhost:3200/api/search?tags=service.namespace%3Dtracing-demo&amp;limit=5&#39; 2&gt;/dev/null | \
+  python3 -m json.tool
+</pre>
+<br />
+<span>Returns something like:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>{
+  "traceID": "<font color="#808080">4be1151c0bdcd5625ac7e02b98d95bd5</font>",
+  "rootServiceName": "<font color="#808080">frontend</font>",
+  "rootTraceName": "<font color="#808080">GET /api/process</font>",
+  "durationMs": <font color="#000000">221</font>
+}
+</pre>
+<br />
+<span>The full trace has 8 spans across 3 services:</span><br />
+<br />
+<pre>
+Trace ID: 4be1151c0bdcd5625ac7e02b98d95bd5
+
+Service: frontend
+  GET /api/process                 221.10ms  (HTTP server span)
+  frontend-process                 216.23ms  (business logic)
+  POST                             209.97ms  (HTTP client -&gt; middleware)
+
+Service: middleware
+  POST /api/transform              186.02ms  (HTTP server span)
+  middleware-transform             180.96ms  (business logic)
+  GET                              127.52ms  (HTTP client -&gt; backend)
+
+Service: backend
+  GET /api/data                    103.93ms  (HTTP server span)
+  backend-get-data                 102.11ms  (business logic, 100ms sleep)
+</pre>
+<br />
+<span>In Grafana, paste the trace ID in the Tempo search box or use TraceQL:</span><br />
+<br />
+<pre>
+{ resource.service.namespace = "tracing-demo" }
+</pre>
+<br />
+<span>The waterfall view shows the complete request flow with timing:</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-tempo-trace.png'><img alt='Distributed trace in Grafana Tempo: Frontend -&gt; Middleware -&gt; Backend' title='Distributed trace in Grafana Tempo: Frontend -&gt; Middleware -&gt; Backend' src='./f3s-kubernetes-with-freebsd-part-8/grafana-tempo-trace.png' /></a><br />
+<br />
+<span>More Tempo trace screenshots in the X-RAG blog post:</span><br />
+<br />
+<a class='textlink' href='https://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon</a><br />
+<br />
+<h2 style='display: inline' id='correlation-between-signals'>Correlation Between Signals</h2><br />
+<br />
+<span>This is where the observability stack really comes together. Tempo integrates with Loki and Prometheus so you can jump between traces, logs, and metrics.</span><br />
+<br />
+<span>Traces to logs: click on any span and select "Logs for this span." Loki filters by time range, service name, namespace, and pod. Super useful for figuring out what a service was doing during a specific request.</span><br />
+<br />
+<span>Traces to metrics: from a trace view, the "Metrics" tab shows Prometheus data like request rate, error rate, and duration percentiles for the services involved.</span><br />
+<br />
+<span>Logs to traces: in Loki, logs containing trace IDs are automatically linked. Click the trace ID and you jump straight to the full trace in Tempo.</span><br />
+<br />
+<h2 style='display: inline' id='storage-and-retention'>Storage and Retention</h2><br />
+<br />
+<span>With 10Gi storage and 7-day retention, the system handles moderate trace volumes. Check usage:</span><br />
+<br />
+<pre>
+kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
+</pre>
+<br />
+<span>If storage fills up, you can reduce retention to 72h, add sampling in Alloy, or increase the PV size.</span><br />
+<br />
+<h2 style='display: inline' id='configuration-files'>Configuration Files</h2><br />
+<br />
+<span>All config files are on Codeberg:</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tempo'>Tempo configuration</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>Alloy configuration (updated for traces)</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tracing-demo'>Demo tracing application</a><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span></span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
         <title>f3s: Kubernetes with FreeBSD - Part 8: Observability</title>
         <link href="gemini://foo.zone/gemfeed/2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi" />
         <id>gemini://foo.zone/gemfeed/2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi</id>
@@ -5199,6 +5726,7 @@ $ curl -s -G "http://localhost:3200/api/search" \
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability (You are currently reading this)</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
@@ -5243,29 +5771,6 @@ $ curl -s -G "http://localhost:3200/api/search" \
 <li>⇢ ⇢ <a href='#installing-node-exporter-on-openbsd'>Installing Node Exporter on OpenBSD</a></li>
 <li>⇢ ⇢ <a href='#adding-openbsd-hosts-to-prometheus'>Adding OpenBSD hosts to Prometheus</a></li>
 <li>⇢ ⇢ <a href='#openbsd-memory-metrics-compatibility'>OpenBSD memory metrics compatibility</a></li>
-<li>⇢ <a href='#distributed-tracing-with-grafana-tempo'>Distributed Tracing with Grafana Tempo</a></li>
-<li>⇢ ⇢ <a href='#why-distributed-tracing'>Why Distributed Tracing?</a></li>
-<li>⇢ ⇢ <a href='#deploying-grafana-tempo'>Deploying Grafana Tempo</a></li>
-<li>⇢ <a href='#-configuration-strategy'>⇢# Configuration Strategy</a></li>
-<li>⇢ <a href='#-tempo-deployment-files'>⇢# Tempo Deployment Files</a></li>
-<li>⇢ <a href='#-installation'>⇢# Installation</a></li>
-<li>⇢ ⇢ <a href='#configuring-grafana-alloy-for-trace-collection'>Configuring Grafana Alloy for Trace Collection</a></li>
-<li>⇢ <a href='#-otlp-receiver-configuration'>⇢# OTLP Receiver Configuration</a></li>
-<li>⇢ <a href='#-upgrade-alloy'>⇢# Upgrade Alloy</a></li>
-<li>⇢ ⇢ <a href='#demo-tracing-application'>Demo Tracing Application</a></li>
-<li>⇢ <a href='#-application-architecture'>⇢# Application Architecture</a></li>
-<li>⇢ ⇢ <a href='#visualizing-traces-in-grafana'>Visualizing Traces in Grafana</a></li>
-<li>⇢ <a href='#-accessing-traces'>⇢# Accessing Traces</a></li>
-<li>⇢ <a href='#-service-graph-visualization'>⇢# Service Graph Visualization</a></li>
-<li>⇢ ⇢ <a href='#correlation-between-observability-signals'>Correlation Between Observability Signals</a></li>
-<li>⇢ <a href='#-traces-to-logs'>⇢# Traces-to-Logs</a></li>
-<li>⇢ <a href='#-traces-to-metrics'>⇢# Traces-to-Metrics</a></li>
-<li>⇢ <a href='#-logs-to-traces'>⇢# Logs-to-Traces</a></li>
-<li>⇢ ⇢ <a href='#generating-traces-for-testing'>Generating Traces for Testing</a></li>
-<li>⇢ ⇢ <a href='#verifying-the-complete-pipeline'>Verifying the Complete Pipeline</a></li>
-<li>⇢ ⇢ <a href='#practical-example-viewing-a-distributed-trace'>Practical Example: Viewing a Distributed Trace</a></li>
-<li>⇢ ⇢ <a href='#storage-and-retention'>Storage and Retention</a></li>
-<li>⇢ ⇢ <a href='#configuration-files'>Configuration Files</a></li>
 <li>⇢ <a href='#summary'>Summary</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
@@ -6303,674 +6808,29 @@ spec:
 <br />
 <span>After running <span class='inlinecode'>just upgrade</span>, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.</span><br />
 <br />
-<h2 style='display: inline' id='distributed-tracing-with-grafana-tempo'>Distributed Tracing with Grafana Tempo</h2><br />
-<br />
-<span>After implementing logs (Loki) and metrics (Prometheus), the final pillar of observability is distributed tracing. Grafana Tempo provides distributed tracing capabilities that help understand request flows across microservices.</span><br />
-<br />
-<span>For a preview of what distributed tracing with Tempo looks like in Grafana, see the X-RAG blog post:</span><br />
-<br />
-<a class='textlink' href='./2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon</a><br />
-<br />
-<h3 style='display: inline' id='why-distributed-tracing'>Why Distributed Tracing?</h3><br />
-<br />
-<span>In a microservices architecture, a single user request may traverse multiple services. Distributed tracing:</span><br />
-<br />
-<ul>
-<li>Tracks requests across service boundaries</li>
-<li>Identifies performance bottlenecks</li>
-<li>Visualizes service dependencies</li>
-<li>Correlates with logs and metrics</li>
-<li>Helps debug complex distributed systems</li>
-</ul><br />
-<h3 style='display: inline' id='deploying-grafana-tempo'>Deploying Grafana Tempo</h3><br />
-<br />
-<span>Tempo is deployed in monolithic mode, following the same pattern as Loki&#39;s SingleBinary deployment.</span><br />
-<br />
-<span>#### Configuration Strategy</span><br />
-<br />
-<span>**Deployment Mode:** Monolithic (all components in one process)</span><br />
-<ul>
-<li>Simpler operation than microservices mode</li>
-<li>Suitable for the cluster scale</li>
-<li>Consistent with Loki deployment pattern</li>
-</ul><br />
-<span>**Storage:** Filesystem backend using hostPath</span><br />
-<ul>
-<li>10Gi storage at /data/nfs/k3svolumes/tempo/data</li>
-<li>7-day retention (168h)</li>
-<li>Local storage is the only option for monolithic mode</li>
-</ul><br />
-<span>**OTLP Receivers:** Standard OpenTelemetry Protocol ports</span><br />
-<ul>
-<li>gRPC: 4317</li>
-<li>HTTP: 4318</li>
-<li>Bind to 0.0.0.0 to avoid Tempo 2.7+ localhost-only binding issue</li>
-</ul><br />
-<span>#### Tempo Deployment Files</span><br />
-<br />
-<span>Created in /home/paul/git/conf/f3s/tempo/:</span><br />
-<br />
-<span>**values.yaml** - Helm chart configuration:</span><br />
-<br />
-<pre>
-tempo:
-  retention: 168h
-  storage:
-    trace:
-      backend: local
-      local:
-        path: /var/tempo/traces
-      wal:
-        path: /var/tempo/wal
-  receivers:
-    otlp:
-      protocols:
-        grpc:
-          endpoint: 0.0.0.0:4317
-        http:
-          endpoint: 0.0.0.0:4318
-
-persistence:
-  enabled: true
-  size: 10Gi
-  storageClassName: ""
-
-resources:
-  limits:
-    cpu: 1000m
-    memory: 2Gi
-  requests:
-    cpu: 500m
-    memory: 1Gi
-</pre>
-<br />
-<span>**persistent-volumes.yaml** - Storage configuration:</span><br />
-<br />
-<pre>
-apiVersion: v1
-kind: PersistentVolume
-metadata:
-  name: tempo-data-pv
-spec:
-  capacity:
-    storage: 10Gi
-  accessModes:
-    - ReadWriteOnce
-  persistentVolumeReclaimPolicy: Retain
-  hostPath:
-    path: /data/nfs/k3svolumes/tempo/data
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: tempo-data-pvc
-  namespace: monitoring
-spec:
-  storageClassName: ""
-  accessModes:
-    - ReadWriteOnce
-  resources:
-    requests:
-      storage: 10Gi
-</pre>
-<br />
-<span>**Grafana Datasource Provisioning**</span><br />
-<br />
-<span>All Grafana datasources (Prometheus, Alertmanager, Loki, Tempo) are provisioned via a unified ConfigMap that is directly mounted to the Grafana pod. This approach ensures datasources are loaded on startup without requiring sidecar-based discovery.</span><br />
-<br />
-<span>In /home/paul/git/conf/f3s/prometheus/grafana-datasources-all.yaml:</span><br />
-<br />
-<pre>
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: grafana-datasources-all
-  namespace: monitoring
-data:
-  datasources.yaml: |
-    apiVersion: 1
-    datasources:
-      - name: Prometheus
-        type: prometheus
-        uid: prometheus
-        url: http://prometheus-kube-prometheus-prometheus.monitoring:9090/
-        access: proxy
-        isDefault: true
-      - name: Alertmanager
-        type: alertmanager
-        uid: alertmanager
-        url: http://prometheus-kube-prometheus-alertmanager.monitoring:9093/
-      - name: Loki
-        type: loki
-        uid: loki
-        url: http://loki.monitoring.svc.cluster.local:3100
-      - name: Tempo
-        type: tempo
-        uid: tempo
-        url: http://tempo.monitoring.svc.cluster.local:3200
-        jsonData:
-          tracesToLogsV2:
-            datasourceUid: loki
-            spanStartTimeShift: -1h
-            spanEndTimeShift: 1h
-          tracesToMetrics:
-            datasourceUid: prometheus
-          serviceMap:
-            datasourceUid: prometheus
-          nodeGraph:
-            enabled: true
-</pre>
-<br />
-<span>The kube-prometheus-stack Helm values (persistence-values.yaml) are configured to:</span><br />
-<ul>
-<li>Disable sidecar-based datasource provisioning</li>
-<li>Mount grafana-datasources-all ConfigMap directly to /etc/grafana/provisioning/datasources/</li>
-</ul><br />
-<span>This direct mounting approach is simpler and more reliable than sidecar-based discovery.</span><br />
-<br />
-<span>#### Installation</span><br />
-<br />
-<pre>
-cd /home/paul/git/conf/f3s/tempo
-just install
-</pre>
-<br />
-<span>Verify Tempo is running:</span><br />
-<br />
-<pre>
-kubectl get pods -n monitoring -l app.kubernetes.io/name=tempo
-kubectl exec -n monitoring &lt;tempo-pod&gt; -- wget -qO- http://localhost:3200/ready
-</pre>
-<br />
-<h3 style='display: inline' id='configuring-grafana-alloy-for-trace-collection'>Configuring Grafana Alloy for Trace Collection</h3><br />
-<br />
-<span>Updated /home/paul/git/conf/f3s/loki/alloy-values.yaml to add OTLP receivers for traces while maintaining existing log collection.</span><br />
-<br />
-<span>#### OTLP Receiver Configuration</span><br />
-<br />
-<span>Added to Alloy configuration after the log collection pipeline:</span><br />
-<br />
-<pre>
-// OTLP receiver for traces via gRPC and HTTP
-otelcol.receiver.otlp "default" {
-  grpc {
-    endpoint = "0.0.0.0:4317"
-  }
-  http {
-    endpoint = "0.0.0.0:4318"
-  }
-  output {
-    traces = [otelcol.processor.batch.default.input]
-  }
-}
-
-// Batch processor for efficient trace forwarding
-otelcol.processor.batch "default" {
-  timeout = "5s"
-  send_batch_size = 100
-  send_batch_max_size = 200
-  output {
-    traces = [otelcol.exporter.otlp.tempo.input]
-  }
-}
-
-// OTLP exporter to send traces to Tempo
-otelcol.exporter.otlp "tempo" {
-  client {
-    endpoint = "tempo.monitoring.svc.cluster.local:4317"
-    tls {
-      insecure = true
-    }
-    compression = "gzip"
-  }
-}
-</pre>
-<br />
-<span>The batch processor reduces network overhead by accumulating spans before forwarding to Tempo.</span><br />
-<br />
-<span>#### Upgrade Alloy</span><br />
-<br />
-<pre>
-cd /home/paul/git/conf/f3s/loki
-just upgrade
-</pre>
-<br />
-<span>Verify OTLP receivers are listening:</span><br />
-<br />
-<pre>
-kubectl logs -n monitoring -l app.kubernetes.io/name=alloy | grep -i "otlp.*receiver"
-kubectl exec -n monitoring &lt;alloy-pod&gt; -- netstat -ln | grep -E &#39;:(4317|4318)&#39;
-</pre>
-<br />
-<h3 style='display: inline' id='demo-tracing-application'>Demo Tracing Application</h3><br />
-<br />
-<span>Created a three-tier Python application to demonstrate distributed tracing in action.</span><br />
-<br />
-<span>#### Application Architecture</span><br />
-<br />
-<pre>
-User → Frontend (Flask:5000) → Middleware (Flask:5001) → Backend (Flask:5002)
-           ↓                          ↓                        ↓
-                    Alloy (OTLP:4317) → Tempo → Grafana
-</pre>
-<br />
-<span>Frontend Service:</span><br />
-<br />
-<ul>
-<li>Receives HTTP requests at /api/process</li>
-<li>Forwards to middleware service</li>
-<li>Creates parent span for the entire request</li>
-</ul><br />
-<span>Middleware Service:</span><br />
-<br />
-<ul>
-<li>Transforms data at /api/transform</li>
-<li>Calls backend service</li>
-<li>Creates child span linked to frontend</li>
-</ul><br />
-<span>Backend Service:</span><br />
-<br />
-<ul>
-<li>Returns data at /api/data</li>
-<li>Simulates database query (100ms sleep)</li>
-<li>Creates leaf span in the trace</li>
-</ul><br />
-<span>OpenTelemetry Instrumentation:</span><br />
-<br />
-<span>All services use Python OpenTelemetry libraries:</span><br />
-<br />
-<span>**Dependencies:**</span><br />
-<pre>
-flask==3.0.0
-requests==2.31.0
-opentelemetry-distro==0.49b0
-opentelemetry-exporter-otlp==1.28.0
-opentelemetry-instrumentation-flask==0.49b0
-opentelemetry-instrumentation-requests==0.49b0
-</pre>
-<br />
-<span>**Auto-instrumentation pattern** (used in all services):</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">from</font></u></b> opentelemetry <b><u><font color="#000000">import</font></u></b> trace
-<b><u><font color="#000000">from</font></u></b> opentelemetry.sdk.trace <b><u><font color="#000000">import</font></u></b> TracerProvider
-<b><u><font color="#000000">from</font></u></b> opentelemetry.exporter.otlp.proto.grpc.trace_exporter <b><u><font color="#000000">import</font></u></b> OTLPSpanExporter
-<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.flask <b><u><font color="#000000">import</font></u></b> FlaskInstrumentor
-<b><u><font color="#000000">from</font></u></b> opentelemetry.instrumentation.requests <b><u><font color="#000000">import</font></u></b> RequestsInstrumentor
-<b><u><font color="#000000">from</font></u></b> opentelemetry.sdk.resources <b><u><font color="#000000">import</font></u></b> Resource
-
-<i><font color="silver"># Define service identity</font></i>
-resource = Resource(attributes={
-    <font color="#808080">"service.name"</font>: <font color="#808080">"frontend"</font>,
-    <font color="#808080">"service.namespace"</font>: <font color="#808080">"tracing-demo"</font>,
-    <font color="#808080">"service.version"</font>: <font color="#808080">"1.0.0"</font>
-})
-
-provider = TracerProvider(resource=resource)
-
-<i><font color="silver"># Export to Alloy</font></i>
-otlp_exporter = OTLPSpanExporter(
-    endpoint=<font color="#808080">"http://alloy.monitoring.svc.cluster.local:4317"</font>,
-    insecure=True
-)
-
-processor = BatchSpanProcessor(otlp_exporter)
-provider.add_span_processor(processor)
-trace.set_tracer_provider(provider)
-
-<i><font color="silver"># Auto-instrument Flask and requests</font></i>
-FlaskInstrumentor().instrument_app(app)
-RequestsInstrumentor().instrument()
-</pre>
-<br />
-<span>The auto-instrumentation automatically:</span><br />
-<ul>
-<li>Creates spans for HTTP requests</li>
-<li>Propagates trace context via W3C Trace Context headers</li>
-<li>Links parent and child spans across service boundaries</li>
-</ul><br />
-<span>Deployment:</span><br />
-<br />
-<span>Created Helm chart in /home/paul/git/conf/f3s/tracing-demo/ with three separate deployments, services, and an ingress.</span><br />
-<br />
-<span>Build and deploy:</span><br />
-<br />
-<pre>
-cd /home/paul/git/conf/f3s/tracing-demo
-just build
-just import
-just install
-</pre>
-<br />
-<span>Verify deployment:</span><br />
-<br />
-<pre>
-kubectl get pods -n services | grep tracing-demo
-kubectl get ingress -n services tracing-demo-ingress
-</pre>
-<br />
-<span>Access the application at:</span><br />
-<br />
-<a class='textlink' href='http://tracing-demo.f3s.buetow.org'>http://tracing-demo.f3s.buetow.org</a><br />
-<br />
-<h3 style='display: inline' id='visualizing-traces-in-grafana'>Visualizing Traces in Grafana</h3><br />
-<br />
-<span>The Tempo datasource is automatically discovered by Grafana through the ConfigMap label.</span><br />
-<br />
-<span>#### Accessing Traces</span><br />
-<br />
-<span>Navigate to Grafana → Explore → Select "Tempo" datasource</span><br />
-<br />
-<span>**Search Interface:**</span><br />
-<ul>
-<li>Search by Trace ID</li>
-<li>Search by service name</li>
-<li>Search by tags</li>
-</ul><br />
-<span>**TraceQL Queries:**</span><br />
-<br />
-<span>Find all traces from demo app:</span><br />
-<pre>
-{ resource.service.namespace = "tracing-demo" }
-</pre>
-<br />
-<span>Find slow requests (&gt;200ms):</span><br />
-<pre>
-{ duration &gt; 200ms }
-</pre>
-<br />
-<span>Find traces from specific service:</span><br />
-<pre>
-{ resource.service.name = "frontend" }
-</pre>
-<br />
-<span>Find errors:</span><br />
-<pre>
-{ status = error }
-</pre>
-<br />
-<span>Complex query - frontend traces calling middleware:</span><br />
-<pre>
-{ resource.service.namespace = "tracing-demo" } &amp;&amp; { span.http.status_code &gt;= 500 }
-</pre>
-<br />
-<span>#### Service Graph Visualization</span><br />
-<br />
-<span>The service graph shows visual connections between services:</span><br />
-<br />
-<span>1. Navigate to Explore → Tempo</span><br />
-<span>2. Enable "Service Graph" view</span><br />
-<span>3. Shows: Frontend → Middleware → Backend with request rates</span><br />
-<br />
-<span>The service graph uses Prometheus metrics generated from trace data.</span><br />
-<br />
-<h3 style='display: inline' id='correlation-between-observability-signals'>Correlation Between Observability Signals</h3><br />
-<br />
-<span>Tempo integrates with Loki and Prometheus to provide unified observability.</span><br />
-<br />
-<span>#### Traces-to-Logs</span><br />
-<br />
-<span>Click on any span in a trace to see related logs:</span><br />
-<br />
-<span>1. View trace in Grafana</span><br />
-<span>2. Click on a span</span><br />
-<span>3. Select "Logs for this span"</span><br />
-<span>4. Loki shows logs filtered by:</span><br />
-<span>   * Time range (span duration ± 1 hour)</span><br />
-<span>   * Service name</span><br />
-<span>   * Namespace</span><br />
-<span>   * Pod</span><br />
-<br />
-<span>This helps correlate what the service was doing when the span was created.</span><br />
-<br />
-<span>#### Traces-to-Metrics</span><br />
-<br />
-<span>View Prometheus metrics for services in the trace:</span><br />
-<br />
-<span>1. View trace in Grafana</span><br />
-<span>2. Select "Metrics" tab</span><br />
-<span>3. Shows metrics like:</span><br />
-<span>   * Request rate</span><br />
-<span>   * Error rate</span><br />
-<span>   * Duration percentiles</span><br />
-<br />
-<span>#### Logs-to-Traces</span><br />
-<br />
-<span>From logs, you can jump to related traces:</span><br />
-<br />
-<span>1. In Loki, logs that contain trace IDs are automatically linked</span><br />
-<span>2. Click the trace ID to view the full trace</span><br />
-<span>3. See the complete request flow</span><br />
-<br />
-<h3 style='display: inline' id='generating-traces-for-testing'>Generating Traces for Testing</h3><br />
-<br />
-<span>Test the demo application:</span><br />
-<br />
-<pre>
-curl http://tracing-demo.f3s.buetow.org/api/process
-</pre>
-<br />
-<span>Load test (generates 50 traces):</span><br />
-<br />
-<pre>
-cd /home/paul/git/conf/f3s/tracing-demo
-just load-test
-</pre>
-<br />
-<span>Each request creates a distributed trace spanning all three services.</span><br />
-<br />
-<h3 style='display: inline' id='verifying-the-complete-pipeline'>Verifying the Complete Pipeline</h3><br />
-<br />
-<span>Check the trace flow end-to-end:</span><br />
-<br />
-<span>**1. Application generates traces:**</span><br />
-<pre>
-kubectl logs -n services -l app=tracing-demo-frontend | grep -i trace
-</pre>
-<br />
-<span>**2. Alloy receives traces:**</span><br />
-<pre>
-kubectl logs -n monitoring -l app.kubernetes.io/name=alloy | grep -i otlp
-</pre>
-<br />
-<span>**3. Tempo stores traces:**</span><br />
-<pre>
-kubectl logs -n monitoring -l app.kubernetes.io/name=tempo | grep -i trace
-</pre>
-<br />
-<span>**4. Grafana displays traces:**</span><br />
-<span>Navigate to Explore → Tempo → Search for traces</span><br />
-<br />
-<h3 style='display: inline' id='practical-example-viewing-a-distributed-trace'>Practical Example: Viewing a Distributed Trace</h3><br />
-<br />
-<span>Let&#39;s generate a trace and examine it in Grafana.</span><br />
-<br />
-<span>**1. Generate a trace by calling the demo application:**</span><br />
-<br />
-<pre>
-curl -H "Host: tracing-demo.f3s.buetow.org" http://r0/api/process
-</pre>
-<br />
-<span>**Response (HTTP 200):**</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>{
-  "middleware_response": {
-    "backend_data": {
-      "data": {
-        "id": <font color="#000000">12345</font>,
-        "query_time_ms": <font color="#000000">100.0</font>,
-        "timestamp": "<font color="#808080">2025-12-28T18:35:01.064538</font>",
-        "value": "<font color="#808080">Sample data from backend service</font>"
-      },
-      "service": "<font color="#808080">backend</font>"
-    },
-    "middleware_processed": <b><u><font color="#000000">true</font></u></b>,
-    "original_data": {
-      "source": "<font color="#808080">GET request</font>"
-    },
-    "transformation_time_ms": <font color="#000000">50</font>
-  },
-  "request_data": {
-    "source": "<font color="#808080">GET request</font>"
-  },
-  "service": "<font color="#808080">frontend</font>",
-  "status": "<font color="#808080">success</font>"
-}
-</pre>
-<br />
-<span>**2. Find the trace in Tempo via API:**</span><br />
-<br />
-<span>After a few seconds (for batch export), search for recent traces:</span><br />
-<br />
-<pre>
-kubectl exec -n monitoring tempo-0 -- wget -qO- \
-  &#39;http://localhost:3200/api/search?tags=service.namespace%3Dtracing-demo&amp;limit=5&#39; 2&gt;/dev/null | \
-  python3 -m json.tool
-</pre>
-<br />
-<span>Returns traces including:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre>{
-  "traceID": "<font color="#808080">4be1151c0bdcd5625ac7e02b98d95bd5</font>",
-  "rootServiceName": "<font color="#808080">frontend</font>",
-  "rootTraceName": "<font color="#808080">GET /api/process</font>",
-  "durationMs": <font color="#000000">221</font>
-}
-</pre>
-<br />
-<span>**3. Fetch complete trace details:**</span><br />
-<br />
-<pre>
-kubectl exec -n monitoring tempo-0 -- wget -qO- \
-  &#39;http://localhost:3200/api/traces/4be1151c0bdcd5625ac7e02b98d95bd5&#39; 2&gt;/dev/null | \
-  python3 -m json.tool
-</pre>
-<br />
-<span>**Trace structure (8 spans across 3 services):**</span><br />
-<br />
-<pre>
-Trace ID: 4be1151c0bdcd5625ac7e02b98d95bd5
-Services: 3 (frontend, middleware, backend)
-
-Service: frontend
-  └─ GET /api/process                 221.10ms  (HTTP server span)
-  └─ frontend-process                 216.23ms  (custom business logic span)
-  └─ POST                             209.97ms  (HTTP client span to middleware)
-
-Service: middleware
-  └─ POST /api/transform              186.02ms  (HTTP server span)
-  └─ middleware-transform             180.96ms  (custom business logic span)
-  └─ GET                              127.52ms  (HTTP client span to backend)
-
-Service: backend
-  └─ GET /api/data                    103.93ms  (HTTP server span)
-  └─ backend-get-data                 102.11ms  (custom business logic span with 100ms sleep)
-</pre>
-<br />
-<span>**4. View the trace in Grafana UI:**</span><br />
-<br />
-<span>Navigate to: Grafana → Explore → Tempo datasource</span><br />
-<br />
-<span>Search using TraceQL:</span><br />
-<pre>
-{ resource.service.namespace = "tracing-demo" }
-</pre>
-<br />
-<span>Or directly open the trace by pasting the trace ID in the search box:</span><br />
-<pre>
-4be1151c0bdcd5625ac7e02b98d95bd5
-</pre>
-<br />
-<span>**5. Trace visualization:**</span><br />
-<br />
-<span>The trace waterfall view in Grafana shows the complete request flow with timing:</span><br />
-<br />
-<a href='./f3s-kubernetes-with-freebsd-part-8/grafana-tempo-trace.png'><img alt='Distributed trace visualization in Grafana Tempo showing Frontend → Middleware → Backend spans' title='Distributed trace visualization in Grafana Tempo showing Frontend → Middleware → Backend spans' src='./f3s-kubernetes-with-freebsd-part-8/grafana-tempo-trace.png' /></a><br />
-<br />
-<span>For additional examples of Tempo trace visualization, see also:</span><br />
-<br />
-<a class='textlink' href='https://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon (more Grafana Tempo screenshots)</a><br />
-<br />
-<span>The trace reveals the distributed request flow:</span><br />
-<br />
-<ul>
-<li>Frontend (221ms): Receives GET /api/process, executes business logic, calls middleware</li>
-<li>Middleware (186ms): Receives POST /api/transform, transforms data, calls backend</li>
-<li>Backend (104ms): Receives GET /api/data, simulates database query with 100ms sleep</li>
-<li>Total request time: 221ms end-to-end</li>
-<li>Span propagation: W3C Trace Context headers automatically link all spans</li>
-</ul><br />
-<span>**6. Service graph visualization:**</span><br />
-<br />
-<span>The service graph is automatically generated from traces and shows service dependencies. For examples of service graph visualization in Grafana, see the screenshots in the X-RAG Observability Hackathon blog post.</span><br />
-<br />
-<a class='textlink' href='./2025-12-24-x-rag-observability-hackathon.html'>X-RAG Observability Hackathon (includes service graph screenshots)</a><br />
-<br />
-<span>This visualization helps identify:</span><br />
-<br />
-<ul>
-<li>Request rates between services</li>
-<li>Average latency for each hop</li>
-<li>Error rates (if any)</li>
-<li>Service dependencies and communication patterns</li>
-</ul><br />
-<h3 style='display: inline' id='storage-and-retention'>Storage and Retention</h3><br />
-<br />
-<span>Monitor Tempo storage usage:</span><br />
-<br />
-<pre>
-kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
-</pre>
-<br />
-<span>With 10Gi storage and 7-day retention, the system handles moderate trace volumes. If storage fills up:</span><br />
-<br />
-<ul>
-<li>Reduce retention to 72h (3 days)</li>
-<li>Implement sampling in Alloy</li>
-<li>Increase PV size</li>
-</ul><br />
-<h3 style='display: inline' id='configuration-files'>Configuration Files</h3><br />
-<br />
-<span>All configuration files are available on Codeberg:</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tempo'>Tempo configuration</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>Alloy configuration (updated for traces)</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tracing-demo'>Demo tracing application</a><br />
-<br />
 <h2 style='display: inline' id='summary'>Summary</h2><br />
 <br />
-<span>With Prometheus, Grafana, Loki, Alloy, and Tempo deployed, I now have complete visibility into the k3s cluster, the FreeBSD storage servers, and the OpenBSD edge relays:</span><br />
+<span>With Prometheus, Grafana, Loki, and Alloy deployed, I now have visibility into the k3s cluster, the FreeBSD storage servers, and the OpenBSD edge relays:</span><br />
 <br />
 <ul>
 <li>Metrics: Prometheus collects and stores time-series data from all components, including etcd and ZFS</li>
 <li>Logs: Loki aggregates logs from all containers, searchable via Grafana</li>
-<li>Traces: Tempo provides distributed request tracing with service dependency mapping</li>
-<li>Visualisation: Grafana provides dashboards and exploration tools with correlation between all three signals</li>
+<li>Visualisation: Grafana provides dashboards and exploration tools</li>
 <li>Alerting: Alertmanager can notify on conditions defined in Prometheus rules</li>
 </ul><br />
-<span>This observability stack runs entirely on the home lab infrastructure, with data persisted to the NFS share. It&#39;s lightweight enough for a three-node cluster but provides the same capabilities as production-grade setups.</span><br />
+<span>The next part covers the final pillar of observability: distributed tracing with Grafana Tempo.</span><br />
+<br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>Part 8b: Distributed Tracing with Tempo</a><br />
 <br />
 <span>All configuration files are available on Codeberg:</span><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>Prometheus, Grafana, and recording rules configuration</a><br />
 <a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>Loki and Alloy configuration</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tempo'>Tempo configuration</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tracing-demo'>Demo tracing application</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
@@ -7895,6 +7755,7 @@ p hash.values_at(:a, :c)
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
@@ -9364,6 +9225,7 @@ replicaset.apps/miniflux-server-85d7c64664     1         1         1       54d
 <span>Other *BSD-related posts:</span><br />
 <br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
@@ -10671,6 +10533,7 @@ content = "{CODE}"
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
@@ -12827,6 +12690,7 @@ http://www.gnu.org/software/src-highlite -->
 <span>Other *BSD-related posts:</span><br />
 <br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage (You are currently reading this)</a><br />
@@ -13901,6 +13765,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
@@ -15448,6 +15313,7 @@ earth$ curl https://ifconfig.me  <i><font color="silver"># Should show gateway's
 <span>Other *BSD-related posts:</span><br />
 <br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
@@ -16041,6 +15907,7 @@ __ejm\___/________dwb`---`______________________
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
@@ -16733,6 +16600,7 @@ etcd_disk_wal_fsync_duration_seconds_bucket{le="0.004"} 408
 <span>Other *BSD-related posts:</span><br />
 <br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
@@ -17458,6 +17326,7 @@ This is perl, v5.<font color="#000000">8.8</font> built <b><u><font color="#0000
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
@@ -17855,6 +17724,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <span>Other BSD related posts are:</span><br />
 <br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
@@ -18490,6 +18360,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
@@ -18979,6 +18850,7 @@ Waking up e8:ff:1e:d7:1c:a0...
 <span>Other *BSD-related posts:</span><br />
 <br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
@@ -19029,6 +18901,7 @@ Waking up e8:ff:1e:d7:1c:a0...
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
@@ -19182,6 +19055,7 @@ Waking up e8:ff:1e:d7:1c:a0...
 <span>Other *BSD-related posts:</span><br />
 <br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
 <a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
@@ -19674,257 +19548,6 @@ jgs \\`_..---.Y.---.._`//
 <a class='textlink' href='https://libro.fm'>https://libro.fm</a><br />
 <br />
 <span>E-mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Typing `127.1` words per minute (`>100wpm average`)</title>
-        <link href="gemini://foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute.gmi" />
-        <id>gemini://foo.zone/gemfeed/2024-08-05-typing-127.1-words-per-minute.gmi</id>
-        <updated>2024-08-05T17:39:30+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='typing-1271-words-per-minute-100wpm-average'>Typing <span class='inlinecode'>127.1</span> words per minute (<span class='inlinecode'>&gt;100wpm average</span>)</h1><br />
-<br />
-<span class='quote'>Published at 2024-08-05T17:39:30+03:00; Updated at 2025-02-22</span><br />
-<br />
-<pre>
-,---,---,---,---,---,---,---,---,---,---,---,---,---,-------,
-|1/2| 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0 | + | &#39; | &lt;-    |
-|---&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-----|
-| -&gt;| | Q | W | E | R | T | Y | U | I | O | P | ] | ^ |     |
-|-----&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;,--&#39;|    |
-| Caps | A | S | D | F | G | H | J | K | L | \ | [ | * |    |
-|----,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;-,-&#39;---&#39;----|
-|    | &lt; | Z | X | C | V | B | N | M | , | . | - |          |
-|----&#39;-,-&#39;,--&#39;--,&#39;---&#39;---&#39;---&#39;---&#39;---&#39;---&#39;-,-&#39;---&#39;,--,------|
-| ctrl |  | alt |                          |altgr |  | ctrl |
-&#39;------&#39;  &#39;-----&#39;--------------------------&#39;------&#39;  &#39;------&#39;
-      Nieminen Mika	
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#typing-1271-words-per-minute-100wpm-average'>Typing <span class='inlinecode'>127.1</span> words per minute (<span class='inlinecode'>&gt;100wpm average</span>)</a></li>
-<li>⇢ <a href='#introduction'>Introduction</a></li>
-<li>⇢ <a href='#kinesis-review'>Kinesis review</a></li>
-<li>⇢ ⇢ <a href='#top-build-quality'>Top build quality</a></li>
-<li>⇢ ⇢ <a href='#bluetooth-connectivity'>Bluetooth connectivity</a></li>
-<li>⇢ ⇢ <a href='#gateron-brown-key-switches'>Gateron Brown key switches</a></li>
-<li>⇢ ⇢ <a href='#keycaps'>Keycaps</a></li>
-<li>⇢ ⇢ <a href='#keymap-editor'>Keymap editor</a></li>
-<li>⇢ <a href='#first-steps'>First steps</a></li>
-<li>⇢ <a href='#considering-alternate-layouts'>Considering alternate layouts</a></li>
-<li>⇢ <a href='#training-how-to-type'>Training how to type</a></li>
-<li>⇢ ⇢ <a href='#tools'>Tools</a></li>
-<li>⇢ <a href='#my-keybrcom-statistics'>My <span class='inlinecode'>keybr.com</span> statistics</a></li>
-<li>⇢ <a href='#tips-and-tricks'>Tips and tricks</a></li>
-<li>⇢ ⇢ <a href='#relax'>Relax</a></li>
-<li>⇢ ⇢ <a href='#focus-on-accuracy-first'>Focus on accuracy first</a></li>
-<li>⇢ ⇢ <a href='#chording'>Chording</a></li>
-<li>⇢ ⇢ <a href='#punctuation-and-capitalization'>Punctuation and Capitalization</a></li>
-<li>⇢ ⇢ <a href='#reverse-shifting'>Reverse shifting</a></li>
-<li>⇢ ⇢ <a href='#enter-the-flow-state'>Enter the flow state</a></li>
-<li>⇢ ⇢ <a href='#repeat-every-word'>Repeat every word</a></li>
-<li>⇢ ⇢ <a href='#don-t-use-the-same-finger-for-two-consecutive-keystrokes'>Don&#39;t use the same finger for two consecutive keystrokes</a></li>
-<li>⇢ ⇢ <a href='#warm-up'>Warm-up</a></li>
-<li>⇢ <a href='#travel-keyboard'>Travel keyboard</a></li>
-<li>⇢ <a href='#upcoming-custom-kinesis-build'>Upcoming custom Kinesis build</a></li>
-<li>⇢ <a href='#conclusion'>Conclusion</a></li>
-</ul><br />
-<h2 style='display: inline' id='introduction'>Introduction</h2><br />
-<br />
-<span>After work one day, I noticed some discomfort in my right wrist. Upon research, it appeared to be a mild case of Repetitive Strain Injury (RSI). Initially, I thought that this would go away after a while, but after a week it became even worse. This led me to consider potential causes such as poor posture or keyboard use habits. As an enthusiast of keyboards, I experimented with ergonomic concave ortholinear split keyboards. Wait, what?...</span><br />
-<br />
-<ul>
-<li>Concave: Some fingers are longer than others. A concave keyboard makes it so that the keycaps meant to be pressed by the longer fingers are further down (e.g., left middle finger for <span class='inlinecode'>e</span> on a Qwerty layout), and keycaps meant to be pressed by shorter fingers are further up (e.g., right pinky finger for the letter <span class='inlinecode'>p</span>).</li>
-<li>Ortholinear: The keys are arranged in a straight vertical line, unlike most conventional keyboards. The conventional keyboards still resemble the old typewriters, where the placement of the keys was optimized so that the typewriter would not jam. There is no such requirement anymore.</li>
-<li>Split: The keyboard is split into two halves (left and right), allowing one to place either hand where it is most ergonomic.</li>
-</ul><br />
-<span>After discovering ThePrimagen (I found him long ago, but I never bothered buying the same keyboard he is on) on YouTube and reading/watching a couple of reviews, I thought that as a computer professional, the equipment could be expensive anyway (laptop, adjustable desk, comfortable chair), so why not invest a bit more into the keyboard? I purchased myself the Kinesis Advantage360 Professional keyboard. </span><br />
-<br />
-<h2 style='display: inline' id='kinesis-review'>Kinesis review</h2><br />
-<br />
-<span>For an in-depth review, have a look at this great article:</span><br />
-<br />
-<a class='textlink' href='https://arslan.io/2022/10/22/review-of-the-kinesis-advantage360-professional'>Review of the Kinesis Advantage360 Professional keyboard</a><br />
-<br />
-<h3 style='display: inline' id='top-build-quality'>Top build quality</h3><br />
-<br />
-<span>Overall, the keyboard feels excellent quality and robust. It has got some weight to it. Because of that, it is not ideally suited for travel, though. But I have a different keyboard to solve this (see later in this post). Overall, I love how it is built and how it feels.</span><br />
-<br />
-<a href='./typing-127.1-words-per-minute/kinesis2.jpg'><img alt='Kinesis Adv.360 Pro at home' title='Kinesis Adv.360 Pro at home' src='./typing-127.1-words-per-minute/kinesis2.jpg' /></a><br />
-<br />
-<h3 style='display: inline' id='bluetooth-connectivity'>Bluetooth connectivity</h3><br />
-<br />
-<span>Despite encountering concerns about Bluetooth connectivity issues with the Kinesis keyboard during my research, I purchased one anyway as I intended to use it only via USB. However, I discovered that the firmware updates available afterwards had addressed these reported Bluetooth issues, and as a result, I did not experience any difficulties with the Bluetooth functionality. This positive outcome allowed me to enjoy using the keyboard also wirelessly.</span><br />
-<br />
-<h3 style='display: inline' id='gateron-brown-key-switches'>Gateron Brown key switches</h3><br />
-<br />
-<span>Many voices on the internet seem to dislike the Gateron Brown switches, the only official choice for non-clicky tactile switches in the Kinesis, so I was also a bit concerned. I almost went with Cherry MX Browns for my Kinesis (a custom build from a 3rd party provider that is partnershipping with Kinesis). Still, I decided on Gateron Browns to try different switches than the Cherry MX Browns I already have on my ZSA Moonlander keyboard (another ortho-linear split keyboard, but without a concave keycap layout). </span><br />
-<br />
-<span>At first, I was disappointed by the Gaterons, as they initially felt a bit meshy compared to the Cherries. Still, over the weeks I grew to prefer them because of their smoothness. Over time, the tactile bumps also became more noticeable (as my perception of them improved). Because of their less pronounced tactile feedback, the Gaterons are less tiring for long typing sessions and better suited for a relaxed typing experience.</span><br />
-<br />
-<span>So, the Cherry MX feel sharper but are more tiring in the long run, and the Gaterons are easier to write on and the tactile Feedback is slightly less pronounced. </span><br />
-<br />
-<h3 style='display: inline' id='keycaps'>Keycaps</h3><br />
-<br />
-<span>If you ever purchase a Kinesis keyboard, go with the PCB keycaps. They upgrade the typing experience a lot. The only thing you will lose is that the backlighting won&#39;t shine through them. But that is a reasonable tradeoff. When do I need backlighting? I am supposed to look at the screen and not the keyboard while typing. </span><br />
-<br />
-<span>I went with the blank keycaps, by the way.</span><br />
-<br />
-<a href='./typing-127.1-words-per-minute/kinesis1.jpg'><img alt='Kinesis Adv.360 Pro at home' title='Kinesis Adv.360 Pro at home' src='./typing-127.1-words-per-minute/kinesis1.jpg' /></a><br />
-<br />
-<h3 style='display: inline' id='keymap-editor'>Keymap editor</h3><br />
-<br />
-<span>There is no official keymap editor. You have to edit a configuration file manually, build the firmware from scratch, and upload the firmware with the new keymap to both keyboard halves. The Professional version of his keyboard, by the way, runs on the ZMK open-source firmware.</span><br />
-<br />
-<span>Many users find the need for an easy-to-use keymap editor an issue. But this is the Pro model. You can also go with the non-Pro, which runs on non-open-source firmware and has no Bluetooth (it must be operated entirely on USB).</span><br />
-<br />
-<span>There is a 3rd party solution which is supposed to configure the keymap for the Professional model as bliss, but I have never used it. As a part-time programmer and full-time Site Reliability Engineer, I am okay configuring the keymap in my text editor and building it in a local docker container. This is one of the standard ways of doing it here. You could also use a GitHub pipeline for the firmware build, but I prefer building it locally on my machine. This all seems natural to me, but this may be an issue for "the average Joe" user.</span><br />
-<br />
-<h2 style='display: inline' id='first-steps'>First steps</h2><br />
-<br />
-<span>I didn&#39;t measure the usual words per minute (wpm) on my previous keyboard, the ZSA Moonlander, but I guess that it was around 40-50wpm. Once the Kinesis arrived, I started practising. The experience was quite different due to the concave keycaps, so I barely managed 10wpm on the first day.</span><br />
-<br />
-<span>I quickly noticed that I could not continue using the freestyle 6-finger typing system I was used to on my Moonlander or any previous keyboards I worked with. I learned ten-finger touch typing from scratch to be more efficient with the Kinesis keyboard. The keyboard forces you to embrace touch typing.</span><br />
-<br />
-<span>Sometimes, there were brain farts, and I couldn&#39;t type at all. The trick was not to freak out about it, but to move on. If your average goes down a bit for a day, it doesn&#39;t matter; the long-term trend over several days and weeks matters, not the one-off wpm high score.</span><br />
-<br />
-<span>Although my wrist pain seemed to go away aftre the first week of using the Kinesis, my fingers became tired of adjusting to the new way of typing. My hands were stiff, as if I had been training for the Olympics. Only after three weeks did I start to feel comfortable with it. If it weren&#39;t for the comments I read online, I would have sent it back after week 2.</span><br />
-<br />
-<span>I also had a problem with the left pinky finger, where I could not comfortably reach the <span class='inlinecode'>p</span> key. This involved moving the whole hand. An easy fix was to swap <span class='inlinecode'>p</span> with <span class='inlinecode'>;</span> on the keyboard layout.</span><br />
-<br />
-<h2 style='display: inline' id='considering-alternate-layouts'>Considering alternate layouts</h2><br />
-<br />
-<span>As I was going to learn 10-finger touch typing from scratch, I also played with the thought of switching from the Qwerty to the Dvorak or Colemak keymap, but after reading some comments on the internet, I decided against it: </span><br />
-<br />
-<ul>
-<li>These layouts (Dvorak and Colemak) will minimize the finger travel for the most commonly used English words, but they necessarily don&#39;t give you a better wpm score. </li>
-<li>One comment on Redit also mentioned that getting stiffer fingers with these layouts is more likely than with Qwerty, as in Qwerty, he had to stretch out his fingers more often, which helps here.</li>
-<li>There are also many applications and websites with keyboard shortcuts and are Qwerty-optimized.</li>
-<li>You won&#39;t be able to use someone else&#39;s computer as there will be likely Qwerty. Some report that after using an alternative layout for a while, they forget how to use Qwerty.</li>
-</ul><br />
-<h2 style='display: inline' id='training-how-to-type'>Training how to type</h2><br />
-<br />
-<h3 style='display: inline' id='tools'>Tools</h3><br />
-<br />
-<span>One of the most influential tools in my touch typing journey has been <span class='inlinecode'>keybr.com</span>. This site/app helped me learn 10-finger touch typing, and I practice daily for 30 minutes (in the first two weeks, up to an hour every day). The key is persistence and focus on technique rather than speed; the latter naturally improves with regular practice. Precision matters, too, so I always correct my errors using the backspace key.</span><br />
-<br />
-<a class='textlink' href='https://keybr.com'>https://keybr.com</a><br />
-<br />
-<span>I also used a command-line tool called <span class='inlinecode'>tt</span>, which is written in Go. It has a feature that I found very helpful: the ability to practice typing by piping custom text into it. Additionally, I appreciated its customization options, such as choosing a colour theme and specifying how statistics are displayed.</span><br />
-<br />
-<a class='textlink' href='https://github.com/lemnos/tt'>https://github.com/lemnos/tt</a><br />
-<br />
-<span>I wrote myself a small Ruby script that would randomly select a paragraph from one of my eBooks or book notes and pipe it to <span class='inlinecode'>tt</span>. This helped me remember some of the books I read and also practice touch typing.</span><br />
-<br />
-<h2 style='display: inline' id='my-keybrcom-statistics'>My <span class='inlinecode'>keybr.com</span> statistics</h2><br />
-<br />
-<span>Overall, I trained for around 4 months in more than 5,000 sessions. My top speed in a session was 127.1wpm (up from barely 10wpm at the beginning).</span><br />
-<br />
-<a href='./typing-127.1-words-per-minute/all-time-stats.png'><img alt='All time stats' title='All time stats' src='./typing-127.1-words-per-minute/all-time-stats.png' /></a><br />
-<br />
-<span>My overall average speed over those 5,000 sessions was 80wpm. The average speed over the last week was over 100wpm. The green line represents the wpm average (increasing trend), the purple line represents the number of keys in the practices (not much movement there, as all keys are unlocked), and the red line represents the average typing accuracy.</span><br />
-<br />
-<a href='./typing-127.1-words-per-minute/typing-speed-over-lessons.png'><img alt='Typing speed over leson' title='Typing speed over leson' src='./typing-127.1-words-per-minute/typing-speed-over-lessons.png' /></a><br />
-<br />
-<span>Around the middle, you see a break-in of the wpm average value. This was where I swapped the <span class='inlinecode'>p</span> and <span class='inlinecode'>;</span> keys, but after some retraining, I came back to the previous level and beyond.</span><br />
-<br />
-<h2 style='display: inline' id='tips-and-tricks'>Tips and tricks</h2><br />
-<br />
-<span>These are some tips and tricks I learned along the way to improve my typing speed:</span><br />
-<br />
-<h3 style='display: inline' id='relax'>Relax</h3><br />
-<br />
-<span>It&#39;s easy to get cramped when trying to hit this new wpm mark, but this is just holding you back. Relax and type at a natural pace. Now I also understand why my Katate Sensei back in London kept screaming "RELAAAX" at me during practice.... It didn&#39;t help much back then, though, as it is difficult to relax while someone screams at you! </span><br />
-<br />
-<h3 style='display: inline' id='focus-on-accuracy-first'>Focus on accuracy first</h3><br />
-<br />
-<span>This goes with the previous point. Instead of trying to speed through sessions as quickly as possible, slow down and try to type the words correctly—so don&#39;t rush it. If you aren&#39;t fast yet, the reason is that your brain hasn&#39;t trained enough. It will come over time, and you will be faster.</span><br />
-<br />
-<h3 style='display: inline' id='chording'>Chording</h3><br />
-<br />
-<span>A trick to getting faster is to type by word and pause between each word so you learn the words by chords. From 80wpm and beyond, this makes a real difference. </span><br />
-<br />
-<h3 style='display: inline' id='punctuation-and-capitalization'>Punctuation and Capitalization</h3><br />
-<br />
-<span>I included 10% punctuation and 20% capital letters in my <span class='inlinecode'>keybr.com</span> practice sessions to simulate real typing conditions, which improved my overall working efficiency. I guess I would have gone to 120wpm in average if I didn&#39;t include this options...</span><br />
-<br />
-<h3 style='display: inline' id='reverse-shifting'>Reverse shifting</h3><br />
-<br />
-<span>Reverse shifting aka left-right shifting is to... </span><br />
-<br />
-<ul>
-<li>...use the left shift key for letters on the right keyboard side.</li>
-<li>...use the right shift key for letters on the left keyboard side.</li>
-</ul><br />
-<span>This makes using the shift key a blaze.</span><br />
-<br />
-<h3 style='display: inline' id='enter-the-flow-state'>Enter the flow state</h3><br />
-<br />
-<span>Listening to music helps me enter a flow state during practice sessions, which makes typing training a bit addictive (which is good, or isn&#39;t it?).</span><br />
-<br />
-<h3 style='display: inline' id='repeat-every-word'>Repeat every word</h3><br />
-<br />
-<span>There&#39;s a setting on <span class='inlinecode'>keybr.com</span> that makes it so that every word is always repeated, having you type every word twice in a row. I liked this feature very much, and I think it also helped to improve my practice.</span><br />
-<br />
-<h3 style='display: inline' id='don-t-use-the-same-finger-for-two-consecutive-keystrokes'>Don&#39;t use the same finger for two consecutive keystrokes</h3><br />
-<br />
-<span>Apparently, if you want to type fast, avoid using the same finger for two consecutive keystrokes. This means you don&#39;t always need to use the same finger for the same keys. </span><br />
-<span>However, there are no hard and fast rules. Thus, everyone develops their system for typing word combinations. An exception would be if you are typing the very same letter in a row (e.g., t in letter)—here, you are using the same finger for both ts.</span><br />
-<br />
-<h3 style='display: inline' id='warm-up'>Warm-up</h3><br />
-<br />
-<span>You can&#39;t reach your average typing speed first ting the morning. It would help if you warmed up before the exercise or practice later during the day. Also, some days are good, others not so, e.g., after a bad night&#39;s sleep. What matters is the mid- and long-term trend, not the fluctuations here, though.</span><br />
-<br />
-<h2 style='display: inline' id='travel-keyboard'>Travel keyboard</h2><br />
-<br />
-<span>As mentioned, the Kinesis is a great keyboard, but it is not meant for travel.</span><br />
-<br />
-<span>I guess keyboards will always be my expensive hobby, so I also purchased another ergonomic, ortho-linear, concave split keyboard, the Glove80 (with the Red Pro low-profile switches). This keyboard is much lighter and, in my opinion, much better suited for travel than the Kinesis. It also comes with a great travel case. </span><br />
-<br />
-<span>Here is a photo of me using it with my Surface Go 2 (it runs Linux, by the way) while waiting for the baggage drop at the airport:</span><br />
-<br />
-<a href='./typing-127.1-words-per-minute/glove80.jpg'><img alt='Traveling with the Glove80 using my Surface Go 2' title='Traveling with the Glove80 using my Surface Go 2' src='./typing-127.1-words-per-minute/glove80.jpg' /></a><br />
-<br />
-<span>For everyday work, I prefer the tactile Browns on the Kinesis over the Red Pro I have on the Glove80 (normal profile vs. low profile). The Kinesis feels much more premium, whereas the Glove80 is much lighter and easier to store away in a rucksack (the official travel case is a bit bulky, so I wrapped it simply in bubble plastic).</span><br />
-<br />
-<span>The F-key row is odd at the Glove80. I would have preferred more keys on the sides like the Kinesis, and I use them for <span class='inlinecode'>[]</span> <span class='inlinecode'>{}</span> <span class='inlinecode'>()</span>, which is pretty handy there. However, I like the thumb cluster of the Glove80 more than the one on the Kinesis.</span><br />
-<br />
-<span>The good thing is that I can switch between both keyboards instantly without retraining my typing memories. I&#39;ve configured (as much as possible) the same keymaps on both my Kinesis and Glove80, making it easy to switch between them at any occasion. </span><br />
-<br />
-<span>Interested in the Glove80? I suggest also reading this review:</span><br />
-<br />
-<a class='textlink' href='https://arslan.io/2024/04/22/review-of-the-moergo-glove80-keyboard/'>Review of the Glove80 keyboard</a><br />
-<br />
-<h2 style='display: inline' id='upcoming-custom-kinesis-build'>Upcoming custom Kinesis build</h2><br />
-<br />
-<span>As I mentioned, keyboards will remain an expensive hobby of mine. I don&#39;t regret anything here, though. After all, I use keyboards at my day job. I&#39;ve ordered a Kinesis custom build with the Gateron Kangaroo switches, and I&#39;m excited to see how that compares to my current setup. I&#39;m still deciding whether to keep my Gateron Brown-equipped Kinesis as a secondary keyboard or possibly leave it at my in-laws for use when visiting or to sell it.</span><br />
-<br />
-<span class='quote'>Update 2025-02-22: I&#39;ve received my custom Kinesis Adv. 360 build with the Gateron Baby Kangaroo key switches. I am absolutely in love! I will keep my Gateron Brown version around, though.</span><br />
-<br />
-<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
-<br />
-<span>When I traveled with the Glove80 for work to the London office, a colleague stared at my keyboard and made jokes that it might be broken (split into two halves). But other than that... </span><br />
-<br />
-<span>Ten-finger touch typing has improved my efficiency and has become a rewarding discipline. Whether it&#39;s the keyboards I use, the tools I practice with, or the techniques I&#39;ve adopted, each step has been a learning experience. I hope sharing my journey provides valuable insights and inspiration for anyone looking to improve their touch typing skills.</span><br />
-<br />
-<span>I also accidentally started using a 10-finger-like system (maybe still 6 fingers, but better than before) on my regular laptop keyboard. I could be more efficient on the laptop keyboard. The form is different there (not ortholinear, not concave keycaps, etc.), but my typing has improved there too (even if it is only by a little bit).</span><br />
-<br />
-<span>I don&#39;t want to return to a non-concave keyboard as my default. I will use other keyboards still once in a while but only for short periods or when I have to (e.g. travelling with my Laptop and when there is no space to put an external keyboard)</span><br />
-<br />
-<span>Learning to touch type has been an eye-opening experience for me, not just for work but also for personal projects. Now, writing documentation is so much fun; who could believe that? Furthermore, working with Slack (communicating with colleagues) is more fun now as well.</span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
