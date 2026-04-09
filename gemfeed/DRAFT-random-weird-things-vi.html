@@ -1,0 +1,168 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Random Weird Things - Part Ⅳ</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-random-weird-things-vi.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-random-weird-things-vi.gmi">Gemini</a> | <a href="https://snonux.foo">snonux.foo</a>
+</p>
+<h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅳ</h1><br />
+<br />
+<span>Every so often I stumble upon random, weird, and completely unexpected things on the internet. I thought it would be neat to share them here from time to time. This is the fourth run.</span><br />
+<br />
+<pre>
+   /\_/\      /\_/\      /\_/\  
+  ( o.o )    ( o.o )    ( o.o ) 
+   &gt; ^ &lt;      &gt; ^ &lt;      &gt; ^ &lt;  
+   /\_/\    Miaaauuuu....
+  ( o.o )
+   &gt; ^ &lt; 
+</pre>
+<br />
+<a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ</a><br />
+<a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ</a><br />
+<a class='textlink' href='./2025-08-15-random-weird-things-iii.html'>2025-08-15 Random Weird Things - Part Ⅲ</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#random-weird-things---part-'>Random Weird Things - Part Ⅳ</a></li>
+<li>⇢ <a href='#31-gui-apps-in-your-terminal'>31. GUI Apps in Your Terminal</a></li>
+<li>⇢ <a href='#32-templeos'>32. TempleOS</a></li>
+<li>⇢ <a href='#33-llm-via-dns'>33. LLM via DNS</a></li>
+<li>⇢ <a href='#34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</a></li>
+<li>⇢ <a href='#35-loss32-win32-on-linux'>35. loss32: Win32 on Linux</a></li>
+<li>⇢ <a href='#36-llm-rescuer-'>36. LLM Rescuer 🤖💰</a></li>
+<li>⇢ <a href='#37-filesystem-backed-by-an-llm'>37. Filesystem Backed by an LLM</a></li>
+<li>⇢ <a href='#38-qr-code-with-pure-sql-in-postgres'>38. QR Code with Pure SQL in Postgres</a></li>
+<li>⇢ <a href='#39-the-sl-train-in-your-terminal'>39. The SL Train in Your Terminal</a></li>
+<li>⇢ <a href='#40-url-in-c-code-puzzle'>40. URL in C Code Puzzle</a></li>
+</ul><br />
+<h2 style='display: inline' id='31-gui-apps-in-your-terminal'>31. GUI Apps in Your Terminal</h2><br />
+<br />
+<span>term.everything is a from-scratch Wayland compositor that renders GUI apps inside your terminal. GTK, Qt, whatever — it just grabs it and draws it right there. You can run Firefox or GIMP over SSH and interact with it using your mouse. No X forwarding, no latency nonsense. It actually works.</span><br />
+<br />
+<a href='./random-weird-things-iv/term-everything.jpg'><img alt='term.everything demo' title='term.everything demo' src='./random-weird-things-iv/term-everything.jpg' /></a><br />
+<a class='textlink' href='https://github.com/mmulet/term.everything'>term.everything</a><br />
+<br />
+<h2 style='display: inline' id='32-templeos'>32. TempleOS</h2><br />
+<br />
+<span>Terry A. Davis spent years single-handedly building a complete 64-bit operating system from scratch because God told him to. It runs at 640×480, uses a custom language called HolyC, has its own compiler, and is designed as a temple. Boot it up and you get scripture, a talking parrot, and probably the weirdest OS you&#39;ll ever see. One of the most fascinating stories in computing.</span><br />
+<br />
+<a href='./random-weird-things-iv/templeos.png'><img alt='TempleOS screenshot' title='TempleOS screenshot' src='./random-weird-things-iv/templeos.png' /></a><br />
+<a class='textlink' href='https://templeos.org'>TempleOS</a><br />
+<br />
+<h2 style='display: inline' id='33-llm-via-dns'>33. LLM via DNS</h2><br />
+<br />
+<span>You can query an LLM using nothing but DNS. Just run <span class='inlinecode'>dig @ch.at "what is golang" TXT +short</span> and you get back an answer in the TXT records. No browser, no API key. It even works over SSH tunnels. I tried it on a server with zero internet tools installed and it just worked.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ dig @ch.at <font color="#808080">"what is golang"</font> TXT +short
+<font color="#808080">"Golang, or Go, is an open-source programming language developed by Google.</font>
+<font color="#808080">It was created to simplify the development of reliable and efficient software.</font>
+<font color="#808080">Go is known for its simplicity, strong concurrency support, and performance</font>
+<font color="#808080">comparable to C or C++. I"</font> <font color="#808080">"t features garbage collection, type safety, and</font>
+<font color="#808080">built-in support for concurrent programming through goroutines and channels.</font>
+<font color="#808080">Go is widely used for web servers, cloud services, and distributed systems due</font>
+<font color="#808080">to its efficiency and ease of deployme..."</font>
+</pre>
+<br />
+<h2 style='display: inline' id='34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</h2><br />
+<br />
+<span>This tiny HTML/JS snippet (under 125 bytes) renders a swirling black hole in your browser tab. No frameworks, no libraries, just code-golf magic. I stared at it way longer than I care to admit.</span><br />
+<br />
+<a class='textlink' href='https://aem1k.com/blackhole/'>Black Hole</a><br />
+<br />
+<h2 style='display: inline' id='35-loss32-win32-on-linux'>35. loss32: Win32 on Linux</h2><br />
+<br />
+<span>loss32 is a Linux distro where the entire desktop is classic Win32 apps running natively. ReactOS + WINE on steroids. You get the Windows 98/2000 vibe on a modern Linux kernel. It&#39;s not trying to be practical — it&#39;s pure nostalgia for people who miss the old Windows desktop but don&#39;t want the actual Windows.</span><br />
+<br />
+<a href='./random-weird-things-iv/loss32.png'><img alt='loss32 desktop screenshot' title='loss32 desktop screenshot' src='./random-weird-things-iv/loss32.png' /></a><br />
+<a class='textlink' href='https://loss32.org/'>loss32</a><br />
+<br />
+<h2 style='display: inline' id='36-llm-rescuer-'>36. LLM Rescuer 🤖💰</h2><br />
+<br />
+<span>LLM Rescuer is a tiny Ruby wrapper that retries, sanitizes outputs, handles errors, and has some token-saving logic so you don&#39;t burn through your budget. It interprets nil references automatically based on the context. Examples:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Classic nil safety</font></i>
+user = find_user(id: <font color="#808080">"nonexistent"</font>) <i><font color="silver"># returns nil</font></i>
+puts user.email
+<i><font color="silver"># AI: "Analyzing context... user seems to need an email...</font></i>
+<i><font color="silver">#      returning 'no-reply@example.com'"</font></i>
+
+<i><font color="silver"># Shopping cart magic</font></i>
+cart = session[:cart] <i><font color="silver"># nil because session expired</font></i>
+total = cart.total_price
+<i><font color="silver"># AI: "This looks like e-commerce. Based on similar patterns,</font></i>
+<i><font color="silver">#      I'll return 0.0 to avoid charging $nil"</font></i>
+
+<i><font color="silver"># The existential crisis</font></i>
+meaning_of_life = <b><u><font color="#000000">nil</font></u></b>
+answer = meaning_of_life.to_i
+<i><font color="silver"># AI: "Clearly this should be 42. I've read Douglas Adams."</font></i>
+</pre>
+<br />
+<a class='textlink' href='https://github.com/barodeur/llm_rescuer'>LLM Rescuer</a><br />
+<br />
+<h2 style='display: inline' id='37-filesystem-backed-by-an-llm'>37. Filesystem Backed by an LLM</h2><br />
+<br />
+<span>Mount a folder, and every time you read or write a file, an LLM decides what the contents should be. Want a config file? Ask the LLM. Need a todo list that rewrites itself when you look at it? There you go. There&#39;s a working FUSE implementation. Equal parts brilliant and terrifying.</span><br />
+<br />
+<a class='textlink' href='https://healeycodes.com/filesystem-backed-by-an-llm'>Filesystem Backed by an LLM</a><br />
+<br />
+<h2 style='display: inline' id='38-qr-code-with-pure-sql-in-postgres'>38. QR Code with Pure SQL in Postgres</h2><br />
+<br />
+<span>Someone generated a full QR code using nothing but SQL queries inside PostgreSQL. No extensions, no external tools — just raw Postgres doing things it was never meant to do. I ran the example and watched a QR code materialize in the query result. Mad stuff.</span><br />
+<br />
+<a href='./random-weird-things-iv/pqr.webp'><img alt='QR code generated with pure SQL' title='QR code generated with pure SQL' src='./random-weird-things-iv/pqr.webp' /></a><br />
+<a class='textlink' href='https://tanelpoder.com/posts/generate-qr-code-with-pure-sql-in-postgres/'>Pure SQL QR Code</a><br />
+<br />
+<h2 style='display: inline' id='39-the-sl-train-in-your-terminal'>39. The SL Train in Your Terminal</h2><br />
+<br />
+<span>You mistype <span class='inlinecode'>ls</span> as <span class='inlinecode'>sl</span> and a steam locomotive comes chugging across your terminal. The SL program has been around for decades and it still cracks me up. There&#39;s even a flying train variant.</span><br />
+<br />
+<a href='./random-weird-things-iv/sl-train.gif'><img alt='SL train in action' title='SL train in action' src='./random-weird-things-iv/sl-train.gif' /></a><br />
+<a class='textlink' href='https://github.com/mtoyoda/sl'>sl</a><br />
+<br />
+<h2 style='display: inline' id='40-url-in-c-code-puzzle'>40. URL in C Code Puzzle</h2><br />
+<br />
+<span>The following C program compiles and runs perfectly:</span><br />
+<br />
+<pre>
+#include &lt;stdio.h&gt;
+
+int main(void) {
+    https://foo.zone
+    printf("hello, world\n");
+    return 0;
+}
+</pre>
+<br />
+<span>The <span class='inlinecode'>https:</span> becomes a label, the <span class='inlinecode'>//foo.zone</span> is just a comment. C parser shenanigans.</span><br />
+<br />
+<span>Found something weird lately? Send me a link!</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
