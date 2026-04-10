@@ -14,6 +14,7 @@
 
 => ../ My blog here at foo.zone
 => https://irregular.ninja irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)
+=> https://snonux.foo snonux.foo - My microblog (may be sometimes offline since it runs on my home LAN on Raspberry Pi's)
 
 ## Show me the code
 
@@ -25,7 +26,6 @@
 
 => https://fosstodon.org/@snonux @snonux@fosstodon.org - Me at Mastodon
 => https://www.linkedin.com/in/paul-buetow-b4857270/ My LinkedIn profile
-=> https://snonux.foo snonux.foo My microblog (may be sometimes offline since it runs on my home LAN on Raspberry Pi's)
 
 ## Books I've read
 
