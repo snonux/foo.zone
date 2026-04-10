@@ -25,6 +25,7 @@
 
 [@snonux@fosstodon.org - Me at Mastodon](https://fosstodon.org/@snonux)  
 [My LinkedIn profile](https://www.linkedin.com/in/paul-buetow-b4857270/)  
+[snonux.foo My microblog (may be sometimes offline since it runs on my home LAN on Raspberry Pi's)](https://snonux.foo)  
 
 ## Books I've read
 
