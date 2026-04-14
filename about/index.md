@@ -14,6 +14,7 @@
 
 [My blog here at foo.zone](../)  
 [irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)](https://irregular.ninja)  
+[snonux.foo - My microblog (may be sometimes offline since it runs on my home LAN on Raspberry Pi's)](https://snonux.foo)  
 
 ## Show me the code
 
@@ -25,7 +26,6 @@
 
 [@snonux@fosstodon.org - Me at Mastodon](https://fosstodon.org/@snonux)  
 [My LinkedIn profile](https://www.linkedin.com/in/paul-buetow-b4857270/)  
-[snonux.foo My microblog (may be sometimes offline since it runs on my home LAN on Raspberry Pi's)](https://snonux.foo)  
 
 ## Books I've read
 
