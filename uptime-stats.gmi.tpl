@@ -14,9 +14,16 @@ Also check out my blog post:
 => ./gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi Unveiling `guprecords.raku`: Uptime records with Raku (and also there is a version in Go now)
 
 <<<
-  if [ -f ~/git/uprecords/uprecords.gmi ]; then
-      cat ~/git/uprecords/uprecords.gmi
+  GOPRECORDS_GEMTEXT_URL='https://goprecords.f3s.buetow.org/report?all=true&output-format=Gemtext&limit=20'
+  tmp=$(mktemp)
+  if curl -fsS --max-time 30 -o "$tmp" "$GOPRECORDS_GEMTEXT_URL" \
+      && [ -s "$tmp" ] \
+      && ! grep -q '<!DOCTYPE html' "$tmp" \
+      && grep -q '^## Top' "$tmp"; then
+      cat "$tmp"
+      rm -f "$tmp"
   else
+      rm -f "$tmp"
       $SED -n '/Top/,$p' uptime-stats.gmi
   fi
 >>>

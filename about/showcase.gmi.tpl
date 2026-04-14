@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-04-07
+Generated on: 2026-04-14
 
 This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, releases, and licensing. The projects are ranked by score, which combines recent activity, project size, tag history, and whether the project has shipped a release.
 
@@ -9,69 +9,25 @@ This page showcases my side projects, providing an overview of what each project
 ## Overall Statistics
 
 * 📦 Total Projects: 68
-* 📊 Total Commits: 11,728
-* 📈 Total Lines of Code: 444,272
-* 📄 Total Lines of Documentation: 271,766
-* 💻 Languages: Go (51.7%), Java (13.1%), XML (4.7%), C (4.6%), C++ (4.0%), Shell (4.0%), YAML (3.6%), Perl (3.4%), C/C++ (2.6%), Ruby (1.6%), HTML (1.4%), TypeScript (1.3%), Config (0.8%), Python (0.6%), HCL (0.6%), CSS (0.5%), JSON (0.5%), Make (0.4%), TOML (0.3%), Haskell (0.1%), JavaScript (0.1%)
-* 📚 Documentation: Text (82.4%), Markdown (16.3%), LaTeX (1.3%)
-* 🚀 Release Status: 39 released, 29 experimental (57.4% with releases, 42.6% experimental)
+* 📊 Total Commits: 12,067
+* 📈 Total Lines of Code: 467,083
+* 📄 Total Lines of Documentation: 273,206
+* 💻 Languages: Go (53.1%), Java (12.4%), C (5.1%), XML (4.4%), Shell (3.8%), C++ (3.8%), YAML (3.6%), Perl (3.2%), C/C++ (2.5%), Ruby (1.5%), HTML (1.3%), TypeScript (1.2%), Config (0.8%), Python (0.6%), HCL (0.6%), CSS (0.5%), JSON (0.5%), Make (0.4%), TOML (0.3%), JavaScript (0.1%), Haskell (0.1%)
+* 📚 Documentation: Text (82.0%), Markdown (16.7%), LaTeX (1.3%)
+* 🚀 Release Status: 40 released, 28 experimental (58.8% with releases, 41.2% experimental)
 
 ## Projects
 
-### 1. totalrecall 1↖18↙15↖16↙14
+### 1. fastforge 1↖3
 
-* 💻 Languages: Go (99.5%), Shell (0.3%), YAML (0.2%)
-* 📚 Documentation: Markdown (97.3%), Text (2.7%)
-* 📊 Commits: 241
-* 📈 Lines of Code: 25035
-* 📄 Lines of Documentation: 593
-* 🏷️ Tags: 36
-* 📅 Development Period: 2025-07-14 to 2026-04-06
-* 🏆 Score: 224.4 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: MIT
-* 🏷️ Latest Release: v0.27.0 (2026-04-06)
-
-
-=> showcase/totalrecall/image-1.png totalrecall screenshot
-
-`totalrecall` is a versatile tool for generating Anki flashcard materials from Bulgarian words. It offers both a command-line interface (CLI) and a graphical user interface (GUI) for creating audio pronunciation files and AI-generated images.
-
-=> https://codeberg.org/snonux/totalrecall View on Codeberg
-=> https://github.com/snonux/totalrecall View on GitHub
-=> https://cgit.f3s.buetow.org/totalrecall/ View in cgit
-
----
-
-### 2. snonux 2↖5
-
-* 💻 Languages: HTML (100.0%)
-* 📊 Commits: 1
-* 📈 Lines of Code: 434
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-04-06 to 2026-04-06
-* 🏆 Score: 168.8 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-**WIP** - A microblog generator project
-
-=> https://codeberg.org/snonux/snonux View on Codeberg
-=> https://github.com/snonux/snonux View on GitHub
-=> https://cgit.f3s.buetow.org/snonux/ View in cgit
-
----
-
-### 3. fastforge 3
-
-* 💻 Languages: C (67.3%), JavaScript (32.7%)
+* 💻 Languages: C (92.3%), C/C++ (4.2%), JavaScript (2.6%), Make (0.9%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 5
-* 📈 Lines of Code: 98
-* 📄 Lines of Documentation: 381
+* 📊 Commits: 75
+* 📈 Lines of Code: 3720
+* 📄 Lines of Documentation: 225
 * 🏷️ Tags: 0
-* 📅 Development Period: 2026-04-06 to 2026-04-06
-* 🏆 Score: 142.8 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2026-04-06 to 2026-04-14
+* 🏆 Score: 146.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -84,18 +40,110 @@ WIP - Come back later.
 
 ---
 
-### 4. hexai 4↙1←1↖3↙2
+### 2. snonux 2←2↖5
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 470
-* 📈 Lines of Code: 44387
-* 📄 Lines of Documentation: 4377
-* 🏷️ Tags: 74
-* 📅 Development Period: 2025-08-01 to 2026-04-07
-* 🏆 Score: 68.6 (combines recent activity, code size, tags, and release status)
+* 📊 Commits: 24
+* 📈 Lines of Code: 6861
+* 📄 Lines of Documentation: 88
+* 🏷️ Tags: 8
+* 📅 Development Period: 2026-04-06 to 2026-04-11
+* 🏆 Score: 101.9 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.1.6 (2026-04-11)
+
+
+**WIP** - A microblog generator project
+
+=> https://codeberg.org/snonux/snonux View on Codeberg
+=> https://github.com/snonux/snonux View on GitHub
+=> https://cgit.f3s.buetow.org/snonux/ View in cgit
+
+---
+
+### 3. goprecords 3↖29↙28↙24←24
+
+* 💻 Languages: Go (99.7%), Docker (0.3%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 154
+* 📈 Lines of Code: 6075
+* 📄 Lines of Documentation: 673
+* 🏷️ Tags: 10
+* 📅 Development Period: 2013-03-22 to 2026-04-14
+* 🏆 Score: 84.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
-* 🏷️ Latest Release: v0.29.2 (2026-04-07)
+* 🏷️ Latest Release: v0.4.0 (2026-04-14)
+
+
+`goprecords` is a Go command-line program that generates uptime reports for hosts based on the input record files from `uptimed`. It supports importing records into SQLite and querying for reports, or reporting directly from a stats directory.
+
+=> https://codeberg.org/snonux/goprecords View on Codeberg
+=> https://github.com/snonux/goprecords View on GitHub
+=> https://cgit.f3s.buetow.org/goprecords/ View in cgit
+
+---
+
+### 4. totalrecall 4↙1↖18↙15↖16
+
+* 💻 Languages: Go (98.9%), HTML (0.3%), CSS (0.3%), Shell (0.2%), YAML (0.2%)
+* 📚 Documentation: Markdown (95.0%), Text (5.0%)
+* 📊 Commits: 262
+* 📈 Lines of Code: 26697
+* 📄 Lines of Documentation: 516
+* 🏷️ Tags: 40
+* 📅 Development Period: 2025-07-14 to 2026-04-13
+* 🏆 Score: 81.8 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.29.0 (2026-04-13)
+
+
+=> showcase/totalrecall/image-1.png totalrecall screenshot
+
+`totalrecall` is a versatile tool for generating Anki flashcard materials from Bulgarian words. It offers both a command-line interface (CLI) and a graphical user interface (GUI) for creating audio pronunciation files and AI-generated images.
+
+=> https://codeberg.org/snonux/totalrecall View on Codeberg
+=> https://github.com/snonux/totalrecall View on GitHub
+=> https://cgit.f3s.buetow.org/totalrecall/ View in cgit
+
+---
+
+### 5. tasksamurai 5↖23↙22↙18←18
+
+* 💻 Languages: Go (99.9%), YAML (0.1%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 289
+* 📈 Lines of Code: 10020
+* 📄 Lines of Documentation: 253
+* 🏷️ Tags: 17
+* 📅 Development Period: 2025-06-19 to 2026-04-08
+* 🏆 Score: 80.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: BSD-2-Clause
+* 🏷️ Latest Release: v0.13.4 (2026-04-08)
+
+
+=> showcase/tasksamurai/image-1.png tasksamurai screenshot
+
+Task Samurai invokes the `task` command to read and modify tasks. The tasks are displayed in a Bubble Tea table where each row represents a task. Hotkeys trigger Taskwarrior commands such as starting, completing or annotating tasks. The UI refreshes automatically after each action so the table is always up to date.
+
+=> https://codeberg.org/snonux/tasksamurai View on Codeberg
+=> https://github.com/snonux/tasksamurai View on GitHub
+=> https://cgit.f3s.buetow.org/tasksamurai/ View in cgit
+
+---
+
+### 6. hexai 6↙4↙1←1↖3
+
+* 💻 Languages: Go (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 486
+* 📈 Lines of Code: 45514
+* 📄 Lines of Documentation: 4403
+* 🏷️ Tags: 81
+* 📅 Development Period: 2025-08-01 to 2026-04-13
+* 🏆 Score: 58.7 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.33.0 (2026-04-13)
 
 
 => showcase/hexai/image-1.png hexai screenshot
@@ -108,38 +156,38 @@ Hexai, the AI addition for your Helix Editor (https://helix-editor.com) .. Other
 
 ---
 
-### 5. gt 5↙2
+### 7. conf 7↖9↙7↖9←9
 
-* 💻 Languages: Go (99.4%), YAML (0.6%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 150
-* 📈 Lines of Code: 10028
-* 📄 Lines of Documentation: 301
-* 🏷️ Tags: 5
-* 📅 Development Period: 2025-11-25 to 2026-03-26
-* 🏆 Score: 42.8 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: MIT
-* 🏷️ Latest Release: v0.4.1 (2026-03-26)
+* 💻 Languages: YAML (79.8%), Perl (9.4%), Shell (6.0%), Python (2.1%), Make (1.1%), Docker (0.6%), TOML (0.3%), Config (0.3%), Ruby (0.2%), HTML (0.1%)
+* 📚 Documentation: Markdown (97.1%), Text (2.9%)
+* 📊 Commits: 881
+* 📈 Lines of Code: 20330
+* 📄 Lines of Documentation: 6606
+* 🏷️ Tags: 0
+* 📅 Development Period: 2021-12-28 to 2026-04-14
+* 🏆 Score: 54.3 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 
-A simple AI-engineered command-line percentage calculator written in Go. No frontier AI models from Claude, OpenAI, Google, ec, were used for this project. The ones used were:
+This is my personal config repository. Including...
 
-=> https://codeberg.org/snonux/gt View on Codeberg
-=> https://github.com/snonux/gt View on GitHub
-=> https://cgit.f3s.buetow.org/gt/ View in cgit
+=> https://codeberg.org/snonux/conf View on Codeberg
+=> https://github.com/snonux/conf View on GitHub
+=> https://cgit.f3s.buetow.org/conf/ View in cgit
 
 ---
 
-### 6. dotfiles 6↙4↙3↖5↙3
+### 8. dotfiles 8↙6↙4↙3↖5
 
-* 💻 Languages: Shell (66.9%), CSS (9.9%), Config (9.3%), TOML (9.1%), JSON (3.6%), Ruby (0.9%), INI (0.2%), YAML (0.2%)
+* 💻 Languages: Shell (67.9%), CSS (9.5%), Config (9.1%), TOML (8.8%), JSON (3.5%), Ruby (0.9%), INI (0.2%), YAML (0.1%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 914
-* 📈 Lines of Code: 3308
-* 📄 Lines of Documentation: 8744
+* 📊 Commits: 945
+* 📈 Lines of Code: 3422
+* 📄 Lines of Documentation: 9656
 * 🏷️ Tags: 0
-* 📅 Development Period: 2023-07-30 to 2026-04-07
-* 🏆 Score: 28.8 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2023-07-30 to 2026-04-14
+* 🏆 Score: 44.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -152,16 +200,64 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 
 ---
 
-### 7. hypr 7↙3
+### 9. gt 9↙5↙2
 
-* 💻 Languages: TypeScript (46.1%), Ruby (33.6%), TOML (6.9%), Python (6.5%), Shell (3.5%), JSON (3.3%)
+* 💻 Languages: Go (99.5%), YAML (0.5%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 71
-* 📈 Lines of Code: 12161
-* 📄 Lines of Documentation: 3063
+* 📊 Commits: 168
+* 📈 Lines of Code: 11402
+* 📄 Lines of Documentation: 386
+* 🏷️ Tags: 5
+* 📅 Development Period: 2025-11-25 to 2026-04-11
+* 🏆 Score: 42.6 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.4.1 (2026-03-26)
+
+
+=> showcase/gt/image-1.svg gt screenshot
+
+A simple AI-engineered command-line percentage calculator written in Go. No frontier AI models from Claude, OpenAI, Google, ec, were used for this project. The ones used were:
+
+=> https://codeberg.org/snonux/gt View on Codeberg
+=> https://github.com/snonux/gt View on GitHub
+=> https://cgit.f3s.buetow.org/gt/ View in cgit
+
+---
+
+### 10. dtail 10↙8↙6↙2↙1
+
+* 💻 Languages: Go (93.5%), Shell (2.9%), JSON (1.5%), C (1.0%), Make (0.7%), C/C++ (0.2%)
+* 📚 Documentation: Text (98.1%), Markdown (1.9%)
+* 📊 Commits: 648
+* 📈 Lines of Code: 38361
+* 📄 Lines of Documentation: 220585
+* 🏷️ Tags: 27
+* 📅 Development Period: 2020-01-09 to 2026-04-11
+* 🏆 Score: 24.8 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Apache-2.0
+* 🏷️ Latest Release: v4.3.3 (2024-08-23)
+
+
+=> showcase/dtail/image-1.png dtail screenshot
+
+DTail (a distributed tail program) is a DevOps tool for engineers programmed in Google Go for following (tailing), catting and grepping (including gzip and zstd decompression support) log files on many machines concurrently. An advanced feature of DTail is to execute distributed MapReduce aggregations across many devices.
+
+=> https://codeberg.org/snonux/dtail View on Codeberg
+=> https://github.com/snonux/dtail View on GitHub
+=> https://cgit.f3s.buetow.org/dtail/ View in cgit
+
+---
+
+### 11. hypr 11↙7↙3
+
+* 💻 Languages: TypeScript (46.1%), Ruby (33.5%), TOML (6.9%), Python (6.5%), JSON (3.5%), Shell (3.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 77
+* 📈 Lines of Code: 12221
+* 📄 Lines of Documentation: 3070
 * 🏷️ Tags: 0
-* 📅 Development Period: 2026-03-21 to 2026-04-06
-* 🏆 Score: 28.4 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2026-03-21 to 2026-04-11
+* 🏆 Score: 20.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -177,75 +273,7 @@ Runs two A100 VMs concurrently — each serving a different model — with [Pi](
 
 ---
 
-### 8. dtail 8↙6↙2↙1↖20
-
-* 💻 Languages: Go (93.4%), Shell (3.0%), JSON (1.6%), C (1.0%), Make (0.7%), C/C++ (0.2%)
-* 📚 Documentation: Text (98.1%), Markdown (1.9%)
-* 📊 Commits: 640
-* 📈 Lines of Code: 37822
-* 📄 Lines of Documentation: 220523
-* 🏷️ Tags: 27
-* 📅 Development Period: 2020-01-09 to 2026-03-20
-* 🏆 Score: 25.7 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Apache-2.0
-* 🏷️ Latest Release: v4.3.3 (2024-08-23)
-
-
-=> showcase/dtail/image-1.png dtail screenshot
-
-DTail (a distributed tail program) is a DevOps tool for engineers programmed in Google Go for following (tailing), catting and grepping (including gzip and zstd decompression support) log files on many machines concurrently. An advanced feature of DTail is to execute distributed MapReduce aggregations across many devices.
-
-=> https://codeberg.org/snonux/dtail View on Codeberg
-=> https://github.com/snonux/dtail View on GitHub
-=> https://cgit.f3s.buetow.org/dtail/ View in cgit
-
----
-
-### 9. conf 9↙7↖9←9↙5
-
-* 💻 Languages: YAML (79.7%), Perl (9.7%), Shell (6.2%), Python (2.2%), Make (0.9%), Docker (0.6%), Config (0.3%), Ruby (0.2%), HTML (0.1%)
-* 📚 Documentation: Markdown (97.0%), Text (3.0%)
-* 📊 Commits: 837
-* 📈 Lines of Code: 19654
-* 📄 Lines of Documentation: 6305
-* 🏷️ Tags: 0
-* 📅 Development Period: 2021-12-28 to 2026-03-29
-* 🏆 Score: 21.5 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-This is my personal config repository. Including...
-
-=> https://codeberg.org/snonux/conf View on Codeberg
-=> https://github.com/snonux/conf View on GitHub
-=> https://cgit.f3s.buetow.org/conf/ View in cgit
-
----
-
-### 10. foo.zone 10↙8↖64←64↙6
-
-* 💻 Languages: XML (98.2%), Shell (1.5%), Go (0.3%)
-* 📚 Documentation: Text (86.2%), Markdown (13.8%)
-* 📊 Commits: 1766
-* 📈 Lines of Code: 19910
-* 📄 Lines of Documentation: 174
-* 🏷️ Tags: 0
-* 📅 Development Period: 2021-04-29 to 2026-04-05
-* 🏆 Score: 19.7 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-Each format is in it's own branch in this repository. E.g.:
-
-=> https://codeberg.org/snonux/foo.zone View on Codeberg
-=> https://github.com/snonux/foo.zone View on GitHub
-=> https://cgit.f3s.buetow.org/foo.zone/ View in cgit
-
----
-
-### 11. timesamurai 11↙10↙5↙4
+### 12. timesamurai 12↙11↙10↙5↙4
 
 * 💻 Languages: Go (99.3%), Shell (0.6%), YAML (0.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -254,7 +282,7 @@ Each format is in it's own branch in this repository. E.g.:
 * 📄 Lines of Documentation: 112
 * 🏷️ Tags: 5
 * 📅 Development Period: 2025-06-25 to 2026-03-26
-* 🏆 Score: 17.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 14.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.8.0 (2026-03-26)
 
@@ -267,7 +295,29 @@ Each format is in it's own branch in this repository. E.g.:
 
 ---
 
-### 12. ior 12↙9↙4↙2↙1
+### 13. foo.zone 13↙10↙8↖64←64
+
+* 💻 Languages: XML (98.2%), Shell (1.5%), Go (0.3%)
+* 📚 Documentation: Text (86.2%), Markdown (13.8%)
+* 📊 Commits: 1766
+* 📈 Lines of Code: 19910
+* 📄 Lines of Documentation: 174
+* 🏷️ Tags: 0
+* 📅 Development Period: 2021-04-29 to 2026-04-05
+* 🏆 Score: 14.3 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+Each format is in it's own branch in this repository. E.g.:
+
+=> https://codeberg.org/snonux/foo.zone View on Codeberg
+=> https://github.com/snonux/foo.zone View on GitHub
+=> https://cgit.f3s.buetow.org/foo.zone/ View in cgit
+
+---
+
+### 14. ior 14↙12↙9↙4↙2
 
 * 💻 Languages: Go (89.5%), C (10.0%), JSON (0.3%), C/C++ (0.2%)
 * 📚 Documentation: Markdown (82.7%), Text (17.3%)
@@ -276,7 +326,7 @@ Each format is in it's own branch in this repository. E.g.:
 * 📄 Lines of Documentation: 2789
 * 🏷️ Tags: 0
 * 📅 Development Period: 2024-01-18 to 2026-03-19
-* 🏆 Score: 15.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 12.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -291,7 +341,7 @@ Each format is in it's own branch in this repository. E.g.:
 
 ---
 
-### 13. ds-sim 13↙12↖25←25↙21
+### 15. ds-sim 15↙13↙12↖25←25
 
 * 💻 Languages: Java (98.6%), Shell (0.9%), CSS (0.4%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -300,7 +350,7 @@ Each format is in it's own branch in this repository. E.g.:
 * 📄 Lines of Documentation: 3103
 * 🏷️ Tags: 2
 * 📅 Development Period: 2008-05-15 to 2026-03-30
-* 🏆 Score: 11.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 9.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: 1.1.0 (2026-03-27)
 
@@ -315,7 +365,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 
 ---
 
-### 14. foostore 14↙11↙7←7←7
+### 16. foostore 16↙14↙11↙7←7
 
 * 💻 Languages: Go (98.4%), Shell (1.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -324,7 +374,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 * 📄 Lines of Documentation: 250
 * 🏷️ Tags: 9
 * 📅 Development Period: 2018-05-26 to 2026-03-07
-* 🏆 Score: 9.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 8.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.5.3 (2026-03-02)
 
@@ -337,7 +387,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 
 ---
 
-### 15. epimetheus 15↙13↙8←8↙4
+### 17. epimetheus 17↙15↙13↙8←8
 
 * 💻 Languages: Go (85.2%), Shell (14.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -346,7 +396,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 * 📄 Lines of Documentation: 1736
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-02-07 to 2026-03-07
-* 🏆 Score: 7.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 6.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -361,7 +411,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 
 ---
 
-### 16. gitsyncer 16↙14↙11←11↖15
+### 18. gitsyncer 18↙16↙14↙11←11
 
 * 💻 Languages: Go (93.8%), Shell (5.9%), JSON (0.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -370,7 +420,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 * 📄 Lines of Documentation: 2483
 * 🏷️ Tags: 39
 * 📅 Development Period: 2025-06-23 to 2026-03-28
-* 🏆 Score: 6.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.17.0 (2026-03-28)
 
@@ -383,7 +433,7 @@ GitSyncer is a tool for synchronizing git repositories between multiple organiza
 
 ---
 
-### 17. scifi 17↙16↙10←10↙8
+### 19. scifi 19↙17↙16↙10←10
 
 * 💻 Languages: JSON (36.6%), JavaScript (30.2%), CSS (29.6%), HTML (3.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -392,7 +442,7 @@ GitSyncer is a tool for synchronizing git repositories between multiple organiza
 * 📄 Lines of Documentation: 874
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-01-25 to 2026-03-13
-* 🏆 Score: 5.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -405,7 +455,7 @@ A static HTML page showcasing a science fiction book collection. Works fully off
 
 ---
 
-### 18. gogios 18↖19↙16↙15↙11
+### 20. gogios 20↙18↖19↙16↙15
 
 * 💻 Languages: Go (98.9%), JSON (0.7%), YAML (0.5%)
 * 📚 Documentation: Markdown (94.9%), Text (5.1%)
@@ -414,7 +464,7 @@ A static HTML page showcasing a science fiction book collection. Works fully off
 * 📄 Lines of Documentation: 394
 * 🏷️ Tags: 10
 * 📅 Development Period: 2023-04-17 to 2026-03-28
-* 🏆 Score: 4.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4.1 (2026-02-16)
 
@@ -429,7 +479,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 
 ---
 
-### 19. yoga 19↙17↙13↖14↙12
+### 21. yoga 21↙19↙17↙13↖14
 
 * 💻 Languages: Go (69.1%), HTML (30.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -438,7 +488,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 * 📄 Lines of Documentation: 196
 * 🏷️ Tags: 9
 * 📅 Development Period: 2025-10-01 to 2026-03-07
-* 🏆 Score: 4.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.4.0 (2026-01-28)
 
@@ -453,7 +503,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 
 ---
 
-### 20. rcm 20↙15↙12↖13↙10
+### 22. rcm 22↙20↙15↙12↖13
 
 * 💻 Languages: Ruby (99.6%), TOML (0.4%)
 * 📚 Documentation: Markdown (100.0%)
@@ -462,7 +512,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 * 📄 Lines of Documentation: 778
 * 🏷️ Tags: 3
 * 📅 Development Period: 2024-12-05 to 2026-03-02
-* 🏆 Score: 4.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.1.1 (2026-03-01)
 
@@ -477,7 +527,7 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 ---
 
-### 21. log4jbench 21↙20↙14↙12↙9
+### 23. log4jbench 23↙21↙20↙14↙12
 
 * 💻 Languages: Java (78.9%), XML (21.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -486,7 +536,7 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 * 📄 Lines of Documentation: 119
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-01-09 to 2026-01-09
-* 🏆 Score: 3.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -499,7 +549,7 @@ A minimal Java tool to benchmark Log4j2 logging throughput with configurable con
 
 ---
 
-### 22. perc 22↙21↙17←17↙13
+### 24. perc 24↙22↙21↙17←17
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -508,7 +558,7 @@ A minimal Java tool to benchmark Log4j2 logging throughput with configurable con
 * 📄 Lines of Documentation: 80
 * 🏷️ Tags: 3
 * 📅 Development Period: 2025-11-25 to 2025-11-25
-* 🏆 Score: 3.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.1.0 (2025-11-25)
 
@@ -521,42 +571,18 @@ A simple vibe-coded command-line percentage calculator written in Go.
 
 ---
 
-### 23. tasksamurai 23↙22↙18←18↙16
+### 25. gos 25↙24↙23↙19←19
 
-* 💻 Languages: Go (99.8%), YAML (0.2%)
+* 💻 Languages: Go (99.6%), Shell (0.2%), JSON (0.2%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 236
-* 📈 Lines of Code: 6577
-* 📄 Lines of Documentation: 251
-* 🏷️ Tags: 11
-* 📅 Development Period: 2025-06-19 to 2026-03-23
-* 🏆 Score: 3.4 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.12.0 (2026-03-23)
-
-
-=> showcase/tasksamurai/image-1.png tasksamurai screenshot
-
-Task Samurai invokes the `task` command to read and modify tasks. The tasks are displayed in a Bubble Tea table where each row represents a task. Hotkeys trigger Taskwarrior commands such as starting, completing or annotating tasks. The UI refreshes automatically after each action so the table is always up to date.
-
-=> https://codeberg.org/snonux/tasksamurai View on Codeberg
-=> https://github.com/snonux/tasksamurai View on GitHub
-=> https://cgit.f3s.buetow.org/tasksamurai/ View in cgit
-
----
-
-### 24. gos 24↙23↙19←19↙18
-
-* 💻 Languages: Go (99.5%), JSON (0.2%), Shell (0.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 405
-* 📈 Lines of Code: 4378
+* 📊 Commits: 407
+* 📈 Lines of Code: 4529
 * 📄 Lines of Documentation: 477
-* 🏷️ Tags: 15
-* 📅 Development Period: 2024-05-04 to 2026-03-13
-* 🏆 Score: 2.5 (combines recent activity, code size, tags, and release status)
+* 🏷️ Tags: 16
+* 📅 Development Period: 2024-05-04 to 2026-04-10
+* 🏆 Score: 2.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.2.6 (2026-03-13)
+* 🏷️ Latest Release: v1.3.0 (2026-04-10)
 
 
 => showcase/gos/image-1.png gos screenshot
@@ -569,7 +595,7 @@ Gos is a Go-based replacement for Buffer.com, providing the ability to schedule 
 
 ---
 
-### 25. foostats 25↙24↙20←20↙17
+### 26. foostats 26↙25↙24↙20←20
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -578,7 +604,7 @@ Gos is a Go-based replacement for Buffer.com, providing the ability to schedule 
 * 📄 Lines of Documentation: 423
 * 🏷️ Tags: 2
 * 📅 Development Period: 2023-01-02 to 2025-11-01
-* 🏆 Score: 2.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.2.0 (2025-10-21)
 
@@ -591,7 +617,7 @@ A privacy-respecting web analytics tool for OpenBSD that processes HTTP/HTTPS an
 
 ---
 
-### 26. timr 26↙25↙21←21↙19
+### 27. timr 27↙26↙25↙21←21
 
 * 💻 Languages: Go (96.0%), Shell (4.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -613,16 +639,16 @@ A simple command-line tool to track time spent on tasks. It has been primarily c
 
 ---
 
-### 27. gemtexter 27↙26↙22←22←22
+### 28. gemtexter 28↙27↙26↙22←22
 
 * 💻 Languages: Shell (70.8%), CSS (26.2%), Config (1.8%), HTML (1.2%)
 * 📚 Documentation: Text (76.1%), Markdown (23.9%)
-* 📊 Commits: 476
-* 📈 Lines of Code: 2489
+* 📊 Commits: 479
+* 📈 Lines of Code: 2491
 * 📄 Lines of Documentation: 1180
 * 🏷️ Tags: 6
-* 📅 Development Period: 2021-05-21 to 2026-03-08
-* 🏆 Score: 1.9 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2021-05-21 to 2026-04-10
+* 🏆 Score: 2.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
 
@@ -635,15 +661,15 @@ This is the source code of my personal internet site and blog engine. All conten
 
 ---
 
-### 28. wireguardmeshgenerator 28↙27↙23←23←23
+### 29. wireguardmeshgenerator 29↙28↙27↙23←23
 
-* 💻 Languages: Ruby (63.5%), YAML (36.5%)
+* 💻 Languages: Ruby (58.7%), YAML (41.3%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 37
-* 📈 Lines of Code: 583
+* 📊 Commits: 38
+* 📈 Lines of Code: 641
 * 📄 Lines of Documentation: 24
 * 🏷️ Tags: 1
-* 📅 Development Period: 2025-04-18 to 2026-03-18
+* 📅 Development Period: 2025-04-18 to 2026-04-08
 * 🏆 Score: 1.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
@@ -657,29 +683,7 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 ---
 
-### 29. goprecords 29↙28↙24←24←24
-
-* 💻 Languages: Go (100.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 118
-* 📈 Lines of Code: 2855
-* 📄 Lines of Documentation: 489
-* 🏷️ Tags: 6
-* 📅 Development Period: 2013-03-22 to 2026-03-08
-* 🏆 Score: 1.2 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.2.1 (2026-02-20)
-
-
-`goprecords` is a Go command-line program that generates uptime reports for hosts based on the input record files from `uptimed`. It supports importing records into SQLite and querying for reports, or reporting directly from a stats directory.
-
-=> https://codeberg.org/snonux/goprecords View on Codeberg
-=> https://github.com/snonux/goprecords View on GitHub
-=> https://cgit.f3s.buetow.org/goprecords/ View in cgit
-
----
-
-### 30. ioriot 30↙29↖34↖35←35
+### 30. ioriot 30←30↙29↖34↖35
 
 * 💻 Languages: C (58.7%), C/C++ (22.5%), Config (17.9%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -703,18 +707,18 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 ---
 
-### 31. quicklogger 31↙30↙26←26↙25
+### 31. quicklogger 31←31↙30↙26←26
 
-* 💻 Languages: Go (96.4%), XML (1.8%), Shell (1.1%), TOML (0.7%)
+* 💻 Languages: Go (96.3%), XML (2.3%), Shell (0.9%), TOML (0.5%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 36
-* 📈 Lines of Code: 1220
-* 📄 Lines of Documentation: 78
-* 🏷️ Tags: 5
-* 📅 Development Period: 2024-01-20 to 2026-03-01
-* 🏆 Score: 0.8 (combines recent activity, code size, tags, and release status)
+* 📊 Commits: 43
+* 📈 Lines of Code: 1556
+* 📄 Lines of Documentation: 84
+* 🏷️ Tags: 6
+* 📅 Development Period: 2024-01-20 to 2026-04-09
+* 🏆 Score: 0.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
-* 🏷️ Latest Release: v0.1.0 (2026-03-01)
+* 🏷️ Latest Release: v0.1.1 (2026-04-09)
 
 
 => showcase/quicklogger/image-1.png quicklogger screenshot
@@ -727,7 +731,7 @@ This is a tiny GUI app written in Go using the Fyne framework to quickly log a m
 
 ---
 
-### 32. sillybench 32↙31↙27←27←27
+### 32. sillybench 32←32↙31↙27←27
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -749,7 +753,7 @@ To compare how fast this runs on FreeBSD vs a Linux Bhyve VM
 
 ---
 
-### 33. terraform 33↙32↙28←28↙26
+### 33. terraform 33←33↙32↙28←28
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -771,7 +775,7 @@ Go to AWS Secrets manager manually and create it!
 
 ---
 
-### 34. guprecords 34↙33↖39↙29←29
+### 34. guprecords 34←34↙33↖39↙29
 
 * 💻 Languages: Raku (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -793,7 +797,7 @@ guprecords: source code repository.
 
 ---
 
-### 35. geheim 35↙34↙29↖30←30
+### 35. geheim 35←35↙34↙29↖30
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -815,7 +819,7 @@ guprecords: source code repository.
 
 ---
 
-### 36. gorum 36↙35↙30↖31↙28
+### 36. gorum 36←36↙35↙30↖31
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -824,7 +828,7 @@ guprecords: source code repository.
 * 📄 Lines of Documentation: 17
 * 🏷️ Tags: 0
 * 📅 Development Period: 2023-04-17 to 2026-03-07
-* 🏆 Score: 0.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 0.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
@@ -837,7 +841,7 @@ Gogios is a minimalistic quorum manager.
 
 ---
 
-### 37. docker-radicale-server 37↙36↙31↖32↙31
+### 37. docker-radicale-server 37←37↙36↙31↖32
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -859,7 +863,7 @@ For the Radicale server https://radicale.org
 
 ---
 
-### 38. photoalbum 38↙37↙32↖33↖34
+### 38. photoalbum 38←38↙37↙32↖33
 
 * 💻 Languages: Shell (80.1%), Make (12.3%), Config (7.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -883,7 +887,7 @@ The resulting static photo album is pure HTML+CSS (without any JavaScript!).
 
 ---
 
-### 39. randomjournalpage 39↙38↙33↖34↙33
+### 39. randomjournalpage 39←39↙38↙33↖34
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -906,7 +910,7 @@ This is a quick and dirty script which I use personally to grab a random PDF fil
 
 ---
 
-### 40. algorithms 40↙39↙35↖36↙32
+### 40. algorithms 40←40↙39↙35↖36
 
 * 💻 Languages: Go (99.2%), Make (0.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -929,29 +933,7 @@ This includes exercises from the Algorithms lecture. Well, this is just a refres
 
 ---
 
-### 41. ipv6test 41↙40↙36↖37↙36
-
-* 💻 Languages: Perl (65.8%), Docker (34.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 22
-* 📈 Lines of Code: 149
-* 📄 Lines of Documentation: 21
-* 🏷️ Tags: 0
-* 📅 Development Period: 2011-07-09 to 2026-02-17
-* 🏆 Score: 0.2 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🧪 Status: Experimental (no releases yet)
-
-
-This is a quick and dirty Perl-based IPv6 test website.
-
-=> https://codeberg.org/snonux/ipv6test View on Codeberg
-=> https://github.com/snonux/ipv6test View on GitHub
-=> https://cgit.f3s.buetow.org/ipv6test/ View in cgit
-
----
-
-### 42. staticfarm-apache-handlers 42↙41↙37↖38↖40
+### 41. staticfarm-apache-handlers 41↖42↙41↙37↖38
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -975,7 +957,29 @@ DEPRECATED
 
 ---
 
-### 43. sway-autorotate 43↙42↙38↖39↙38
+### 42. ipv6test 42↙41↙40↙36↖37
+
+* 💻 Languages: Perl (65.8%), Docker (34.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 22
+* 📈 Lines of Code: 149
+* 📄 Lines of Documentation: 21
+* 🏷️ Tags: 0
+* 📅 Development Period: 2011-07-09 to 2026-02-17
+* 🏆 Score: 0.2 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+
+This is a quick and dirty Perl-based IPv6 test website.
+
+=> https://codeberg.org/snonux/ipv6test View on Codeberg
+=> https://github.com/snonux/ipv6test View on GitHub
+=> https://cgit.f3s.buetow.org/ipv6test/ View in cgit
+
+---
+
+### 43. sway-autorotate 43←43↙42↙38↖39
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -997,7 +1001,7 @@ This is a fork of https://github.com/tedk0n/autorotate_sway_script
 
 ---
 
-### 44. mon 44↙43↙40←40↙39
+### 44. mon 44←44↙43↙40←40
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -1021,30 +1025,7 @@ DEPRECATED
 
 ---
 
-### 45. xerl 45↖48↙45←45↙42
-
-* 💻 Languages: CSS (54.6%), XML (39.1%), Perl (4.0%), Make (2.2%)
-* 📚 Documentation: Text (91.2%), Org (4.9%), Markdown (3.9%)
-* 📊 Commits: 663
-* 📈 Lines of Code: 815
-* 📄 Lines of Documentation: 102
-* 🏷️ Tags: 0
-* 📅 Development Period: 2011-03-06 to 2021-11-02
-* 🏆 Score: 0.2 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-Those are the host templates to be used with Xerl itself.
-
-=> https://codeberg.org/snonux/xerl View on Codeberg
-=> https://github.com/snonux/xerl View on GitHub
-=> https://cgit.f3s.buetow.org/xerl/ View in cgit
-
----
-
-### 46. fapi 46↙44↙41←41↖44
+### 45. fapi 45↖46↙44↙41←41
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -1068,7 +1049,30 @@ DEPRECATED
 
 ---
 
-### 47. pingdomfetch 47↙45↙42←42↙41
+### 46. xerl 46↙45↖48↙45←45
+
+* 💻 Languages: CSS (54.6%), XML (39.1%), Perl (4.0%), Make (2.2%)
+* 📚 Documentation: Text (91.2%), Org (4.9%), Markdown (3.9%)
+* 📊 Commits: 663
+* 📈 Lines of Code: 815
+* 📄 Lines of Documentation: 102
+* 🏷️ Tags: 0
+* 📅 Development Period: 2011-03-06 to 2021-11-02
+* 🏆 Score: 0.2 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+
+Those are the host templates to be used with Xerl itself.
+
+=> https://codeberg.org/snonux/xerl View on Codeberg
+=> https://github.com/snonux/xerl View on GitHub
+=> https://cgit.f3s.buetow.org/xerl/ View in cgit
+
+---
+
+### 47. pingdomfetch 47←47↙45↙42←42
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1092,7 +1096,7 @@ DEPRECATED
 
 ---
 
-### 48. fype 48↖66↙43←43↙37
+### 48. fype 48←48↖66↙43←43
 
 * 💻 Languages: C (77.3%), C/C++ (13.1%), HTML (7.5%), Make (2.1%)
 * 📚 Documentation: Text (65.8%), LaTeX (20.5%), Markdown (13.7%)
@@ -1114,7 +1118,7 @@ DEPRECATED
 
 ---
 
-### 49. loadbars 49↙46↙6←6↖47
+### 49. loadbars 49←49↙46↙6←6
 
 * 💻 Languages: Perl (97.4%), Make (2.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1137,7 +1141,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 
 ---
 
-### 50. pwgrep 50↙47↙44←44↖50
+### 50. pwgrep 50←50↙47↙44←44
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (75.0%), Markdown (25.0%)
@@ -1159,7 +1163,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 
 ---
 
-### 51. awksite 51↙49↙46←46↖61
+### 51. awksite 51←51↙49↙46←46
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
 * 📚 Documentation: Markdown (50.0%), Text (50.0%)
@@ -1181,7 +1185,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 
 ---
 
-### 52. gotop 52↙50↙47←47↖48
+### 52. gotop 52←52↙50↙47←47
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
 * 📚 Documentation: Markdown (60.0%), Text (40.0%)
@@ -1203,7 +1207,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 
 ---
 
-### 53. japi 53↙51↙48←48↖53
+### 53. japi 53←53↙51↙48←48
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1227,7 +1231,7 @@ DEPRECATED
 
 ---
 
-### 54. perldaemon 54↙52←52↙49↖51
+### 54. perldaemon 54←54↙52←52↙49
 
 * 💻 Languages: Perl (72.7%), Shell (23.9%), Config (3.4%)
 * 📊 Commits: 111
@@ -1248,7 +1252,7 @@ programmed in Perl.  It can be extended to fit any task...
 
 ---
 
-### 55. rubyfy 55↙53↙49↖50↙49
+### 55. rubyfy 55←55↙53↙49↖50
 
 * 💻 Languages: Ruby (98.5%), JSON (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1270,7 +1274,7 @@ programmed in Perl.  It can be extended to fit any task...
 
 ---
 
-### 56. perl-c-fibonacci 56↙54↙50↖51↙45
+### 56. perl-c-fibonacci 56←56↙54↙50↖51
 
 * 💻 Languages: C (80.4%), Make (19.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1293,7 +1297,7 @@ perl-c-fibonacci: source code repository.
 
 ---
 
-### 57. netdiff 57↙55↙51↖52↖56
+### 57. netdiff 57←57↙55↙51↖52
 
 * 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
 * 📚 Documentation: Text (100.0%)
@@ -1317,7 +1321,7 @@ DEPRECATED
 
 ---
 
-### 58. muttdelay 58↙56↙54←54↖55
+### 58. muttdelay 58←58↙56↙54←54
 
 * 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1341,7 +1345,7 @@ DEPRECATED
 
 ---
 
-### 59. cpuinfo 59↙57←57←57↖59
+### 59. cpuinfo 59←59↙57←57←57
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1364,7 +1368,7 @@ cpuinfo - A small and humble tool to print out CPU data
 
 ---
 
-### 60. template 60↙58←58←58↖60
+### 60. template 60←60↙58←58←58
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1388,7 +1392,7 @@ DEPRECATED
 
 ---
 
-### 61. dyndns 61↙59←59←59↖62
+### 61. dyndns 61←61↙59←59←59
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1412,7 +1416,7 @@ DEPRECATED
 
 ---
 
-### 62. debroid 62↙60←60←60↙57
+### 62. debroid 62←62↙60←60←60
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1436,7 +1440,7 @@ DEPRECATED
 
 ---
 
-### 63. ychat 63←63←63←63↙43
+### 63. ychat 63←63←63←63←63
 
 * 💻 Languages: C++ (52.1%), C/C++ (21.3%), Shell (20.1%), HTML (2.5%), Config (2.1%), Perl (1.5%), Make (0.3%)
 * 📚 Documentation: Text (100.0%)
@@ -1459,7 +1463,7 @@ ychat: source code repository.
 
 ---
 
-### 64. netcalendar 64↙61↙55←55↙46
+### 64. netcalendar 64←64↙61↙55←55
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
 * 📚 Documentation: Text (89.5%), Markdown (10.5%)
@@ -1483,7 +1487,7 @@ ychat: source code repository.
 
 ---
 
-### 65. jsmstrade 65↙62↙53←53↙52
+### 65. jsmstrade 65←65↙62↙53←53
 
 * 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1507,7 +1511,7 @@ ychat: source code repository.
 
 ---
 
-### 66. vs-sim 66↙64↙56←56↖63
+### 66. vs-sim 66←66↙64↙56←56
 
 * 💻 Languages: Java (98.6%), Shell (0.8%), XML (0.4%)
 * 📚 Documentation: LaTeX (98.4%), Text (1.4%), Markdown (0.2%)
@@ -1532,7 +1536,7 @@ VS-Sim is an open source simulator programmed in Java for distributed systems. V
 
 ---
 
-### 67. perl-poetry 67↙65↙61←61↙54
+### 67. perl-poetry 67←67↙65↙61←61
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1555,7 +1559,7 @@ Here you find some Poetry written in Perl.
 
 ---
 
-### 68. hsbot 68↙67↙62←62↙58
+### 68. hsbot 68←68↙67↙62←62
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 81
