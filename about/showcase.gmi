@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-04-14
+Generated on: 2026-04-15
 
 This page showcases my side projects, providing an overview of what each project does, its technical implementation, and key metrics. Each project summary includes information about the programming languages used, development activity, releases, and licensing. The projects are ranked by score, which combines recent activity, project size, tag history, and whether the project has shipped a release.
 
@@ -10,8 +10,8 @@ This page showcases my side projects, providing an overview of what each project
 * ⇢ ⇢ Overall Statistics
 * ⇢ ⇢ Projects
 * ⇢ ⇢ ⇢ 1. fastforge 1↖3
-* ⇢ ⇢ ⇢ 2. snonux 2←2↖5
-* ⇢ ⇢ ⇢ 3. goprecords 3↖29↙28↙24←24
+* ⇢ ⇢ ⇢ 2. goprecords 2↖29↙28↙24←24
+* ⇢ ⇢ ⇢ 3. snonux 3↙2↖5
 * ⇢ ⇢ ⇢ 4. totalrecall 4↙1↖18↙15↖16
 * ⇢ ⇢ ⇢ 5. tasksamurai 5↖23↙22↙18←18
 * ⇢ ⇢ ⇢ 6. hexai 6↙4↙1←1↖3
@@ -81,28 +81,30 @@ This page showcases my side projects, providing an overview of what each project
 ## Overall Statistics
 
 * 📦 Total Projects: 68
-* 📊 Total Commits: 12,067
-* 📈 Total Lines of Code: 467,083
-* 📄 Total Lines of Documentation: 273,206
-* 💻 Languages: Go (53.1%), Java (12.4%), C (5.1%), XML (4.4%), Shell (3.8%), C++ (3.8%), YAML (3.6%), Perl (3.2%), C/C++ (2.5%), Ruby (1.5%), HTML (1.3%), TypeScript (1.2%), Config (0.8%), Python (0.6%), HCL (0.6%), CSS (0.5%), JSON (0.5%), Make (0.4%), TOML (0.3%), JavaScript (0.1%), Haskell (0.1%)
-* 📚 Documentation: Text (82.0%), Markdown (16.7%), LaTeX (1.3%)
-* 🚀 Release Status: 40 released, 28 experimental (58.8% with releases, 41.2% experimental)
+* 📊 Total Commits: 12,083
+* 📈 Total Lines of Code: 467,210
+* 📄 Total Lines of Documentation: 273,455
+* 💻 Languages: Go (53.1%), Java (12.4%), C (5.1%), XML (4.4%), Shell (3.8%), C++ (3.8%), YAML (3.6%), Perl (3.2%), C/C++ (2.5%), Ruby (1.5%), HTML (1.3%), TypeScript (1.2%), Config (0.8%), Python (0.6%), HCL (0.6%), CSS (0.5%), JSON (0.4%), Make (0.4%), TOML (0.3%), JavaScript (0.1%), Haskell (0.1%)
+* 📚 Documentation: Text (81.9%), Markdown (16.8%), LaTeX (1.3%)
+* 🚀 Release Status: 41 released, 27 experimental (60.3% with releases, 39.7% experimental)
 
 ## Projects
 
 ### 1. fastforge 1↖3
 
-* 💻 Languages: C (92.3%), C/C++ (4.2%), JavaScript (2.6%), Make (0.9%)
+* 💻 Languages: C (92.4%), C/C++ (4.1%), JavaScript (2.6%), Make (0.8%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 75
-* 📈 Lines of Code: 3720
-* 📄 Lines of Documentation: 225
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-04-06 to 2026-04-14
-* 🏆 Score: 146.4 (combines recent activity, code size, tags, and release status)
+* 📊 Commits: 85
+* 📈 Lines of Code: 3786
+* 📄 Lines of Documentation: 232
+* 🏷️ Tags: 1
+* 📅 Development Period: 2026-04-06 to 2026-04-15
+* 🏆 Score: 180.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
-* 🧪 Status: Experimental (no releases yet)
+* 🏷️ Latest Release: v1.0.0 (2026-04-15)
 
+
+=> showcase/fastforge/image-1.png fastforge screenshot
 
 WIP - Come back later.
 
@@ -112,7 +114,29 @@ WIP - Come back later.
 
 ---
 
-### 2. snonux 2←2↖5
+### 2. goprecords 2↖29↙28↙24←24
+
+* 💻 Languages: Go (98.6%), Shell (1.1%), Docker (0.3%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 157
+* 📈 Lines of Code: 6136
+* 📄 Lines of Documentation: 834
+* 🏷️ Tags: 11
+* 📅 Development Period: 2013-03-22 to 2026-04-14
+* 🏆 Score: 115.2 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.4.1 (2026-04-14)
+
+
+`goprecords` is a Go command-line program that generates uptime reports for hosts based on the input record files from `uptimed`. It supports importing records into SQLite and querying for reports, or reporting directly from a stats directory.
+
+=> https://codeberg.org/snonux/goprecords View on Codeberg
+=> https://github.com/snonux/goprecords View on GitHub
+=> https://cgit.f3s.buetow.org/goprecords/ View in cgit
+
+---
+
+### 3. snonux 3↙2↖5
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -121,7 +145,7 @@ WIP - Come back later.
 * 📄 Lines of Documentation: 88
 * 🏷️ Tags: 8
 * 📅 Development Period: 2026-04-06 to 2026-04-11
-* 🏆 Score: 101.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 85.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.1.6 (2026-04-11)
 
@@ -134,28 +158,6 @@ WIP - Come back later.
 
 ---
 
-### 3. goprecords 3↖29↙28↙24←24
-
-* 💻 Languages: Go (99.7%), Docker (0.3%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 154
-* 📈 Lines of Code: 6075
-* 📄 Lines of Documentation: 673
-* 🏷️ Tags: 10
-* 📅 Development Period: 2013-03-22 to 2026-04-14
-* 🏆 Score: 84.2 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.4.0 (2026-04-14)
-
-
-`goprecords` is a Go command-line program that generates uptime reports for hosts based on the input record files from `uptimed`. It supports importing records into SQLite and querying for reports, or reporting directly from a stats directory.
-
-=> https://codeberg.org/snonux/goprecords View on Codeberg
-=> https://github.com/snonux/goprecords View on GitHub
-=> https://cgit.f3s.buetow.org/goprecords/ View in cgit
-
----
-
 ### 4. totalrecall 4↙1↖18↙15↖16
 
 * 💻 Languages: Go (98.9%), HTML (0.3%), CSS (0.3%), Shell (0.2%), YAML (0.2%)
@@ -165,7 +167,7 @@ WIP - Come back later.
 * 📄 Lines of Documentation: 516
 * 🏷️ Tags: 40
 * 📅 Development Period: 2025-07-14 to 2026-04-13
-* 🏆 Score: 81.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 72.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.29.0 (2026-04-13)
 
@@ -189,7 +191,7 @@ WIP - Come back later.
 * 📄 Lines of Documentation: 253
 * 🏷️ Tags: 17
 * 📅 Development Period: 2025-06-19 to 2026-04-08
-* 🏆 Score: 80.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 70.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.13.4 (2026-04-08)
 
@@ -213,7 +215,7 @@ Task Samurai invokes the `task` command to read and modify tasks. The tasks are 
 * 📄 Lines of Documentation: 4403
 * 🏷️ Tags: 81
 * 📅 Development Period: 2025-08-01 to 2026-04-13
-* 🏆 Score: 58.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 54.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.33.0 (2026-04-13)
 
@@ -232,12 +234,12 @@ Hexai, the AI addition for your Helix Editor (https://helix-editor.com) .. Other
 
 * 💻 Languages: YAML (79.8%), Perl (9.4%), Shell (6.0%), Python (2.1%), Make (1.1%), Docker (0.6%), TOML (0.3%), Config (0.3%), Ruby (0.2%), HTML (0.1%)
 * 📚 Documentation: Markdown (97.1%), Text (2.9%)
-* 📊 Commits: 881
+* 📊 Commits: 883
 * 📈 Lines of Code: 20330
-* 📄 Lines of Documentation: 6606
+* 📄 Lines of Documentation: 6626
 * 🏷️ Tags: 0
 * 📅 Development Period: 2021-12-28 to 2026-04-14
-* 🏆 Score: 54.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 51.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -254,12 +256,12 @@ This is my personal config repository. Including...
 
 * 💻 Languages: Shell (67.9%), CSS (9.5%), Config (9.1%), TOML (8.8%), JSON (3.5%), Ruby (0.9%), INI (0.2%), YAML (0.1%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 945
+* 📊 Commits: 946
 * 📈 Lines of Code: 3422
-* 📄 Lines of Documentation: 9656
+* 📄 Lines of Documentation: 9717
 * 🏷️ Tags: 0
-* 📅 Development Period: 2023-07-30 to 2026-04-14
-* 🏆 Score: 44.2 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2023-07-30 to 2026-04-15
+* 🏆 Score: 40.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -281,7 +283,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 * 📄 Lines of Documentation: 386
 * 🏷️ Tags: 5
 * 📅 Development Period: 2025-11-25 to 2026-04-11
-* 🏆 Score: 42.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 39.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.4.1 (2026-03-26)
 
@@ -305,7 +307,7 @@ A simple AI-engineered command-line percentage calculator written in Go. No fron
 * 📄 Lines of Documentation: 220585
 * 🏷️ Tags: 27
 * 📅 Development Period: 2020-01-09 to 2026-04-11
-* 🏆 Score: 24.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 23.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.3.3 (2024-08-23)
 
@@ -329,7 +331,7 @@ DTail (a distributed tail program) is a DevOps tool for engineers programmed in 
 * 📄 Lines of Documentation: 3070
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-03-21 to 2026-04-11
-* 🏆 Score: 20.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 19.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -354,7 +356,7 @@ Runs two A100 VMs concurrently — each serving a different model — with [Pi](
 * 📄 Lines of Documentation: 112
 * 🏷️ Tags: 5
 * 📅 Development Period: 2025-06-25 to 2026-03-26
-* 🏆 Score: 14.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 14.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.8.0 (2026-03-26)
 
@@ -376,7 +378,7 @@ Runs two A100 VMs concurrently — each serving a different model — with [Pi](
 * 📄 Lines of Documentation: 174
 * 🏷️ Tags: 0
 * 📅 Development Period: 2021-04-29 to 2026-04-05
-* 🏆 Score: 14.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 13.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -398,7 +400,7 @@ Each format is in it's own branch in this repository. E.g.:
 * 📄 Lines of Documentation: 2789
 * 🏷️ Tags: 0
 * 📅 Development Period: 2024-01-18 to 2026-03-19
-* 🏆 Score: 12.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 11.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -422,7 +424,7 @@ Each format is in it's own branch in this repository. E.g.:
 * 📄 Lines of Documentation: 3103
 * 🏷️ Tags: 2
 * 📅 Development Period: 2008-05-15 to 2026-03-30
-* 🏆 Score: 9.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 9.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: 1.1.0 (2026-03-27)
 
@@ -446,7 +448,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 * 📄 Lines of Documentation: 250
 * 🏷️ Tags: 9
 * 📅 Development Period: 2018-05-26 to 2026-03-07
-* 🏆 Score: 8.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 8.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.5.3 (2026-03-02)
 
@@ -468,7 +470,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 * 📄 Lines of Documentation: 1736
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-02-07 to 2026-03-07
-* 🏆 Score: 6.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 6.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -645,7 +647,7 @@ A simple vibe-coded command-line percentage calculator written in Go.
 
 ### 25. gos 25↙24↙23↙19←19
 
-* 💻 Languages: Go (99.6%), Shell (0.2%), JSON (0.2%)
+* 💻 Languages: Go (99.6%), JSON (0.2%), Shell (0.2%)
 * 📚 Documentation: Markdown (100.0%)
 * 📊 Commits: 407
 * 📈 Lines of Code: 4529
