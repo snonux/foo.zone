@@ -20,6 +20,8 @@ Also check out my blog post:
       && [ -s "$tmp" ] \
       && ! grep -q '<!DOCTYPE html' "$tmp" \
       && grep -q '^## Top' "$tmp"; then
+      echo "> Uptime stats were last updated $(date)"
+      echo
       cat "$tmp"
       rm -f "$tmp"
   else
