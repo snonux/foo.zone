@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2026-04-26T19:22:40+03:00 by `Gemtexter`
+> This site was generated at 2026-04-26T19:49:38+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -9,7 +9,6 @@ Everything you read on this site is my personal opinion and experience. You can 
 ## Some links
 
 [About me](./about/index.md)  
-[Welcome to the Geminispace](./gemfeed/2021-04-24-welcome-to-the-geminispace.md)  
 [Some stats](./stats.md)  
 
 ## Blog
@@ -18,15 +17,6 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 [Subscribe to this blog's Atom feed](./gemfeed/atom.xml)  
 [Subscribe to this blog's Gemfeed](./gemfeed/index.md)  
-
-```
-   |\---/|
-   | ,_, |
-    \_`_/-..----.
- ___/ `   ' ,""+ \  sk
-(__...'   __\    |`.___.';
-  (_,...'(_,.`__)/'.....+
-```
 
 ### Posts
 

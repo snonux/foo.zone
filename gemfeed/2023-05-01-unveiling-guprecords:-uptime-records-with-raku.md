@@ -40,7 +40,7 @@ Guprecords, or global uptime records, is a Raku script designed to generate a co
 [The Raku Programming Language](https://raku.org)  
 [The Go Programming Language](https://go.dev)  
 
-> **Updated Fri 20 Feb 2026**: Guprecords has also been rewritten in Go as `goprecords` for improved performance and easier distribution. The Go version is fully compatible and supports the same features (categories, metrics, and output formats). Both implementations are maintained and available.
+> **Updated Fri 20 Feb 2026**: Guprecords has also been rewritten in Go as `goprecords` for improved performance and easier distribution. The Go version is fully compatible and supports the same features (categories, metrics, and output formats). The Go version also comes with a server mode and API. Both implementations are maintained and available.
 
 A previous version of Guprecords was actually written in Perl, the older and more established language from which Raku was developed. One of the primary motivations for rewriting Guprecords in Raku was to learn the language and explore its features. Raku is a more modern and powerful language compared to Perl, and working on a real-world project like Guprecords provided a practical and engaging way to learn the language.
 
