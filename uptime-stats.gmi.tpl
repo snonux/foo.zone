@@ -1,3 +1,4 @@
+<< template::dynamic
 # My machine uptime stats
 
 << echo "> This site was last updated at $($DATE $DATE_FORMAT)"
