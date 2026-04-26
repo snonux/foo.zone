@@ -9,7 +9,6 @@ Everything you read on this site is my personal opinion and experience. You can 
 ## Some links
 
 => ./about/index.gmi About me
-=> ./gemfeed/2021-04-24-welcome-to-the-geminispace.gmi Welcome to the Geminispace
 => ./stats.gmi Some stats
 
 ## Blog
@@ -18,15 +17,6 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 => ./gemfeed/atom.xml Subscribe to this blog's Atom feed
 => ./gemfeed/index.gmi Subscribe to this blog's Gemfeed
-
-```
-   |\---/|
-   | ,_, |
-    \_`_/-..----.
- ___/ `   ' ,""+ \  sk
-(__...'   __\    |`.___.';
-  (_,...'(_,.`__)/'.....+
-```
 
 ### Posts
 
