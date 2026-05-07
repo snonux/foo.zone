@@ -1,10 +1,12 @@
-# Unveiling I/O Riot NG — Part 1: a guided tour
+# Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour
 
-I rewrote I/O Riot. The old one was C + Systemtap and dates from 2017. The new one (call it `ior`) is Go + C + BPF via libbpfgo, runs on Linux, and is mostly a TUI dashboard rather than a record/replay box. 
+> Published at 2026-05-07T09:46:29+03:00
 
-This is the first of three posts. Part 1 is the demo-driven tour: what `ior` looks like, how the dashboard tabs work, how the live flamegraph reads, how filtering and recording work. Part 2 covers installing it on a fresh Rocky Linux 9 box and the "compile once, run everywhere" story underneath that: eBPF, CO-RE, libbpfgo, static linking, and why a 23 MB binary you build on one machine just runs on every other Linux host you scp it to. Part 3 is the under-the-hood companion: the per-event schema, the syscall-coverage probe generator, async-syscall caveats, and post-mortem SQL on the parquet output. The three are independent; read them in any order.
+I rewrote I/O Riot. The old version, written in C and SystemTap, dates back to 2017. The new version (called `ior`) uses Go, C, and BPF via libbpfgo. It runs on Linux and is primarily a TUI dashboard rather than a record/replay box. It took around two years of intermittent work to reach this `1.0.0` release.
 
-=> ./unveiling-ior-ng/00-hero-flamegraph.png `ior`'s live flamegraph: every running process, by file path, by syscall — width = event volume
+This is the first of three posts. Part 1 is the demo-driven tour: what `ior` looks like, how the dashboard tabs work, how the live flamegraph reads, how filtering and recording work. Part 2 covers installing it on a fresh Rocky Linux 9 box and the "compile once, run everywhere" story underneath that: eBPF, CO-RE, libbpfgo, static linking, and why a 23 MB binary you build on one machine just runs on every other Linux host you scp it to. Part 3 is the under-the-hood companion: the per-event schema, the syscall-coverage probe generator, async-syscall caveats, and post-mortem SQL on the parquet output. 
+
+=> ./unveiling-ior-ng/00-hero-flamegraph.png Live flamegraph
 
 << template::inline::index unveiling-ior-ng
 
