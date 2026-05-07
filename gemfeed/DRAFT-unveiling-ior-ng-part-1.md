@@ -213,4 +213,4 @@ For installing it and the eBPF / CO-RE / static-linking story (why one build run
 [Part 2: install + compile once, run everywhere](./DRAFT-unveiling-ior-ng-part-2.md)  
 [Part 3: under the hood (schema, probe generator, ClickHouse)](./DRAFT-unveiling-ior-ng-part-3.md)  
 [Source on Codeberg](https://codeberg.org/snonux/ior)  
-[The full in-repo tutorial](https://codeberg.org/snonux/ior/src/branch/main/demo/TUTORIAL.md)  
+[The full in-repo tutorial](https://codeberg.org/snonux/ior/src/branch/main/docs/tutorial/tutorial.md)  
