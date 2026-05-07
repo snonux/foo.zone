@@ -157,7 +157,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 
 What that buys ior in practice: I ship a single `ior` binary. On any Linux ≥4.18-ish with BTF available (which is almost all of them now — Debian, Ubuntu, Fedora, Arch, RHEL, and ElRepo's `kernel-ml` builds all ship `CONFIG_DEBUG_INFO_BTF=y` by default), it just works. No kernel-debuginfo dependency, no per-kernel build matrix, no DKMS hooks. The first time I tried `scp ior fedora-box:` and it ran without complaint after a 6-month gap I had to double-check it wasn't silently doing nothing.
 
-So the operational shape is: pick one box, do the install dance from the Rocky section above (or the Fedora one in the README) once, build, then distribute the 23 MB binary wherever you want to trace. The build host needs Go and clang and the static libraries. The trace hosts need a BTF-enabled kernel and `sudo`. That's it.
+So the operational shape is: pick one box, do the install dance from the Rocky section above (or `docs/build-rocky-linux-9.md` for a native Fedora/RHEL build) once, build, then distribute the 23 MB binary wherever you want to trace. The build host needs Go and clang and the static libraries. The trace hosts need a BTF-enabled kernel and `sudo`. That's it.
 
 The runtime shape of a trace pipeline lines up with that:
 

@@ -195,4 +195,4 @@ That's the bottom of the stack. For the dashboard surface — what ior looks lik
 => ./DRAFT-unveiling-ior-ng-part-1.gmi Part 1: a guided tour
 => ./DRAFT-unveiling-ior-ng-part-2.gmi Part 2: install + compile once, run everywhere
 => https://codeberg.org/snonux/ior Source on Codeberg
-=> https://codeberg.org/snonux/ior/src/branch/main/demo/TUTORIAL.md The full in-repo tutorial
+=> https://codeberg.org/snonux/ior/src/branch/main/docs/tutorial/tutorial.md The full in-repo tutorial
