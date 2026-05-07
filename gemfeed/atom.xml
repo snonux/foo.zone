@@ -1,11 +1,253 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-03-30T22:55:17+03:00</updated>
+    <updated>2026-05-07T10:00:59+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour</title>
+        <link href="https://foo.zone/gemfeed/2026-05-08-unveiling-ior-ng-part-1.html" />
+        <id>https://foo.zone/gemfeed/2026-05-08-unveiling-ior-ng-part-1.html</id>
+        <updated>2026-05-07T09:46:29+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I rewrote I/O Riot. The old version, written in C and SystemTap, dates back to 2017. The new version (called `ior`) uses Go, C, and BPF via libbpfgo. It runs on Linux and is primarily a TUI dashboard rather than a record/replay box. It took around two years of intermittent work to reach this `1.0.0` release.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='unveiling-io-riot-ng-100--part-1-a-guided-tour'>Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour</h1><br />
+<br />
+<span class='quote'>Published at 2026-05-07T09:46:29+03:00</span><br />
+<br />
+<span>I rewrote I/O Riot. The old version, written in C and SystemTap, dates back to 2017. The new version (called <span class='inlinecode'>ior</span>) uses Go, C, and BPF via libbpfgo. It runs on Linux and is primarily a TUI dashboard rather than a record/replay box. It took around two years of intermittent work to reach this <span class='inlinecode'>1.0.0</span> release.</span><br />
+<br />
+<span>This is the first of three posts. Part 1 is the demo-driven tour: what <span class='inlinecode'>ior</span> looks like, how the dashboard tabs work, how the live flamegraph reads, how filtering and recording work. Part 2 covers installing it on a fresh Rocky Linux 9 box and the "compile once, run everywhere" story underneath that: eBPF, CO-RE, libbpfgo, static linking, and why a 23 MB binary you build on one machine just runs on every other Linux host you scp it to. Part 3 is the under-the-hood companion: the per-event schema, the syscall-coverage probe generator, async-syscall caveats, and post-mortem SQL on the parquet output. </span><br />
+<br />
+<a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
+<br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour (You are currently reading this)</a><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/ior'>I/O Riot NG on Codeberg</a><br />
+<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>the original I/O Riot post (2018)</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#unveiling-io-riot-ng-100--part-1-a-guided-tour'>Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour</a></li>
+<li>⇢ <a href='#what-it-does'>What it does</a></li>
+<li>⇢ <a href='#first-launch'>First launch</a></li>
+<li>⇢ <a href='#the-seven-tabs-in-30-seconds-each'>The seven tabs, in 30 seconds each</a></li>
+<li>⇢ ⇢ <a href='#2-overview'><span class='inlinecode'>2</span> Overview</a></li>
+<li>⇢ ⇢ <a href='#3-syscalls'><span class='inlinecode'>3</span> Syscalls</a></li>
+<li>⇢ ⇢ <a href='#4-files'><span class='inlinecode'>4</span> Files</a></li>
+<li>⇢ ⇢ <a href='#5-processes'><span class='inlinecode'>5</span> Processes</a></li>
+<li>⇢ ⇢ <a href='#6-latency--gaps'><span class='inlinecode'>6</span> Latency + Gaps</a></li>
+<li>⇢ ⇢ <a href='#7-stream'><span class='inlinecode'>7</span> Stream</a></li>
+<li>⇢ <a href='#the-stream-tab-is-the-good-one'>The Stream tab is the good one</a></li>
+<li>⇢ <a href='#filtering-more-thoroughly'>Filtering, more thoroughly</a></li>
+<li>⇢ <a href='#recording'>Recording</a></li>
+<li>⇢ <a href='#what-s-still-missing'>What&#39;s still missing</a></li>
+</ul><br />
+<h2 style='display: inline' id='what-it-does'>What it does</h2><br />
+<br />
+<span>ior attaches BPF tracepoints to a chunk of the synchronous-I/O syscall surface (open, read, write, stat, mmap, sync, link, fcntl, dup, the obvious ones), plus the async ones (<span class='inlinecode'>io_uring_*</span>, <span class='inlinecode'>aio_*</span>). Each enter/exit pair becomes an event with a duration plus an inter-syscall gap, and the events feed a Go Bubble Tea dashboard with seven tabs: a live flamegraph, an overview, sortable per-syscall / per-file / per-process tables, latency histograms, and a live event stream with a stackable filter UI on top.</span><br />
+<br />
+<span>Same shape as the old I/O Riot in spirit: capture what the system is actually doing, not synthetic load. Different shape in execution: no replay engine, no separate record file unless you ask for one, no kernel-debug-info dance.</span><br />
+<br />
+<a href='./unveiling-ior-ng/00-logo.png'><img alt='I/O Riot NG logo' title='I/O Riot NG logo' src='./unveiling-ior-ng/00-logo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='first-launch'>First launch</h2><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>sudo ./ior
+</pre>
+<br />
+<span>You land on the PID picker. The default selection is "All PIDs", so Enter just dumps you straight at the dashboard.</span><br />
+<br />
+<a href='./unveiling-ior-ng/01-launch.gif'><img alt='Cold start: PID picker, then the dashboard' title='Cold start: PID picker, then the dashboard' src='./unveiling-ior-ng/01-launch.gif' /></a><br />
+<br />
+<span>The dashboard opens on the live flamegraph. Bars grow as new events arrive. Before walking through the keys, a paragraph on what you&#39;re looking at, since flamegraphs are easier to read than they are to describe:</span><br />
+<br />
+<span>A flamegraph is a histogram of stacks. Each horizontal bar is one entry in a stack; every bar directly above it is a child of that entry, and the stack you read top-to-bottom is the same shape as a call chain. In <span class='inlinecode'>ior</span>, "stack" doesn&#39;t mean function-call stack (we don&#39;t have userspace symbols [yet]). It means a tuple of dimensions of the trace: by default <span class='inlinecode'>comm/path/tracepoint</span>, so the bottom row is per-process names, the middle row is per-file paths, and the top row is the syscall (<span class='inlinecode'>enter_read</span>, <span class='inlinecode'>enter_openat</span>, etc.). A wide bar means lots of events landed in that bucket, a narrow bar means few. There&#39;s no time axis. Left-to-right is just sort order, not chronology. The whole chart is one "where is the I/O coming from?" picture.</span><br />
+<br />
+<span>The unusual bit: this flamegraph is live. Most of the flamegraph tooling out there (Brendan Gregg&#39;s <span class='inlinecode'>flamegraph.pl</span>, all the <span class='inlinecode'>perf script | stackcollapse-* | flamegraph.pl</span> pipelines, every <span class='inlinecode'>pprof -web</span> invocation) produces a static SVG: capture a profile for N seconds, render once, browse the result. <span class='inlinecode'>ior</span>&#39;s tab is not that. Bars grow, shrink, appear, and disappear in real time as events stream in from the kernel, at full screen-refresh rate while the workload runs, with no pause. You can sit on this tab while you change something on the system (start a build, cycle a service, run a query) and watch the I/O shape mutate underneath you. That&#39;s a different mental model from the static "I have a profile, let me look at it" workflow most people are used to, and it&#39;s what makes the tab actually useful as an at-a-glance diagnostic surface rather than a post-mortem artifact.</span><br />
+<br />
+<span>Because it&#39;s live, there&#39;s also a way to throw away the accumulated history and start the rolling count from "now": <span class='inlinecode'>r</span> resets the baseline. Everything the flamegraph has been counting since launch (or since the last reset) is dropped, and from that moment the chart reflects only events that arrived after the reset. Useful for the "compare before vs after" workflow — change one thing on the box, hit <span class='inlinecode'>r</span> immediately, and the next thirty seconds of accumulation is a fresh picture of the new state. You can also pause (and resume) the flame graph (with the <span class='inlinecode'>space</span> key) to get the static picture.</span><br />
+<br />
+<span>That visualisation buys you two things you can&#39;t easily get from a tabular view. First, hierarchy: it&#39;s obvious whether one process is doing ten thousand reads on a single file, or ten thousand reads spread across a hundred files. The first looks like one tall pillar, the second looks like a wide ridge. Second, scale: bar width is proportional to the metric (count or bytes), so a process that did 95% of the work towers over the others. The eye picks that up instantly. The same fact in a sorted table needs you to read numbers and do the ratio in your head.</span><br />
+<br />
+<span>Useful workflows you can do entirely from this tab:</span><br />
+<br />
+<ul>
+<li>"What&#39;s pounding the disk?" Leave it on default order (<span class='inlinecode'>comm/path/tracepoint</span>) and watch which <span class='inlinecode'>comm</span> widens. Press <span class='inlinecode'>b</span> once to switch the metric to bytes if you care about throughput, not call count.</li>
+<li>"Why is this one process slow?" <span class='inlinecode'>l</span> (or <span class='inlinecode'>→</span>) until the cursor is on that process, then <span class='inlinecode'>enter</span> to zoom. The whole chart re-roots there and you see only that process&#39;s paths and syscalls.</li>
+<li>"What&#39;s in /var/lib/X?" Press <span class='inlinecode'>o</span> once to flip ordering to <span class='inlinecode'>path/tracepoint/comm</span>, navigate to the path, zoom. Now the children show which syscalls hit it and which processes did them.</li>
+<li>"Did the new deploy change the I/O shape?" Press <span class='inlinecode'>r</span> to reset the baseline, wait a bit, and the chart starts fresh with only events from the reset point onward. Pair the same syscall surface "before" vs "after" and the difference jumps out by shape.</li>
+</ul><br />
+<span>Now the keys. Movement uses vi-style <span class='inlinecode'>h</span>/<span class='inlinecode'>j</span>/<span class='inlinecode'>k</span>/<span class='inlinecode'>l</span> everywhere in <span class='inlinecode'>ior</span>, and the cursor keys work too if you&#39;d rather. <span class='inlinecode'>h</span>/<span class='inlinecode'>l</span> (or <span class='inlinecode'>←</span>/<span class='inlinecode'>→</span>) walk siblings at the current depth, <span class='inlinecode'>j</span>/<span class='inlinecode'>k</span> (or <span class='inlinecode'>↓</span>/<span class='inlinecode'>↑</span>) step shallower or deeper. <span class='inlinecode'>enter</span> zooms into the selected subtree (the rest of the chart greys out and the selection becomes the new root). <span class='inlinecode'>u</span> or <span class='inlinecode'>ESC</span> undoes the zoom. <span class='inlinecode'>b</span> toggles the metric driving bar width between event count and total bytes. <span class='inlinecode'>/</span> opens regex search; matching frames stay coloured while everything else greys out, so you can use it as a filter as well as a finder. <span class='inlinecode'>o</span> cycles between five different stack-ordering modes, each with its own lens on the data. <span class='inlinecode'>H</span> toggles a built-in help panel showing every key the current tab responds to, which is the easiest way to discover what&#39;s bound where without leaving the dashboard.</span><br />
+<br />
+<span>The five orderings ship as built-in presets. Read each preset name as bottom→top: the leftmost dimension is what you&#39;ll see lined up across the bottom of the chart (the root row), the next one up is its children, and the rightmost is the top row (the leaf). Switching the order changes which dimension you&#39;re scanning first when your eye starts at the bottom.</span><br />
+<br />
+<span>You change ordering with the <span class='inlinecode'>o</span> hotkey, on the fly, while the trace is still running. No restart, no reset, no re-recording — <span class='inlinecode'>o</span> just rebuilds the live chart with the next preset and keeps streaming new events into it. Press it once to flip from "processes at the bottom" to "paths at the bottom" the moment you realise you&#39;d rather slice the data the other way; press it again to keep cycling. The toolbar updates immediately to show the new <span class='inlinecode'>o:order(...)</span> value. Pressing <span class='inlinecode'>o</span> rotates through the presets in this order:</span><br />
+<br />
+<span>Concrete screenshots of each preset on the same workload follow each description, so you can see how the same trace data reshapes itself depending on the lens.</span><br />
+<br />
+<span><span class='inlinecode'>comm/tracepoint/path</span> (default) — processes at the bottom, syscalls in the middle, file paths on top. Each comm bar at the root splits into the syscalls it issued, and each syscall splits further into the files it touched. Best general-purpose view: "which programs are doing the I/O, and what kind?"</span><br />
+<br />
+<a href='./unveiling-ior-ng/13a-order-by-process.png'><img alt='Ordering 1: comm/tracepoint/path — processes at the bottom (cos…, find, head, notify-rs i…, sh, sqlx-sqlite, xar)' title='Ordering 1: comm/tracepoint/path — processes at the bottom (cos…, find, head, notify-rs i…, sh, sqlx-sqlite, xar)' src='./unveiling-ior-ng/13a-order-by-process.png' /></a><br />
+<br />
+<span><span class='inlinecode'>path/tracepoint/comm</span> — file paths at the bottom, syscalls in the middle, processes on top. Use this when you suspect a particular file or directory is hot — pick the path, see which syscalls hit it, and which processes did those syscalls. Pairs naturally with directory grouping in the Files tab.</span><br />
+<br />
+<a href='./unveiling-ior-ng/13b-order-by-path.png'><img alt='Ordering 2: path/tracepoint/comm — file paths at the bottom (/null, /etc/home, /lib64, /tmp, /usr, /share, /paul, /libc, …)' title='Ordering 2: path/tracepoint/comm — file paths at the bottom (/null, /etc/home, /lib64, /tmp, /usr, /share, /paul, /libc, …)' src='./unveiling-ior-ng/13b-order-by-path.png' /></a><br />
+<br />
+<span><span class='inlinecode'>tracepoint/comm/path</span> — syscalls at the bottom, processes in the middle, file paths on top. When you already know "this is an <span class='inlinecode'>openat</span> problem" or "we&#39;re write-bound", this view collects all the openat (or write) traffic into one bar at the root and lets you drill into who&#39;s doing it and to which paths.</span><br />
+<br />
+<a href='./unveiling-ior-ng/13c-order-by-syscall.png'><img alt='Ordering 3: tracepoint/comm/path — syscalls at the bottom (enter_close, enter_fcntl, enter_mmap, enter_newfstatat, enter_openat, enter_read, …)' title='Ordering 3: tracepoint/comm/path — syscalls at the bottom (enter_close, enter_fcntl, enter_mmap, enter_newfstatat, enter_openat, enter_read, …)' src='./unveiling-ior-ng/13c-order-by-syscall.png' /></a><br />
+<br />
+<span><span class='inlinecode'>pid/tracepoint/path</span> — PIDs at the bottom, syscalls in the middle, file paths on top. Same shape as the default but each individual process gets its own root bar instead of being lumped in with siblings sharing a comm. Useful when you have many bash or python instances and need to tell them apart by ID.</span><br />
+<br />
+<a href='./unveiling-ior-ng/13d-order-by-pid.png'><img alt='Ordering 4: pid/tracepoint/path — PIDs at the bottom (103…, 1…, 1338410, 4113, 4263514, 7709, 8272, …)' title='Ordering 4: pid/tracepoint/path — PIDs at the bottom (103…, 1…, 1338410, 4113, 4263514, 7709, 8272, …)' src='./unveiling-ior-ng/13d-order-by-pid.png' /></a><br />
+<br />
+<span><span class='inlinecode'>comm/path/tracepoint</span> — processes at the bottom, file paths in the middle, syscalls on top. Inverse of the default in the upper two layers: you see processes, then which files they hit, then which syscalls hit each file. Best when you care about "what files does this program touch?" more than "what syscalls does it issue?".</span><br />
+<br />
+<a href='./unveiling-ior-ng/13e-order-by-process-paths.png'><img alt='Ordering 5: comm/path/tracepoint — processes at the bottom, file paths layered above instead of syscalls' title='Ordering 5: comm/path/tracepoint — processes at the bottom, file paths layered above instead of syscalls' src='./unveiling-ior-ng/13e-order-by-process-paths.png' /></a><br />
+<br />
+<span>In every ordering the rule is the same: scan the bottom row to pick a "by what?" dimension, then walk up to drill in. Bar widths always mean the same thing: proportion of the active metric (events or bytes, toggled with <span class='inlinecode'>b</span>). The toolbar at the top of the chart always shows the current ordering as <span class='inlinecode'>o:order(&lt;dim1&gt;/&lt;dim2&gt;/&lt;dim3&gt;)</span>, so you never lose track of which lens you&#39;re looking through.</span><br />
+<br />
+<span>If you want to skip the rotate-with-<span class='inlinecode'>o</span> dance and pick a custom three-tuple from the start, the headless side has you covered: <span class='inlinecode'>-fields comm,tracepoint,path</span> (or any other valid combination of <span class='inlinecode'>comm</span>, <span class='inlinecode'>pid</span>, <span class='inlinecode'>tid</span>, <span class='inlinecode'>tracepoint</span>, <span class='inlinecode'>path</span>) sets the collapse fields up front, and <span class='inlinecode'>-count count|bytes</span> picks the metric. Both are inherited by the live TUI flamegraph if you go that way, and they&#39;re what <span class='inlinecode'>mage demo</span> uses when it wants a specific ordering on a specific tape. Useful for scripted captures where you already know the lens you want.</span><br />
+<br />
+<a href='./unveiling-ior-ng/13-tui-flamegraph.gif'><img alt='Live in-TUI flamegraph: navigate, zoom, undo, cycle order + metric' title='Live in-TUI flamegraph: navigate, zoom, undo, cycle order + metric' src='./unveiling-ior-ng/13-tui-flamegraph.gif' /></a><br />
+<br />
+<h2 style='display: inline' id='the-seven-tabs-in-30-seconds-each'>The seven tabs, in 30 seconds each</h2><br />
+<br />
+<span>The number keys jump between tabs. <span class='inlinecode'>tab</span> and <span class='inlinecode'>shift+tab</span> step.</span><br />
+<br />
+<h3 style='display: inline' id='2-overview'><span class='inlinecode'>2</span> Overview</h3><br />
+<br />
+<span>A sparkline plus the top syscalls and top paths — the at-a-glance view, useful as a "what&#39;s happening right now?" landing tab when you don&#39;t yet know what you&#39;re looking for.</span><br />
+<br />
+<a href='./unveiling-ior-ng/02-overview-tab.gif'><img alt='Overview tab' title='Overview tab' src='./unveiling-ior-ng/02-overview-tab.gif' /></a><br />
+<br />
+<h3 style='display: inline' id='3-syscalls'><span class='inlinecode'>3</span> Syscalls</h3><br />
+<br />
+<span>A sortable table of every syscall <span class='inlinecode'>ior</span> knows about, with rate, average latency, p95/p99, total bytes, and error count. <span class='inlinecode'>s</span> sorts by the selected column, <span class='inlinecode'>S</span> reverses. The most useful column when something&#39;s wrong is usually p99 — it&#39;s where you see the long-tail outlier syscall types.</span><br />
+<br />
+<a href='./unveiling-ior-ng/03-syscalls-tab.gif'><img alt='Syscalls table with sort + reverse-sort' title='Syscalls table with sort + reverse-sort' src='./unveiling-ior-ng/03-syscalls-tab.gif' /></a><br />
+<br />
+<h3 style='display: inline' id='4-files'><span class='inlinecode'>4</span> Files</h3><br />
+<br />
+<span>Same shape as Syscalls but rows are file paths. The interesting key here is <span class='inlinecode'>d</span>: it rolls per-file rows up into their parent directory. Essential when you&#39;ve got a process touching ten thousand files in <span class='inlinecode'>/usr/share/</span> — without it the table is unreadable noise.</span><br />
+<br />
+<a href='./unveiling-ior-ng/04-files-tab.gif'><img alt='Directory grouping toggle' title='Directory grouping toggle' src='./unveiling-ior-ng/04-files-tab.gif' /></a><br />
+<br />
+<h3 style='display: inline' id='5-processes'><span class='inlinecode'>5</span> Processes</h3><br />
+<br />
+<span>Same shape again, but rows are processes / comms. Best paired with the Stream tab — once you spot a culprit comm here, push it to the global filter with <span class='inlinecode'>Enter</span> and the rest of the dashboard is scoped to that process.</span><br />
+<br />
+<a href='./unveiling-ior-ng/05-processes-tab.gif'><img alt='Processes tab' title='Processes tab' src='./unveiling-ior-ng/05-processes-tab.gif' /></a><br />
+<br />
+<h3 style='display: inline' id='6-latency--gaps'><span class='inlinecode'>6</span> Latency + Gaps</h3><br />
+<br />
+<span>Two histograms side by side: how long each syscall took (latency), and the wall-clock interval between syscalls on the same thread (gap). Latency tells you "is the kernel slow"; gap tells you "what is the program doing between two kernel calls".</span><br />
+<br />
+<span>One important point about that gap: <span class='inlinecode'>ior</span> measures it from the exit of one syscall to the entry of the next on the same TID, but it doesn&#39;t know what the thread was doing in the meantime. A long gap doesn&#39;t mean the thread was idle. It might have been pinned on a CPU running pure userspace code (number-crunching, JSON parsing, GC, a busy loop). All "gap" tells you for sure is "this thread didn&#39;t call into the kernel for X microseconds." Whether that&#39;s because it was sleeping, blocked on a condition variable, computing, or scheduled out is something the gap value alone cannot answer. Pair it with <span class='inlinecode'>top</span>/<span class='inlinecode'>perf top</span> if you need to disambiguate. Still useful in practice: a syscall-driven workload with surprisingly long gaps is a strong hint that you&#39;re CPU-bound somewhere outside the kernel, and that&#39;s a different optimisation conversation than slow I/O.</span><br />
+<br />
+<span>The <span class='inlinecode'>dd</span> loop in the demo workload spreads the latency distribution out so you can actually see the shape.</span><br />
+<br />
+<a href='./unveiling-ior-ng/06-latency-gaps-tab.gif'><img alt='Latency + gap histograms' title='Latency + gap histograms' src='./unveiling-ior-ng/06-latency-gaps-tab.gif' /></a><br />
+<br />
+<h3 style='display: inline' id='7-stream'><span class='inlinecode'>7</span> Stream</h3><br />
+<br />
+<span>The live tail — every event as it happens, in a row-per-event ring buffer. This is where you spend most of your time when something&#39;s actually broken. The whole next section is about it.</span><br />
+<br />
+<a href='./unveiling-ior-ng/07-stream-live.gif'><img alt='Stream tab live-tailing' title='Stream tab live-tailing' src='./unveiling-ior-ng/07-stream-live.gif' /></a><br />
+<br />
+<h2 style='display: inline' id='the-stream-tab-is-the-good-one'>The Stream tab is the good one</h2><br />
+<br />
+<span><span class='inlinecode'>space</span> pauses. In pause mode, the same vi-style <span class='inlinecode'>h</span>/<span class='inlinecode'>j</span>/<span class='inlinecode'>k</span>/<span class='inlinecode'>l</span> (or arrow keys) move the row/column cursor across the table. Hitting <span class='inlinecode'>Enter</span> on a cell pushes a new filter onto a stack, narrowing what you see. Pile them up — comm, then syscall, then file — and <span class='inlinecode'>ESC</span> pops them off LIFO when you want to back out.</span><br />
+<br />
+<a href='./unveiling-ior-ng/08-stream-pause-filter.gif'><img alt='Pause, push two filters, undo with Esc' title='Pause, push two filters, undo with Esc' src='./unveiling-ior-ng/08-stream-pause-filter.gif' /></a><br />
+<br />
+<span><span class='inlinecode'>/</span> and <span class='inlinecode'>?</span> are regex search forward/backward. <span class='inlinecode'>n</span> and <span class='inlinecode'>N</span> walk matches. The search runs against every column in the ring buffer and wraps at the end. Search and filtering are different beasts: search highlights and jumps, filtering hides everything that doesn&#39;t match.</span><br />
+<br />
+<a href='./unveiling-ior-ng/09-stream-regex-search.gif'><img alt='Regex search' title='Regex search' src='./unveiling-ior-ng/09-stream-regex-search.gif' /></a><br />
+<br />
+<span><span class='inlinecode'>e</span> exports the current filtered snapshot to a CSV in the working directory. <span class='inlinecode'>x</span> does the same for the paused stream view specifically (preserving your filter stack), <span class='inlinecode'>X</span> prompts for a filename, <span class='inlinecode'>E</span> opens the most recent export in <span class='inlinecode'>$EDITOR</span>.</span><br />
+<br />
+<a href='./unveiling-ior-ng/10-stream-csv-export.gif'><img alt='CSV export' title='CSV export' src='./unveiling-ior-ng/10-stream-csv-export.gif' /></a><br />
+<br />
+<h2 style='display: inline' id='filtering-more-thoroughly'>Filtering, more thoroughly</h2><br />
+<br />
+<span>The Enter-to-push trick isn&#39;t unique to Stream. It works the same on Files, Syscalls, and Processes: highlight a row, hit Enter, and the cell value becomes a filter against the entire dashboard. Three tabs of "I see one weird path / comm / syscall, drill in" with one keystroke.</span><br />
+<br />
+<span>The filter status line gives you a one-glance summary of every active frame, written like:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>comm~bash</span>: substring match on a string column. This is what Enter-on-a-cell produces for <span class='inlinecode'>comm</span>, <span class='inlinecode'>syscall</span>, and <span class='inlinecode'>file</span>.</li>
+<li><span class='inlinecode'>pid=1234</span>: exact equality. Used for <span class='inlinecode'>pid</span>, <span class='inlinecode'>tid</span>, <span class='inlinecode'>fd</span>, <span class='inlinecode'>ret</span>, <span class='inlinecode'>bytes</span>.</li>
+<li><span class='inlinecode'>latency&gt;=5ms</span> / <span class='inlinecode'>gap&gt;=10us</span>: numeric comparison with a duration suffix. The full operator set is <span class='inlinecode'>&gt;</span>, <span class='inlinecode'>&lt;</span>, <span class='inlinecode'>=</span>, <span class='inlinecode'>&gt;=</span>, <span class='inlinecode'>&lt;=</span>, <span class='inlinecode'>!=</span>.</li>
+</ul><br />
+<span>Stack frames AND together, so pushing <span class='inlinecode'>comm~bash</span> and then <span class='inlinecode'>syscall~openat</span> shows you bash&#39;s openat calls, not bash OR openat.</span><br />
+<br />
+<span>Undoing is symmetric to pushing: <span class='inlinecode'>ESC</span> pops the most recent frame off the stack, one keystroke per layer, LIFO. Press it once to drop the <span class='inlinecode'>syscall~openat</span> filter and you&#39;re back to bash-only; press it again and the <span class='inlinecode'>comm~bash</span> filter goes too, leaving the unfiltered view. To clear the whole stack at once, just hold <span class='inlinecode'>ESC</span> until the status line reads <span class='inlinecode'>filter: all</span>. The <span class='inlinecode'>F</span> key is a synonym for <span class='inlinecode'>ESC</span> here and works from any tab, handy from Files/Syscalls/Processes where <span class='inlinecode'>ESC</span> might otherwise close a modal first.</span><br />
+<br />
+<span>Two other knobs do related work:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>p</span>, <span class='inlinecode'>t</span>, <span class='inlinecode'>o</span> open the PID, TID, and probe-toggle dialogs. These are global filters: they reconfigure the BPF side, so kernel-level events for excluded PIDs/probes never even reach userspace. Cheaper than filtering a firehose, but it also means the filter applies to recordings (the parquet file only contains rows the kernel let through).</li>
+<li>The CLI mirrors of those dialogs let you bake the same scoping into a one-shot run: <span class='inlinecode'>-pid</span>, <span class='inlinecode'>-tid</span>, <span class='inlinecode'>-comm</span>, <span class='inlinecode'>-path</span>, plus <span class='inlinecode'>-tps &lt;regex&gt;</span> / <span class='inlinecode'>-tpsExclude &lt;regex&gt;</span> for picking which tracepoints to attach in the first place.</li>
+</ul><br />
+<a href='./unveiling-ior-ng/11-pid-tid-probe.gif'><img alt='PID, TID, and probe pickers' title='PID, TID, and probe pickers' src='./unveiling-ior-ng/11-pid-tid-probe.gif' /></a><br />
+<br />
+<h2 style='display: inline' id='recording'>Recording</h2><br />
+<br />
+<span>Three persistence flows, each for a different job:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>R</span> from the dashboard starts streaming Parquet. Every event row that survives your current TUI filter goes to disk continuously. <span class='inlinecode'>R</span> again stops. Footer shows the active file or the last error. If you don&#39;t want CSV snapshot exports at all (the <span class='inlinecode'>e</span> / <span class='inlinecode'>x</span> keys), launch with <span class='inlinecode'>-tuiExport=false</span> and those keys go away.</li>
+</ul><br />
+<a href='./unveiling-ior-ng/12-parquet-recording.gif'><img alt='Parquet recording from the TUI' title='Parquet recording from the TUI' src='./unveiling-ior-ng/12-parquet-recording.gif' /></a><br />
+<br />
+<ul>
+<li><span class='inlinecode'>sudo ./ior -flamegraph -name &lt;n&gt;</span> writes one aggregated <span class='inlinecode'>.ior.zst</span> artifact at shutdown. Aggregated counters, not per-event rows. Cheaper to write, ideal for <span class='inlinecode'>ior</span>&#39;s native flamegraph workflow and the integration test harness (which I&#39;ll come back to in Part 3).</li>
+</ul><br />
+<ul>
+<li><span class='inlinecode'>sudo ./ior -parquet trace.parquet</span> is the headless firehose: every row, no TUI, no filtering. <span class='inlinecode'>sudo ./ior -plain</span> is even lighter, CSV to stdout, pipe it into anything.</li>
+</ul><br />
+<a href='./unveiling-ior-ng/14-headless-modes.gif'><img alt='All three headless flows in one tape' title='All three headless flows in one tape' src='./unveiling-ior-ng/14-headless-modes.gif' /></a><br />
+<br />
+<span>Once a parquet file is on disk, point any SQL-over-parquet tool at it — Part 3 walks through ClickHouse Local, with real query output against a 30-second capture.</span><br />
+<br />
+<h2 style='display: inline' id='what-s-still-missing'>What&#39;s still missing</h2><br />
+<br />
+<ul>
+<li>No record/replay. That was the whole point of the original I/O Riot. The new one is a tracer, not a workload simulator. I keep going back and forth on whether to put replay back in.</li>
+<li>No userspace symbol resolution. Stacks are at the syscall surface, not "which line of which library called read".</li>
+</ul><br />
+<span>But the live flamegraph, the stackable stream filters, and the cheap parquet capture together cover the cases I actually hit week to week. The demo above is the easiest way to get a feel for whether it&#39;s the kind of tool you want.</span><br />
+<br />
+<span>For installing it and the eBPF / CO-RE / static-linking story (why one build runs on every other Linux box you scp it to), see Part 2 (once published). For the per-event schema, async-syscall caveats, the probe-generator safeguard against missing new kernel syscalls, and post-mortem SQL on the parquet output, see Part 3 (once published.).</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/ior'>Source on Codeberg</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/ior/src/branch/main/docs/tutorial/tutorial.md'>The full in-repo tutorial</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour (You are currently reading this)</a><br />
+<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</title>
         <link href="https://foo.zone/gemfeed/2026-04-02-f3s-kubernetes-with-freebsd-part-9.html" />
@@ -19426,128 +19668,6 @@ jgs \\`_..---.Y.---.._`//
 <a class='textlink' href='./2026-03-01-site-reliability-engineering-part-5.html'>2026-03-01 Site Reliability Engineering - Part 5: System Design, Incidents, and Learning</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Projects I financially support</title>
-        <link href="https://foo.zone/gemfeed/2024-09-07-projects-i-support.html" />
-        <id>https://foo.zone/gemfeed/2024-09-07-projects-i-support.html</id>
-        <updated>2024-09-07T16:04:19+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>This is the list of projects and initiatives I support/sponsor. </summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='projects-i-financially-support'>Projects I financially support</h1><br />
-<br />
-<span class='quote'>Published at 2024-09-07T16:04:19+03:00</span><br />
-<br />
-<span>This is the list of projects and initiatives I support/sponsor. </span><br />
-<br />
-<pre>
-||====================================================================||
-||//$\\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\//$\\||
-||(100)==================| FEDERAL SPONSOR NOTE |================(100)||
-||\\$//        ~         &#39;------========--------&#39;                \\$//||
-||&lt;&lt; /        /$\              // ____ \\                         \ &gt;&gt;||
-||&gt;&gt;|  12    //L\\            // ///..) \\         L38036133B   12 |&lt;&lt;||
-||&lt;&lt;|        \\ //           || &lt;||  &gt;\  ||                        |&gt;&gt;||
-||&gt;&gt;|         \$/            ||  $$ --/  ||        One Hundred     |&lt;&lt;||
-||&lt;&lt;|      L38036133B        *\\  |\_/  //* series                 |&gt;&gt;||
-||&gt;&gt;|  12                     *\\/___\_//*   1989                  |&lt;&lt;||
-||&lt;&lt;\      Open Source   ______/Franklin\________     Supporting   /&gt;&gt;||
-||//$\                 ~| SPONSORING AND FUNDING |~               /$\\||
-||(100)===================  AWESOME OPEN SOURCE =================(100)||
-||\\$//\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\/\\$//||
-||====================================================================||
- 
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#projects-i-financially-support'>Projects I financially support</a></li>
-<li>⇢ <a href='#motivation'>Motivation</a></li>
-<li>⇢ <a href='#osnews'>OSnews</a></li>
-<li>⇢ <a href='#cup-o--go-podcast'>Cup o&#39; Go Podcast</a></li>
-<li>⇢ <a href='#codeberg'>Codeberg</a></li>
-<li>⇢ <a href='#grapheneos'>GrapheneOS</a></li>
-<li>⇢ <a href='#ankidroid'>AnkiDroid</a></li>
-<li>⇢ <a href='#openbsd-through-openbsdamsterdam'>OpenBSD through OpenBSD.Amsterdam</a></li>
-<li>⇢ <a href='#protonmail'>ProtonMail</a></li>
-<li>⇢ <a href='#librofm'><span class='inlinecode'>Libro.fm</span></a></li>
-</ul><br />
-<h2 style='display: inline' id='motivation'>Motivation</h2><br />
-<br />
-<span>Sponsoring free and open-source projects, even for personal use, is important to ensure the sustainability, security, and continuous improvement of the software. It supports developers who often maintain these projects without compensation, helping them provide updates, new features, and security patches. By contributing, you recognize their efforts, foster a culture of innovation, and benefit from perks like early access or support, all while ensuring the long-term viability of the tools you rely on.</span><br />
-<br />
-<span>Albeit I am not putting a lot of money into my sponsoring efforts, it still helps the open-source maintainers because the more little sponsors there are, the higher the total sum.</span><br />
-<br />
-<h2 style='display: inline' id='osnews'>OSnews</h2><br />
-<br />
-<span>I am a silver Patreon member of OSnews. I have been following this site since my student years. It&#39;s always been a great source of independent and slightly alternative IT news.</span><br />
-<br />
-<a class='textlink' href='https://osnews.com'>https://osnews.com</a><br />
-<br />
-<h2 style='display: inline' id='cup-o--go-podcast'>Cup o&#39; Go Podcast</h2><br />
-<br />
-<span>I am a Patreon of the Cup o&#39; Go Podcast. The podcast helps me stay updated with the Go community for around 15 minutes per week. I am not a full-time software developer, but my long-term ambition is to become better in Go every week by working on personal projects and tools for work.</span><br />
-<br />
-<a class='textlink' href='https://cupogo.dev'>https://cupogo.dev</a><br />
-<br />
-<h2 style='display: inline' id='codeberg'>Codeberg</h2><br />
-<br />
-<span>Codeberg e.V. is a nonprofit organization that provides online resources for software development and collaboration. I am a user and a supporting member, paying an annual membership of €24. I didn&#39;t have to pay that membership fee, as Codeberg offers all the services I use for free.</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org'>https://codeberg.org</a><br />
-<a class='textlink' href='https://codeberg.org/snonux'>https://codeberg.org/snonux - My Codeberg page</a><br />
-<br />
-<h2 style='display: inline' id='grapheneos'>GrapheneOS</h2><br />
-<br />
-<span>GrapheneOS is an open-source project that improves Android&#39;s privacy and security with sandboxing, exploit mitigations, and a permission model. It does not include Google apps or services but offers a sandboxed Google Play compatibility layer and its own apps and services. </span><br />
-<br />
-<span>I&#39;ve made a one-off €100 donation because I really like this, and I run GrapheneOS on my personal Phone as my main daily driver.</span><br />
-<br />
-<a class='textlink' href='https://grapheneos.org/'>https://grapheneos.org/</a><br />
-<a class='textlink' href='https://foo.zone/gemfeed/2023-01-23-why-grapheneos-rox.html'>Why GrapheneOS Rox</a><br />
-<br />
-<h2 style='display: inline' id='ankidroid'>AnkiDroid</h2><br />
-<br />
-<span>AnkiDroid is an app that lets you learn flashcards efficiently with spaced repetition. It is compatible with Anki software and supports various flashcard content, syncing, statistics, and more.</span><br />
-<br />
-<span>I&#39;ve been learning vocabulary with this free app, and it is, in my opinion, the best flashcard app I know. I&#39;ve made a 20$ one-off donation to this project.</span><br />
-<br />
-<a class='textlink' href='https://opencollective.com/ankidroid'>https://opencollective.com/ankidroid</a><br />
-<br />
-<h2 style='display: inline' id='openbsd-through-openbsdamsterdam'>OpenBSD through OpenBSD.Amsterdam</h2><br />
-<br />
-<span> The OpenBSD project produces a FREE, multi-platform 4.4BSD-based UNIX-like operating system. Our efforts emphasize portability, standardization, correctness, proactive security and integrated cryptography. As an example of the effect OpenBSD has, the popular OpenSSH software comes from OpenBSD. OpenBSD is freely available from their download sites.</span><br />
-<br />
-<span>I implicitly support the OpenBSD project through a VM I have rented at OpenBSD Amsterdam. They donate €10 per VM and €15 per VM for every renewal to the OpenBSD Foundation, with dedicated servers running vmm(4)/vmd(8) to host opinionated VMs.</span><br />
-<br />
-<a class='textlink' href='https://www.OpenBSD.org'>https://www.OpenBSD.org</a><br />
-<a class='textlink' href='https://OpenBSD.Amsterdam'>https://OpenBSD.Amsterdam</a><br />
-<br />
-<h2 style='display: inline' id='protonmail'>ProtonMail</h2><br />
-<br />
-<span>I am not directly funding this project, but I am a very happy paying customer, and I am listing it here as an alternative to big tech if you don&#39;t want to run your own mail infrastructure. I am listing ProtonMail here as it is a non-profit organization, and I want to emphasize the importance of considering alternatives to big tech.</span><br />
-<br />
-<a class='textlink' href='https://proton.me/'>https://proton.me/</a><br />
-<br />
-<h2 style='display: inline' id='librofm'><span class='inlinecode'>Libro.fm</span></h2><br />
-<br />
-<span>This is the alternative to Audible if you are into audiobooks (like I am). For every book or every month of membership, I am also supporting a local bookstore I selected. Their catalog is not as large as Audible&#39;s, but it&#39;s still pretty decent.</span><br />
-<br />
-<span>Libro.fm began as a conversation among friends at Third Place Books, a local bookstore in Seattle, Washington, about the growing popularity of audiobooks and the lack of a way for readers to purchase them from independent bookstores. Flash forward, and Libro.fm was founded in 2014.</span><br />
-<br />
-<a class='textlink' href='https://libro.fm'>https://libro.fm</a><br />
-<br />
-<span>E-mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
