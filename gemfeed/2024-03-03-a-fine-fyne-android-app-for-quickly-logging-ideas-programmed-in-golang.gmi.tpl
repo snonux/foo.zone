@@ -1,6 +1,8 @@
 # A fine Fyne Android app for quickly logging ideas programmed in Go
 
-> Published at 2024-03-03T00:07:21+02:00
+> Published at 2024-03-03T00:07:21+02:00; Last updated: 2026-05-08
+
+> Update: This is now a native Android Dart/Flutter app. The latest Fyne version can still be installed via git tag `v0.1.1`.
 
 I am an ideas person. I find myself frequently somewhere on the streets with an idea in my head but no paper journal noting it down. 
 
