@@ -2,9 +2,9 @@
 
 > Draft — not in the gemfeed yet. Promote with the usual rename + index dance.
 
-This is the third and final post in the series. Part 1 is the demo-driven tour — what ior looks like, how the dashboard tabs work, how the live flamegraph reads, how filtering and recording behave. Part 2 covers the install dance for Rocky Linux 9 and the "compile once, run everywhere" portability story (eBPF, CO-RE, libbpfgo, static linking). This one is the part you read when you've got ior running and want to know what's actually in the data: the per-event schema, the safeguard that keeps syscall coverage current as new kernels ship, async-syscall caveats, and what to do with the parquet output once it's on disk.
+This is the third and final post in the series. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how the live flamegraph reads, how filtering and recording behave. Part 2 covers the install dance for Rocky Linux 9 and the "compile once, run everywhere" portability story (eBPF, CO-RE, libbpfgo, static linking). This one is the part you read when you've got ior running and want to know what's actually in the data: the per-event schema, the safeguard that keeps syscall coverage current as new kernels ship, the integration test harness that proves it stays current, async-syscall caveats, and what to do with the parquet output once it's on disk.
 
-If you haven't read Part 1, it's not a hard prerequisite — but the screenshots and key bindings referenced here all live there. Part 2 is also independent of this one; you can read them in either order.
+If you haven't read Part 1, it's not a hard prerequisite, but the screenshots and key bindings referenced here all live there. Part 2 is also independent of this one; you can read them in either order.
 
 [Part 1: a guided tour](./DRAFT-unveiling-ior-ng-part-1.md)  
 [Part 2: install + compile once, run everywhere](./DRAFT-unveiling-ior-ng-part-2.md)  
@@ -13,6 +13,7 @@ If you haven't read Part 1, it's not a hard prerequisite — but the screenshots
 
 [![I/O Riot NG logo](./unveiling-ior-ng/00-logo.png "I/O Riot NG logo")](./unveiling-ior-ng/00-logo.png)  
 
+[2026-05-08 Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
 
 ## Table of Contents
 
@@ -20,6 +21,7 @@ If you haven't read Part 1, it's not a hard prerequisite — but the screenshots
 * [⇢ ⇢ What ior actually captures per event](#what-ior-actually-captures-per-event)
 * [⇢ ⇢ ⇢ Async syscalls and what "latency" means for them](#async-syscalls-and-what-latency-means-for-them)
 * [⇢ ⇢ Keeping up with new syscalls](#keeping-up-with-new-syscalls)
+* [⇢ ⇢ ⇢ The integration test harness keeps the classifier honest](#the-integration-test-harness-keeps-the-classifier-honest)
 * [⇢ ⇢ Querying a parquet trace with ClickHouse](#querying-a-parquet-trace-with-clickhouse)
 * [⇢ ⇢ Asking an AI to do the reading for you](#asking-an-ai-to-do-the-reading-for-you)
 * [⇢ ⇢ Wrapping up](#wrapping-up)
@@ -28,41 +30,51 @@ If you haven't read Part 1, it's not a hard prerequisite — but the screenshots
 
 Every traced syscall produces one row of structured data. The schema is what the parquet file (and the in-memory ring buffer behind the dashboard) stores, and it covers all the dimensions you'd want for a post-mortem:
 
-* `seq` — monotonically increasing sequence number, useful for joining/ordering across analysis tools.
-* `time_ns` — wall-clock timestamp at syscall entry, in nanoseconds since boot.
-* `latency_ns` — how long the syscall took, measured from `sys_enter_X` to `sys_exit_X` of the matching pair.
-* `gap_ns` — wall-clock interval since the previous syscall on the same TID (the userspace-side breathing room — see Part 1's Latency+Gaps tab section for the caveat about what "gap" actually means).
-* `comm` — the program's `task->comm` string at the time of the syscall (16 chars max, that's a kernel limit, hence truncations like "notify-rs inoti" in the demo screenshots).
-* `pid`, `tid` — process and thread IDs.
-* `syscall` — the syscall name, e.g. `read`, `openat`, `mkdir`.
-* `fd` — the file descriptor passed in (or returned by `open*`).
-* `ret` — the syscall return value: number of bytes for read/write, the new fd for open*, 0 or a negative errno otherwise. This is also where exit codes for failed calls live — anything `< 0` is a `-errno`.
-* `bytes` — the byte count classified by direction: bytes read for read-class syscalls, bytes written for write-class syscalls, bytes transferred for `sendfile`/`splice`/`copy_file_range`. Lets you answer "who is hogging disk throughput?" in one query.
-* `file` — the file path, where the kernel knows it. From `openat` it's the literal path argument; from `read`/`write` on an existing fd it's resolved via the fd-to-path map ior maintains in BPF.
-* `is_error` — boolean shortcut: true iff `ret < 0`. Saves you a `WHERE` clause in 90% of queries.
-* `filter_epoch` — bookkeeping for the global filter UI; you can ignore it for offline analysis.
+* `seq`: monotonically increasing sequence number, useful for joining/ordering across analysis tools.
+* `time_ns`: wall-clock timestamp at syscall entry, in nanoseconds since boot.
+* `latency_ns`: how long the syscall took, measured from `sys_enter_X` to `sys_exit_X` of the matching pair.
+* `gap_ns`: wall-clock interval since the previous syscall on the same TID (the userspace-side breathing room; see Part 1's Latency+Gaps tab section for the caveat about what "gap" actually means).
+* `comm`: the program's `task->comm` string at the time of the syscall (16 chars max, that's a kernel limit, hence truncations like "notify-rs inoti" in the demo screenshots).
+* `pid`, `tid`: process and thread IDs.
+* `syscall`: the syscall name, e.g. `read`, `openat`, `mkdir`.
+* `fd`: the file descriptor passed in (or returned by `open*`).
+* `ret`: the syscall return value: number of bytes for read/write, the new fd for open*, 0 or a negative errno otherwise. This is also where exit codes for failed calls live; anything `< 0` is a `-errno`.
+* `bytes`: the byte count classified by direction. Bytes read for read-class syscalls, bytes written for write-class syscalls, bytes transferred for `sendfile`/`splice`/`copy_file_range`. Lets you answer "who is hogging disk throughput?" in one query.
+* `file`: the file path, where the kernel knows it. From `openat` it's the literal path argument; from `read`/`write` on an existing fd it's resolved via the fd-to-path map ior maintains in BPF.
+* `is_error`: boolean shortcut, true iff `ret < 0`. Saves you a `WHERE` clause in 90% of queries.
+* `filter_epoch`: bookkeeping for the global filter UI; you can ignore it for offline analysis.
 
 Aggregations the dashboard derives from this raw row stream — counts per syscall/comm/path, rolling rates, per-syscall latency histograms, gap histograms, top-N tables — are all just GROUP BYs over those columns.
 
 ### Async syscalls and what "latency" means for them
 
-ior attaches to enter+exit tracepoints for every file-I/O syscall, including the asynchronous ones — `io_uring_enter`, `io_uring_register`, `aio_*`, `sync_file_range`, and so on. Coverage is the same as for blocking syscalls: enter event, exit event, latency = exit − enter.
+ior attaches to enter+exit tracepoints for every file-I/O syscall, including the asynchronous ones (`io_uring_enter`, `io_uring_register`, `aio_*`, `sync_file_range`, and so on). Coverage is the same as for blocking syscalls: enter event, exit event, latency = exit − enter.
 
-The catch is that for an async syscall, that latency does not mean what you'd intuitively expect. The whole point of an async submission is that the kernel returns immediately while the actual work — the read, the write, the fsync — runs in the background and reports completion later through a different channel (a `cqe` for io_uring, a signal or `aio_suspend` poll for POSIX AIO). So when ior tells you `io_uring_enter` took 4 µs, that's the time spent inside the kernel function ferrying submission queue entries — not the time the storage device spent doing the I/O. Those completions land separately, often on a different thread, and their timing isn't paired with the original enter event. Don't read the latency histogram for `io_uring_enter` as "io_uring is fast" — it's a different question entirely.
+The catch is that for an async syscall, that latency doesn't mean what you'd intuitively expect. The whole point of an async submission is that the kernel returns immediately while the actual work (the read, the write, the fsync) runs in the background and reports completion later through a different channel (a `cqe` for io_uring, a signal or `aio_suspend` poll for POSIX AIO). So when ior tells you `io_uring_enter` took 4 µs, that's the time spent inside the kernel function ferrying submission queue entries, not the time the storage device spent doing the I/O. Those completions land separately, often on a different thread, and their timing isn't paired with the original enter event. Don't read the latency histogram for `io_uring_enter` as "io_uring is fast"; it's a different question entirely.
 
-The flip side is that ior's per-row throughput numbers (`bytes` summed over a window) still hold for async ops, because the kernel reports the byte count at submission for the cases where it's known up front. So "what processes are dispatching the most async I/O" is a fine question to ask. "How long do those async I/Os actually take" is one ior cannot currently answer — you'd want a per-completion tracepoint pair to do that, which is on the someday-maybe list.
+The flip side is that ior's per-row throughput numbers (`bytes` summed over a window) still hold for async ops, because the kernel reports the byte count at submission for the cases where it's known up front. So "what processes are dispatching the most async I/O" is a fine question to ask. "How long do those async I/Os actually take" is one ior cannot currently answer; you'd want a per-completion tracepoint pair to do that, which is on the someday-maybe list.
 
 ## Keeping up with new syscalls
 
-One of the persistent problems with the original 2017 I/O Riot was that the syscall coverage was a hand-maintained list. Every kernel release added new entry points; some of them were file I/O, some weren't, and there was no automated way to spot the new arrivals. After a couple of years the list had silently rotted — entire syscalls were missing from traces, and which ones was difficult to detect because nothing flagged them.
+One of the persistent problems with the original 2017 I/O Riot was that the syscall coverage was a hand-maintained list. Every kernel release added new entry points; some of them were file I/O, some weren't, and there was no automated way to spot the new arrivals. After a couple of years the list had silently rotted. Entire syscalls were missing from traces, and which ones was difficult to detect because nothing flagged them.
 
-The new ior solves this with a code generator that runs against the kernel itself. `mage generate` reads every `/sys/kernel/tracing/events/syscalls/*/format` file on the host (which is the kernel's authoritative, runtime-correct list of every syscall it knows about), parses each one, and runs it through a classifier that decides what kind of file I/O surface it is — fd-based, path-based, dup-style, fcntl-style, async-completion, etc. The recognized ones get a generated BPF handler emitted into `internal/c/generated_tracepoints.c`; the unrecognized ones get a comment line like `/// Ignoring sys_enter_X sys_exit_X as possibly not file I/O related` in the same file.
+The new ior solves this with a code generator that runs against the kernel itself. `mage generate` reads every `/sys/kernel/tracing/events/syscalls/*/format` file on the host (which is the kernel's authoritative, runtime-correct list of every syscall it knows about), parses each one, and runs it through a classifier that decides what kind of file I/O surface it is: fd-based, path-based, dup-style, fcntl-style, async-completion, and so on. The recognized ones get a generated BPF handler emitted into `internal/c/generated_tracepoints.c`; the unrecognized ones get a comment line like `/// Ignoring sys_enter_X sys_exit_X as possibly not file I/O related` in the same file.
 
-The safeguard piece is that the list of ignored syscalls is also extracted into a checked-in audit file — `internal/c/generated_tracepoints_result.txt` — and `mage generate` diffs the new run against the committed copy. If a future kernel adds a syscall ior hasn't seen before, that diff will show it, and a strict-mode regen will fail the build until a human reviews the new entry. So either the new syscall is genuinely not file-I/O (drop a one-line ignore rule, commit the diff) or it is (extend the classifier, commit the new handler). Either way it's not a silent miss.
+The safeguard piece is that the list of ignored syscalls is also extracted into a checked-in audit file (`internal/c/generated_tracepoints_result.txt`) and `mage generate` diffs the new run against the committed copy. If a future kernel adds a syscall ior hasn't seen before, that diff will show it, and a strict-mode regen will fail the build until a human reviews the new entry. So either the new syscall is genuinely not file-I/O (drop a one-line ignore rule, commit the diff) or it is (extend the classifier, commit the new handler). Either way it's not a silent miss.
 
 The current numbers are 234 active tracepoint handlers (117 enter+exit pairs) and 249 ignored syscalls, all enumerated in that one generated file. Compared to the old I/O Riot, where coverage was "however much of the kernel I happened to remember to type out", that's a meaningful step forward.
 
 (I hit this safeguard in practice during the Rocky Linux 9 install in Part 2: the committed audit was generated against a newer kernel, and the strict diff against Rocky's 5.14 refused to overwrite it. The `IOR_FORCE_GENERATE=1` env var skips the strict check and regenerates against the live kernel, which is the right thing on a fresh build host.)
+
+### The integration test harness keeps the classifier honest
+
+The codegen catches "did the kernel grow a new syscall I haven't seen?" but it can't catch "is the handler I generated actually emitting the right `bytes` value for `pwritev2`?" That second question is what `integrationtests/` exists for, and it's the part of the project that gives me the most confidence when bumping kernel versions or rewriting the BPF C side.
+
+The shape is straightforward. A small standalone Go binary, `ioworkload`, performs deterministic syscalls of one kind (a controlled number of `openat`s on a known path, exactly N `read`s of exactly M bytes, an `fcntl` sequence, an `io_uring` submission with a known shape, etc.). The harness runs ior against `ioworkload`'s PID with `-flamegraph -name <scenario>`, lets it run to completion, and parses the resulting `.ior.zst` aggregate. Each test file in `integrationtests/` (`open_test.go`, `read_test.go`, `mmap_test.go`, `iouring_test.go`, `pidfd_test.go`, `copy_file_range_test.go`, and friends) asserts that ior saw exactly what the workload did: counts, byte totals, error rates, file paths.
+
+`mage integrationTest` builds both binaries and runs the suite in parallel up to `INTEGRATION_PARALLEL` (default `NumCPU * 2`). `mage integrationTestSerial` does the same one at a time, which is the right knob when triaging a flake. They need root because of `CAP_BPF`, and they self-skip when not root.
+
+What this buys, in practice: when CO-RE field offsets shift under me, when libbpfgo bumps a major version, when a new kernel quietly changes which syscalls bookkeep `bytes` at submission vs. completion, the suite's the thing that goes red first. The codegen safeguard tells me "the kernel surface changed". The integration harness tells me "and here's specifically what ior is now getting wrong about it". Together that's a much shorter feedback loop than the old "wait for the next time I notice the flamegraph looks weird" workflow.
 
 ## Querying a parquet trace with ClickHouse
 
@@ -125,13 +137,13 @@ clickhouse local --query "
     └────────────┴───────┴────────┴────────┘
 ```
 
-Real output, by the way — those rows are from a 30-second `ior -parquet trace.parquet` capture on the laptop I'm typing this on. `notify-rs inoti…` is the inotify thread of some Rust app I had open; `cosmic-term` is the COSMIC desktop's terminal emulator. The slowest p99 errors are the directory-walking syscalls (statx, newfstatat, mkdir) at ~16 µs — bog standard.
+Real output, by the way: those rows are from a 30-second `ior -parquet trace.parquet` capture on the laptop I'm typing this on. `notify-rs inoti…` is the inotify thread of some Rust app I had open; `cosmic-term` is the COSMIC desktop's terminal emulator. The slowest p99 errors are the directory-walking syscalls (statx, newfstatat, mkdir) at ~16 µs, bog standard.
 
 Same trick works in DuckDB (`duckdb -c "SELECT ... FROM 'trace.parquet'"`), pandas, polars, anything that reads Parquet. The point of streaming Parquet rather than ior's native `.ior.zst` format is exactly this: once it's on disk, you're in the standard data-tools ecosystem.
 
 ## Asking an AI to do the reading for you
 
-Parquet is great if you already have an angle of attack. Sometimes you don't — you just want to know "what's hammering this box right now, and is any of it interesting?" That's where pasting a chunk of trace into an LLM and asking it to look turns out to be a surprisingly effective first pass. ior's `-plain` mode emits CSV, which is exactly the format AI assistants are best at chewing through:
+Parquet is great if you already have an angle of attack. Sometimes you don't. You just want to know "what's hammering this box right now, and is any of it interesting?" That's where pasting a chunk of trace into an LLM and asking it to look turns out to be a surprisingly effective first pass. ior's `-plain` mode emits CSV, which is exactly the format AI assistants are best at chewing through:
 
 ```sh
 sudo ior -plain -duration 15 > iotrace.csv
@@ -185,19 +197,19 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
 /sys, /dev/dri, ~/.config and the Cosmic/Flatpak search dirs.
 ```
 
-Two things this is unreasonably good at. First, joining the dots between `comm`, `syscall` and `path` columns to give you a one-paragraph "this is what your machine is doing" — the kind of summary that would take you ten ClickHouse queries to assemble by hand. Second, flagging things that are statistically weird without you having to know what to look for: the 100%-error `mkdir` was the EEXIST loop in cosmic-term, the 84%-error `newfstatat` was systemd-oomd racing process exits, the surface-eDP-1 outlier was the only entry on the list with high per-event latency.
+Two things this is unreasonably good at. First, joining the dots between `comm`, `syscall` and `path` columns to give you a one-paragraph "this is what your machine is doing", the kind of summary that would take you ten ClickHouse queries to assemble by hand. Second, flagging things that are statistically weird without you having to know what to look for: the 100%-error `mkdir` was the EEXIST loop in cosmic-term, the 84%-error `newfstatat` was systemd-oomd racing process exits, the surface-eDP-1 outlier was the only entry on the list with high per-event latency.
 
 A few caveats worth knowing before you rely on this:
 
 * The CSV file gets big fast. Fifteen seconds of an idle desktop produced 260k rows / ~25 MB of CSV; on a busy server you'll want to either trim with `-comm`/`-path`/`-pid` filters at capture time or hand the AI a `head -100000` slice. Most assistants will hit context limits well before the file ends.
 * The model is reading text, not running SQL. It will round, it will sometimes miscount the long tail, and it cannot tell you a true p99 from a 250k-row sample without writing code. Treat the output as a lead-generator: it points you at suspects, then you confirm with ClickHouse on the parquet file.
-* For deeper questions ("what changed between these two traces?", "which pids dominate during the 12:34 spike?") an agentic assistant that can run shell commands does much better — it'll write the awk/clickhouse query itself, run it, and feed the result back into its own analysis.
+* For deeper questions ("what changed between these two traces?", "which pids dominate during the 12:34 spike?") an agentic assistant that can run shell commands does much better. It'll write the awk/clickhouse query itself, run it, and feed the result back into its own analysis.
 
 The combination that's worked best for me in practice: capture parquet with `-parquet`, capture a parallel `-plain` CSV slice for the AI to read, ask the AI for a triage pass, then drill into the suspects with ClickHouse on the parquet file. Triage and ground-truth, in that order.
 
 ## Wrapping up
 
-That's the bottom of the stack. For the dashboard surface — what ior looks like, how the seven tabs behave, how filtering and recording work in practice — Part 1 is the demo-driven tour with all the GIFs. For the install dance and the why-the-binary-is-portable story (eBPF, CO-RE, static linking), Part 2 is the install + portability companion.
+That's the bottom of the stack. For the dashboard surface (what ior looks like, how the seven tabs behave, how filtering and recording work in practice) Part 1 is the demo-driven tour with all the GIFs. For the install dance and the why-the-binary-is-portable story (eBPF, CO-RE, static linking), Part 2 is the install + portability companion.
 
 [Part 1: a guided tour](./DRAFT-unveiling-ior-ng-part-1.md)  
 [Part 2: install + compile once, run everywhere](./DRAFT-unveiling-ior-ng-part-2.md)  
