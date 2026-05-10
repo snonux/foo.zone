@@ -1,0 +1,287 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-05-11-unveiling-ior-ng-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+</p>
+<span> (or Podman)# Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</span><br />
+<br />
+<span>This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).</span><br />
+<br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static. (You are currently reading this)</a><br />
+<br />
+<a href='./unveiling-ior-ng/00-logo.png'><img alt='I/O Riot NG logo' title='I/O Riot NG logo' src='./unveiling-ior-ng/00-logo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<span class='quote'>Published at 2026-05-10T22:41:23+03:00</span><br />
+<br />
+<span class='quote'>Published at 2026-05-10T22:39:24+03:00</span><br />
+<br />
+<ul>
+<li>⇢ <a href='#installing-ior'>Installing ior</a></li>
+<li>⇢ ⇢ <a href='#why-native-installation-is-a-mess'>Why native installation is a mess</a></li>
+<li>⇢ ⇢ <a href='#what-the-docker-build-is-actually-doing'>What the Docker build is actually doing</a></li>
+<li>⇢ <a href='#a-short-detour-ebpf-and-libbpfgo'>A short detour: eBPF and libbpfgo</a></li>
+<li>⇢ <a href='#co-re--the-part-that-makes-the-binary-actually-portable'>CO-RE — the part that makes the binary actually portable</a></li>
+<li>⇢ ⇢ <a href='#static-linking'>Static linking</a></li>
+<li>⇢ ⇢ <a href='#go-programs-are-statically-linked-by-default'>Go programs are statically linked by default</a></li>
+<li>⇢ ⇢ <a href='#cgo-programs-are-not-statically-linked-by-default'><span class='inlinecode'>cgo</span> programs are not statically linked by default.</a></li>
+<li>⇢ ⇢ <a href='#co-re'>CO-RE</a></li>
+<li>⇢ <a href='#a-note-on-cgo-overhead'>A note on cgo overhead</a></li>
+<li>⇢ <a href='#if-you-want-to-go-deeper'>If you want to go deeper</a></li>
+</ul><br />
+<h2 style='display: inline' id='installing-ior'>Installing ior</h2><br />
+<br />
+<span>The short answer: Use Docker (or Podman). One command, no toolchain setup, works from any Docker-capable Linux host with BTF available:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>git clone https://codeberg.org/snonux/ior ~/git/ior
+cd ~/git/ior
+mage buildDocker
+</pre>
+<br />
+<span>First run builds a Rocky Linux 9 builder image (~15–20 minutes). Subsequent runs reuse the cached image and finish in under a minute. The resulting static binary is <span class='inlinecode'>./ior</span>. That&#39;s the officially supported install path, and it&#39;s the right one for anyone who just wants to run <span class='inlinecode'>ior</span> without living in its build system.</span><br />
+<br />
+<span class='quote'>Note: There&#39;s also a target for building it for Rocky Linux 8.</span><br />
+<br />
+<h3 style='display: inline' id='why-native-installation-is-a-mess'>Why native installation is a mess</h3><br />
+<br />
+<span>If you&#39;re curious why Docker became the answer, the native install on Rocky Linux 9 illustrates the problem well. Three separate things bite you before you even get to <span class='inlinecode'>mage build</span>:</span><br />
+<br />
+<span>Rocky 9 ships neither <span class='inlinecode'>libelf.a</span> nor <span class='inlinecode'>libzstd.a</span>. There are no <span class='inlinecode'>*-static</span> subpackages for either, only the dynamic <span class='inlinecode'>.so</span> files. Both have to be compiled from source. <span class='inlinecode'>libelf</span> from the elfutils source RPM, <span class='inlinecode'>libzstd</span> from the upstream GitHub release tarball.</span><br />
+<br />
+<span>Rocky 9 also only ships Go 1.25.x, but <span class='inlinecode'>ior</span> requires 1.26+ (due to improved CGo performance). So Go itself has to be installed from go.dev in parallel with the library builds.</span><br />
+<br />
+<h3 style='display: inline' id='what-the-docker-build-is-actually-doing'>What the Docker build is actually doing</h3><br />
+<br />
+<span>The Dockerfile encodes exactly the same steps that a native install on Rocky 9 would require. Here is the full sequence so you have a mental model of what&#39;s inside the image, and so you could reproduce it on a bare host if you ever needed to:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.</font></i>
+sudo dnf config-manager --set-enabled crb
+sudo dnf install -y epel-release
+sudo dnf install -y gcc clang bpftool elfutils-libelf-devel zlib-static \
+    glibc-static libzstd-devel git make cmake wget rpmdevtools strace bpftrace
+sudo dnf builddep -y elfutils
+
+<i><font color="silver"># 2) Install Go 1.26 from go.dev. Rocky 9 ships only Go 1.25.x, ior needs 1.26+.</font></i>
+cd /tmp
+wget -q https://go.dev/dl/go<font color="#000000">1.26</font>.<font color="#000000">2</font>.linux-amd<font color="#000000">64</font>.tar.gz
+sudo tar -C /usr/local -xf go1.<font color="#000000">26.2</font>.linux-amd<font color="#000000">64</font>.tar.gz
+echo <font color="#808080">'export PATH=/usr/local/go/bin:$HOME/go/bin:$PATH'</font> | sudo tee /etc/profile.d/go.sh
+<b><u><font color="#000000">source</font></u></b> /etc/profile.d/go.sh
+
+<i><font color="silver"># 3) Build libelf.a from the elfutils source RPM.</font></i>
+mkdir -p ~/src &amp;&amp; cd ~
+dnf download --source elfutils-libelf
+rpm -ivh elfutils-*.src.rpm
+tar -C ~/src -xjf rpmbuild/SOURCES/elfutils-*.tar.bz2
+cd ~/src/elfutils-*
+./configure --enable-deterministic-archives --disable-debuginfod --disable-libdebuginfod
+make -C lib -j$(nproc)
+make -C libelf -j$(nproc)
+sudo cp -v libelf/libelf.a /usr/lib<font color="#000000">64</font>/
+
+<i><font color="silver"># 4) Build libzstd.a from upstream (libzstd-devel doesn't ship the static archive).</font></i>
+cd /tmp
+wget -q https://github.com/facebook/zstd/releases/download/v<font color="#000000">1.5</font>.<font color="#000000">5</font>/zstd-<font color="#000000">1.5</font>.<font color="#000000">5</font>.tar.gz
+tar xzf zstd-<font color="#000000">1.5</font>.<font color="#000000">5</font>.tar.gz
+make -C zstd-<font color="#000000">1.5</font>.<font color="#000000">5</font>/lib -j$(nproc) libzstd.a
+sudo cp -v zstd-<font color="#000000">1.5</font>.<font color="#000000">5</font>/lib/libzstd.a /usr/lib<font color="#000000">64</font>/
+
+<i><font color="silver"># 5) Clone ior + libbpfgo, pin libbpfgo, build the static libbpf archive, install mage.</font></i>
+mkdir -p ~/git
+git clone https://codeberg.org/snonux/ior ~/git/ior
+git clone https://github.com/aquasecurity/libbpfgo ~/git/libbpfgo
+git -C ~/git/libbpfgo checkout v0.<font color="#000000">9.2</font>-libbpf-<font color="#000000">1.5</font>.<font color="#000000">1</font>
+git -C ~/git/libbpfgo submodule update --init --recursive
+make -C ~/git/libbpfgo libbpfgo-static
+go install github.com/magefile/mage@latest
+
+<i><font color="silver"># 6) Generate the syscall-coverage handlers against THIS kernel and build.</font></i>
+<i><font color="silver"># IOR_FORCE_GENERATE bypasses the strict diff against the committed audit file</font></i>
+<i><font color="silver"># (the committed audit was generated against a different kernel build, and the</font></i>
+<i><font color="silver"># generator's safeguard would otherwise refuse to overwrite it).</font></i>
+cd ~/git/ior
+env IOR_FORCE_GENERATE=<font color="#000000">1</font> GOTOOLCHAIN=auto mage generate
+<i><font color="silver"># GOTOOLCHAIN=auto only required for an older version than 1.26 of GO.</font></i>
+env GOTOOLCHAIN=auto mage all
+
+<i><font color="silver"># 7) Smoke test.</font></i>
+sudo ./ior -plain -duration <font color="#000000">5</font>
+</pre>
+<br />
+<span>If you see <span class='inlinecode'>Probing for 5s</span> followed by CSV rows, the build is good. <span class='inlinecode'>mage buildDocker</span> runs all of this inside a container and hands you back just the final binary — the 15-minute first-run cost buys you never having to think about any of the above again.</span><br />
+<br />
+<h2 style='display: inline' id='a-short-detour-ebpf-and-libbpfgo'>A short detour: eBPF and libbpfgo</h2><br />
+<br />
+<span>If you haven&#39;t touched eBPF before: it&#39;s a small in-kernel bytecode VM. You compile a tiny C program, the kernel verifies it can&#39;t crash or loop forever, and then it runs every time some hook fires — a syscall enter/exit, a kprobe, a tracepoint, a network packet. The program writes events into a ring buffer that userspace mmaps and drains. No kernel module, no patched kernel, no debug symbols required.</span><br />
+<br />
+<span><span class='inlinecode'>ior</span> plugs into the syscall tracepoints (<span class='inlinecode'>sys_enter_openat</span>, <span class='inlinecode'>sys_exit_read</span>, etc.) and the BPF side does the bare minimum: timestamp the event, copy a few fields, push to a perf ring buffer. All the heavy lifting (string interning, latency math, aggregation, the dashboard) is in Go on the userspace side.</span><br />
+<br />
+<span>The shape of the data flow:</span><br />
+<br />
+<pre>
+ kernel space                  │  user space (Go)
+ ─────────────────             │  ──────────────────
+ syscall tracepoint            │
+ (sys_enter_openat,            │
+  sys_exit_read, …)            │
+        │                      │
+        │ fires                │
+        ▼                      │
+ BPF program (verified)        │
+   timestamp, copy fields      │
+        │                      │
+        ▼                      │
+ perf ring buffer ── mmap ─────┼──▶ ior reader goroutine
+                               │            │
+                               │            ▼
+                               │     intern strings,
+                               │     latency math,
+                               │     aggregate, render dashboard
+</pre>
+<br />
+<span>The kernel ships a C library called libbpf that handles loading the program, attaching it to hooks, managing maps, and reading the ring buffer. There are two well-known ways to drive that from Go:</span><br />
+<br />
+<ul>
+<li>libbpfgo (Aqua Security): a thin cgo wrapper around libbpf. You ship libbpf along with your binary and call into the same C API that <span class='inlinecode'>bpftool</span> and <span class='inlinecode'>perf</span> use.</li>
+<li>cilium/ebpf: a from-scratch pure-Go reimplementation of everything libbpf does (ELF parser, BTF resolver, syscall layer, the lot).</li>
+</ul><br />
+<span>I went with libbpfgo specifically because it&#39;s a wrapper, not a reimplementation.</span><br />
+<br />
+<h2 style='display: inline' id='co-re--the-part-that-makes-the-binary-actually-portable'>CO-RE — the part that makes the binary actually portable</h2><br />
+<br />
+<span>The headline fact about <span class='inlinecode'>ior</span>&#39;s deployment story: build it once on one box, then <span class='inlinecode'>scp ior other-host:/usr/local/bin/</span> to anywhere else and it just runs. No recompile per kernel, no kernel-debuginfo dance, no DKMS hooks. Two mechanisms make that work, and they reinforce each other.</span><br />
+<br />
+<h3 style='display: inline' id='static-linking'>Static linking</h3><br />
+<br />
+<span>The first is plain old static linking on the userspace side. A quick refresher on what that means, since it&#39;s central to why "scp the binary anywhere" works: when you build a normal Linux executable, the linker has two ways to wire library code into your program. Dynamic linking ("shared library") leaves a placeholder in the binary that says "at run time, find <span class='inlinecode'>libfoo.so.6</span> somewhere on <span class='inlinecode'>LD_LIBRARY_PATH</span> and pull in its symbols." Static linking pastes the library&#39;s machine code directly into your binary at build time, so there&#39;s nothing to look up later. Dynamic is smaller on disk and lets distros patch shared libs without rebuilding everything; static is bigger but self-contained, with no surprise about which version of the library the target box happens to have, no <span class='inlinecode'>error while loading shared libraries: libwhatever.so.6: cannot open shared object file</span> when the target ships a newer ABI.</span><br />
+<br />
+<h3 style='display: inline' id='go-programs-are-statically-linked-by-default'>Go programs are statically linked by default</h3><br />
+<br />
+<span>For Go, this is mostly a non-issue. A pure-Go binary (no cgo) is statically linked by default. The Go toolchain produces a single self-contained ELF file with no <span class='inlinecode'>.dynamic</span> section and no <span class='inlinecode'>NEEDED</span> entries. You can <span class='inlinecode'>scp</span> it to any Linux box of the same architecture and it just runs. That&#39;s one of the quietly nice things about Go.</span><br />
+<br />
+<h3 style='display: inline' id='cgo-programs-are-not-statically-linked-by-default'><span class='inlinecode'>cgo</span> programs are not statically linked by default.</h3><br />
+<br />
+<span><span class='inlinecode'>ior</span> is the not-quite-pure case: it goes through cgo to call into libbpf, libelf, and libzstd, and each of those has its own .so on the build host. By default cgo links those C dependencies dynamically, which would defeat the "scp the binary anywhere" property: the target box would need to have matching <span class='inlinecode'>.so</span> files at matching versions, which is exactly the kind of dependency hell Go usually saves you from. The fix is the line <span class='inlinecode'>-extldflags "-static"</span> in <span class='inlinecode'>ior</span>&#39;s Magefile: it tells the external (C) linker to resolve <span class='inlinecode'>-lbpf -lelf -lzstd -lz</span> against the static archives (<span class='inlinecode'>.a</span> files) instead of the dynamic ones. That&#39;s why the install procedure above is so picky about having <span class='inlinecode'>libelf.a</span> and <span class='inlinecode'>libzstd.a</span> actually present on the build host. Without them the C-side static link fails.</span><br />
+<br />
+<span>The result is a single ~23 MB binary with libbpf, libelf, libzstd, and zlib all baked in. None of them are looked up dynamically at runtime. The build host&#39;s library versions stay on the build host. (A couple of glibc resolver functions — <span class='inlinecode'>getpwnam_r</span> and friends — do still fall back to the target&#39;s libc, which is fine on any reasonable distro and is what the linker warnings during the build are about.)</span><br />
+<br />
+<span>Pictorially, the three linking modes side by side:</span><br />
+<br />
+<pre>
+ pure Go             cgo (default)                cgo + -extldflags "-static"
+ ┌────────┐          ┌────────┐                   ┌────────────────────────┐
+ │  ior   │          │  ior   │ ── libbpf.so.1 ?  │  ior + libbpf + libelf │
+ └────────┘          │        │ ── libelf.so.1 ?  │      + libzstd + libz  │
+   ~few MB           │        │ ── libzstd.so.1 ? └────────────────────────┘
+   one ELF,          └────────┘                     ~23 MB
+   no NEEDED         must find matching .so         one ELF,
+   entries           on the target box at runtime   no NEEDED entries
+</pre>
+<br />
+<span><span class='inlinecode'>ior</span> lives in the right-hand column.</span><br />
+<br />
+<h3 style='display: inline' id='co-re'>CO-RE</h3><br />
+<br />
+<span>The second, and the one that&#39;s actually unusual, is CO-RE (Compile Once, Run Everywhere). CO-RE is the eBPF feature that solves the "the kernel changed its struct layout between releases" problem.</span><br />
+<br />
+<span>The old I/O Riot was Systemtap. Systemtap programs are translated into a kernel module against the running kernel&#39;s exact headers, and that module then has to be loaded with <span class='inlinecode'>insmod</span>. That meant the user has to install a kernel-debuginfo package matching their running kernel, and a fresh build per host (or per kernel update).</span><br />
+<br />
+<span>CO-RE throws all of that out. The idea, in one paragraph: when you write a BPF program that reads <span class='inlinecode'>task-&gt;mm-&gt;start_stack</span>, you don&#39;t bake the offsets of those fields into the compiled program. Instead, the compiler emits relocation records ("at this instruction, fetch the offset of <span class='inlinecode'>mm</span> inside <span class='inlinecode'>task_struct</span>"). At load time, libbpf looks up the actual offsets in the target kernel&#39;s BTF (BPF Type Format, a description of every kernel struct embedded in <span class='inlinecode'>/sys/kernel/btf/vmlinux</span> on any modern kernel) and patches the program in place. The same <span class='inlinecode'>.bpf.o</span> that ran on a 5.10 Debian kernel runs on a 6.8 Fedora kernel without recompilation.</span><br />
+<br />
+<span>Pictorially, the contrast looks like this:</span><br />
+<br />
+<pre>
+Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
+─────────────────────────                ────────────────────────────
+  .stp source                              .bpf.c source
+       │                                        │
+       │ needs THIS kernel&#39;s headers            │ build ONCE against vmlinux.h
+       │ + debuginfo package installed          │ (generated from any kernel BTF)
+       ▼                                        ▼
+  per-host translate + compile              one portable .bpf.o
+       │                                        │
+       ▼                                        ▼
+  per-host kernel module                    same binary on every host
+       │                                        │
+  insmod / modprobe                         libbpf loader:
+       │                                        │  • read /sys/kernel/btf/vmlinux
+       ▼                                        │  • patch field offsets
+  attached, this kernel only                    │  • verify + load
+                                                ▼
+                                          attached, runs anywhere
+</pre>
+<br />
+<span>So the operational shape is: pick one box, do the install dance from the Rocky section above (or <span class='inlinecode'>docs/build-rocky-linux-9.md</span> for a native Fedora/RHEL build) once, build, then distribute the 23 MB binary wherever you want to trace. The build host needs Go and clang and the static libraries. The trace hosts need a BTF-enabled kernel and <span class='inlinecode'>sudo</span>. That&#39;s it.</span><br />
+<br />
+<span>The whole "one build, every host" picture:</span><br />
+<br />
+<pre>
+       build host                                trace hosts
+ ─────────────────────                     ─────────────────────────
+                                             ┌─────────────────┐
+                                             │  Rocky 8 box    │ sudo ior
+                                             │  kernel 4.18    │ ✓
+                                             └─────────────────┘
+ ┌──────────────────┐                        ┌─────────────────┐
+ │ Go + clang +     │   mage all             │  Debian 12 box  │ sudo ior
+ │ libelf.a +       │ ──────────▶ ior ──▶    │  kernel 6.1     │ ✓
+ │ libzstd.a +      │   23 MB static, CO-RE  └─────────────────┘
+ │ libbpf static    │      scp anywhere      ┌─────────────────┐
+ └──────────────────┘                        │  Fedora 39 box  │ sudo ior
+                                             │  kernel 6.8     │ ✓
+                                             └─────────────────┘
+                                          each: BTF-enabled kernel + sudo
+</pre>
+<br />
+<h2 style='display: inline' id='a-note-on-cgo-overhead'>A note on cgo overhead</h2><br />
+<br />
+<span>The cost of being a libbpf wrapper rather than a pure-Go reimplementation is cgo. Every call from Go into libbpf crosses the cgo boundary, which historically meant tens to ~hundred-ish nanoseconds of overhead per call: register save/restore, a stack switch onto g0, goroutine state bookkeeping. Cheap in absolute terms, but it adds up if you call into C inside a tight loop. <span class='inlinecode'>ior</span> keeps the actual hot path on the kernel side and only crosses into Go once per drained batch of events from the ring buffer, so the per-call cost is amortized over thousands of events. In practice it doesn&#39;t show up in profiles.</span><br />
+<br />
+<span>Go 1.26, the current release at the time of writing (early May 2026), is the one that finally took a serious bite out of cgo&#39;s per-call cost. The runtime can elide a chunk of the bookkeeping for calls that don&#39;t need it. Real-world wins depend heavily on the workload, but the rough direction is that cgo now feels closer to "an unusually expensive function call" than to "a context switch", which is the right mental model for almost everyone touching a C library from Go. The shorter version: cgo overhead used to be a real footgun for ports that called into C in the inner loop. With Go 1.26 it&#39;s a footnote unless you&#39;re doing many millions of small calls per second, in which case batching across the boundary still fixes it.</span><br />
+<br />
+<h2 style='display: inline' id='if-you-want-to-go-deeper'>If you want to go deeper</h2><br />
+<br />
+<span>If any of this sounds interesting and you want to learn how to write your own BPF programs, two books are the standard recommendations and both well worth the time:</span><br />
+<br />
+<ul>
+<li>"Learning eBPF" by Liz Rice (O&#39;Reilly, 2023) is the friendlier on-ramp. It walks through writing your first programs end-to-end, covers CO-RE and BTF in plain English, and is the book I&#39;d hand to someone who has never touched the kernel side before. Liz also gave the canonical "what is eBPF" conference talk floating around YouTube, which makes a good 40-minute companion.</li>
+<li>"BPF Performance Tools: Linux System and Application Observability" by Brendan Gregg (Addison-Wesley, 2019) is the encyclopedia. It&#39;s where you go after you&#39;ve understood the basics and now want a complete reference for tracing every subsystem in the kernel — file systems, networking, scheduler, languages, applications — with worked tools for each. The flame-graph-driven analysis style throughout is also exactly how <span class='inlinecode'>ior</span>&#39;s own flamegraph tab thinks about a workload.</li>
+</ul><br />
+<span>Between the two, Rice teaches you the moving parts and Gregg teaches you what to do with them.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static. (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
