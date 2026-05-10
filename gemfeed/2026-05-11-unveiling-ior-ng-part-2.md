@@ -4,6 +4,8 @@
 
 This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).
 
+[![Live flamegraph](./unveiling-ior-ng/00-hero-flamegraph.png "Live flamegraph")](./unveiling-ior-ng/00-hero-flamegraph.png)  
+
 [2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
 [2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere (You are currently reading this)](./2026-05-11-unveiling-ior-ng-part-2.md)  
 
