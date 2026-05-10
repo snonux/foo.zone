@@ -9,7 +9,7 @@ This is the first of three posts. Part 1 is the demo-driven tour: what `ior` loo
 => ./unveiling-ior-ng/00-hero-flamegraph.png Live flamegraph
 
 => ./2026-05-08-unveiling-ior-ng-part-1.gmi 2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)
-=> ./2026-05-11-unveiling-ior-ng-part-2.gmi 2026-05-11 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.
+=> ./2026-05-11-unveiling-ior-ng-part-2.gmi 2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere
 
 => https://codeberg.org/snonux/ior I/O Riot NG on Codeberg
 => ./2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi the original I/O Riot post (2018)
@@ -216,7 +216,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-=> ./2026-05-11-unveiling-ior-ng-part-2.gmi 2026-05-11 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.
+=> ./2026-05-11-unveiling-ior-ng-part-2.gmi 2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere
 => ./2026-05-08-unveiling-ior-ng-part-1.gmi 2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)
 => ./2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi 2018-06-01 Realistic load testing with I/O Riot for Linux
 
