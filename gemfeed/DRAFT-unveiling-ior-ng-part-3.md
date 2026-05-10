@@ -14,7 +14,7 @@ If you haven't read Part 1, it's not a hard prerequisite, but the screenshots an
 [![I/O Riot NG logo](./unveiling-ior-ng/00-logo.png "I/O Riot NG logo")](./unveiling-ior-ng/00-logo.png)  
 
 [2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
-[2026-05-11 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.](./2026-05-11-unveiling-ior-ng-part-2.md)  
+[2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
 
 ## Table of Contents
 
