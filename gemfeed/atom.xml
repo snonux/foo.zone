@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-05-07T10:00:59+03:00</updated>
+    <updated>2026-05-10T11:05:36+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -10753,7 +10753,7 @@ content = "{CODE}"
         <title>f3s: Kubernetes with FreeBSD - Part 6: Storage</title>
         <link href="gemini://foo.zone/gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi" />
         <id>gemini://foo.zone/gemfeed/2025-07-14-f3s-kubernetes-with-freebsd-part-6.gmi</id>
-        <updated>2025-07-13T16:44:29+03:00, last updated Wed 19 Mar 2026</updated>
+        <updated>2025-07-13T16:44:29+03:00, last updated Sun 10 May 2026</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -10763,7 +10763,7 @@ content = "{CODE}"
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-6-storage'>f3s: Kubernetes with FreeBSD - Part 6: Storage</h1><br />
 <br />
-<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated Wed 19 Mar 2026</span><br />
+<span class='quote'>Published at 2025-07-13T16:44:29+03:00, last updated Sun 10 May 2026</span><br />
 <br />
 <span>This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.</span><br />
 <br />
@@ -12757,6 +12757,18 @@ http://www.gnu.org/software/src-highlite -->
 <span class='quote'>Updated Wed 19 Mar 2026: Added automatic pod restart after NFS remount</span><br />
 <br />
 <span>The script now also tracks whether a mount was fixed via the <span class='inlinecode'>MOUNT_FIXED</span> variable. After a successful remount, it queries kubectl for pods on the local node that are stuck in <span class='inlinecode'>Unknown</span>, <span class='inlinecode'>Pending</span>, or <span class='inlinecode'>ContainerCreating</span> state and force-deletes them. Kubernetes then automatically reschedules these pods, which will now succeed because the NFS mount is healthy again. Without this, pods that hit a stale mount would remain broken until manually deleted, even after the underlying NFS issue was resolved.</span><br />
+<br />
+<span class='quote'>Update 2026-05-10: Write-probe, stronger fix_mount, reboot escalation, Prometheus alerts</span><br />
+<br />
+<span>On 2026-05-10, r2 spent about 50 minutes with a broken NFS mount that neither the mountpoint check nor the stat probe caught. Reads were fine — the kernel was returning cached metadata — but every write was hanging. The root cause was a stale stunnel session after a CARP failover that left the TLS transport wedged.</span><br />
+<br />
+<span>The script grew three new things in response. First, a **write probe**: every run tries to write and delete a tiny healthcheck file (<span class='inlinecode'>timeout 5s sh -c "echo \$\$ &gt; .healthcheck.$(hostname) &amp;&amp; rm -f ..."</span>). If that times out, the mount is broken regardless of what stat says. Second, <span class='inlinecode'>fix_mount</span> got stronger: it now kills D-state processes that are pinning the mount (scanning <span class='inlinecode'>/proc/*/wchan</span> for <span class='inlinecode'>nfs_*</span> waiters), does a lazy <span class='inlinecode'>umount -l</span> after the forced one in case <span class='inlinecode'>umount -f</span> can&#39;t detach, and restarts stunnel before the fresh <span class='inlinecode'>mount</span> so the TLS session is actually clean. The whole function runs under a 60-second hard deadline so the 10-second timer can&#39;t pile up indefinitely. Third, after five consecutive repair failures (~50 s), the node cordons itself via <span class='inlinecode'>kubectl cordon</span> and calls <span class='inlinecode'>systemctl reboot</span> — a Rocky Linux VM reboots in about 30 seconds, which is faster than trying to dig out a wedged kernel NFS state by hand.</span><br />
+<br />
+<span>Prometheus now tracks all of this via a textfile metric (<span class='inlinecode'>nfs_mount_monitor_consecutive_failures</span>) that node_exporter picks up on every scrape. A warning fires at three consecutive failures, critical at five.</span><br />
+<br />
+<span>Navidrome&#39;s data volume also moved off NFS to a <span class='inlinecode'>local-path</span> PV on r1. Its SQLite database and image cache never belonged on NFS anyway — NFS file-lock semantics are a poor fit for SQLite, and the TLS round-trip overhead was adding ~19 seconds to cache initialisation. See the Local-Path Storage section below.</span><br />
+<br />
+<span>The script lives in the conf repo at <span class='inlinecode'>f3s/r-nodes/nfs-mount-monitor/check-nfs-mount.sh</span> and is deployed via <span class='inlinecode'>rex -f f3s/r-nodes/Rexfile nfs_mount_monitor</span>.</span><br />
 <br />
 <h3 style='display: inline' id='complete-failover-test'>Complete Failover Test</h3><br />
 <br />

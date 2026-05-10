@@ -1,6 +1,6 @@
 # f3s: Kubernetes with FreeBSD - Part 6: Storage
 
-> Published at 2025-07-13T16:44:29+03:00, last updated Wed 19 Mar 2026
+> Published at 2025-07-13T16:44:29+03:00, last updated Sun 10 May 2026
 
 This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
@@ -1720,6 +1720,18 @@ Note: Stale file handles are inherent to NFS failover because file handles are s
 > Updated Wed 19 Mar 2026: Added automatic pod restart after NFS remount
 
 The script now also tracks whether a mount was fixed via the `MOUNT_FIXED` variable. After a successful remount, it queries kubectl for pods on the local node that are stuck in `Unknown`, `Pending`, or `ContainerCreating` state and force-deletes them. Kubernetes then automatically reschedules these pods, which will now succeed because the NFS mount is healthy again. Without this, pods that hit a stale mount would remain broken until manually deleted, even after the underlying NFS issue was resolved.
+
+> Update 2026-05-10: Write-probe, stronger fix_mount, reboot escalation, Prometheus alerts
+
+On 2026-05-10, r2 spent about 50 minutes with a broken NFS mount that neither the mountpoint check nor the stat probe caught. Reads were fine — the kernel was returning cached metadata — but every write was hanging. The root cause was a stale stunnel session after a CARP failover that left the TLS transport wedged.
+
+The script grew three new things in response. First, a **write probe**: every run tries to write and delete a tiny healthcheck file (`timeout 5s sh -c "echo \$\$ > .healthcheck.$(hostname) && rm -f ..."`). If that times out, the mount is broken regardless of what stat says. Second, `fix_mount` got stronger: it now kills D-state processes that are pinning the mount (scanning `/proc/*/wchan` for `nfs_*` waiters), does a lazy `umount -l` after the forced one in case `umount -f` can't detach, and restarts stunnel before the fresh `mount` so the TLS session is actually clean. The whole function runs under a 60-second hard deadline so the 10-second timer can't pile up indefinitely. Third, after five consecutive repair failures (~50 s), the node cordons itself via `kubectl cordon` and calls `systemctl reboot` — a Rocky Linux VM reboots in about 30 seconds, which is faster than trying to dig out a wedged kernel NFS state by hand.
+
+Prometheus now tracks all of this via a textfile metric (`nfs_mount_monitor_consecutive_failures`) that node_exporter picks up on every scrape. A warning fires at three consecutive failures, critical at five.
+
+Navidrome's data volume also moved off NFS to a `local-path` PV on r1. Its SQLite database and image cache never belonged on NFS anyway — NFS file-lock semantics are a poor fit for SQLite, and the TLS round-trip overhead was adding ~19 seconds to cache initialisation. See the Local-Path Storage section below.
+
+The script lives in the conf repo at `f3s/r-nodes/nfs-mount-monitor/check-nfs-mount.sh` and is deployed via `rex -f f3s/r-nodes/Rexfile nfs_mount_monitor`.
 
 ### Complete Failover Test
 
