@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-05-10T22:46:49+03:00</updated>
+    <updated>2026-05-10T22:53:36+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -10,7 +10,7 @@
         <title>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</title>
         <link href="gemini://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.gmi" />
         <id>gemini://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.gmi</id>
-        <updated>2026-05-10T22:43:39+03:00</updated>
+        <updated>2026-05-10T22:53:35+03:00</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -20,16 +20,12 @@
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</h1><br />
 <br />
-<span class='quote'>Published at 2026-05-10T22:43:39+03:00</span><br />
-<br />
 <span>This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).</span><br />
-<br />
-<a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
 <br />
 <a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere (You are currently reading this)</a><br />
 <br />
-<a href='./unveiling-ior-ng/00-logo.png'><img alt='I/O Riot NG logo' title='I/O Riot NG logo' src='./unveiling-ior-ng/00-logo.png' /></a><br />
+<a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
@@ -48,10 +44,6 @@
 <li>⇢ <a href='#if-you-want-to-go-deeper'>If you want to go deeper</a></li>
 </ul><br />
 <h2 style='display: inline' id='installing-ior'>Installing ior</h2><br />
-<br />
-<span class='quote'>Published at 2026-05-10T22:41:23+03:00</span><br />
-<br />
-<span class='quote'>Published at 2026-05-10T22:39:24+03:00</span><br />
 <br />
 <span>The short answer: Use Docker (or Podman). One command, no toolchain setup, works from any Docker-capable Linux host with BTF available:</span><br />
 <br />
