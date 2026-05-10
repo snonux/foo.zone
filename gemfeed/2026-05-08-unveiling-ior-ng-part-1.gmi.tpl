@@ -1,4 +1,4 @@
-# Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour
+# Unveiling I/O Riot NG — Part 1: a guided tour
 
 > Published at 2026-05-07T09:46:29+03:00
 
@@ -186,10 +186,15 @@ Once a parquet file is on disk, point any SQL-over-parquet tool at it — Part 3
 
 But the live flamegraph, the stackable stream filters, and the cheap parquet capture together cover the cases I actually hit week to week. The demo above is the easiest way to get a feel for whether it's the kind of tool you want.
 
-For installing it and the eBPF / CO-RE / static-linking story (why one build runs on every other Linux box you scp it to), see Part 2 (once published). For the per-event schema, async-syscall caveats, the probe-generator safeguard against missing new kernel syscalls, and post-mortem SQL on the parquet output, see Part 3 (once published.).
+For installing it and the eBPF / CO-RE / static-linking story (why one build runs on every other Linux box you scp it to), see Part 2. For the per-event schema, async-syscall caveats, the probe-generator safeguard against missing new kernel syscalls, and post-mortem SQL on the parquet output, see Part 3.
 
 => https://codeberg.org/snonux/ior Source on Codeberg
 => https://codeberg.org/snonux/ior/src/branch/main/docs/tutorial/tutorial.md The full in-repo tutorial
+
+Read the next post of the series:
+
+=> ./2026-05-11-unveiling-ior-ng-part-2.gmi  Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere
+
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
