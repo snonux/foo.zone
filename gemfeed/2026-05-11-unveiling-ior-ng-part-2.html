@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.</title>
+<title>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
@@ -11,7 +11,9 @@
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-05-11-unveiling-ior-ng-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
 </p>
-<span> (or Podman)# Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</span><br />
+<h1 style='display: inline' id='unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</h1><br />
+<br />
+<span class='quote'>Published at 2026-05-10T22:43:39+03:00</span><br />
 <br />
 <span>This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).</span><br />
 <br />
@@ -22,11 +24,8 @@
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
-<span class='quote'>Published at 2026-05-10T22:41:23+03:00</span><br />
-<br />
-<span class='quote'>Published at 2026-05-10T22:39:24+03:00</span><br />
-<br />
 <ul>
+<li><a href='#unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a></li>
 <li>⇢ <a href='#installing-ior'>Installing ior</a></li>
 <li>⇢ ⇢ <a href='#why-native-installation-is-a-mess'>Why native installation is a mess</a></li>
 <li>⇢ ⇢ <a href='#what-the-docker-build-is-actually-doing'>What the Docker build is actually doing</a></li>
@@ -40,6 +39,10 @@
 <li>⇢ <a href='#if-you-want-to-go-deeper'>If you want to go deeper</a></li>
 </ul><br />
 <h2 style='display: inline' id='installing-ior'>Installing ior</h2><br />
+<br />
+<span class='quote'>Published at 2026-05-10T22:41:23+03:00</span><br />
+<br />
+<span class='quote'>Published at 2026-05-10T22:39:24+03:00</span><br />
 <br />
 <span>The short answer: Use Docker (or Podman). One command, no toolchain setup, works from any Docker-capable Linux host with BTF available:</span><br />
 <br />
@@ -132,6 +135,8 @@ sudo ./ior -plain -duration <font color="#000000">5</font>
 <br />
 <span>If you haven&#39;t touched eBPF before: it&#39;s a small in-kernel bytecode VM. You compile a tiny C program, the kernel verifies it can&#39;t crash or loop forever, and then it runs every time some hook fires — a syscall enter/exit, a kprobe, a tracepoint, a network packet. The program writes events into a ring buffer that userspace mmaps and drains. No kernel module, no patched kernel, no debug symbols required.</span><br />
 <br />
+<a class='textlink' href='https://ebpf.io'>eBPF — the project&#39;s umbrella site (docs, talks, ecosystem)</a><br />
+<br />
 <span><span class='inlinecode'>ior</span> plugs into the syscall tracepoints (<span class='inlinecode'>sys_enter_openat</span>, <span class='inlinecode'>sys_exit_read</span>, etc.) and the BPF side does the bare minimum: timestamp the event, copy a few fields, push to a perf ring buffer. All the heavy lifting (string interning, latency math, aggregation, the dashboard) is in Go on the userspace side.</span><br />
 <br />
 <span>The shape of the data flow:</span><br />
@@ -159,10 +164,15 @@ sudo ./ior -plain -duration <font color="#000000">5</font>
 <br />
 <span>The kernel ships a C library called libbpf that handles loading the program, attaching it to hooks, managing maps, and reading the ring buffer. There are two well-known ways to drive that from Go:</span><br />
 <br />
+<a class='textlink' href='https://github.com/libbpf/libbpf'>libbpf — the upstream C library</a><br />
+<br />
 <ul>
 <li>libbpfgo (Aqua Security): a thin cgo wrapper around libbpf. You ship libbpf along with your binary and call into the same C API that <span class='inlinecode'>bpftool</span> and <span class='inlinecode'>perf</span> use.</li>
 <li>cilium/ebpf: a from-scratch pure-Go reimplementation of everything libbpf does (ELF parser, BTF resolver, syscall layer, the lot).</li>
 </ul><br />
+<a class='textlink' href='https://github.com/aquasecurity/libbpfgo'>libbpfgo — Aqua Security&#39;s cgo wrapper around libbpf</a><br />
+<a class='textlink' href='https://github.com/cilium/ebpf'>cilium/ebpf — pure-Go reimplementation</a><br />
+<br />
 <span>I went with libbpfgo specifically because it&#39;s a wrapper, not a reimplementation.</span><br />
 <br />
 <h2 style='display: inline' id='co-re--the-part-that-makes-the-binary-actually-portable'>CO-RE — the part that makes the binary actually portable</h2><br />
