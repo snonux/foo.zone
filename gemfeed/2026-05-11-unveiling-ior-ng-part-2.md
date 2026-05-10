@@ -1,4 +1,6 @@
- (or Podman)# Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere
+# Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere
+
+> Published at 2026-05-10T22:43:39+03:00
 
 This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).
 
@@ -9,10 +11,7 @@ This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, ho
 
 ## Table of Contents
 
-> Published at 2026-05-10T22:41:23+03:00
-
-> Published at 2026-05-10T22:39:24+03:00
-
+* [⇢ Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](#unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere)
 * [⇢ ⇢ Installing ior](#installing-ior)
 * [⇢ ⇢ ⇢ Why native installation is a mess](#why-native-installation-is-a-mess)
 * [⇢ ⇢ ⇢ What the Docker build is actually doing](#what-the-docker-build-is-actually-doing)
@@ -26,6 +25,10 @@ This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, ho
 * [⇢ ⇢ If you want to go deeper](#if-you-want-to-go-deeper)
 
 ## Installing ior
+
+> Published at 2026-05-10T22:41:23+03:00
+
+> Published at 2026-05-10T22:39:24+03:00
 
 The short answer: Use Docker (or Podman). One command, no toolchain setup, works from any Docker-capable Linux host with BTF available:
 
@@ -112,6 +115,8 @@ If you see `Probing for 5s` followed by CSV rows, the build is good. `mage build
 
 If you haven't touched eBPF before: it's a small in-kernel bytecode VM. You compile a tiny C program, the kernel verifies it can't crash or loop forever, and then it runs every time some hook fires — a syscall enter/exit, a kprobe, a tracepoint, a network packet. The program writes events into a ring buffer that userspace mmaps and drains. No kernel module, no patched kernel, no debug symbols required.
 
+[eBPF — the project's umbrella site (docs, talks, ecosystem)](https://ebpf.io)  
+
 `ior` plugs into the syscall tracepoints (`sys_enter_openat`, `sys_exit_read`, etc.) and the BPF side does the bare minimum: timestamp the event, copy a few fields, push to a perf ring buffer. All the heavy lifting (string interning, latency math, aggregation, the dashboard) is in Go on the userspace side.
 
 The shape of the data flow:
@@ -139,8 +144,13 @@ The shape of the data flow:
 
 The kernel ships a C library called libbpf that handles loading the program, attaching it to hooks, managing maps, and reading the ring buffer. There are two well-known ways to drive that from Go:
 
+[libbpf — the upstream C library](https://github.com/libbpf/libbpf)  
+
 * libbpfgo (Aqua Security): a thin cgo wrapper around libbpf. You ship libbpf along with your binary and call into the same C API that `bpftool` and `perf` use.
 * cilium/ebpf: a from-scratch pure-Go reimplementation of everything libbpf does (ELF parser, BTF resolver, syscall layer, the lot).
+
+[libbpfgo — Aqua Security's cgo wrapper around libbpf](https://github.com/aquasecurity/libbpfgo)  
+[cilium/ebpf — pure-Go reimplementation](https://github.com/cilium/ebpf)  
 
 I went with libbpfgo specifically because it's a wrapper, not a reimplementation.
 
