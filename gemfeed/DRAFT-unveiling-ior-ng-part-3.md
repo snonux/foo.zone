@@ -7,13 +7,14 @@ This is the third and final post in the series. Part 1 is the demo-driven tour: 
 If you haven't read Part 1, it's not a hard prerequisite, but the screenshots and key bindings referenced here all live there. Part 2 is also independent of this one; you can read them in either order.
 
 [Part 1: a guided tour](./DRAFT-unveiling-ior-ng-part-1.md)  
-[Part 2: install + compile once, run everywhere](./DRAFT-unveiling-ior-ng-part-2.md)  
+[Part 2: install + compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
 [I/O Riot NG on Codeberg](https://codeberg.org/snonux/ior)  
 [the original I/O Riot post (2018)](./2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  
 
 [![I/O Riot NG logo](./unveiling-ior-ng/00-logo.png "I/O Riot NG logo")](./unveiling-ior-ng/00-logo.png)  
 
-[2026-05-08 Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
+[2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
+[2026-05-11 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.](./2026-05-11-unveiling-ior-ng-part-2.md)  
 
 ## Table of Contents
 
@@ -212,6 +213,6 @@ The combination that's worked best for me in practice: capture parquet with `-pa
 That's the bottom of the stack. For the dashboard surface (what ior looks like, how the seven tabs behave, how filtering and recording work in practice) Part 1 is the demo-driven tour with all the GIFs. For the install dance and the why-the-binary-is-portable story (eBPF, CO-RE, static linking), Part 2 is the install + portability companion.
 
 [Part 1: a guided tour](./DRAFT-unveiling-ior-ng-part-1.md)  
-[Part 2: install + compile once, run everywhere](./DRAFT-unveiling-ior-ng-part-2.md)  
+[Part 2: install + compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
 [Source on Codeberg](https://codeberg.org/snonux/ior)  
 [The full in-repo tutorial](https://codeberg.org/snonux/ior/src/branch/main/docs/tutorial/tutorial.md)  

@@ -1,4 +1,4 @@
-# Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour
+# Unveiling I/O Riot NG — Part 1: a guided tour
 
 > Published at 2026-05-07T09:46:29+03:00
 
@@ -8,14 +8,15 @@ This is the first of three posts. Part 1 is the demo-driven tour: what `ior` loo
 
 [![Live flamegraph](./unveiling-ior-ng/00-hero-flamegraph.png "Live flamegraph")](./unveiling-ior-ng/00-hero-flamegraph.png)  
 
-[2026-05-08 Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour (You are currently reading this)](./2026-05-08-unveiling-ior-ng-part-1.md)  
+[2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)](./2026-05-08-unveiling-ior-ng-part-1.md)  
+[2026-05-11 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.](./2026-05-11-unveiling-ior-ng-part-2.md)  
 
 [I/O Riot NG on Codeberg](https://codeberg.org/snonux/ior)  
 [the original I/O Riot post (2018)](./2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  
 
 ## Table of Contents
 
-* [⇢ Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour](#unveiling-io-riot-ng-100--part-1-a-guided-tour)
+* [⇢ Unveiling I/O Riot NG — Part 1: a guided tour](#unveiling-io-riot-ng--part-1-a-guided-tour)
 * [⇢ ⇢ What it does](#what-it-does)
 * [⇢ ⇢ First launch](#first-launch)
 * [⇢ ⇢ The seven tabs, in 30 seconds each](#the-seven-tabs-in-30-seconds-each)
@@ -201,16 +202,22 @@ Once a parquet file is on disk, point any SQL-over-parquet tool at it — Part 3
 
 But the live flamegraph, the stackable stream filters, and the cheap parquet capture together cover the cases I actually hit week to week. The demo above is the easiest way to get a feel for whether it's the kind of tool you want.
 
-For installing it and the eBPF / CO-RE / static-linking story (why one build runs on every other Linux box you scp it to), see Part 2 (once published). For the per-event schema, async-syscall caveats, the probe-generator safeguard against missing new kernel syscalls, and post-mortem SQL on the parquet output, see Part 3 (once published.).
+For installing it and the eBPF / CO-RE / static-linking story (why one build runs on every other Linux box you scp it to), see Part 2. For the per-event schema, async-syscall caveats, the probe-generator safeguard against missing new kernel syscalls, and post-mortem SQL on the parquet output, see Part 3.
 
 [Source on Codeberg](https://codeberg.org/snonux/ior)  
 [The full in-repo tutorial](https://codeberg.org/snonux/ior/src/branch/main/docs/tutorial/tutorial.md)  
+
+Read the next post of the series:
+
+[Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
+
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-[2026-05-08 Unveiling I/O Riot NG 1.0.0 — Part 1: a guided tour (You are currently reading this)](./2026-05-08-unveiling-ior-ng-part-1.md)  
+[2026-05-11 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.](./2026-05-11-unveiling-ior-ng-part-2.md)  
+[2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)](./2026-05-08-unveiling-ior-ng-part-1.md)  
 [2018-06-01 Realistic load testing with I/O Riot for Linux](./2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  
 
 [Back to the main site](../)  
