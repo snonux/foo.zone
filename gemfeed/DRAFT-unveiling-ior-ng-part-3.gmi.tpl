@@ -6,6 +6,8 @@ This is the third and final post in the series. Part 1 is the demo-driven tour: 
 
 If you haven't read Part 1, it's not a hard prerequisite, but the screenshots and key bindings referenced here all live there. Part 2 is also independent of this one; you can read them in either order.
 
+=> ./unveiling-ior-ng/00-hero-flamegraph.png Live flamegraph
+
 => ./DRAFT-unveiling-ior-ng-part-1.gmi Part 1: a guided tour
 => ./2026-05-11-unveiling-ior-ng-part-2.gmi Part 2: install + compile once, run everywhere
 => https://codeberg.org/snonux/ior I/O Riot NG on Codeberg
@@ -71,6 +73,8 @@ What this buys, in practice: when CO-RE field offsets shift under me, when libbp
 
 The schema is flat and stable: `seq, time_ns, gap_ns, latency_ns, comm, pid, tid, syscall, fd, ret, bytes, file, is_error, filter_epoch`. ClickHouse Local reads parquet directly without a server, which makes it a perfect post-mortem tool — point it at the file and run SQL:
 
+=> https://clickhouse.com/docs/operations/utilities/clickhouse-local ClickHouse Local — single-binary SQL over Parquet/CSV, no server needed
+
 ```sh
 clickhouse local --query "
   SELECT comm, syscall, count() AS n,
@@ -131,6 +135,8 @@ clickhouse local --query "
 Real output, by the way: those rows are from a 30-second `ior -parquet trace.parquet` capture on the laptop I'm typing this on. `notify-rs inoti…` is the inotify thread of some Rust app I had open; `cosmic-term` is the COSMIC desktop's terminal emulator. The slowest p99 errors are the directory-walking syscalls (statx, newfstatat, mkdir) at ~16 µs, bog standard.
 
 Same trick works in DuckDB (`duckdb -c "SELECT ... FROM 'trace.parquet'"`), pandas, polars, anything that reads Parquet. The point of streaming Parquet rather than ior's native `.ior.zst` format is exactly this: once it's on disk, you're in the standard data-tools ecosystem.
+
+=> https://duckdb.org/ DuckDB — single-binary embedded SQL, also reads Parquet directly
 
 ## Asking an AI to do the reading for you
 
