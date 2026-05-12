@@ -136,7 +136,7 @@ The kernel ships a C library called libbpf that handles loading the program, att
 
 I went with libbpfgo specifically because it's a wrapper, not a reimplementation.
 
-## CO-RE — the part that makes the binary actually portable
+## CO-RE — the part that makes the BPF binary actually portable
 
 The headline fact about `ior`'s deployment story: build it once on one box, then `scp ior other-host:/usr/local/bin/` to anywhere else and it just runs. No recompile per kernel, no kernel-debuginfo dance, no DKMS hooks. Two mechanisms make that work, and they reinforce each other.
 
