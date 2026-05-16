@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-05-16T08:36:42+03:00</updated>
+    <updated>2026-05-16T08:46:45+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
     <entry>
-        <title>Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</title>
+        <title>Unveiling I/O Riot NG — Part 3: under the hood</title>
         <link href="https://foo.zone/gemfeed/2026-05-17-unveiling-ior-ng-part-3.html" />
         <id>https://foo.zone/gemfeed/2026-05-17-unveiling-ior-ng-part-3.html</id>
         <updated>2026-05-16T18:00:00+03:00</updated>
@@ -18,7 +18,7 @@
         <summary>This is the third and final post in the series. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how the live flamegraph reads, how filtering and recording behave. Part 2 covers the install dance for Rocky Linux 9 and the 'compile once, run everywhere' portability story (eBPF, CO-RE, libbpfgo, static linking). This one is the part you read when you've got ior running and want to know what's actually in the data: the per-event schema, the safeguard that keeps syscall coverage current as new kernels ship, the integration test harness that proves it stays current, async-syscall caveats, and what to do with the parquet output once it's on disk.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='unveiling-io-riot-ng-v100--part-3-under-the-hood'>Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</h1><br />
+                <h1 style='display: inline' id='unveiling-io-riot-ng--part-3-under-the-hood'>Unveiling I/O Riot NG — Part 3: under the hood</h1><br />
 <br />
 <span class='quote'>Published at 2026-05-16T18:00:00+03:00</span><br />
 <br />
@@ -30,12 +30,12 @@
 <br />
 <a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
-<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood (You are currently reading this)</a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#unveiling-io-riot-ng-v100--part-3-under-the-hood'>Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</a></li>
+<li><a href='#unveiling-io-riot-ng--part-3-under-the-hood'>Unveiling I/O Riot NG — Part 3: under the hood</a></li>
 <li>⇢ <a href='#what-ior-actually-captures-per-event'>What ior actually captures per event</a></li>
 <li>⇢ ⇢ <a href='#async-syscalls-and-what-latency-means-for-them'>Async syscalls and what "latency" means for them</a></li>
 <li>⇢ <a href='#keeping-up-with-new-syscalls'>Keeping up with new syscalls</a></li>
@@ -255,7 +255,7 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood (You are currently reading this)</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
 <a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
@@ -265,7 +265,7 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
         </content>
     </entry>
     <entry>
-        <title>Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere</title>
+        <title>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</title>
         <link href="https://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.html" />
         <id>https://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.html</id>
         <updated>2026-05-10T22:53:35+03:00</updated>
@@ -276,14 +276,14 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
         <summary>This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='unveiling-io-riot-ng-v100--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere</h1><br />
+                <h1 style='display: inline' id='unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</h1><br />
 <br />
 <span class='quote'>Published at 2026-05-10T22:53:35+03:00</span><br />
 <br />
 <span>This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).</span><br />
 <br />
 <a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
-<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere (You are currently reading this)</a><br />
 <a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</a><br />
 <br />
 <a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
@@ -291,7 +291,7 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#unveiling-io-riot-ng-v100--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere</a></li>
+<li><a href='#unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a></li>
 <li>⇢ <a href='#installing-ior'>Installing ior</a></li>
 <li>⇢ ⇢ <a href='#why-native-installation-is-a-mess'>Why native installation is a mess</a></li>
 <li>⇢ ⇢ <a href='#what-the-docker-build-is-actually-doing'>What the Docker build is actually doing</a></li>
@@ -557,7 +557,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 <span>Other related posts are:</span><br />
 <br />
 <a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</a><br />
-<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere (You are currently reading this)</a><br />
 <a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
 <br />
@@ -566,7 +566,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
         </content>
     </entry>
     <entry>
-        <title>Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</title>
+        <title>Unveiling I/O Riot NG — Part 1: a guided tour</title>
         <link href="https://foo.zone/gemfeed/2026-05-08-unveiling-ior-ng-part-1.html" />
         <id>https://foo.zone/gemfeed/2026-05-08-unveiling-ior-ng-part-1.html</id>
         <updated>2026-05-07T09:46:29+03:00</updated>
@@ -577,7 +577,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
         <summary>I rewrote I/O Riot. The old version, written in C and SystemTap, dates back to 2017. The new version (called `ior`) uses Go, C, and BPF via libbpfgo. It runs on Linux and is primarily a TUI dashboard rather than a record/replay box. It took around two years of intermittent work to reach this `1.0.0` release.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='unveiling-io-riot-ng-v100--part-1-a-guided-tour'>Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</h1><br />
+                <h1 style='display: inline' id='unveiling-io-riot-ng--part-1-a-guided-tour'>Unveiling I/O Riot NG — Part 1: a guided tour</h1><br />
 <br />
 <span class='quote'>Published at 2026-05-07T09:46:29+03:00</span><br />
 <br />
@@ -587,7 +587,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 <br />
 <a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
 <br />
-<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour (You are currently reading this)</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
 <a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood</a><br />
 <br />
@@ -597,7 +597,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#unveiling-io-riot-ng-v100--part-1-a-guided-tour'>Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a></li>
+<li><a href='#unveiling-io-riot-ng--part-1-a-guided-tour'>Unveiling I/O Riot NG — Part 1: a guided tour</a></li>
 <li>⇢ <a href='#what-it-does'>What it does</a></li>
 <li>⇢ <a href='#first-launch'>First launch</a></li>
 <li>⇢ <a href='#the-seven-tabs-in-30-seconds-each'>The seven tabs, in 30 seconds each</a></li>
@@ -821,7 +821,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
-<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour (You are currently reading this)</a><br />
 <a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
