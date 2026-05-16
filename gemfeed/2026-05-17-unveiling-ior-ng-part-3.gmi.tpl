@@ -1,19 +1,12 @@
-# Unveiling I/O Riot NG — Part 3: under the hood
+# Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood
 
-> Draft — not in the gemfeed yet. Promote with the usual rename + index dance.
+> Published at 2026-05-16T18:00:00+03:00
 
 This is the third and final post in the series. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how the live flamegraph reads, how filtering and recording behave. Part 2 covers the install dance for Rocky Linux 9 and the "compile once, run everywhere" portability story (eBPF, CO-RE, libbpfgo, static linking). This one is the part you read when you've got ior running and want to know what's actually in the data: the per-event schema, the safeguard that keeps syscall coverage current as new kernels ship, the integration test harness that proves it stays current, async-syscall caveats, and what to do with the parquet output once it's on disk.
 
-If you haven't read Part 1, it's not a hard prerequisite, but the screenshots and key bindings referenced here all live there. Part 2 is also independent of this one; you can read them in either order.
-
 => ./unveiling-ior-ng/00-hero-flamegraph.png Live flamegraph
 
-=> ./DRAFT-unveiling-ior-ng-part-1.gmi Part 1: a guided tour
-=> ./2026-05-11-unveiling-ior-ng-part-2.gmi Part 2: install + compile once, run everywhere
 => https://codeberg.org/snonux/ior I/O Riot NG on Codeberg
-=> ./2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi the original I/O Riot post (2018)
-
-=> ./unveiling-ior-ng/00-logo.png I/O Riot NG logo
 
 << template::inline::index unveiling-ior-ng
 
@@ -67,7 +60,7 @@ The shape is straightforward. A small standalone Go binary, `ioworkload`, perfor
 
 `mage integrationTest` builds both binaries and runs the suite in parallel up to `INTEGRATION_PARALLEL` (default `NumCPU * 2`). `mage integrationTestSerial` does the same one at a time, which is the right knob when triaging a flake. They need root because of `CAP_BPF`, and they self-skip when not root.
 
-What this buys, in practice: when CO-RE field offsets shift under me, when libbpfgo bumps a major version, when a new kernel quietly changes which syscalls bookkeep `bytes` at submission vs. completion, the suite's the thing that goes red first. The codegen safeguard tells me "the kernel surface changed". The integration harness tells me "and here's specifically what ior is now getting wrong about it". Together that's a much shorter feedback loop than the old "wait for the next time I notice the flamegraph looks weird" workflow.
+What this buys, in practice: when CO-RE field offsets shift under me, when libbpfgo bumps a major version, when a new kernel quietly changes which syscalls bookkeep `bytes` at submission vs. completion, the suite's the thing that goes red first (not that I believe the kernel would introduce such a breaking change, so maybe this is a bad example). The codegen safeguard tells me "the kernel surface changed". The integration harness tells me "and here's specifically what ior is now getting wrong about it". That's much better than the old "wait for the next time I notice the flamegraph looks weird" workflow.
 
 ## Querying a parquet trace with ClickHouse
 
@@ -202,13 +195,22 @@ A few caveats worth knowing before you rely on this:
 * The model is reading text, not running SQL. It will round, it will sometimes miscount the long tail, and it cannot tell you a true p99 from a 250k-row sample without writing code. Treat the output as a lead-generator: it points you at suspects, then you confirm with ClickHouse on the parquet file.
 * For deeper questions ("what changed between these two traces?", "which pids dominate during the 12:34 spike?") an agentic assistant that can run shell commands does much better. It'll write the awk/clickhouse query itself, run it, and feed the result back into its own analysis.
 
-The combination that's worked best for me in practice: capture parquet with `-parquet`, capture a parallel `-plain` CSV slice for the AI to read, ask the AI for a triage pass, then drill into the suspects with ClickHouse on the parquet file. Triage and ground-truth, in that order.
+The combination that's worked best for me in practice: capture parquet with `-parquet`, also capture a `-plain` CSV slice for the AI to read, ask the AI for a triage pass, then drill into the suspects with ClickHouse on the parquet file. Triage and ground-truth, in that order.
+
+## What's new in v1.1.0
+
+One v1.1.0 change is directly relevant to the syscall-coverage story above: probe attach is now tolerant of missing tracepoints. The codegen safeguard still flags new arrivals at build time, but when the resulting binary lands on a kernel that lacks one of its handlers (because the syscall is newer than the host kernel, or the tracepoint name was renamed under it), ior logs a one-line warning per missing probe and keeps attaching the rest, instead of failing startup with a hard error. Codegen keeps the list honest going forward; the runtime change makes the binary forgiving going backward. The new `ior.el8` build (Part 2's `mage buildDockerEl8` target, for RHEL/Rocky/Alma 8 hosts on 4.18 kernels) leans on this directly — it ships handlers for tracepoints that only exist on newer kernels, and now just skips them at attach instead of aborting.
 
 ## Wrapping up
 
 That's the bottom of the stack. For the dashboard surface (what ior looks like, how the seven tabs behave, how filtering and recording work in practice) Part 1 is the demo-driven tour with all the GIFs. For the install dance and the why-the-binary-is-portable story (eBPF, CO-RE, static linking), Part 2 is the install + portability companion.
 
-=> ./DRAFT-unveiling-ior-ng-part-1.gmi Part 1: a guided tour
-=> ./2026-05-11-unveiling-ior-ng-part-2.gmi Part 2: install + compile once, run everywhere
 => https://codeberg.org/snonux/ior Source on Codeberg
-=> https://codeberg.org/snonux/ior/src/branch/main/docs/tutorial/tutorial.md The full in-repo tutorial
+
+E-Mail your comments to `paul@nospam.buetow.org` :-)
+
+Other related posts are:
+
+<< template::inline::rindex ior ioriot bpf
+
+=> ../ Back to the main site

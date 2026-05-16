@@ -1,13 +1,271 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-05-10T22:53:36+03:00</updated>
+    <updated>2026-05-16T08:36:42+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
     <entry>
-        <title>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</title>
+        <title>Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</title>
+        <link href="gemini://foo.zone/gemfeed/2026-05-17-unveiling-ior-ng-part-3.gmi" />
+        <id>gemini://foo.zone/gemfeed/2026-05-17-unveiling-ior-ng-part-3.gmi</id>
+        <updated>2026-05-16T18:00:00+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the third and final post in the series. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how the live flamegraph reads, how filtering and recording behave. Part 2 covers the install dance for Rocky Linux 9 and the 'compile once, run everywhere' portability story (eBPF, CO-RE, libbpfgo, static linking). This one is the part you read when you've got ior running and want to know what's actually in the data: the per-event schema, the safeguard that keeps syscall coverage current as new kernels ship, the integration test harness that proves it stays current, async-syscall caveats, and what to do with the parquet output once it's on disk.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='unveiling-io-riot-ng-v100--part-3-under-the-hood'>Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</h1><br />
+<br />
+<span class='quote'>Published at 2026-05-16T18:00:00+03:00</span><br />
+<br />
+<span>This is the third and final post in the series. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how the live flamegraph reads, how filtering and recording behave. Part 2 covers the install dance for Rocky Linux 9 and the "compile once, run everywhere" portability story (eBPF, CO-RE, libbpfgo, static linking). This one is the part you read when you&#39;ve got ior running and want to know what&#39;s actually in the data: the per-event schema, the safeguard that keeps syscall coverage current as new kernels ship, the integration test harness that proves it stays current, async-syscall caveats, and what to do with the parquet output once it&#39;s on disk.</span><br />
+<br />
+<a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/ior'>I/O Riot NG on Codeberg</a><br />
+<br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood (You are currently reading this)</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#unveiling-io-riot-ng-v100--part-3-under-the-hood'>Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</a></li>
+<li>⇢ <a href='#what-ior-actually-captures-per-event'>What ior actually captures per event</a></li>
+<li>⇢ ⇢ <a href='#async-syscalls-and-what-latency-means-for-them'>Async syscalls and what "latency" means for them</a></li>
+<li>⇢ <a href='#keeping-up-with-new-syscalls'>Keeping up with new syscalls</a></li>
+<li>⇢ ⇢ <a href='#the-integration-test-harness-keeps-the-classifier-honest'>The integration test harness keeps the classifier honest</a></li>
+<li>⇢ <a href='#querying-a-parquet-trace-with-clickhouse'>Querying a parquet trace with ClickHouse</a></li>
+<li>⇢ <a href='#asking-an-ai-to-do-the-reading-for-you'>Asking an AI to do the reading for you</a></li>
+<li>⇢ <a href='#what-s-new-in-v110'>What&#39;s new in v1.1.0</a></li>
+<li>⇢ <a href='#wrapping-up'>Wrapping up</a></li>
+</ul><br />
+<h2 style='display: inline' id='what-ior-actually-captures-per-event'>What ior actually captures per event</h2><br />
+<br />
+<span>Every traced syscall produces one row of structured data. The schema is what the parquet file (and the in-memory ring buffer behind the dashboard) stores, and it covers all the dimensions you&#39;d want for a post-mortem:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>seq</span>: monotonically increasing sequence number, useful for joining/ordering across analysis tools.</li>
+<li><span class='inlinecode'>time_ns</span>: wall-clock timestamp at syscall entry, in nanoseconds since boot.</li>
+<li><span class='inlinecode'>latency_ns</span>: how long the syscall took, measured from <span class='inlinecode'>sys_enter_X</span> to <span class='inlinecode'>sys_exit_X</span> of the matching pair.</li>
+<li><span class='inlinecode'>gap_ns</span>: wall-clock interval since the previous syscall on the same TID (the userspace-side breathing room; see Part 1&#39;s Latency+Gaps tab section for the caveat about what "gap" actually means).</li>
+<li><span class='inlinecode'>comm</span>: the program&#39;s <span class='inlinecode'>task-&gt;comm</span> string at the time of the syscall (16 chars max, that&#39;s a kernel limit, hence truncations like "notify-rs inoti" in the demo screenshots).</li>
+<li><span class='inlinecode'>pid</span>, <span class='inlinecode'>tid</span>: process and thread IDs.</li>
+<li><span class='inlinecode'>syscall</span>: the syscall name, e.g. <span class='inlinecode'>read</span>, <span class='inlinecode'>openat</span>, <span class='inlinecode'>mkdir</span>.</li>
+<li><span class='inlinecode'>fd</span>: the file descriptor passed in (or returned by <span class='inlinecode'>open*</span>).</li>
+<li><span class='inlinecode'>ret</span>: the syscall return value: number of bytes for read/write, the new fd for open*, 0 or a negative errno otherwise. This is also where exit codes for failed calls live; anything <span class='inlinecode'>&lt; 0</span> is a <span class='inlinecode'>-errno</span>.</li>
+<li><span class='inlinecode'>bytes</span>: the byte count classified by direction. Bytes read for read-class syscalls, bytes written for write-class syscalls, bytes transferred for <span class='inlinecode'>sendfile</span>/<span class='inlinecode'>splice</span>/<span class='inlinecode'>copy_file_range</span>. Lets you answer "who is hogging disk throughput?" in one query.</li>
+<li><span class='inlinecode'>file</span>: the file path, where the kernel knows it. From <span class='inlinecode'>openat</span> it&#39;s the literal path argument; from <span class='inlinecode'>read</span>/<span class='inlinecode'>write</span> on an existing fd it&#39;s resolved via the fd-to-path map ior maintains in BPF.</li>
+<li><span class='inlinecode'>is_error</span>: boolean shortcut, true iff <span class='inlinecode'>ret &lt; 0</span>. Saves you a <span class='inlinecode'>WHERE</span> clause in 90% of queries.</li>
+<li><span class='inlinecode'>filter_epoch</span>: bookkeeping for the global filter UI; you can ignore it for offline analysis.</li>
+</ul><br />
+<span>Aggregations the dashboard derives from this raw row stream — counts per syscall/comm/path, rolling rates, per-syscall latency histograms, gap histograms, top-N tables — are all just GROUP BYs over those columns.</span><br />
+<br />
+<h3 style='display: inline' id='async-syscalls-and-what-latency-means-for-them'>Async syscalls and what "latency" means for them</h3><br />
+<br />
+<span>ior attaches to enter+exit tracepoints for every file-I/O syscall, including the asynchronous ones (<span class='inlinecode'>io_uring_enter</span>, <span class='inlinecode'>io_uring_register</span>, <span class='inlinecode'>aio_*</span>, <span class='inlinecode'>sync_file_range</span>, and so on). Coverage is the same as for blocking syscalls: enter event, exit event, latency = exit − enter.</span><br />
+<br />
+<span>The catch is that for an async syscall, that latency doesn&#39;t mean what you&#39;d intuitively expect. The whole point of an async submission is that the kernel returns immediately while the actual work (the read, the write, the fsync) runs in the background and reports completion later through a different channel (a <span class='inlinecode'>cqe</span> for io_uring, a signal or <span class='inlinecode'>aio_suspend</span> poll for POSIX AIO). So when ior tells you <span class='inlinecode'>io_uring_enter</span> took 4 µs, that&#39;s the time spent inside the kernel function ferrying submission queue entries, not the time the storage device spent doing the I/O. Those completions land separately, often on a different thread, and their timing isn&#39;t paired with the original enter event. Don&#39;t read the latency histogram for <span class='inlinecode'>io_uring_enter</span> as "io_uring is fast"; it&#39;s a different question entirely.</span><br />
+<br />
+<span>The flip side is that ior&#39;s per-row throughput numbers (<span class='inlinecode'>bytes</span> summed over a window) still hold for async ops, because the kernel reports the byte count at submission for the cases where it&#39;s known up front. So "what processes are dispatching the most async I/O" is a fine question to ask. "How long do those async I/Os actually take" is one ior cannot currently answer; you&#39;d want a per-completion tracepoint pair to do that, which is on the someday-maybe list.</span><br />
+<br />
+<h2 style='display: inline' id='keeping-up-with-new-syscalls'>Keeping up with new syscalls</h2><br />
+<br />
+<span>One of the persistent problems with the original 2017 I/O Riot was that the syscall coverage was a hand-maintained list. Every kernel release added new entry points; some of them were file I/O, some weren&#39;t, and there was no automated way to spot the new arrivals. After a couple of years the list had silently rotted. Entire syscalls were missing from traces, and which ones was difficult to detect because nothing flagged them.</span><br />
+<br />
+<span>The new ior solves this with a code generator that runs against the kernel itself. <span class='inlinecode'>mage generate</span> reads every <span class='inlinecode'>/sys/kernel/tracing/events/syscalls/*/format</span> file on the host (which is the kernel&#39;s authoritative, runtime-correct list of every syscall it knows about), parses each one, and runs it through a classifier that decides what kind of file I/O surface it is: fd-based, path-based, dup-style, fcntl-style, async-completion, and so on. The recognized ones get a generated BPF handler emitted into <span class='inlinecode'>internal/c/generated_tracepoints.c</span>; the unrecognized ones get a comment line like <span class='inlinecode'>/// Ignoring sys_enter_X sys_exit_X as possibly not file I/O related</span> in the same file.</span><br />
+<br />
+<span>The safeguard piece is that the list of ignored syscalls is also extracted into a checked-in audit file (<span class='inlinecode'>internal/c/generated_tracepoints_result.txt</span>) and <span class='inlinecode'>mage generate</span> diffs the new run against the committed copy. If a future kernel adds a syscall ior hasn&#39;t seen before, that diff will show it, and a strict-mode regen will fail the build until a human reviews the new entry. So either the new syscall is genuinely not file-I/O (drop a one-line ignore rule, commit the diff) or it is (extend the classifier, commit the new handler). Either way it&#39;s not a silent miss.</span><br />
+<br />
+<span>The current numbers are 234 active tracepoint handlers (117 enter+exit pairs) and 249 ignored syscalls, all enumerated in that one generated file. Compared to the old I/O Riot, where coverage was "however much of the kernel I happened to remember to type out", that&#39;s a meaningful step forward.</span><br />
+<br />
+<span>(I hit this safeguard in practice during the Rocky Linux 9 install in Part 2: the committed audit was generated against a newer kernel, and the strict diff against Rocky&#39;s 5.14 refused to overwrite it. The <span class='inlinecode'>IOR_FORCE_GENERATE=1</span> env var skips the strict check and regenerates against the live kernel, which is the right thing on a fresh build host.)</span><br />
+<br />
+<h3 style='display: inline' id='the-integration-test-harness-keeps-the-classifier-honest'>The integration test harness keeps the classifier honest</h3><br />
+<br />
+<span>The codegen catches "did the kernel grow a new syscall I haven&#39;t seen?" but it can&#39;t catch "is the handler I generated actually emitting the right <span class='inlinecode'>bytes</span> value for <span class='inlinecode'>pwritev2</span>?" That second question is what <span class='inlinecode'>integrationtests/</span> exists for, and it&#39;s the part of the project that gives me the most confidence when bumping kernel versions or rewriting the BPF C side.</span><br />
+<br />
+<span>The shape is straightforward. A small standalone Go binary, <span class='inlinecode'>ioworkload</span>, performs deterministic syscalls of one kind (a controlled number of <span class='inlinecode'>openat</span>s on a known path, exactly N <span class='inlinecode'>read</span>s of exactly M bytes, an <span class='inlinecode'>fcntl</span> sequence, an <span class='inlinecode'>io_uring</span> submission with a known shape, etc.). The harness runs ior against <span class='inlinecode'>ioworkload</span>&#39;s PID with <span class='inlinecode'>-flamegraph -name &lt;scenario&gt;</span>, lets it run to completion, and parses the resulting <span class='inlinecode'>.ior.zst</span> aggregate. Each test file in <span class='inlinecode'>integrationtests/</span> (<span class='inlinecode'>open_test.go</span>, <span class='inlinecode'>read_test.go</span>, <span class='inlinecode'>mmap_test.go</span>, <span class='inlinecode'>iouring_test.go</span>, <span class='inlinecode'>pidfd_test.go</span>, <span class='inlinecode'>copy_file_range_test.go</span>, and friends) asserts that ior saw exactly what the workload did: counts, byte totals, error rates, file paths.</span><br />
+<br />
+<span><span class='inlinecode'>mage integrationTest</span> builds both binaries and runs the suite in parallel up to <span class='inlinecode'>INTEGRATION_PARALLEL</span> (default <span class='inlinecode'>NumCPU * 2</span>). <span class='inlinecode'>mage integrationTestSerial</span> does the same one at a time, which is the right knob when triaging a flake. They need root because of <span class='inlinecode'>CAP_BPF</span>, and they self-skip when not root.</span><br />
+<br />
+<span>What this buys, in practice: when CO-RE field offsets shift under me, when libbpfgo bumps a major version, when a new kernel quietly changes which syscalls bookkeep <span class='inlinecode'>bytes</span> at submission vs. completion, the suite&#39;s the thing that goes red first (not that I believe the kernel would introduce such a breaking change, so maybe this is a bad example). The codegen safeguard tells me "the kernel surface changed". The integration harness tells me "and here&#39;s specifically what ior is now getting wrong about it". That&#39;s much better than the old "wait for the next time I notice the flamegraph looks weird" workflow.</span><br />
+<br />
+<h2 style='display: inline' id='querying-a-parquet-trace-with-clickhouse'>Querying a parquet trace with ClickHouse</h2><br />
+<br />
+<span>The schema is flat and stable: <span class='inlinecode'>seq, time_ns, gap_ns, latency_ns, comm, pid, tid, syscall, fd, ret, bytes, file, is_error, filter_epoch</span>. ClickHouse Local reads parquet directly without a server, which makes it a perfect post-mortem tool — point it at the file and run SQL:</span><br />
+<br />
+<a class='textlink' href='https://clickhouse.com/docs/operations/utilities/clickhouse-local'>ClickHouse Local — single-binary SQL over Parquet/CSV, no server needed</a><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>clickhouse <b><u><font color="#000000">local</font></u></b> --query <font color="#808080">"</font>
+<font color="#808080">  SELECT comm, syscall, count() AS n,</font>
+<font color="#808080">         formatReadableSize(sum(bytes)) AS total</font>
+<font color="#808080">  FROM file('trace.parquet', Parquet)</font>
+<font color="#808080">  GROUP BY comm, syscall</font>
+<font color="#808080">  ORDER BY n DESC</font>
+<font color="#808080">  LIMIT 10</font>
+<font color="#808080">"</font> --format PrettyCompactNoEscapes
+</pre>
+<br />
+<pre>
+    ┌─comm────────────┬─syscall─┬─────n─┬─total──────┐
+ 1. │ notify-rs inoti │ read    │ 42005 │ 732.31 KiB │
+ 2. │ cosmic-term     │ statx   │ 10898 │ 0.00 B     │
+ 3. │ cosmic-term     │ read    │ 10103 │ 4.02 MiB   │
+ 4. │ surface-eDP-1   │ ioctl   │  8452 │ 0.00 B     │
+ 5. │ cosmic-term     │ close   │  4918 │ 0.00 B     │
+ 6. │ cosmic-term     │ openat  │  4537 │ 0.00 B     │
+ 7. │ cosmic-term     │ ioctl   │  3556 │ 0.00 B     │
+ 8. │ tokio-runtime-w │ read    │  1976 │ 4.04 MiB   │
+ 9. │ cosmic-comp     │ read    │  1118 │ 6.63 KiB   │
+10. │ systemd-oomd    │ read    │  1085 │ 111.97 KiB │
+    └─────────────────┴─────────┴───────┴────────────┘
+</pre>
+<br />
+<span>The fields you actually want for performance work are <span class='inlinecode'>latency_ns</span> and <span class='inlinecode'>gap_ns</span>. P99 by syscall, only the ones that landed in error:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>clickhouse <b><u><font color="#000000">local</font></u></b> --query <font color="#808080">"</font>
+<font color="#808080">  SELECT syscall, count() AS n,</font>
+<font color="#808080">         round(quantile(0.5)(latency_ns)/1000,  1) AS p50_us,</font>
+<font color="#808080">         round(quantile(0.99)(latency_ns)/1000, 1) AS p99_us</font>
+<font color="#808080">  FROM file('trace.parquet', Parquet)</font>
+<font color="#808080">  WHERE is_error = 1</font>
+<font color="#808080">  GROUP BY syscall</font>
+<font color="#808080">  ORDER BY p99_us DESC</font>
+<font color="#808080">"</font> --format PrettyCompactNoEscapes
+</pre>
+<br />
+<pre>
+    ┌─syscall────┬─────n─┬─p50_us─┬─p99_us─┐
+ 1. │ statx      │  1216 │    2.2 │   16.4 │
+ 2. │ newfstatat │    69 │    1.7 │   16.4 │
+ 3. │ open       │     1 │   16.1 │   16.1 │
+ 4. │ mkdir      │   306 │    3.9 │   11.7 │
+ 5. │ readlink   │    11 │    1.5 │   10.4 │
+ 6. │ newstat    │    44 │    2.5 │    8.4 │
+ 7. │ unlinkat   │   347 │      1 │    6.2 │
+ 8. │ openat     │   380 │    2.1 │    5.8 │
+ 9. │ access     │     2 │      5 │    5.5 │
+10. │ read       │ 23597 │    0.5 │    5.4 │
+11. │ ioctl      │   901 │      1 │    5.3 │
+12. │ writev     │     1 │    0.7 │    0.7 │
+    └────────────┴───────┴────────┴────────┘
+</pre>
+<br />
+<span>Real output, by the way: those rows are from a 30-second <span class='inlinecode'>ior -parquet trace.parquet</span> capture on the laptop I&#39;m typing this on. <span class='inlinecode'>notify-rs inoti…</span> is the inotify thread of some Rust app I had open; <span class='inlinecode'>cosmic-term</span> is the COSMIC desktop&#39;s terminal emulator. The slowest p99 errors are the directory-walking syscalls (statx, newfstatat, mkdir) at ~16 µs, bog standard.</span><br />
+<br />
+<span>Same trick works in DuckDB (<span class='inlinecode'>duckdb -c "SELECT ... FROM &#39;trace.parquet&#39;"</span>), pandas, polars, anything that reads Parquet. The point of streaming Parquet rather than ior&#39;s native <span class='inlinecode'>.ior.zst</span> format is exactly this: once it&#39;s on disk, you&#39;re in the standard data-tools ecosystem.</span><br />
+<br />
+<a class='textlink' href='https://duckdb.org/'>DuckDB — single-binary embedded SQL, also reads Parquet directly</a><br />
+<br />
+<h2 style='display: inline' id='asking-an-ai-to-do-the-reading-for-you'>Asking an AI to do the reading for you</h2><br />
+<br />
+<span>Parquet is great if you already have an angle of attack. Sometimes you don&#39;t. You just want to know "what&#39;s hammering this box right now, and is any of it interesting?" That&#39;s where pasting a chunk of trace into an LLM and asking it to look turns out to be a surprisingly effective first pass. ior&#39;s <span class='inlinecode'>-plain</span> mode emits CSV, which is exactly the format AI assistants are best at chewing through:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>sudo ior -plain -duration <font color="#000000">15</font> &gt; iotrace.csv
+</pre>
+<br />
+<span>The CSV has a one-line ASCII banner at the top followed by the column header <span class='inlinecode'>durationToPrevNs,durationNs,comm,pid.tid,name,ret,notice,file</span> and one row per syscall. (Inside the row the <span class='inlinecode'>comm@pid.tid</span>, <span class='inlinecode'>name=&gt;ret</span> and <span class='inlinecode'>file%(fd,flags)</span> sub-encodings keep the column count low; any half-decent assistant will figure those out unprompted.)</span><br />
+<br />
+<span>Hand the file to an AI with a prompt like:</span><br />
+<br />
+<span class='quote'>Here is 15 seconds of file-I/O syscall trace from my Fedora laptop captured with <span class='inlinecode'>ior -plain</span>. Tell me which processes are dominant, which syscalls are the noisiest, where the wall-clock time is going, and flag anything suspicious — high error rates, pointless retries, weird hot files. Use the CSV columns as documented.</span><br />
+<br />
+<span>What I got back on the trace I captured while writing this section (260,547 rows, 15 s, idle COSMIC desktop with htop and a tmux session open) was the following — reproduced verbatim, just to show you what the shape of the answer looks like:</span><br />
+<br />
+<pre>
+TOP COMMANDS BY EVENT COUNT
+  htop              130,500 events,  243.9 ms total,   8,855 errors
+  notify-rs inoti    49,346 events,   42.1 ms total,  24,610 errors
+  cosmic-term        39,534 events,   76.4 ms total,   2,590 errors
+  systemd-oomd        5,857 events,   10.0 ms total,     947 errors
+  surface-eDP-1       3,535 events,  127.0 ms total,     317 errors  ← high µs/event
+
+TOP SYSCALLS BY TOTAL TIME (ms)
+  read     241.3 ms over 122,767 calls    (avg 1.97 µs)
+  ioctl    138.0 ms over   8,416 calls    (avg 16.4 µs)
+  openat    91.8 ms over  39,684 calls    (avg 2.31 µs)
+  statx     19.2 ms over  12,441 calls
+  getdents  17.6 ms over   6,770 calls
+
+ERROR RATES THAT STOOD OUT
+  mkdir       100.0%   (345/345)   — cosmic-term recreating config dirs that already exist (EEXIST)
+  newfstatat   84.3%   (1,816/2,153) — systemd-oomd statting /proc/&lt;pid&gt;/ns/pid for already-gone processes
+  read         24.3%   (29,816/122,767) — almost all on anon_inode:inotify and [eventfd], i.e. EAGAIN on
+                                          non-blocking fds. Normal, but it&#39;s a quarter of all reads.
+
+NOISIEST PATHS (per ENOENT)
+  174× /var/lib/flatpak/exports/share/cosmic/com.system76.CosmicTheme.Mode/v1
+  174× /usr/local/share/cosmic/com.system76.CosmicTheme.Mode/v1
+  174× /home/paul/.local/share/flatpak/exports/share/cosmic/com.system76.CosmicTheme.Mode/v1
+  → cosmic-term walks the XDG search path on every redraw. ENOENT-spam, not a perf bug, but worth filing.
+
+WHAT&#39;S ACTUALLY EXPENSIVE
+  • htop is the loudest tenant by event count but cheap per-event (~1.9 µs).
+    It walks /proc/*/{task,stat,maps,statm} every refresh — expected.
+  • surface-eDP-1 is the sleeper: ~36 µs/event, almost entirely DRM ioctls
+    on /dev/dri/renderD128 + /dev/dri/card1. That&#39;s the GPU compositor path.
+  • 24% of read() calls returning -EAGAIN is normal for an event-loop heavy
+    desktop (inotify + eventfd on every Tokio runtime), but if you&#39;re chasing
+    syscall overhead, batching those would matter.
+
+NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
+/sys, /dev/dri, ~/.config and the Cosmic/Flatpak search dirs.
+</pre>
+<br />
+<span>Two things this is unreasonably good at. First, joining the dots between <span class='inlinecode'>comm</span>, <span class='inlinecode'>syscall</span> and <span class='inlinecode'>path</span> columns to give you a one-paragraph "this is what your machine is doing", the kind of summary that would take you ten ClickHouse queries to assemble by hand. Second, flagging things that are statistically weird without you having to know what to look for: the 100%-error <span class='inlinecode'>mkdir</span> was the EEXIST loop in cosmic-term, the 84%-error <span class='inlinecode'>newfstatat</span> was systemd-oomd racing process exits, the surface-eDP-1 outlier was the only entry on the list with high per-event latency.</span><br />
+<br />
+<span>A few caveats worth knowing before you rely on this:</span><br />
+<br />
+<ul>
+<li>The CSV file gets big fast. Fifteen seconds of an idle desktop produced 260k rows / ~25 MB of CSV; on a busy server you&#39;ll want to either trim with <span class='inlinecode'>-comm</span>/<span class='inlinecode'>-path</span>/<span class='inlinecode'>-pid</span> filters at capture time or hand the AI a <span class='inlinecode'>head -100000</span> slice. Most assistants will hit context limits well before the file ends.</li>
+<li>The model is reading text, not running SQL. It will round, it will sometimes miscount the long tail, and it cannot tell you a true p99 from a 250k-row sample without writing code. Treat the output as a lead-generator: it points you at suspects, then you confirm with ClickHouse on the parquet file.</li>
+<li>For deeper questions ("what changed between these two traces?", "which pids dominate during the 12:34 spike?") an agentic assistant that can run shell commands does much better. It&#39;ll write the awk/clickhouse query itself, run it, and feed the result back into its own analysis.</li>
+</ul><br />
+<span>The combination that&#39;s worked best for me in practice: capture parquet with <span class='inlinecode'>-parquet</span>, also capture a <span class='inlinecode'>-plain</span> CSV slice for the AI to read, ask the AI for a triage pass, then drill into the suspects with ClickHouse on the parquet file. Triage and ground-truth, in that order.</span><br />
+<br />
+<h2 style='display: inline' id='what-s-new-in-v110'>What&#39;s new in v1.1.0</h2><br />
+<br />
+<span>One v1.1.0 change is directly relevant to the syscall-coverage story above: probe attach is now tolerant of missing tracepoints. The codegen safeguard still flags new arrivals at build time, but when the resulting binary lands on a kernel that lacks one of its handlers (because the syscall is newer than the host kernel, or the tracepoint name was renamed under it), ior logs a one-line warning per missing probe and keeps attaching the rest, instead of failing startup with a hard error. Codegen keeps the list honest going forward; the runtime change makes the binary forgiving going backward. The new <span class='inlinecode'>ior.el8</span> build (Part 2&#39;s <span class='inlinecode'>mage buildDockerEl8</span> target, for RHEL/Rocky/Alma 8 hosts on 4.18 kernels) leans on this directly — it ships handlers for tracepoints that only exist on newer kernels, and now just skips them at attach instead of aborting.</span><br />
+<br />
+<h2 style='display: inline' id='wrapping-up'>Wrapping up</h2><br />
+<br />
+<span>That&#39;s the bottom of the stack. For the dashboard surface (what ior looks like, how the seven tabs behave, how filtering and recording work in practice) Part 1 is the demo-driven tour with all the GIFs. For the install dance and the why-the-binary-is-portable story (eBPF, CO-RE, static linking), Part 2 is the install + portability companion.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/ior'>Source on Codeberg</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
+    <entry>
+        <title>Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere</title>
         <link href="gemini://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.gmi" />
         <id>gemini://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.gmi</id>
         <updated>2026-05-10T22:53:35+03:00</updated>
@@ -18,29 +276,33 @@
         <summary>This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</h1><br />
+                <h1 style='display: inline' id='unveiling-io-riot-ng-v100--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere</h1><br />
+<br />
+<span class='quote'>Published at 2026-05-10T22:53:35+03:00</span><br />
 <br />
 <span>This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).</span><br />
 <br />
-<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</a><br />
 <br />
 <a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a></li>
+<li><a href='#unveiling-io-riot-ng-v100--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere</a></li>
 <li>⇢ <a href='#installing-ior'>Installing ior</a></li>
 <li>⇢ ⇢ <a href='#why-native-installation-is-a-mess'>Why native installation is a mess</a></li>
 <li>⇢ ⇢ <a href='#what-the-docker-build-is-actually-doing'>What the Docker build is actually doing</a></li>
 <li>⇢ <a href='#a-short-detour-ebpf-and-libbpfgo'>A short detour: eBPF and libbpfgo</a></li>
-<li>⇢ <a href='#co-re--the-part-that-makes-the-binary-actually-portable'>CO-RE — the part that makes the binary actually portable</a></li>
+<li>⇢ <a href='#co-re--the-part-that-makes-the-bpf-binary-actually-portable'>CO-RE — the part that makes the BPF binary actually portable</a></li>
 <li>⇢ ⇢ <a href='#static-linking'>Static linking</a></li>
 <li>⇢ ⇢ <a href='#go-programs-are-statically-linked-by-default'>Go programs are statically linked by default</a></li>
 <li>⇢ ⇢ <a href='#cgo-programs-are-not-statically-linked-by-default'><span class='inlinecode'>cgo</span> programs are not statically linked by default.</a></li>
 <li>⇢ ⇢ <a href='#co-re'>CO-RE</a></li>
 <li>⇢ <a href='#a-note-on-cgo-overhead'>A note on cgo overhead</a></li>
+<li>⇢ <a href='#what-s-new-in-v110'>What&#39;s new in v1.1.0</a></li>
 <li>⇢ <a href='#if-you-want-to-go-deeper'>If you want to go deeper</a></li>
 </ul><br />
 <h2 style='display: inline' id='installing-ior'>Installing ior</h2><br />
@@ -176,7 +438,7 @@ sudo ./ior -plain -duration <font color="#000000">5</font>
 <br />
 <span>I went with libbpfgo specifically because it&#39;s a wrapper, not a reimplementation.</span><br />
 <br />
-<h2 style='display: inline' id='co-re--the-part-that-makes-the-binary-actually-portable'>CO-RE — the part that makes the binary actually portable</h2><br />
+<h2 style='display: inline' id='co-re--the-part-that-makes-the-bpf-binary-actually-portable'>CO-RE — the part that makes the BPF binary actually portable</h2><br />
 <br />
 <span>The headline fact about <span class='inlinecode'>ior</span>&#39;s deployment story: build it once on one box, then <span class='inlinecode'>scp ior other-host:/usr/local/bin/</span> to anywhere else and it just runs. No recompile per kernel, no kernel-debuginfo dance, no DKMS hooks. Two mechanisms make that work, and they reinforce each other.</span><br />
 <br />
@@ -268,6 +530,14 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 <br />
 <span>Go 1.26, the current release at the time of writing (early May 2026), is the one that finally took a serious bite out of cgo&#39;s per-call cost. The runtime can elide a chunk of the bookkeeping for calls that don&#39;t need it. Real-world wins depend heavily on the workload, but the rough direction is that cgo now feels closer to "an unusually expensive function call" than to "a context switch", which is the right mental model for almost everyone touching a C library from Go. The shorter version: cgo overhead used to be a real footgun for ports that called into C in the inner loop. With Go 1.26 it&#39;s a footnote unless you&#39;re doing many millions of small calls per second, in which case batching across the boundary still fixes it.</span><br />
 <br />
+<h2 style='display: inline' id='what-s-new-in-v110'>What&#39;s new in v1.1.0</h2><br />
+<br />
+<span>Two changes since the <span class='inlinecode'>1.0.0</span> release this post was originally written against touch the install / portability story directly:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>mage buildDockerEl8</span> is a new build target that produces a sibling binary called <span class='inlinecode'>ior.el8</span>, built inside a Rocky Linux 8 container against its older glibc. Drop it on RHEL/Rocky/Alma 8 hosts where the default Rocky 9-built <span class='inlinecode'>ior</span> would refuse to start with a <span class='inlinecode'>version &#39;GLIBC_2.34&#39; not found</span> complaint. CO-RE still means one binary across kernel versions; the el8 split is purely about pinning the userspace libc floor lower for older fleets. The Dockerfile mirrors the same source-build dance described above (libelf.a from elfutils, libzstd.a from upstream, Go 1.26 from go.dev), just on top of a Rocky 8 base.</li>
+<li>Probe attach is now tolerant of missing tracepoints. Older kernels that don&#39;t expose every tracepoint v1.1.0 knows about (because the syscall didn&#39;t exist yet on that kernel, or the tracepoint name was renamed under it) log a one-line warning per missing probe and continue, instead of aborting startup. Same static binary, more kernels it actually attaches on, fewer surprises when you <span class='inlinecode'>scp</span> it to a host that&#39;s a few major versions behind your build box. Pairs naturally with the el8 build above: a Rocky 8 host running a 4.18 kernel will silently skip the tracepoints that arrived in 5.x and keep tracing the ones that exist.</li>
+</ul><br />
 <h2 style='display: inline' id='if-you-want-to-go-deeper'>If you want to go deeper</h2><br />
 <br />
 <span>If any of this sounds interesting and you want to learn how to write your own BPF programs, two books are the standard recommendations and both well worth the time:</span><br />
@@ -278,12 +548,17 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 </ul><br />
 <span>Between the two, Rice teaches you the moving parts and Gregg teaches you what to do with them.</span><br />
 <br />
+<span>Read the next post of the series:</span><br />
+<br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>Unveiling I/O Riot NG — Part 3: under the hood</a><br />
+<br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <span>Other related posts are:</span><br />
 <br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere (You are currently reading this)</a><br />
-<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
@@ -291,7 +566,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
         </content>
     </entry>
     <entry>
-        <title>Unveiling I/O Riot NG — Part 1: a guided tour</title>
+        <title>Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</title>
         <link href="gemini://foo.zone/gemfeed/2026-05-08-unveiling-ior-ng-part-1.gmi" />
         <id>gemini://foo.zone/gemfeed/2026-05-08-unveiling-ior-ng-part-1.gmi</id>
         <updated>2026-05-07T09:46:29+03:00</updated>
@@ -302,7 +577,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
         <summary>I rewrote I/O Riot. The old version, written in C and SystemTap, dates back to 2017. The new version (called `ior`) uses Go, C, and BPF via libbpfgo. It runs on Linux and is primarily a TUI dashboard rather than a record/replay box. It took around two years of intermittent work to reach this `1.0.0` release.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='unveiling-io-riot-ng--part-1-a-guided-tour'>Unveiling I/O Riot NG — Part 1: a guided tour</h1><br />
+                <h1 style='display: inline' id='unveiling-io-riot-ng-v100--part-1-a-guided-tour'>Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</h1><br />
 <br />
 <span class='quote'>Published at 2026-05-07T09:46:29+03:00</span><br />
 <br />
@@ -314,6 +589,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 <br />
 <a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood</a><br />
 <br />
 <a class='textlink' href='https://codeberg.org/snonux/ior'>I/O Riot NG on Codeberg</a><br />
 <a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>the original I/O Riot post (2018)</a><br />
@@ -321,7 +597,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#unveiling-io-riot-ng--part-1-a-guided-tour'>Unveiling I/O Riot NG — Part 1: a guided tour</a></li>
+<li><a href='#unveiling-io-riot-ng-v100--part-1-a-guided-tour'>Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a></li>
 <li>⇢ <a href='#what-it-does'>What it does</a></li>
 <li>⇢ <a href='#first-launch'>First launch</a></li>
 <li>⇢ <a href='#the-seven-tabs-in-30-seconds-each'>The seven tabs, in 30 seconds each</a></li>
@@ -334,6 +610,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 <li>⇢ <a href='#the-stream-tab-is-the-good-one'>The Stream tab is the good one</a></li>
 <li>⇢ <a href='#filtering-more-thoroughly'>Filtering, more thoroughly</a></li>
 <li>⇢ <a href='#recording'>Recording</a></li>
+<li>⇢ <a href='#what-s-new-in-v110'>What&#39;s new in v1.1.0</a></li>
 <li>⇢ <a href='#what-s-still-missing'>What&#39;s still missing</a></li>
 </ul><br />
 <h2 style='display: inline' id='what-it-does'>What it does</h2><br />
@@ -509,6 +786,17 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Once a parquet file is on disk, point any SQL-over-parquet tool at it — Part 3 walks through ClickHouse Local, with real query output against a 30-second capture.</span><br />
 <br />
+<h2 style='display: inline' id='what-s-new-in-v110'>What&#39;s new in v1.1.0</h2><br />
+<br />
+<span>A handful of TUI additions landed in <span class='inlinecode'>v1.1.0</span> after this post was originally written against <span class='inlinecode'>1.0.0</span>. Nothing in the tour above became wrong, but a few keystrokes do more than they used to:</span><br />
+<br />
+<ul>
+<li>Three-way metric cycle on the flamegraph. <span class='inlinecode'>b</span> now toggles count → bytes → duration; the new "duration" mode weights bars by total syscall latency, which answers "where is the wall-clock time going?" in one keystroke. The same metric is wired through the bubble, treemap, and icicle views.</li>
+<li>Auto-reset timer for the live aggregates. <span class='inlinecode'>-resetTimer=&lt;dur&gt;</span> (default <span class='inlinecode'>30s</span>, <span class='inlinecode'>0</span> disables) sets the cadence at launch; the <span class='inlinecode'>I</span> hotkey cycles <span class='inlinecode'>off → 10s → 30s → 60s → 2m → 5m → off</span> while ior is running, and the dashboard chrome shows the remaining countdown. Same effect as hitting <span class='inlinecode'>r</span> on a schedule — keeps the live trie and stats engine bounded on long traces without you remembering to do it.</li>
+<li>In-place global filter swap. Pushing or popping the global filter (the Enter-on-a-cell trick, the PID/TID/probe pickers, <span class='inlinecode'>ESC</span> to pop) no longer detaches and reattaches every BPF tracepoint, so the "Attaching tracepoints..." overlay that used to flash for several seconds on busy I/O boxes is gone. Filter changes are now instant.</li>
+<li>Flame graph TUI keeps up under heavy load. Per-tick snapshot refresh runs on a background goroutine, navigation walks a precomputed ancestry index, and <span class='inlinecode'>View()</span> output is memoized. Keystrokes (pause, zoom, navigate, search) land within one frame even when the live trie is ingesting thousands of events per tick.</li>
+<li><span class='inlinecode'>-tui-fast-refresh=&lt;dur&gt;</span> (default <span class='inlinecode'>250ms</span>, <span class='inlinecode'>0</span> disables) makes the flamegraph and stream tabs&#39; high-frequency refresh cadence configurable, in case you want a lighter feel on a slow terminal or a punchier one on a busy workload.</li>
+</ul><br />
 <h2 style='display: inline' id='what-s-still-missing'>What&#39;s still missing</h2><br />
 <br />
 <ul>
@@ -531,6 +819,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
 <a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)</a><br />
 <a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
@@ -19771,111 +20060,6 @@ Waking up e8:ff:1e:d7:1c:a0...
 <a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 &#39;The Obstacle is the Way&#39; book notes</a><br />
 <a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 &#39;Never split the difference&#39; book notes</a><br />
 <a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 &#39;The Pragmatic Programmer&#39; book notes</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Gemtexter 3.0.0 - Let's Gemtext again⁴</title>
-        <link href="gemini://foo.zone/gemfeed/2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.gmi" />
-        <id>gemini://foo.zone/gemfeed/2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.gmi</id>
-        <updated>2024-10-01T21:46:26+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>I proudly announce that I've released Gemtexter version `3.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='gemtexter-300---let-s-gemtext-again'>Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</h1><br />
-<br />
-<span class='quote'>Published at 2024-10-01T21:46:26+03:00</span><br />
-<br />
-<span>I proudly announce that I&#39;ve released Gemtexter version <span class='inlinecode'>3.0.0</span>. What is Gemtexter? It&#39;s my minimalist static site generator for Gemini Gemtext, HTML and Markdown, written in GNU Bash.</span><br />
-<br />
-<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>https://codeberg.org/snonux/gemtexter</a><br />
-<br />
-<pre>
--=[ typewriters ]=-  1/98
-                                      .-------.
-       .-------.                     _|~~ ~~  |_
-      _|~~ ~~  |_       .-------.  =(_|_______|_)
-    =(_|_______|_)=    _|~~ ~~  |_   |:::::::::|    .-------.
-      |:::::::::|    =(_|_______|_)  |:::::::[]|   _|~~ ~~  |_
-      |:::::::[]|      |:::::::::|   |o=======.| =(_|_______|_)
-      |o=======.|      |:::::::[]|   `"""""""""`   |:::::::::|
- jgs  `"""""""""`      |o=======.|                 |:::::::[]|
-  mod. by Paul Buetow  `"""""""""`                 |o=======.|
-                                                   `"""""""""`
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#gemtexter-300---let-s-gemtext-again'>Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴</a></li>
-<li>⇢ <a href='#why-bash'>Why Bash?</a></li>
-<li>⇢ <a href='#html-exact-variant-is-the-only-variant'>HTML exact variant is the only variant</a></li>
-<li>⇢ <a href='#table-of-contents-auto-generation'>Table of Contents auto-generation</a></li>
-<li>⇢ <a href='#configurable-themes'>Configurable themes</a></li>
-<li>⇢ <a href='#no-use-of-webfonts-by-default'>No use of webfonts by default</a></li>
-<li>⇢ <a href='#more'>More</a></li>
-</ul><br />
-<h2 style='display: inline' id='why-bash'>Why Bash?</h2><br />
-<br />
-<span>This project is too complex for a Bash script. Writing it in Bash was to try out how maintainable a "larger" Bash script could be. It&#39;s still pretty maintainable and helps me try new Bash tricks here and then!</span><br />
-<br />
-<span>Let&#39;s list what&#39;s new!</span><br />
-<br />
-<h2 style='display: inline' id='html-exact-variant-is-the-only-variant'>HTML exact variant is the only variant</h2><br />
-<br />
-<span>The last version of Gemtexter introduced the HTML exact variant, which wasn&#39;t enabled by default. This version of Gemtexter removes the previous (inexact) variant and makes the exact variant the default. This is a breaking change, which is why there is a major version bump of Gemtexter. Here is a reminder of what the exact variant was:</span><br />
-<br />
-<span class='quote'>Gemtexter is there to convert your Gemini Capsule into other formats, such as HTML and Markdown. An HTML exact variant can now be enabled in the <span class='inlinecode'>gemtexter.conf</span> by adding the line <span class='inlinecode'>declare -rx HTML_VARIANT=exact</span>. The HTML/CSS output changed to reflect a more exact Gemtext appearance and to respect the same spacing as you would see in the Geminispace. </span><br />
-<br />
-<h2 style='display: inline' id='table-of-contents-auto-generation'>Table of Contents auto-generation</h2><br />
-<br />
-<span>Just add...</span><br />
-<br />
-<pre>
- &lt;&lt; template::inline::toc
-</pre>
-<br />
-<span>...into a Gemtexter template file and Gemtexter will automatically generate a table of contents for the page based on the headings (see this page&#39;s ToC for example). The ToC will also have links to the relevant sections in HTML and Markdown output. The Gemtext format does not support links, so the ToC will simply be displayed as a bullet list. </span><br />
-<br />
-<h2 style='display: inline' id='configurable-themes'>Configurable themes</h2><br />
-<br />
-<span>It was always possible to customize the style of a Gemtexter&#39;s resulting HTML page, but all the config options were scattered across multiple files. Now, the CSS style, web fonts, etc., are all configurable via themes.</span><br />
-<br />
-<span>Simply configure <span class='inlinecode'>HTML_THEME_DIR</span> in the <span class='inlinecode'>gemtexter.conf</span> file to the corresponding directory. For example:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">declare</font></u></b> -xr HTML_THEME_DIR=./extras/html/themes/simple
-</pre>
-<br />
-<span>To customize the theme or create your own, simply copy the theme directory and modify it as needed. This makes it also much easier to switch between layouts.</span><br />
-<br />
-<h2 style='display: inline' id='no-use-of-webfonts-by-default'>No use of webfonts by default</h2><br />
-<br />
-<span>The default theme is now "back to the basics" and does not utilize any web fonts. The previous themes are still part of the release and can be easily configured. These are currently the <span class='inlinecode'>future</span> and <span class='inlinecode'>business</span> themes. You can check them out from the themes directory.</span><br />
-<br />
-<h2 style='display: inline' id='more'>More</h2><br />
-<br />
-<span>Additionally, there were a couple of bug fixes, refactorings and overall improvements in the documentation made. </span><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other related posts are:</span><br />
-<br />
-<a class='textlink' href='./2024-10-02-gemtexter-3.0.0-lets-gemtext-again-4.html'>2024-10-02 Gemtexter 3.0.0 - Let&#39;s Gemtext again⁴ (You are currently reading this)</a><br />
-<a class='textlink' href='./2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.html'>2023-07-21 Gemtexter 2.1.0 - Let&#39;s Gemtext again³</a><br />
-<a class='textlink' href='./2023-03-25-gemtexter-2.0.0-lets-gemtext-again-2.html'>2023-03-25 Gemtexter 2.0.0 - Let&#39;s Gemtext again²</a><br />
-<a class='textlink' href='./2022-08-27-gemtexter-1.1.0-lets-gemtext-again.html'>2022-08-27 Gemtexter 1.1.0 - Let&#39;s Gemtext again</a><br />
-<a class='textlink' href='./2021-06-05-gemtexter-one-bash-script-to-rule-it-all.html'>2021-06-05 Gemtexter - One Bash script to rule it all</a><br />
-<a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>

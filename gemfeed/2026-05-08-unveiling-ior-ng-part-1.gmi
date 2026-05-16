@@ -1,4 +1,4 @@
-# Unveiling I/O Riot NG — Part 1: a guided tour
+# Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour
 
 > Published at 2026-05-07T09:46:29+03:00
 
@@ -10,13 +10,14 @@ This is the first of three posts. Part 1 is the demo-driven tour: what `ior` loo
 
 => ./2026-05-08-unveiling-ior-ng-part-1.gmi 2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)
 => ./2026-05-11-unveiling-ior-ng-part-2.gmi 2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere
+=> ./2026-05-17-unveiling-ior-ng-part-3.gmi 2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood
 
 => https://codeberg.org/snonux/ior I/O Riot NG on Codeberg
 => ./2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi the original I/O Riot post (2018)
 
 ## Table of Contents
 
-* ⇢ Unveiling I/O Riot NG — Part 1: a guided tour
+* ⇢ Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour
 * ⇢ ⇢ What it does
 * ⇢ ⇢ First launch
 * ⇢ ⇢ The seven tabs, in 30 seconds each
@@ -29,6 +30,7 @@ This is the first of three posts. Part 1 is the demo-driven tour: what `ior` loo
 * ⇢ ⇢ The Stream tab is the good one
 * ⇢ ⇢ Filtering, more thoroughly
 * ⇢ ⇢ Recording
+* ⇢ ⇢ What's new in v1.1.0
 * ⇢ ⇢ What's still missing
 
 ## What it does
@@ -195,6 +197,16 @@ Three persistence flows, each for a different job:
 
 Once a parquet file is on disk, point any SQL-over-parquet tool at it — Part 3 walks through ClickHouse Local, with real query output against a 30-second capture.
 
+## What's new in v1.1.0
+
+A handful of TUI additions landed in `v1.1.0` after this post was originally written against `1.0.0`. Nothing in the tour above became wrong, but a few keystrokes do more than they used to:
+
+* Three-way metric cycle on the flamegraph. `b` now toggles count → bytes → duration; the new "duration" mode weights bars by total syscall latency, which answers "where is the wall-clock time going?" in one keystroke. The same metric is wired through the bubble, treemap, and icicle views.
+* Auto-reset timer for the live aggregates. `-resetTimer=<dur>` (default `30s`, `0` disables) sets the cadence at launch; the `I` hotkey cycles `off → 10s → 30s → 60s → 2m → 5m → off` while ior is running, and the dashboard chrome shows the remaining countdown. Same effect as hitting `r` on a schedule — keeps the live trie and stats engine bounded on long traces without you remembering to do it.
+* In-place global filter swap. Pushing or popping the global filter (the Enter-on-a-cell trick, the PID/TID/probe pickers, `ESC` to pop) no longer detaches and reattaches every BPF tracepoint, so the "Attaching tracepoints..." overlay that used to flash for several seconds on busy I/O boxes is gone. Filter changes are now instant.
+* Flame graph TUI keeps up under heavy load. Per-tick snapshot refresh runs on a background goroutine, navigation walks a precomputed ancestry index, and `View()` output is memoized. Keystrokes (pause, zoom, navigate, search) land within one frame even when the live trie is ingesting thousands of events per tick.
+* `-tui-fast-refresh=<dur>` (default `250ms`, `0` disables) makes the flamegraph and stream tabs' high-frequency refresh cadence configurable, in case you want a lighter feel on a slow terminal or a punchier one on a busy workload.
+
 ## What's still missing
 
 * No record/replay. That was the whole point of the original I/O Riot. The new one is a tracer, not a workload simulator. I keep going back and forth on whether to put replay back in.
@@ -216,6 +228,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
+=> ./2026-05-17-unveiling-ior-ng-part-3.gmi 2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood
 => ./2026-05-11-unveiling-ior-ng-part-2.gmi 2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere
 => ./2026-05-08-unveiling-ior-ng-part-1.gmi 2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)
 => ./2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi 2018-06-01 Realistic load testing with I/O Riot for Linux

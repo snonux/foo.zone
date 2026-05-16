@@ -1,4 +1,4 @@
-# Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere
+# Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere
 
 > Published at 2026-05-10T22:53:35+03:00
 
@@ -228,6 +228,13 @@ The cost of being a libbpf wrapper rather than a pure-Go reimplementation is cgo
 
 Go 1.26, the current release at the time of writing (early May 2026), is the one that finally took a serious bite out of cgo's per-call cost. The runtime can elide a chunk of the bookkeeping for calls that don't need it. Real-world wins depend heavily on the workload, but the rough direction is that cgo now feels closer to "an unusually expensive function call" than to "a context switch", which is the right mental model for almost everyone touching a C library from Go. The shorter version: cgo overhead used to be a real footgun for ports that called into C in the inner loop. With Go 1.26 it's a footnote unless you're doing many millions of small calls per second, in which case batching across the boundary still fixes it.
 
+## What's new in v1.1.0
+
+Two changes since the `1.0.0` release this post was originally written against touch the install / portability story directly:
+
+* `mage buildDockerEl8` is a new build target that produces a sibling binary called `ior.el8`, built inside a Rocky Linux 8 container against its older glibc. Drop it on RHEL/Rocky/Alma 8 hosts where the default Rocky 9-built `ior` would refuse to start with a `version 'GLIBC_2.34' not found` complaint. CO-RE still means one binary across kernel versions; the el8 split is purely about pinning the userspace libc floor lower for older fleets. The Dockerfile mirrors the same source-build dance described above (libelf.a from elfutils, libzstd.a from upstream, Go 1.26 from go.dev), just on top of a Rocky 8 base.
+* Probe attach is now tolerant of missing tracepoints. Older kernels that don't expose every tracepoint v1.1.0 knows about (because the syscall didn't exist yet on that kernel, or the tracepoint name was renamed under it) log a one-line warning per missing probe and continue, instead of aborting startup. Same static binary, more kernels it actually attaches on, fewer surprises when you `scp` it to a host that's a few major versions behind your build box. Pairs naturally with the el8 build above: a Rocky 8 host running a 4.18 kernel will silently skip the tracepoints that arrived in 5.x and keep tracing the ones that exist.
+
 ## If you want to go deeper
 
 If any of this sounds interesting and you want to learn how to write your own BPF programs, two books are the standard recommendations and both well worth the time:
@@ -236,6 +243,10 @@ If any of this sounds interesting and you want to learn how to write your own BP
 * "BPF Performance Tools: Linux System and Application Observability" by Brendan Gregg (Addison-Wesley, 2019) is the encyclopedia. It's where you go after you've understood the basics and now want a complete reference for tracing every subsystem in the kernel — file systems, networking, scheduler, languages, applications — with worked tools for each. The flame-graph-driven analysis style throughout is also exactly how `ior`'s own flamegraph tab thinks about a workload.
 
 Between the two, Rice teaches you the moving parts and Gregg teaches you what to do with them.
+
+Read the next post of the series:
+
+=> ./2026-05-17-unveiling-ior-ng-part-3.gmi  Unveiling I/O Riot NG — Part 3: under the hood
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

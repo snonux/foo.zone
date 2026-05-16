@@ -1,4 +1,4 @@
-# Unveiling I/O Riot NG — Part 1: a guided tour
+# Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour
 
 > Published at 2026-05-07T09:46:29+03:00
 
@@ -178,6 +178,16 @@ Three persistence flows, each for a different job:
 => ./unveiling-ior-ng/14-headless-modes.gif All three headless flows in one tape
 
 Once a parquet file is on disk, point any SQL-over-parquet tool at it — Part 3 walks through ClickHouse Local, with real query output against a 30-second capture.
+
+## What's new in v1.1.0
+
+A handful of TUI additions landed in `v1.1.0` after this post was originally written against `1.0.0`. Nothing in the tour above became wrong, but a few keystrokes do more than they used to:
+
+* Three-way metric cycle on the flamegraph. `b` now toggles count → bytes → duration; the new "duration" mode weights bars by total syscall latency, which answers "where is the wall-clock time going?" in one keystroke. The same metric is wired through the bubble, treemap, and icicle views.
+* Auto-reset timer for the live aggregates. `-resetTimer=<dur>` (default `30s`, `0` disables) sets the cadence at launch; the `I` hotkey cycles `off → 10s → 30s → 60s → 2m → 5m → off` while ior is running, and the dashboard chrome shows the remaining countdown. Same effect as hitting `r` on a schedule — keeps the live trie and stats engine bounded on long traces without you remembering to do it.
+* In-place global filter swap. Pushing or popping the global filter (the Enter-on-a-cell trick, the PID/TID/probe pickers, `ESC` to pop) no longer detaches and reattaches every BPF tracepoint, so the "Attaching tracepoints..." overlay that used to flash for several seconds on busy I/O boxes is gone. Filter changes are now instant.
+* Flame graph TUI keeps up under heavy load. Per-tick snapshot refresh runs on a background goroutine, navigation walks a precomputed ancestry index, and `View()` output is memoized. Keystrokes (pause, zoom, navigate, search) land within one frame even when the live trie is ingesting thousands of events per tick.
+* `-tui-fast-refresh=<dur>` (default `250ms`, `0` disables) makes the flamegraph and stream tabs' high-frequency refresh cadence configurable, in case you want a lighter feel on a slow terminal or a punchier one on a busy workload.
 
 ## What's still missing
 
