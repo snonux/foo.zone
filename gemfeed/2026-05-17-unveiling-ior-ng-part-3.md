@@ -8,9 +8,9 @@ This is the third and final post in the series. Part 1 is the demo-driven tour: 
 
 [I/O Riot NG on Codeberg](https://codeberg.org/snonux/ior)  
 
-[2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
+[2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
 [2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
-[2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood (You are currently reading this)](./2026-05-17-unveiling-ior-ng-part-3.md)  
+[2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood (You are currently reading this)](./2026-05-17-unveiling-ior-ng-part-3.md)  
 
 ## Table of Contents
 
@@ -223,9 +223,9 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-[2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood (You are currently reading this)](./2026-05-17-unveiling-ior-ng-part-3.md)  
+[2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood (You are currently reading this)](./2026-05-17-unveiling-ior-ng-part-3.md)  
 [2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
-[2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
+[2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
 [2018-06-01 Realistic load testing with I/O Riot for Linux](./2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  
 
 [Back to the main site](../)  
