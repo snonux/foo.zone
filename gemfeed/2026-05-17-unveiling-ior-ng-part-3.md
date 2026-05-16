@@ -1,4 +1,4 @@
-# Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood
+# Unveiling I/O Riot NG — Part 3: under the hood
 
 > Published at 2026-05-16T18:00:00+03:00
 
@@ -10,11 +10,11 @@ This is the third and final post in the series. Part 1 is the demo-driven tour: 
 
 [2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
 [2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
-[2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood (You are currently reading this)](./2026-05-17-unveiling-ior-ng-part-3.md)  
+[2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood (You are currently reading this)](./2026-05-17-unveiling-ior-ng-part-3.md)  
 
 ## Table of Contents
 
-* [⇢ Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood](#unveiling-io-riot-ng-v100--part-3-under-the-hood)
+* [⇢ Unveiling I/O Riot NG — Part 3: under the hood](#unveiling-io-riot-ng--part-3-under-the-hood)
 * [⇢ ⇢ What ior actually captures per event](#what-ior-actually-captures-per-event)
 * [⇢ ⇢ ⇢ Async syscalls and what "latency" means for them](#async-syscalls-and-what-latency-means-for-them)
 * [⇢ ⇢ Keeping up with new syscalls](#keeping-up-with-new-syscalls)
@@ -223,7 +223,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
-[2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood (You are currently reading this)](./2026-05-17-unveiling-ior-ng-part-3.md)  
+[2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood (You are currently reading this)](./2026-05-17-unveiling-ior-ng-part-3.md)  
 [2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
 [2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
 [2018-06-01 Realistic load testing with I/O Riot for Linux](./2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  

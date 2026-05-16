@@ -1,18 +1,18 @@
-# Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere
+# Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere
 
 > Published at 2026-05-10T22:53:35+03:00
 
 This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).
 
 [2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
-[2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere (You are currently reading this)](./2026-05-11-unveiling-ior-ng-part-2.md)  
+[2026-05-11 Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere (You are currently reading this)](./2026-05-11-unveiling-ior-ng-part-2.md)  
 [2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood](./2026-05-17-unveiling-ior-ng-part-3.md)  
 
 [![Live flamegraph](./unveiling-ior-ng/00-hero-flamegraph.png "Live flamegraph")](./unveiling-ior-ng/00-hero-flamegraph.png)  
 
 ## Table of Contents
 
-* [⇢ Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere](#unveiling-io-riot-ng-v100--part-2-install-and-compile-once-run-everywhere)
+* [⇢ Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](#unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere)
 * [⇢ ⇢ Installing ior](#installing-ior)
 * [⇢ ⇢ ⇢ Why native installation is a mess](#why-native-installation-is-a-mess)
 * [⇢ ⇢ ⇢ What the Docker build is actually doing](#what-the-docker-build-is-actually-doing)
@@ -269,7 +269,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 Other related posts are:
 
 [2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood](./2026-05-17-unveiling-ior-ng-part-3.md)  
-[2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere (You are currently reading this)](./2026-05-11-unveiling-ior-ng-part-2.md)  
+[2026-05-11 Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere (You are currently reading this)](./2026-05-11-unveiling-ior-ng-part-2.md)  
 [2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
 [2018-06-01 Realistic load testing with I/O Riot for Linux](./2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  
 

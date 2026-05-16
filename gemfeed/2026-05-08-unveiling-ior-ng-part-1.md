@@ -1,4 +1,4 @@
-# Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour
+# Unveiling I/O Riot NG — Part 1: a guided tour
 
 > Published at 2026-05-07T09:46:29+03:00
 
@@ -8,7 +8,7 @@ This is the first of three posts. Part 1 is the demo-driven tour: what `ior` loo
 
 [![Live flamegraph](./unveiling-ior-ng/00-hero-flamegraph.png "Live flamegraph")](./unveiling-ior-ng/00-hero-flamegraph.png)  
 
-[2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)](./2026-05-08-unveiling-ior-ng-part-1.md)  
+[2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour (You are currently reading this)](./2026-05-08-unveiling-ior-ng-part-1.md)  
 [2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
 [2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood](./2026-05-17-unveiling-ior-ng-part-3.md)  
 
@@ -17,7 +17,7 @@ This is the first of three posts. Part 1 is the demo-driven tour: what `ior` loo
 
 ## Table of Contents
 
-* [⇢ Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour](#unveiling-io-riot-ng-v100--part-1-a-guided-tour)
+* [⇢ Unveiling I/O Riot NG — Part 1: a guided tour](#unveiling-io-riot-ng--part-1-a-guided-tour)
 * [⇢ ⇢ What it does](#what-it-does)
 * [⇢ ⇢ First launch](#first-launch)
 * [⇢ ⇢ The seven tabs, in 30 seconds each](#the-seven-tabs-in-30-seconds-each)
@@ -230,7 +230,7 @@ Other related posts are:
 
 [2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood](./2026-05-17-unveiling-ior-ng-part-3.md)  
 [2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
-[2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour (You are currently reading this)](./2026-05-08-unveiling-ior-ng-part-1.md)  
+[2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour (You are currently reading this)](./2026-05-08-unveiling-ior-ng-part-1.md)  
 [2018-06-01 Realistic load testing with I/O Riot for Linux](./2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  
 
 [Back to the main site](../)  
