@@ -1,4 +1,4 @@
-# Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour
+# Unveiling I/O Riot NG — Part 1: a guided tour
 
 > Published at 2026-05-07T09:46:29+03:00
 

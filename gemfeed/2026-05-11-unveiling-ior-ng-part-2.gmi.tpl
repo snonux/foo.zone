@@ -1,4 +1,4 @@
-# Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere
+# Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere
 
 > Published at 2026-05-10T22:53:35+03:00
 

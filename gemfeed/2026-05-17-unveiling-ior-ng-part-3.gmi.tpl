@@ -1,4 +1,4 @@
-# Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood
+# Unveiling I/O Riot NG — Part 3: under the hood
 
 > Published at 2026-05-16T18:00:00+03:00
 
