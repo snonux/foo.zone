@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2026-05-10T22:53:36+03:00 by `Gemtexter`
+> This site was generated at 2026-05-16T08:37:00+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -20,8 +20,9 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
-[2026-05-11 - Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./gemfeed/2026-05-11-unveiling-ior-ng-part-2.md)  
-[2026-05-08 - Unveiling I/O Riot NG — Part 1: a guided tour](./gemfeed/2026-05-08-unveiling-ior-ng-part-1.md)  
+[2026-05-17 - Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood](./gemfeed/2026-05-17-unveiling-ior-ng-part-3.md)  
+[2026-05-11 - Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere](./gemfeed/2026-05-11-unveiling-ior-ng-part-2.md)  
+[2026-05-08 - Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour](./gemfeed/2026-05-08-unveiling-ior-ng-part-1.md)  
 [2026-04-02 - f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD](./gemfeed/2026-04-02-f3s-kubernetes-with-freebsd-part-9.md)  
 [2026-04-02 - Distributed Systems Simulator - Part 3: Advanced Examples and Protocol API](./gemfeed/2026-04-02-distributed-systems-simulator-part-3.md)  
 [2026-04-01 - Distributed Systems Simulator - Part 2: Built-in Protocols](./gemfeed/2026-04-01-distributed-systems-simulator-part-2.md)  
