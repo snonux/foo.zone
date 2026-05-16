@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</title>
+<title>Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
@@ -11,31 +11,33 @@
 <p class="header">
 <a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-05-11-unveiling-ior-ng-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
 </p>
-<h1 style='display: inline' id='unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</h1><br />
+<h1 style='display: inline' id='unveiling-io-riot-ng-v100--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere</h1><br />
 <br />
 <span class='quote'>Published at 2026-05-10T22:53:35+03:00</span><br />
 <br />
 <span>This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how filtering and recording behave. This part is about the installation for Rocky Linux 8 and 9 and, more interestingly, why you only have to do that dance on a single machine: the resulting binary is portable to every other Linux box thanks to CO-RE (Compile Once, Run Everywhere) plus full static linking. Part 3 is the under-the-hood companion (per-event schema, async-syscall caveats, the syscall-coverage probe generator, and post-mortem SQL on the parquet output).</span><br />
 <br />
-<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</a><br />
 <br />
 <a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a></li>
+<li><a href='#unveiling-io-riot-ng-v100--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG v1.0.0 — Part 2: install and compile once, run everywhere</a></li>
 <li>⇢ <a href='#installing-ior'>Installing ior</a></li>
 <li>⇢ ⇢ <a href='#why-native-installation-is-a-mess'>Why native installation is a mess</a></li>
 <li>⇢ ⇢ <a href='#what-the-docker-build-is-actually-doing'>What the Docker build is actually doing</a></li>
 <li>⇢ <a href='#a-short-detour-ebpf-and-libbpfgo'>A short detour: eBPF and libbpfgo</a></li>
-<li>⇢ <a href='#co-re--the-part-that-makes-the-binary-actually-portable'>CO-RE — the part that makes the binary actually portable</a></li>
+<li>⇢ <a href='#co-re--the-part-that-makes-the-bpf-binary-actually-portable'>CO-RE — the part that makes the BPF binary actually portable</a></li>
 <li>⇢ ⇢ <a href='#static-linking'>Static linking</a></li>
 <li>⇢ ⇢ <a href='#go-programs-are-statically-linked-by-default'>Go programs are statically linked by default</a></li>
 <li>⇢ ⇢ <a href='#cgo-programs-are-not-statically-linked-by-default'><span class='inlinecode'>cgo</span> programs are not statically linked by default.</a></li>
 <li>⇢ ⇢ <a href='#co-re'>CO-RE</a></li>
 <li>⇢ <a href='#a-note-on-cgo-overhead'>A note on cgo overhead</a></li>
+<li>⇢ <a href='#what-s-new-in-v110'>What&#39;s new in v1.1.0</a></li>
 <li>⇢ <a href='#if-you-want-to-go-deeper'>If you want to go deeper</a></li>
 </ul><br />
 <h2 style='display: inline' id='installing-ior'>Installing ior</h2><br />
@@ -171,7 +173,7 @@ sudo ./ior -plain -duration <font color="#000000">5</font>
 <br />
 <span>I went with libbpfgo specifically because it&#39;s a wrapper, not a reimplementation.</span><br />
 <br />
-<h2 style='display: inline' id='co-re--the-part-that-makes-the-binary-actually-portable'>CO-RE — the part that makes the binary actually portable</h2><br />
+<h2 style='display: inline' id='co-re--the-part-that-makes-the-bpf-binary-actually-portable'>CO-RE — the part that makes the BPF binary actually portable</h2><br />
 <br />
 <span>The headline fact about <span class='inlinecode'>ior</span>&#39;s deployment story: build it once on one box, then <span class='inlinecode'>scp ior other-host:/usr/local/bin/</span> to anywhere else and it just runs. No recompile per kernel, no kernel-debuginfo dance, no DKMS hooks. Two mechanisms make that work, and they reinforce each other.</span><br />
 <br />
@@ -263,6 +265,14 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 <br />
 <span>Go 1.26, the current release at the time of writing (early May 2026), is the one that finally took a serious bite out of cgo&#39;s per-call cost. The runtime can elide a chunk of the bookkeeping for calls that don&#39;t need it. Real-world wins depend heavily on the workload, but the rough direction is that cgo now feels closer to "an unusually expensive function call" than to "a context switch", which is the right mental model for almost everyone touching a C library from Go. The shorter version: cgo overhead used to be a real footgun for ports that called into C in the inner loop. With Go 1.26 it&#39;s a footnote unless you&#39;re doing many millions of small calls per second, in which case batching across the boundary still fixes it.</span><br />
 <br />
+<h2 style='display: inline' id='what-s-new-in-v110'>What&#39;s new in v1.1.0</h2><br />
+<br />
+<span>Two changes since the <span class='inlinecode'>1.0.0</span> release this post was originally written against touch the install / portability story directly:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>mage buildDockerEl8</span> is a new build target that produces a sibling binary called <span class='inlinecode'>ior.el8</span>, built inside a Rocky Linux 8 container against its older glibc. Drop it on RHEL/Rocky/Alma 8 hosts where the default Rocky 9-built <span class='inlinecode'>ior</span> would refuse to start with a <span class='inlinecode'>version &#39;GLIBC_2.34&#39; not found</span> complaint. CO-RE still means one binary across kernel versions; the el8 split is purely about pinning the userspace libc floor lower for older fleets. The Dockerfile mirrors the same source-build dance described above (libelf.a from elfutils, libzstd.a from upstream, Go 1.26 from go.dev), just on top of a Rocky 8 base.</li>
+<li>Probe attach is now tolerant of missing tracepoints. Older kernels that don&#39;t expose every tracepoint v1.1.0 knows about (because the syscall didn&#39;t exist yet on that kernel, or the tracepoint name was renamed under it) log a one-line warning per missing probe and continue, instead of aborting startup. Same static binary, more kernels it actually attaches on, fewer surprises when you <span class='inlinecode'>scp</span> it to a host that&#39;s a few major versions behind your build box. Pairs naturally with the el8 build above: a Rocky 8 host running a 4.18 kernel will silently skip the tracepoints that arrived in 5.x and keep tracing the ones that exist.</li>
+</ul><br />
 <h2 style='display: inline' id='if-you-want-to-go-deeper'>If you want to go deeper</h2><br />
 <br />
 <span>If any of this sounds interesting and you want to learn how to write your own BPF programs, two books are the standard recommendations and both well worth the time:</span><br />
@@ -273,12 +283,17 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 </ul><br />
 <span>Between the two, Rice teaches you the moving parts and Gregg teaches you what to do with them.</span><br />
 <br />
+<span>Read the next post of the series:</span><br />
+<br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>Unveiling I/O Riot NG — Part 3: under the hood</a><br />
+<br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <span>Other related posts are:</span><br />
 <br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere (You are currently reading this)</a><br />
-<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />

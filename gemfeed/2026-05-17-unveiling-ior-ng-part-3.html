@@ -2,43 +2,40 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Unveiling I/O Riot NG — Part 3: under the hood</title>
+<title>Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-unveiling-ior-ng-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-unveiling-ior-ng-part-3.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-05-17-unveiling-ior-ng-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-05-17-unveiling-ior-ng-part-3.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
 </p>
-<h1 style='display: inline' id='unveiling-io-riot-ng--part-3-under-the-hood'>Unveiling I/O Riot NG — Part 3: under the hood</h1><br />
+<h1 style='display: inline' id='unveiling-io-riot-ng-v100--part-3-under-the-hood'>Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</h1><br />
 <br />
-<span class='quote'>Draft — not in the gemfeed yet. Promote with the usual rename + index dance.</span><br />
+<span class='quote'>Published at 2026-05-16T18:00:00+03:00</span><br />
 <br />
 <span>This is the third and final post in the series. Part 1 is the demo-driven tour: what ior looks like, how the dashboard tabs work, how the live flamegraph reads, how filtering and recording behave. Part 2 covers the install dance for Rocky Linux 9 and the "compile once, run everywhere" portability story (eBPF, CO-RE, libbpfgo, static linking). This one is the part you read when you&#39;ve got ior running and want to know what&#39;s actually in the data: the per-event schema, the safeguard that keeps syscall coverage current as new kernels ship, the integration test harness that proves it stays current, async-syscall caveats, and what to do with the parquet output once it&#39;s on disk.</span><br />
 <br />
-<span>If you haven&#39;t read Part 1, it&#39;s not a hard prerequisite, but the screenshots and key bindings referenced here all live there. Part 2 is also independent of this one; you can read them in either order.</span><br />
+<a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
 <br />
-<a class='textlink' href='./DRAFT-unveiling-ior-ng-part-1.html'>Part 1: a guided tour</a><br />
-<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>Part 2: install + compile once, run everywhere</a><br />
 <a class='textlink' href='https://codeberg.org/snonux/ior'>I/O Riot NG on Codeberg</a><br />
-<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>the original I/O Riot post (2018)</a><br />
 <br />
-<a href='./unveiling-ior-ng/00-logo.png'><img alt='I/O Riot NG logo' title='I/O Riot NG logo' src='./unveiling-ior-ng/00-logo.png' /></a><br />
-<br />
-<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood (You are currently reading this)</a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#unveiling-io-riot-ng--part-3-under-the-hood'>Unveiling I/O Riot NG — Part 3: under the hood</a></li>
+<li><a href='#unveiling-io-riot-ng-v100--part-3-under-the-hood'>Unveiling I/O Riot NG v1.0.0 — Part 3: under the hood</a></li>
 <li>⇢ <a href='#what-ior-actually-captures-per-event'>What ior actually captures per event</a></li>
 <li>⇢ ⇢ <a href='#async-syscalls-and-what-latency-means-for-them'>Async syscalls and what "latency" means for them</a></li>
 <li>⇢ <a href='#keeping-up-with-new-syscalls'>Keeping up with new syscalls</a></li>
 <li>⇢ ⇢ <a href='#the-integration-test-harness-keeps-the-classifier-honest'>The integration test harness keeps the classifier honest</a></li>
 <li>⇢ <a href='#querying-a-parquet-trace-with-clickhouse'>Querying a parquet trace with ClickHouse</a></li>
 <li>⇢ <a href='#asking-an-ai-to-do-the-reading-for-you'>Asking an AI to do the reading for you</a></li>
+<li>⇢ <a href='#what-s-new-in-v110'>What&#39;s new in v1.1.0</a></li>
 <li>⇢ <a href='#wrapping-up'>Wrapping up</a></li>
 </ul><br />
 <h2 style='display: inline' id='what-ior-actually-captures-per-event'>What ior actually captures per event</h2><br />
@@ -90,11 +87,13 @@
 <br />
 <span><span class='inlinecode'>mage integrationTest</span> builds both binaries and runs the suite in parallel up to <span class='inlinecode'>INTEGRATION_PARALLEL</span> (default <span class='inlinecode'>NumCPU * 2</span>). <span class='inlinecode'>mage integrationTestSerial</span> does the same one at a time, which is the right knob when triaging a flake. They need root because of <span class='inlinecode'>CAP_BPF</span>, and they self-skip when not root.</span><br />
 <br />
-<span>What this buys, in practice: when CO-RE field offsets shift under me, when libbpfgo bumps a major version, when a new kernel quietly changes which syscalls bookkeep <span class='inlinecode'>bytes</span> at submission vs. completion, the suite&#39;s the thing that goes red first. The codegen safeguard tells me "the kernel surface changed". The integration harness tells me "and here&#39;s specifically what ior is now getting wrong about it". Together that&#39;s a much shorter feedback loop than the old "wait for the next time I notice the flamegraph looks weird" workflow.</span><br />
+<span>What this buys, in practice: when CO-RE field offsets shift under me, when libbpfgo bumps a major version, when a new kernel quietly changes which syscalls bookkeep <span class='inlinecode'>bytes</span> at submission vs. completion, the suite&#39;s the thing that goes red first (not that I believe the kernel would introduce such a breaking change, so maybe this is a bad example). The codegen safeguard tells me "the kernel surface changed". The integration harness tells me "and here&#39;s specifically what ior is now getting wrong about it". That&#39;s much better than the old "wait for the next time I notice the flamegraph looks weird" workflow.</span><br />
 <br />
 <h2 style='display: inline' id='querying-a-parquet-trace-with-clickhouse'>Querying a parquet trace with ClickHouse</h2><br />
 <br />
 <span>The schema is flat and stable: <span class='inlinecode'>seq, time_ns, gap_ns, latency_ns, comm, pid, tid, syscall, fd, ret, bytes, file, is_error, filter_epoch</span>. ClickHouse Local reads parquet directly without a server, which makes it a perfect post-mortem tool — point it at the file and run SQL:</span><br />
+<br />
+<a class='textlink' href='https://clickhouse.com/docs/operations/utilities/clickhouse-local'>ClickHouse Local — single-binary SQL over Parquet/CSV, no server needed</a><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -162,6 +161,8 @@ http://www.gnu.org/software/src-highlite -->
 <span>Real output, by the way: those rows are from a 30-second <span class='inlinecode'>ior -parquet trace.parquet</span> capture on the laptop I&#39;m typing this on. <span class='inlinecode'>notify-rs inoti…</span> is the inotify thread of some Rust app I had open; <span class='inlinecode'>cosmic-term</span> is the COSMIC desktop&#39;s terminal emulator. The slowest p99 errors are the directory-walking syscalls (statx, newfstatat, mkdir) at ~16 µs, bog standard.</span><br />
 <br />
 <span>Same trick works in DuckDB (<span class='inlinecode'>duckdb -c "SELECT ... FROM &#39;trace.parquet&#39;"</span>), pandas, polars, anything that reads Parquet. The point of streaming Parquet rather than ior&#39;s native <span class='inlinecode'>.ior.zst</span> format is exactly this: once it&#39;s on disk, you&#39;re in the standard data-tools ecosystem.</span><br />
+<br />
+<a class='textlink' href='https://duckdb.org/'>DuckDB — single-binary embedded SQL, also reads Parquet directly</a><br />
 <br />
 <h2 style='display: inline' id='asking-an-ai-to-do-the-reading-for-you'>Asking an AI to do the reading for you</h2><br />
 <br />
@@ -231,16 +232,28 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
 <li>The model is reading text, not running SQL. It will round, it will sometimes miscount the long tail, and it cannot tell you a true p99 from a 250k-row sample without writing code. Treat the output as a lead-generator: it points you at suspects, then you confirm with ClickHouse on the parquet file.</li>
 <li>For deeper questions ("what changed between these two traces?", "which pids dominate during the 12:34 spike?") an agentic assistant that can run shell commands does much better. It&#39;ll write the awk/clickhouse query itself, run it, and feed the result back into its own analysis.</li>
 </ul><br />
-<span>The combination that&#39;s worked best for me in practice: capture parquet with <span class='inlinecode'>-parquet</span>, capture a parallel <span class='inlinecode'>-plain</span> CSV slice for the AI to read, ask the AI for a triage pass, then drill into the suspects with ClickHouse on the parquet file. Triage and ground-truth, in that order.</span><br />
+<span>The combination that&#39;s worked best for me in practice: capture parquet with <span class='inlinecode'>-parquet</span>, also capture a <span class='inlinecode'>-plain</span> CSV slice for the AI to read, ask the AI for a triage pass, then drill into the suspects with ClickHouse on the parquet file. Triage and ground-truth, in that order.</span><br />
+<br />
+<h2 style='display: inline' id='what-s-new-in-v110'>What&#39;s new in v1.1.0</h2><br />
+<br />
+<span>One v1.1.0 change is directly relevant to the syscall-coverage story above: probe attach is now tolerant of missing tracepoints. The codegen safeguard still flags new arrivals at build time, but when the resulting binary lands on a kernel that lacks one of its handlers (because the syscall is newer than the host kernel, or the tracepoint name was renamed under it), ior logs a one-line warning per missing probe and keeps attaching the rest, instead of failing startup with a hard error. Codegen keeps the list honest going forward; the runtime change makes the binary forgiving going backward. The new <span class='inlinecode'>ior.el8</span> build (Part 2&#39;s <span class='inlinecode'>mage buildDockerEl8</span> target, for RHEL/Rocky/Alma 8 hosts on 4.18 kernels) leans on this directly — it ships handlers for tracepoints that only exist on newer kernels, and now just skips them at attach instead of aborting.</span><br />
 <br />
 <h2 style='display: inline' id='wrapping-up'>Wrapping up</h2><br />
 <br />
 <span>That&#39;s the bottom of the stack. For the dashboard surface (what ior looks like, how the seven tabs behave, how filtering and recording work in practice) Part 1 is the demo-driven tour with all the GIFs. For the install dance and the why-the-binary-is-portable story (eBPF, CO-RE, static linking), Part 2 is the install + portability companion.</span><br />
 <br />
-<a class='textlink' href='./DRAFT-unveiling-ior-ng-part-1.html'>Part 1: a guided tour</a><br />
-<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>Part 2: install + compile once, run everywhere</a><br />
 <a class='textlink' href='https://codeberg.org/snonux/ior'>Source on Codeberg</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/ior/src/branch/main/docs/tutorial/tutorial.md'>The full in-repo tutorial</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<span>Other related posts are:</span><br />
+<br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG v1.0.0 — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
 <p class="footer">
 	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
 	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
