@@ -20,7 +20,7 @@ This page showcases my side projects, providing an overview of what each project
 
 ## Projects
 
-### 1. gt 1↖14↙13↙11←11
+### 1. gt 1↖14↙13↙11←11↙9←9↙5↙2
 
 * 💻 Languages: Go (99.7%), YAML (0.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -29,7 +29,7 @@ This page showcases my side projects, providing an overview of what each project
 * 📄 Lines of Documentation: 4336
 * 🏷️ Tags: 6
 * 📅 Development Period: 2025-11-25 to 2026-05-24
-* 🏆 Score: 141.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 140.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.5.0 (2026-05-24)
 
@@ -44,7 +44,7 @@ A simple AI-engineered command-line percentage calculator written in Go. No fron
 
 ---
 
-### 2. ior 2↙1↖12↖14↙13
+### 2. ior 2↙1↖12↖14↙13↖14←14↙12↙9↙4↙2↙1←1
 
 * 💻 Languages: Go (90.2%), C (8.9%), Shell (0.4%), JSON (0.2%), C/C++ (0.2%), Docker (0.1%)
 * 📚 Documentation: Markdown (83.9%), Text (16.1%)
@@ -68,7 +68,7 @@ A simple AI-engineered command-line percentage calculator written in Go. No fron
 
 ---
 
-### 3. snonux 3←3↙2↖4↙3
+### 3. snonux 3←3↙2↖4↙3←3←3↙2↖5
 
 * 💻 Languages: JSON (37.6%), JavaScript (26.9%), Go (23.0%), CSS (12.6%)
 * 📚 Documentation: Text (79.8%), Markdown (20.2%)
@@ -114,7 +114,7 @@ Player is an opinionated KISS web media player. It is designed to be simple, lig
 
 ---
 
-### 5. hexai 5↙4↖5↙3↖8
+### 5. hexai 5↙4↖5↙3↖8↙6←6↙4↙1←1↖3↖15↙2
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -138,7 +138,7 @@ Hexai, the AI addition for your Helix Editor (https://helix-editor.com) .. Other
 
 ---
 
-### 6. dtail 6←6↙4↙2↙1
+### 6. dtail 6←6↙4↙2↙1↖10←10↙8↙6↙2↙1↖21↙20
 
 * 💻 Languages: Go (94.9%), Shell (2.3%), JSON (1.2%), C (0.8%), Make (0.5%), C/C++ (0.1%)
 * 📚 Documentation: Text (98.1%), Markdown (1.9%)
@@ -162,7 +162,7 @@ DTail (a distributed tail program) is a DevOps tool for engineers programmed in 
 
 ---
 
-### 7. conf 7↙5↖14↙12↙10
+### 7. conf 7↙5↖14↙12↙10↙7←7↖9↙7↖9←9↙7↙5
 
 * 💻 Languages: YAML (76.3%), Shell (8.9%), Perl (8.6%), Python (3.0%), Make (1.1%), JSON (0.6%), Docker (0.6%), TOML (0.3%), Config (0.3%), Ruby (0.2%), HTML (0.1%)
 * 📚 Documentation: Markdown (97.1%), Text (2.9%)
@@ -184,7 +184,7 @@ This is my personal config repository. Including...
 
 ---
 
-### 8. goprecords 8↖9↙6←6↙4
+### 8. goprecords 8↖9↙6←6↙4↙2←2↖29↙28↙24←24←24←24
 
 * 💻 Languages: Go (97.4%), Shell (2.4%), Docker (0.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -206,7 +206,7 @@ This is my personal config repository. Including...
 
 ---
 
-### 9. dotfiles 9↙7←7←7↖9
+### 9. dotfiles 9↙7←7←7↖9↙8←8↙6↙4↙3↖5↙3←3
 
 * 💻 Languages: Shell (69.1%), TOML (9.2%), CSS (8.9%), Config (8.5%), JSON (3.3%), Ruby (0.8%), INI (0.2%), YAML (0.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -228,7 +228,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 
 ---
 
-### 10. totalrecall 10←10↙8←8↙6
+### 10. totalrecall 10←10↙8←8↙6↙4←4↙1↖18↙15↖16↙13↖14
 
 * 💻 Languages: Go (98.7%), HTML (0.4%), CSS (0.3%), Shell (0.3%), YAML (0.2%)
 * 📚 Documentation: Markdown (96.0%), Text (4.0%)
@@ -272,7 +272,7 @@ rampage: source code repository.
 
 ---
 
-### 12. tasksamurai 12↙11↙9←9↙7
+### 12. tasksamurai 12↙11↙9←9↙7↙5←5↖23↙22↙18←18↙16←16
 
 * 💻 Languages: Go (99.9%), YAML (0.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -296,7 +296,7 @@ Task Samurai invokes the `task` command to read and modify tasks. The tasks are 
 
 ---
 
-### 13. fastforge 13↙12↙11↙10↙5
+### 13. fastforge 13↙12↙11↙10↙5↙1←1↖3
 
 * 💻 Languages: C (92.4%), C/C++ (4.1%), JavaScript (2.6%), Make (0.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -344,7 +344,7 @@ ComicForge turns a vocabulary file into a generated comic package. It uses Gemin
 
 ---
 
-### 15. foostore 15←15←15↙13↙12
+### 15. foostore 15←15←15↙13↙12↖16←16↙14↙11↙7←7↙5↖7
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -366,7 +366,7 @@ ComicForge turns a vocabulary file into a generated comic package. It uses Gemin
 
 ---
 
-### 16. timesamurai 16←16↖17↙16↙15
+### 16. timesamurai 16←16↖17↙16↙15↙12←12↙11↙10↙5↙4↙2
 
 * 💻 Languages: Go (99.3%), Shell (0.6%), YAML (0.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -388,7 +388,7 @@ ComicForge turns a vocabulary file into a generated comic package. It uses Gemin
 
 ---
 
-### 17. hypr 17←17↙16↙15↙14
+### 17. hypr 17←17↙16↙15↙14↙11←11↙7↙3
 
 * 💻 Languages: TypeScript (45.9%), Ruby (33.3%), TOML (6.9%), Python (6.5%), JSON (4.0%), Shell (3.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -413,7 +413,7 @@ Runs two A100 VMs concurrently — each serving a different model — with [Pi](
 
 ---
 
-### 18. ds-sim 18↖19←19↙18↙17
+### 18. ds-sim 18↖19←19↙18↙17↙15←15↙13↙12↖25←25←25↙21
 
 * 💻 Languages: Java (98.6%), Shell (0.9%), CSS (0.4%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -437,7 +437,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 
 ---
 
-### 19. foo.zone 19↙18←18↙17↙16
+### 19. foo.zone 19↙18←18↙17↙16↙13←13↙10↙8↖64←64←64↙6
 
 * 💻 Languages: XML (98.2%), Shell (1.5%), Go (0.3%)
 * 📚 Documentation: Text (86.2%), Markdown (13.8%)
@@ -459,7 +459,7 @@ Each format is in it's own branch in this repository. E.g.:
 
 ---
 
-### 20. gitsyncer 20←20←20↙19↙18
+### 20. gitsyncer 20←20←20↙19↙18←18←18↙16↙14↙11←11↖17↙15
 
 * 💻 Languages: Go (93.8%), Shell (5.9%), JSON (0.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -481,7 +481,7 @@ GitSyncer is a tool for synchronizing git repositories between multiple organiza
 
 ---
 
-### 21. epimetheus 21←21←21↙20↙19
+### 21. epimetheus 21←21←21↙20↙19↙17←17↙15↙13↙8←8↙6↙4
 
 * 💻 Languages: Go (85.2%), Shell (14.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -505,7 +505,7 @@ GitSyncer is a tool for synchronizing git repositories between multiple organiza
 
 ---
 
-### 22. gogios 22←22←22↙21←21
+### 22. gogios 22←22←22↙21←21↙20←20↙18↖19↙16↙15↙12↙11
 
 * 💻 Languages: Go (98.9%), JSON (0.7%), YAML (0.5%)
 * 📚 Documentation: Markdown (94.9%), Text (5.1%)
@@ -529,7 +529,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 
 ---
 
-### 23. yoga 23↖24←24↙23↙22
+### 23. yoga 23↖24←24↙23↙22↙21←21↙19↙17↙13↖14↙11↖12
 
 * 💻 Languages: Go (69.1%), HTML (30.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -553,7 +553,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 
 ---
 
-### 24. scifi 24↙23←23↙22↙20
+### 24. scifi 24↙23←23↙22↙20↙19←19↙17↙16↙10←10↙8←8
 
 * 💻 Languages: JSON (36.6%), JavaScript (30.2%), CSS (29.6%), HTML (3.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -575,7 +575,7 @@ A static HTML page showcasing a science fiction book collection. Works fully off
 
 ---
 
-### 25. rcm 25←25←25↙24↙23
+### 25. rcm 25←25←25↙24↙23↙22←22↙20↙15↙12↖13↙10←10
 
 * 💻 Languages: Ruby (99.6%), TOML (0.4%)
 * 📚 Documentation: Markdown (100.0%)
@@ -599,7 +599,7 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 ---
 
-### 26. gemtexter 26↖27↖28↙27←27
+### 26. gemtexter 26↖27↖28↙27←27↖28←28↙27↙26↙22←22←22←22
 
 * 💻 Languages: Shell (59.5%), CSS (26.8%), HTML (12.0%), Config (1.7%)
 * 📚 Documentation: Text (75.1%), Markdown (24.9%)
@@ -621,7 +621,7 @@ This is the source code of my personal internet site and blog engine. All conten
 
 ---
 
-### 27. perc 27↙26←26↙25↙24
+### 27. perc 27↙26←26↙25↙24←24←24↙22↙21↙17←17↙14↙13
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -643,7 +643,7 @@ A simple vibe-coded command-line percentage calculator written in Go.
 
 ---
 
-### 28. log4jbench 28←28↙27↙26↙25
+### 28. log4jbench 28←28↙27↙26↙25↙23←23↙21↙20↙14↙12↙9←9
 
 * 💻 Languages: Java (78.9%), XML (21.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -665,7 +665,7 @@ A minimal Java tool to benchmark Log4j2 logging throughput with configurable con
 
 ---
 
-### 29. gos 29←29←29↙28↙26
+### 29. gos 29←29←29↙28↙26↙25←25↙24↙23↙19←19↙18←18
 
 * 💻 Languages: Go (99.6%), JSON (0.2%), Shell (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -689,7 +689,7 @@ Gos is a Go-based replacement for Buffer.com, providing the ability to schedule 
 
 ---
 
-### 30. foostats 30←30←30↙29↙28
+### 30. foostats 30←30←30↙29↙28↙26←26↙25↙24↙20←20↙19↙17
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -711,7 +711,7 @@ A privacy-respecting web analytics tool for OpenBSD that processes HTTP/HTTPS an
 
 ---
 
-### 31. timr 31←31←31↙30↙29
+### 31. timr 31←31←31↙30↙29↙27←27↙26↙25↙21←21↙20↙19
 
 * 💻 Languages: Go (96.0%), Shell (4.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -733,7 +733,7 @@ A simple command-line tool to track time spent on tasks. It has been primarily c
 
 ---
 
-### 32. wireguardmeshgenerator 32←32←32↙31↙30
+### 32. wireguardmeshgenerator 32←32←32↙31↙30↙29←29↙28↙27↙23←23←23←23
 
 * 💻 Languages: Ruby (58.7%), YAML (41.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -755,7 +755,7 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 ---
 
-### 33. ioriot 33←33←33↙32↙31
+### 33. ioriot 33←33←33↙32↙31↙30←30←30↙29↖34↖35↙34↖35
 
 * 💻 Languages: C (58.7%), C/C++ (22.5%), Config (17.9%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -779,7 +779,7 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 ---
 
-### 34. quicklogger 34←34←34↙33↙32
+### 34. quicklogger 34←34←34↙33↙32↙31←31←31↙30↙26←26←26↙25
 
 * 💻 Languages: Go (96.3%), XML (2.3%), Shell (0.9%), TOML (0.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -830,7 +830,7 @@ renamed to **Quicklog**, targeting Android (primary) and Linux desktop
 
 ---
 
-### 36. sillybench 36←36←36↙34↙33
+### 36. sillybench 36←36←36↙34↙33↙32←32←32↙31↙27←27←27←27
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -852,7 +852,7 @@ To compare how fast this runs on FreeBSD vs a Linux Bhyve VM
 
 ---
 
-### 37. terraform 37←37←37↙35↙34
+### 37. terraform 37←37←37↙35↙34↙33←33←33↙32↙28←28←28↙26
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -874,7 +874,7 @@ Go to AWS Secrets manager manually and create it!
 
 ---
 
-### 38. guprecords 38←38←38↙36↙35
+### 38. guprecords 38←38←38↙36↙35↙34←34←34↙33↖39↙29↖40↙29
 
 * 💻 Languages: Raku (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -896,7 +896,7 @@ guprecords: source code repository.
 
 ---
 
-### 39. geheim 39←39←39↙37↙36
+### 39. geheim 39←39←39↙37↙36↙35←35←35↙34↙29↖30↙29↖30
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -918,7 +918,7 @@ guprecords: source code repository.
 
 ---
 
-### 40. gorum 40←40←40↙38↙37
+### 40. gorum 40←40←40↙38↙37↙36←36←36↙35↙30↖31↙30↙28
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -940,7 +940,7 @@ Gogios is a minimalistic quorum manager.
 
 ---
 
-### 41. photoalbum 41←41←41↙40↙39
+### 41. photoalbum 41←41←41↙40↙39↙38←38←38↙37↙32↖33↙32↖34
 
 * 💻 Languages: Shell (80.1%), Make (12.3%), Config (7.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -964,7 +964,7 @@ The resulting static photo album is pure HTML+CSS (without any JavaScript!).
 
 ---
 
-### 42. docker-radicale-server 42←42←42↙39↙38
+### 42. docker-radicale-server 42←42←42↙39↙38↙37←37←37↙36↙31↖32↙31←31
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -986,7 +986,7 @@ For the Radicale server https://radicale.org
 
 ---
 
-### 43. randomjournalpage 43←43←43↙41↙40
+### 43. randomjournalpage 43←43←43↙41↙40↙39←39←39↙38↙33↖34↙33←33
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1009,7 +1009,7 @@ This is a quick and dirty script which I use personally to grab a random PDF fil
 
 ---
 
-### 44. algorithms 44←44←44↙42↙41
+### 44. algorithms 44←44←44↙42↙41↙40←40←40↙39↙35↖36←36↙32
 
 * 💻 Languages: Go (99.2%), Make (0.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1032,7 +1032,7 @@ This includes exercises from the Algorithms lecture. Well, this is just a refres
 
 ---
 
-### 45. staticfarm-apache-handlers 45←45←45↙43↙42
+### 45. staticfarm-apache-handlers 45←45←45↙43↙42↙41←41↖42↙41↙37↖38←38↖40
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1056,7 +1056,7 @@ DEPRECATED
 
 ---
 
-### 46. ipv6test 46←46←46↙44↙43
+### 46. ipv6test 46←46←46↙44↙43↙42←42↙41↙40↙36↖37←37↙36
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1078,7 +1078,7 @@ This is a quick and dirty Perl-based IPv6 test website.
 
 ---
 
-### 47. sway-autorotate 47←47←47↙45↙44
+### 47. sway-autorotate 47←47←47↙45↙44↙43←43←43↙42↙38↖39←39↙38
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1101,7 +1101,7 @@ This is a fork of https://github.com/tedk0n/autorotate_sway_script
 
 ---
 
-### 48. mon 48←48←48↙46↙45
+### 48. mon 48←48←48↙46↙45↙44←44←44↙43↙40←40↖41↙39
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -1125,7 +1125,7 @@ DEPRECATED
 
 ---
 
-### 49. fapi 49←49←49↙47↙46
+### 49. fapi 49←49←49↙47↙46↙45←45↖46↙44↙41←41↖42↖44
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -1149,7 +1149,7 @@ DEPRECATED
 
 ---
 
-### 50. xerl 50←50←50↙48↙47
+### 50. xerl 50←50←50↙48↙47↙46←46↙45↖48↙45←45↙35↖42
 
 * 💻 Languages: CSS (54.6%), XML (39.1%), Perl (4.0%), Make (2.2%)
 * 📚 Documentation: Text (91.2%), Org (4.9%), Markdown (3.9%)
@@ -1172,7 +1172,7 @@ Those are the host templates to be used with Xerl itself.
 
 ---
 
-### 51. pingdomfetch 51←51←51↙49↙48
+### 51. pingdomfetch 51←51←51↙49↙48↙47←47←47↙45↙42←42↖43↙41
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1196,7 +1196,7 @@ DEPRECATED
 
 ---
 
-### 52. fype 52←52←52↙50↙49
+### 52. fype 52←52←52↙50↙49↙48←48←48↖66↙43←43↖44↙37
 
 * 💻 Languages: C (77.3%), C/C++ (13.1%), HTML (7.5%), Make (2.1%)
 * 📚 Documentation: Text (65.8%), LaTeX (20.5%), Markdown (13.7%)
@@ -1218,7 +1218,7 @@ DEPRECATED
 
 ---
 
-### 53. loadbars 53←53←53↙51↙50
+### 53. loadbars 53←53←53↙51↙50↙49←49←49↙46↙6←6↙4↖47
 
 * 💻 Languages: Perl (97.4%), Make (2.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1241,7 +1241,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 
 ---
 
-### 54. pwgrep 54←54←54↙52↙51
+### 54. pwgrep 54←54←54↙52↙51↙50←50←50↙47↙44←44↖45↖50
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (75.0%), Markdown (25.0%)
@@ -1263,7 +1263,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 
 ---
 
-### 55. awksite 55←55←55↙53↙52
+### 55. awksite 55←55←55↙53↙52↙51←51←51↙49↙46←46←46↖61
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
 * 📚 Documentation: Markdown (50.0%), Text (50.0%)
@@ -1287,7 +1287,7 @@ It's useful for quickly standing up simple dynamic websites—like server status
 
 ---
 
-### 56. gotop 56←56←56↙54↙53
+### 56. gotop 56←56←56↙54↙53↙52←52←52↙50↙47←47←47↖48
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
 * 📚 Documentation: Markdown (60.0%), Text (40.0%)
@@ -1309,7 +1309,7 @@ It's useful for quickly standing up simple dynamic websites—like server status
 
 ---
 
-### 57. japi 57←57←57↙55↙54
+### 57. japi 57←57←57↙55↙54↙53←53←53↙51↙48←48←48↖53
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1333,7 +1333,7 @@ DEPRECATED
 
 ---
 
-### 58. perldaemon 58←58←58↙56↙55
+### 58. perldaemon 58←58←58↙56↙55↙54←54←54↙52←52↙49↖52↙51
 
 * 💻 Languages: Perl (72.7%), Shell (23.9%), Config (3.4%)
 * 📊 Commits: 111
@@ -1354,7 +1354,7 @@ programmed in Perl.  It can be extended to fit any task...
 
 ---
 
-### 59. rubyfy 59←59←59↙57↙56
+### 59. rubyfy 59←59←59↙57↙56↙55←55←55↙53↙49↖50↙49←49
 
 * 💻 Languages: Ruby (98.5%), JSON (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1376,7 +1376,7 @@ programmed in Perl.  It can be extended to fit any task...
 
 ---
 
-### 60. perl-c-fibonacci 60←60←60↙58↙57
+### 60. perl-c-fibonacci 60←60←60↙58↙57↙56←56←56↙54↙50↖51↙50↙45
 
 * 💻 Languages: C (80.4%), Make (19.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1399,7 +1399,7 @@ perl-c-fibonacci: source code repository.
 
 ---
 
-### 61. netdiff 61←61←61↙59↙58
+### 61. netdiff 61←61←61↙59↙58↙57←57←57↙55↙51↖52↙51↖56
 
 * 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
 * 📚 Documentation: Text (100.0%)
@@ -1423,7 +1423,7 @@ DEPRECATED
 
 ---
 
-### 62. muttdelay 62←62←62↙60↙59
+### 62. muttdelay 62←62←62↙60↙59↙58←58←58↙56↙54←54←54↖55
 
 * 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1447,7 +1447,7 @@ DEPRECATED
 
 ---
 
-### 63. cpuinfo 63←63←63↙61↙60
+### 63. cpuinfo 63←63←63↙61↙60↙59←59←59↙57←57←57↙56↖59
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1470,7 +1470,7 @@ cpuinfo - A small and humble tool to print out CPU data
 
 ---
 
-### 64. template 64←64←64↙62↙61
+### 64. template 64←64←64↙62↙61↙60←60←60↙58←58←58↙57↖60
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1494,7 +1494,7 @@ DEPRECATED
 
 ---
 
-### 65. dyndns 65←65←65↙63↙62
+### 65. dyndns 65←65←65↙63↙62↙61←61←61↙59←59←59↙58↖62
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1518,7 +1518,7 @@ DEPRECATED
 
 ---
 
-### 66. debroid 66←66←66↙64↙63
+### 66. debroid 66←66←66↙64↙63↙62←62←62↙60←60←60↙59↙57
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1542,7 +1542,7 @@ DEPRECATED
 
 ---
 
-### 67. ychat 67←67←67↙65↙64
+### 67. ychat 67←67←67↙65↙64↙63←63←63←63←63←63↙62↙43
 
 * 💻 Languages: C++ (52.1%), C/C++ (21.3%), Shell (20.1%), HTML (2.5%), Config (2.1%), Perl (1.5%), Make (0.3%)
 * 📚 Documentation: Text (100.0%)
@@ -1565,7 +1565,7 @@ ychat: source code repository.
 
 ---
 
-### 68. netcalendar 68←68←68↙66↙65
+### 68. netcalendar 68←68←68↙66↙65↙64←64←64↙61↙55←55←55↙46
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
 * 📚 Documentation: Text (89.5%), Markdown (10.5%)
@@ -1589,7 +1589,7 @@ ychat: source code repository.
 
 ---
 
-### 69. jsmstrade 69←69←69↙67↙66
+### 69. jsmstrade 69←69←69↙67↙66↙65←65←65↙62↙53←53←53↙52
 
 * 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1613,7 +1613,7 @@ ychat: source code repository.
 
 ---
 
-### 70. vs-sim 70←70←70↙68↙67
+### 70. vs-sim 70←70←70↙68↙67↙66←66←66↙64↙56←56↖63←63
 
 * 💻 Languages: Java (98.6%), Shell (0.8%), XML (0.4%)
 * 📚 Documentation: LaTeX (98.4%), Text (1.4%), Markdown (0.2%)
@@ -1638,7 +1638,7 @@ VS-Sim is an open source simulator programmed in Java for distributed systems. V
 
 ---
 
-### 71. perl-poetry 71←71←71↙69↙68
+### 71. perl-poetry 71←71←71↙69↙68↙67←67←67↙65↙61←61↙60↙54
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1661,7 +1661,7 @@ Here you find some Poetry written in Perl.
 
 ---
 
-### 72. hsbot 72←72←72↙70↙69
+### 72. hsbot 72←72←72↙70↙69↙68←68←68↙67↙62←62↙61↙58
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 81
