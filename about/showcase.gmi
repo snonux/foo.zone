@@ -28,42 +28,42 @@ This page showcases my side projects, providing an overview of what each project
 * ⇢ ⇢ ⇢ 15. foostore 15←15←15↙13↙12↖16←16↙14↙11↙7←7↙5↖7
 * ⇢ ⇢ ⇢ 16. timesamurai 16←16↖17↙16↙15↙12←12↙11↙10↙5↙4↙2
 * ⇢ ⇢ ⇢ 17. hypr 17←17↙16↙15↙14↙11←11↙7↙3
-* ⇢ ⇢ ⇢ 18. ds-sim 18↖19←19↙18↙17↙15←15↙13↙12↖25←25←25↙21
-* ⇢ ⇢ ⇢ 19. foo.zone 19↙18←18↙17↙16↙13←13↙10↙8↖64←64←64↙6
-* ⇢ ⇢ ⇢ 20. gitsyncer 20←20←20↙19↙18←18←18↙16↙14↙11←11↖17↙15
-* ⇢ ⇢ ⇢ 21. epimetheus 21←21←21↙20↙19↙17←17↙15↙13↙8←8↙6↙4
-* ⇢ ⇢ ⇢ 22. gogios 22←22←22↙21←21↙20←20↙18↖19↙16↙15↙12↙11
-* ⇢ ⇢ ⇢ 23. yoga 23↖24←24↙23↙22↙21←21↙19↙17↙13↖14↙11↖12
-* ⇢ ⇢ ⇢ 24. scifi 24↙23←23↙22↙20↙19←19↙17↙16↙10←10↙8←8
-* ⇢ ⇢ ⇢ 25. rcm 25←25←25↙24↙23↙22←22↙20↙15↙12↖13↙10←10
-* ⇢ ⇢ ⇢ 26. gemtexter 26↖27↖28↙27←27↖28←28↙27↙26↙22←22←22←22
-* ⇢ ⇢ ⇢ 27. perc 27↙26←26↙25↙24←24←24↙22↙21↙17←17↙14↙13
-* ⇢ ⇢ ⇢ 28. log4jbench 28←28↙27↙26↙25↙23←23↙21↙20↙14↙12↙9←9
-* ⇢ ⇢ ⇢ 29. gos 29←29←29↙28↙26↙25←25↙24↙23↙19←19↙18←18
-* ⇢ ⇢ ⇢ 30. foostats 30←30←30↙29↙28↙26←26↙25↙24↙20←20↙19↙17
-* ⇢ ⇢ ⇢ 31. timr 31←31←31↙30↙29↙27←27↙26↙25↙21←21↙20↙19
-* ⇢ ⇢ ⇢ 32. wireguardmeshgenerator 32←32←32↙31↙30↙29←29↙28↙27↙23←23←23←23
-* ⇢ ⇢ ⇢ 33. ioriot 33←33←33↙32↙31↙30←30←30↙29↖34↖35↙34↖35
-* ⇢ ⇢ ⇢ 34. quicklogger 34←34←34↙33↙32↙31←31←31↙30↙26←26←26↙25
-* ⇢ ⇢ ⇢ 35. quicklog 35←35←35
-* ⇢ ⇢ ⇢ 36. sillybench 36←36←36↙34↙33↙32←32←32↙31↙27←27←27←27
-* ⇢ ⇢ ⇢ 37. terraform 37←37←37↙35↙34↙33←33←33↙32↙28←28←28↙26
-* ⇢ ⇢ ⇢ 38. guprecords 38←38←38↙36↙35↙34←34←34↙33↖39↙29↖40↙29
-* ⇢ ⇢ ⇢ 39. geheim 39←39←39↙37↙36↙35←35←35↙34↙29↖30↙29↖30
-* ⇢ ⇢ ⇢ 40. gorum 40←40←40↙38↙37↙36←36←36↙35↙30↖31↙30↙28
-* ⇢ ⇢ ⇢ 41. photoalbum 41←41←41↙40↙39↙38←38←38↙37↙32↖33↙32↖34
-* ⇢ ⇢ ⇢ 42. docker-radicale-server 42←42←42↙39↙38↙37←37←37↙36↙31↖32↙31←31
-* ⇢ ⇢ ⇢ 43. randomjournalpage 43←43←43↙41↙40↙39←39←39↙38↙33↖34↙33←33
-* ⇢ ⇢ ⇢ 44. algorithms 44←44←44↙42↙41↙40←40←40↙39↙35↖36←36↙32
-* ⇢ ⇢ ⇢ 45. staticfarm-apache-handlers 45←45←45↙43↙42↙41←41↖42↙41↙37↖38←38↖40
-* ⇢ ⇢ ⇢ 46. ipv6test 46←46←46↙44↙43↙42←42↙41↙40↙36↖37←37↙36
-* ⇢ ⇢ ⇢ 47. sway-autorotate 47←47←47↙45↙44↙43←43←43↙42↙38↖39←39↙38
-* ⇢ ⇢ ⇢ 48. mon 48←48←48↙46↙45↙44←44←44↙43↙40←40↖41↙39
-* ⇢ ⇢ ⇢ 49. fapi 49←49←49↙47↙46↙45←45↖46↙44↙41←41↖42↖44
-* ⇢ ⇢ ⇢ 50. xerl 50←50←50↙48↙47↙46←46↙45↖48↙45←45↙35↖42
-* ⇢ ⇢ ⇢ 51. pingdomfetch 51←51←51↙49↙48↙47←47←47↙45↙42←42↖43↙41
-* ⇢ ⇢ ⇢ 52. fype 52←52←52↙50↙49↙48←48←48↖66↙43←43↖44↙37
-* ⇢ ⇢ ⇢ 53. loadbars 53←53←53↙51↙50↙49←49←49↙46↙6←6↙4↖47
+* ⇢ ⇢ ⇢ 18. loadbars 18↖53←53↙51↙50↙49←49←49↙46↙6←6↙4↖47
+* ⇢ ⇢ ⇢ 19. ds-sim 19←19←19↙18↙17↙15←15↙13↙12↖25←25←25↙21
+* ⇢ ⇢ ⇢ 20. foo.zone 20↙18←18↙17↙16↙13←13↙10↙8↖64←64←64↙6
+* ⇢ ⇢ ⇢ 21. gitsyncer 21↙20←20↙19↙18←18←18↙16↙14↙11←11↖17↙15
+* ⇢ ⇢ ⇢ 22. epimetheus 22↙21←21↙20↙19↙17←17↙15↙13↙8←8↙6↙4
+* ⇢ ⇢ ⇢ 23. gogios 23↙22←22↙21←21↙20←20↙18↖19↙16↙15↙12↙11
+* ⇢ ⇢ ⇢ 24. yoga 24←24←24↙23↙22↙21←21↙19↙17↙13↖14↙11↖12
+* ⇢ ⇢ ⇢ 25. scifi 25↙23←23↙22↙20↙19←19↙17↙16↙10←10↙8←8
+* ⇢ ⇢ ⇢ 26. rcm 26↙25←25↙24↙23↙22←22↙20↙15↙12↖13↙10←10
+* ⇢ ⇢ ⇢ 27. gemtexter 27←27↖28↙27←27↖28←28↙27↙26↙22←22←22←22
+* ⇢ ⇢ ⇢ 28. perc 28↙26←26↙25↙24←24←24↙22↙21↙17←17↙14↙13
+* ⇢ ⇢ ⇢ 29. log4jbench 29↙28↙27↙26↙25↙23←23↙21↙20↙14↙12↙9←9
+* ⇢ ⇢ ⇢ 30. gos 30↙29←29↙28↙26↙25←25↙24↙23↙19←19↙18←18
+* ⇢ ⇢ ⇢ 31. foostats 31↙30←30↙29↙28↙26←26↙25↙24↙20←20↙19↙17
+* ⇢ ⇢ ⇢ 32. timr 32↙31←31↙30↙29↙27←27↙26↙25↙21←21↙20↙19
+* ⇢ ⇢ ⇢ 33. wireguardmeshgenerator 33↙32←32↙31↙30↙29←29↙28↙27↙23←23←23←23
+* ⇢ ⇢ ⇢ 34. ioriot 34↙33←33↙32↙31↙30←30←30↙29↖34↖35↙34↖35
+* ⇢ ⇢ ⇢ 35. quicklogger 35↙34←34↙33↙32↙31←31←31↙30↙26←26←26↙25
+* ⇢ ⇢ ⇢ 36. quicklog 36↙35←35
+* ⇢ ⇢ ⇢ 37. sillybench 37↙36←36↙34↙33↙32←32←32↙31↙27←27←27←27
+* ⇢ ⇢ ⇢ 38. terraform 38↙37←37↙35↙34↙33←33←33↙32↙28←28←28↙26
+* ⇢ ⇢ ⇢ 39. guprecords 39↙38←38↙36↙35↙34←34←34↙33↖39↙29↖40↙29
+* ⇢ ⇢ ⇢ 40. geheim 40↙39←39↙37↙36↙35←35←35↙34↙29↖30↙29↖30
+* ⇢ ⇢ ⇢ 41. gorum 41↙40←40↙38↙37↙36←36←36↙35↙30↖31↙30↙28
+* ⇢ ⇢ ⇢ 42. photoalbum 42↙41←41↙40↙39↙38←38←38↙37↙32↖33↙32↖34
+* ⇢ ⇢ ⇢ 43. docker-radicale-server 43↙42←42↙39↙38↙37←37←37↙36↙31↖32↙31←31
+* ⇢ ⇢ ⇢ 44. randomjournalpage 44↙43←43↙41↙40↙39←39←39↙38↙33↖34↙33←33
+* ⇢ ⇢ ⇢ 45. algorithms 45↙44←44↙42↙41↙40←40←40↙39↙35↖36←36↙32
+* ⇢ ⇢ ⇢ 46. staticfarm-apache-handlers 46↙45←45↙43↙42↙41←41↖42↙41↙37↖38←38↖40
+* ⇢ ⇢ ⇢ 47. ipv6test 47↙46←46↙44↙43↙42←42↙41↙40↙36↖37←37↙36
+* ⇢ ⇢ ⇢ 48. sway-autorotate 48↙47←47↙45↙44↙43←43←43↙42↙38↖39←39↙38
+* ⇢ ⇢ ⇢ 49. mon 49↙48←48↙46↙45↙44←44←44↙43↙40←40↖41↙39
+* ⇢ ⇢ ⇢ 50. fapi 50↙49←49↙47↙46↙45←45↖46↙44↙41←41↖42↖44
+* ⇢ ⇢ ⇢ 51. xerl 51↙50←50↙48↙47↙46←46↙45↖48↙45←45↙35↖42
+* ⇢ ⇢ ⇢ 52. pingdomfetch 52↙51←51↙49↙48↙47←47←47↙45↙42←42↖43↙41
+* ⇢ ⇢ ⇢ 53. fype 53↙52←52↙50↙49↙48←48←48↖66↙43←43↖44↙37
 * ⇢ ⇢ ⇢ 54. pwgrep 54←54←54↙52↙51↙50←50←50↙47↙44←44↖45↖50
 * ⇢ ⇢ ⇢ 55. awksite 55←55←55↙53↙52↙51←51←51↙49↙46←46←46↖61
 * ⇢ ⇢ ⇢ 56. gotop 56←56←56↙54↙53↙52←52←52↙50↙47←47←47↖48
@@ -87,11 +87,11 @@ This page showcases my side projects, providing an overview of what each project
 ## Overall Statistics
 
 * 📦 Total Projects: 72
-* 📊 Total Commits: 13,018
-* 📈 Total Lines of Code: 562,119
-* 📄 Total Lines of Documentation: 282,369
-* 💻 Languages: Go (55.7%), Java (10.3%), C (4.3%), XML (3.7%), Shell (3.4%), C++ (3.2%), YAML (3.1%), Perl (2.7%), JavaScript (2.2%), C/C++ (2.1%), JSON (1.9%), Ruby (1.3%), CSS (1.2%), HTML (1.2%), TypeScript (1.0%), Config (0.7%), Python (0.5%), HCL (0.5%), Make (0.3%), TOML (0.2%), Dart (0.2%), Haskell (0.1%)
-* 📚 Documentation: Text (79.7%), Markdown (19.1%), LaTeX (1.2%)
+* 📊 Total Commits: 13,054
+* 📈 Total Lines of Code: 566,886
+* 📄 Total Lines of Documentation: 282,597
+* 💻 Languages: Go (56.3%), Java (10.3%), C (4.2%), XML (3.7%), Shell (3.5%), C++ (3.1%), YAML (3.1%), Perl (2.3%), JavaScript (2.1%), C/C++ (2.1%), JSON (1.9%), Ruby (1.3%), CSS (1.2%), HTML (1.2%), TypeScript (1.0%), Config (0.7%), Python (0.5%), HCL (0.5%), Make (0.3%), TOML (0.2%), Dart (0.2%), Haskell (0.1%)
+* 📚 Documentation: Text (79.6%), Markdown (19.2%), LaTeX (1.2%)
 * 🚀 Release Status: 42 released, 30 experimental (58.3% with releases, 41.7% experimental)
 
 ## Projects
@@ -105,7 +105,7 @@ This page showcases my side projects, providing an overview of what each project
 * 📄 Lines of Documentation: 4336
 * 🏷️ Tags: 6
 * 📅 Development Period: 2025-11-25 to 2026-05-24
-* 🏆 Score: 140.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 140.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.5.0 (2026-05-24)
 
@@ -153,7 +153,7 @@ A simple AI-engineered command-line percentage calculator written in Go. No fron
 * 📄 Lines of Documentation: 1139
 * 🏷️ Tags: 22
 * 📅 Development Period: 2026-04-06 to 2026-05-16
-* 🏆 Score: 22.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 22.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.16.0 (2026-05-16)
 
@@ -489,7 +489,33 @@ Runs two A100 VMs concurrently — each serving a different model — with [Pi](
 
 ---
 
-### 18. ds-sim 18↖19←19↙18↙17↙15←15↙13↙12↖25←25←25↙21
+### 18. loadbars 18↖53←53↙51↙50↙49←49←49↙46↙6←6↙4↖47
+
+* 💻 Languages: Go (92.8%), Shell (7.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 537
+* 📈 Lines of Code: 6595
+* 📄 Lines of Documentation: 328
+* 🏷️ Tags: 38
+* 📅 Development Period: 2010-11-05 to 2026-03-02
+* 🏆 Score: 6.3 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v0.11.1 (2026-02-17)
+
+
+=> showcase/loadbars/image-1.gif loadbars screenshot
+
+Loadbars is a real-time server load monitoring tool that visualizes CPU, memory, network, load average, and disk I/O statistics for multiple remote Linux servers simultaneously in an SDL2 window. It connects to hosts via SSH (using key-based auth) and runs an embedded Bash script that reads from `/proc`, parsing metrics like per-core CPU usage, RAM/swap, network throughput, and disk I/O — then renders them as vertical colored bars side by side. Unlike graphing tools that require data collection over time, Loadbars shows only the current state (like `top` or `vmstat`), making it useful for quick, at-a-glance monitoring of cluster health across many machines.
+
+Architecturally, the Go binary embeds the remote monitoring script at build time and runs it locally or over SSH via `bash -s`, so remote hosts need only bash and `/proc` (no Go installation required). The codebase is organized into `internal/` packages: `collector` handles script execution and metric parsing, `display` manages the SDL2 rendering loop and hotkey-driven toggles (per-core vs. aggregate views, extended peak lines, memory/network/load/disk bars), `config` manages CLI flags and `~/.loadbarsrc` persistence, and `stats` defines the shared data structures. macOS is supported as a client for monitoring remote Linux hosts, though local monitoring requires Linux.
+
+=> https://codeberg.org/snonux/loadbars View on Codeberg
+=> https://github.com/snonux/loadbars View on GitHub
+=> https://cgit.f3s.buetow.org/loadbars/ View in cgit
+
+---
+
+### 19. ds-sim 19←19←19↙18↙17↙15←15↙13↙12↖25←25←25↙21
 
 * 💻 Languages: Java (98.6%), Shell (0.9%), CSS (0.4%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -513,7 +539,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 
 ---
 
-### 19. foo.zone 19↙18←18↙17↙16↙13←13↙10↙8↖64←64←64↙6
+### 20. foo.zone 20↙18←18↙17↙16↙13←13↙10↙8↖64←64←64↙6
 
 * 💻 Languages: XML (98.2%), Shell (1.5%), Go (0.3%)
 * 📚 Documentation: Text (86.2%), Markdown (13.8%)
@@ -535,7 +561,7 @@ Each format is in it's own branch in this repository. E.g.:
 
 ---
 
-### 20. gitsyncer 20←20←20↙19↙18←18←18↙16↙14↙11←11↖17↙15
+### 21. gitsyncer 21↙20←20↙19↙18←18←18↙16↙14↙11←11↖17↙15
 
 * 💻 Languages: Go (93.8%), Shell (5.9%), JSON (0.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -557,7 +583,7 @@ GitSyncer is a tool for synchronizing git repositories between multiple organiza
 
 ---
 
-### 21. epimetheus 21←21←21↙20↙19↙17←17↙15↙13↙8←8↙6↙4
+### 22. epimetheus 22↙21←21↙20↙19↙17←17↙15↙13↙8←8↙6↙4
 
 * 💻 Languages: Go (85.2%), Shell (14.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -581,7 +607,7 @@ GitSyncer is a tool for synchronizing git repositories between multiple organiza
 
 ---
 
-### 22. gogios 22←22←22↙21←21↙20←20↙18↖19↙16↙15↙12↙11
+### 23. gogios 23↙22←22↙21←21↙20←20↙18↖19↙16↙15↙12↙11
 
 * 💻 Languages: Go (98.9%), JSON (0.7%), YAML (0.5%)
 * 📚 Documentation: Markdown (94.9%), Text (5.1%)
@@ -605,7 +631,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 
 ---
 
-### 23. yoga 23↖24←24↙23↙22↙21←21↙19↙17↙13↖14↙11↖12
+### 24. yoga 24←24←24↙23↙22↙21←21↙19↙17↙13↖14↙11↖12
 
 * 💻 Languages: Go (69.1%), HTML (30.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -629,7 +655,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 
 ---
 
-### 24. scifi 24↙23←23↙22↙20↙19←19↙17↙16↙10←10↙8←8
+### 25. scifi 25↙23←23↙22↙20↙19←19↙17↙16↙10←10↙8←8
 
 * 💻 Languages: JSON (36.6%), JavaScript (30.2%), CSS (29.6%), HTML (3.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -651,7 +677,7 @@ A static HTML page showcasing a science fiction book collection. Works fully off
 
 ---
 
-### 25. rcm 25←25←25↙24↙23↙22←22↙20↙15↙12↖13↙10←10
+### 26. rcm 26↙25←25↙24↙23↙22←22↙20↙15↙12↖13↙10←10
 
 * 💻 Languages: Ruby (99.6%), TOML (0.4%)
 * 📚 Documentation: Markdown (100.0%)
@@ -675,7 +701,7 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 ---
 
-### 26. gemtexter 26↖27↖28↙27←27↖28←28↙27↙26↙22←22←22←22
+### 27. gemtexter 27←27↖28↙27←27↖28←28↙27↙26↙22←22←22←22
 
 * 💻 Languages: Shell (59.5%), CSS (26.8%), HTML (12.0%), Config (1.7%)
 * 📚 Documentation: Text (75.1%), Markdown (24.9%)
@@ -697,7 +723,7 @@ This is the source code of my personal internet site and blog engine. All conten
 
 ---
 
-### 27. perc 27↙26←26↙25↙24←24←24↙22↙21↙17←17↙14↙13
+### 28. perc 28↙26←26↙25↙24←24←24↙22↙21↙17←17↙14↙13
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -719,7 +745,7 @@ A simple vibe-coded command-line percentage calculator written in Go.
 
 ---
 
-### 28. log4jbench 28←28↙27↙26↙25↙23←23↙21↙20↙14↙12↙9←9
+### 29. log4jbench 29↙28↙27↙26↙25↙23←23↙21↙20↙14↙12↙9←9
 
 * 💻 Languages: Java (78.9%), XML (21.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -741,7 +767,7 @@ A minimal Java tool to benchmark Log4j2 logging throughput with configurable con
 
 ---
 
-### 29. gos 29←29←29↙28↙26↙25←25↙24↙23↙19←19↙18←18
+### 30. gos 30↙29←29↙28↙26↙25←25↙24↙23↙19←19↙18←18
 
 * 💻 Languages: Go (99.6%), JSON (0.2%), Shell (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -765,7 +791,7 @@ Gos is a Go-based replacement for Buffer.com, providing the ability to schedule 
 
 ---
 
-### 30. foostats 30←30←30↙29↙28↙26←26↙25↙24↙20←20↙19↙17
+### 31. foostats 31↙30←30↙29↙28↙26←26↙25↙24↙20←20↙19↙17
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -787,7 +813,7 @@ A privacy-respecting web analytics tool for OpenBSD that processes HTTP/HTTPS an
 
 ---
 
-### 31. timr 31←31←31↙30↙29↙27←27↙26↙25↙21←21↙20↙19
+### 32. timr 32↙31←31↙30↙29↙27←27↙26↙25↙21←21↙20↙19
 
 * 💻 Languages: Go (96.0%), Shell (4.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -809,7 +835,7 @@ A simple command-line tool to track time spent on tasks. It has been primarily c
 
 ---
 
-### 32. wireguardmeshgenerator 32←32←32↙31↙30↙29←29↙28↙27↙23←23←23←23
+### 33. wireguardmeshgenerator 33↙32←32↙31↙30↙29←29↙28↙27↙23←23←23←23
 
 * 💻 Languages: Ruby (58.7%), YAML (41.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -831,7 +857,7 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 ---
 
-### 33. ioriot 33←33←33↙32↙31↙30←30←30↙29↖34↖35↙34↖35
+### 34. ioriot 34↙33←33↙32↙31↙30←30←30↙29↖34↖35↙34↖35
 
 * 💻 Languages: C (58.7%), C/C++ (22.5%), Config (17.9%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -855,7 +881,7 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 ---
 
-### 34. quicklogger 34←34←34↙33↙32↙31←31←31↙30↙26←26←26↙25
+### 35. quicklogger 35↙34←34↙33↙32↙31←31←31↙30↙26←26←26↙25
 
 * 💻 Languages: Go (96.3%), XML (2.3%), Shell (0.9%), TOML (0.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -879,7 +905,7 @@ This is a tiny GUI app written in Go using the Fyne framework to quickly log a m
 
 ---
 
-### 35. quicklog 35←35←35
+### 36. quicklog 36↙35←35
 
 * 💻 Languages: Dart (53.9%), CMake (13.5%), Kotlin (9.9%), C++ (9.2%), XML (8.0%), YAML (3.5%), C/C++ (2.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -906,7 +932,7 @@ renamed to **Quicklog**, targeting Android (primary) and Linux desktop
 
 ---
 
-### 36. sillybench 36←36←36↙34↙33↙32←32←32↙31↙27←27←27←27
+### 37. sillybench 37↙36←36↙34↙33↙32←32←32↙31↙27←27←27←27
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -928,7 +954,7 @@ To compare how fast this runs on FreeBSD vs a Linux Bhyve VM
 
 ---
 
-### 37. terraform 37←37←37↙35↙34↙33←33←33↙32↙28←28←28↙26
+### 38. terraform 38↙37←37↙35↙34↙33←33←33↙32↙28←28←28↙26
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -941,6 +967,7 @@ To compare how fast this runs on FreeBSD vs a Linux Bhyve VM
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 Go to AWS Secrets manager manually and create it!
 
@@ -950,7 +977,7 @@ Go to AWS Secrets manager manually and create it!
 
 ---
 
-### 38. guprecords 38←38←38↙36↙35↙34←34←34↙33↖39↙29↖40↙29
+### 39. guprecords 39↙38←38↙36↙35↙34←34←34↙33↖39↙29↖40↙29
 
 * 💻 Languages: Raku (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -963,6 +990,7 @@ Go to AWS Secrets manager manually and create it!
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.0.0 (2023-04-29)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 guprecords: source code repository.
 
@@ -972,7 +1000,7 @@ guprecords: source code repository.
 
 ---
 
-### 39. geheim 39←39←39↙37↙36↙35←35←35↙34↙29↖30↙29↖30
+### 40. geheim 40↙39←39↙37↙36↙35←35←35↙34↙29↖30↙29↖30
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -985,6 +1013,7 @@ guprecords: source code repository.
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.3.1 (2025-11-01)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. I have switched to another solution and will not be doing any further work on this project.
 
@@ -994,7 +1023,7 @@ guprecords: source code repository.
 
 ---
 
-### 40. gorum 40←40←40↙38↙37↙36←36←36↙35↙30↖31↙30↙28
+### 41. gorum 41↙40←40↙38↙37↙36←36←36↙35↙30↖31↙30↙28
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1007,6 +1036,7 @@ guprecords: source code repository.
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 Gogios is a minimalistic quorum manager.
 
@@ -1016,7 +1046,7 @@ Gogios is a minimalistic quorum manager.
 
 ---
 
-### 41. photoalbum 41←41←41↙40↙39↙38←38←38↙37↙32↖33↙32↖34
+### 42. photoalbum 42↙41←41↙40↙39↙38←38←38↙37↙32↖33↙32↖34
 
 * 💻 Languages: Shell (80.1%), Make (12.3%), Config (7.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1029,7 +1059,7 @@ Gogios is a minimalistic quorum manager.
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.5.0 (2022-02-21)
 
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 photoalbum is a minimal Bash script for Unix like operating systems (such as Linux) to generate static web photo albums.
 The resulting static photo album is pure HTML+CSS (without any JavaScript!).
@@ -1040,7 +1070,7 @@ The resulting static photo album is pure HTML+CSS (without any JavaScript!).
 
 ---
 
-### 42. docker-radicale-server 42←42←42↙39↙38↙37←37←37↙36↙31↖32↙31←31
+### 43. docker-radicale-server 43↙42←42↙39↙38↙37←37←37↙36↙31↖32↙31←31
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1053,6 +1083,7 @@ The resulting static photo album is pure HTML+CSS (without any JavaScript!).
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 For the Radicale server https://radicale.org
 
@@ -1062,7 +1093,7 @@ For the Radicale server https://radicale.org
 
 ---
 
-### 43. randomjournalpage 43←43←43↙41↙40↙39←39←39↙38↙33↖34↙33←33
+### 44. randomjournalpage 44↙43←43↙41↙40↙39←39←39↙38↙33↖34↙33←33
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1075,7 +1106,7 @@ For the Radicale server https://radicale.org
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 This is a quick and dirty script which I use personally to grab a random PDF file (a scanned version of one of my bullet journals) and to extract a random set of pages from it in order to reflect/read what was happening in the past. This also includes various notes of books I have read and random ideas I wrote down and my want to reconsider.
 
@@ -1085,7 +1116,7 @@ This is a quick and dirty script which I use personally to grab a random PDF fil
 
 ---
 
-### 44. algorithms 44←44←44↙42↙41↙40←40←40↙39↙35↖36←36↙32
+### 45. algorithms 45↙44←44↙42↙41↙40←40←40↙39↙35↖36←36↙32
 
 * 💻 Languages: Go (99.2%), Make (0.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1098,7 +1129,7 @@ This is a quick and dirty script which I use personally to grab a random PDF fil
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 This includes exercises from the Algorithms lecture. Well, this is just a refresher exercise.
 
@@ -1108,7 +1139,7 @@ This includes exercises from the Algorithms lecture. Well, this is just a refres
 
 ---
 
-### 45. staticfarm-apache-handlers 45←45←45↙43↙42↙41←41↖42↙41↙37↖38←38↖40
+### 46. staticfarm-apache-handlers 46↙45←45↙43↙42↙41←41↖42↙41↙37↖38←38↖40
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1121,6 +1152,7 @@ This includes exercises from the Algorithms lecture. Well, this is just a refres
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.1.3 (2015-01-02)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
@@ -1132,7 +1164,7 @@ DEPRECATED
 
 ---
 
-### 46. ipv6test 46←46←46↙44↙43↙42←42↙41↙40↙36↖37←37↙36
+### 47. ipv6test 47↙46←46↙44↙43↙42←42↙41↙40↙36↖37←37↙36
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1145,6 +1177,7 @@ DEPRECATED
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 This is a quick and dirty Perl-based IPv6 test website.
 
@@ -1154,7 +1187,7 @@ This is a quick and dirty Perl-based IPv6 test website.
 
 ---
 
-### 47. sway-autorotate 47←47←47↙45↙44↙43←43←43↙42↙38↖39←39↙38
+### 48. sway-autorotate 48↙47←47↙45↙44↙43←43←43↙42↙38↖39←39↙38
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1167,7 +1200,7 @@ This is a quick and dirty Perl-based IPv6 test website.
 * ⚖️ License: GPL-3.0
 * 🧪 Status: Experimental (no releases yet)
 
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 This is a fork of https://github.com/tedk0n/autorotate_sway_script
 
@@ -1177,7 +1210,7 @@ This is a fork of https://github.com/tedk0n/autorotate_sway_script
 
 ---
 
-### 48. mon 48←48←48↙46↙45↙44←44←44↙43↙40←40↖41↙39
+### 49. mon 49↙48←48↙46↙45↙44←44←44↙43↙40←40↖41↙39
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -1190,6 +1223,7 @@ This is a fork of https://github.com/tedk0n/autorotate_sway_script
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.1 (2015-01-02)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
@@ -1201,7 +1235,7 @@ DEPRECATED
 
 ---
 
-### 49. fapi 49←49←49↙47↙46↙45←45↖46↙44↙41←41↖42↖44
+### 50. fapi 50↙49←49↙47↙46↙45←45↖46↙44↙41←41↖42↖44
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -1214,6 +1248,7 @@ DEPRECATED
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-11-17)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
@@ -1225,7 +1260,7 @@ DEPRECATED
 
 ---
 
-### 50. xerl 50←50←50↙48↙47↙46←46↙45↖48↙45←45↙35↖42
+### 51. xerl 51↙50←50↙48↙47↙46←46↙45↖48↙45←45↙35↖42
 
 * 💻 Languages: CSS (54.6%), XML (39.1%), Perl (4.0%), Make (2.2%)
 * 📚 Documentation: Text (91.2%), Org (4.9%), Markdown (3.9%)
@@ -1238,7 +1273,7 @@ DEPRECATED
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 Those are the host templates to be used with Xerl itself.
 
@@ -1248,7 +1283,7 @@ Those are the host templates to be used with Xerl itself.
 
 ---
 
-### 51. pingdomfetch 51←51←51↙49↙48↙47←47←47↙45↙42←42↖43↙41
+### 52. pingdomfetch 52↙51←51↙49↙48↙47←47←47↙45↙42←42↖43↙41
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1261,6 +1296,7 @@ Those are the host templates to be used with Xerl itself.
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2015-01-02)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
@@ -1272,7 +1308,7 @@ DEPRECATED
 
 ---
 
-### 52. fype 52←52←52↙50↙49↙48←48←48↖66↙43←43↖44↙37
+### 53. fype 53↙52←52↙50↙49↙48←48←48↖66↙43←43↖44↙37
 
 * 💻 Languages: C (77.3%), C/C++ (13.1%), HTML (7.5%), Make (2.1%)
 * 📚 Documentation: Text (65.8%), LaTeX (20.5%), Markdown (13.7%)
@@ -1285,35 +1321,13 @@ DEPRECATED
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 **F**or **Y**our **P**rogram **E**xecution — a lightweight scripting language.
 
 => https://codeberg.org/snonux/fype View on Codeberg
 => https://github.com/snonux/fype View on GitHub
 => https://cgit.f3s.buetow.org/fype/ View in cgit
-
----
-
-### 53. loadbars 53←53←53↙51↙50↙49←49←49↙46↙6←6↙4↖47
-
-* 💻 Languages: Perl (97.4%), Make (2.6%)
-* 📚 Documentation: Text (100.0%)
-* 📊 Commits: 501
-* 📈 Lines of Code: 1828
-* 📄 Lines of Documentation: 100
-* 🏷️ Tags: 24
-* 📅 Development Period: 2010-11-05 to 2015-05-23
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: 0.7.5 (2014-06-22)
-
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
-
-Loadbars is a tool that can be used to observe CPU loads of several remote servers at once in real time. It connects with SSH (using SSH public/private key auth) to several servers at once and vizualizes all server CPUs and memory statistics right next each other (either summarized or each core separately). Loadbars is not a tool for collecting CPU loads and drawing graphs for later analysis. However, since such tools require a significant amount of time before producing results, Loadbars lets you observe the current state immediately. Loadbars does not remember or record any load information. It just shows the current CPU usages like top or vmstat does.
-
-=> https://codeberg.org/snonux/loadbars View on Codeberg
-=> https://github.com/snonux/loadbars View on GitHub
-=> https://cgit.f3s.buetow.org/loadbars/ View in cgit
 
 ---
 
@@ -1330,6 +1344,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.9.3 (2014-06-14)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
 
@@ -1352,6 +1367,7 @@ Loadbars is a tool that can be used to observe CPU loads of several remote serve
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.2 (2011-01-27)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 Awksite is a minimal CGI application written entirely in GNU AWK that generates dynamic HTML pages using a simple template engine. It reads key-value pairs from a configuration file (`awksite.conf`), where values can be static strings or shell commands (prefixed with `!`), then substitutes `%%key%%` placeholders in an HTML template file with the corresponding values. It also supports a `!sort` directive to insert sorted file contents. The entire runtime is a single 88-line AWK script, making it incredibly lightweight and portable across any Unix system with GNU AWK.
 
@@ -1376,6 +1392,7 @@ It's useful for quickly standing up simple dynamic websites—like server status
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1 (2015-06-01)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
 
@@ -1398,6 +1415,7 @@ It's useful for quickly standing up simple dynamic websites—like server status
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.4.3 (2014-06-16)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
@@ -1420,6 +1438,7 @@ DEPRECATED
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4 (2022-04-29)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 PerlDaemon is a minimal daemon for Linux and other UNIX a like operating system
 programmed in Perl.  It can be extended to fit any task...
@@ -1443,6 +1462,7 @@ programmed in Perl.  It can be extended to fit any task...
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: 0 (2015-10-26)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
 
@@ -1465,7 +1485,7 @@ programmed in Perl.  It can be extended to fit any task...
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 perl-c-fibonacci: source code repository.
 
@@ -1488,6 +1508,7 @@ perl-c-fibonacci: source code repository.
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.1.5 (2014-06-22)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
@@ -1512,6 +1533,7 @@ DEPRECATED
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.2.0 (2014-07-05)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
@@ -1536,7 +1558,7 @@ DEPRECATED
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 1.0.2 (2014-06-22)
 
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 cpuinfo - A small and humble tool to print out CPU data
 
@@ -1559,6 +1581,7 @@ cpuinfo - A small and humble tool to print out CPU data
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.0.0.0 (2013-03-22)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
@@ -1583,6 +1606,7 @@ DEPRECATED
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
@@ -1607,6 +1631,7 @@ DEPRECATED
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 => showcase/debroid/image-1.png debroid screenshot
 
@@ -1631,7 +1656,7 @@ DEPRECATED
 * ⚖️ License: GPL-2.0
 * 🧪 Status: Experimental (no releases yet)
 
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 ychat: source code repository.
 
@@ -1654,6 +1679,7 @@ ychat: source code repository.
 * ⚖️ License: GPL-2.0
 * 🧪 Status: Experimental (no releases yet)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 => showcase/netcalendar/image-1.png netcalendar screenshot
 
@@ -1678,6 +1704,7 @@ ychat: source code repository.
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 => showcase/jsmstrade/image-1.png jsmstrade screenshot
 
@@ -1702,7 +1729,7 @@ ychat: source code repository.
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 => showcase/vs-sim/image-1.jpg vs-sim screenshot
 
@@ -1727,7 +1754,7 @@ VS-Sim is an open source simulator programmed in Java for distributed systems. V
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
-⚠️  **Notice**: This project appears to be finished, obsolete, or no longer maintained. Last meaningful activity was over 2 years ago. Use at your own risk.
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 Here you find some Poetry written in Perl.
 
@@ -1748,6 +1775,7 @@ Here you find some Poetry written in Perl.
 * ⚖️ License: Custom License
 * 🧪 Status: Experimental (no releases yet)
 
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
 This project is no longer maintained. No further updates, bug fixes, or
 feature additions will be made. Use at your own risk.
