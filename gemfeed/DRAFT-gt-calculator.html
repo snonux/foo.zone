@@ -1,0 +1,518 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>gt — a calculator built by local LLMs</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-gt-calculator.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-gt-calculator.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+</p>
+<h1 style='display: inline' id='gt--a-calculator-built-by-local-llms'>gt — a calculator built by local LLMs</h1><br />
+<br />
+<span class='quote'>Published at 2026-05-24T00:00:00+02:00</span><br />
+<br />
+<span>I created a calculator. Not because the world needed another one, but because I wanted to test something: how well do local LLMs hold up as pair programmers on a real project?</span><br />
+<br />
+<span>The answer is: well enough.</span><br />
+<br />
+<span><span class='inlinecode'>gt</span> is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than" — <span class='inlinecode'>gt</span> is a comparison operator the calculator supports. Plus it was free in my terminal and I liked the short name.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gt'>gt on Codeberg</a><br />
+<br />
+<span>If you want the full feature guide, the README links to a detailed doc for every feature covered here and more.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gt/src/branch/master/README.md'>README.md with the complete feature guide</a><br />
+<br />
+<a href='./gt-calculator/logo.svg'><img alt='gt logo (locally generated)' title='gt logo (locally generated)' src='./gt-calculator/logo.svg' /></a><br />
+<br />
+<span>The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn&#39;t run them locally either — I rented a Hyperstack GPU just to get a feel for the quality before investing in hardware. The point was to test models that don&#39;t require a cloud API and could realistically run on your own box.</span><br />
+<br />
+<span>This post is about the calculator and what it does. My experience running those LLMs as pair programmers will be a separate post later.</span><br />
+<br />
+<span>And no, this wasn&#39;t vibe-coded. I used a specific technique and a set of AI skills to drive the LLMs. The codebase came out well-structured and maintainable — not the usual "prompt it and pray" mess.</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#gt--a-calculator-built-by-local-llms'>gt — a calculator built by local LLMs</a></li>
+<li>⇢ <a href='#the-motivation'>The motivation</a></li>
+<li>⇢ <a href='#what-it-does'>What it does</a></li>
+<li>⇢ <a href='#percentage-calculations'>Percentage calculations</a></li>
+<li>⇢ <a href='#rpn-arithmetic'>RPN arithmetic</a></li>
+<li>⇢ ⇢ <a href='#logarithms'>Logarithms</a></li>
+<li>⇢ ⇢ <a href='#hyper-operators-n-ary'>Hyper operators (n-ary)</a></li>
+<li>⇢ ⇢ <a href='#comparisons-and-booleans'>Comparisons and booleans</a></li>
+<li>⇢ <a href='#variables-and-symbols'>Variables and symbols</a></li>
+<li>⇢ <a href='#built-in-constants'>Built-in constants</a></li>
+<li>⇢ <a href='#the-metrics-system'>The metrics system</a></li>
+<li>⇢ ⇢ <a href='#suffix-notation'>Suffix notation</a></li>
+<li>⇢ ⇢ <a href='#unit-conversion'>Unit conversion</a></li>
+<li>⇢ ⇢ <a href='#metric-aware-arithmetic'>Metric-aware arithmetic</a></li>
+<li>⇢ ⇢ <a href='#custom-metrics'>Custom metrics</a></li>
+<li>⇢ ⇢ <a href='#si-vs-iec-modes'>SI vs IEC modes</a></li>
+<li>⇢ <a href='#stack-manipulation'>Stack manipulation</a></li>
+<li>⇢ <a href='#rational-number-mode'>Rational number mode</a></li>
+<li>⇢ <a href='#the-repl'>The REPL</a></li>
+<li>⇢ <a href='#where-i-actually-use-it'>Where I actually use it</a></li>
+<li>⇢ <a href='#fish-shell-completions'>Fish shell completions</a></li>
+<li>⇢ <a href='#installation'>Installation</a></li>
+<li>⇢ <a href='#wrapping-up'>Wrapping up</a></li>
+</ul><br />
+<h2 style='display: inline' id='the-motivation'>The motivation</h2><br />
+<br />
+<span>Four things drove this.</span><br />
+<br />
+<span>First, I wanted to test local LLMs as coding partners. Not the cloud-hosted ones with infinite context and billions of parameters — the ones you can actually run yourself. I figured a calculator project is big enough to be interesting but small enough to finish.</span><br />
+<br />
+<span>Second, cloud independence is a thing I care about. I build tools that don&#39;t need a network connection to function. Writing software that talks to OpenAI or Anthropic APIs doesn&#39;t count as "running locally." Everything here runs offline.</span><br />
+<br />
+<span>Third, I wanted to learn more about how these models actually work in practice. Not benchmarks or leaderboard scores — the day-to-day experience. How do you operate them? How do you structure prompts? When do they produce clean code versus garbage? Where do they struggle?</span><br />
+<br />
+<span>Finally, the tool needed to be genuinely useful. A toy that calculates <span class='inlinecode'>2 + 2</span> isn&#39;t worth the disk space. I aimed for a calculator I&#39;d actually reach for.</span><br />
+<br />
+<h2 style='display: inline' id='what-it-does'>What it does</h2><br />
+<br />
+<span>At its core, <span class='inlinecode'>gt</span> is a stack-based RPN calculator with percentage support and a full metrics system. It runs as a single binary, has no dependencies, and works three ways:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'3 4 +'</font>                     <i><font color="silver"># one-liner: RPN</font></i>
+gt <font color="#808080">'20% of 150'</font>                <i><font color="silver"># one-liner: percentage</font></i>
+gt                             <i><font color="silver"># interactive REPL</font></i>
+</pre>
+<br />
+<span>You can also pipe into it: <span class='inlinecode'>echo &#39;1000Mbps @Gbps convert&#39; | gt</span> → <span class='inlinecode'>1</span>.</span><br />
+<br />
+<h2 style='display: inline' id='percentage-calculations'>Percentage calculations</h2><br />
+<br />
+<span>This is the simplest entry point. Three forms, all case-insensitive, all with step-by-step output:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'20% of 150'</font>                <i><font color="silver"># → 30.00</font></i>
+gt <font color="#808080">'30 is what % of 150'</font>       <i><font color="silver"># → 20.00%</font></i>
+gt <font color="#808080">'30 is 20% of what'</font>         <i><font color="silver"># → 150.00</font></i>
+</pre>
+<br />
+<span>Every percentage result shows the formula and intermediate values, so you can verify the math. Useful for tips, discounts, tax, and any "what&#39;s the actual number?" moment.</span><br />
+<br />
+<h2 style='display: inline' id='rpn-arithmetic'>RPN arithmetic</h2><br />
+<br />
+<span>The main engine uses Reverse Polish Notation. No parentheses needed — the order of tokens determines the order of operations.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'3 4 +'</font>                     <i><font color="silver"># 7</font></i>
+gt <font color="#808080">'2 10 ^'</font>                    <i><font color="silver"># 1024</font></i>
+gt <font color="#808080">'100 10 / 5 +'</font>              <i><font color="silver"># 15</font></i>
+gt <font color="#808080">'3 4 + 5 6 + *'</font>             <i><font color="silver"># (3+4) × (5+6) = 77</font></i>
+</pre>
+<br />
+<span>Six basic operators: <span class='inlinecode'>+</span>, <span class='inlinecode'>-</span>, <span class='inlinecode'>*</span>, <span class='inlinecode'>/</span>, <span class='inlinecode'>^</span>, <span class='inlinecode'>%</span>. All work on the stack, popping operands and pushing the result.</span><br />
+<br />
+<span>The fast integer power operator <span class='inlinecode'>**</span> uses binary exponentiation (O(log n) instead of O(n)). So <span class='inlinecode'>2 100 **</span> does about 7 multiplications instead of 99. It only accepts integer exponents — use <span class='inlinecode'>^</span> for fractional powers.</span><br />
+<br />
+<h3 style='display: inline' id='logarithms'>Logarithms</h3><br />
+<br />
+<span>Three unary operators for when you need them:</span><br />
+<br />
+<span>- <span class='inlinecode'>lg</span> — base 2 (information theory, algorithm complexity)</span><br />
+<span>- <span class='inlinecode'>log</span> — base 10 (decibels, pH, order of magnitude)</span><br />
+<span>- <span class='inlinecode'>ln</span> — natural log (continuous growth, statistics)</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'1024 lg'</font>                   <i><font color="silver"># → 10</font></i>
+gt <font color="#808080">'1000 log'</font>                  <i><font color="silver"># → 3</font></i>
+gt <font color="#808080">'e ln'</font>                      <i><font color="silver"># → 1.0000000000</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='hyper-operators-n-ary'>Hyper operators (n-ary)</h3><br />
+<br />
+<span>Want to add everything on the stack at once? Square-bracket operators pop the entire stack and reduce left-associatively:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'1 2 3 4 5 [+]'</font>            <i><font color="silver"># → 15 (sum of all)</font></i>
+gt <font color="#808080">'100 10 20 30 5 [-]'</font>       <i><font color="silver"># → 35 (100-10-20-30-5)</font></i>
+gt <font color="#808080">'2 5 10 [*]'</font>               <i><font color="silver"># → 100 (product)</font></i>
+gt <font color="#808080">'1000 2 2 2 2 [/]'</font>         <i><font color="silver"># → 62.5</font></i>
+</pre>
+<br />
+<span>Full set: <span class='inlinecode'>[+]</span>, <span class='inlinecode'>[-]</span>, <span class='inlinecode'>[*]</span>, <span class='inlinecode'>[/]</span>, <span class='inlinecode'>[^]</span>, <span class='inlinecode'>[%]</span> for arithmetic, plus <span class='inlinecode'>[lg]</span>, <span class='inlinecode'>[log]</span>, <span class='inlinecode'>[ln]</span> for logarithms. The log hyper operators work differently from the arithmetic ones — they compute the sum of the log function applied to each value, not a left-associative reduction. The square-bracket syntax is inspired by Raku&#39;s hyper operators.</span><br />
+<br />
+<h3 style='display: inline' id='comparisons-and-booleans'>Comparisons and booleans</h3><br />
+<br />
+<span>Six comparison operators, each with a symbolic alias:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'5 3 gt'</font>                    <i><font color="silver"># → true</font></i>
+gt <font color="#808080">'3 5 &lt;'</font>                     <i><font color="silver"># → true</font></i>
+gt <font color="#808080">'5 5 =='</font>                    <i><font color="silver"># → true</font></i>
+</pre>
+<br />
+<span>Results are <span class='inlinecode'>true</span> or <span class='inlinecode'>false</span>, which coerce into arithmetic (true = 1, false = 0). That means you can do inline conditionals:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'85 80 gt 10 *'</font>             <i><font color="silver"># → 10 (85 &gt; 80, so 1 × 10)</font></i>
+gt <font color="#808080">'50 80 gt 10 *'</font>             <i><font color="silver"># → 0  (50 &lt; 80, so 0 × 10)</font></i>
+</pre>
+<br />
+<span>Range validation works by summing boolean results:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'72 68 gte 100 lte +'</font>       <i><font color="silver"># → 2 (both checks pass, temp is in range)</font></i>
+gt <font color="#808080">'105 68 gte 100 lte +'</font>      <i><font color="silver"># → 1 (out of range)</font></i>
+</pre>
+<br />
+<h2 style='display: inline' id='variables-and-symbols'>Variables and symbols</h2><br />
+<br />
+<span>Store values with three assignment styles:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'x 10 :='</font>                   <i><font color="silver"># right assignment</font></i>
+gt <font color="#808080">'20 y =:'</font>                   <i><font color="silver"># left assignment</font></i>
+gt <font color="#808080">'rate 100Mbps ='</font>            <i><font color="silver"># standard (or rate = 100Mbps)</font></i>
+</pre>
+<br />
+<span><span class='inlinecode'>vars</span> lists them, <span class='inlinecode'>clear</span> wipes all variables and constants, <span class='inlinecode'>:name d</span> deletes one. In REPL mode, variables persist to disk between sessions.</span><br />
+<br />
+<span>Symbols (the <span class='inlinecode'>:x</span> syntax) are named placeholders on the stack. They&#39;re how you do explicit variable assignment and deletion without ambiguity. Bare identifiers that don&#39;t match any variable or constant also push as symbols.</span><br />
+<br />
+<h2 style='display: inline' id='built-in-constants'>Built-in constants</h2><br />
+<br />
+<span>Thirty-six of them. Use them directly as tokens:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'pi 2 *'</font>                    <i><font color="silver"># → 6.283185307</font></i>
+gt <font color="#808080">'euler'</font>                     <i><font color="silver"># → 2.718281828</font></i>
+gt <font color="#808080">'phi 10 *'</font>                  <i><font color="silver"># → 16.18 (golden rectangle)</font></i>
+gt <font color="#808080">'sqrt2 sqrt3 *'</font>             <i><font color="silver"># → 2.449 (√6)</font></i>
+</pre>
+<br />
+<span>Greek letter aliases work too: <span class='inlinecode'>π</span>, <span class='inlinecode'>τ</span>, <span class='inlinecode'>φ</span>, <span class='inlinecode'>√2</span>, <span class='inlinecode'>√3</span>, <span class='inlinecode'>√5</span>.</span><br />
+<br />
+<h2 style='display: inline' id='the-metrics-system'>The metrics system</h2><br />
+<br />
+<span>This is where <span class='inlinecode'>gt</span> earns its swiss army knife title. Every number carries a unit of measurement, and arithmetic understands those units.</span><br />
+<br />
+<span>Six built-in categories, plus <span class='inlinecode'>Cool</span> — the default unitless metric for plain numbers. The name comes from Raku&#39;s <span class='inlinecode'>Cool</span> role, which represents things that are "cool enough" to do basic operations (strings, numbers, etc.). In <span class='inlinecode'>gt</span>, Cool values absorb into any metric category during arithmetic, so <span class='inlinecode'>5 100Mbps +</span> treats the <span class='inlinecode'>5</span> as <span class='inlinecode'>5Mbps</span>.</span><br />
+<br />
+<span>- **DataRate**: bps, Kbps, Mbps, Gbps, Tbps</span><br />
+<span>- **DataSize**: bits, bytes, KB/MB/GB/TB/PB (SI), KiB/MiB/GiB/TiB/PiB (IEC)</span><br />
+<span>- **Time**: ms, s, min, hr, day</span><br />
+<span>- **Weight**: mg, g, kg, lb, oz, ton</span><br />
+<span>- **Speed**: mps, kmh, mph, knots</span><br />
+<span>- **Distance**: m, km, mi, ft, in, nm (nautical miles)</span><br />
+<br />
+<h3 style='display: inline' id='suffix-notation'>Suffix notation</h3><br />
+<br />
+<span>Attach units directly to numbers:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'100Mbps'</font>                   <i><font color="silver"># 100 megabits per second</font></i>
+gt <font color="#808080">'5GB'</font>                       <i><font color="silver"># 5 gigabytes</font></i>
+gt <font color="#808080">'1hr'</font>                       <i><font color="silver"># 1 hour</font></i>
+gt <font color="#808080">'70kg'</font>                      <i><font color="silver"># 70 kilograms</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='unit-conversion'>Unit conversion</h3><br />
+<br />
+<span>Use <span class='inlinecode'>@&lt;target&gt; convert</span>:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'1000Mbps @Gbps convert'</font>    <i><font color="silver"># → 1</font></i>
+gt <font color="#808080">'1km @mi convert'</font>           <i><font color="silver"># → 0.6213711922</font></i>
+gt <font color="#808080">'60mph @kmh convert'</font>        <i><font color="silver"># → 96.56</font></i>
+gt <font color="#808080">'3day @s convert'</font>           <i><font color="silver"># → 259200</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='metric-aware-arithmetic'>Metric-aware arithmetic</h3><br />
+<br />
+<span>Addition and subtraction auto-convert within categories:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'1km 500m +'</font>                <i><font color="silver"># → 1.5 (converted to km)</font></i>
+gt <font color="#808080">'1Gbps 500Mbps -'</font>           <i><font color="silver"># → 500 (in Mbps)</font></i>
+</pre>
+<br />
+<span>Multiplication and division do cross-category inference:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'100Mbps 1hr *'</font>             <i><font color="silver"># rate × time = data transferred</font></i>
+gt <font color="#808080">'10GB 2hr /'</font>                <i><font color="silver"># data / time = rate</font></i>
+gt <font color="#808080">'100kmh 1hr * @mi convert'</font>  <i><font color="silver"># → 62.14 miles traveled</font></i>
+</pre>
+<br />
+<span>Comparison operators are metric-aware too:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'1km 1000m eq'</font>              <i><font color="silver"># → true</font></i>
+gt <font color="#808080">'1GB 1024MB eq'</font>             <i><font color="silver"># → false (SI: 1GB = 1000MB)</font></i>
+</pre>
+<br />
+<h3 style='display: inline' id='custom-metrics'>Custom metrics</h3><br />
+<br />
+<span>Define your own units:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>custom define reel <font color="#000000">304.8</font> Distance    <i><font color="silver"># surveyor's reel</font></i>
+custom define fortnight <font color="#000000">1209600</font> Time
+</pre>
+<br />
+<span>Then use them like built-ins: <span class='inlinecode'>5reel @m convert</span> → 1524.</span><br />
+<br />
+<h3 style='display: inline' id='si-vs-iec-modes'>SI vs IEC modes</h3><br />
+<br />
+<span>Data size units have two modes. SI (default) uses powers of 1000. IEC uses powers of 1024. Switch with <span class='inlinecode'>metric decimal set</span> / <span class='inlinecode'>metric binary set</span>. The dedicated IEC units (KiB, MiB, GiB) are always unambiguous.</span><br />
+<br />
+<h2 style='display: inline' id='stack-manipulation'>Stack manipulation</h2><br />
+<br />
+<span>Five operators for managing the RPN stack:</span><br />
+<br />
+<span>- <span class='inlinecode'>dup</span> — duplicate the top value</span><br />
+<span>- <span class='inlinecode'>swap</span> — swap top two values</span><br />
+<span>- <span class='inlinecode'>pop</span> — discard the top value</span><br />
+<span>- <span class='inlinecode'>show</span> / <span class='inlinecode'>showstack</span> / <span class='inlinecode'>print</span> — display the stack without modifying it</span><br />
+<span>- <span class='inlinecode'>clear</span> — clear all variables and constants</span><br />
+<br />
+<span><span class='inlinecode'>dup</span> and <span class='inlinecode'>swap</span> come up a lot. Square a number: <span class='inlinecode'>7 dup *</span> → 49. Reverse operand order: <span class='inlinecode'>2 10 swap /</span> → 5 (instead of 0.2).</span><br />
+<br />
+<h2 style='display: inline' id='rational-number-mode'>Rational number mode</h2><br />
+<br />
+<span>"Rational" refers to rational numbers — numbers that can be expressed as an exact fraction of two integers (numerator/denominator). The name "rat" is just the shorthand command.</span><br />
+<br />
+<span>In the default float64 mode, numbers are stored as binary floating-point approximations. <span class='inlinecode'>0.1</span> cannot be represented exactly in binary, so it becomes something like <span class='inlinecode'>0.1000000000000000055511151231257827...</span>. This causes the classic problem:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; rat off
+Rational mode disabled (using float64)
+&gt; <font color="#000000">0.3</font> <font color="#000000">0.1</font> - <font color="#000000">0.2</font> -
+-<font color="#000000">2.775557562e-17</font>
+</pre>
+<br />
+<span>The result should be <span class='inlinecode'>0</span>, but floating-point rounding errors accumulated. Silent wrong answer.</span><br />
+<br />
+<span>Rational mode stores numbers as exact fractions using Go&#39;s <span class='inlinecode'>math/big.Rat</span>. <span class='inlinecode'>0.1</span> is stored as <span class='inlinecode'>1/10</span>, <span class='inlinecode'>0.2</span> as <span class='inlinecode'>2/10</span> (simplified to <span class='inlinecode'>1/5</span>), and all arithmetic operates on those exact values. No binary approximation, no silent drift.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; rat on
+Rational mode enabled
+&gt; <font color="#000000">0.1</font> <font color="#000000">0.2</font> +
+<font color="#000000">0.3000000000</font>
+</pre>
+<br />
+<span>Internally, <span class='inlinecode'>1/3</span> stays as the exact fraction <span class='inlinecode'>1/3</span>, and <span class='inlinecode'>1/3 * 3</span> computes to exactly <span class='inlinecode'>3/3 = 1</span>. No binary conversion, no rounding.</span><br />
+<br />
+<span>REPL-only. Has a known limitation with non-dyadic decimals and metric operations — the docs explain the why.</span><br />
+<br />
+<h2 style='display: inline' id='the-repl'>The REPL</h2><br />
+<br />
+<span>Run <span class='inlinecode'>gt</span> with no arguments when attached to a terminal and you get the interactive session. Command history (1000 entries, persisted to <span class='inlinecode'>~/.gt_history</span>), tab completion, Emacs-style line editing, Ctrl+R reverse search.</span><br />
+<br />
+<span>Variables save to disk between sessions. Session logging with <span class='inlinecode'>--log session.log</span>. Session state lives in <span class='inlinecode'>~/.local/state/gt/vars</span>.</span><br />
+<br />
+<span>Built-in REPL commands: <span class='inlinecode'>help</span>, <span class='inlinecode'>clear</span>, <span class='inlinecode'>quit</span>/<span class='inlinecode'>exit</span>, <span class='inlinecode'>rpn</span>/<span class='inlinecode'>calc</span>, <span class='inlinecode'>rat</span>, <span class='inlinecode'>stack</span>. Tab-completes.</span><br />
+<br />
+<span>Here&#39;s what a session looks like:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ gt
+&gt; rate 100Mbps =
+rate = <font color="#000000">100</font>
+&gt; time 2hr =
+time = <font color="#000000">2</font>
+&gt; rate time *
+<font color="#000000">200</font> Mbps
+&gt; metric show
+Mbps, DataRate, base: bps, factor: <font color="#000000">1e+06</font>
+&gt; download 50GB =
+download = <font color="#000000">50</font>
+&gt; speed 100Mbps =
+speed = <font color="#000000">100</font>
+&gt; download speed / @min convert
+<font color="#000000">83.33333333</font>
+&gt; custom define reel <font color="#000000">304.8</font> Distance
+defined custom metric <font color="#808080">"reel"</font> (factor: <font color="#000000">304.8</font>, category: Distance)
+&gt; 5reel @m convert
+<font color="#000000">1524</font>
+&gt; 100Mbps 50Mbps swap -
+<font color="#000000">50</font> Mbps
+&gt; show
+<font color="#000000">50</font> Mbps
+&gt; <font color="#000000">20</font>% of <font color="#000000">150</font>
+<font color="#000000">20.00</font>% of <font color="#000000">150.00</font> = <font color="#000000">30.00</font>
+  Steps: (<font color="#000000">20.00</font> / <font color="#000000">100</font>) * <font color="#000000">150.00</font> = <font color="#000000">0.20</font> * <font color="#000000">150.00</font> = <font color="#000000">30.00</font>
+&gt; rat on
+Rational mode enabled
+&gt; <font color="#000000">1</font> <font color="#000000">3</font> / <font color="#000000">3</font> *
+<font color="#000000">1.0000000000</font>
+&gt; vars
+rate = <font color="#000000">100</font>
+time = <font color="#000000">2</font>
+download = <font color="#000000">50</font>
+speed = <font color="#000000">100</font>
+</pre>
+<br />
+<span>Inline help is built in. Bare <span class='inlinecode'>help</span> lists all commands, and <span class='inlinecode'>help &lt;command&gt;</span> drills into one topic:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; <b><u><font color="#000000">help</font></u></b> rat
+rat on/off/toggle - Switch between float64 and rational number modes
+  rat on       Enable rational mode (exact fractions)
+  rat off      Disable rational mode (use float64)
+  rat toggle   Toggle current mode
+&gt; <b><u><font color="#000000">help</font></u></b> clear
+clear - Clear the screen
+Usage: clear
+</pre>
+<br />
+<span>No need to leave the REPL or dig through docs when you forget a subcommand.</span><br />
+<br />
+<h2 style='display: inline' id='where-i-actually-use-it'>Where I actually use it</h2><br />
+<br />
+<span>It lives in my aliases and shell scripts. A few things I come back to:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Download volume at 1 Gbps for an hour</font></i>
+gt <font color="#808080">'1Gbps 1hr * @GB convert'</font>        <i><font color="silver"># → 450</font></i>
+
+<i><font color="silver"># Internet speed threshold in scripts</font></i>
+MIN_SPEED=$(gt <font color="#808080">'1Gbps @Mbps convert'</font>)  <i><font color="silver"># → 1000</font></i>
+
+<i><font color="silver"># Travel planning</font></i>
+gt <font color="#808080">'500mi @km convert'</font>              <i><font color="silver"># → 804.67</font></i>
+gt <font color="#808080">'65mph @kmh convert'</font>             <i><font color="silver"># → 104.86</font></i>
+
+<i><font color="silver"># Tips, discounts, whatever</font></i>
+gt <font color="#808080">'18% of 63.40'</font>
+gt <font color="#808080">'15% of 89.99'</font>
+
+<i><font color="silver"># File sizes in MiB instead of bytes</font></i>
+find . -exec wc -c {} + | awk <font color="#808080">'{print $1}'</font> | xargs -I{} gt <font color="#808080">'{} @MiB convert'</font>
+
+<i><font color="silver"># Quick math</font></i>
+gt <font color="#808080">'pi 5 5 * *'</font>                     <i><font color="silver"># circle area, r=5 → 78.54</font></i>
+gt <font color="#808080">'1000 lg'</font>                        <i><font color="silver"># → 10 (bits needed)</font></i>
+</pre>
+<br />
+<h2 style='display: inline' id='fish-shell-completions'>Fish shell completions</h2><br />
+<br />
+<span><span class='inlinecode'>gt</span> ships with a fish completion script that covers everything: operators, constants, metric units, stack commands, the <span class='inlinecode'>metric</span> and <span class='inlinecode'>custom</span> subcommand trees, and boolean literals. It&#39;s context-aware — it won&#39;t suggest <span class='inlinecode'>metric</span> subcommands in the middle of an RPN expression, and it suppresses fish&#39;s default file completions so you only see calculator tokens.</span><br />
+<br />
+<span>Install it:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>cp completions/gt.fish ~/.config/fish/completions/
+</pre>
+<br />
+<span>Or system-wide:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>sudo cp completions/gt.fish /usr/local/share/fish/vendor_completions.d/
+</pre>
+<br />
+<span>In practice this means tab-completion for all 36 constants, every metric unit (bps through Tbps, KB through PiB, kmh, mph, knots, etc.), all arithmetic and hyper operators, and the <span class='inlinecode'>metric show</span> / <span class='inlinecode'>metric list</span> / <span class='inlinecode'>custom define</span> subcommand chains. The <span class='inlinecode'>custom define</span> subcommand even completes the valid category names so you don&#39;t have to memorize them.</span><br />
+<br />
+<h2 style='display: inline' id='installation'>Installation</h2><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>go install codeberg.org/snonux/gt/cmd/gt@latest
+</pre>
+<br />
+<span>Or from the source directory: <span class='inlinecode'>mage install</span>.</span><br />
+<br />
+<h2 style='display: inline' id='wrapping-up'>Wrapping up</h2><br />
+<br />
+<span>The local LLM experiment worked. The code is clean enough, the tests pass, the docs are thorough, and I use the tool. The logo was generated by a local model too.</span><br />
+<br />
+<span>For the complete and always-up-to-date feature guide, detailed docs for every feature, and the source code, head to the repo.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/gt'>gt on Codeberg</a><br />
+<a class='textlink' href='https://codeberg.org/snonux/gt/src/branch/master/README.md'>README.md with the complete feature guide</a><br />
+<br />
+<span>The project is BSD-3-clause licensed and alive — more to come.</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
