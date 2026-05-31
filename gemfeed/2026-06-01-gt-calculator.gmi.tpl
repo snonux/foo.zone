@@ -1,4 +1,4 @@
-# gt a calculator - a calculator built with local LLMs
+# `gt` calculator - a calculator built with local LLMs
 
 > Published at 2026-05-31T14:24:10+03:00
 

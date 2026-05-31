@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-05-31T14:27:21+03:00</updated>
+    <updated>2026-05-31T14:29:35+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
     <entry>
-        <title>gt a calculator - a calculator built with local LLMs</title>
+        <title>`gt` calculator - a calculator built with local LLMs</title>
         <link href="gemini://foo.zone/gemfeed/2026-06-01-gt-calculator.gmi" />
         <id>gemini://foo.zone/gemfeed/2026-06-01-gt-calculator.gmi</id>
         <updated>2026-05-31T14:24:10+03:00</updated>
@@ -18,7 +18,7 @@
         <summary>I created a calculator. Not because the world needed another one, but because I wanted to test something: how well do local LLMs hold up as pair programmers on a real project?</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='gt-a-calculator---a-calculator-built-with-local-llms'>gt a calculator - a calculator built with local LLMs</h1><br />
+                <h1 style='display: inline' id='gt-calculator---a-calculator-built-with-local-llms'><span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs</h1><br />
 <br />
 <span class='quote'>Published at 2026-05-31T14:24:10+03:00</span><br />
 <br />
@@ -44,7 +44,7 @@
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#gt-a-calculator---a-calculator-built-with-local-llms'>gt a calculator - a calculator built with local LLMs</a></li>
+<li><a href='#gt-calculator---a-calculator-built-with-local-llms'><span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs</a></li>
 <li>⇢ <a href='#the-motivation'>The motivation</a></li>
 <li>⇢ <a href='#what-it-does'>What it does</a></li>
 <li>⇢ <a href='#percentage-calculations'>Percentage calculations</a></li>
@@ -517,7 +517,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts:</span><br />
 <br />
-<a class='textlink' href='./2026-06-01-gt-calculator.html'>2026-06-01 gt a calculator - a calculator built with local LLMs (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-06-01-gt-calculator.html'>2026-06-01 <span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
