@@ -464,7 +464,7 @@ For the complete and always-up-to-date feature guide, detailed docs for every fe
 
 => https://codeberg.org/snonux/gt gt on Codeberg
 
-But will I now invest a couple of thousand dollars in hardware to run Qwen 2.5 35B or 27B? (I used the dense 27B model most of the time to build `gt`). Unfortunately, no. I don't think it's worth the cost yet, as cloud models are still cheaper and more convenient.
+But will I now invest a couple of thousand dollars in hardware to run Qwen 2.5 35B or 27B? (I used the dense 27B model most of the time to build `gt`). Unfortunately, no. I don't think it's worth the cost yet, as cloud models are still cheaper and more convenient and the frontier ones also much more "intelligent".
 
 However, I will keep an eye on how the technology develops and continue experimenting with rented Hyperstack VMs for now; I will also default more often to smaller LLMs that could potentially run on home hardware. Ollama Cloud subscription or an OpenRouter API key are also good options alongside Claude and OpenAI Codex.
 
