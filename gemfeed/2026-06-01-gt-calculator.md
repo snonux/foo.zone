@@ -1,6 +1,6 @@
-# gt — a calculator built by local LLMs
+# gt a calculator - a calculator built with local LLMs
 
-> Published at 2026-05-24T00:00:00+02:00
+> Published at 2026-05-31T14:24:10+03:00
 
 I created a calculator. Not because the world needed another one, but because I wanted to test something: how well do local LLMs hold up as pair programmers on a real project?
 
@@ -8,23 +8,22 @@ The answer is: well enough.
 
 `gt` is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than" — `gt` is a comparison operator the calculator supports. Plus it was free in my terminal and I liked the short name.
 
+If you want the full feature guide, the README links to a detailed doc for every feature covered here and more:
+
 [gt on Codeberg](https://codeberg.org/snonux/gt)  
-
-If you want the full feature guide, the README links to a detailed doc for every feature covered here and more.
-
-[README.md with the complete feature guide](https://codeberg.org/snonux/gt/src/branch/master/README.md)  
-
-[![gt logo (locally generated)](./gt-calculator/logo.svg "gt logo (locally generated)")](./gt-calculator/logo.svg)  
+[![gt logo](./gt-calculator/logo.svg "gt logo")](./gt-calculator/logo.svg)  
 
 The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn't run them locally either — I rented a Hyperstack GPU just to get a feel for the quality before investing in hardware. The point was to test models that don't require a cloud API and could realistically run on your own box.
 
+[https://www.hyperstack.cloud/](https://www.hyperstack.cloud/)  
+
 This post is about the calculator and what it does. My experience running those LLMs as pair programmers will be a separate post later.
 
-And no, this wasn't vibe-coded. I used a specific technique and a set of AI skills to drive the LLMs. The codebase came out well-structured and maintainable — not the usual "prompt it and pray" mess.
+And no, this wasn't vibe-coded. I used a specific technique and a set of AI skills to drive the LLMs. The codebase came out well-structured and maintainable — not the "prompt it and pray" mess. 
 
 ## Table of Contents
 
-* [⇢ gt — a calculator built by local LLMs](#gt--a-calculator-built-by-local-llms)
+* [⇢ gt a calculator - a calculator built with local LLMs](#gt-a-calculator---a-calculator-built-with-local-llms)
 * [⇢ ⇢ The motivation](#the-motivation)
 * [⇢ ⇢ What it does](#what-it-does)
 * [⇢ ⇢ Percentage calculations](#percentage-calculations)
@@ -43,7 +42,7 @@ And no, this wasn't vibe-coded. I used a specific technique and a set of AI skil
 * [⇢ ⇢ Stack manipulation](#stack-manipulation)
 * [⇢ ⇢ Rational number mode](#rational-number-mode)
 * [⇢ ⇢ The REPL](#the-repl)
-* [⇢ ⇢ Where I actually use it](#where-i-actually-use-it)
+* [⇢ ⇢ Some more usage examples](#some-more-usage-examples)
 * [⇢ ⇢ Fish shell completions](#fish-shell-completions)
 * [⇢ ⇢ Installation](#installation)
 * [⇢ ⇢ Wrapping up](#wrapping-up)
@@ -126,6 +125,8 @@ gt '1000 2 2 2 2 [/]'         # → 62.5
 
 Full set: `[+]`, `[-]`, `[*]`, `[/]`, `[^]`, `[%]` for arithmetic, plus `[lg]`, `[log]`, `[ln]` for logarithms. The log hyper operators work differently from the arithmetic ones — they compute the sum of the log function applied to each value, not a left-associative reduction. The square-bracket syntax is inspired by Raku's hyper operators.
 
+[https://raku.org](https://raku.org)  
+
 ### Comparisons and booleans
 
 Six comparison operators, each with a symbolic alias:
@@ -183,12 +184,12 @@ This is where `gt` earns its swiss army knife title. Every number carries a unit
 
 Six built-in categories, plus `Cool` — the default unitless metric for plain numbers. The name comes from Raku's `Cool` role, which represents things that are "cool enough" to do basic operations (strings, numbers, etc.). In `gt`, Cool values absorb into any metric category during arithmetic, so `5 100Mbps +` treats the `5` as `5Mbps`.
 
-- **DataRate**: bps, Kbps, Mbps, Gbps, Tbps
-- **DataSize**: bits, bytes, KB/MB/GB/TB/PB (SI), KiB/MiB/GiB/TiB/PiB (IEC)
-- **Time**: ms, s, min, hr, day
-- **Weight**: mg, g, kg, lb, oz, ton
-- **Speed**: mps, kmh, mph, knots
-- **Distance**: m, km, mi, ft, in, nm (nautical miles)
+- *DataRate*: bps, Kbps, Mbps, Gbps, Tbps
+- *DataSize*: bits, bytes, KB/MB/GB/TB/PB (SI), KiB/MiB/GiB/TiB/PiB (IEC)
+- *Time*: ms, s, min, hr, day
+- *Weight*: mg, g, kg, lb, oz, ton
+- *Speed*: mps, kmh, mph, knots
+- *Distance*: m, km, mi, ft, in, nm (nautical miles)
 
 ### Suffix notation
 
@@ -354,9 +355,9 @@ Usage: clear
 
 No need to leave the REPL or dig through docs when you forget a subcommand.
 
-## Where I actually use it
+## Some more usage examples
 
-It lives in my aliases and shell scripts. A few things I come back to:
+Here are some more `gt` usage examples:
 
 ```sh
 # Download volume at 1 Gbps for an hour
@@ -414,9 +415,17 @@ The local LLM experiment worked. The code is clean enough, the tests pass, the d
 For the complete and always-up-to-date feature guide, detailed docs for every feature, and the source code, head to the repo.
 
 [gt on Codeberg](https://codeberg.org/snonux/gt)  
-[README.md with the complete feature guide](https://codeberg.org/snonux/gt/src/branch/master/README.md)  
 
-The project is BSD-3-clause licensed and alive — more to come.
+But will I now invest a couple of thousand dollars in hardware to run Qwen 2.5 35B or 27B? (I used the dense 27B model most of the time to build `gt`). Unfortunately, no. I don't think it's worth the cost yet, as cloud models are still cheaper and more convenient.
+
+However, I will keep an eye on how the technology develops and continue experimenting with rented Hyperstack VMs for now; I will also default more often to smaller LLMs that could potentially run on home hardware. Ollama Cloud subscription or an OpenRouter API key are also good options alongside Claude and OpenAI Codex.
+
+I will write another blog post at some point about my setup and what I learned from self-hosting models on Hyperstack.
+
+Other related posts:
+
+[2026-06-01 gt a calculator - a calculator built with local LLMs (You are currently reading this)](./2026-06-01-gt-calculator.md)  
+[2025-08-05 Local LLM for Coding with Ollama on macOS](./2025-08-05-local-coding-llm-with-ollama.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
