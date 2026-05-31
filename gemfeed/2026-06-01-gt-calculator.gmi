@@ -28,6 +28,7 @@ And no, this wasn't vibe-coded. I used a specific technique and a set of AI skil
 * ⇢ ⇢ What it does
 * ⇢ ⇢ Percentage calculations
 * ⇢ ⇢ RPN arithmetic
+* ⇢ ⇢ ⇢ Modulo
 * ⇢ ⇢ ⇢ Logarithms
 * ⇢ ⇢ ⇢ Hyper operators (n-ary)
 * ⇢ ⇢ ⇢ Comparisons and booleans
@@ -39,6 +40,7 @@ And no, this wasn't vibe-coded. I used a specific technique and a set of AI skil
 * ⇢ ⇢ ⇢ Metric-aware arithmetic
 * ⇢ ⇢ ⇢ Custom metrics
 * ⇢ ⇢ ⇢ SI vs IEC modes
+* ⇢ ⇢ ⇢ Discovering metrics
 * ⇢ ⇢ Stack manipulation
 * ⇢ ⇢ Rational number mode
 * ⇢ ⇢ The REPL
@@ -98,6 +100,15 @@ Six basic operators: `+`, `-`, `*`, `/`, `^`, `%`. All work on the stack, poppin
 
 The fast integer power operator `**` uses binary exponentiation (O(log n) instead of O(n)). So `2 100 **` does about 7 multiplications instead of 99. It only accepts integer exponents — use `^` for fractional powers.
 
+### Modulo
+
+`%` gives the remainder after division:
+
+```sh
+gt '17 5 %'                    # → 2
+gt '100 7 %'                   # → 2
+```
+
 ### Logarithms
 
 Three unary operators for when you need them:
@@ -123,7 +134,13 @@ gt '2 5 10 [*]'               # → 100 (product)
 gt '1000 2 2 2 2 [/]'         # → 62.5
 ```
 
-Full set: `[+]`, `[-]`, `[*]`, `[/]`, `[^]`, `[%]` for arithmetic, plus `[lg]`, `[log]`, `[ln]` for logarithms. The log hyper operators work differently from the arithmetic ones — they compute the sum of the log function applied to each value, not a left-associative reduction. The square-bracket syntax is inspired by Raku's hyper operators.
+Full set: `[+]`, `[-]`, `[*]`, `[/]`, `[^]`, `[%]` for arithmetic, plus `[lg]`, `[log]`, `[ln]` for logarithms. The log hyper operators work differently from the arithmetic ones — they compute the sum of the log function applied to each value, not a left-associative reduction. A quick entropy calculation:
+
+```sh
+gt '0.25 0.5 0.25 [lg]'      # → -5  (information theory entropy bits)
+```
+
+The square-bracket syntax is inspired by Raku's hyper operators.
 
 => https://raku.org 
 
@@ -151,6 +168,13 @@ gt '72 68 gte 100 lte +'       # → 2 (both checks pass, temp is in range)
 gt '105 68 gte 100 lte +'      # → 1 (out of range)
 ```
 
+Booleans also do plain arithmetic, which is occasionally useful:
+
+```sh
+gt 'true true +'               # → 2 (1 + 1)
+gt 'false 5 +'                 # → 5 (0 + 5)
+```
+
 ## Variables and symbols
 
 Store values with three assignment styles:
@@ -163,7 +187,16 @@ gt 'rate 100Mbps ='            # standard (or rate = 100Mbps)
 
 `vars` lists them, `clear` wipes all variables and constants, `:name d` deletes one. In REPL mode, variables persist to disk between sessions.
 
-Symbols (the `:x` syntax) are named placeholders on the stack. They're how you do explicit variable assignment and deletion without ambiguity. Bare identifiers that don't match any variable or constant also push as symbols.
+Symbols (the `:x` syntax) are named placeholders on the stack. The `:` prefix makes intent explicit: `:x` always pushes the symbol `x`, even if a variable named `x` already exists. This is how you delete a variable without ambiguity, and how you push a name onto the stack without resolving it.
+
+```sh
+> x 10 :=                     # define x
+> x                           # pushes 10 (variable resolved)
+> :x                          # pushes :x (the symbol itself)
+> :x d                        # deletes the variable x
+```
+
+Bare identifiers that don't match any variable or constant also push as symbols.
 
 ## Built-in constants
 
@@ -177,6 +210,8 @@ gt 'sqrt2 sqrt3 *'             # → 2.449 (√6)
 ```
 
 Greek letter aliases work too: `π`, `τ`, `φ`, `√2`, `√3`, `√5`.
+
+There's also a `constants` command that lists all 36 in one shot. Edge cases are covered too — `inf`, `-inf`, and `nan` exist as constants if you ever need them.
 
 ## The metrics system
 
@@ -242,15 +277,45 @@ gt '1GB 1024MB eq'             # → false (SI: 1GB = 1000MB)
 Define your own units:
 
 ```sh
-custom define reel 304.8 Distance    # surveyor's reel
-custom define fortnight 1209600 Time
+custom define reel 304.8 Distance      # surveyor's reel
+custom define fortnight 1209600 Time   # 14 days
+custom define cup 240 Weight           # cooking measure
 ```
 
-Then use them like built-ins: `5reel @m convert` → 1524.
+Then use them like built-ins:
+
+```sh
+> 5reel @m convert
+1524
+> 2fortnight @day convert
+28
+> 3cup @g convert
+720
+```
 
 ### SI vs IEC modes
 
 Data size units have two modes. SI (default) uses powers of 1000. IEC uses powers of 1024. Switch with `metric decimal set` / `metric binary set`. The dedicated IEC units (KiB, MiB, GiB) are always unambiguous.
+
+### Discovering metrics
+
+You can explore what's available without leaving the REPL:
+
+```sh
+> metric list
+DataRate, DataSize, Distance, Speed, Time, Universal, Weight
+> metric DataRate
+Gbps, Kbps, Mbps, Tbps, bps
+```
+
+`metric compatible` checks whether two values can be combined before you try:
+
+```sh
+> 1km 5mi metric compatible
+km (Distance) and mi (Distance): true
+> 100Mbps 2hr metric compatible
+Mbps (DataRate) and hr (Time): false
+```
 
 ## Stack manipulation
 
@@ -262,7 +327,7 @@ Five operators for managing the RPN stack:
 - `show` / `showstack` / `print` — display the stack without modifying it
 - `clear` — clear all variables and constants
 
-`dup` and `swap` come up a lot. Square a number: `7 dup *` → 49. Reverse operand order: `2 10 swap /` → 5 (instead of 0.2).
+`dup` and `swap` come up a lot. Square a number: `7 dup *` → 49. Reverse operand order: `2 10 swap /` → 5 (instead of 0.2). `pop` discards the top value if you pushed something by accident: `5 6 pop` → 5.
 
 ## Rational number mode
 
@@ -296,9 +361,16 @@ REPL-only. Has a known limitation with non-dyadic decimals and metric operations
 
 Run `gt` with no arguments when attached to a terminal and you get the interactive session. Command history (1000 entries, persisted to `~/.gt_history`), tab completion, Emacs-style line editing, Ctrl+R reverse search.
 
-Variables save to disk between sessions. Session logging with `--log session.log`. Session state lives in `~/.local/state/gt/vars`.
+Variables save to disk between sessions. Session state lives in `~/.local/state/gt/vars`. For auditing or note-taking, session logging works like this:
 
-Built-in REPL commands: `help`, `clear`, `quit`/`exit`, `rpn`/`calc`, `rat`, `stack`. Tab-completes.
+```sh
+$ gt --log calc-session.log
+> 1Gbps 1hr *
+> @GB convert
+> quit
+```
+
+Built-in REPL commands: `help`, `clear`, `quit`/`exit`, `rpn`/`calc`, `rat`, `stack`. `stack` is a shorthand hint for viewing the RPN stack. Tab-completes.
 
 Here's what a session looks like:
 
@@ -407,6 +479,8 @@ go install codeberg.org/snonux/gt/cmd/gt@latest
 ```
 
 Or from the source directory: `mage install`.
+
+One quirk: there are no `-h` or `--help` flags. `gt version` gives you the version, and bare `gt` with no TTY prints usage. If you pass `-h`, `gt` tries to evaluate it as RPN and errors. It's intentional and keeps the surface area small.
 
 ## Wrapping up
 
