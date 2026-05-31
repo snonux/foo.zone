@@ -1,4 +1,4 @@
-# gt a calculator - a calculator built with local LLMs
+# `gt` calculator - a calculator built with local LLMs
 
 > Published at 2026-05-31T14:24:10+03:00
 
@@ -23,7 +23,7 @@ And no, this wasn't vibe-coded. I used a specific technique and a set of AI skil
 
 ## Table of Contents
 
-* [⇢ gt a calculator - a calculator built with local LLMs](#gt-a-calculator---a-calculator-built-with-local-llms)
+* [⇢ `gt` calculator - a calculator built with local LLMs](#gt-calculator---a-calculator-built-with-local-llms)
 * [⇢ ⇢ The motivation](#the-motivation)
 * [⇢ ⇢ What it does](#what-it-does)
 * [⇢ ⇢ Percentage calculations](#percentage-calculations)
@@ -424,7 +424,7 @@ I will write another blog post at some point about my setup and what I learned f
 
 Other related posts:
 
-[2026-06-01 gt a calculator - a calculator built with local LLMs (You are currently reading this)](./2026-06-01-gt-calculator.md)  
+[2026-06-01 `gt` calculator - a calculator built with local LLMs (You are currently reading this)](./2026-06-01-gt-calculator.md)  
 [2025-08-05 Local LLM for Coding with Ollama on macOS](./2025-08-05-local-coding-llm-with-ollama.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)

@@ -2,7 +2,7 @@
 
 ## To be in the .zone!
 
-[2026-06-01 - gt a calculator - a calculator built with local LLMs](./2026-06-01-gt-calculator.md)  
+[2026-06-01 - `gt` calculator - a calculator built with local LLMs](./2026-06-01-gt-calculator.md)  
 [2026-05-17 - Unveiling I/O Riot NG — Part 3: under the hood](./2026-05-17-unveiling-ior-ng-part-3.md)  
 [2026-05-11 - Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
 [2026-05-08 - Unveiling I/O Riot NG — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
