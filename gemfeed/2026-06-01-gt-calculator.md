@@ -4,7 +4,7 @@
 
 I created a calculator. Not because the world needed another one, but because I wanted to test something: how well do local LLMs hold up as pair programmers on a real project?
 
-The answer is: well enough.
+The answer is: well enough for small projects like this.
 
 `gt` is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than" — `gt` is a comparison operator the calculator supports. Plus it was free in my terminal and I liked the short name.
 
