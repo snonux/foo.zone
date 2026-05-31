@@ -6,7 +6,7 @@ I created a calculator. Not because the world needed another one, but because I 
 
 The answer is: well enough for small projects like this.
 
-`gt` is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than" — `gt` is a comparison operator the calculator supports. Plus it was free in my terminal and I liked the short name.
+`gt` is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than" — `gt` is a comparison operator the calculator supports. Plus it was free in my shell (`gt` command wasn't used yet by another tool) and I liked the short name.
 
 If you want the full feature guide, the README links to a detailed doc for every feature covered here and more:
 

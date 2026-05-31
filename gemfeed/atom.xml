@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-05-31T14:43:47+03:00</updated>
+    <updated>2026-05-31T14:51:20+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -26,7 +26,7 @@
 <br />
 <span>The answer is: well enough for small projects like this.</span><br />
 <br />
-<span><span class='inlinecode'>gt</span> is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than" — <span class='inlinecode'>gt</span> is a comparison operator the calculator supports. Plus it was free in my terminal and I liked the short name.</span><br />
+<span><span class='inlinecode'>gt</span> is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than" — <span class='inlinecode'>gt</span> is a comparison operator the calculator supports. Plus it was free in my shell (<span class='inlinecode'>gt</span> command wasn&#39;t used yet by another tool) and I liked the short name.</span><br />
 <br />
 <span>If you want the full feature guide, the README links to a detailed doc for every feature covered here and more:</span><br />
 <br />
