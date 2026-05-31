@@ -2,7 +2,7 @@
 
 > Published at 2026-05-31T14:24:10+03:00
 
-I created a calculator. Not because the world needed another one, but because I wanted to test something: how well do local LLMs hold up as pair programmers on a real project?
+I created a calculator. Not because the world needed another one, but because I wanted to test something: How well do local LLMs hold up as pair programmers on a real project? I want to be independent of the big LLM providers like Anthropic, OpenAI, and company for this `gt`-project.
 
 The answer is: well enough for small projects like this.
 
@@ -13,7 +13,7 @@ If you want the full feature guide, the README links to a detailed doc for every
 [gt on Codeberg](https://codeberg.org/snonux/gt)  
 [![gt logo](./gt-calculator/logo.svg "gt logo")](./gt-calculator/logo.svg)  
 
-The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn't run them locally either — I rented a Hyperstack VMs with NVidia GPU just to get a feel for the quality before investing in hardware. The point was to test models that don't require a cloud API and could realistically run on your own box.
+The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn't run them locally either — I rented Hyperstack VMs with NVidia GPU just to get a feel for the quality before investing in hardware. The point was to test models that don't require a cloud API and could realistically run on your own box.
 
 [https://www.hyperstack.cloud/](https://www.hyperstack.cloud/)  
 
