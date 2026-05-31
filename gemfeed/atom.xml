@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-05-31T14:32:45+03:00</updated>
+    <updated>2026-05-31T14:37:53+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -49,6 +49,7 @@
 <li>⇢ <a href='#what-it-does'>What it does</a></li>
 <li>⇢ <a href='#percentage-calculations'>Percentage calculations</a></li>
 <li>⇢ <a href='#rpn-arithmetic'>RPN arithmetic</a></li>
+<li>⇢ ⇢ <a href='#modulo'>Modulo</a></li>
 <li>⇢ ⇢ <a href='#logarithms'>Logarithms</a></li>
 <li>⇢ ⇢ <a href='#hyper-operators-n-ary'>Hyper operators (n-ary)</a></li>
 <li>⇢ ⇢ <a href='#comparisons-and-booleans'>Comparisons and booleans</a></li>
@@ -60,6 +61,7 @@
 <li>⇢ ⇢ <a href='#metric-aware-arithmetic'>Metric-aware arithmetic</a></li>
 <li>⇢ ⇢ <a href='#custom-metrics'>Custom metrics</a></li>
 <li>⇢ ⇢ <a href='#si-vs-iec-modes'>SI vs IEC modes</a></li>
+<li>⇢ ⇢ <a href='#discovering-metrics'>Discovering metrics</a></li>
 <li>⇢ <a href='#stack-manipulation'>Stack manipulation</a></li>
 <li>⇢ <a href='#rational-number-mode'>Rational number mode</a></li>
 <li>⇢ <a href='#the-repl'>The REPL</a></li>
@@ -128,6 +130,18 @@ gt <font color="#808080">'3 4 + 5 6 + *'</font>             <i><font color="silv
 <br />
 <span>The fast integer power operator <span class='inlinecode'>**</span> uses binary exponentiation (O(log n) instead of O(n)). So <span class='inlinecode'>2 100 **</span> does about 7 multiplications instead of 99. It only accepts integer exponents — use <span class='inlinecode'>^</span> for fractional powers.</span><br />
 <br />
+<h3 style='display: inline' id='modulo'>Modulo</h3><br />
+<br />
+<span><span class='inlinecode'>%</span> gives the remainder after division:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'17 5 %'</font>                    <i><font color="silver"># → 2</font></i>
+gt <font color="#808080">'100 7 %'</font>                   <i><font color="silver"># → 2</font></i>
+</pre>
+<br />
 <h3 style='display: inline' id='logarithms'>Logarithms</h3><br />
 <br />
 <span>Three unary operators for when you need them:</span><br />
@@ -159,7 +173,16 @@ gt <font color="#808080">'2 5 10 [*]'</font>               <i><font color="silve
 gt <font color="#808080">'1000 2 2 2 2 [/]'</font>         <i><font color="silver"># → 62.5</font></i>
 </pre>
 <br />
-<span>Full set: <span class='inlinecode'>[+]</span>, <span class='inlinecode'>[-]</span>, <span class='inlinecode'>[*]</span>, <span class='inlinecode'>[/]</span>, <span class='inlinecode'>[^]</span>, <span class='inlinecode'>[%]</span> for arithmetic, plus <span class='inlinecode'>[lg]</span>, <span class='inlinecode'>[log]</span>, <span class='inlinecode'>[ln]</span> for logarithms. The log hyper operators work differently from the arithmetic ones — they compute the sum of the log function applied to each value, not a left-associative reduction. The square-bracket syntax is inspired by Raku&#39;s hyper operators.</span><br />
+<span>Full set: <span class='inlinecode'>[+]</span>, <span class='inlinecode'>[-]</span>, <span class='inlinecode'>[*]</span>, <span class='inlinecode'>[/]</span>, <span class='inlinecode'>[^]</span>, <span class='inlinecode'>[%]</span> for arithmetic, plus <span class='inlinecode'>[lg]</span>, <span class='inlinecode'>[log]</span>, <span class='inlinecode'>[ln]</span> for logarithms. The log hyper operators work differently from the arithmetic ones — they compute the sum of the log function applied to each value, not a left-associative reduction. A quick entropy calculation:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'0.25 0.5 0.25 [lg]'</font>      <i><font color="silver"># → -5  (information theory entropy bits)</font></i>
+</pre>
+<br />
+<span>The square-bracket syntax is inspired by Raku&#39;s hyper operators.</span><br />
 <br />
 <a class='textlink' href='https://raku.org'>https://raku.org</a><br />
 <br />
@@ -196,6 +219,16 @@ http://www.gnu.org/software/src-highlite -->
 gt <font color="#808080">'105 68 gte 100 lte +'</font>      <i><font color="silver"># → 1 (out of range)</font></i>
 </pre>
 <br />
+<span>Booleans also do plain arithmetic, which is occasionally useful:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>gt <font color="#808080">'true true +'</font>               <i><font color="silver"># → 2 (1 + 1)</font></i>
+gt <font color="#808080">'false 5 +'</font>                 <i><font color="silver"># → 5 (0 + 5)</font></i>
+</pre>
+<br />
 <h2 style='display: inline' id='variables-and-symbols'>Variables and symbols</h2><br />
 <br />
 <span>Store values with three assignment styles:</span><br />
@@ -211,7 +244,19 @@ gt <font color="#808080">'rate 100Mbps ='</font>            <i><font color="silv
 <br />
 <span><span class='inlinecode'>vars</span> lists them, <span class='inlinecode'>clear</span> wipes all variables and constants, <span class='inlinecode'>:name d</span> deletes one. In REPL mode, variables persist to disk between sessions.</span><br />
 <br />
-<span>Symbols (the <span class='inlinecode'>:x</span> syntax) are named placeholders on the stack. They&#39;re how you do explicit variable assignment and deletion without ambiguity. Bare identifiers that don&#39;t match any variable or constant also push as symbols.</span><br />
+<span>Symbols (the <span class='inlinecode'>:x</span> syntax) are named placeholders on the stack. The <span class='inlinecode'>:</span> prefix makes intent explicit: <span class='inlinecode'>:x</span> always pushes the symbol <span class='inlinecode'>x</span>, even if a variable named <span class='inlinecode'>x</span> already exists. This is how you delete a variable without ambiguity, and how you push a name onto the stack without resolving it.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; x <font color="#000000">10</font> :=                     <i><font color="silver"># define x</font></i>
+&gt; x                           <i><font color="silver"># pushes 10 (variable resolved)</font></i>
+&gt; :x                          <i><font color="silver"># pushes :x (the symbol itself)</font></i>
+&gt; :x d                        <i><font color="silver"># deletes the variable x</font></i>
+</pre>
+<br />
+<span>Bare identifiers that don&#39;t match any variable or constant also push as symbols.</span><br />
 <br />
 <h2 style='display: inline' id='built-in-constants'>Built-in constants</h2><br />
 <br />
@@ -228,6 +273,8 @@ gt <font color="#808080">'sqrt2 sqrt3 *'</font>             <i><font color="silv
 </pre>
 <br />
 <span>Greek letter aliases work too: <span class='inlinecode'>π</span>, <span class='inlinecode'>τ</span>, <span class='inlinecode'>φ</span>, <span class='inlinecode'>√2</span>, <span class='inlinecode'>√3</span>, <span class='inlinecode'>√5</span>.</span><br />
+<br />
+<span>There&#39;s also a <span class='inlinecode'>constants</span> command that lists all 36 in one shot. Edge cases are covered too — <span class='inlinecode'>inf</span>, <span class='inlinecode'>-inf</span>, and <span class='inlinecode'>nan</span> exist as constants if you ever need them.</span><br />
 <br />
 <h2 style='display: inline' id='the-metrics-system'>The metrics system</h2><br />
 <br />
@@ -311,15 +358,54 @@ gt <font color="#808080">'1GB 1024MB eq'</font>             <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>custom define reel <font color="#000000">304.8</font> Distance    <i><font color="silver"># surveyor's reel</font></i>
-custom define fortnight <font color="#000000">1209600</font> Time
+<pre>custom define reel <font color="#000000">304.8</font> Distance      <i><font color="silver"># surveyor's reel</font></i>
+custom define fortnight <font color="#000000">1209600</font> Time   <i><font color="silver"># 14 days</font></i>
+custom define cup <font color="#000000">240</font> Weight           <i><font color="silver"># cooking measure</font></i>
 </pre>
 <br />
-<span>Then use them like built-ins: <span class='inlinecode'>5reel @m convert</span> → 1524.</span><br />
+<span>Then use them like built-ins:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; 5reel @m convert
+<font color="#000000">1524</font>
+&gt; 2fortnight @day convert
+<font color="#000000">28</font>
+&gt; 3cup @g convert
+<font color="#000000">720</font>
+</pre>
 <br />
 <h3 style='display: inline' id='si-vs-iec-modes'>SI vs IEC modes</h3><br />
 <br />
 <span>Data size units have two modes. SI (default) uses powers of 1000. IEC uses powers of 1024. Switch with <span class='inlinecode'>metric decimal set</span> / <span class='inlinecode'>metric binary set</span>. The dedicated IEC units (KiB, MiB, GiB) are always unambiguous.</span><br />
+<br />
+<h3 style='display: inline' id='discovering-metrics'>Discovering metrics</h3><br />
+<br />
+<span>You can explore what&#39;s available without leaving the REPL:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; metric list
+DataRate, DataSize, Distance, Speed, Time, Universal, Weight
+&gt; metric DataRate
+Gbps, Kbps, Mbps, Tbps, bps
+</pre>
+<br />
+<span><span class='inlinecode'>metric compatible</span> checks whether two values can be combined before you try:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt; 1km 5mi metric compatible
+km (Distance) and mi (Distance): <b><u><font color="#000000">true</font></u></b>
+&gt; 100Mbps 2hr metric compatible
+Mbps (DataRate) and hr (Time): <b><u><font color="#000000">false</font></u></b>
+</pre>
 <br />
 <h2 style='display: inline' id='stack-manipulation'>Stack manipulation</h2><br />
 <br />
@@ -331,7 +417,7 @@ custom define fortnight <font color="#000000">1209600</font> Time
 <span>- <span class='inlinecode'>show</span> / <span class='inlinecode'>showstack</span> / <span class='inlinecode'>print</span> — display the stack without modifying it</span><br />
 <span>- <span class='inlinecode'>clear</span> — clear all variables and constants</span><br />
 <br />
-<span><span class='inlinecode'>dup</span> and <span class='inlinecode'>swap</span> come up a lot. Square a number: <span class='inlinecode'>7 dup *</span> → 49. Reverse operand order: <span class='inlinecode'>2 10 swap /</span> → 5 (instead of 0.2).</span><br />
+<span><span class='inlinecode'>dup</span> and <span class='inlinecode'>swap</span> come up a lot. Square a number: <span class='inlinecode'>7 dup *</span> → 49. Reverse operand order: <span class='inlinecode'>2 10 swap /</span> → 5 (instead of 0.2). <span class='inlinecode'>pop</span> discards the top value if you pushed something by accident: <span class='inlinecode'>5 6 pop</span> → 5.</span><br />
 <br />
 <h2 style='display: inline' id='rational-number-mode'>Rational number mode</h2><br />
 <br />
@@ -371,9 +457,19 @@ Rational mode enabled
 <br />
 <span>Run <span class='inlinecode'>gt</span> with no arguments when attached to a terminal and you get the interactive session. Command history (1000 entries, persisted to <span class='inlinecode'>~/.gt_history</span>), tab completion, Emacs-style line editing, Ctrl+R reverse search.</span><br />
 <br />
-<span>Variables save to disk between sessions. Session logging with <span class='inlinecode'>--log session.log</span>. Session state lives in <span class='inlinecode'>~/.local/state/gt/vars</span>.</span><br />
+<span>Variables save to disk between sessions. Session state lives in <span class='inlinecode'>~/.local/state/gt/vars</span>. For auditing or note-taking, session logging works like this:</span><br />
 <br />
-<span>Built-in REPL commands: <span class='inlinecode'>help</span>, <span class='inlinecode'>clear</span>, <span class='inlinecode'>quit</span>/<span class='inlinecode'>exit</span>, <span class='inlinecode'>rpn</span>/<span class='inlinecode'>calc</span>, <span class='inlinecode'>rat</span>, <span class='inlinecode'>stack</span>. Tab-completes.</span><br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ gt --log calc-session.log
+&gt; 1Gbps 1hr *
+&gt; @GB convert
+&gt; quit
+</pre>
+<br />
+<span>Built-in REPL commands: <span class='inlinecode'>help</span>, <span class='inlinecode'>clear</span>, <span class='inlinecode'>quit</span>/<span class='inlinecode'>exit</span>, <span class='inlinecode'>rpn</span>/<span class='inlinecode'>calc</span>, <span class='inlinecode'>rat</span>, <span class='inlinecode'>stack</span>. <span class='inlinecode'>stack</span> is a shorthand hint for viewing the RPN stack. Tab-completes.</span><br />
 <br />
 <span>Here&#39;s what a session looks like:</span><br />
 <br />
@@ -500,6 +596,8 @@ http://www.gnu.org/software/src-highlite -->
 </pre>
 <br />
 <span>Or from the source directory: <span class='inlinecode'>mage install</span>.</span><br />
+<br />
+<span>One quirk: there are no <span class='inlinecode'>-h</span> or <span class='inlinecode'>--help</span> flags. <span class='inlinecode'>gt version</span> gives you the version, and bare <span class='inlinecode'>gt</span> with no TTY prints usage. If you pass <span class='inlinecode'>-h</span>, <span class='inlinecode'>gt</span> tries to evaluate it as RPN and errors. It&#39;s intentional and keeps the surface area small.</span><br />
 <br />
 <h2 style='display: inline' id='wrapping-up'>Wrapping up</h2><br />
 <br />
