@@ -13,7 +13,7 @@ If you want the full feature guide, the README links to a detailed doc for every
 => https://codeberg.org/snonux/gt gt on Codeberg
 => ./gt-calculator/logo.svg gt logo
 
-The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn't run them locally either — I rented a Hyperstack GPU just to get a feel for the quality before investing in hardware. The point was to test models that don't require a cloud API and could realistically run on your own box.
+The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn't run them locally either — I rented a Hyperstack VMs with NVidia GPU just to get a feel for the quality before investing in hardware. The point was to test models that don't require a cloud API and could realistically run on your own box.
 
 => https://www.hyperstack.cloud/
 
