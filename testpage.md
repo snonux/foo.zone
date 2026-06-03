@@ -57,6 +57,11 @@ X-XSS-Protection: 0
 X-Frame-Options: SAMEORIGIN
 ```
 
+```
+This baretext block contains a very long line to test that the CSS white-space: pre-wrap property wraps it correctly without causing horizontal scrollbars in the HTML output.
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+```
+
 Foo0
 Bar0
 
