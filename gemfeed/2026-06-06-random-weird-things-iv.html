@@ -9,16 +9,19 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-random-weird-things-vi.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-random-weird-things-vi.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-06-06-random-weird-things-iv.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
 </p>
 <h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅳ</h1><br />
+<br />
+<span class='quote'>Published at 2026-06-06T08:54:00+03:00</span><br />
 <br />
 <span>Every so often I stumble upon random, weird, and completely unexpected things on the internet. I thought it would be neat to share them here from time to time. This is the fourth run.</span><br />
 <br />
 <pre>
    /\_/\      /\_/\      /\_/\  
   ( o.o )    ( o.o )    ( o.o ) 
-   &gt; ^ &lt;      &gt; ^ &lt;      &gt; ^ &lt;  
+   &gt; ^ &lt;      &gt; ^ &lt;      &gt; ^ &lt;
+   
    /\_/\    Miaaauuuu....
   ( o.o )
    &gt; ^ &lt; 
@@ -27,6 +30,7 @@
 <a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ</a><br />
 <a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ</a><br />
 <a class='textlink' href='./2025-08-15-random-weird-things-iii.html'>2025-08-15 Random Weird Things - Part Ⅲ</a><br />
+<a class='textlink' href='./2026-06-06-random-weird-things-iv.html'>2026-06-06 Random Weird Things - Part Ⅳ (You are currently reading this)</a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
@@ -59,7 +63,7 @@
 <br />
 <h2 style='display: inline' id='33-llm-via-dns'>33. LLM via DNS</h2><br />
 <br />
-<span>You can query an LLM using nothing but DNS. Just run <span class='inlinecode'>dig @ch.at "what is golang" TXT +short</span> and you get back an answer in the TXT records. No browser, no API key. It even works over SSH tunnels. I tried it on a server with zero internet tools installed and it just worked.</span><br />
+<span>You can query an LLM using nothing but DNS. Just run <span class='inlinecode'>dig @ch.at "what is golang" TXT +short</span> and you get back an answer in the TXT records. No browser, no API key. It even works over SSH tunnels.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -77,7 +81,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</h2><br />
 <br />
-<span>This tiny HTML/JS snippet (under 125 bytes) renders a swirling black hole in your browser tab. No frameworks, no libraries, just code-golf magic. I stared at it way longer than I care to admit.</span><br />
+<span>Thi                                                                    le in your browser tab. No frameworks, no libraries, just code-golf magic. I stared at it way longer than I care to admit.</span><br />
 <br />
 <a class='textlink' href='https://aem1k.com/blackhole/'>Black Hole</a><br />
 <br />
@@ -90,7 +94,15 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='36-llm-rescuer-'>36. LLM Rescuer 🤖💰</h2><br />
 <br />
-<span>LLM Rescuer is a tiny Ruby wrapper that retries, sanitizes outputs, handles errors, and has some token-saving logic so you don&#39;t burn through your budget. It interprets nil references automatically based on the context. Examples:</span><br />
+<span>LLM Rescuer is a tiny Ruby gem that hooks into Ruby&#39;s method dispatch so that calling a method on <span class='inlinecode'>nil</span> doesn&#39;t crash — it asks an LLM what the return value should be instead. When a <span class='inlinecode'>NoMethodError</span> would normally explode, the gem catches it, packages up the context (what method was called, what the variable name suggests, maybe the surrounding code), fires that off to an actual LLM API, and returns whatever the model hallucinates as sensible.</span><br />
+<br />
+<span>So <span class='inlinecode'>user.email</span> on a nil <span class='inlinecode'>user</span> doesn&#39;t die. It asks the LLM "someone called <span class='inlinecode'>.email</span> on a <span class='inlinecode'>user</span> that turned out to be nil, what should I return?" and the model says "probably <span class='inlinecode'>&#39;no-reply@example.com&#39;</span>". The gem swallows the error and hands you that string.</span><br />
+<br />
+<span>It tries to keep API costs down by sending only minimal context — just the method name and variable name rather than your whole codebase — but every nil-hit still costs tokens and adds latency.</span><br />
+<br />
+<span>This is runtime monkey-patching powered by a remote AI. Your nil bugs don&#39;t crash, they silently return AI-guessed values. In production this would be a debugging nightmare.</span><br />
+<br />
+<span>Examples:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -118,7 +130,36 @@ answer = meaning_of_life.to_i
 <br />
 <h2 style='display: inline' id='37-filesystem-backed-by-an-llm'>37. Filesystem Backed by an LLM</h2><br />
 <br />
-<span>Mount a folder, and every time you read or write a file, an LLM decides what the contents should be. Want a config file? Ask the LLM. Need a todo list that rewrites itself when you look at it? There you go. There&#39;s a working FUSE implementation. Equal parts brilliant and terrifying.</span><br />
+<span>Mount a folder via FUSE, and every time you read or write a file, an LLM decides what the contents should be. There&#39;s a real working implementation. You literally <span class='inlinecode'>cat</span> a file and the LLM generates the output on the fly.</span><br />
+<br />
+<span>Example usage:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ echo <font color="#808080">"a nginx config for a reverse proxy to localhost:8080"</font> &gt; /mnt/llmfs/nginx.conf
+$ cat /mnt/llmfs/nginx.conf
+server {
+    listen <font color="#000000">80</font>;
+    location / {
+        proxy_pass http://localhost:<font color="#000000">8080</font>;
+    }
+}
+
+$ echo <font color="#808080">"my todo list for today"</font> &gt; /mnt/llmfs/todo.txt
+$ cat /mnt/llmfs/todo.txt
+- Write blog post
+- Fix that bug <b><u><font color="#000000">in</font></u></b> prod
+- Drink coffee
+
+$ cat /mnt/llmfs/todo.txt
+- Write blog post (<b><u><font color="#000000">done</font></u></b>?)
+- Fix that bug <b><u><font color="#000000">in</font></u></b> prod
+- Drink more coffee
+</pre>
+<br />
+<span>The LLM hallucinates the file contents every single read. Your todo list literally mutates when you look at it. Want a config file? Just describe it in the filename or write a prompt into it. Equal parts brilliant and terrifying.</span><br />
 <br />
 <a class='textlink' href='https://healeycodes.com/filesystem-backed-by-an-llm'>Filesystem Backed by an LLM</a><br />
 <br />
