@@ -1,11 +1,211 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-05-31T22:32:28+03:00</updated>
+    <updated>2026-06-06T08:54:01+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Random Weird Things - Part Ⅳ</title>
+        <link href="gemini://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi" />
+        <id>gemini://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi</id>
+        <updated>2026-06-06T08:54:00+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>Every so often I stumble upon random, weird, and completely unexpected things on the internet. I thought it would be neat to share them here from time to time. This is the fourth run.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅳ</h1><br />
+<br />
+<span>Every so often I stumble upon random, weird, and completely unexpected things on the internet. I thought it would be neat to share them here from time to time. This is the fourth run.</span><br />
+<br />
+<pre>
+   /\_/\      /\_/\      /\_/\  
+  ( o.o )    ( o.o )    ( o.o ) 
+   &gt; ^ &lt;      &gt; ^ &lt;      &gt; ^ &lt;
+   
+   /\_/\    Miaaauuuu....
+  ( o.o )
+   &gt; ^ &lt; 
+</pre>
+<br />
+<a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ</a><br />
+<a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ</a><br />
+<a class='textlink' href='./2025-08-15-random-weird-things-iii.html'>2025-08-15 Random Weird Things - Part Ⅲ</a><br />
+<a class='textlink' href='./2026-06-06-random-weird-things-iv.html'>2026-06-06 Random Weird Things - Part Ⅳ (You are currently reading this)</a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#random-weird-things---part-'>Random Weird Things - Part Ⅳ</a></li>
+<li>⇢ <a href='#31-gui-apps-in-your-terminal'>31. GUI Apps in Your Terminal</a></li>
+<li>⇢ <a href='#32-templeos'>32. TempleOS</a></li>
+<li>⇢ <a href='#33-llm-via-dns'>33. LLM via DNS</a></li>
+<li>⇢ <a href='#34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</a></li>
+<li>⇢ <a href='#35-loss32-win32-on-linux'>35. loss32: Win32 on Linux</a></li>
+<li>⇢ <a href='#36-llm-rescuer-'>36. LLM Rescuer 🤖💰</a></li>
+<li>⇢ <a href='#37-filesystem-backed-by-an-llm'>37. Filesystem Backed by an LLM</a></li>
+<li>⇢ <a href='#38-qr-code-with-pure-sql-in-postgres'>38. QR Code with Pure SQL in Postgres</a></li>
+<li>⇢ <a href='#39-the-sl-train-in-your-terminal'>39. The SL Train in Your Terminal</a></li>
+<li>⇢ <a href='#40-url-in-c-code-puzzle'>40. URL in C Code Puzzle</a></li>
+</ul><br />
+<h2 style='display: inline' id='31-gui-apps-in-your-terminal'>31. GUI Apps in Your Terminal</h2><br />
+<br />
+<span>term.everything is a from-scratch Wayland compositor that renders GUI apps inside your terminal. GTK, Qt, whatever — it just grabs it and draws it right there. You can run Firefox or GIMP over SSH and interact with it using your mouse. No X forwarding, no latency nonsense. It actually works.</span><br />
+<br />
+<a href='./random-weird-things-iv/term-everything.jpg'><img alt='term.everything demo' title='term.everything demo' src='./random-weird-things-iv/term-everything.jpg' /></a><br />
+<a class='textlink' href='https://github.com/mmulet/term.everything'>term.everything</a><br />
+<br />
+<h2 style='display: inline' id='32-templeos'>32. TempleOS</h2><br />
+<br />
+<span>Terry A. Davis spent years single-handedly building a complete 64-bit operating system from scratch because God told him to. It runs at 640×480, uses a custom language called HolyC, has its own compiler, and is designed as a temple. Boot it up and you get scripture, a talking parrot, and probably the weirdest OS you&#39;ll ever see. One of the most fascinating stories in computing.</span><br />
+<br />
+<a href='./random-weird-things-iv/templeos.png'><img alt='TempleOS screenshot' title='TempleOS screenshot' src='./random-weird-things-iv/templeos.png' /></a><br />
+<a class='textlink' href='https://templeos.org'>TempleOS</a><br />
+<br />
+<h2 style='display: inline' id='33-llm-via-dns'>33. LLM via DNS</h2><br />
+<br />
+<span>You can query an LLM using nothing but DNS. Just run <span class='inlinecode'>dig @ch.at "what is golang" TXT +short</span> and you get back an answer in the TXT records. No browser, no API key. It even works over SSH tunnels.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ dig @ch.at <font color="#808080">"what is golang"</font> TXT +short
+<font color="#808080">"Golang, or Go, is an open-source programming language developed by Google.</font>
+<font color="#808080">It was created to simplify the development of reliable and efficient software.</font>
+<font color="#808080">Go is known for its simplicity, strong concurrency support, and performance</font>
+<font color="#808080">comparable to C or C++. I"</font> <font color="#808080">"t features garbage collection, type safety, and</font>
+<font color="#808080">built-in support for concurrent programming through goroutines and channels.</font>
+<font color="#808080">Go is widely used for web servers, cloud services, and distributed systems due</font>
+<font color="#808080">to its efficiency and ease of deployme..."</font>
+</pre>
+<br />
+<h2 style='display: inline' id='34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</h2><br />
+<br />
+<span>Thi                                                                    le in your browser tab. No frameworks, no libraries, just code-golf magic. I stared at it way longer than I care to admit.</span><br />
+<br />
+<a class='textlink' href='https://aem1k.com/blackhole/'>Black Hole</a><br />
+<br />
+<h2 style='display: inline' id='35-loss32-win32-on-linux'>35. loss32: Win32 on Linux</h2><br />
+<br />
+<span>loss32 is a Linux distro where the entire desktop is classic Win32 apps running natively. ReactOS + WINE on steroids. You get the Windows 98/2000 vibe on a modern Linux kernel. It&#39;s not trying to be practical — it&#39;s pure nostalgia for people who miss the old Windows desktop but don&#39;t want the actual Windows.</span><br />
+<br />
+<a href='./random-weird-things-iv/loss32.png'><img alt='loss32 desktop screenshot' title='loss32 desktop screenshot' src='./random-weird-things-iv/loss32.png' /></a><br />
+<a class='textlink' href='https://loss32.org/'>loss32</a><br />
+<br />
+<h2 style='display: inline' id='36-llm-rescuer-'>36. LLM Rescuer 🤖💰</h2><br />
+<br />
+<span>LLM Rescuer is a tiny Ruby gem that hooks into Ruby&#39;s method dispatch so that calling a method on <span class='inlinecode'>nil</span> doesn&#39;t crash — it asks an LLM what the return value should be instead. When a <span class='inlinecode'>NoMethodError</span> would normally explode, the gem catches it, packages up the context (what method was called, what the variable name suggests, maybe the surrounding code), fires that off to an actual LLM API, and returns whatever the model hallucinates as sensible.</span><br />
+<br />
+<span>So <span class='inlinecode'>user.email</span> on a nil <span class='inlinecode'>user</span> doesn&#39;t die. It asks the LLM "someone called <span class='inlinecode'>.email</span> on a <span class='inlinecode'>user</span> that turned out to be nil, what should I return?" and the model says "probably <span class='inlinecode'>&#39;no-reply@example.com&#39;</span>". The gem swallows the error and hands you that string.</span><br />
+<br />
+<span>It tries to keep API costs down by sending only minimal context — just the method name and variable name rather than your whole codebase — but every nil-hit still costs tokens and adds latency.</span><br />
+<br />
+<span>This is runtime monkey-patching powered by a remote AI. Your nil bugs don&#39;t crash, they silently return AI-guessed values. In production this would be a debugging nightmare.</span><br />
+<br />
+<span>Examples:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Classic nil safety</font></i>
+user = find_user(id: <font color="#808080">"nonexistent"</font>) <i><font color="silver"># returns nil</font></i>
+puts user.email
+<i><font color="silver"># AI: "Analyzing context... user seems to need an email...</font></i>
+<i><font color="silver">#      returning 'no-reply@example.com'"</font></i>
+
+<i><font color="silver"># Shopping cart magic</font></i>
+cart = session[:cart] <i><font color="silver"># nil because session expired</font></i>
+total = cart.total_price
+<i><font color="silver"># AI: "This looks like e-commerce. Based on similar patterns,</font></i>
+<i><font color="silver">#      I'll return 0.0 to avoid charging $nil"</font></i>
+
+<i><font color="silver"># The existential crisis</font></i>
+meaning_of_life = <b><u><font color="#000000">nil</font></u></b>
+answer = meaning_of_life.to_i
+<i><font color="silver"># AI: "Clearly this should be 42. I've read Douglas Adams."</font></i>
+</pre>
+<br />
+<a class='textlink' href='https://github.com/barodeur/llm_rescuer'>LLM Rescuer</a><br />
+<br />
+<h2 style='display: inline' id='37-filesystem-backed-by-an-llm'>37. Filesystem Backed by an LLM</h2><br />
+<br />
+<span>Mount a folder via FUSE, and every time you read or write a file, an LLM decides what the contents should be. There&#39;s a real working implementation. You literally <span class='inlinecode'>cat</span> a file and the LLM generates the output on the fly.</span><br />
+<br />
+<span>Example usage:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>$ echo <font color="#808080">"a nginx config for a reverse proxy to localhost:8080"</font> &gt; /mnt/llmfs/nginx.conf
+$ cat /mnt/llmfs/nginx.conf
+server {
+    listen <font color="#000000">80</font>;
+    location / {
+        proxy_pass http://localhost:<font color="#000000">8080</font>;
+    }
+}
+
+$ echo <font color="#808080">"my todo list for today"</font> &gt; /mnt/llmfs/todo.txt
+$ cat /mnt/llmfs/todo.txt
+- Write blog post
+- Fix that bug <b><u><font color="#000000">in</font></u></b> prod
+- Drink coffee
+
+$ cat /mnt/llmfs/todo.txt
+- Write blog post (<b><u><font color="#000000">done</font></u></b>?)
+- Fix that bug <b><u><font color="#000000">in</font></u></b> prod
+- Drink more coffee
+</pre>
+<br />
+<span>The LLM hallucinates the file contents every single read. Your todo list literally mutates when you look at it. Want a config file? Just describe it in the filename or write a prompt into it. Equal parts brilliant and terrifying.</span><br />
+<br />
+<a class='textlink' href='https://healeycodes.com/filesystem-backed-by-an-llm'>Filesystem Backed by an LLM</a><br />
+<br />
+<h2 style='display: inline' id='38-qr-code-with-pure-sql-in-postgres'>38. QR Code with Pure SQL in Postgres</h2><br />
+<br />
+<span>Someone generated a full QR code using nothing but SQL queries inside PostgreSQL. No extensions, no external tools — just raw Postgres doing things it was never meant to do. I ran the example and watched a QR code materialize in the query result. Mad stuff.</span><br />
+<br />
+<a href='./random-weird-things-iv/pqr.webp'><img alt='QR code generated with pure SQL' title='QR code generated with pure SQL' src='./random-weird-things-iv/pqr.webp' /></a><br />
+<a class='textlink' href='https://tanelpoder.com/posts/generate-qr-code-with-pure-sql-in-postgres/'>Pure SQL QR Code</a><br />
+<br />
+<h2 style='display: inline' id='39-the-sl-train-in-your-terminal'>39. The SL Train in Your Terminal</h2><br />
+<br />
+<span>You mistype <span class='inlinecode'>ls</span> as <span class='inlinecode'>sl</span> and a steam locomotive comes chugging across your terminal. The SL program has been around for decades and it still cracks me up. There&#39;s even a flying train variant.</span><br />
+<br />
+<a href='./random-weird-things-iv/sl-train.gif'><img alt='SL train in action' title='SL train in action' src='./random-weird-things-iv/sl-train.gif' /></a><br />
+<a class='textlink' href='https://github.com/mtoyoda/sl'>sl</a><br />
+<br />
+<h2 style='display: inline' id='40-url-in-c-code-puzzle'>40. URL in C Code Puzzle</h2><br />
+<br />
+<span>The following C program compiles and runs perfectly:</span><br />
+<br />
+<pre>
+#include &lt;stdio.h&gt;
+
+int main(void) {
+    https://foo.zone
+    printf("hello, world\n");
+    return 0;
+}
+</pre>
+<br />
+<span>The <span class='inlinecode'>https:</span> becomes a label, the <span class='inlinecode'>//foo.zone</span> is just a comment. C parser shenanigans.</span><br />
+<br />
+<span>Found something weird lately? Send me a link!</span><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>`gt` calculator - a calculator built with local LLMs</title>
         <link href="gemini://foo.zone/gemfeed/2026-06-01-gt-calculator.gmi" />
@@ -11362,6 +11562,7 @@ ls -d -- !(.git|node_modules) <font color="#000000">2</font>&gt;/dev/null
 <a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ</a><br />
 <a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ</a><br />
 <a class='textlink' href='./2025-08-15-random-weird-things-iii.html'>2025-08-15 Random Weird Things - Part Ⅲ (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-06-06-random-weird-things-iv.html'>2026-06-06 Random Weird Things - Part Ⅳ</a><br />
 <br />
 <pre>
  /\_/\        /\_/\        /\_/\
@@ -18490,6 +18691,7 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2024-07-05-random-weird-things.html'>2024-07-05 Random Weird Things - Part Ⅰ</a><br />
 <a class='textlink' href='./2025-02-08-random-weird-things-ii.html'>2025-02-08 Random Weird Things - Part Ⅱ (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-08-15-random-weird-things-iii.html'>2025-08-15 Random Weird Things - Part Ⅲ</a><br />
+<a class='textlink' href='./2026-06-06-random-weird-things-iv.html'>2026-06-06 Random Weird Things - Part Ⅳ</a><br />
 <br />
 <pre>
 /\_/\           /\_/\
@@ -20311,211 +20513,6 @@ Waking up e8:ff:1e:d7:1c:a0...
 <a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
-<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</title>
-        <link href="gemini://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi" />
-        <id>gemini://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi</id>
-        <updated>2024-11-16T23:20:14+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>This is the first blog post about my f3s series for my self-hosting demands in my home lab. f3s? The 'f' stands for FreeBSD, and the '3s' stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-1-setting-the-stage'>f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</h1><br />
-<br />
-<span class='quote'>Published at 2024-11-16T23:20:14+02:00</span><br />
-<br />
-<span>This is the first blog post about my f3s series for my self-hosting demands in my home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I will use on FreeBSD-based physical machines.</span><br />
-<br />
-<span>I will post a new entry every month or so (there are too many other side projects for more frequent updates—I bet you can understand).</span><br />
-<br />
-<span>These are all the posts so far:</span><br />
-<br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
-<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
-<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
-<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
-<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
-<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
-<a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
-<br />
-<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
-<br />
-<span class='quote'>ChatGPT generated logo..</span><br />
-<br />
-<span>Let&#39;s begin...</span><br />
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#f3s-kubernetes-with-freebsd---part-1-setting-the-stage'>f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a></li>
-<li>⇢ <a href='#why-this-setup'>Why this setup?</a></li>
-<li>⇢ <a href='#the-infrastructure'>The infrastructure</a></li>
-<li>⇢ ⇢ <a href='#physical-freebsd-nodes-and-linux-vms'>Physical FreeBSD nodes and Linux VMs</a></li>
-<li>⇢ ⇢ <a href='#kubernetes-with-k3s-'>Kubernetes with k3s </a></li>
-<li>⇢ ⇢ <a href='#ha-volumes-for-k3s-with-hastzfs-and-nfs'>HA volumes for k3s with HAST/ZFS and NFS</a></li>
-<li>⇢ ⇢ <a href='#openbsdrelayd-to-the-rescue-for-external-connectivity'>OpenBSD/<span class='inlinecode'>relayd</span> to the rescue for external connectivity</a></li>
-<li>⇢ <a href='#data-integrity'>Data integrity</a></li>
-<li>⇢ ⇢ <a href='#periodic-backups'>Periodic backups</a></li>
-<li>⇢ ⇢ <a href='#power-protection'>Power protection</a></li>
-<li>⇢ <a href='#monitoring-keeping-an-eye-on-everything'>Monitoring: Keeping an eye on everything</a></li>
-<li>⇢ ⇢ <a href='#prometheus-and-grafana'>Prometheus and Grafana</a></li>
-<li>⇢ ⇢ <a href='#gogios-my-custom-alerting-system'>Gogios: My custom alerting system</a></li>
-<li>⇢ <a href='#conclusion'>Conclusion</a></li>
-</ul><br />
-<h2 style='display: inline' id='why-this-setup'>Why this setup?</h2><br />
-<br />
-<span>My previous setup was great for learning Terraform and AWS, but it is too expensive. Costs are under control there, but only because I am shutting down all containers after use (so they are offline ninety percent of the time and still cost around $20 monthly). With the new setup, I could run all containers 24/7 at home, which would still be cheaper in terms of electricity consumption. I have a 400 MBit/s uplink (I could have more if I wanted, but it is more than plenty for my use case already).</span><br />
-<br />
-<a class='textlink' href='./2024-02-04-from-babylon5.buetow.org-to-.cloud.html'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>.cloud</span></a><br />
-<br />
-<span>Migrating off all my containers from AWS ECS means I need a reliable and scalable environment to host my workloads. I wanted something:</span><br />
-<br />
-<ul>
-<li>To self-host all my open-source apps (Docker containers).</li>
-<li>Fully under my control (goodbye cloud vendor lock-in).</li>
-<li>Secure and redundant.</li>
-<li>Cost-efficient (after the initial hardware investment).</li>
-<li>Something I can poke around with and also pick up new skills.</li>
-</ul><br />
-<h2 style='display: inline' id='the-infrastructure'>The infrastructure</h2><br />
-<br />
-<span>This is still in progress, and I need to own the hardware. But in this first part of the blog series, I will outline what I intend to do.</span><br />
-<br />
-<a href='./f3s-kubernetes-with-freebsd-part-1/diagram.png'><img alt='Diagram' title='Diagram' src='./f3s-kubernetes-with-freebsd-part-1/diagram.png' /></a><br />
-<br />
-<h3 style='display: inline' id='physical-freebsd-nodes-and-linux-vms'>Physical FreeBSD nodes and Linux VMs</h3><br />
-<br />
-<span>The setup starts with three physical FreeBSD nodes deployed into my home LAN. On these, I&#39;m going to run Rocky Linux virtual machines with bhyve. Why Linux VMs in FreeBSD and not Linux directly? I want to leverage the great ZFS integration in FreeBSD (among other features), and I have been using FreeBSD for a while in my home lab. And with bhyve, there is a very performant hypervisor available which makes the Linux VMs de-facto run at native speed (another use case of mine would be maybe running a Windows bhyve VM on one of the nodes - but out of scope for this blog series).</span><br />
-<br />
-<a class='textlink' href='https://www.freebsd.org/'>https://www.freebsd.org/</a><br />
-<a class='textlink' href='https://wiki.freebsd.org/bhyve'>https://wiki.freebsd.org/bhyve</a><br />
-<br />
-<span>I selected Rocky Linux because it comes with long-term support (I don&#39;t want to upgrade the VMs every 6 months). Rocky Linux 9 will reach its end of life in 2032, which is plenty of time! Of course, there will be minor upgrades, but nothing will significantly break my setup.</span><br />
-<br />
-<a class='textlink' href='https://rockylinux.org/'>https://rockylinux.org/</a><br />
-<a class='textlink' href='https://wiki.rockylinux.org/rocky/version/'>https://wiki.rockylinux.org/rocky/version/</a><br />
-<br />
-<span>Furthermore, I am already using "RHEL-family" related distros at work and Fedora on my main personal laptop. Rocky Linux belongs to the same type of Linux distribution family, so I already feel at home here. I also used Rocky 9 before I switched to AWS ECS. Now, I am switching back in one sense or another ;-)</span><br />
-<br />
-<h3 style='display: inline' id='kubernetes-with-k3s-'>Kubernetes with k3s </h3><br />
-<br />
-<span>These Linux VMs form a three-node k3s Kubernetes cluster, where my containers will reside moving forward. The 3-node k3s cluster will be highly available (in <span class='inlinecode'>etcd</span> mode), and all apps will probably be deployed with Helm. Prometheus will also be running in k3s, collecting time-series metrics and handling monitoring. Additionally, a private Docker registry will be deployed into the k3s cluster, where I will store some of my self-created Docker images. k3s is the perfect distribution of Kubernetes for homelabbers due to its simplicity and the inclusion of the most useful features out of the box!</span><br />
-<br />
-<a class='textlink' href='https://k3s.io/'>https://k3s.io/</a><br />
-<br />
-<h3 style='display: inline' id='ha-volumes-for-k3s-with-hastzfs-and-nfs'>HA volumes for k3s with HAST/ZFS and NFS</h3><br />
-<br />
-<span>Persistent storage for the k3s cluster will be handled by highly available (HA) NFS shares backed by ZFS on the FreeBSD hosts. </span><br />
-<br />
-<span>On two of the three physical FreeBSD nodes, I will add a second SSD drive to each and dedicate it to a <span class='inlinecode'>zhast</span> ZFS pool. With HAST (FreeBSD&#39;s solution for highly available storage), this <span class='inlinecode'>pool</span> will be replicated at the byte level to a standby node.</span><br />
-<br />
-<span>A virtual IP (VIP) will point to the master node. When the master node goes down, the VIP will failover to the standby node, where the ZFS pool will be mounted. An NFS server will listen to both nodes. k3s will use the VIP to access the NFS shares.</span><br />
-<br />
-<a class='textlink' href='https://wiki.freebsd.org/HighlyAvailableStorage'>FreeBSD Wiki: Highly Available Storage</a><br />
-<br />
-<span>You can think of DRBD being the Linux equivalent to FreeBSD&#39;s HAST.</span><br />
-<br />
-<h3 style='display: inline' id='openbsdrelayd-to-the-rescue-for-external-connectivity'>OpenBSD/<span class='inlinecode'>relayd</span> to the rescue for external connectivity</h3><br />
-<br />
-<span>All apps should be reachable through the internet (e.g., from my phone or computer when travelling). For external connectivity and TLS management, I&#39;ve got two OpenBSD VMs (one hosted by OpenBSD Amsterdam and another hosted by Hetzner) handling public-facing services like DNS, relaying traffic, and automating Let&#39;s Encrypt certificates. </span><br />
-<br />
-<span>All of this (every Linux VM to every OpenBSD box) will be connected via WireGuard tunnels, keeping everything private and secure. There will be 6 WireGuard tunnels (3 k3s nodes times two OpenBSD VMs).</span><br />
-<br />
-<a class='textlink' href='https://en.wikipedia.org/wiki/WireGuard'>https://en.wikipedia.org/wiki/WireGuard</a><br />
-<br />
-<span>So, when I want to access a service running in k3s, I will hit an external DNS endpoint (with the authoritative DNS servers being the OpenBSD boxes). The DNS will resolve to the master OpenBSD VM (see my KISS highly-available with OpenBSD blog post), and from there, the <span class='inlinecode'>relayd</span> process (with a Let&#39;s Encrypt certificate—see my Let&#39;s Encrypt with OpenBSD and Rex blog post) will accept the TCP connection and forward it through the WireGuard tunnel to a reachable node port of one of the k3s nodes, thus serving the traffic.</span><br />
-<br />
-<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>KISS high-availability with OpenBSD</a><br />
-<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
-<br />
-<span>The OpenBSD setup described here already exists and is ready to use. The only thing that does not yet exist is the configuration of <span class='inlinecode'>relayd</span> to forward requests to k3s through the WireGuard tunnel(s).</span><br />
-<br />
-<h2 style='display: inline' id='data-integrity'>Data integrity</h2><br />
-<br />
-<h3 style='display: inline' id='periodic-backups'>Periodic backups</h3><br />
-<br />
-<span>Let&#39;s face it, backups are non-negotiable. </span><br />
-<br />
-<span>On the HAST master node, incremental and encrypted ZFS snapshots are created daily and automatically backed up to AWS S3 Glacier Deep Archive via CRON. I have a bunch of scripts already available, which I currently use for a similar purpose on my FreeBSD Home NAS server (an old ThinkPad T440 with an external USB drive enclosure, which I will eventually retire when the HAST setup is ready). I will copy them and slightly modify them to fit the purpose.</span><br />
-<br />
-<span>There&#39;s also <span class='inlinecode'>zfstools</span> in the ports, which helps set up an automatic snapshot regime:</span><br />
-<br />
-<a class='textlink' href='https://www.freshports.org/sysutils/zfstools'>https://www.freshports.org/sysutils/zfstools</a><br />
-<br />
-<span>The backup scripts also perform some zpool scrubbing now and then. A scrub once in a while keeps the trouble away.</span><br />
-<br />
-<h3 style='display: inline' id='power-protection'>Power protection</h3><br />
-<br />
-<span>Power outages are regularly in my area, so a UPS keeps the infrastructure running during short outages and protects the hardware. I&#39;m still trying to decide which hardware to get, and I still need one, as my previous NAS is simply an older laptop that already has a battery for power outages. However, there are plenty of options to choose from. My main criterion is that the UPS should be silent, as the whole setup will be installed in an upper shelf unit in my daughter&#39;s room. ;-)</span><br />
-<br />
-<h2 style='display: inline' id='monitoring-keeping-an-eye-on-everything'>Monitoring: Keeping an eye on everything</h2><br />
-<br />
-<span>I want to know when stuff breaks (ideally before it breaks), so monitoring is a big part of the plan.</span><br />
-<br />
-<h3 style='display: inline' id='prometheus-and-grafana'>Prometheus and Grafana</h3><br />
-<br />
-<span>Inside the k3s cluster, Prometheus will be deployed to handle metrics collection. It will be configured to scrape data from my Kubernetes workloads, nodes, and any services I monitor. Prometheus also integrates with Alertmanager to generate alerts based on predefined thresholds or conditions.</span><br />
-<br />
-<a class='textlink' href='https://prometheus.io'>https://prometheus.io</a><br />
-<br />
-<span>For visualization, Grafana will be deployed alongside Prometheus. I mostly just want dashboards for CPU, memory, and pod health — the usual stuff. Makes it way easier to figure out what&#39;s going wrong when something inevitably does.</span><br />
-<br />
-<a class='textlink' href='https://grafana.com'>https://grafana.com</a><br />
-<br />
-<h3 style='display: inline' id='gogios-my-custom-alerting-system'>Gogios: My custom alerting system</h3><br />
-<br />
-<span>Alerts generated by Prometheus are forwarded to Alertmanager, which I will configure to work with Gogios, a lightweight monitoring and alerting system I wrote myself. Gogios runs on one of my OpenBSD VMs. At regular intervals, Gogios scrapes the alerts generated in the k3s cluster and notifies me via Email.</span><br />
-<br />
-<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
-<br />
-<span>Ironically, I implemented Gogios to avoid using more complex alerting systems like Prometheus, but here we go—it integrates well now.</span><br />
-<br />
-<h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
-<br />
-<span>This setup may be just the beginning. Some ideas I&#39;m thinking about for the future:</span><br />
-<br />
-<ul>
-<li>Adding more FreeBSD nodes (in different physical locations, maybe at my wider family&#39;s places? WireGuard would make it possible!) for better redundancy. (HA storage then might be trickier)</li>
-<li>Deploying more Docker apps (data-intensive ones, like a picture gallery, my entire audiobook catalogue, or even a music server) to k3s.</li>
-</ul><br />
-<span>For now, though, I&#39;m focused on completing the migration from AWS ECS and getting all my Docker containers running smoothly in k3s.</span><br />
-<br />
-<span>Anyway, stay tuned — in part 2 I&#39;ll probably get into the hardware and OS setup.</span><br />
-<br />
-<span>Read the next post of this series:</span><br />
-<br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<br />
-<span>Other *BSD-related posts:</span><br />
-<br />
-<a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
-<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
-<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
-<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
-<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
-<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
-<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
-<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
-<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
-<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
 <a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
 <a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />

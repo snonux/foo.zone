@@ -1,33 +1,22 @@
 # Random Weird Things - Part Ⅳ
 
+> Published at 2026-06-06T08:54:00+03:00
+
 Every so often I stumble upon random, weird, and completely unexpected things on the internet. I thought it would be neat to share them here from time to time. This is the fourth run.
 
 ```
    /\_/\      /\_/\      /\_/\  
   ( o.o )    ( o.o )    ( o.o ) 
-   > ^ <      > ^ <      > ^ <  
+   > ^ <      > ^ <      > ^ <
+   
    /\_/\    Miaaauuuu....
   ( o.o )
    > ^ < 
 ```
 
-=> ./2024-07-05-random-weird-things.gmi 2024-07-05 Random Weird Things - Part Ⅰ
-=> ./2025-02-08-random-weird-things-ii.gmi 2025-02-08 Random Weird Things - Part Ⅱ
-=> ./2025-08-15-random-weird-things-iii.gmi 2025-08-15 Random Weird Things - Part Ⅲ
+<< template::inline::index random-weird-things
 
-## Table of Contents
-
-* ⇢ Random Weird Things - Part Ⅳ
-* ⇢ ⇢ 31. GUI Apps in Your Terminal
-* ⇢ ⇢ 32. TempleOS
-* ⇢ ⇢ 33. LLM via DNS
-* ⇢ ⇢ 34. Black Hole in ~125 Bytes
-* ⇢ ⇢ 35. loss32: Win32 on Linux
-* ⇢ ⇢ 36. LLM Rescuer 🤖💰
-* ⇢ ⇢ 37. Filesystem Backed by an LLM
-* ⇢ ⇢ 38. QR Code with Pure SQL in Postgres
-* ⇢ ⇢ 39. The SL Train in Your Terminal
-* ⇢ ⇢ 40. URL in C Code Puzzle
+<< template::inline::toc
 
 ## 31. GUI Apps in Your Terminal
 
@@ -45,7 +34,7 @@ Terry A. Davis spent years single-handedly building a complete 64-bit operating 
 
 ## 33. LLM via DNS
 
-You can query an LLM using nothing but DNS. Just run `dig @ch.at "what is golang" TXT +short` and you get back an answer in the TXT records. No browser, no API key. It even works over SSH tunnels. I tried it on a server with zero internet tools installed and it just worked.
+You can query an LLM using nothing but DNS. Just run `dig @ch.at "what is golang" TXT +short` and you get back an answer in the TXT records. No browser, no API key. It even works over SSH tunnels.
 
 ```sh
 $ dig @ch.at "what is golang" TXT +short
@@ -60,7 +49,7 @@ to its efficiency and ease of deployme..."
 
 ## 34. Black Hole in ~125 Bytes
 
-This tiny HTML/JS snippet (under 125 bytes) renders a swirling black hole in your browser tab. No frameworks, no libraries, just code-golf magic. I stared at it way longer than I care to admit.
+Thi                                                                    le in your browser tab. No frameworks, no libraries, just code-golf magic. I stared at it way longer than I care to admit.
 
 => https://aem1k.com/blackhole/ Black Hole
 
@@ -73,7 +62,15 @@ loss32 is a Linux distro where the entire desktop is classic Win32 apps running 
 
 ## 36. LLM Rescuer 🤖💰
 
-LLM Rescuer is a tiny Ruby wrapper that retries, sanitizes outputs, handles errors, and has some token-saving logic so you don't burn through your budget. It interprets nil references automatically based on the context. Examples:
+LLM Rescuer is a tiny Ruby gem that hooks into Ruby's method dispatch so that calling a method on `nil` doesn't crash — it asks an LLM what the return value should be instead. When a `NoMethodError` would normally explode, the gem catches it, packages up the context (what method was called, what the variable name suggests, maybe the surrounding code), fires that off to an actual LLM API, and returns whatever the model hallucinates as sensible.
+
+So `user.email` on a nil `user` doesn't die. It asks the LLM "someone called `.email` on a `user` that turned out to be nil, what should I return?" and the model says "probably `'no-reply@example.com'`". The gem swallows the error and hands you that string.
+
+It tries to keep API costs down by sending only minimal context — just the method name and variable name rather than your whole codebase — but every nil-hit still costs tokens and adds latency.
+
+This is runtime monkey-patching powered by a remote AI. Your nil bugs don't crash, they silently return AI-guessed values. In production this would be a debugging nightmare.
+
+Examples:
 
 ```ruby
 # Classic nil safety
@@ -98,7 +95,33 @@ answer = meaning_of_life.to_i
 
 ## 37. Filesystem Backed by an LLM
 
-Mount a folder, and every time you read or write a file, an LLM decides what the contents should be. Want a config file? Ask the LLM. Need a todo list that rewrites itself when you look at it? There you go. There's a working FUSE implementation. Equal parts brilliant and terrifying.
+Mount a folder via FUSE, and every time you read or write a file, an LLM decides what the contents should be. There's a real working implementation. You literally `cat` a file and the LLM generates the output on the fly.
+
+Example usage:
+
+```sh
+$ echo "a nginx config for a reverse proxy to localhost:8080" > /mnt/llmfs/nginx.conf
+$ cat /mnt/llmfs/nginx.conf
+server {
+    listen 80;
+    location / {
+        proxy_pass http://localhost:8080;
+    }
+}
+
+$ echo "my todo list for today" > /mnt/llmfs/todo.txt
+$ cat /mnt/llmfs/todo.txt
+- Write blog post
+- Fix that bug in prod
+- Drink coffee
+
+$ cat /mnt/llmfs/todo.txt
+- Write blog post (done?)
+- Fix that bug in prod
+- Drink more coffee
+```
+
+The LLM hallucinates the file contents every single read. Your todo list literally mutates when you look at it. Want a config file? Just describe it in the filename or write a prompt into it. Equal parts brilliant and terrifying.
 
 => https://healeycodes.com/filesystem-backed-by-an-llm Filesystem Backed by an LLM
 
