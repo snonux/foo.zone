@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2026-06-03T23:34:46+03:00 by `Gemtexter`
+> This site was generated at 2026-06-06T08:54:46+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -20,6 +20,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2026-06-06 - Random Weird Things - Part Ⅳ](./gemfeed/2026-06-06-random-weird-things-iv.md)  
 [2026-06-01 - `gt` calculator - a calculator built with local LLMs](./gemfeed/2026-06-01-gt-calculator.md)  
 [2026-05-17 - Unveiling I/O Riot NG — Part 3: under the hood](./gemfeed/2026-05-17-unveiling-ior-ng-part-3.md)  
 [2026-05-11 - Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./gemfeed/2026-05-11-unveiling-ior-ng-part-2.md)  
