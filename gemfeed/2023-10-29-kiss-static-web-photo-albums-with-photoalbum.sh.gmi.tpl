@@ -1,8 +1,6 @@
 # KISS static web photo albums with `photoalbum.sh`
 
-> Published at 2023-10-29T22:25:04+02:00; Last updated 2026-06-08
-
-> Note, this project has been renamed to `irregular.sh` by now. And the usage has changed as well. Check out project `README.md`!
+> Published at 2023-10-29T22:25:04+02:00
 
 Once in a while, I share photos on the inter-web with either family and friends or on my The Irregular Ninja photo site. One hobby of mine is photography (even though I don't have enough time for it - so I am primarily a point-and-shoot photographer).
 
@@ -32,8 +30,6 @@ I value KISS (keep it simple and stupid) and simplicity. All that's required for
 ## Introducing `photoalbum.sh`
 
 `photoalbum.sh` is a minimal Bash (Bourne Again Shell) script for Unix-like operating systems (such as Linux) to generate static web photo albums. The resulting static photo album is pure HTML+CSS (without any JavaScript!). It is specially designed to be as simple as possible.
-> Note, this project has been renamed to `irregular.sh` by now. And the usage has changed as well. Check out project `README.md`!
-
 
 ## Installation
 
@@ -44,8 +40,6 @@ Installation is straightforward. All required is a recent version of GNU Bash, G
 ```
 
 Now, clone, make and install the script:
-
-> Note, the following repo doesnt exist anymore. Check out `irregular.sh` project instead!
 
 ```
 % git clone https://codeberg.org/snonux/photoalbum
@@ -188,9 +182,7 @@ So I changed the album title, adjusted some image and thumbnail dimensions, and 
 
 ## Generating the static photo album
 
-Let's generate it. Depending on the image sizes and count, the following step may take a while.
-
-> Note, the following doesnt work anymore, look at newer `irregular.sh` project with changed usage.
+Let's generate it. Depending on the image sizes and count, the following step may take a while. 
 
 ```
 % make
@@ -265,7 +257,7 @@ A decent looking (in my opinion, at least) in less than 500 (273 as of this writ
 
 Also, I like the CSS effects which I recently added. In particular, for the Irregular Ninja site, I randomly shuffled the CSS effects you see. The background blur images are the same but rotated 180 degrees and blurred out.
 
-=> https://codeberg.org/snonux/irregular.sh `irregular.sh` source code on Codeberg (renamed from `photoalbum.sh`).
+=> https://codeberg.org/snonux/photoalbum `photoalbum.sh` source code on Codeberg.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
