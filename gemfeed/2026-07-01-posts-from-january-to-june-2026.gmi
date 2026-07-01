@@ -1,0 +1,848 @@
+# Posts from January to June 2026
+
+> Published at 2026-07-01T09:18:14+03:00
+
+Hello there! These are my social media posts from the last six months. I keep them here to reflect on them and also to not lose them. Social media networks come and go and are not under my control, but my domain is here to stay. 
+
+These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.
+
+=> ../about/index.gmi My about page
+=> https://codeberg.org/snonux/gos
+
+## Table of Contents
+
+* ⇢ Posts from January to June 2026
+* ⇢ ⇢ January 2026
+* ⇢ ⇢ ⇢ New blog post of mine, how I take notes ...
+* ⇢ ⇢ ⇢ Defensive programming techniques in Go ...
+* ⇢ ⇢ ⇢ New blog post of mine, how I use an e-book ...
+* ⇢ ⇢ ⇢ Apparently with pidfd_getfd, another process ...
+* ⇢ ⇢ ⇢ When not to use a `#regex` ...
+* ⇢ ⇢ ⇢ Fun story! :-) The case of the 500-mile email ...
+* ⇢ ⇢ ⇢ Reviewing your own PR or MR before asking ...
+* ⇢ ⇢ ⇢ Cgroups all the way down `#linux` `#cgroups` ...
+* ⇢ ⇢ ⇢ Most (pretend) to use `#SemVer` (even I do). ...
+* ⇢ ⇢ ⇢ Agree? Agreed. ...
+* ⇢ ⇢ ⇢ errors.As() checks for the error type, whereas ...
+* ⇢ ⇢ ⇢ This is similar to my `#dtail` project. It got ...
+* ⇢ ⇢ ⇢ So, `#Haskell` is better suited for general ...
+* ⇢ ⇢ ⇢ Very important: Eventually consistency in ...
+* ⇢ ⇢ ⇢ Great wisdom about working remotely: ...
+* ⇢ ⇢ ⇢ One of my favorite books: "Some Thoughts on ...
+* ⇢ ⇢ ⇢ The Go flight recorder is a tool that allows ...
+* ⇢ ⇢ ⇢ So true. I also keep everything in plain text/ ...
+* ⇢ ⇢ ⇢ I agree: you build it, you run it ...
+* ⇢ ⇢ ⇢ A great blog post about my favourite text ...
+* ⇢ ⇢ ⇢ I guess you would not deploy it as your ...
+* ⇢ ⇢ ⇢ Plan9 assembly format in Go, but wait, it's not ...
+* ⇢ ⇢ ⇢ Some ways to boost your creativity :-) How to ...
+* ⇢ ⇢ ⇢ Always good to revisit/remember Graceful ...
+* ⇢ ⇢ ⇢ Good best practices: `#golang` ...
+* ⇢ ⇢ February 2026
+* ⇢ ⇢ ⇢ This! I Know When You're Vibe Coding via ...
+* ⇢ ⇢ ⇢ As I posted in another link, the agent loops ...
+* ⇢ ⇢ ⇢ Think twice before introducing home smart ...
+* ⇢ ⇢ ⇢ There are some good points in this blog post. ...
+* ⇢ ⇢ ⇢ Things you can do with a debugger but not with ...
+* ⇢ ⇢ ⇢ I did this too sometimes in Londons ...
+* ⇢ ⇢ ⇢ Truth to be told, one doesn't need the newest ...
+* ⇢ ⇢ ⇢ tinkering helps so much to build up skills. ...
+* ⇢ ⇢ ⇢ The mov instruction of a CPU is turing ...
+* ⇢ ⇢ ⇢ First LLM optimized programming languages ...
+* ⇢ ⇢ ⇢ Become shell literate via @wallabagapp `#shell` ...
+* ⇢ ⇢ ⇢ How to build a `#Linux` `#Container` from ...
+* ⇢ ⇢ ⇢ Excellent article Especially because I am ...
+* ⇢ ⇢ ⇢ Some unexpected `#golang` stuff, ppl say, that ...
+* ⇢ ⇢ ⇢ How I manage my custom slash commands, load a ...
+* ⇢ ⇢ ⇢ New blog post of mine, the resurrection of the ...
+* ⇢ ⇢ ⇢ `#ZFS` supports JSON output! `#OpenZFS` ...
+* ⇢ ⇢ ⇢ So true also for my projects Open Source is one ...
+* ⇢ ⇢ ⇢ fx is a neat and tidy command-line tool for ...
+* ⇢ ⇢ ⇢ I like the CSV format due to its simplicity. It ...
+* ⇢ ⇢ ⇢ The C3 Programming languange, looks ...
+* ⇢ ⇢ ⇢ Nice little trick to change the process ...
+* ⇢ ⇢ ⇢ Great article, it also contains some tips `#ai` ...
+* ⇢ ⇢ ⇢ Nice, subcommands in `#Ruby` with ...
+* ⇢ ⇢ ⇢ Beyond traditional `#SRE` ...
+* ⇢ ⇢ March 2026
+* ⇢ ⇢ ⇢ Released Loadbars 0.13.0, neat tool for ...
+* ⇢ ⇢ ⇢ I just released RCM 0.1.0, the Ruby ...
+* ⇢ ⇢ ⇢ Some might hate me saying this, but didnt ...
+* ⇢ ⇢ ⇢ I have an Idea now, what defines and ...
+* ⇢ ⇢ ⇢ Great `#git` tweaks Micah's Secret Blog ...
+* ⇢ ⇢ ⇢ Some nice `#Golang` tricks there ...
+* ⇢ ⇢ ⇢ Less `#coding`, more `#engineering` `#ai` ...
+* ⇢ ⇢ ⇢ I spent way too much time on this site. It's ...
+* ⇢ ⇢ ⇢ Why not run `#Linux` in an emulator running in ...
+* ⇢ ⇢ ⇢ These are some good software development habits ...
+* ⇢ ⇢ ⇢ Here I learned that the way Go manages memory ...
+* ⇢ ⇢ ⇢ I couldn't do without here-docs. If they did ...
+* ⇢ ⇢ ⇢ Great to add as an easter egg to your `#golang` ...
+* ⇢ ⇢ ⇢ Some great advice from 40 years of experience ...
+* ⇢ ⇢ ⇢ "Why Piles Get Stuck Buffering" is an excellent ...
+* ⇢ ⇢ ⇢ It must not always be the smartest LLM from the ...
+* ⇢ ⇢ April 2026
+* ⇢ ⇢ ⇢ I published part 9 of my `#Kubernetes` on ...
+* ⇢ ⇢ ⇢ share Nice to see still alternatives to ...
+* ⇢ ⇢ ⇢ VM live migrations: I've wondered about that. ...
+* ⇢ ⇢ ⇢ There are some truths in this `#SRE` article: ...
+* ⇢ ⇢ ⇢ Good take `#observability` `#logging` `#logs` ...
+* ⇢ ⇢ ⇢ This is a talk about pi.dev, the coding agent I ...
+* ⇢ ⇢ ⇢ About long-term `#maintenance` in open source ...
+* ⇢ ⇢ ⇢ Run `#golang` apps like scripts ...
+* ⇢ ⇢ ⇢ "Have you ever read or written a shebang? That ...
+* ⇢ ⇢ ⇢ The complete pprof guide for Go `#golang` ...
+* ⇢ ⇢ ⇢ I will this deploy to production tomorrow! LLM ...
+* ⇢ ⇢ ⇢ Good article In defense of not reading the code ...
+* ⇢ ⇢ ⇢ One reason why my open-source stuff is primary ...
+* ⇢ ⇢ ⇢ Want to know how your home computer or ...
+* ⇢ ⇢ ⇢ How does `#virtual` `#memory` work? `#ram` ...
+* ⇢ ⇢ May 2026
+* ⇢ ⇢ ⇢ Ever wondered how OAuth works? This is a great ...
+* ⇢ ⇢ ⇢ Longer hours help only short term. About 40 ...
+* ⇢ ⇢ ⇢ I personally can't do more than 3 hours of ...
+* ⇢ ⇢ ⇢ In other words, using t.Parallel() for ...
+* ⇢ ⇢ ⇢ Neat summary of new `#Perl` features per ...
+* ⇢ ⇢ ⇢ I published part 2 of Unveiling I/O Riot NG, ...
+* ⇢ ⇢ ⇢ a decent article about `#troubleshooting` ...
+* ⇢ ⇢ ⇢ for `#bpf` `#ebpf` performance debugging, have ...
+* ⇢ ⇢ ⇢ Best practices are not always best practice. I ...
+* ⇢ ⇢ ⇢ Same `#zsh` ...
+* ⇢ ⇢ ⇢ You could also use `#bpf` instead of `#strace`, ...
+* ⇢ ⇢ ⇢ Nice exercise dumping an `#inode` and disk ...
+* ⇢ ⇢ ⇢ I could not agree more. A personal (tech ...
+* ⇢ ⇢ ⇢ The reverse red herring in incident ...
+* ⇢ ⇢ ⇢ `#EKS` node autoscaling with `#karpenter` ...
+* ⇢ ⇢ ⇢ I like the idea of running `#OpenDarwin` on ...
+* ⇢ ⇢ ⇢ A gist of channels in `#Golang`, always worth ...
+* ⇢ ⇢ ⇢ Pretty good guide about down-leveling in the ...
+* ⇢ ⇢ June 2026
+* ⇢ ⇢ ⇢ Neat trick to make find faster `#linux` ...
+* ⇢ ⇢ ⇢ Thats interesting, running `#Android` in ...
+* ⇢ ⇢ ⇢ That `#NetBSD` server still running since 2010 ...
+* ⇢ ⇢ ⇢ Posted Random Weird Things Part 4! `#blog` ...
+* ⇢ ⇢ ⇢ Especially I like: Organizations should ...
+* ⇢ ⇢ ⇢ Interesting Explainer: Tree-sitter vs. LSP ...
+* ⇢ ⇢ ⇢ I started to look into `#BPF` `#eBPF` lately ...
+* ⇢ ⇢ ⇢ A proposal to make C++ a memory-safe language: ...
+* ⇢ ⇢ ⇢ Nothing big, but I find this tool neat, gives ...
+* ⇢ ⇢ ⇢ Incidents *will* happen. `#sre` `#incidents` ...
+* ⇢ ⇢ ⇢ I didnt know about clones and bookmarks! `#zfs` ...
+* ⇢ ⇢ ⇢ How `#LLMs` work is a great introductionary ...
+* ⇢ ⇢ ⇢ This is an interesting `#Elixir` pipes operator ...
+* ⇢ ⇢ ⇢ Great read: Understanding Storage Performance ...
+* ⇢ ⇢ ⇢ The point is, that the code you don't ...
+
+## January 2026
+
+### New blog post of mine, how I take notes ...
+
+New blog post of mine, how I take notes digitally but offline! `#supernote` `#note` `#notes` `#digital` `#offline` `#productivity` `#privacy` `#pdf`
+
+=> gemini://foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.gmi foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.gmi (Gemini)
+=> https://foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.html foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.html
+
+### Defensive programming techniques in Go ...
+
+Defensive programming techniques in Go `#golang` - I personally enjoyed watching this talk.
+
+=> https://www.youtube.com/watch?v=0bDeoa8287I&list=WL&index=5 www.youtube.com/watch?v=0bDeoa8287I&list=WL&index=5
+
+### New blog post of mine, how I use an e-book ...
+
+New blog post of mine, how I use an e-book reader without the cloud! `#ebook` `#cloudless` `#selfhosting` `#koreader` `#kobo` `#drmfree`
+
+=> gemini://foo.zone/gemfeed/2026-01-01-cloudless-kobo-forma-with-koreader.gmi foo.zone/gemfeed/2026-01-01-cloudless-kobo-forma-with-koreader.gmi (Gemini)
+=> https://foo.zone/gemfeed/2026-01-01-cloudless-kobo-forma-with-koreader.html foo.zone/gemfeed/2026-01-01-cloudless-kobo-forma-with-koreader.html
+
+### Apparently with pidfd_getfd, another process ...
+
+Apparently with pidfd_getfd, another process can copy a file descriptor from another process... Only way I was aware of until now was through fork and fd inheritance `#linux` `#fd` `#systemsprogramming` `#syscall`
+
+=> https://biriukov.dev/docs/fd-pipe-session-terminal/1-file-descriptor-and-open-file-description/ biriukov.dev/docs/fd-pipe-session-term..-..-descriptor-and-open-file-description/
+
+### When not to use a `#regex` ...
+
+When not to use a `#regex`
+
+=> https://drewdevault.com/2017/08/13/When-not-to-use-a-regex.html drewdevault.com/2017/08/13/When-not-to-use-a-regex.html
+
+### Fun story! :-) The case of the 500-mile email ...
+
+Fun story! :-) The case of the 500-mile email ― Andreas Zwinkau via @wallabagapp `#unix` `#sunos` `#sendmail`
+
+=> https://beza1e1.tuxen.de/lore/500mile_email.html beza1e1.tuxen.de/lore/500mile_email.html
+
+### Reviewing your own PR or MR before asking ...
+
+Reviewing your own PR or MR before asking others to review it makes a lot of sense. Have seen so many silly mistakes which would have been avoided. Saving time for the real reviewer. `#coding`
+
+=> https://www.jvt.me/posts/2019/01/12/self-code-review/ www.jvt.me/posts/2019/01/12/self-code-review/
+
+### Cgroups all the way down `#linux` `#cgroups` ...
+
+Cgroups all the way down `#linux` `#cgroups`
+
+=> https://blog.jessfraz.com/post/cgroups-all-the-way-down/ blog.jessfraz.com/post/cgroups-all-the-way-down/
+
+### Most (pretend) to use `#SemVer` (even I do). ...
+
+Most (pretend) to use `#SemVer` (even I do). But I really like `#SoloVer` for small personal projects, I might switch
+
+=> https://beza1e1.tuxen.de/SoloVer.html beza1e1.tuxen.de/SoloVer.html
+
+### Agree? Agreed. ...
+
+Agree? Agreed.
+
+=> https://aaronfrancis.com/2024/an-argument-for-logging-off-9a4de45b aaronfrancis.com/2024/an-argument-for-logging-off-9a4de45b
+
+### errors.As() checks for the error type, whereas ...
+
+errors.As() checks for the error type, whereas errors.Is() checks for the exact error value. Interesting read about Errors in `#golang` - and there is also a cat meme in the middle of the blog post! And then, it continues with pointers to pointers to error values or how about a pointer to an empty interface?
+
+=> https://adrianlarion.com/golang-error-handling-demystified-errors-is-errors-as-errors-unwrap-custom-errors-and-more/ adrianlarion.com/golang-error-handling..-..-errors-unwrap-custom-errors-and-more/
+
+### This is similar to my `#dtail` project. It got ...
+
+This is similar to my `#dtail` project. It got some features, which dtail doesnt, and dtail has some features, which `#nerdlog` hasnt. But the principle is the same, both tools don't have a centralised log store and both use SSH to connect to the servers (sources of the logs) directly.
+
+=> https://github.com/dimonomid/nerdlog github.com/dimonomid/nerdlog
+
+### So, `#Haskell` is better suited for general ...
+
+So, `#Haskell` is better suited for general purpose than `#Rust`? ....I thought deploying something in Haskell means publishing an academic paper :-) Interesting rant about Rust, though:
+
+=> https://chrisdone.com/posts/rust/ chrisdone.com/posts/rust/
+
+### Very important: Eventually consistency in ...
+
+Very important: Eventually consistency in German is different than in English! A note about eventual consistency - Part 1 `#systems` `#distributed` `#design` `#storage`
+
+=> https://www.ufried.com/blog/eventual_consistency_1/ www.ufried.com/blog/eventual_consistency_1/
+
+### Great wisdom about working remotely: ...
+
+Great wisdom about working remotely:
+
+=> https://jvns.ca/blog/2018/02/18/working-remotely--4-years-in/ jvns.ca/blog/2018/02/18/working-remotely--4-years-in/
+
+### One of my favorite books: "Some Thoughts on ...
+
+One of my favorite books: "Some Thoughts on Deep Work"
+
+=> https://atthis.link/blog/2020/deepwork.html atthis.link/blog/2020/deepwork.html
+
+### The Go flight recorder is a tool that allows ...
+
+The Go flight recorder is a tool that allows developers to capture and analyze the execution of Go programs. It provides insights into performance, memory usage, and other runtime characteristics by recording events and metrics during the program's execution. Yet another tool why Go is awesome! `#go` `#golang` `#tools`
+
+=> https://go.dev/blog/flight-recorder go.dev/blog/flight-recorder
+
+### So true. I also keep everything in plain text/ ...
+
+So true. I also keep everything in plain text/ `#Markdown`. If it is worth keeping, save it in Markdown via @wallabagapp
+
+=> https://p.migdal.pl/blog/2025/02/markdown-saves/ p.migdal.pl/blog/2025/02/markdown-saves/
+
+### I agree: you build it, you run it ...
+
+I agree: you build it, you run it
+
+=> https://certomodo.substack.com/p/hot-take-you-build-it-you-run-it certomodo.substack.com/p/hot-take-you-build-it-you-run-it
+
+### A great blog post about my favourite text ...
+
+A great blog post about my favourite text editor. why even helix? via @wallabagap `#HeliEditor` Now I am considering forking it myself as well :-)
+
+=> https://axlefublr.github.io/why-even-helix/ axlefublr.github.io/why-even-helix/
+
+### I guess you would not deploy it as your ...
+
+I guess you would not deploy it as your enterprise storage system :-) Filesystem Backed by an LLM via @wallabagapp `#fs` `#llm` `#filesystem` `#fuse`
+
+=> https://healeycodes.com/filesystem-backed-by-an-llm healeycodes.com/filesystem-backed-by-an-llm
+
+### Plan9 assembly format in Go, but wait, it's not ...
+
+Plan9 assembly format in Go, but wait, it's not the Operating System Plan9! `#golang` `#rabbithole`
+
+=> https://www.osnews.com/story/140941/go-plan9-memo-speeding-up-calculations-450/ www.osnews.com/story/140941/go-plan9-memo-speeding-up-calculations-450/
+
+### Some ways to boost your creativity :-) How to ...
+
+Some ways to boost your creativity :-) How to be creative (without taking drugs) `#creativity`
+
+=> https://essays.highagency.com/p/how-to-be-creative-without-taking essays.highagency.com/p/how-to-be-creative-without-taking
+
+### Always good to revisit/remember Graceful ...
+
+Always good to revisit/remember Graceful shutdown in Kubernetes via @wallabagapp `#kubernetes` `#k8s`
+
+=> https://learnkube.com/graceful-shutdown learnkube.com/graceful-shutdown
+
+### Good best practices: `#golang` ...
+
+Good best practices: `#golang`
+
+=> https://blog.jetbrains.com/go/2025/10/16/the-10x-commandments-of-highly-effective-go/ blog.jetbrains.com/go/2025/10/16/the-10x-commandments-of-highly-effective-go/
+
+## February 2026
+
+### This! I Know When You're Vibe Coding via ...
+
+This! I Know When You're Vibe Coding via @wallabagapp `#llm` `#coding`
+
+=> https://alexkondov.com/i-know-when-youre-vibe-coding/ alexkondov.com/i-know-when-youre-vibe-coding/
+
+### As I posted in another link, the agent loops ...
+
+As I posted in another link, the agent loops are really simple The Unreasonable Effectiveness of an LLM Agent Loop with Tool Use `#llm` `#agent` `#agenticcoding`
+
+=> https://sketch.dev/blog/agent-loop sketch.dev/blog/agent-loop
+
+### Think twice before introducing home smart ...
+
+Think twice before introducing home smart devices!! The Day My Smart Vacuum Turned Against Me `#vacuum` `#robot`
+
+=> https://codetiger.github.io/blog/the-day-my-smart-vacuum-turned-against-me/ codetiger.github.io/blog/the-day-my-smart-vacuum-turned-against-me/
+
+### There are some good points in this blog post. ...
+
+There are some good points in this blog post. However I believe, that AI can help a lot doing the boring boilerplate coding repetitive things. Why Generative AI Coding Tools and Agents Do Not Work For Me via @wallabagapp `#coding` `#llm` `#ai` `#programming`
+
+=> https://blog.miguelgrinberg.com/post/why-generative-ai-coding-tools-and-agents-do-not-work-for-me blog.miguelgrinberg.com/post/why-gener..-..ng-tools-and-agents-do-not-work-for-me
+
+### Things you can do with a debugger but not with ...
+
+Things you can do with a debugger but not with print debugging `#debugger` `#debugging` `#coding` `#programming`
+
+=> https://mahesh-hegde.github.io/posts/what_debugger_can/ mahesh-hegde.github.io/posts/what_debugger_can/
+
+### I did this too sometimes in Londons ...
+
+I did this too sometimes in Londons Underground! I Program on the Subway `#subway` `#underground` `#programming`
+
+=> https://www.scd31.com/posts/programming-on-the-subway www.scd31.com/posts/programming-on-the-subway
+
+### Truth to be told, one doesn't need the newest ...
+
+Truth to be told, one doesn't need the newest hardware, unless there is a special domain... Personally, I still own and use a ThinkPad X240 and a Surface Go , both running `#linux` They run fine for most things I do. Besides of that, I also have a never ThinkPad for more demanding workloads... `#linux`
+
+=> https://drewdevault.com/2019/01/23/Why-I-use-old-hardware.html drewdevault.com/2019/01/23/Why-I-use-old-hardware.html
+
+### tinkering helps so much to build up skills. ...
+
+tinkering helps so much to build up skills. `#computing` `#tinkering`
+
+=> https://seated.ro/blog/tinkering-a-lost-art seated.ro/blog/tinkering-a-lost-art
+
+### The mov instruction of a CPU is turing ...
+
+The mov instruction of a CPU is turing complete. And theres an implementation of `#Doom` only using mov, it renders one frame per 7 hours! `#fun`
+
+=> https://beza1e1.tuxen.de/articles/accidentally_turing_complete.html beza1e1.tuxen.de/articles/accidentally_turing_complete.html
+
+### First LLM optimized programming languages ...
+
+First LLM optimized programming languages surface... `#NanoLang` `#llm` `#ai` `#programming`
+
+=> https://github.com/jordanhubbard/nanolang?ref=console.dev github.com/jordanhubbard/nanolang?ref=console.dev
+
+### Become shell literate via @wallabagapp `#shell` ...
+
+Become shell literate via @wallabagapp `#shell` `#unix`
+
+=> https://drewdevault.com/2020/12/12/Shell-literacy.html drewdevault.com/2020/12/12/Shell-literacy.html
+
+### How to build a `#Linux` `#Container` from ...
+
+How to build a `#Linux` `#Container` from scratch without Dicker, Podman, etc. Linux container from scratch
+
+=> https://michalpitr.substack.com/p/linux-container-from-scratch?r=gt6tv&triedRedirect=true michalpitr.substack.com/p/linux-contai..-..rom-scratch?r=gt6tv&triedRedirect=true
+
+### Excellent article Especially because I am ...
+
+Excellent article Especially because I am personally experimenting with wide-events currently! `#observability` `#metrics` `#otel` `#opentelemetry`
+
+=> https://boristane.com/blog/observability-wide-events-101/ boristane.com/blog/observability-wide-events-101/
+
+### Some unexpected `#golang` stuff, ppl say, that ...
+
+Some unexpected `#golang` stuff, ppl say, that Go is a simple language. IMHO the devil is in the details.
+
+=> https://unexpected-go.com/ unexpected-go.com/
+
+### How I manage my custom slash commands, load a ...
+
+How I manage my custom slash commands, load a context ad hoc, and handle them with meta-slash-commands the KISS way. This might be useful for you as well if you ever find yourself in a situation where, at the end or in the middle of an agentic coding session, you think, "It would be nice to repeat exactly this task again, which is currently still in the agent's context." `#ai` `#llm` `#slashcommands` `#agenticcoding`
+
+=> gemini://foo.zone/gemfeed/2026-02-14-meta-slash-commands-for-prompts-and-context.gmi foo.zone/gemfeed/2026-02-14-meta-slash-commands-for-prompts-and-context.gmi (Gemini)
+=> https://foo.zone/gemfeed/2026-02-14-meta-slash-commands-for-prompts-and-context.html foo.zone/gemfeed/2026-02-14-meta-slash-commands-for-prompts-and-context.html
+
+### New blog post of mine, the resurrection of the ...
+
+New blog post of mine, the resurrection of the Loadbars tool `#golang` `#rewrite` `#monitoring` `#linux`
+
+=> gemini://foo.zone/gemfeed/2026-02-15-loadbars-resurrected-from-perl-to-go.gmi foo.zone/gemfeed/2026-02-15-loadbars-resurrected-from-perl-to-go.gmi (Gemini)
+=> https://foo.zone/gemfeed/2026-02-15-loadbars-resurrected-from-perl-to-go.html foo.zone/gemfeed/2026-02-15-loadbars-resurrected-from-perl-to-go.html
+
+### `#ZFS` supports JSON output! `#OpenZFS` ...
+
+`#ZFS` supports JSON output! `#OpenZFS`
+
+=> https://despairlabs.com/blog/posts/2024-10-05-nice-things-in-openzfs-23/#json-everywhere despairlabs.com/blog/posts/2024-10-05-nice-things-in-openzfs-23/#json-everywhere
+
+### So true also for my projects Open Source is one ...
+
+So true also for my projects Open Source is one person
+
+=> https://opensourcesecurity.io/2025/08-oss-one-person/ opensourcesecurity.io/2025/08-oss-one-person/
+
+### fx is a neat and tidy command-line tool for ...
+
+fx is a neat and tidy command-line tool for interactively viewing JSON files! What I like about it is that it is not too complex (open the help with ? and it is only about one page long) but still very useful. `#json` `#golang`
+
+=> https://github.com/antonmedv/fx github.com/antonmedv/fx
+
+### I like the CSV format due to its simplicity. It ...
+
+I like the CSV format due to its simplicity. It can get tricky, but it's simple. `#CSV`
+
+=> https://github.com/medialab/xan/blob/master/docs/LOVE_LETTER.md github.com/medialab/xan/blob/master/docs/LOVE_LETTER.md
+
+### The C3 Programming languange, looks ...
+
+The C3 Programming languange, looks interesting. If I had spare time...(but i dont..)... How would this compare to `#ZigLang` and `#HareLang`? `#c3` `#c3lang`
+
+=> https://c3-lang.org/getting-started/ c3-lang.org/getting-started/
+
+### Nice little trick to change the process ...
+
+Nice little trick to change the process priorities of processes started by rc in in a `#FreeBSD` `#Jail`
+
+=> https://it-notes.dragas.net/2024/07/11/limiting-process-priority-in-freebsd-jail/ it-notes.dragas.net/2024/07/11/limiting-process-priority-in-freebsd-jail/
+
+### Great article, it also contains some tips `#ai` ...
+
+Great article, it also contains some tips `#ai` `#coding` `#programming` `#llm`
+
+=> https://newsletter.pragmaticengineer.com/p/two-years-of-using-ai newsletter.pragmaticengineer.com/p/two-years-of-using-ai
+
+### Nice, subcommands in `#Ruby` with ...
+
+Nice, subcommands in `#Ruby` with OptionsParser! Building a Sub-command Ruby CLI with just OptionParser
+
+=> https://naildrivin5.com/blog/2025/10/07/building-a-sub-command-ruby-cli-with-just-optionparser.html naildrivin5.com/blog/2025/10/07/buildi..-..d-ruby-cli-with-just-optionparser.html
+
+### Beyond traditional `#SRE` ...
+
+Beyond traditional `#SRE`
+
+=> https://rootly.com/blog/google-sres-are-changing-the-game-again-a-breakdown-of-their-new-approach rootly.com/blog/google-sres-are-changi..-..gain-a-breakdown-of-their-new-approach
+
+## March 2026
+
+### Released Loadbars 0.13.0, neat tool for ...
+
+Released Loadbars 0.13.0, neat tool for monitoring live Linux system resources of remote servers without havig to setup a observability pipeline and/or dashboards. I wrote it in Perl more than 13 years ago, but thanks to AI it's living again, rewritten in Go. there are a bunch new features which the Perl version hadn't! `#loadbars` `#ssh` `#procfs` `#linux` `#monitoring` `#tool`
+
+=> gemini://foo.zone/gemfeed/2026-03-01-loadbars-0.13.0-released.gmi foo.zone/gemfeed/2026-03-01-loadbars-0.13.0-released.gmi (Gemini)
+=> https://foo.zone/gemfeed/2026-03-01-loadbars-0.13.0-released.html foo.zone/gemfeed/2026-03-01-loadbars-0.13.0-released.html
+
+### I just released RCM 0.1.0, the Ruby ...
+
+I just released RCM 0.1.0, the Ruby Configuration Management system, or the Configuration Management system written in Ruby! `#ruby` `#rcm` `#configuration` `#configuration`-management `#dsl` `#humancoded`
+
+=> gemini://foo.zone/gemfeed/2026-03-02-rcm-ruby-configuration-management-dsl.gmi foo.zone/gemfeed/2026-03-02-rcm-ruby-configuration-management-dsl.gmi (Gemini)
+=> https://foo.zone/gemfeed/2026-03-02-rcm-ruby-configuration-management-dsl.html foo.zone/gemfeed/2026-03-02-rcm-ruby-configuration-management-dsl.html
+
+### Some might hate me saying this, but didnt ...
+
+Some might hate me saying this, but didnt `#systemd` solve the problem of a shared /tmp directory by introducing PrivateTmp?? but yes why did it have to go that way...
+
+=> https://www.osnews.com/story/140968/tmp-should-not-exist/ www.osnews.com/story/140968/tmp-should-not-exist/
+
+### I have an Idea now, what defines and ...
+
+I have an Idea now, what defines and Destingiuished engineer thanks to this blog post: Defining a Distinguished Engineer `#DistinguishedEngineer` `#EngineeringLeadership` `#TechCareers` `#JessFraz` `#SoftwareEngineering`
+
+=> https://blog.jessfraz.com/post/defining-a-distinguished-engineer/ blog.jessfraz.com/post/defining-a-distinguished-engineer/
+
+### Great `#git` tweaks Micah's Secret Blog ...
+
+Great `#git` tweaks Micah's Secret Blog
+
+=> https://micahkepe.com/blog/gitconfig/ micahkepe.com/blog/gitconfig/
+
+### Some nice `#Golang` tricks there ...
+
+Some nice `#Golang` tricks there
+
+=> https://blog.devtrovert.com/p/12-personal-go-tricks-that-transformed blog.devtrovert.com/p/12-personal-go-tricks-that-transformed
+
+### Less `#coding`, more `#engineering` `#ai` ...
+
+Less `#coding`, more `#engineering` `#ai` `#llm`
+
+=> https://openai.com/index/harness-engineering/ openai.com/index/harness-engineering/
+
+### I spent way too much time on this site. It's ...
+
+I spent way too much time on this site. It's full of tools for the `#terminal`! Terminal Trove - The $HOME of all things in the terminal. `#linux` `#bsd` `#unix` `#terminal` `#cli` `#tools`
+
+=> https://terminaltrove.com/ terminaltrove.com/
+
+### Why not run `#Linux` in an emulator running in ...
+
+Why not run `#Linux` in an emulator running in a `#PDF` file? Here we go: LinuxPDF via @wallabagapp `#fun`
+
+=> https://github.com/ading2210/linuxpdf github.com/ading2210/linuxpdf
+
+### These are some good software development habits ...
+
+These are some good software development habits to pick up! I like the micro refactorings that take 10 minutes (I am practicing that already), and the idea of writing tests for the API before you implement it, as it makes you think about the API design. `#development` `#dev` `#software`
+
+=> https://zarar.dev/good-software-development-habits/ zarar.dev/good-software-development-habits/
+
+### Here I learned that the way Go manages memory ...
+
+Here I learned that the way Go manages memory is not part of the language specification and may change from one release to another. Everything about heap vs. stack allocation best practices and where and how to allocate memory are guidelines that likely yield the desired results. To be sure, always benchmark your app when it is performance-critical after each Go release. `#golang` `#memory` `#memorymanagement`
+
+=> https://ashwingopalsamy.substack.com/p/go-pointers-and-memory-management?r=2jij1y ashwingopalsamy.substack.com/p/go-pointers-and-memory-management?r=2jij1y
+
+### I couldn't do without here-docs. If they did ...
+
+I couldn't do without here-docs. If they did not exist, I would need to find another field and pursue a career there. `#bash` `#sh` `#shell`
+
+=> https://rednafi.com/misc/heredoc_headache/ rednafi.com/misc/heredoc_headache/
+
+### Great to add as an easter egg to your `#golang` ...
+
+Great to add as an easter egg to your `#golang` terminal app
+
+=> https://github.com/maaslalani/confetty github.com/maaslalani/confetty
+
+### Some great advice from 40 years of experience ...
+
+Some great advice from 40 years of experience as a software developer. `#software` `#development`
+
+=> https://liw.fi/40/#index1h1 liw.fi/40/#index1h1
+
+### "Why Piles Get Stuck Buffering" is an excellent ...
+
+"Why Piles Get Stuck Buffering" is an excellent article, as I finally learned why terminal output sometimes seems slow. `#linux` `#unix` `#pipe` `#buffering` `#cli` `#terminal`
+
+=> https://jvns.ca/blog/2024/11/29/why-pipes-get-stuck-buffering/ jvns.ca/blog/2024/11/29/why-pipes-get-stuck-buffering/
+
+### It must not always be the smartest LLM from the ...
+
+It must not always be the smartest LLM from the cloud: `#llm` `#model`
+
+=> https://tomtunguz.com/local-vs-cloud-speed/ tomtunguz.com/local-vs-cloud-speed/
+
+## April 2026
+
+### I published part 9 of my `#Kubernetes` on ...
+
+I published part 9 of my `#Kubernetes` on `#FreeBSD` blog post series. This time we set up `#ArgoCD` for `#GitOps` and also a `#KISS` self-contained `#git` server.
+
+=> gemini://foo.zone/gemfeed/2026-04-02-f3s-kubernetes-with-freebsd-part-9.gmi foo.zone/gemfeed/2026-04-02-f3s-kubernetes-with-freebsd-part-9.gmi (Gemini)
+=> https://foo.zone/gemfeed/2026-04-02-f3s-kubernetes-with-freebsd-part-9.html foo.zone/gemfeed/2026-04-02-f3s-kubernetes-with-freebsd-part-9.html
+
+### share Nice to see still alternatives to ...
+
+share Nice to see still alternatives to `#systemd` appearing! Nitro: a tiny but flexible init system and process supervisor
+
+=> https://www.osnews.com/story/143156/nitro-a-tiny-but-flexible-init-system-and-process-supervisor/ www.osnews.com/story/143156/nitro-a-ti..-..le-init-system-and-process-supervisor/
+
+### VM live migrations: I've wondered about that. ...
+
+VM live migrations: I've wondered about that. It's possible to build HA solutions with `#FreeBSD` here, but they would involve downtimes. However, I would also say that the app can be designed to be load-balanced across multiple servers, and any single server downtime should not interfere with the customer experience. Unfortunately, that's easier said than done, as a lot of software is already written.
+
+=> https://gyptazy.com/bhyve-on-freebsd-and-vm-live-migration-quo-vadis/ gyptazy.com/bhyve-on-freebsd-and-vm-live-migration-quo-vadis/
+
+### There are some truths in this `#SRE` article: ...
+
+There are some truths in this `#SRE` article: However, in my opinion, the more experience you have, the more you are expected to be able to resolve issues. So you can't always fallback to others. New starters are treated differently, of course. `#oncall`
+
+=> https://ntietz.com/blog/what-i-tell-people-new-to-oncall/. ntietz.com/blog/what-i-tell-people-new-to-oncall/.
+
+### Good take `#observability` `#logging` `#logs` ...
+
+Good take `#observability` `#logging` `#logs` `#otel` `#OpenTelemetry`
+
+=> https://loggingsucks.com/ loggingsucks.com/
+
+### This is a talk about pi.dev, the coding agent I ...
+
+This is a talk about pi.dev, the coding agent I am currently experimenting with on one of my personal setups. I highly recommend you to watch it and to give it a try! What I especially like about Pi is, that You can modify it as you want very easily, and it is by default super lightweight. `#llm` `#pi` `#pidev` `#agent` `#coding`
+
+=> https://www.youtube.com/watch?v=Dli5slNaJu0 www.youtube.com/watch?v=Dli5slNaJu0
+
+### About long-term `#maintenance` in open source ...
+
+About long-term `#maintenance` in open source and code contributions
+
+=> https://www.construct.net/en/blogs/ashleys-blog-2/reality-long-term-software-1892 www.construct.net/en/blogs/ashleys-blog-2/reality-long-term-software-1892
+
+### Run `#golang` apps like scripts ...
+
+Run `#golang` apps like scripts
+
+=> https://lorentz.app/blog-item.html?id=go-shebang lorentz.app/blog-item.html?id=go-shebang
+
+### "Have you ever read or written a shebang? That ...
+
+"Have you ever read or written a shebang? That line at the start of some scripts that specifies the path to the interpreter? E.g. #!/usr/bin/bash .. Many always just assume these were handled by the shell, but no! Shebangs are actually a feature of the kernel, and scripts are executed with the same syscalls as every other program. Computers are so cool." -- Quote from Chapter 3 `#linux` `#CPU`
+
+=> https://cpu.land cpu.land
+
+### The complete pprof guide for Go `#golang` ...
+
+The complete pprof guide for Go `#golang`
+
+=> https://fulmenflux.co/blog/go/complete-guide-to-profile-golang-services-in-production/ fulmenflux.co/blog/go/complete-guide-to-profile-golang-services-in-production/
+
+### I will this deploy to production tomorrow! LLM ...
+
+I will this deploy to production tomorrow! LLM Rescuer `#ruby` `#llm` `#nil`
+
+=> https://github.com/barodeur/llm_rescuer github.com/barodeur/llm_rescuer
+
+### Good article In defense of not reading the code ...
+
+Good article In defense of not reading the code | Ben Shoemaker `#ai` `#llm` `#coding`
+
+=> https://www.benshoemaker.us/writing/in-defense-of-not-reading-the-code/ www.benshoemaker.us/writing/in-defense-of-not-reading-the-code/
+
+### One reason why my open-source stuff is primary ...
+
+One reason why my open-source stuff is primary for my own use: Open-source is where dreams go to die via @wallabagapp `#opensource`
+
+=> https://www.trevorlasn.com/blog/open-source-is-where-dreams-go-to-die www.trevorlasn.com/blog/open-source-is-where-dreams-go-to-die
+
+### Want to know how your home computer or ...
+
+Want to know how your home computer or smartphone compares to a Cray supercomputer's performance? `#cray` `#supercomputer`
+
+=> http://www.roylongbottom.org.uk/Cray%201%20Supercomputer%20Performance%20Comparisons%20With%20Home%20Computers%20Phones%20and%20Tablets.htm www.roylongbottom.org.uk/Cray%201%20Su..-..Computers%20Phones%20and%20Tablets.htm
+
+### How does `#virtual` `#memory` work? `#ram` ...
+
+How does `#virtual` `#memory` work? `#ram`
+
+=> https://drewdevault.com/2018/10/29/How-does-virtual-memory-work.html drewdevault.com/2018/10/29/How-does-virtual-memory-work.html
+
+## May 2026
+
+### Ever wondered how OAuth works? This is a great ...
+
+Ever wondered how OAuth works? This is a great guide: ... where is it used? When a service wants in behalf of you access another service in the internet. `#oauth` `#protocol` `#authentication` `#authorization`
+
+=> https://www.ducktyped.org/p/an-illustrated-guide-to-oauth www.ducktyped.org/p/an-illustrated-guide-to-oauth
+
+### Longer hours help only short term. About 40 ...
+
+Longer hours help only short term. About 40 hours `#productivity`
+
+=> https://thesquareplanet.com/blog/about-40-hours/ thesquareplanet.com/blog/about-40-hours/
+
+### I personally can't do more than 3 hours of ...
+
+I personally can't do more than 3 hours of focused work in a day. Often, it's a maximum of 2 hours. I would love to reach 4 hours, but my job doesn't permit it, as there are many distractions. `#productivity`
+
+=> https://www.oliverburkeman.com/fourhours www.oliverburkeman.com/fourhours
+
+### In other words, using t.Parallel() for ...
+
+In other words, using t.Parallel() for lightweight unit tests will likely make them slower.... `#golang`
+
+=> https://threedots.tech/post/go-test-parallelism/ threedots.tech/post/go-test-parallelism/
+
+### Neat summary of new `#Perl` features per ...
+
+Neat summary of new `#Perl` features per release
+
+=> https://sheet.shiar.nl/perl sheet.shiar.nl/perl
+
+### I published part 2 of Unveiling I/O Riot NG, ...
+
+I published part 2 of Unveiling I/O Riot NG, this time about installation and making the BPF run on every Linux Kernel with CO-RE: `#bpf` `#ebpf` `#syscall` `#tracer` `#flamegraph` `#ioriot` `#ior`
+
+=> gemini://foo.zone/gemfeed/2026-05-08-unveiling-ior-ng-part-1.gmi foo.zone/gemfeed/2026-05-08-unveiling-ior-ng-part-1.gmi (Gemini)
+=> https://foo.zone/gemfeed/2026-05-08-unveiling-ior-ng-part-1.html foo.zone/gemfeed/2026-05-08-unveiling-ior-ng-part-1.html
+
+### a decent article about `#troubleshooting` ...
+
+a decent article about `#troubleshooting`
+
+=> https://www.autodidacts.io/troubleshooting/ www.autodidacts.io/troubleshooting/
+
+### for `#bpf` `#ebpf` performance debugging, have ...
+
+for `#bpf` `#ebpf` performance debugging, have a look at bpftop from Netflix. A neat tool showing you the estimated CPU time and other performance statistics for all the BPF programs currently loaded into the `#linux` kernel. Highly recommend!
+
+=> https://github.com/Netflix/bpftop github.com/Netflix/bpftop
+
+### Best practices are not always best practice. I ...
+
+Best practices are not always best practice. I once wrote a post about "Defensive DevOps," which isn't about best practices (e.g., testing in production). Special circumstances require special solutions. `#devops` `#sre` `#bestpractice`
+
+=> https://www.arp242.net/best-practices.html www.arp242.net/best-practices.html
+=> gemini://foo.zone/gemfeed/2021-10-22-defensive-devops.gmi foo.zone/gemfeed/2021-10-22-defensive-devops.gmi (Gemini)
+=> https://foo.zone/gemfeed/2021-10-22-defensive-devops.html foo.zone/gemfeed/2021-10-22-defensive-devops.html
+
+### Same `#zsh` ...
+
+Same `#zsh`
+
+=> https://rushter.com/blog/zsh-shell/ rushter.com/blog/zsh-shell/
+
+### You could also use `#bpf` instead of `#strace`, ...
+
+You could also use `#bpf` instead of `#strace`, although modern strace uses bpf if configured to do so: How to use the new Docker Seccomp profiles: `#docker` `#seccomp`
+
+=> https://blog.jessfraz.com/post/how-to-use-new-docker-seccomp-profiles/ blog.jessfraz.com/post/how-to-use-new-docker-seccomp-profiles/
+
+### Nice exercise dumping an `#inode` and disk ...
+
+Nice exercise dumping an `#inode` and disk content manually from an `#ext4` file system `#fs`
+
+=> https://www.cyberdemon.org/2023/07/19/bunch-of-bits.html www.cyberdemon.org/2023/07/19/bunch-of-bits.html
+
+### I could not agree more. A personal (tech ...
+
+I could not agree more. A personal (tech oriented) website/blog is not a business contact card, but a playground to experience and learn with/about technologies. The Value of a Personal Site `#website` `#tech` `#blog`
+
+=> https://atthis.link/blog/2021/personalsite.html atthis.link/blog/2021/personalsite.html
+
+### The reverse red herring in incident ...
+
+The reverse red herring in incident troubleshooting, a somewhat funny story about a company DDoSing themselves accidentally! `#sre`
+
+=> https://www.blameless.com/blog/the-reverse-red-herring www.blameless.com/blog/the-reverse-red-herring
+
+### `#EKS` node autoscaling with `#karpenter` ...
+
+`#EKS` node autoscaling with `#karpenter`
+
+=> https://adevinta.com/techblog/the-karpenter-effect-redefining-our-kubernetes-operations/ adevinta.com/techblog/the-karpenter-effect-redefining-our-kubernetes-operations/
+
+### I like the idea of running `#OpenDarwin` on ...
+
+I like the idea of running `#OpenDarwin` on Apple hardware—especially when it comes with a fully usable desktop (like `#MATE`, which they are starting off with) and some degree of Apple binary compatibility. Homebrew would also be a neat addition. `#Apple` `#Darwin`
+
+=> https://www.osnews.com/story/141138/puredarwin-intends-to-make-apples-darwin-usable-with-a-mate-desktop-future-custom-desktop-environment-and-more/ www.osnews.com/story/141138/puredarwin..-..e-custom-desktop-environment-and-more/
+
+### A gist of channels in `#Golang`, always worth ...
+
+A gist of channels in `#Golang`, always worth to glance over it as a reminder
+
+=> https://antonz.org/go-concurrency/channels/ antonz.org/go-concurrency/channels/
+
+### Pretty good guide about down-leveling in the ...
+
+Pretty good guide about down-leveling in the tech sector.
+
+=> https://newsletter.pragmaticengineer.com/p/the-seniority-rollercoaster newsletter.pragmaticengineer.com/p/the-seniority-rollercoaster
+
+## June 2026
+
+### Neat trick to make find faster `#linux` ...
+
+Neat trick to make find faster `#linux` `#findutils` `#gnu`
+
+=> https://www.arp242.net/make-find-exec-faster.html www.arp242.net/make-find-exec-faster.html
+
+### Thats interesting, running `#Android` in ...
+
+Thats interesting, running `#Android` in `#Kubernetes`
+
+=> https://ku.bz/Gs4-wpK5h ku.bz/Gs4-wpK5h
+
+### That `#NetBSD` server still running since 2010 ...
+
+That `#NetBSD` server still running since 2010 :-) (blog post is from 2023) I Love those small stories.
+
+=> https://it-notes.dragas.net/2023/08/27/that-old-netbsd-server-running-since-2010/ it-notes.dragas.net/2023/08/27/that-old-netbsd-server-running-since-2010/
+
+### Posted Random Weird Things Part 4! `#blog` ...
+
+Posted Random Weird Things Part 4! `#blog` `#fun`
+
+=> gemini://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi (Gemini)
+=> https://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.html foo.zone/gemfeed/2026-06-06-random-weird-things-iv.html
+
+### Especially I like: Organizations should ...
+
+Especially I like: Organizations should separate the act of reporting a potential problem from the formal declaration of an incident, allowing experts to assess the situation instead of placing the burden on the initial reporter. And: To improve incident response, companies should make declaring incidents 'cheap' by implementing lightweight processes for minor issues. `#incident` `#sre`
+
+=> https://greatcircle.com/blog/2026/03/17/when-to-declare-an-incident/ greatcircle.com/blog/2026/03/17/when-to-declare-an-incident/
+
+### Interesting Explainer: Tree-sitter vs. LSP ...
+
+Interesting Explainer: Tree-sitter vs. LSP `#lsp` `#treesitter`
+
+=> https://lambdaland.org/posts/2026-01-21_tree-sitter_vs_lsp/ lambdaland.org/posts/2026-01-21_tree-sitter_vs_lsp/
+
+### I started to look into `#BPF` `#eBPF` lately ...
+
+I started to look into `#BPF` `#eBPF` lately (for the understanding of new tools I use and want to use and also to write my own observability tools). This is an interesting article how BPF helped to detect noisy neighbors (other processes in other cgroups consuming too much resources) Noisy Neighbor Detection with eBPF
+
+=> https://netflixtechblog.com/noisy-neighbor-detection-with-ebpf-64b1f4b3bbdd netflixtechblog.com/noisy-neighbor-detection-with-ebpf-64b1f4b3bbdd
+
+### A proposal to make C++ a memory-safe language: ...
+
+A proposal to make C++ a memory-safe language: introduce safe blocks and have a borrow checker like in Rust. `#cpp` `#c`++ `#cplusplus` ... IMHO, makes a complex language even more complex.
+
+=> https://safecpp.org/P3390R0.html#design-overview safecpp.org/P3390R0.html#design-overview
+
+### Nothing big, but I find this tool neat, gives ...
+
+Nothing big, but I find this tool neat, gives you a quick overview where all your space went in the current directory. `#dust` `#cli` `#terminal` `#tool`
+
+=> https://github.com/bootandy/dust github.com/bootandy/dust
+
+### Incidents *will* happen. `#sre` `#incidents` ...
+
+Incidents *will* happen. `#sre` `#incidents` `#preparedness`
+
+=> https://www.uptimelabs.io/articles/incidents-will-happen-are-you-actually-prepared www.uptimelabs.io/articles/incidents-will-happen-are-you-actually-prepared
+
+### I didnt know about clones and bookmarks! `#zfs` ...
+
+I didnt know about clones and bookmarks! `#zfs`
+
+=> https://klarasystems.com/articles/advanced-zfs-dataset-management/ klarasystems.com/articles/advanced-zfs-dataset-management/
+
+### How `#LLMs` work is a great introductionary ...
+
+How `#LLMs` work is a great introductionary resource for understanding large language models. It's explained in an easy understandable way without all the math involved! `#llm` `#ai` `#ml`
+
+=> https://medium.com/data-science-at-microsoft/how-large-language-models-work-91c362f5b78f medium.com/data-science-at-microsoft/how-large-language-models-work-91c362f5b78f
+
+### This is an interesting `#Elixir` pipes operator ...
+
+This is an interesting `#Elixir` pipes operator experiment in `#Ruby`. `#Python` has also been experimenting with such an operator. Raku (not mentioned in the linked article) already has the `==>` sequence operator, of course (which can also can be used backwards `<==` - who has doubted? :-) ). `#syntax` `#codegolf` `#fun` `#coding` `#RakuLang`
+
+=> https://zverok.space/blog/2024-11-16-elixir-pipes.html zverok.space/blog/2024-11-16-elixir-pipes.html
+
+### Great read: Understanding Storage Performance ...
+
+Great read: Understanding Storage Performance Metrics - Klara Systems `#observability` `#metrics` `#storage`
+
+=> https://klarasystems.com/articles/understanding-storage-performance-metrics/ klarasystems.com/articles/understanding-storage-performance-metrics/
+
+### The point is, that the code you don't ...
+
+The point is, that the code you don't understand is already in production! You don't need AI for that! `#sre` `#reliability` `#production` `#ai` `#llm`
+
+=> https://herald.dev/blog/the-code-nobody-read-is-already-in-production herald.dev/blog/the-code-nobody-read-is-already-in-production
+
+Other related posts:
+
+=> ./2025-01-01-posts-from-october-to-december-2024.gmi 2025-01-01 Posts from October to December 2024
+=> ./2025-07-01-posts-from-january-to-june-2025.gmi 2025-07-01 Posts from January to June 2025
+=> ./2026-01-01-posts-from-july-to-december-2025.gmi 2026-01-01 Posts from July to December 2025
+=> ./2026-07-01-posts-from-january-to-june-2026.gmi 2026-07-01 Posts from January to June 2026 (You are currently reading this)
