@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2026-07-01 - Posts from January to June 2026](./2026-07-01-posts-from-january-to-june-2026.md)  
 [2026-06-06 - Random Weird Things - Part Ⅳ](./2026-06-06-random-weird-things-iv.md)  
 [2026-06-01 - `gt` calculator - a calculator built with local LLMs](./2026-06-01-gt-calculator.md)  
 [2026-05-17 - Unveiling I/O Riot NG — Part 3: under the hood](./2026-05-17-unveiling-ior-ng-part-3.md)  
