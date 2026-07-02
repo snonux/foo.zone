@@ -1,8 +1,10 @@
 # A tmux popup editor for Cursor Agent CLI prompts
 
-> Published at 2026-02-01T20:24:16+02:00
+> Published at 2026-02-01T20:24:16+02:00; Last updated 2026-07-02
 
 ...and any other TUI based application
+
+> NOTE: This blog post is now obsolete, since all major coding harnesses/agents/CLIs how support Ctrl+g or Ctrl+e to edit your current prompt with your `EDITOR` anyways. I am keeping this blog post for reference.
 
 << template::inline::toc
 
