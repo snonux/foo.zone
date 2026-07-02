@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-07-01T09:18:47+03:00</updated>
+    <updated>2026-07-02T09:29:06+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -5027,9 +5027,11 @@ mage test
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='a-tmux-popup-editor-for-cursor-agent-cli-prompts'>A tmux popup editor for Cursor Agent CLI prompts</h1><br />
 <br />
-<span class='quote'>Published at 2026-02-01T20:24:16+02:00</span><br />
+<span class='quote'>Published at 2026-02-01T20:24:16+02:00; Last updated 2026-07-02</span><br />
 <br />
 <span>...and any other TUI based application</span><br />
+<br />
+<span class='quote'>NOTE: This blog post is now obsolete, since all major coding harnesses/agents/CLIs how support Ctrl+g or Ctrl+e to edit your current prompt with your <span class='inlinecode'>EDITOR</span> anyways. I am keeping this blog post for reference.</span><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
