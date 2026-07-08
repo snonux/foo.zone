@@ -1,4 +1,4 @@
-# Unleashing Hexai: AI companion for Helix and the terminal in general
+# Unveiling Hexai: AI companion for Helix and the terminal in general
 
 > Published at 2026-07-08T17:10:52+03:00
 
@@ -11,7 +11,7 @@ Hexai has been an undercover pet project of mine since around mid-last year. As 
 => https://codeberg.org/snonux/hexai Hexai source code
 => https://helix-editor.com Helix editor
 
-=> ./unleashing-hexai/01-logo.png Hexai logo
+=> ./unveiling-hexai/01-logo.png Hexai logo
 
 << template::inline::toc
 
@@ -208,7 +208,7 @@ hotkey = "s"
 
 Custom actions reference entries under `[[prompts.code_action.custom]]` in the same config file.
 
-=> ./unleashing-hexai/06-tmux-popup.jpg The hexai-tmux-action popup menu inside tmux
+=> ./unveiling-hexai/06-tmux-popup.jpg The hexai-tmux-action popup menu inside tmux
 
 Optional but useful: have tmux show live Hexai stats (provider, model, rpm, bytes) in the status line. Add this to `~/.config/tmux/tmux.conf` (or `~/.tmux.conf`):
 
@@ -219,7 +219,7 @@ set -g status-right-length 120
 
 The `@hexai_status` option is updated by the CLI, the LSP, and the action runner. Disable it with `HEXAI_TMUX_STATUS=0` if you don't want it.
 
-=> ./unleashing-hexai/10-tmux-status.png tmux status line showing live Hexai LLM stats
+=> ./unveiling-hexai/10-tmux-status.png tmux status line showing live Hexai LLM stats
 
 ## The CLI
 

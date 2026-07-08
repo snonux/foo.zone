@@ -1,11 +1,435 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-07-08T17:13:23+03:00</updated>
+    <updated>2026-07-08T17:16:26+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>Unveiling Hexai: AI companion for Helix and the terminal in general</title>
+        <link href="gemini://foo.zone/gemfeed/2026-07-09-unveiling-hexai.gmi" />
+        <id>gemini://foo.zone/gemfeed/2026-07-09-unveiling-hexai.gmi</id>
+        <updated>2026-07-08T17:10:52+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I have been using Helix as my main editor for a while now. It is fast, modal, and stays out of the way. The one thing I missed was a bit of LLM help without leaving the editor or opening a browser tab. So I built Hexai.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='unveiling-hexai-ai-companion-for-helix-and-the-terminal-in-general'>Unveiling Hexai: AI companion for Helix and the terminal in general</h1><br />
+<br />
+<span class='quote'>Published at 2026-07-08T17:10:52+03:00</span><br />
+<br />
+<span>I have been using Helix as my main editor for a while now. It is fast, modal, and stays out of the way. The one thing I missed was a bit of LLM help without leaving the editor or opening a browser tab. So I built Hexai.</span><br />
+<br />
+<span>Hexai is an AI add-on for Helix. It speaks LSP, so it also works with other editors in theory, but I only test it with Helix. It gives me inline completions, in-editor chat, code actions, a terminal CLI, a tmux popup action runner, and a small task manager for agent work. It is written in Go, lives on Codeberg, and is configured through plain TOML files.</span><br />
+<br />
+<span>Hexai has been an undercover pet project of mine since around mid-last year. As I write this it is at version <span class='inlinecode'>0.42.1</span>, so it has been quietly growing for a good while before this first proper write-up.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/hexai'>Hexai source code</a><br />
+<a class='textlink' href='https://helix-editor.com'>Helix editor</a><br />
+<br />
+<a href='./unveiling-hexai/01-logo.png'><img alt='Hexai logo' title='Hexai logo' src='./unveiling-hexai/01-logo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#unveiling-hexai-ai-companion-for-helix-and-the-terminal-in-general'>Unveiling Hexai: AI companion for Helix and the terminal in general</a></li>
+<li>⇢ <a href='#what-it-is'>What it is</a></li>
+<li>⇢ <a href='#installing-it'>Installing it</a></li>
+<li>⇢ <a href='#configuring-providers'>Configuring providers</a></li>
+<li>⇢ <a href='#wiring-it-into-helix'>Wiring it into Helix</a></li>
+<li>⇢ <a href='#inline-chat-and-prompts'>Inline chat and prompts</a></li>
+<li>⇢ <a href='#code-actions-via-the-tmux-popup'>Code actions via the tmux popup</a></li>
+<li>⇢ <a href='#the-cli'>The CLI</a></li>
+<li>⇢ <a href='#managing-agent-tasks-with-ask'>Managing agent tasks with ask</a></li>
+<li>⇢ <a href='#running-multiple-providers-side-by-side'>Running multiple providers side by side</a></li>
+<li>⇢ <a href='#what-to-watch-out-for'>What to watch out for</a></li>
+<li>⇢ <a href='#it-will-keep-changing'>It will keep changing</a></li>
+<li>⇢ <a href='#other-related-posts'>Other related posts:</a></li>
+</ul><br />
+<h2 style='display: inline' id='what-it-is'>What it is</h2><br />
+<br />
+<span>Hexai is really a bundle of small tools that share the same configuration:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>hexai-lsp-server</span> — the LSP server that Helix talks to.</li>
+<li><span class='inlinecode'>hexai</span> — a standalone CLI for quick LLM questions from the terminal or scripts.</li>
+<li><span class='inlinecode'>hexai-tmux-action</span> — a Bubble Tea TUI that pops up inside tmux and runs code actions on the current selection.</li>
+<li><span class='inlinecode'>ask</span> — a tiny task management CLI for agent-managed project work.</li>
+</ul><br />
+<span>Everything uses the same <span class='inlinecode'>config.toml</span>, the same provider pool, and the same prompt overrides. I can switch models in one place and the LSP, CLI, and popup all follow along.</span><br />
+<br />
+<span>These are opinionated tools. They reflect how I work — Helix inside tmux, a terminal CLI, a thin Taskwarrior wrapper — not a generic plugin system. If your workflow matches mine, they get out of the way; if it doesn&#39;t, you will probably want to tweak the config or fork it.</span><br />
+<br />
+<h2 style='display: inline' id='installing-it'>Installing it</h2><br />
+<br />
+<span>The easiest way is to install the binaries with <span class='inlinecode'>go install</span>. Each binary is a separate <span class='inlinecode'>cmd/</span> package:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>go install codeberg.org/snonux/hexai/cmd/hexai@latest
+go install codeberg.org/snonux/hexai/cmd/hexai-lsp-server@latest
+go install codeberg.org/snonux/hexai/cmd/hexai-tmux-action@latest
+go install codeberg.org/snonux/hexai/cmd/ask@latest
+</pre>
+<br />
+<span>If you prefer to build from a checkout, Hexai uses Mage:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>go install github.com/magefile/mage@latest
+mage build
+mage install
+</pre>
+<br />
+<span>That drops <span class='inlinecode'>hexai</span>, <span class='inlinecode'>hexai-lsp-server</span>, <span class='inlinecode'>hexai-tmux-action</span>, and <span class='inlinecode'>ask</span> into your <span class='inlinecode'>GOPATH/bin</span>.</span><br />
+<br />
+<h2 style='display: inline' id='configuring-providers'>Configuring providers</h2><br />
+<br />
+<span>Hexai looks for a global config at <span class='inlinecode'>~/.config/hexai/config.toml</span> and a per-project override at <span class='inlinecode'>.hexaiconfig.toml</span> in the git root. Environment variables prefixed with <span class='inlinecode'>HEXAI_</span> win over both files.</span><br />
+<br />
+<span>The default provider is Ollama Cloud with <span class='inlinecode'>kimi-k2.6</span> (it might be different by the time you read this!). To use a local Ollama server instead, override the base URL:</span><br />
+<br />
+<pre>
+[provider]
+name = "ollama"
+
+[ollama]
+model = "qwen3-coder:30b-a3b-q4_K_M"
+base_url = "http://localhost:11434"
+</pre>
+<br />
+<span>Because that points at <span class='inlinecode'>localhost</span>, nothing leaves your machine — prompt, code, and reply all stay local. That is the main reason I keep a local Ollama around.</span><br />
+<br />
+<span>For OpenAI, the config is similar:</span><br />
+<br />
+<pre>
+[provider]
+name = "openai"
+
+[openai]
+model = "gpt-4o-mini"
+</pre>
+<br />
+<span>Hexai reads the API key from <span class='inlinecode'>HEXAI_OPENAI_API_KEY</span> first, then falls back to <span class='inlinecode'>OPENAI_API_KEY</span>. The same pattern works for OpenRouter, Anthropic, and You.com.</span><br />
+<br />
+<h2 style='display: inline' id='wiring-it-into-helix'>Wiring it into Helix</h2><br />
+<br />
+<span>Tell Helix about the Hexai LSP server in <span class='inlinecode'>~/.config/helix/languages.toml</span>. Here is my Go setup:</span><br />
+<br />
+<pre>
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
+language-servers = [ "gopls", "hexai" ]
+
+[language-server.hexai]
+command = "hexai-lsp-server"
+</pre>
+<br />
+<span>You can add <span class='inlinecode'>hexai</span> after <span class='inlinecode'>gopls</span> or any other LSP. It does not replace them; it just adds completions, code actions, and chat on top.</span><br />
+<br />
+<span>Once the LSP is wired in, Hexai also offers inline auto-completions as you type. By default it fires after a short idle debounce (<span class='inlinecode'>completion_debounce_ms</span>, 800 ms) when you hit one of the trigger characters (<span class='inlinecode'>.</span> <span class='inlinecode'>:</span> <span class='inlinecode'>/</span> <span class='inlinecode'>_</span> space), and it waits for every configured backend before showing results (<span class='inlinecode'>completion_wait_all</span>). All of it is tunable in <span class='inlinecode'>config.toml</span>, and you can turn completions off for a session without restarting — see the slash commands below.</span><br />
+<br />
+<span>For the popup action runner, bind a key in <span class='inlinecode'>~/.config/helix/config.toml</span>:</span><br />
+<br />
+<pre>
+[keys.select]
+"A-a" = ":pipe hexai-tmux-action"
+
+[keys.normal]
+"A-a" = ["select_line", ":pipe hexai-tmux-action"]
+</pre>
+<br />
+<span>I use Alt-a. Select some code, hit Alt-a, and the popup appears.</span><br />
+<br />
+<h2 style='display: inline' id='inline-chat-and-prompts'>Inline chat and prompts</h2><br />
+<br />
+<span>The LSP adds two lightweight ways to talk to the model without leaving the editor:</span><br />
+<br />
+<ul>
+<li>End a line with <span class='inlinecode'>?&gt;</span>, <span class='inlinecode'>!&gt;</span>, <span class='inlinecode'>:&gt;</span>, or <span class='inlinecode'>;&gt;</span> to ask a question. Hexai removes only the trailing <span class='inlinecode'>&gt;</span>, keeps the question, and inserts a <span class='inlinecode'>&gt; </span> quoted reply below the line.</li>
+<li>Type <span class='inlinecode'>&gt;!do something&gt;</span> inline to ask for a quick edit, or <span class='inlinecode'>&gt;&gt;!do something&gt;</span> to replace the whole line with the completion.</li>
+</ul><br />
+<span>Chat example — a question ending in <span class='inlinecode'>?&gt;</span>:</span><br />
+<br />
+<pre>
+What is a Go slice?&gt;
+</pre>
+<br />
+<span>After the LSP responds you get something like:</span><br />
+<br />
+<pre>
+What is a Go slice?
+
+&gt; A slice is a dynamically-sized view into an array. It stores a pointer to
+&gt; the backing array plus length and capacity.
+</pre>
+<br />
+<span>Inline example — <span class='inlinecode'>&gt;&gt;!</span> replaces the whole line with the completion:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt;&gt;!document this function&gt;
+</pre>
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver">// Foo returns the square of n.</font></i>
+<b><u><font color="#000000">func</font></u></b> Foo(n int) int { <b><u><font color="#000000">return</font></u></b> n * n }
+</pre>
+<br />
+<span>Context is included automatically. For follow-ups, Hexai keeps the last few Q/A pairs above the cursor in mind, so you can ask related questions without repeating yourself.</span><br />
+<br />
+<span>There are a few slash commands you can type at the end of a chat line: <span class='inlinecode'>/reload&gt;</span> re-reads <span class='inlinecode'>config.toml</span> without restarting the LSP, <span class='inlinecode'>/disable&gt;</span> pauses auto-completions for the session, and <span class='inlinecode'>/enable&gt;</span> turns them back on.</span><br />
+<br />
+<span>In the editor buffer it ends up looking like this — the question stays, the reply is quoted below, and a follow-up picks up the same context:</span><br />
+<br />
+<pre>
+What is a Go slice?
+
+&gt; A slice is a dynamically-sized view into an array. It stores a pointer to
+&gt; the backing array plus length and capacity.
+
+And how do I append to one?
+
+&gt; Use the built-in append: s = append(s, x). It grows the backing array
+&gt; when capacity is exhausted, returning a new slice.
+</pre>
+<br />
+<h2 style='display: inline' id='code-actions-via-the-tmux-popup'>Code actions via the tmux popup</h2><br />
+<br />
+<span><span class='inlinecode'>hexai-tmux-action</span> is my favorite part. Inside a tmux session, select code in Helix and press the bound key. A tmux popup opens with this menu:</span><br />
+<br />
+<pre>
+r  Rewrite selection
+i  Simplify and improve
+c  Document code
+t  Generate Go unit test(s)
+f  Fix typos and improve grammar and clarity
+p  Custom prompt (opens your editor)
+s  Skip
+</pre>
+<br />
+<span>Pick one, the popup closes, and the rewritten code is piped back into Helix. For rewrite actions, I usually add a small instruction in a strict marker like <span class='inlinecode'>;extract this into a helper;</span> inside the selection. The runner finds the first instruction and uses it.</span><br />
+<br />
+<span>A mandatory detail: the popup is a real tmux popup, so Helix must be running inside a tmux session for this to work — there is no fallback to a separate window. Start it with:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>tmux new -s hx
+hx some-file.go
+</pre>
+<br />
+<span>Then select code and hit Alt-a. No special <span class='inlinecode'>tmux.conf</span> is required for the popup itself; the only hard requirement is that Helix lives inside tmux (and tmux 3.2 or newer, since the popup uses tmux&#39;s popup feature).</span><br />
+<br />
+<span>The menu is fully configurable. This is how I replace it with a smaller custom menu:</span><br />
+<br />
+<pre>
+[[tmux_action.menu]]
+kind   = "rewrite"
+hotkey = "r"
+
+[[tmux_action.menu]]
+kind   = "document"
+hotkey = "c"
+
+[[tmux_action.menu]]
+kind      = "custom"
+custom_id = "extract-function"
+hotkey    = "e"
+
+[[tmux_action.menu]]
+kind   = "skip"
+hotkey = "s"
+</pre>
+<br />
+<span>Custom actions reference entries under <span class='inlinecode'>[[prompts.code_action.custom]]</span> in the same config file.</span><br />
+<br />
+<a href='./unveiling-hexai/06-tmux-popup.jpg'><img alt='The hexai-tmux-action popup menu inside tmux' title='The hexai-tmux-action popup menu inside tmux' src='./unveiling-hexai/06-tmux-popup.jpg' /></a><br />
+<br />
+<span>Optional but useful: have tmux show live Hexai stats (provider, model, rpm, bytes) in the status line. Add this to <span class='inlinecode'>~/.config/tmux/tmux.conf</span> (or <span class='inlinecode'>~/.tmux.conf</span>):</span><br />
+<br />
+<pre>
+set -g status-right &#39;#{@hexai_status} #[fg=colour8]| %H:%M&#39;
+set -g status-right-length 120
+</pre>
+<br />
+<span>The <span class='inlinecode'>@hexai_status</span> option is updated by the CLI, the LSP, and the action runner. Disable it with <span class='inlinecode'>HEXAI_TMUX_STATUS=0</span> if you don&#39;t want it.</span><br />
+<br />
+<a href='./unveiling-hexai/10-tmux-status.png'><img alt='tmux status line showing live Hexai LLM stats' title='tmux status line showing live Hexai LLM stats' src='./unveiling-hexai/10-tmux-status.png' /></a><br />
+<br />
+<h2 style='display: inline' id='the-cli'>The CLI</h2><br />
+<br />
+<span>The <span class='inlinecode'>hexai</span> CLI is useful for quick questions from the terminal or from scripts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Ask from stdin</font></i>
+cat some-file.go | hexai
+
+<i><font color="silver"># Ask from an argument</font></i>
+hexai <font color="#808080">'explain this function'</font>
+
+<i><font color="silver"># Both stdin and argument are concatenated</font></i>
+cat some-file.go | hexai <font color="#808080">'write unit tests for this'</font>
+
+<i><font color="silver"># Open the global config in $HEXAI_EDITOR or $EDITOR</font></i>
+hexai config
+
+<i><font color="silver"># Simulate how fast a model feels without calling a provider</font></i>
+hexai --tps-simulation <font color="#000000">12</font>-<font color="#000000">18</font>
+</pre>
+<br />
+<span>A real one-shot looks like this (only stdout is shown):</span><br />
+<br />
+<pre>
+$ hexai &#39;install ripgrep on fedora&#39;
+sudo dnf install ripgrep
+</pre>
+<br />
+<span>The provider label and the run summary (timing, token counts, rpm) go to stderr, so <span class='inlinecode'>stdout</span> stays clean for pipes — <span class='inlinecode'>hexai &#39;install ripgrep on fedora&#39; | sh</span> just works.</span><br />
+<br />
+<h2 style='display: inline' id='managing-agent-tasks-with-ask'>Managing agent tasks with ask</h2><br />
+<br />
+<span><span class='inlinecode'>ask</span> is a thin wrapper around Taskwarrior that auto-scopes tasks to the current git project and tags them with <span class='inlinecode'>+agent</span>. I use it to keep track of what the coding agent is supposed to do next.</span><br />
+<br />
+<span>Under the hood every <span class='inlinecode'>ask</span> command is just a Taskwarrior command filtered to <span class='inlinecode'>project:REPO +agent</span>, where <span class='inlinecode'>REPO</span> is the name of the git repository root <span class='inlinecode'>ask</span> was run in. The tasks are plain Taskwarrior tasks, so you can drop down to <span class='inlinecode'>task</span> itself any time and work with the same data. From the hexai repo, for example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Same tasks, raw Taskwarrior</font></i>
+task project:hexai list
+task project:hexai +agent next
+</pre>
+<br />
+<span><span class='inlinecode'>ask</span> just hides the project filter, the <span class='inlinecode'>+agent</span> tag, and the raw UUIDs so the day-to-day output stays small and project-local.</span><br />
+<br />
+<span>That scoping is also a security boundary, and the main reason I let an LLM agent touch my Taskwarrior database at all. Because <span class='inlinecode'>ask</span> always applies the <span class='inlinecode'>project:REPO +agent</span> filter, the agent can only see and modify tasks in its own current project — it cannot delete, reprioritize, or even see anything outside that filter. So <span class='inlinecode'>ask</span> is really a safety wrapper around <span class='inlinecode'>task</span>: you can hand it to a coding agent without giving it free rein over the rest of your tasks.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Add a task for the current project</font></i>
+ask add priority:H <font color="#808080">"implement config reload"</font>
+
+<i><font color="silver"># List pending agent tasks</font></i>
+ask list
+
+<i><font color="silver"># Start and finish work (ask add prints the alias, e.g. os0)</font></i>
+ask start os0
+ask <b><u><font color="#000000">done</font></u></b> os0
+
+<i><font color="silver"># See details without exposing raw UUIDs</font></i>
+ask info os0
+</pre>
+<br />
+<span>The IDs shown are stable local aliases, not Taskwarrior&#39;s numeric IDs. Taskwarrior gives you two built-in identifiers: a numeric ID that isn&#39;t stable across syncs and exports, and a UUID that is stable but far too long to type by hand. <span class='inlinecode'>ask</span> instead keeps its own mapping from each task&#39;s UUID to a short, permanent alias (cached under Hexai&#39;s cache dir) — so you get the best of both: a stable, short ID that never changes even if tasks above it get completed or deleted. <span class='inlinecode'>ask info</span> hides the raw UUID unless <span class='inlinecode'>HEXAI_DEBUG</span> is set, so the short alias is the one you actually use day to day.</span><br />
+<br />
+<span><span class='inlinecode'>ask</span> works from anywhere inside the project git tree and derives the project name from the repo root. To manage tasks for another project, use <span class='inlinecode'>ask proj:hexai list</span>.</span><br />
+<br />
+<span>One detail worth knowing: the alias strings are reversed on purpose. The underlying counter is monotonic (1, 2, 3, …), and a naive encoding would make consecutive tasks share a leading character once the list grows past 36 (<span class='inlinecode'>00</span>, <span class='inlinecode'>01</span>, <span class='inlinecode'>02</span>, … all start with <span class='inlinecode'>0</span>), which kills shell tab-completion. Reversing the string makes the first character vary as fast as possible (<span class='inlinecode'>00</span>, <span class='inlinecode'>10</span>, <span class='inlinecode'>20</span>, … instead of <span class='inlinecode'>00</span>, <span class='inlinecode'>01</span>, <span class='inlinecode'>02</span>, …), so typing the first letter in Fish actually narrows the list. That is the whole reason the IDs look slightly odd.</span><br />
+<br />
+<span>To actually get those completions in Fish, run <span class='inlinecode'>ask fish | source</span> (or drop it into Fish&#39;s <span class='inlinecode'>conf.d</span>) — it gives you tab-completion for both subcommands and the reversed alias IDs.</span><br />
+<br />
+<span><span class='inlinecode'>ask list</span> prints a compact table:</span><br />
+<br />
+<pre>
+Urg | Pri | ID  | Status  | Started | Tags  | Description
+----------------------------------------------------------------------------
+7.8 | H   | os0 | pending | no      | agent | implement config reload
+5.7 | M   | ps0 | pending | no      | agent | add fish completion docs
+3.6 | L   | qs0 | pending | no      | agent | deprecate hexai-mcp-server README note
+</pre>
+<br />
+<span>And <span class='inlinecode'>ask info os0</span> shows one task without exposing the raw UUID:</span><br />
+<br />
+<pre>
+ID:          os0
+Description: implement config reload
+Status:      pending
+Started:     no
+Priority:    H
+Urgency:     7.8
+Tags:        agent
+</pre>
+<br />
+<h2 style='display: inline' id='running-multiple-providers-side-by-side'>Running multiple providers side by side</h2><br />
+<br />
+<span>One feature I use more than I expected: per-surface model lists. In <span class='inlinecode'>config.toml</span> you can configure several providers or models for the same entry point, and Hexai fans the request out to all of them in parallel.</span><br />
+<br />
+<pre>
+[[models.cli]]
+provider = "openai"
+model = "gpt-4o-mini"
+temperature = 0.4
+
+[[models.cli]]
+provider = "ollama"
+model = "qwen3-coder:30b-a3b-q4_K_M"
+temperature = 0.2
+</pre>
+<br />
+<span>With that, <span class='inlinecode'>hexai &#39;summarize this file&#39;</span> prints two labeled answers side by side:</span><br />
+<br />
+<pre>
+ollama:qwen3-coder:30b-a3b-q4_K_M:
+A short Go program that reads a file line by line and prints each line.
+
+openai:gpt-4o-mini:
+Reads a file and echoes each line. Returns early on open errors.
+</pre>
+<br />
+<span>It is handy for comparing local and cloud models, or for just seeing which one gives the cleaner response. Code actions still use only the first entry; extra entries there are ignored with a warning.</span><br />
+<br />
+<h2 style='display: inline' id='what-to-watch-out-for'>What to watch out for</h2><br />
+<br />
+<span>A few honest caveats:</span><br />
+<br />
+<ul>
+<li>I mainly test Hexai with Helix inside tmux. Other editors might work through LSP, but your mileage will vary.</li>
+<li>The <span class='inlinecode'>hexai-mcp-server</span> binary is experimental and effectively deprecated. I manage prompts through slash commands and the agent system now, so the MCP server is not getting much attention.</li>
+<li>Wiring the tmux popup and status line takes a little manual config. It is not plug-and-play like a VS Code extension.</li>
+<li>Auto-completions can be chatty. You can disable them on the fly with <span class='inlinecode'>/disable&gt;</span> in chat, or tune the debounce in <span class='inlinecode'>config.toml</span>.</li>
+</ul><br />
+<h2 style='display: inline' id='it-will-keep-changing'>It will keep changing</h2><br />
+<br />
+<span>Hexai is a personal tool, and it will keep changing. Things go in and come back out: the tmux popup editor for Cursor Agent prompts I wrote about earlier got folded into Hexai, then removed again once every agent added Ctrl+g or Ctrl+e to edit a prompt in <span class='inlinecode'>$EDITOR</span>.</span><br />
+<br />
+<a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts</a><br />
+<br />
+<span>The MCP server that ships with Hexai is experimental and may get cut too. As time goes on I will keep trying ideas — maybe a whole coding agent one day, maybe not. If you want to poke at it or open an issue, it lives on Codeberg.</span><br />
+<br />
+<h2 style='display: inline' id='other-related-posts'>Other related posts:</h2><br />
+<br />
+<a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts</a><br />
+<a class='textlink' href='./2026-02-14-meta-slash-commands-for-prompts-and-context.html'>2026-02-14 - Meta slash commands for prompts and context</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Unleashing Hexai: AI companion for Helix and the terminal in general</title>
         <link href="gemini://foo.zone/gemfeed/2026-07-09-unleashing-hexai.gmi" />
@@ -20884,359 +21308,6 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <span>Thanks for reading! Hopefully there’s something useful in here for your own work. Reliable systems are a team effort, after all.</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> or contact Florian via the Cracking AI Engineering :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Posts from October to December 2024</title>
-        <link href="gemini://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.gmi" />
-        <id>gemini://foo.zone/gemfeed/2025-01-01-posts-from-october-to-december-2024.gmi</id>
-        <updated>2024-12-31T18:09:58+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>Happy new year!</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='posts-from-october-to-december-2024'>Posts from October to December 2024</h1><br />
-<br />
-<span class='quote'>Published at 2024-12-31T18:09:58+02:00</span><br />
-<br />
-<span>Happy new year!</span><br />
-<br />
-<span>These are my social media posts from the last three months. I keep them here to reflect on them and also to not lose them. Social media networks come and go and are not under my control, but my domain is here to stay. </span><br />
-<br />
-<span>These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.</span><br />
-<br />
-<a class='textlink' href='../about/index.html'>My about page</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#posts-from-october-to-december-2024'>Posts from October to December 2024</a></li>
-<li>⇢ <a href='#october-2024'>October 2024</a></li>
-<li>⇢ ⇢ <a href='#first-on-call-experience-in-a-startup-doesn-t-'>First on-call experience in a startup. Doesn&#39;t ...</a></li>
-<li>⇢ ⇢ <a href='#reviewing-your-own-pr-or-mr-before-asking-'>Reviewing your own PR or MR before asking ...</a></li>
-<li>⇢ ⇢ <a href='#fun-with-defer-in-golang-i-did-t-know-that-'>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that ...</a></li>
-<li>⇢ ⇢ <a href='#i-have-been-in-incidents-understandably-'>I have been in incidents. Understandably, ...</a></li>
-<li>⇢ ⇢ <a href='#little-tips-using-strings-in-golang-and-i-'>Little tips using strings in <span class='inlinecode'>#golang</span> and I ...</a></li>
-<li>⇢ ⇢ <a href='#reading-this-post-about-rust-especially-the-'>Reading this post about <span class='inlinecode'>#rust</span> (especially the ...</a></li>
-<li>⇢ ⇢ <a href='#the-opposite-of-chaosmonkey--'>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... ...</a></li>
-<li>⇢ <a href='#november-2024'>November 2024</a></li>
-<li>⇢ ⇢ <a href='#i-just-became-a-silver-patreon-for-osnews-what-'>I just became a Silver Patreon for OSnews. What ...</a></li>
-<li>⇢ ⇢ <a href='#until-now-i-wasn-t-aware-that-go-is-under-a-'>Until now, I wasn&#39;t aware, that Go is under a ...</a></li>
-<li>⇢ ⇢ <a href='#these-are-some-book-notes-from-staff-engineer-'>These are some book notes from "Staff Engineer" ...</a></li>
-<li>⇢ ⇢ <a href='#looking-at-kubernetes-it-s-pretty-much-'>Looking at <span class='inlinecode'>#Kubernetes</span>, it&#39;s pretty much ...</a></li>
-<li>⇢ ⇢ <a href='#there-has-been-an-outage-at-the-upstream-'>There has been an outage at the upstream ...</a></li>
-<li>⇢ ⇢ <a href='#one-of-the-more-confusing-parts-in-go-nil-'>One of the more confusing parts in Go, nil ...</a></li>
-<li>⇢ ⇢ <a href='#agreeably-writing-down-with-diagrams-helps-you-'>Agreeably, writing down with Diagrams helps you ...</a></li>
-<li>⇢ ⇢ <a href='#i-like-the-idea-of-types-in-ruby-raku-is-'>I like the idea of types in Ruby. Raku is ...</a></li>
-<li>⇢ ⇢ <a href='#so-haskell-is-better-suited-for-general-'>So, <span class='inlinecode'>#Haskell</span> is better suited for general ...</a></li>
-<li>⇢ ⇢ <a href='#at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</a></li>
-<li>⇢ ⇢ <a href='#revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</a></li>
-<li>⇢ ⇢ <a href='#wondering-to-which-web-browser-i-should-'>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should ...</a></li>
-<li>⇢ ⇢ <a href='#eks-node-viewer-is-a-nifty-tool-showing-the-'>eks-node-viewer is a nifty tool, showing the ...</a></li>
-<li>⇢ ⇢ <a href='#have-put-more-photos-on---on-my-static-photo-'>Have put more Photos on - On my static photo ...</a></li>
-<li>⇢ ⇢ <a href='#in-go-passing-pointers-are-not-automatically-'>In Go, passing pointers are not automatically ...</a></li>
-<li>⇢ ⇢ <a href='#myself-being-part-of-an-on-call-rotations-over-'>Myself being part of an on-call rotations over ...</a></li>
-<li>⇢ ⇢ <a href='#feels-good-to-code-in-my-old-love-perl-again-'>Feels good to code in my old love <span class='inlinecode'>#Perl</span> again ...</a></li>
-<li>⇢ ⇢ <a href='#this-is-an-interactive-summary-of-the-go-'>This is an interactive summary of the Go ...</a></li>
-<li>⇢ <a href='#december-2024'>December 2024</a></li>
-<li>⇢ ⇢ <a href='#thats-unexpected-you-cant-remove-a-nan-key-'>Thats unexpected, you cant remove a NaN key ...</a></li>
-<li>⇢ ⇢ <a href='#my-second-blog-post-about-revamping-my-home-lab-'>My second blog post about revamping my home lab ...</a></li>
-<li>⇢ ⇢ <a href='#very-insightful-article-about-tech-hiring-in-'>Very insightful article about tech hiring in ...</a></li>
-<li>⇢ ⇢ <a href='#for-bpf-ebpf-performance-debugging-have-'>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have ...</a></li>
-<li>⇢ ⇢ <a href='#89-things-heshe-knows-about-git-commits-is-a-'>89 things he/she knows about Git commits is a ...</a></li>
-<li>⇢ ⇢ <a href='#i-found-that-working-on-multiple-side-projects-'>I found that working on multiple side projects ...</a></li>
-<li>⇢ ⇢ <a href='#agreed-agreed-besides-ruby-i-would-also-'>Agreed? Agreed. Besides <span class='inlinecode'>#Ruby</span>, I would also ...</a></li>
-<li>⇢ ⇢ <a href='#plan9-assembly-format-in-go-but-wait-it-s-not-'>Plan9 assembly format in Go, but wait, it&#39;s not ...</a></li>
-<li>⇢ ⇢ <a href='#this-is-a-neat-blog-post-about-the-helix-text-'>This is a neat blog post about the Helix text ...</a></li>
-<li>⇢ ⇢ <a href='#this-blog-post-is-basically-a-rant-against-'>This blog post is basically a rant against ...</a></li>
-<li>⇢ ⇢ <a href='#quick-trick-to-get-helix-themes-selected-'>Quick trick to get Helix themes selected ...</a></li>
-<li>⇢ ⇢ <a href='#example-where-complexity-attacks-you-from-'>Example where complexity attacks you from ...</a></li>
-<li>⇢ ⇢ <a href='#llms-for-ops-summaries-of-logs-probabilities-'>LLMs for Ops? Summaries of logs, probabilities ...</a></li>
-<li>⇢ ⇢ <a href='#excellent-article-about-your-dream-product-'>Excellent article about your dream Product ...</a></li>
-<li>⇢ ⇢ <a href='#i-just-finished-reading-all-chapters-of-cpu-'>I just finished reading all chapters of CPU ...</a></li>
-<li>⇢ ⇢ <a href='#indeed-useful-to-know-this-stuff-sre-'>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span> ...</a></li>
-<li>⇢ ⇢ <a href='#it-s-the-small-things-which-make-unix-like-'>It&#39;s the small things, which make Unix like ...</a></li>
-<li>⇢ ⇢ <a href='#my-new-year-s-resolution-is-not-to-start-any-'>My New Year&#39;s resolution is not to start any ...</a></li>
-</ul><br />
-<h2 style='display: inline' id='october-2024'>October 2024</h2><br />
-<br />
-<h3 style='display: inline' id='first-on-call-experience-in-a-startup-doesn-t-'>First on-call experience in a startup. Doesn&#39;t ...</h3><br />
-<br />
-<span>First on-call experience in a startup. Doesn&#39;t sound a lot of fun! But the lessons were learned! <span class='inlinecode'>#sre</span></span><br />
-<br />
-<a class='textlink' href='https://ntietz.com/blog/lessons-from-my-first-on-call/'>ntietz.com/blog/lessons-from-my-first-on-call/</a><br />
-<br />
-<h3 style='display: inline' id='reviewing-your-own-pr-or-mr-before-asking-'>Reviewing your own PR or MR before asking ...</h3><br />
-<br />
-<span>Reviewing your own PR or MR before asking others to review it makes a lot of sense. Have seen so many silly mistakes which would have been avoided. Saving time for the real reviewer.</span><br />
-<br />
-<a class='textlink' href='https://www.jvt.me/posts/2019/01/12/self-code-review/'>www.jvt.me/posts/2019/01/12/self-code-review/</a><br />
-<br />
-<h3 style='display: inline' id='fun-with-defer-in-golang-i-did-t-know-that-'>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that ...</h3><br />
-<br />
-<span>Fun with defer in <span class='inlinecode'>#golang</span>, I did&#39;t know, that a defer object can either be heap or stack allocated. And there are some rules for inlining, too.</span><br />
-<br />
-<a class='textlink' href='https://victoriametrics.com/blog/defer-in-go/'>victoriametrics.com/blog/defer-in-go/</a><br />
-<br />
-<h3 style='display: inline' id='i-have-been-in-incidents-understandably-'>I have been in incidents. Understandably, ...</h3><br />
-<br />
-<span>I have been in incidents. Understandably, everyone wants the issue to be resolved as quickly and others want to know how long TTR will be. IMHO, providing no estimates at all is no solution either. So maybe give a rough estimate but clearly communicate that the estimate is rough and that X, Y, and Z can interfere, meaning there is a chance it will take longer to resolve the incident. Just my thought. What&#39;s yours?</span><br />
-<br />
-<a class='textlink' href='https://firehydrant.com/blog/hot-take-dont-provide-incident-resolution-estimates/'>firehydrant.com/blog/hot-take-dont-provide-incident-resolution-estimates/</a><br />
-<br />
-<h3 style='display: inline' id='little-tips-using-strings-in-golang-and-i-'>Little tips using strings in <span class='inlinecode'>#golang</span> and I ...</h3><br />
-<br />
-<span>Little tips using strings in <span class='inlinecode'>#golang</span> and I personally think one must look more into the std lib (not just for strings, also for slices, maps,...), there are tons of useful helper functions.</span><br />
-<br />
-<a class='textlink' href='https://www.calhoun.io/6-tips-for-using-strings-in-go/'>www.calhoun.io/6-tips-for-using-strings-in-go/</a><br />
-<br />
-<h3 style='display: inline' id='reading-this-post-about-rust-especially-the-'>Reading this post about <span class='inlinecode'>#rust</span> (especially the ...</h3><br />
-<br />
-<span>Reading this post about <span class='inlinecode'>#rust</span> (especially the first part), I think I made a good choice in deciding to dive into <span class='inlinecode'>#golang</span> instead. There was a point where I wanted to learn a new programming language, and Rust was on my list of choices. I think the Go project does a much better job of deciding what goes into the language and how. What are your thoughts?</span><br />
-<br />
-<a class='textlink' href='https://josephg.com/blog/rewriting-rust/'>josephg.com/blog/rewriting-rust/</a><br />
-<br />
-<h3 style='display: inline' id='the-opposite-of-chaosmonkey--'>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... ...</h3><br />
-<br />
-<span>The opposite of <span class='inlinecode'>#ChaosMonkey</span> ... automatically repairing and healing services helping to reduce manual toil work. Runbooks and scripts are only the first step, followed by a fully blown service written in Go. Could be useful, but IMHO why not rather address the root causes of the manual toil work? <span class='inlinecode'>#sre</span></span><br />
-<br />
-<a class='textlink' href='https://blog.cloudflare.com/nl-nl/improving-platform-resilience-at-cloudflare/'>blog.cloudflare.com/nl-nl/improving-platform-resilience-at-cloudflare/</a><br />
-<br />
-<h2 style='display: inline' id='november-2024'>November 2024</h2><br />
-<br />
-<h3 style='display: inline' id='i-just-became-a-silver-patreon-for-osnews-what-'>I just became a Silver Patreon for OSnews. What ...</h3><br />
-<br />
-<span>I just became a Silver Patreon for OSnews. What is OSnews? It is an independent news site about IT. It is slightly independent and, at times, alternative. I have enjoyed it since my early student days. This one and other projects I financially support are listed here:</span><br />
-<br />
-<a class='textlink' href='gemini://foo.zone/gemfeed/2024-09-07-projects-i-support.gmi'>foo.zone/gemfeed/2024-09-07-projects-i-support.gmi (Gemini)</a><br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-09-07-projects-i-support.html'>foo.zone/gemfeed/2024-09-07-projects-i-support.html</a><br />
-<br />
-<h3 style='display: inline' id='until-now-i-wasn-t-aware-that-go-is-under-a-'>Until now, I wasn&#39;t aware, that Go is under a ...</h3><br />
-<br />
-<span>Until now, I wasn&#39;t aware, that Go is under a BSD-style license (3-clause as it seems). Neat. I don&#39;t know why, but I always was under the impression it would be MIT. <span class='inlinecode'>#bsd</span> <span class='inlinecode'>#golang</span></span><br />
-<br />
-<a class='textlink' href='https://go.dev/LICENSE'>go.dev/LICENSE</a><br />
-<br />
-<h3 style='display: inline' id='these-are-some-book-notes-from-staff-engineer-'>These are some book notes from "Staff Engineer" ...</h3><br />
-<br />
-<span>These are some book notes from "Staff Engineer" – there is some really good insight into what is expected from a Staff Engineer and beyond in the industry. I wish I had read the book earlier.</span><br />
-<br />
-<a class='textlink' href='gemini://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.gmi'>foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.gmi (Gemini)</a><br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.html'>foo.zone/gemfeed/2024-10-24-staff-engineer-book-notes.html</a><br />
-<br />
-<h3 style='display: inline' id='looking-at-kubernetes-it-s-pretty-much-'>Looking at <span class='inlinecode'>#Kubernetes</span>, it&#39;s pretty much ...</h3><br />
-<br />
-<span>Looking at <span class='inlinecode'>#Kubernetes</span>, it&#39;s pretty much following the Unix way of doing things. It has many tools, but each tool has its own single purpose: DNS, scheduling, container runtime, various controllers, networking, observability, alerting, and more services in the control plane. Everything is managed by different services or plugins, mostly running in their dedicated pods. They don&#39;t communicate through pipes, but network sockets, though. <span class='inlinecode'>#k8s</span></span><br />
-<br />
-<h3 style='display: inline' id='there-has-been-an-outage-at-the-upstream-'>There has been an outage at the upstream ...</h3><br />
-<br />
-<span>There has been an outage at the upstream network provider for OpenBSD.Amsterdam (hoster, I am using). This was the first real-world test for my KISS HA setup, and it worked flawlessly! All my sites and services failed over automatically to my other <span class='inlinecode'>#OpenBSD</span> VM!</span><br />
-<br />
-<a class='textlink' href='gemini://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.gmi'>foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.gmi (Gemini)</a><br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html'>foo.zone/gemfeed/2024-04-01-KISS-high-availability-with-OpenBSD.html</a><br />
-<a class='textlink' href='https://openbsd.amsterdam/'>openbsd.amsterdam/</a><br />
-<br />
-<h3 style='display: inline' id='one-of-the-more-confusing-parts-in-go-nil-'>One of the more confusing parts in Go, nil ...</h3><br />
-<br />
-<span>One of the more confusing parts in Go, nil values vs nil errors: <span class='inlinecode'>#golang</span></span><br />
-<br />
-<a class='textlink' href='https://unexpected-go.com/nil-errors-that-are-non-nil-errors.html'>unexpected-go.com/nil-errors-that-are-non-nil-errors.html</a><br />
-<br />
-<h3 style='display: inline' id='agreeably-writing-down-with-diagrams-helps-you-'>Agreeably, writing down with Diagrams helps you ...</h3><br />
-<br />
-<span>Agreeably, writing down with Diagrams helps you to think things more through. And keeps others on the same page. Only worth for projects from a certain size, IMHO.</span><br />
-<br />
-<a class='textlink' href='https://ntietz.com/blog/reasons-to-write-design-docs/'>ntietz.com/blog/reasons-to-write-design-docs/</a><br />
-<br />
-<h3 style='display: inline' id='i-like-the-idea-of-types-in-ruby-raku-is-'>I like the idea of types in Ruby. Raku is ...</h3><br />
-<br />
-<span>I like the idea of types in Ruby. Raku is supports that already, but in Ruby, you must specify the types in a separate .rbs file, which is, in my opinion, cumbersome and is a reason not to use it extensively for now. I believe there are efforts to embed the type information in the standard .rb files, and that the .rbs is just an experiment to see how types could work out without introducing changes into the core Ruby language itself right now? <span class='inlinecode'>#Ruby</span> <span class='inlinecode'>#RakuLang</span></span><br />
-<br />
-<a class='textlink' href='https://github.com/ruby/rbs'>github.com/ruby/rbs</a><br />
-<br />
-<h3 style='display: inline' id='so-haskell-is-better-suited-for-general-'>So, <span class='inlinecode'>#Haskell</span> is better suited for general ...</h3><br />
-<br />
-<span>So, <span class='inlinecode'>#Haskell</span> is better suited for general purpose than <span class='inlinecode'>#Rust</span>? I thought deploying something in Haskell means publishing an academic paper :-) Interesting rant about Rust, though:</span><br />
-<br />
-<a class='textlink' href='https://chrisdone.com/posts/rust/'>chrisdone.com/posts/rust/</a><br />
-<br />
-<h3 style='display: inline' id='at-first-functional-options-add-a-bit-of-'>At first, functional options add a bit of ...</h3><br />
-<br />
-<span>At first, functional options add a bit of boilerplate, but they turn out to be quite neat, especially when you have very long parameter lists that need to be made neat and tidy. <span class='inlinecode'>#golang</span></span><br />
-<br />
-<a class='textlink' href='https://www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/'>www.calhoun.io/using-functional-options-instead-of-method-chaining-in-go/</a><br />
-<br />
-<h3 style='display: inline' id='revamping-my-home-lab-a-little-bit-freebsd-'>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> ...</h3><br />
-<br />
-<span>Revamping my home lab a little bit. <span class='inlinecode'>#freebsd</span> <span class='inlinecode'>#bhyve</span> <span class='inlinecode'>#rocky</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#vm</span> <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#kubernetes</span> <span class='inlinecode'>#wireguard</span> <span class='inlinecode'>#zfs</span> <span class='inlinecode'>#nfs</span> <span class='inlinecode'>#ha</span> <span class='inlinecode'>#relayd</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#selfhosting</span> <span class='inlinecode'>#homelab</span></span><br />
-<br />
-<a class='textlink' href='gemini://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi'>foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi (Gemini)</a><br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>foo.zone/gemfeed/2024-11-17-f3s-kubernetes-with-freebsd-part-1.html</a><br />
-<br />
-<h3 style='display: inline' id='wondering-to-which-web-browser-i-should-'>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should ...</h3><br />
-<br />
-<span>Wondering to which <span class='inlinecode'>#web</span> <span class='inlinecode'>#browser</span> I should switch now personally ...</span><br />
-<br />
-<a class='textlink' href='https://www.osnews.com/story/141100/mozilla-foundation-lays-off-30-of-its-employees-ends-advocacy-for-open-web-privacy-and-more/'>www.osnews.com/story/141100/mozilla-fo..-..dvocacy-for-open-web-privacy-and-more/</a><br />
-<br />
-<h3 style='display: inline' id='eks-node-viewer-is-a-nifty-tool-showing-the-'>eks-node-viewer is a nifty tool, showing the ...</h3><br />
-<br />
-<span>eks-node-viewer is a nifty tool, showing the compute nodes currently in use in the <span class='inlinecode'>#EKS</span> cluster. especially useful when dynamically allocating nodes with <span class='inlinecode'>#karpenter</span> or auto scaling groups.</span><br />
-<br />
-<a class='textlink' href='https://github.com/awslabs/eks-node-viewer'>github.com/awslabs/eks-node-viewer</a><br />
-<br />
-<h3 style='display: inline' id='have-put-more-photos-on---on-my-static-photo-'>Have put more Photos on - On my static photo ...</h3><br />
-<br />
-<span>Have put more Photos on - On my static photo sites - Generated with a <span class='inlinecode'>#bash</span> script</span><br />
-<br />
-<a class='textlink' href='https://irregular.ninja'>irregular.ninja</a><br />
-<br />
-<h3 style='display: inline' id='in-go-passing-pointers-are-not-automatically-'>In Go, passing pointers are not automatically ...</h3><br />
-<br />
-<span>In Go, passing pointers are not automatically faster than values. Pointers often force the memory to be allocated on the heap, adding GC overhad. With values, Go can determine whether to put the memory on the stack instead. But with large structs/objects (how you want to call them) or if you want to modify state, then pointers are the semantic to use. <span class='inlinecode'>#golang</span></span><br />
-<br />
-<a class='textlink' href='https://blog.boot.dev/golang/pointers-faster-than-values/'>blog.boot.dev/golang/pointers-faster-than-values/</a><br />
-<br />
-<h3 style='display: inline' id='myself-being-part-of-an-on-call-rotations-over-'>Myself being part of an on-call rotations over ...</h3><br />
-<br />
-<span>Myself being part of an on-call rotations over my whole professional life, just have learned this lesson "Tell people who are new to on-call: Just have fun" :-) This is a neat blog post to read:</span><br />
-<br />
-<a class='textlink' href='https://ntietz.com/blog/what-i-tell-people-new-to-oncall/'>ntietz.com/blog/what-i-tell-people-new-to-oncall/</a><br />
-<br />
-<h3 style='display: inline' id='feels-good-to-code-in-my-old-love-perl-again-'>Feels good to code in my old love <span class='inlinecode'>#Perl</span> again ...</h3><br />
-<br />
-<span>Feels good to code in my old love <span class='inlinecode'>#Perl</span> again after a while. I am implementing a log parser for generating site stats of my personal homepage! :-) @Perl</span><br />
-<br />
-<h3 style='display: inline' id='this-is-an-interactive-summary-of-the-go-'>This is an interactive summary of the Go ...</h3><br />
-<br />
-<span>This is an interactive summary of the Go release, with a lot of examples utilising iterators in the slices and map packages. Love it! <span class='inlinecode'>#golang</span></span><br />
-<br />
-<a class='textlink' href='https://antonz.org/go-1-23/'>antonz.org/go-1-23/</a><br />
-<br />
-<h2 style='display: inline' id='december-2024'>December 2024</h2><br />
-<br />
-<h3 style='display: inline' id='thats-unexpected-you-cant-remove-a-nan-key-'>Thats unexpected, you cant remove a NaN key ...</h3><br />
-<br />
-<span>Thats unexpected, you cant remove a NaN key from a map without clearing it! <span class='inlinecode'>#golang</span></span><br />
-<br />
-<a class='textlink' href='https://unexpected-go.com/you-cant-remove-a-nan-key-from-a-map-without-clearing-it.html'>unexpected-go.com/you-cant-remove-a-nan-key-from-a-map-without-clearing-it.html</a><br />
-<br />
-<h3 style='display: inline' id='my-second-blog-post-about-revamping-my-home-lab-'>My second blog post about revamping my home lab ...</h3><br />
-<br />
-<span>My second blog post about revamping my home lab a little bit just hit the net. <span class='inlinecode'>#FreeBSD</span> <span class='inlinecode'>#ZFS</span> <span class='inlinecode'>#n100</span> <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#k3s</span> <span class='inlinecode'>#kubernetes</span></span><br />
-<br />
-<a class='textlink' href='gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi'>foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi (Gemini)</a><br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.html</a><br />
-<br />
-<h3 style='display: inline' id='very-insightful-article-about-tech-hiring-in-'>Very insightful article about tech hiring in ...</h3><br />
-<br />
-<span>Very insightful article about tech hiring in the age of LLMs. As an interviewer, I have experienced some of the scrnarios already first hand...</span><br />
-<br />
-<a class='textlink' href='https://newsletter.pragmaticengineer.com/p/how-genai-changes-tech-hiring'>newsletter.pragmaticengineer.com/p/how-genai-changes-tech-hiring</a><br />
-<br />
-<h3 style='display: inline' id='for-bpf-ebpf-performance-debugging-have-'>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have ...</h3><br />
-<br />
-<span>for <span class='inlinecode'>#bpf</span> <span class='inlinecode'>#ebpf</span> performance debugging, have a look at bpftop from Netflix. A neat tool showing you the estimated CPU time and other performance statistics for all the BPF programs currently loaded into the <span class='inlinecode'>#linux</span> kernel. Highly recommend!</span><br />
-<br />
-<a class='textlink' href='https://github.com/Netflix/bpftop'>github.com/Netflix/bpftop</a><br />
-<br />
-<h3 style='display: inline' id='89-things-heshe-knows-about-git-commits-is-a-'>89 things he/she knows about Git commits is a ...</h3><br />
-<br />
-<span>89 things he/she knows about Git commits is a neat list of <span class='inlinecode'>#Git</span> wisdoms</span><br />
-<br />
-<a class='textlink' href='https://www.jvt.me/posts/2024/07/12/things-know-commits/'>www.jvt.me/posts/2024/07/12/things-know-commits/</a><br />
-<br />
-<h3 style='display: inline' id='i-found-that-working-on-multiple-side-projects-'>I found that working on multiple side projects ...</h3><br />
-<br />
-<span>I found that working on multiple side projects concurrently is better than concentrating on just one. This seems inefficient at first, but whenever you tend to lose motivation, you can temporarily switch to another one with full élan. However, remember to stop starting and start finishing. This doesn&#39;t mean you should be working on 10+ (and a growing list of) side projects concurrently! Select your projects and commit to finishing them before starting the next thing. For example, my current limit of concurrent side projects is around five.</span><br />
-<br />
-<h3 style='display: inline' id='agreed-agreed-besides-ruby-i-would-also-'>Agreed? Agreed. Besides <span class='inlinecode'>#Ruby</span>, I would also ...</h3><br />
-<br />
-<span>Agreed? Agreed. Besides <span class='inlinecode'>#Ruby</span>, I would also add <span class='inlinecode'>#RakuLang</span> and <span class='inlinecode'>#Perl</span> @Perl to the list of languages that are great for shell scripts - "Making Easy Things Easy and Hard Things Possible"</span><br />
-<br />
-<a class='textlink' href='https://lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/'>lucasoshiro.github.io/posts-en/2024-06-17-ruby-shellscript/</a><br />
-<br />
-<h3 style='display: inline' id='plan9-assembly-format-in-go-but-wait-it-s-not-'>Plan9 assembly format in Go, but wait, it&#39;s not ...</h3><br />
-<br />
-<span>Plan9 assembly format in Go, but wait, it&#39;s not the Operating System Plan9! <span class='inlinecode'>#golang</span> <span class='inlinecode'>#rabbithole</span></span><br />
-<br />
-<a class='textlink' href='https://www.osnews.com/story/140941/go-plan9-memo-speeding-up-calculations-450/'>www.osnews.com/story/140941/go-plan9-memo-speeding-up-calculations-450/</a><br />
-<br />
-<h3 style='display: inline' id='this-is-a-neat-blog-post-about-the-helix-text-'>This is a neat blog post about the Helix text ...</h3><br />
-<br />
-<span>This is a neat blog post about the Helix text editor, to which I personally switched around a year ago (from NeoVim). I should blog about my experience as well. To summarize: I am using it together with the terminal multiplexer <span class='inlinecode'>#tmux</span>. It doesn&#39;t bother me that Helix is purely terminal-based and therefore everything has to be in the same font. <span class='inlinecode'>#HelixEditor</span></span><br />
-<br />
-<a class='textlink' href='https://jonathan-frere.com/posts/helix/'>jonathan-frere.com/posts/helix/</a><br />
-<br />
-<h3 style='display: inline' id='this-blog-post-is-basically-a-rant-against-'>This blog post is basically a rant against ...</h3><br />
-<br />
-<span>This blog post is basically a rant against DataDog... Personally, I don&#39;t have much experience with DataDog (actually, I have never used it), but one reason to work with logs at my day job (with over 2,000 physical server machines) and to be cost-effective is by using dtail! <span class='inlinecode'>#dtail</span> <span class='inlinecode'>#logs</span> <span class='inlinecode'>#logmanagement</span></span><br />
-<br />
-<a class='textlink' href='https://crys.site/blog/2024/reinventint-the-weel/'>crys.site/blog/2024/reinventint-the-weel/</a><br />
-<a class='textlink' href='https://dtail.dev'>dtail.dev</a><br />
-<br />
-<h3 style='display: inline' id='quick-trick-to-get-helix-themes-selected-'>Quick trick to get Helix themes selected ...</h3><br />
-<br />
-<span>Quick trick to get Helix themes selected randomly <span class='inlinecode'>#HelixEditor</span></span><br />
-<br />
-<a class='textlink' href='gemini://foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi'>foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi (Gemini)</a><br />
-<a class='textlink' href='https://foo.zone/gemfeed/2024-12-15-random-helix-themes.html'>foo.zone/gemfeed/2024-12-15-random-helix-themes.html</a><br />
-<br />
-<h3 style='display: inline' id='example-where-complexity-attacks-you-from-'>Example where complexity attacks you from ...</h3><br />
-<br />
-<span>Example where complexity attacks you from behind <span class='inlinecode'>#k8s</span> <span class='inlinecode'>#kubernetes</span> <span class='inlinecode'>#OpenAI</span></span><br />
-<br />
-<a class='textlink' href='https://surfingcomplexity.blog/2024/12/14/quick-takes-on-the-recent-openai-public-incident-write-up/'>surfingcomplexity.blog/2024/12/14/quic..-..ecent-openai-public-incident-write-up/</a><br />
-<br />
-<h3 style='display: inline' id='llms-for-ops-summaries-of-logs-probabilities-'>LLMs for Ops? Summaries of logs, probabilities ...</h3><br />
-<br />
-<span>LLMs for Ops? Summaries of logs, probabilities about correctness, auto-generating Ansible, some uses cases are there. Wouldn&#39;t trust it fully, though.</span><br />
-<br />
-<a class='textlink' href='https://youtu.be/WodaffxVq-E?si=noY0egrfl5izCSQI'>youtu.be/WodaffxVq-E?si=noY0egrfl5izCSQI</a><br />
-<br />
-<h3 style='display: inline' id='excellent-article-about-your-dream-product-'>Excellent article about your dream Product ...</h3><br />
-<br />
-<span>Excellent article about your dream Product Manager: Why every software team needs a product manager to thrive via @wallabagapp</span><br />
-<br />
-<a class='textlink' href='https://testdouble.com/insights/why-product-managers-accelerate-improve-software-delivery'>testdouble.com/insights/why-product-ma..-..s-accelerate-improve-software-delivery</a><br />
-<br />
-<h3 style='display: inline' id='i-just-finished-reading-all-chapters-of-cpu-'>I just finished reading all chapters of CPU ...</h3><br />
-<br />
-<span>I just finished reading all chapters of CPU land: ... not claiming to remember every detail, but it is a great refresher how CPUs and operating systems actually work under the hood when you execute a program, which we tend to forget in our higher abstraction world. I liked the "story" and some of the jokes along the way! Size wise, it is pretty digestable (not talking about books, but only 7 web articles/chapters)! <span class='inlinecode'>#cpu</span> <span class='inlinecode'>#linux</span> <span class='inlinecode'>#unix</span> <span class='inlinecode'>#kernel</span> <span class='inlinecode'>#macOS</span></span><br />
-<br />
-<a class='textlink' href='https://cpu.land/'>cpu.land/</a><br />
-<br />
-<h3 style='display: inline' id='indeed-useful-to-know-this-stuff-sre-'>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span> ...</h3><br />
-<br />
-<span>Indeed, useful to know this stuff! <span class='inlinecode'>#sre</span></span><br />
-<br />
-<a class='textlink' href='https://biriukov.dev/docs/resolver-dual-stack-application/0-sre-should-know-about-gnu-linux-resolvers-and-dual-stack-applications/'>biriukov.dev/docs/resolver-dual-stack-..-..resolvers-and-dual-stack-applications/</a><br />
-<br />
-<h3 style='display: inline' id='it-s-the-small-things-which-make-unix-like-'>It&#39;s the small things, which make Unix like ...</h3><br />
-<br />
-<span>It&#39;s the small things, which make Unix like systems, like GNU/Linux, interesting. Didn&#39;t know about this <span class='inlinecode'>#GNU</span> <span class='inlinecode'>#Tar</span> behaviour yet:</span><br />
-<br />
-<a class='textlink' href='https://xeiaso.net/notes/2024/pop-quiz-tar/'>xeiaso.net/notes/2024/pop-quiz-tar/</a><br />
-<br />
-<h3 style='display: inline' id='my-new-year-s-resolution-is-not-to-start-any-'>My New Year&#39;s resolution is not to start any ...</h3><br />
-<br />
-<span>My New Year&#39;s resolution is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.&lt;nil&gt;17491</span><br />
-<br />
-<span>Other related posts:</span><br />
-<br />
-<a class='textlink' href='./2026-07-01-posts-from-january-to-june-2026.html'>2026-07-01 Posts from January to June 2026</a><br />
-<a class='textlink' href='./2026-01-01-posts-from-july-to-december-2025.html'>2026-01-01 Posts from July to December 2025</a><br />
-<a class='textlink' href='./2025-07-01-posts-from-january-to-june-2025.html'>2025-07-01 Posts from January to June 2025</a><br />
-<a class='textlink' href='./2025-01-01-posts-from-october-to-december-2024.html'>2025-01-01 Posts from October to December 2024 (You are currently reading this)</a><br />
-<br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
