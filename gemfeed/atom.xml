@@ -1,11 +1,435 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-07-02T09:29:06+03:00</updated>
+    <updated>2026-07-08T17:13:23+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
+    <entry>
+        <title>Unleashing Hexai: AI companion for Helix and the terminal in general</title>
+        <link href="https://foo.zone/gemfeed/2026-07-09-unleashing-hexai.html" />
+        <id>https://foo.zone/gemfeed/2026-07-09-unleashing-hexai.html</id>
+        <updated>2026-07-08T17:10:52+03:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>I have been using Helix as my main editor for a while now. It is fast, modal, and stays out of the way. The one thing I missed was a bit of LLM help without leaving the editor or opening a browser tab. So I built Hexai.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='unleashing-hexai-ai-companion-for-helix-and-the-terminal-in-general'>Unleashing Hexai: AI companion for Helix and the terminal in general</h1><br />
+<br />
+<span class='quote'>Published at 2026-07-08T17:10:52+03:00</span><br />
+<br />
+<span>I have been using Helix as my main editor for a while now. It is fast, modal, and stays out of the way. The one thing I missed was a bit of LLM help without leaving the editor or opening a browser tab. So I built Hexai.</span><br />
+<br />
+<span>Hexai is an AI add-on for Helix. It speaks LSP, so it also works with other editors in theory, but I only test it with Helix. It gives me inline completions, in-editor chat, code actions, a terminal CLI, a tmux popup action runner, and a small task manager for agent work. It is written in Go, lives on Codeberg, and is configured through plain TOML files.</span><br />
+<br />
+<span>Hexai has been an undercover pet project of mine since around mid-last year. As I write this it is at version <span class='inlinecode'>0.42.1</span>, so it has been quietly growing for a good while before this first proper write-up.</span><br />
+<br />
+<a class='textlink' href='https://codeberg.org/snonux/hexai'>Hexai source code</a><br />
+<a class='textlink' href='https://helix-editor.com'>Helix editor</a><br />
+<br />
+<a href='./unleashing-hexai/01-logo.png'><img alt='Hexai logo' title='Hexai logo' src='./unleashing-hexai/01-logo.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#unleashing-hexai-ai-companion-for-helix-and-the-terminal-in-general'>Unleashing Hexai: AI companion for Helix and the terminal in general</a></li>
+<li>⇢ <a href='#what-it-is'>What it is</a></li>
+<li>⇢ <a href='#installing-it'>Installing it</a></li>
+<li>⇢ <a href='#configuring-providers'>Configuring providers</a></li>
+<li>⇢ <a href='#wiring-it-into-helix'>Wiring it into Helix</a></li>
+<li>⇢ <a href='#inline-chat-and-prompts'>Inline chat and prompts</a></li>
+<li>⇢ <a href='#code-actions-via-the-tmux-popup'>Code actions via the tmux popup</a></li>
+<li>⇢ <a href='#the-cli'>The CLI</a></li>
+<li>⇢ <a href='#managing-agent-tasks-with-ask'>Managing agent tasks with ask</a></li>
+<li>⇢ <a href='#running-multiple-providers-side-by-side'>Running multiple providers side by side</a></li>
+<li>⇢ <a href='#what-to-watch-out-for'>What to watch out for</a></li>
+<li>⇢ <a href='#it-will-keep-changing'>It will keep changing</a></li>
+<li>⇢ <a href='#other-related-posts'>Other related posts:</a></li>
+</ul><br />
+<h2 style='display: inline' id='what-it-is'>What it is</h2><br />
+<br />
+<span>Hexai is really a bundle of small tools that share the same configuration:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>hexai-lsp-server</span> — the LSP server that Helix talks to.</li>
+<li><span class='inlinecode'>hexai</span> — a standalone CLI for quick LLM questions from the terminal or scripts.</li>
+<li><span class='inlinecode'>hexai-tmux-action</span> — a Bubble Tea TUI that pops up inside tmux and runs code actions on the current selection.</li>
+<li><span class='inlinecode'>ask</span> — a tiny task management CLI for agent-managed project work.</li>
+</ul><br />
+<span>Everything uses the same <span class='inlinecode'>config.toml</span>, the same provider pool, and the same prompt overrides. I can switch models in one place and the LSP, CLI, and popup all follow along.</span><br />
+<br />
+<span>These are opinionated tools. They reflect how I work — Helix inside tmux, a terminal CLI, a thin Taskwarrior wrapper — not a generic plugin system. If your workflow matches mine, they get out of the way; if it doesn&#39;t, you will probably want to tweak the config or fork it.</span><br />
+<br />
+<h2 style='display: inline' id='installing-it'>Installing it</h2><br />
+<br />
+<span>The easiest way is to install the binaries with <span class='inlinecode'>go install</span>. Each binary is a separate <span class='inlinecode'>cmd/</span> package:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>go install codeberg.org/snonux/hexai/cmd/hexai@latest
+go install codeberg.org/snonux/hexai/cmd/hexai-lsp-server@latest
+go install codeberg.org/snonux/hexai/cmd/hexai-tmux-action@latest
+go install codeberg.org/snonux/hexai/cmd/ask@latest
+</pre>
+<br />
+<span>If you prefer to build from a checkout, Hexai uses Mage:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>go install github.com/magefile/mage@latest
+mage build
+mage install
+</pre>
+<br />
+<span>That drops <span class='inlinecode'>hexai</span>, <span class='inlinecode'>hexai-lsp-server</span>, <span class='inlinecode'>hexai-tmux-action</span>, and <span class='inlinecode'>ask</span> into your <span class='inlinecode'>GOPATH/bin</span>.</span><br />
+<br />
+<h2 style='display: inline' id='configuring-providers'>Configuring providers</h2><br />
+<br />
+<span>Hexai looks for a global config at <span class='inlinecode'>~/.config/hexai/config.toml</span> and a per-project override at <span class='inlinecode'>.hexaiconfig.toml</span> in the git root. Environment variables prefixed with <span class='inlinecode'>HEXAI_</span> win over both files.</span><br />
+<br />
+<span>The default provider is Ollama Cloud with <span class='inlinecode'>kimi-k2.6</span> (it might be different by the time you read this!). To use a local Ollama server instead, override the base URL:</span><br />
+<br />
+<pre>
+[provider]
+name = "ollama"
+
+[ollama]
+model = "qwen3-coder:30b-a3b-q4_K_M"
+base_url = "http://localhost:11434"
+</pre>
+<br />
+<span>Because that points at <span class='inlinecode'>localhost</span>, nothing leaves your machine — prompt, code, and reply all stay local. That is the main reason I keep a local Ollama around.</span><br />
+<br />
+<span>For OpenAI, the config is similar:</span><br />
+<br />
+<pre>
+[provider]
+name = "openai"
+
+[openai]
+model = "gpt-4o-mini"
+</pre>
+<br />
+<span>Hexai reads the API key from <span class='inlinecode'>HEXAI_OPENAI_API_KEY</span> first, then falls back to <span class='inlinecode'>OPENAI_API_KEY</span>. The same pattern works for OpenRouter, Anthropic, and You.com.</span><br />
+<br />
+<h2 style='display: inline' id='wiring-it-into-helix'>Wiring it into Helix</h2><br />
+<br />
+<span>Tell Helix about the Hexai LSP server in <span class='inlinecode'>~/.config/helix/languages.toml</span>. Here is my Go setup:</span><br />
+<br />
+<pre>
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
+language-servers = [ "gopls", "hexai" ]
+
+[language-server.hexai]
+command = "hexai-lsp-server"
+</pre>
+<br />
+<span>You can add <span class='inlinecode'>hexai</span> after <span class='inlinecode'>gopls</span> or any other LSP. It does not replace them; it just adds completions, code actions, and chat on top.</span><br />
+<br />
+<span>Once the LSP is wired in, Hexai also offers inline auto-completions as you type. By default it fires after a short idle debounce (<span class='inlinecode'>completion_debounce_ms</span>, 800 ms) when you hit one of the trigger characters (<span class='inlinecode'>.</span> <span class='inlinecode'>:</span> <span class='inlinecode'>/</span> <span class='inlinecode'>_</span> space), and it waits for every configured backend before showing results (<span class='inlinecode'>completion_wait_all</span>). All of it is tunable in <span class='inlinecode'>config.toml</span>, and you can turn completions off for a session without restarting — see the slash commands below.</span><br />
+<br />
+<span>For the popup action runner, bind a key in <span class='inlinecode'>~/.config/helix/config.toml</span>:</span><br />
+<br />
+<pre>
+[keys.select]
+"A-a" = ":pipe hexai-tmux-action"
+
+[keys.normal]
+"A-a" = ["select_line", ":pipe hexai-tmux-action"]
+</pre>
+<br />
+<span>I use Alt-a. Select some code, hit Alt-a, and the popup appears.</span><br />
+<br />
+<h2 style='display: inline' id='inline-chat-and-prompts'>Inline chat and prompts</h2><br />
+<br />
+<span>The LSP adds two lightweight ways to talk to the model without leaving the editor:</span><br />
+<br />
+<ul>
+<li>End a line with <span class='inlinecode'>?&gt;</span>, <span class='inlinecode'>!&gt;</span>, <span class='inlinecode'>:&gt;</span>, or <span class='inlinecode'>;&gt;</span> to ask a question. Hexai removes only the trailing <span class='inlinecode'>&gt;</span>, keeps the question, and inserts a <span class='inlinecode'>&gt; </span> quoted reply below the line.</li>
+<li>Type <span class='inlinecode'>&gt;!do something&gt;</span> inline to ask for a quick edit, or <span class='inlinecode'>&gt;&gt;!do something&gt;</span> to replace the whole line with the completion.</li>
+</ul><br />
+<span>Chat example — a question ending in <span class='inlinecode'>?&gt;</span>:</span><br />
+<br />
+<pre>
+What is a Go slice?&gt;
+</pre>
+<br />
+<span>After the LSP responds you get something like:</span><br />
+<br />
+<pre>
+What is a Go slice?
+
+&gt; A slice is a dynamically-sized view into an array. It stores a pointer to
+&gt; the backing array plus length and capacity.
+</pre>
+<br />
+<span>Inline example — <span class='inlinecode'>&gt;&gt;!</span> replaces the whole line with the completion:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>&gt;&gt;!document this function&gt;
+</pre>
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver">// Foo returns the square of n.</font></i>
+<b><u><font color="#000000">func</font></u></b> Foo(n int) int { <b><u><font color="#000000">return</font></u></b> n * n }
+</pre>
+<br />
+<span>Context is included automatically. For follow-ups, Hexai keeps the last few Q/A pairs above the cursor in mind, so you can ask related questions without repeating yourself.</span><br />
+<br />
+<span>There are a few slash commands you can type at the end of a chat line: <span class='inlinecode'>/reload&gt;</span> re-reads <span class='inlinecode'>config.toml</span> without restarting the LSP, <span class='inlinecode'>/disable&gt;</span> pauses auto-completions for the session, and <span class='inlinecode'>/enable&gt;</span> turns them back on.</span><br />
+<br />
+<span>In the editor buffer it ends up looking like this — the question stays, the reply is quoted below, and a follow-up picks up the same context:</span><br />
+<br />
+<pre>
+What is a Go slice?
+
+&gt; A slice is a dynamically-sized view into an array. It stores a pointer to
+&gt; the backing array plus length and capacity.
+
+And how do I append to one?
+
+&gt; Use the built-in append: s = append(s, x). It grows the backing array
+&gt; when capacity is exhausted, returning a new slice.
+</pre>
+<br />
+<h2 style='display: inline' id='code-actions-via-the-tmux-popup'>Code actions via the tmux popup</h2><br />
+<br />
+<span><span class='inlinecode'>hexai-tmux-action</span> is my favorite part. Inside a tmux session, select code in Helix and press the bound key. A tmux popup opens with this menu:</span><br />
+<br />
+<pre>
+r  Rewrite selection
+i  Simplify and improve
+c  Document code
+t  Generate Go unit test(s)
+f  Fix typos and improve grammar and clarity
+p  Custom prompt (opens your editor)
+s  Skip
+</pre>
+<br />
+<span>Pick one, the popup closes, and the rewritten code is piped back into Helix. For rewrite actions, I usually add a small instruction in a strict marker like <span class='inlinecode'>;extract this into a helper;</span> inside the selection. The runner finds the first instruction and uses it.</span><br />
+<br />
+<span>A mandatory detail: the popup is a real tmux popup, so Helix must be running inside a tmux session for this to work — there is no fallback to a separate window. Start it with:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre>tmux new -s hx
+hx some-file.go
+</pre>
+<br />
+<span>Then select code and hit Alt-a. No special <span class='inlinecode'>tmux.conf</span> is required for the popup itself; the only hard requirement is that Helix lives inside tmux (and tmux 3.2 or newer, since the popup uses tmux&#39;s popup feature).</span><br />
+<br />
+<span>The menu is fully configurable. This is how I replace it with a smaller custom menu:</span><br />
+<br />
+<pre>
+[[tmux_action.menu]]
+kind   = "rewrite"
+hotkey = "r"
+
+[[tmux_action.menu]]
+kind   = "document"
+hotkey = "c"
+
+[[tmux_action.menu]]
+kind      = "custom"
+custom_id = "extract-function"
+hotkey    = "e"
+
+[[tmux_action.menu]]
+kind   = "skip"
+hotkey = "s"
+</pre>
+<br />
+<span>Custom actions reference entries under <span class='inlinecode'>[[prompts.code_action.custom]]</span> in the same config file.</span><br />
+<br />
+<a href='./unleashing-hexai/06-tmux-popup.jpg'><img alt='The hexai-tmux-action popup menu inside tmux' title='The hexai-tmux-action popup menu inside tmux' src='./unleashing-hexai/06-tmux-popup.jpg' /></a><br />
+<br />
+<span>Optional but useful: have tmux show live Hexai stats (provider, model, rpm, bytes) in the status line. Add this to <span class='inlinecode'>~/.config/tmux/tmux.conf</span> (or <span class='inlinecode'>~/.tmux.conf</span>):</span><br />
+<br />
+<pre>
+set -g status-right &#39;#{@hexai_status} #[fg=colour8]| %H:%M&#39;
+set -g status-right-length 120
+</pre>
+<br />
+<span>The <span class='inlinecode'>@hexai_status</span> option is updated by the CLI, the LSP, and the action runner. Disable it with <span class='inlinecode'>HEXAI_TMUX_STATUS=0</span> if you don&#39;t want it.</span><br />
+<br />
+<a href='./unleashing-hexai/10-tmux-status.png'><img alt='tmux status line showing live Hexai LLM stats' title='tmux status line showing live Hexai LLM stats' src='./unleashing-hexai/10-tmux-status.png' /></a><br />
+<br />
+<h2 style='display: inline' id='the-cli'>The CLI</h2><br />
+<br />
+<span>The <span class='inlinecode'>hexai</span> CLI is useful for quick questions from the terminal or from scripts:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Ask from stdin</font></i>
+cat some-file.go | hexai
+
+<i><font color="silver"># Ask from an argument</font></i>
+hexai <font color="#808080">'explain this function'</font>
+
+<i><font color="silver"># Both stdin and argument are concatenated</font></i>
+cat some-file.go | hexai <font color="#808080">'write unit tests for this'</font>
+
+<i><font color="silver"># Open the global config in $HEXAI_EDITOR or $EDITOR</font></i>
+hexai config
+
+<i><font color="silver"># Simulate how fast a model feels without calling a provider</font></i>
+hexai --tps-simulation <font color="#000000">12</font>-<font color="#000000">18</font>
+</pre>
+<br />
+<span>A real one-shot looks like this (only stdout is shown):</span><br />
+<br />
+<pre>
+$ hexai &#39;install ripgrep on fedora&#39;
+sudo dnf install ripgrep
+</pre>
+<br />
+<span>The provider label and the run summary (timing, token counts, rpm) go to stderr, so <span class='inlinecode'>stdout</span> stays clean for pipes — <span class='inlinecode'>hexai &#39;install ripgrep on fedora&#39; | sh</span> just works.</span><br />
+<br />
+<h2 style='display: inline' id='managing-agent-tasks-with-ask'>Managing agent tasks with ask</h2><br />
+<br />
+<span><span class='inlinecode'>ask</span> is a thin wrapper around Taskwarrior that auto-scopes tasks to the current git project and tags them with <span class='inlinecode'>+agent</span>. I use it to keep track of what the coding agent is supposed to do next.</span><br />
+<br />
+<span>Under the hood every <span class='inlinecode'>ask</span> command is just a Taskwarrior command filtered to <span class='inlinecode'>project:REPO +agent</span>, where <span class='inlinecode'>REPO</span> is the name of the git repository root <span class='inlinecode'>ask</span> was run in. The tasks are plain Taskwarrior tasks, so you can drop down to <span class='inlinecode'>task</span> itself any time and work with the same data. From the hexai repo, for example:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Same tasks, raw Taskwarrior</font></i>
+task project:hexai list
+task project:hexai +agent next
+</pre>
+<br />
+<span><span class='inlinecode'>ask</span> just hides the project filter, the <span class='inlinecode'>+agent</span> tag, and the raw UUIDs so the day-to-day output stays small and project-local.</span><br />
+<br />
+<span>That scoping is also a security boundary, and the main reason I let an LLM agent touch my Taskwarrior database at all. Because <span class='inlinecode'>ask</span> always applies the <span class='inlinecode'>project:REPO +agent</span> filter, the agent can only see and modify tasks in its own current project — it cannot delete, reprioritize, or even see anything outside that filter. So <span class='inlinecode'>ask</span> is really a safety wrapper around <span class='inlinecode'>task</span>: you can hand it to a coding agent without giving it free rein over the rest of your tasks.</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><i><font color="silver"># Add a task for the current project</font></i>
+ask add priority:H <font color="#808080">"implement config reload"</font>
+
+<i><font color="silver"># List pending agent tasks</font></i>
+ask list
+
+<i><font color="silver"># Start and finish work (ask add prints the alias, e.g. os0)</font></i>
+ask start os0
+ask <b><u><font color="#000000">done</font></u></b> os0
+
+<i><font color="silver"># See details without exposing raw UUIDs</font></i>
+ask info os0
+</pre>
+<br />
+<span>The IDs shown are stable local aliases, not Taskwarrior&#39;s numeric IDs. Taskwarrior gives you two built-in identifiers: a numeric ID that isn&#39;t stable across syncs and exports, and a UUID that is stable but far too long to type by hand. <span class='inlinecode'>ask</span> instead keeps its own mapping from each task&#39;s UUID to a short, permanent alias (cached under Hexai&#39;s cache dir) — so you get the best of both: a stable, short ID that never changes even if tasks above it get completed or deleted. <span class='inlinecode'>ask info</span> hides the raw UUID unless <span class='inlinecode'>HEXAI_DEBUG</span> is set, so the short alias is the one you actually use day to day.</span><br />
+<br />
+<span><span class='inlinecode'>ask</span> works from anywhere inside the project git tree and derives the project name from the repo root. To manage tasks for another project, use <span class='inlinecode'>ask proj:hexai list</span>.</span><br />
+<br />
+<span>One detail worth knowing: the alias strings are reversed on purpose. The underlying counter is monotonic (1, 2, 3, …), and a naive encoding would make consecutive tasks share a leading character once the list grows past 36 (<span class='inlinecode'>00</span>, <span class='inlinecode'>01</span>, <span class='inlinecode'>02</span>, … all start with <span class='inlinecode'>0</span>), which kills shell tab-completion. Reversing the string makes the first character vary as fast as possible (<span class='inlinecode'>00</span>, <span class='inlinecode'>10</span>, <span class='inlinecode'>20</span>, … instead of <span class='inlinecode'>00</span>, <span class='inlinecode'>01</span>, <span class='inlinecode'>02</span>, …), so typing the first letter in Fish actually narrows the list. That is the whole reason the IDs look slightly odd.</span><br />
+<br />
+<span>To actually get those completions in Fish, run <span class='inlinecode'>ask fish | source</span> (or drop it into Fish&#39;s <span class='inlinecode'>conf.d</span>) — it gives you tab-completion for both subcommands and the reversed alias IDs.</span><br />
+<br />
+<span><span class='inlinecode'>ask list</span> prints a compact table:</span><br />
+<br />
+<pre>
+Urg | Pri | ID  | Status  | Started | Tags  | Description
+----------------------------------------------------------------------------
+7.8 | H   | os0 | pending | no      | agent | implement config reload
+5.7 | M   | ps0 | pending | no      | agent | add fish completion docs
+3.6 | L   | qs0 | pending | no      | agent | deprecate hexai-mcp-server README note
+</pre>
+<br />
+<span>And <span class='inlinecode'>ask info os0</span> shows one task without exposing the raw UUID:</span><br />
+<br />
+<pre>
+ID:          os0
+Description: implement config reload
+Status:      pending
+Started:     no
+Priority:    H
+Urgency:     7.8
+Tags:        agent
+</pre>
+<br />
+<h2 style='display: inline' id='running-multiple-providers-side-by-side'>Running multiple providers side by side</h2><br />
+<br />
+<span>One feature I use more than I expected: per-surface model lists. In <span class='inlinecode'>config.toml</span> you can configure several providers or models for the same entry point, and Hexai fans the request out to all of them in parallel.</span><br />
+<br />
+<pre>
+[[models.cli]]
+provider = "openai"
+model = "gpt-4o-mini"
+temperature = 0.4
+
+[[models.cli]]
+provider = "ollama"
+model = "qwen3-coder:30b-a3b-q4_K_M"
+temperature = 0.2
+</pre>
+<br />
+<span>With that, <span class='inlinecode'>hexai &#39;summarize this file&#39;</span> prints two labeled answers side by side:</span><br />
+<br />
+<pre>
+ollama:qwen3-coder:30b-a3b-q4_K_M:
+A short Go program that reads a file line by line and prints each line.
+
+openai:gpt-4o-mini:
+Reads a file and echoes each line. Returns early on open errors.
+</pre>
+<br />
+<span>It is handy for comparing local and cloud models, or for just seeing which one gives the cleaner response. Code actions still use only the first entry; extra entries there are ignored with a warning.</span><br />
+<br />
+<h2 style='display: inline' id='what-to-watch-out-for'>What to watch out for</h2><br />
+<br />
+<span>A few honest caveats:</span><br />
+<br />
+<ul>
+<li>I mainly test Hexai with Helix inside tmux. Other editors might work through LSP, but your mileage will vary.</li>
+<li>The <span class='inlinecode'>hexai-mcp-server</span> binary is experimental and effectively deprecated. I manage prompts through slash commands and the agent system now, so the MCP server is not getting much attention.</li>
+<li>Wiring the tmux popup and status line takes a little manual config. It is not plug-and-play like a VS Code extension.</li>
+<li>Auto-completions can be chatty. You can disable them on the fly with <span class='inlinecode'>/disable&gt;</span> in chat, or tune the debounce in <span class='inlinecode'>config.toml</span>.</li>
+</ul><br />
+<h2 style='display: inline' id='it-will-keep-changing'>It will keep changing</h2><br />
+<br />
+<span>Hexai is a personal tool, and it will keep changing. Things go in and come back out: the tmux popup editor for Cursor Agent prompts I wrote about earlier got folded into Hexai, then removed again once every agent added Ctrl+g or Ctrl+e to edit a prompt in <span class='inlinecode'>$EDITOR</span>.</span><br />
+<br />
+<a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts</a><br />
+<br />
+<span>The MCP server that ships with Hexai is experimental and may get cut too. As time goes on I will keep trying ideas — maybe a whole coding agent one day, maybe not. If you want to poke at it or open an issue, it lives on Codeberg.</span><br />
+<br />
+<h2 style='display: inline' id='other-related-posts'>Other related posts:</h2><br />
+<br />
+<a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts</a><br />
+<a class='textlink' href='./2026-02-14-meta-slash-commands-for-prompts-and-context.html'>2026-02-14 - Meta slash commands for prompts and context</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Posts from January to June 2026</title>
         <link href="https://foo.zone/gemfeed/2026-07-01-posts-from-january-to-june-2026.html" />
@@ -20813,43 +21237,6 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <a class='textlink' href='./2025-01-01-posts-from-october-to-december-2024.html'>2025-01-01 Posts from October to December 2024 (You are currently reading this)</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>Random Helix Themes</title>
-        <link href="https://foo.zone/gemfeed/2024-12-15-random-helix-themes.html" />
-        <id>https://foo.zone/gemfeed/2024-12-15-random-helix-themes.html</id>
-        <updated>2024-12-15T13:55:05+02:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>I thought it would be fun to have a random Helix theme every time I open a new shell. Helix is the text editor I use.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='random-helix-themes'>Random Helix Themes</h1><br />
-<br />
-<span class='quote'>Published at 2024-12-15T13:55:05+02:00; Last updated 2024-12-18</span><br />
-<br />
-<span>I thought it would be fun to have a random Helix theme every time I open a new shell. Helix is the text editor I use.</span><br />
-<br />
-<a class='textlink' href='https://helix-editor.com/'>https://helix-editor.com/</a><br />
-<br />
-<span>So I put this into my <span class='inlinecode'>zsh</span> dotfiles (in some <span class='inlinecode'>editor.zsh.source</span> in my <span class='inlinecode'>~</span> directory):</span><br />
-<br />
-<br />
-<span>So every time I open a new terminal or shell, <span class='inlinecode'>editor::helix::random_theme</span> gets called, which randomly selects a theme from all installed ones and updates the helix config accordingly.</span><br />
-<br />
-<br />
-<h2 style='display: inline' id='a-better-version'>A better version</h2><br />
-<br />
-<span class='quote'>Update 2024-12-18: This is an improved version, which works cross platform (e.g., also on MacOS) and multiple theme directories:</span><br />
-<br />
-<br />
-<span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>
