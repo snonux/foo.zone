@@ -3,7 +3,6 @@
 ## To be in the .zone!
 
 [2026-07-09 - Unveiling Hexai: AI companion for Helix and the terminal in general](./2026-07-09-unveiling-hexai.md)  
-[2026-07-09 - Unleashing Hexai: AI companion for Helix and the terminal in general](./2026-07-09-unleashing-hexai.md)  
 [2026-07-01 - Posts from January to June 2026](./2026-07-01-posts-from-january-to-june-2026.md)  
 [2026-06-06 - Random Weird Things - Part Ⅳ](./2026-06-06-random-weird-things-iv.md)  
 [2026-06-01 - `gt` calculator - a calculator built with local LLMs](./2026-06-01-gt-calculator.md)  

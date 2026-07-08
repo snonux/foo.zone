@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2026-07-08T17:16:26+03:00 by `Gemtexter`
+> This site was generated at 2026-07-08T17:19:04+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -21,7 +21,6 @@ Everything you read on this site is my personal opinion and experience. You can 
 ### Posts
 
 [2026-07-09 - Unveiling Hexai: AI companion for Helix and the terminal in general](./gemfeed/2026-07-09-unveiling-hexai.md)  
-[2026-07-09 - Unleashing Hexai: AI companion for Helix and the terminal in general](./gemfeed/2026-07-09-unleashing-hexai.md)  
 [2026-07-01 - Posts from January to June 2026](./gemfeed/2026-07-01-posts-from-january-to-june-2026.md)  
 [2026-06-06 - Random Weird Things - Part Ⅳ](./gemfeed/2026-06-06-random-weird-things-iv.md)  
 [2026-06-01 - `gt` calculator - a calculator built with local LLMs](./gemfeed/2026-06-01-gt-calculator.md)  
