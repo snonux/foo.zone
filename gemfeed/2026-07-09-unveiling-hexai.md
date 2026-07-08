@@ -1,4 +1,4 @@
-# Unveiling Hexai: AI companion for Helix and the terminal in general
+# Unveiling Hexai: An AI companion for Helix and the terminal in general
 
 > Published at 2026-07-08T17:10:52+03:00
 
@@ -15,7 +15,7 @@ Hexai has been an undercover pet project of mine since around mid-last year. As 
 
 ## Table of Contents
 
-* [⇢ Unveiling Hexai: AI companion for Helix and the terminal in general](#unveiling-hexai-ai-companion-for-helix-and-the-terminal-in-general)
+* [⇢ Unveiling Hexai: An AI companion for Helix and the terminal in general](#unveiling-hexai-an-ai-companion-for-helix-and-the-terminal-in-general)
 * [⇢ ⇢ What it is](#what-it-is)
 * [⇢ ⇢ Installing it](#installing-it)
 * [⇢ ⇢ Configuring providers](#configuring-providers)
