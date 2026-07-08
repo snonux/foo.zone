@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-07-08T17:26:44+03:00</updated>
+    <updated>2026-07-08T17:49:04+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="https://foo.zone/" />
     <id>https://foo.zone/</id>
     <entry>
-        <title>Unveiling Hexai: AI companion for Helix and the terminal in general</title>
+        <title>Unveiling Hexai: An AI companion for Helix and the terminal in general</title>
         <link href="https://foo.zone/gemfeed/2026-07-09-unveiling-hexai.html" />
         <id>https://foo.zone/gemfeed/2026-07-09-unveiling-hexai.html</id>
         <updated>2026-07-08T17:10:52+03:00</updated>
@@ -18,7 +18,7 @@
         <summary>I have been using Helix as my main editor for a while now. It is fast, modal, and stays out of the way. The one thing I missed was a bit of LLM help without leaving the editor or opening a browser tab. So I built Hexai.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='unveiling-hexai-ai-companion-for-helix-and-the-terminal-in-general'>Unveiling Hexai: AI companion for Helix and the terminal in general</h1><br />
+                <h1 style='display: inline' id='unveiling-hexai-an-ai-companion-for-helix-and-the-terminal-in-general'>Unveiling Hexai: An AI companion for Helix and the terminal in general</h1><br />
 <br />
 <span class='quote'>Published at 2026-07-08T17:10:52+03:00</span><br />
 <br />
@@ -36,7 +36,7 @@
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#unveiling-hexai-ai-companion-for-helix-and-the-terminal-in-general'>Unveiling Hexai: AI companion for Helix and the terminal in general</a></li>
+<li><a href='#unveiling-hexai-an-ai-companion-for-helix-and-the-terminal-in-general'>Unveiling Hexai: An AI companion for Helix and the terminal in general</a></li>
 <li>⇢ <a href='#what-it-is'>What it is</a></li>
 <li>⇢ <a href='#installing-it'>Installing it</a></li>
 <li>⇢ <a href='#configuring-providers'>Configuring providers</a></li>
