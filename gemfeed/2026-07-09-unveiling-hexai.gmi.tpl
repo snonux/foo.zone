@@ -1,4 +1,4 @@
-# Unveiling Hexai: AI companion for Helix and the terminal in general
+# Unveiling Hexai: An AI companion for Helix and the terminal in general
 
 > Published at 2026-07-08T17:10:52+03:00
 
