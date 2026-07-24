@@ -19,8 +19,8 @@
 ## Show me the code
 
 => ./showcase.gmi Project showcase
-=> https://github.com/snonux github.com/snonux - My GitHub page
-=> https://codeberg.org/snonux codeberg.org/snonux - My Codeberg page
+=> https://codeberg.org/snonux codeberg.org/snonux - My Codeberg page (See Codeberg policies restricting LLM gen. projects)
+=> https://github.com/snonux github.com/snonux - My GitHub page (also contains some LLM generated projects)
 
 ## Social Media and Communities
 
