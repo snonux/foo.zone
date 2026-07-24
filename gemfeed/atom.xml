@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-07-08T17:49:04+03:00</updated>
+    <updated>2026-07-24T20:33:03+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -28,7 +28,7 @@
 <br />
 <span>Hexai has been an undercover pet project of mine since around mid-last year. As I write this it is at version <span class='inlinecode'>0.42.1</span>, so it has been quietly growing for a good while before this first proper write-up.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/hexai'>Hexai source code</a><br />
+<a class='textlink' href='https://github.com/snonux/hexai'>Hexai source code</a><br />
 <a class='textlink' href='https://helix-editor.com'>Helix editor</a><br />
 <br />
 <a href='./unveiling-hexai/01-logo.png'><img alt='Hexai logo' title='Hexai logo' src='./unveiling-hexai/01-logo.png' /></a><br />
@@ -72,10 +72,10 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>go install codeberg.org/snonux/hexai/cmd/hexai@latest
-go install codeberg.org/snonux/hexai/cmd/hexai-lsp-server@latest
-go install codeberg.org/snonux/hexai/cmd/hexai-tmux-action@latest
-go install codeberg.org/snonux/hexai/cmd/ask@latest
+<pre>go install github.com/snonux/hexai/cmd/hexai@latest
+go install github.com/snonux/hexai/cmd/hexai-lsp-server@latest
+go install github.com/snonux/hexai/cmd/hexai-tmux-action@latest
+go install github.com/snonux/hexai/cmd/ask@latest
 </pre>
 <br />
 <span>If you prefer to build from a checkout, Hexai uses Mage:</span><br />
@@ -375,8 +375,8 @@ Tags:        agent
 <br />
 <span>This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of <span class='inlinecode'>ask</span>: the <span class='inlinecode'>agent-task-management</span> skill knows how to read and update the <span class='inlinecode'>ask</span> task list, and the <span class='inlinecode'>/work-on-tasks</span> command uses that skill to work through a whole backlog on its own — pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run <span class='inlinecode'>/work-on-tasks</span>, and it chews through the queue one task at a time.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/skills/agent-task-management'>agent-task-management skill</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/commands/work-on-tasks.md'>/work-on-tasks command</a><br />
+<a class='textlink' href='https://github.com/snonux/dotfiles/src/branch/master/prompts/skills/agent-task-management'>agent-task-management skill</a><br />
+<a class='textlink' href='https://github.com/snonux/dotfiles/src/branch/master/prompts/commands/work-on-tasks.md'>/work-on-tasks command</a><br />
 <br />
 <h2 style='display: inline' id='running-multiple-providers-side-by-side'>Running multiple providers side by side</h2><br />
 <br />
@@ -456,7 +456,7 @@ Reads a file and echoes each line. Returns early on open errors.
 <span>These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.</span><br />
 <br />
 <a class='textlink' href='../about/index.html'>My about page</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
+<a class='textlink' href='https://github.com/snonux/gos'>https://github.com/snonux/gos</a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
@@ -1525,7 +1525,7 @@ int main(void) {
 <br />
 <span>If you want the full feature guide, the README links to a detailed doc for every feature covered here and more:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/gt'>gt on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/gt'>gt on Codeberg</a><br />
 <a href='./gt-calculator/logo.svg'><img alt='gt logo' title='gt logo' src='./gt-calculator/logo.svg' /></a><br />
 <br />
 <span>The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn&#39;t run them locally either — I rented Hyperstack VMs with NVidia GPU just to get a feel for the quality before investing in hardware. The point was to test models that don&#39;t require a cloud API and could realistically run on your own box.</span><br />
@@ -2087,7 +2087,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>go install codeberg.org/snonux/gt/cmd/gt@latest
+<pre>go install github.com/snonux/gt/cmd/gt@latest
 </pre>
 <br />
 <span>Or from the source directory: <span class='inlinecode'>mage install</span>.</span><br />
@@ -2100,7 +2100,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>For the complete and always-up-to-date feature guide, detailed docs for every feature, and the source code, head to the repo.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/gt'>gt on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/gt'>gt on Codeberg</a><br />
 <br />
 <span>But will I now invest a couple of thousand dollars in hardware to run Qwen 3 Coder Next, Qwen 3.6 35B or 27B? (I used the dense 27B model most of the time to build <span class='inlinecode'>gt</span>). Unfortunately, no. I don&#39;t think it&#39;s worth the cost yet, as cloud models are still cheaper and more convenient and the frontier ones also much more "intelligent".</span><br />
 <br />
@@ -2139,7 +2139,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/ior'>I/O Riot NG on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/ior'>I/O Riot NG on Codeberg</a><br />
 <br />
 <a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
@@ -2362,7 +2362,7 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
 <br />
 <span>That&#39;s the bottom of the stack. For the dashboard surface (what ior looks like, how the seven tabs behave, how filtering and recording work in practice) Part 1 is the demo-driven tour with all the GIFs. For the install dance and the why-the-binary-is-portable story (eBPF, CO-RE, static linking), Part 2 is the install + portability companion.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/ior'>Source on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/ior'>Source on Codeberg</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -2426,7 +2426,7 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>git clone https://codeberg.org/snonux/ior ~/git/ior
+<pre>git clone https://github.com/snonux/ior ~/git/ior
 cd ~/git/ior
 mage buildDocker
 </pre>
@@ -2485,7 +2485,7 @@ sudo cp -v zstd-<font color="#000000">1.5</font>.<font color="#000000">5</font>/
 
 <i><font color="silver"># 5) Clone ior + libbpfgo, pin libbpfgo, build the static libbpf archive, install mage.</font></i>
 mkdir -p ~/git
-git clone https://codeberg.org/snonux/ior ~/git/ior
+git clone https://github.com/snonux/ior ~/git/ior
 git clone https://github.com/aquasecurity/libbpfgo ~/git/libbpfgo
 git -C ~/git/libbpfgo checkout v0.<font color="#000000">9.2</font>-libbpf-<font color="#000000">1.5</font>.<font color="#000000">1</font>
 git -C ~/git/libbpfgo submodule update --init --recursive
@@ -2704,7 +2704,7 @@ Old I/O Riot (Systemtap)                 New ior (libbpf + CO-RE)
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
 <a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood</a><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/ior'>I/O Riot NG on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/ior'>I/O Riot NG on Codeberg</a><br />
 <a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>the original I/O Riot post (2018)</a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
@@ -2920,8 +2920,8 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>For installing it and the eBPF / CO-RE / static-linking story (why one build runs on every other Linux box you scp it to), see Part 2. For the per-event schema, async-syscall caveats, the probe-generator safeguard against missing new kernel syscalls, and post-mortem SQL on the parquet output, see Part 3.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/ior'>Source on Codeberg</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/ior/src/branch/main/docs/tutorial/tutorial.md'>The full in-repo tutorial</a><br />
+<a class='textlink' href='https://github.com/snonux/ior'>Source on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/ior/src/branch/main/docs/tutorial/tutorial.md'>The full in-repo tutorial</a><br />
 <br />
 <span>Read the next post of the series:</span><br />
 <br />
@@ -3063,7 +3063,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The installation lives in the config repo:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/argocd'>codeberg.org/snonux/conf/f3s/argocd</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/argocd'>github.com/snonux/conf/f3s/argocd</a><br />
 <br />
 <span>I deployed it using Helm via a Justfile:</span><br />
 <br />
@@ -3160,7 +3160,7 @@ argocd-server-6b9c4b4f8d-kxw7p                      <font color="#000000">1</fon
 <br />
 <span>I didn&#39;t want ArgoCD pulling from Codeberg over the internet every time it checks for changes. If Codeberg is down (or my internet is), the cluster can&#39;t reconcile. So I set up a Git server inside the cluster itself.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/commit/190473b/f3s/git-server'>codeberg.org/snonux/conf/f3s/git-server (at 190473b)</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/commit/190473b/f3s/git-server'>github.com/snonux/conf/f3s/git-server (at 190473b)</a><br />
 <br />
 <span>The git-server runs as a single pod in the <span class='inlinecode'>cicd</span> namespace with two containers sharing a PVC:</span><br />
 <br />
@@ -3181,7 +3181,7 @@ http://git-server.cicd.svc.cluster.local/conf.git
 <pre>
 # argocd-apps/cicd/git-server.yaml
 source:
-  repoURL: https://codeberg.org/snonux/conf.git
+  repoURL: https://github.com/snonux/conf.git
   targetRevision: master
   path: f3s/git-server/helm-chart
 </pre>
@@ -3571,11 +3571,11 @@ webdav                    https://kubernetes.default.svc  services     default  
 <br />
 <span>All the config lives here:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s'>github.com/snonux/conf/f3s</a><br />
 <br />
 <span>ArgoCD Application manifests organized by namespace:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/argocd-apps'>codeberg.org/snonux/conf/f3s/argocd-apps</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/argocd-apps'>github.com/snonux/conf/f3s/argocd-apps</a><br />
 <br />
 <span>I can&#39;t imagine going back to running Helm commands manually.</span><br />
 <br />
@@ -3621,7 +3621,7 @@ webdav                    https://kubernetes.default.svc  services     default  
 <br />
 <span>This is the third and final blog post of the Distributed Systems Simulator series. This part covers advanced simulation examples, the Raft consensus protocol, and the extensible Protocol API.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/ds-sim'>ds-sim on Codeberg (modernized, English-translated version)</a><br />
+<a class='textlink' href='https://github.com/snonux/ds-sim'>ds-sim on Codeberg (modernized, English-translated version)</a><br />
 <br />
 <span>These are all the posts of this series:</span><br />
 <br />
@@ -3877,8 +3877,8 @@ http://www.gnu.org/software/src-highlite -->
 <li>208 unit tests</li>
 <li>269 configurable settings</li>
 </ul><br />
-<a class='textlink' href='https://codeberg.org/snonux/ds-sim'>ds-sim source code on Codeberg</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/vs-sim'>vs-sim source code on Codeberg (original German version, 2008)</a><br />
+<a class='textlink' href='https://github.com/snonux/ds-sim'>ds-sim source code on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/vs-sim'>vs-sim source code on Codeberg (original German version, 2008)</a><br />
 <br />
 <span>Other related posts are:</span><br />
 <br />
@@ -3911,7 +3911,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>This is the second blog post of the Distributed Systems Simulator series. This part covers all 10 built-in protocols with examples.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/ds-sim'>ds-sim on Codeberg (modernized, English-translated version)</a><br />
+<a class='textlink' href='https://github.com/snonux/ds-sim'>ds-sim on Codeberg (modernized, English-translated version)</a><br />
 <br />
 <span>These are all the posts of this series:</span><br />
 <br />
@@ -4301,7 +4301,7 @@ Programmed Reliable Multicast Events:
 <br />
 <span>This is the first blog post of the Distributed Systems Simulator series, written for the recent v1.1.0 release. It explores the Java-based Distributed Systems Simulator program I created as my diploma thesis at the Aachen University of Applied Sciences (August 2008). The simulator offers both built-in implementations of common distributed systems algorithms and an extensible framework that allows researchers and practitioners to implement and test their own custom protocols within the simulation environment.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/ds-sim'>ds-sim on Codeberg (modernized, English-translated version)</a><br />
+<a class='textlink' href='https://github.com/snonux/ds-sim'>ds-sim on Codeberg (modernized, English-translated version)</a><br />
 <br />
 <span>These are all the posts of this series:</span><br />
 <br />
@@ -4357,7 +4357,7 @@ Programmed Reliable Multicast Events:
 <br />
 <pre>
 # Clone the repository
-git clone https://codeberg.org/snonux/ds-sim.git
+git clone https://github.com/snonux/ds-sim.git
 cd ds-sim
 
 # Set JAVA_HOME if needed (e.g. on Fedora Linux)
@@ -4384,7 +4384,7 @@ mvn package -DskipTests
 </ul><br />
 <span>The project also includes 208 unit tests that can be run with <span class='inlinecode'>mvn test</span>. Example simulation files for all built-in protocols are included in the <span class='inlinecode'>saved-simulations/</span> directory.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/ds-sim'>ds-sim source code on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/ds-sim'>ds-sim source code on Codeberg</a><br />
 <br />
 <h2 style='display: inline' id='fundamentals'>Fundamentals</h2><br />
 <br />
@@ -4654,7 +4654,7 @@ Message Colors:
 <br />
 <span>Because of that metaprogramming support, Ruby is a great fit for DSLs. You can get very close to natural language without inventing a brand-new syntax. RCM leans into that: the goal is to read a configuration and understand what happens without jumping between multiple files or templating languages.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/rcm'>RCM repo on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/rcm'>RCM repo on Codeberg</a><br />
 <br />
 <h2 style='display: inline' id='how-the-dsl-feels'>How the DSL feels</h2><br />
 <br />
@@ -5119,7 +5119,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Loadbars can connect to hundreds of servers in parallel; the GIF above doesn&#39;t do it justice — at scale you get a wall of bars that makes it easy to spot outliers and compare hosts at a glance.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/loadbars'>Loadbars on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/loadbars'>Loadbars on Codeberg</a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
@@ -5539,9 +5539,9 @@ bind-key e run-shell -b "tmux display-message -p &#39;#{pane_id}&#39;
 <br />
 <span>And here is the full script. It is a bit ugly since it&#39;s shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go with proper unit tests, config-file, multi-agent support and release it once I have time. But it works well enough for now.</span><br />
 <br />
-<span class='quote'>Update 2026-02-08: This functionality has been integrated into the hexai project (https://codeberg.org/snonux/hexai) with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode. The hexai version includes unit tests, configuration files, and better agent detection. While still experimental, it&#39;s more robust than this shell script. See the hexai-tmux-edit command for details.</span><br />
+<span class='quote'>Update 2026-02-08: This functionality has been integrated into the hexai project (https://github.com/snonux/hexai) with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode. The hexai version includes unit tests, configuration files, and better agent detection. While still experimental, it&#39;s more robust than this shell script. See the hexai-tmux-edit command for details.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/hexai'>https://codeberg.org/snonux/hexai</a><br />
+<a class='textlink' href='https://github.com/snonux/hexai'>https://github.com/snonux/hexai</a><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -5825,7 +5825,7 @@ main <font color="#808080">"$@"</font>
 <br />
 <span>If I get a chance, I&#39;ll clean it up and rewrite it in Go (and release it properly or include it into Hexai, another AI related tool of mine, of which I haven&#39;t blogged about yet). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/hexai'>https://codeberg.org/snonux/hexai</a><br />
+<a class='textlink' href='https://github.com/snonux/hexai'>https://github.com/snonux/hexai</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
@@ -6013,7 +6013,7 @@ copy
 <span>These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.</span><br />
 <br />
 <a class='textlink' href='../about/index.html'>My about page</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
+<a class='textlink' href='https://github.com/snonux/gos'>https://github.com/snonux/gos</a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
@@ -7151,7 +7151,7 @@ SideloadedMode=true
 <br />
 <span>To keep my reading progress synchronized across multiple devices (my Kobo, my phone, and my Linux laptop), I run a <span class='inlinecode'>koreader-sync-server</span> instance in my k3s cluster. This allows me to pick up reading where I left off, no matter which device I&#39;m using.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server'>https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/kobo-sync-server'>https://github.com/snonux/conf/src/branch/master/f3s/kobo-sync-server</a><br />
 <br />
 <a href='./cloudless-kobo-forma-with-koreader/sync-server.jpg'><img alt='Custom sync server configuration' title='Custom sync server configuration' src='./cloudless-kobo-forma-with-koreader/sync-server.jpg' /></a><br />
 <br />
@@ -8610,9 +8610,9 @@ kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
 <br />
 <span>All config files are on Codeberg:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tempo'>Tempo configuration</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>Alloy configuration (updated for traces)</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/tracing-demo'>Demo tracing application</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/tempo'>Tempo configuration</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/loki'>Alloy configuration (updated for traces)</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/tracing-demo'>Demo tracing application</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
@@ -8726,7 +8726,7 @@ kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
 <br />
 <span>All manifests for the f3s stack live in my configuration repository:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s'>github.com/snonux/conf/f3s</a><br />
 <br />
 <h2 style='display: inline' id='important-note-gitops-migration'>Important Note: GitOps Migration</h2><br />
 <br />
@@ -8738,7 +8738,7 @@ kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf.git
+<pre>$ git clone https://github.com/snonux/conf.git
 $ cd conf
 $ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
 $ cd f3s/prometheus/
@@ -8813,7 +8813,7 @@ http://www.gnu.org/software/src-highlite -->
 <span>The configuration repository contains a <span class='inlinecode'>Justfile</span> that automates the deployment. <span class='inlinecode'>just</span> is a handy command runner—think of it as a simpler, more modern alternative to <span class='inlinecode'>make</span>. I use it throughout the f3s repository to wrap repetitive Helm and kubectl commands:</span><br />
 <br />
 <a class='textlink' href='https://github.com/casey/just'>just - A handy way to save and run project-specific commands</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>codeberg.org/snonux/conf/f3s/prometheus</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus'>github.com/snonux/conf/f3s/prometheus</a><br />
 <br />
 <span>To install everything:</span><br />
 <br />
@@ -8893,7 +8893,7 @@ etcd_server_has_leader <font color="#000000">1</font>
 <br />
 <span>The full <span class='inlinecode'>persistence-values.yaml</span> and all other Prometheus configuration files are available on Codeberg:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>codeberg.org/snonux/conf/f3s/prometheus</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus'>github.com/snonux/conf/f3s/prometheus</a><br />
 <br />
 <span>The persistent volume definitions bind to specific paths on the NFS share using <span class='inlinecode'>hostPath</span> volumes—the same pattern used for other services in Part 7:</span><br />
 <br />
@@ -8943,7 +8943,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The Loki configuration also lives in the repository:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>codeberg.org/snonux/conf/f3s/loki</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/loki'>github.com/snonux/conf/f3s/loki</a><br />
 <br />
 <span>To install:</span><br />
 <br />
@@ -9307,7 +9307,7 @@ spec:
 <br />
 <span>This file is saved as <span class='inlinecode'>freebsd-recording-rules.yaml</span> and applied as part of the Prometheus installation. The <span class='inlinecode'>os="freebsd"</span> label (set in the scrape config) ensures these rules only apply to FreeBSD hosts. After applying, the memory panels in the Node Exporter dashboards populate correctly for FreeBSD.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml'>freebsd-recording-rules.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml'>freebsd-recording-rules.yaml on Codeberg</a><br />
 <br />
 <h3 style='display: inline' id='disk-io-metrics-limitation'>Disk I/O metrics limitation</h3><br />
 <br />
@@ -9618,8 +9618,8 @@ zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
 <br />
 <span>All ZFS-related configuration files are available on Codeberg:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/zfs-recording-rules.yaml'>zfs-recording-rules.yaml on Codeberg</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/zfs-dashboards.yaml'>zfs-dashboards.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/zfs-recording-rules.yaml'>zfs-recording-rules.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/zfs-dashboards.yaml'>zfs-dashboards.yaml on Codeberg</a><br />
 <br />
 <h2 style='display: inline' id='monitoring-external-openbsd-hosts'>Monitoring external OpenBSD hosts</h2><br />
 <br />
@@ -9742,7 +9742,7 @@ spec:
 <br />
 <span>This file is saved as <span class='inlinecode'>openbsd-recording-rules.yaml</span> and applied alongside the FreeBSD rules. Note that OpenBSD doesn&#39;t expose a buffer memory metric, so that rule is omitted.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml'>openbsd-recording-rules.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml'>openbsd-recording-rules.yaml on Codeberg</a><br />
 <br />
 <span>After running <span class='inlinecode'>just upgrade</span>, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.</span><br />
 <br />
@@ -9762,8 +9762,8 @@ spec:
 <br />
 <span>All configuration files are available on Codeberg:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>Prometheus, Grafana, and recording rules configuration</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>Loki and Alloy configuration</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus'>Prometheus, Grafana, and recording rules configuration</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/loki'>Loki and Alloy configuration</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
@@ -10125,7 +10125,7 @@ perl /usr/local/bin/foostats.pl --parse-logs --replicate --report
 <br />
 <span>The complete source lives on Codeberg here:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/foostats'>Foostats on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/foostats'>Foostats on Codeberg</a><br />
 <br />
 <span>Now let&#39;s go to some new Perl features:</span><br />
 <br />
@@ -10752,7 +10752,7 @@ p hash.values_at(:a, :c)
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf.git
+<pre>$ git clone https://github.com/snonux/conf.git
 $ cd conf
 $ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
 $ cd f3s/
@@ -11612,7 +11612,7 @@ LAN → FreeBSD CARP VIP (192.168.1.138)
 <br />
 <span>First, install cert-manager to handle certificate lifecycle management for LAN services. The installation is automated with a Justfile:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/cert-manager'>codeberg.org/snonux/conf/f3s/cert-manager</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/cert-manager'>github.com/snonux/conf/f3s/cert-manager</a><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -11852,7 +11852,7 @@ $ sudo update-ca-trust
 <br />
 <span>All manifests for the f3s stack live in my configuration repository:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s'>github.com/snonux/conf/f3s</a><br />
 <br />
 <span>Within that repo, the <span class='inlinecode'>f3s/registry/</span> directory contains the Helm chart, a <span class='inlinecode'>Justfile</span>, and a detailed <span class='inlinecode'>README</span>. Here&#39;s the condensed walkthrough I used to roll out the registry with Helm.</span><br />
 <br />
@@ -11875,7 +11875,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf/f3s.git
+<pre>$ git clone https://github.com/snonux/conf/f3s.git
 $ cd conf/f3s/examples/conf/f3s/registry
 $ helm upgrade --install registry ./helm-chart --namespace infra --create-namespace
 </pre>
@@ -15683,7 +15683,7 @@ http://www.gnu.org/software/src-highlite -->
 <span>These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.</span><br />
 <br />
 <a class='textlink' href='../about/index.html'>My about page</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
+<a class='textlink' href='https://github.com/snonux/gos'>https://github.com/snonux/gos</a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
@@ -16286,7 +16286,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Before wiping the pre-installed <span class='inlinecode'>#Windows</span> 11 Pro on my new Beelink mini PC, I tested <span class='inlinecode'>#WSL2</span> with <span class='inlinecode'>#Fedora</span> <span class='inlinecode'>#Linux</span>. I compiled my pet project, I/O Riot NG (ior), which requires many system libraries, including <span class='inlinecode'>#BPF</span>. I’m impressed—everything works just like on native Fedora, and my tool runs and traces I/O syscalls with BPF out of the box. I might would prefer now Windows over MacOS if I had to chose between those two for work.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/ior'>codeberg.org/snonux/ior</a><br />
+<a class='textlink' href='https://github.com/snonux/ior'>github.com/snonux/ior</a><br />
 <br />
 <h3 style='display: inline' id='some-might-hate-me-saying-this-but-didnt-'>Some might hate me saying this, but didnt ...</h3><br />
 <br />
@@ -16480,7 +16480,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Go to:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/tasksamurai'>https://codeberg.org/snonux/tasksamurai</a><br />
+<a class='textlink' href='https://github.com/snonux/tasksamurai'>https://github.com/snonux/tasksamurai</a><br />
 <br />
 <span>And follow the <span class='inlinecode'>README.md</span>!</span><br />
 <br />
@@ -17217,7 +17217,7 @@ PersistentKeepalive = 25
 <br />
 <span>I have written a Ruby script <span class='inlinecode'>wireguardmeshgenerator.rb</span> to do this for our purposes:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/wireguardmeshgenerator'>https://codeberg.org/snonux/wireguardmeshgenerator</a><br />
+<a class='textlink' href='https://github.com/snonux/wireguardmeshgenerator'>https://github.com/snonux/wireguardmeshgenerator</a><br />
 <br />
 <span>I use Fedora Linux as my main driver on my personal Laptop, so the script was developed and tested only on Fedora Linux. However, it should also work on other Linux and Unix-like systems.</span><br />
 <br />
@@ -17227,7 +17227,7 @@ PersistentKeepalive = 25
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; git clone https://codeberg.org/snonux/wireguardmeshgenerator
+<pre>&gt; git clone https://github.com/snonux/wireguardmeshgenerator
 &gt; cd ./wireguardmeshgenerator
 &gt; bundle install
 &gt; sudo dnf install -y wireguard-tools
@@ -19232,7 +19232,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>You can find the repository here:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/sillybench'>https://codeberg.org/snonux/sillybench</a><br />
+<a class='textlink' href='https://github.com/snonux/sillybench'>https://github.com/snonux/sillybench</a><br />
 <br />
 <h3 style='display: inline' id='silly-freebsd-host-benchmark'>Silly FreeBSD host benchmark</h3><br />
 <br />
@@ -19244,7 +19244,7 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>paul@f0:~ % doas pkg install git go
 paul@f0:~ % mkdir ~/git &amp;&amp; cd ~/git &amp;&amp; \
-  git clone https://codeberg.org/snonux/sillybench &amp;&amp; \
+  git clone https://github.com/snonux/sillybench &amp;&amp; \
   cd sillybench
 </pre>
 <br />
@@ -19260,12 +19260,12 @@ go version go1.<font color="#000000">24.1</font> freebsd/amd<font color="#000000
 paul@f0:~/git/sillybench % go <b><u><font color="#000000">test</font></u></b> -bench=.
 goos: freebsd
 goarch: amd64
-pkg: codeberg.org/snonux/sillybench
+pkg: github.com/snonux/sillybench
 cpu: Intel(R) N100
 BenchmarkCPUSilly1-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4022</font> ns/op
 BenchmarkCPUSilly2-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4027</font> ns/op
 PASS
-ok      codeberg.org/snonux/sillybench <font color="#000000">0</font>.891s
+ok      github.com/snonux/sillybench <font color="#000000">0</font>.891s
 </pre>
 <br />
 <h3 style='display: inline' id='silly-rocky-linux-vm--bhyve-benchmark'>Silly Rocky Linux VM @ Bhyve benchmark</h3><br />
@@ -19278,7 +19278,7 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>[root@r0 ~]<i><font color="silver"># dnf install golang git</font></i>
 [root@r0 ~]<i><font color="silver"># mkdir ~/git &amp;&amp; cd ~/git &amp;&amp; \</font></i>
-  git clone https://codeberg.org/snonux/sillybench &amp;&amp; \
+  git clone https://github.com/snonux/sillybench &amp;&amp; \
   cd sillybench
 </pre>
 <br />
@@ -19293,7 +19293,7 @@ go version go1.<font color="#000000">22.9</font> (Red Hat <font color="#000000">
 [root@r0 sillybench]<i><font color="silver"># go test -bench=.</font></i>
 goos: linux
 goarch: amd64
-pkg: codeberg.org/snonux/sillybench
+pkg: github.com/snonux/sillybench
 cpu: Intel(R) N100
 BenchmarkCPUSilly1-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4347</font> ns/op
 BenchmarkCPUSilly2-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4345</font> ns/op
@@ -19314,12 +19314,12 @@ http://www.gnu.org/software/src-highlite -->
 <pre>root@freebsd:~/git/sillybench <i><font color="silver"># go test -bench=.</font></i>
 goos: freebsd
 goarch: amd64
-pkg: codeberg.org/snonux/sillybench
+pkg: github.com/snonux/sillybench
 cpu: Intel(R) N100
 BenchmarkCPUSilly1      <font color="#000000">1000000000</font>               <font color="#000000">0.4273</font> ns/op
 BenchmarkCPUSilly2      <font color="#000000">1000000000</font>               <font color="#000000">0.4286</font> ns/op
 PASS
-ok      codeberg.org/snonux/sillybench  <font color="#000000">0</font>.949s
+ok      github.com/snonux/sillybench  <font color="#000000">0</font>.949s
 </pre>
 <br />
 <span>It&#39;s a bit better than Linux! I am sure that this is not really a scientific benchmark, so take the results with a grain of salt!</span><br />
@@ -19628,7 +19628,7 @@ etcd_disk_wal_fsync_duration_seconds_bucket{le="0.004"} 408
 <span>I used Buffer.com to schedule and post my social media messages for a long time. However, over time, there were more problems with that service, including a slow and unintuitive UI, and the free version only allows scheduling up to 10 messages. At one point, they started to integrate an AI assistant (which would seemingly randomly pop up in separate JavaScript-powered input boxes), and then I had enough and decided I had to build my own social sharing tool—and Gos was born.</span><br />
 <br />
 <a class='textlink' href='https://buffer.com'>https://buffer.com</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
+<a class='textlink' href='https://github.com/snonux/gos'>https://github.com/snonux/gos</a><br />
 <br />
 <h2 style='display: inline' id='gos-features'>Gos features</h2><br />
 <br />
@@ -19658,7 +19658,7 @@ etcd_disk_wal_fsync_duration_seconds_bucket{le="0.004"} 408
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>git clone https://codeberg.org/snonux/gos.git
+<pre>git clone https://github.com/snonux/gos.git
 cd gos
 </pre>
 <br />
@@ -19946,7 +19946,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre>gos --gemtexterEnable --geminiSummaryFor <font color="#000000">202410</font>,<font color="#000000">202411</font>,<font color="#000000">202412</font>
 </pre>
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/gemtexter'>Gemtexter</a><br />
+<a class='textlink' href='https://github.com/snonux/gemtexter'>Gemtexter</a><br />
 <br />
 <span>In case there are HTTP links that translate directly to the Geminispace for certain capsules, specify the Gemini capsules as a comma-separated list as follows:</span><br />
 <br />
@@ -20917,7 +20917,7 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <span>These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.</span><br />
 <br />
 <a class='textlink' href='../about/index.html'>My about page</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/gos'>https://codeberg.org/snonux/gos</a><br />
+<a class='textlink' href='https://github.com/snonux/gos'>https://github.com/snonux/gos</a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
