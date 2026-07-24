@@ -18,7 +18,7 @@ I have tried many note apps for my Android (I use GrapheneOS) phone. Most of the
 
 Enter Quick logger – a compact GUI Android (well, cross-platform due to Fyne) app I've crafted using Go and the nifty Fyne framework. With Fyne, the app can be compiled easily into an Android APK. As of this writing, this app's whole Go source code is only 75 lines short!! This little tool is designed for spontaneous moments, allowing me to quickly log my thoughts as plain text files on my Android phone. There are no fancy file formats. Just plain text!
 
-[https://codeberg.org/snonux/quicklogger](https://codeberg.org/snonux/quicklogger)  
+[https://github.com/snonux/quicklogger](https://github.com/snonux/quicklogger)  
 [https://fyne.io](https://fyne.io)  
 [https://go.dev](https://go.dev)  
 

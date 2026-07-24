@@ -40,7 +40,7 @@ I've always been a fan of Ruby's metaprogramming features, and this project let 
 
 Because of that metaprogramming support, Ruby is a great fit for DSLs. You can get very close to natural language without inventing a brand-new syntax. RCM leans into that: the goal is to read a configuration and understand what happens without jumping between multiple files or templating languages.
 
-[RCM repo on Codeberg](https://codeberg.org/snonux/rcm)  
+[RCM repo on Codeberg](https://github.com/snonux/rcm)  
 
 ## How the DSL feels
 

@@ -51,7 +51,7 @@ Installation is straightforward. All required is a recent version of GNU Bash, G
 Now, clone, make and install the script:
 
 ```
-% git clone https://codeberg.org/snonux/photoalbum
+% git clone https://github.com/snonux/photoalbum
 Cloning into 'photoalbum'...
 remote: Enumerating objects: 1624, done.
 remote: Total 1624 (delta 0), reused 0 (delta 0), pack-reused 1624
@@ -266,7 +266,7 @@ A decent looking (in my opinion, at least) in less than 500 (273 as of this writ
 
 Also, I like the CSS effects which I recently added. In particular, for the Irregular Ninja site, I randomly shuffled the CSS effects you see. The background blur images are the same but rotated 180 degrees and blurred out.
 
-[`photoalbum.sh` source code on Codeberg.](https://codeberg.org/snonux/photoalbum)  
+[`photoalbum.sh` source code on Codeberg.](https://github.com/snonux/photoalbum)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

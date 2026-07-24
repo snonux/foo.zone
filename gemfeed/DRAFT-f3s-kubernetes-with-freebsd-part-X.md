@@ -127,7 +127,7 @@ namespace/cicd created
 
 The ArgoCD installation lives in the configuration repository:
 
-[codeberg.org/snonux/conf/f3s/argocd](https://codeberg.org/snonux/conf/src/branch/master/f3s/argocd)  
+[github.com/snonux/conf/f3s/argocd](https://github.com/snonux/conf/src/branch/master/f3s/argocd)  
 
 I deployed ArgoCD using Helm instead of the raw manifests. This provides easier upgrades and customization. The installation is managed via a Justfile:
 
@@ -256,7 +256,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://codeberg.org/snonux/conf.git
+    repoURL: https://github.com/snonux/conf.git
     
     targetRevision: master
     path: f3s/miniflux/helm-chart
@@ -420,7 +420,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://codeberg.org/snonux/conf.git
+    repoURL: https://github.com/snonux/conf.git
     targetRevision: master
     path: f3s/miniflux/helm-chart
   destination:
@@ -497,7 +497,7 @@ Project:            default
 Server:             https://kubernetes.default.svc
 Namespace:          services
 URL:                https://argocd.f3s.foo.zone/applications/miniflux
-Repo:               https://codeberg.org/snonux/conf.git
+Repo:               https://github.com/snonux/conf.git
 Target:             master
 Path:               f3s/miniflux/helm-chart
 SyncWindow:         Sync Allowed
@@ -560,7 +560,7 @@ spec:
           # ... (hundreds of lines of configuration)
 
     # Source 2: Additional manifests from Git repository
-    - repoURL: https://codeberg.org/snonux/conf.git
+    - repoURL: https://github.com/snonux/conf.git
       targetRevision: master
       path: f3s/prometheus/manifests
 
@@ -683,10 +683,10 @@ ArgoCD Web UI:
 
 ### 1. Single Source of Truth
 
-The Git repository at `https://codeberg.org/snonux/conf` now contains the complete cluster configuration. Anyone can clone it and see exactly what's deployed:
+The Git repository at `https://github.com/snonux/conf` now contains the complete cluster configuration. Anyone can clone it and see exactly what's deployed:
 
 ```sh
-$ git clone https://codeberg.org/snonux/conf.git
+$ git clone https://github.com/snonux/conf.git
 $ cd conf/f3s
 $ ls argocd-apps/
 alloy.yaml  anki-sync-server.yaml  audiobookshelf.yaml  ...
@@ -823,7 +823,7 @@ Prometheus needed both the upstream Helm chart and custom manifests (recording r
 
 Solution: Used ArgoCD's multi-source feature to combine:
 * Helm chart from `prometheus-community.github.io/helm-charts`
-* Additional manifests from `codeberg.org/snonux/conf.git` at path `f3s/prometheus/manifests`
+* Additional manifests from `github.com/snonux/conf.git` at path `f3s/prometheus/manifests`
 
 This keeps the upstream chart cleanly separated from custom configuration.
 
@@ -937,7 +937,7 @@ spec:
     spec:
       project: default
       source:
-        repoURL: https://codeberg.org/snonux/conf.git
+        repoURL: https://github.com/snonux/conf.git
         targetRevision: master
         path: 'f3s/{{app}}/helm-chart'
       destination:
@@ -965,7 +965,7 @@ metadata:
   namespace: cicd
 spec:
   source:
-    repoURL: https://codeberg.org/snonux/conf.git
+    repoURL: https://github.com/snonux/conf.git
     targetRevision: master
     path: f3s/argocd-apps
     directory:
@@ -990,7 +990,7 @@ metadata:
   namespace: cicd
 spec:
   source:
-    repoURL: https://codeberg.org/snonux/conf.git
+    repoURL: https://github.com/snonux/conf.git
     targetRevision: master
     path: f3s/argocd-apps/monitoring
   destination:
@@ -1053,11 +1053,11 @@ The migration took several days spread over a few weeks, migrating one applicati
 
 All 21 applications are now managed via GitOps, with the configuration living in:
 
-[codeberg.org/snonux/conf/f3s](https://codeberg.org/snonux/conf/src/branch/master/f3s)  
+[github.com/snonux/conf/f3s](https://github.com/snonux/conf/src/branch/master/f3s)  
 
 The ArgoCD Application manifests are organized by namespace:
 
-[codeberg.org/snonux/conf/f3s/argocd-apps](https://codeberg.org/snonux/conf/src/branch/master/f3s/argocd-apps)  
+[github.com/snonux/conf/f3s/argocd-apps](https://github.com/snonux/conf/src/branch/master/f3s/argocd-apps)  
 
 ArgoCD has become an essential part of the f3s infrastructure, and I can't imagine managing the cluster without it.
 

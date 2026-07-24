@@ -32,7 +32,7 @@ A couple of years have passed since I last worked on Debroid. Currently, I am us
 
 All scripts mentioned here can be found on GitHub at:
 
-[https://codeberg.org/snonux/debroid](https://codeberg.org/snonux/debroid)  
+[https://github.com/snonux/debroid](https://github.com/snonux/debroid)  
 
 ### First debootstrap stage
 

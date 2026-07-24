@@ -8,7 +8,7 @@ As a regular participant in the annual Pet Project competition at work, I always
 
 I have been programming in Java back in the days as a university student, and even my Diploma Thesis I implemented in Java (it would require some overhaul so that it is fully compatible with a recent version of Java, though - It still compiles and runs, but with a lot of warnings, though!):
 
-[VS-Sim: Distributed systems simulator](https://codeberg.org/snonux/vs-sim)  
+[VS-Sim: Distributed systems simulator](https://github.com/snonux/vs-sim)  
 
 However, after that, I became a Linux Sysadmin and mainly continued programming in Perl, Puppet, bash, and a little Python. For personal use, I also programmed a bit in Haskell and C. After my Sysadmin role, I moved to London and became a Site Reliability Engineer (SRE), where I mainly programmed in Ruby, bash, Puppet and Golang and a little bit of C. 
 

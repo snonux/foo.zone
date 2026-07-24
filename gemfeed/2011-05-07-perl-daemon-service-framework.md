@@ -169,7 +169,7 @@ BTW: You can install as many modules within the same instance as desired. But th
 
 You can find PerlDaemon (including the examples) at:
 
-[https://codeberg.org/snonux/perldaemon](https://codeberg.org/snonux/perldaemon)  
+[https://github.com/snonux/perldaemon](https://github.com/snonux/perldaemon)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

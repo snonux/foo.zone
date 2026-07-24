@@ -19,8 +19,8 @@
 ## Show me the code
 
 [Project showcase](./showcase.md)  
+[github.com/snonux - My GitHub page](https://github.com/snonux)  
 [codeberg.org/snonux - My Codeberg page](https://codeberg.org/snonux)  
-[github.com/snonux - My GitHub page (it's just a mirror of Codeberg, really)](https://github.com/snonux)  
 
 ## Social Media and Communities
 

@@ -476,14 +476,14 @@ Instead, a script can handle key generation, coordinate relationships, and gener
 
 I have written a Ruby script `wireguardmeshgenerator.rb` to do this for our purposes:
 
-[https://codeberg.org/snonux/wireguardmeshgenerator](https://codeberg.org/snonux/wireguardmeshgenerator)  
+[https://github.com/snonux/wireguardmeshgenerator](https://github.com/snonux/wireguardmeshgenerator)  
 
 I use Fedora Linux as my main driver on my personal Laptop, so the script was developed and tested only on Fedora Linux. However, it should also work on other Linux and Unix-like systems.
 
 To set up the mesh generator on Fedora Linux, we run the following:
 
 ```sh
-> git clone https://codeberg.org/snonux/wireguardmeshgenerator
+> git clone https://github.com/snonux/wireguardmeshgenerator
 > cd ./wireguardmeshgenerator
 > bundle install
 > sudo dnf install -y wireguard-tools

@@ -56,7 +56,7 @@ BEGIN {
 
 You can find the full source code at GitHub:
 
-[https://codeberg.org/snonux/perl-c-fibonacci](https://codeberg.org/snonux/perl-c-fibonacci)  
+[https://github.com/snonux/perl-c-fibonacci](https://github.com/snonux/perl-c-fibonacci)  
 
 ### Let's run it with C and C++
 

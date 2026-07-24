@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-07-08
+Generated on: 2026-07-22
 
 [![Interactive Project Rank History Graph (SVG)](showcase-rank-history.svg "Interactive Project Rank History Graph (SVG)")](showcase-rank-history.svg)  
 
@@ -11,104 +11,246 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ Project Showcase](#project-showcase)
 * [⇢ ⇢ Overall Statistics](#overall-statistics)
 * [⇢ ⇢ Projects](#projects)
-* [⇢ ⇢ ⇢ 1. gonf 1](#1-gonf-1)
-* [⇢ ⇢ ⇢ 2. shuriken.sh 2↙1←1←1](#2-shurikensh-2111)
-* [⇢ ⇢ ⇢ 3. conf 3←3↖7←7↙6←6↙4↖5↖14↙12↙10↙7←7↖9↙7↖9←9↙7↙5](#3-conf-3377664514121077979975)
-* [⇢ ⇢ ⇢ 4. tasksamurai 4↙2↖15↙14↙13←13↖14↙11↙9←9↙7↙5←5↖23↙22↙18←18↙16←16](#4-tasksamurai-4215141313141199755232218181616)
-* [⇢ ⇢ ⇢ 5. hexai 5←5↙2↖5↖7←7↙6↙4↖5↙3↖8↙6←6↙4↙1←1↖3↖15↙2](#5-hexai-55257764538664113152)
-* [⇢ ⇢ ⇢ 6. dotfiles 6↙4↙3↙2↖3←3↖8↙7←7←7↖9↙8←8↙6↙4↙3↖5↙3←3](#6-dotfiles-6432338777988643533)
-* [⇢ ⇢ ⇢ 7. gitsyncer 7↙6↙5↙3↖10←10←10↖20←20↙19↙18←18←18↙16↙14↙11←11↖17↙15](#7-gitsyncer-7653101010202019181818161411111715)
-* [⇢ ⇢ ⇢ 8. gt 8←8↙6↙4↙1←1↖28↙26←26↙25↙24←24←24↙22↙21↙17←17↙14↙13](#8-gt-88641128262625242424222117171413)
-* [⇢ ⇢ ⇢ 9. irregular.ninja 9↙7↙4](#9-irregularninja-974)
-* [⇢ ⇢ ⇢ 10. snonux 10←10↖11↙10↙8←8↙7↙3↙2↖4↙3←3←3↙2↖5](#10-snonux-1010111088732433325)
-* [⇢ ⇢ ⇢ 11. ior 11↙9↙8←8↙5←5←5↙1↖12↖14↙13↖14←14↙12↙9↙4↙2↙1←1](#11-ior-11988555112141314141294211)
-* [⇢ ⇢ ⇢ 12. hypr 12↙11↙9↙6↙2←2←2↖17↙16↙15↙14↙11←11↙7↙3](#12-hypr-12119622217161514111173)
-* [⇢ ⇢ ⇢ 13. player 13↙12↙10↙9↙4←4↙3↙2↙1←1](#13-player-1312109443211)
-* [⇢ ⇢ ⇢ 14. dtail 14↙13↙12↙11↙9←9←9↙6↙4↙2↙1↖10←10↙8↙6↙2↙1↖21↙20](#14-dtail-141312119996421101086212120)
-* [⇢ ⇢ ⇢ 15. goprecords 15↙14←14↙12↙11←11←11↙9↙6←6↙4↙2←2↖29↙28↙24←24←24←24](#15-goprecords-15141412111111966422292824242424)
-* [⇢ ⇢ ⇢ 16. totalrecall 16↙15↙13←13↙12←12←12↙10↙8←8↙6↙4←4↙1↖18↙15↖16↙13↖14](#16-totalrecall-16151313121212108864411815161314)
-* [⇢ ⇢ ⇢ 17. fastforge 17↙16←16↙15←15←15←15↙12↙11↙10↙5↙1←1↖3](#17-fastforge-171616151515151211105113)
-* [⇢ ⇢ ⇢ 18. foostore 18↙17←17←17←17←17←17↙15←15↙13↙12↖16←16↙14↙11↙7←7↙5↖7](#18-foostore-1817171717171715151312161614117757)
-* [⇢ ⇢ ⇢ 19. rampage 19↙18←18↙16↙14←14↙13↙8↙3](#19-rampage-1918181614141383)
-* [⇢ ⇢ ⇢ 20. comicforge 20↙19←19↙18↙16←16←16↙13↙10↙5↙2](#20-comicforge-20191918161616131052)
-* [⇢ ⇢ ⇢ 21. timesamurai 21↙20←20↙19↙18←18←18↙16↖17↙16↙15↙12←12↙11↙10↙5↙4↙2](#21-timesamurai-212020191818181617161512121110542)
-* [⇢ ⇢ ⇢ 22. loadbars 22↙21←21↙20↙19←19←19↖53←53↙51↙50↙49←49←49↙46↙6←6↙4↖47](#22-loadbars-22212120191919535351504949494666447)
-* [⇢ ⇢ ⇢ 23. ds-sim 23↙22←22↙21↙20←20←20↙19←19↙18↙17↙15←15↙13↙12↖25←25←25↙21](#23-ds-sim-23222221202020191918171515131225252521)
-* [⇢ ⇢ ⇢ 24. foo.zone 24↙23←23↙22↙21←21←21↙18←18↙17↙16↙13←13↙10↙8↖64←64←64↙6](#24-foozone-242323222121211818171613131086464646)
-* [⇢ ⇢ ⇢ 25. rcm 25↙24←24↙23↙22←22←22↖25←25↙24↙23↙22←22↙20↙15↙12↖13↙10←10](#25-rcm-25242423222222252524232222201512131010)
-* [⇢ ⇢ ⇢ 26. gogios 26↙25↖26↙25↙24←24←24↙22←22↙21←21↙20←20↙18↖19↙16↙15↙12↙11](#26-gogios-26252625242424222221212020181916151211)
-* [⇢ ⇢ ⇢ 27. epimetheus 27↙26↙25↙24↙23←23←23↙21←21↙20↙19↙17←17↙15↙13↙8←8↙6↙4](#27-epimetheus-2726252423232321212019171715138864)
-* [⇢ ⇢ ⇢ 28. yoga 28↙27←27↙26↙25←25←25↙24←24↙23↙22↙21←21↙19↙17↙13↖14↙11↖12](#28-yoga-28272726252525242423222121191713141112)
-* [⇢ ⇢ ⇢ 29. gemtexter 29↙28←28←28↙27←27←27←27↖28↙27←27↖28←28↙27↙26↙22←22←22←22](#29-gemtexter-29282828272727272827272828272622222222)
-* [⇢ ⇢ ⇢ 30. scifi 30↙29←29↙27↙26←26←26↙23←23↙22↙20↙19←19↙17↙16↙10←10↙8←8](#30-scifi-302929272626262323222019191716101088)
-* [⇢ ⇢ ⇢ 31. gos 31↙30←30↙29↙28←28↖30↙29←29↙28↙26↙25←25↙24↙23↙19←19↙18←18](#31-gos-31303029282830292928262525242319191818)
-* [⇢ ⇢ ⇢ 32. log4jbench 32↙31←31↙30↙29←29←29↙28↙27↙26↙25↙23←23↙21↙20↙14↙12↙9←9](#32-log4jbench-323131302929292827262523232120141299)
-* [⇢ ⇢ ⇢ 33. timr 33←33←33↙32↙31←31↖32↙31←31↙30↙29↙27←27↙26↙25↙21←21↙20↙19](#33-timr-33333332313132313130292727262521212019)
-* [⇢ ⇢ ⇢ 34. foostats 34↙32←32↙31↙30←30↖31↙30←30↙29↙28↙26←26↙25↙24↙20←20↙19↙17](#34-foostats-34323231303031303029282626252420201917)
-* [⇢ ⇢ ⇢ 35. wireguardmeshgenerator 35↙34←34↙33↙32←32↖33↙32←32↙31↙30↙29←29↙28↙27↙23←23←23←23](#35-wireguardmeshgenerator-35343433323233323231302929282723232323)
-* [⇢ ⇢ ⇢ 36. ioriot 36↙35←35↙34↙33←33↖34↙33←33↙32↙31↙30←30←30↙29↖34↖35↙34↖35](#36-ioriot-36353534333334333332313030302934353435)
-* [⇢ ⇢ ⇢ 37. quicklogger 37↙36←36↙35↙34←34↖35↙34←34↙33↙32↙31←31←31↙30↙26←26←26↙25](#37-quicklogger-37363635343435343433323131313026262625)
-* [⇢ ⇢ ⇢ 38. quicklog 38↙37←37↙36↙35←35↖36↙35←35](#38-quicklog-383737363535363535)
-* [⇢ ⇢ ⇢ 39. sillybench 39↙38←38↙37↙36←36↖37↙36←36↙34↙33↙32←32←32↙31↙27←27←27←27](#39-sillybench-39383837363637363634333232323127272727)
-* [⇢ ⇢ ⇢ 40. terraform 40↙39←39↙38↙37←37↖38↙37←37↙35↙34↙33←33←33↙32↙28←28←28↙26](#40-terraform-40393938373738373735343333333228282826)
-* [⇢ ⇢ ⇢ 41. guprecords 41↙40←40↙39↙38←38↖39↙38←38↙36↙35↙34←34←34↙33↖39↙29↖40↙29](#41-guprecords-41404039383839383836353434343339294029)
-* [⇢ ⇢ ⇢ 42. photoalbum 42↙41←41↙40←40←40↖42↙41←41↙40↙39↙38←38←38↙37↙32↖33↙32↖34](#42-photoalbum-42414140404042414140393838383732333234)
-* [⇢ ⇢ ⇢ 43. geheim 43↙42←42↙41↙39←39↖40↙39←39↙37↙36↙35←35←35↙34↙29↖30↙29↖30](#43-geheim-43424241393940393937363535353429302930)
-* [⇢ ⇢ ⇢ 44. gorum 44↙43←43↙42↙41←41←41↙40←40↙38↙37↙36←36←36↙35↙30↖31↙30↙28](#44-gorum-44434342414141404038373636363530313028)
-* [⇢ ⇢ ⇢ 45. docker-radicale-server 45↙44←44↙43↙42←42↖43↙42←42↙39↙38↙37←37←37↙36↙31↖32↙31←31](#45-docker-radicale-server-45444443424243424239383737373631323131)
-* [⇢ ⇢ ⇢ 46. randomjournalpage 46↙45←45↙44↙43←43↖44↙43←43↙41↙40↙39←39←39↙38↙33↖34↙33←33](#46-randomjournalpage-46454544434344434341403939393833343333)
-* [⇢ ⇢ ⇢ 47. staticfarm-apache-handlers 47←47←47↙46↙45←45↖46↙45←45↙43↙42↙41←41↖42↙41↙37↖38←38↖40](#47-staticfarm-apache-handlers-47474746454546454543424141424137383840)
-* [⇢ ⇢ ⇢ 48. ipv6test 48←48←48↙47↙46←46↖47↙46←46↙44↙43↙42←42↙41↙40↙36↖37←37↙36](#48-ipv6test-48484847464647464644434242414036373736)
-* [⇢ ⇢ ⇢ 49. algorithms 49↙46←46↙45↙44←44↖45↙44←44↙42↙41↙40←40←40↙39↙35↖36←36↙32](#49-algorithms-49464645444445444442414040403935363632)
-* [⇢ ⇢ ⇢ 50. sway-autorotate 50↙49←49↙48↙47←47↖48↙47←47↙45↙44↙43←43←43↙42↙38↖39←39↙38](#50-sway-autorotate-50494948474748474745444343434238393938)
-* [⇢ ⇢ ⇢ 51. mon 51↙50←50↙49↙48←48↖49↙48←48↙46↙45↙44←44←44↙43↙40←40↖41↙39](#51-mon-51505049484849484846454444444340404139)
-* [⇢ ⇢ ⇢ 52. fapi 52↙51←51↙50↙49←49↖50↙49←49↙47↙46↙45←45↖46↙44↙41←41↖42↖44](#52-fapi-52515150494950494947464545464441414244)
-* [⇢ ⇢ ⇢ 53. pingdomfetch 53↙52←52↙51←51←51↖52↙51←51↙49↙48↙47←47←47↙45↙42←42↖43↙41](#53-pingdomfetch-53525251515152515149484747474542424341)
-* [⇢ ⇢ ⇢ 54. playground 54←54←54↙53←53←53](#54-playground-545454535353)
-* [⇢ ⇢ ⇢ 55. pwgrep 55←55←55↙54←54←54←54←54←54↙52↙51↙50←50←50↙47↙44←44↖45↖50](#55-pwgrep-55555554545454545452515050504744444550)
-* [⇢ ⇢ ⇢ 56. xerl 56←56←56↙55↙50←50↖51↙50←50↙48↙47↙46←46↙45↖48↙45←45↙35↖42](#56-xerl-56565655505051505048474646454845453542)
-* [⇢ ⇢ ⇢ 57. awksite 57←57←57↙56↙55←55←55←55←55↙53↙52↙51←51←51↙49↙46←46←46↖61](#57-awksite-57575756555555555553525151514946464661)
-* [⇢ ⇢ ⇢ 58. gotop 58←58←58↙57↙56←56←56←56←56↙54↙53↙52←52←52↙50↙47←47←47↖48](#58-gotop-58585857565656565654535252525047474748)
-* [⇢ ⇢ ⇢ 59. japi 59←59←59↙58↙57←57←57←57←57↙55↙54↙53←53←53↙51↙48←48←48↖53](#59-japi-59595958575757575755545353535148484853)
-* [⇢ ⇢ ⇢ 60. perldaemon 60←60←60↙59↙58←58←58←58←58↙56↙55↙54←54←54↙52←52↙49↖52↙51](#60-perldaemon-60606059585858585856555454545252495251)
-* [⇢ ⇢ ⇢ 61. rubyfy 61←61←61↙60↙59←59←59←59←59↙57↙56↙55←55←55↙53↙49↖50↙49←49](#61-rubyfy-61616160595959595957565555555349504949)
-* [⇢ ⇢ ⇢ 62. netdiff 62↖63←63↙62↙61←61←61←61←61↙59↙58↙57←57←57↙55↙51↖52↙51↖56](#62-netdiff-62636362616161616159585757575551525156)
-* [⇢ ⇢ ⇢ 63. perl-c-fibonacci 63↙62←62↙61↙60←60←60←60←60↙58↙57↙56←56←56↙54↙50↖51↙50↙45](#63-perl-c-fibonacci-63626261606060606058575656565450515045)
-* [⇢ ⇢ ⇢ 64. muttdelay 64←64←64↙63↙62←62←62←62←62↙60↙59↙58←58←58↙56↙54←54←54↖55](#64-muttdelay-64646463626262626260595858585654545455)
-* [⇢ ⇢ ⇢ 65. cpuinfo 65←65←65↙64↙63←63←63←63←63↙61↙60↙59←59←59↙57←57←57↙56↖59](#65-cpuinfo-65656564636363636361605959595757575659)
-* [⇢ ⇢ ⇢ 66. dyndns 66←66←66↙65↙64←64↖65←65←65↙63↙62↙61←61←61↙59←59←59↙58↖62](#66-dyndns-66666665646465656563626161615959595862)
-* [⇢ ⇢ ⇢ 67. debroid 67←67←67↙66↙65←65↖66←66←66↙64↙63↙62←62←62↙60←60←60↙59↙57](#67-debroid-67676766656566666664636262626060605957)
-* [⇢ ⇢ ⇢ 68. ychat 68←68←68↙67↙66←66↖67←67←67↙65↙64↙63←63←63←63←63←63↙62↙43](#68-ychat-68686867666667676765646363636363636243)
-* [⇢ ⇢ ⇢ 69. netcalendar 69←69←69↙68↙67←67↖68←68←68↙66↙65↙64←64←64↙61↙55←55←55↙46](#69-netcalendar-69696968676768686866656464646155555546)
-* [⇢ ⇢ ⇢ 70. jsmstrade 70←70←70↙69↙68←68↖69←69←69↙67↙66↙65←65←65↙62↙53←53←53↙52](#70-jsmstrade-70707069686869696967666565656253535352)
-* [⇢ ⇢ ⇢ 71. template 71←71←71↙70←70←70↙64←64←64↙62↙61↙60←60←60↙58←58←58↙57↖60](#71-template-71717170707064646462616060605858585760)
-* [⇢ ⇢ ⇢ 72. vs-sim 72←72←72↙71↙69←69↖70←70←70↙68↙67↙66←66←66↙64↙56←56↖63←63](#72-vs-sim-72727271696970707068676666666456566363)
-* [⇢ ⇢ ⇢ 73. perl-poetry 73←73←73↙72↙71←71←71←71←71↙69↙68↙67←67←67↙65↙61←61↙60↙54](#73-perl-poetry-73737372717171717169686767676561616054)
-* [⇢ ⇢ ⇢ 74. fype 74↙53←53↙52←52←52↖53↙52←52↙50↙49↙48←48←48↖66↙43←43↖44↙37](#74-fype-74535352525253525250494848486643434437)
-* [⇢ ⇢ ⇢ 75. hsbot 75↙74←74↙73↙72←72←72←72←72↙70↙69↙68←68←68↙67↙62←62↙61↙58](#75-hsbot-75747473727272727270696868686762626158)
+* [⇢ ⇢ ⇢ 1. dtail 1↖13↖14↙13↙12↙11↙9←9←9↙6↙4↙2↙1↖10←10↙8↙6↙2↙1↖21↙20](#1-dtail-113141312119996421101086212120)
+* [⇢ ⇢ ⇢ 2. ggaze 2↙1](#2-ggaze-21)
+* [⇢ ⇢ ⇢ 3. dotfiles 3↖6←6↙4↙3↙2↖3←3↖8↙7←7←7↖9↙8←8↙6↙4↙3↖5↙3←3](#3-dotfiles-366432338777988643533)
+* [⇢ ⇢ ⇢ 4. shuriken.sh 4↙3↙2↙1←1←1](#4-shurikensh-432111)
+* [⇢ ⇢ ⇢ 5. conf 5↙4↙3←3↖7←7↙6←6↙4↖5↖14↙12↙10↙7←7↖9↙7↖9←9↙7↙5](#5-conf-543377664514121077979975)
+* [⇢ ⇢ ⇢ 6. tasksamurai 6↙5↙4↙2↖15↙14↙13←13↖14↙11↙9←9↙7↙5←5↖23↙22↙18←18↙16←16](#6-tasksamurai-654215141313141199755232218181616)
+* [⇢ ⇢ ⇢ 7. gonf 7↙2↙1](#7-gonf-721)
+* [⇢ ⇢ ⇢ 8. hexai 8↙7↙5←5↙2↖5↖7←7↙6↙4↖5↙3↖8↙6←6↙4↙1←1↖3↖15↙2](#8-hexai-8755257764538664113152)
+* [⇢ ⇢ ⇢ 9. gitsyncer 9↙8↙7↙6↙5↙3↖10←10←10↖20←20↙19↙18←18←18↙16↙14↙11←11↖17↙15](#9-gitsyncer-987653101010202019181818161411111715)
+* [⇢ ⇢ ⇢ 10. gt 10↙9↙8←8↙6↙4↙1←1↖28↙26←26↙25↙24←24←24↙22↙21↙17←17↙14↙13](#10-gt-10988641128262625242424222117171413)
+* [⇢ ⇢ ⇢ 11. foo.zone 11↖25↙24↙23←23↙22↙21←21←21↙18←18↙17↙16↙13←13↙10↙8↖64←64←64↙6](#11-foozone-1125242323222121211818171613131086464646)
+* [⇢ ⇢ ⇢ 12. snonux 12↙10←10←10↖11↙10↙8←8↙7↙3↙2↖4↙3←3←3↙2↖5](#12-snonux-12101010111088732433325)
+* [⇢ ⇢ ⇢ 13. ior 13↙11←11↙9↙8←8↙5←5←5↙1↖12↖14↙13↖14←14↙12↙9↙4↙2↙1←1](#13-ior-131111988555112141314141294211)
+* [⇢ ⇢ ⇢ 14. irregular.ninja 14↙12↙9↙7↙4](#14-irregularninja-1412974)
+* [⇢ ⇢ ⇢ 15. goprecords 15↖16↙15↙14←14↙12↙11←11←11↙9↙6←6↙4↙2←2↖29↙28↙24←24←24←24](#15-goprecords-151615141412111111966422292824242424)
+* [⇢ ⇢ ⇢ 16. hypr 16↙14↙12↙11↙9↙6↙2←2←2↖17↙16↙15↙14↙11←11↙7↙3](#16-hypr-161412119622217161514111173)
+* [⇢ ⇢ ⇢ 17. player 17↙15↙13↙12↙10↙9↙4←4↙3↙2↙1←1](#17-player-17151312109443211)
+* [⇢ ⇢ ⇢ 18. totalrecall 18↙17↙16↙15↙13←13↙12←12←12↙10↙8←8↙6↙4←4↙1↖18↙15↖16↙13↖14](#18-totalrecall-181716151313121212108864411815161314)
+* [⇢ ⇢ ⇢ 19. fastforge 19↙18↙17↙16←16↙15←15←15←15↙12↙11↙10↙5↙1←1↖3](#19-fastforge-1918171616151515151211105113)
+* [⇢ ⇢ ⇢ 20. foostore 20↙19↙18↙17←17←17←17←17←17↙15←15↙13↙12↖16←16↙14↙11↙7←7↙5↖7](#20-foostore-20191817171717171715151312161614117757)
+* [⇢ ⇢ ⇢ 21. timesamurai 21←21←21↙20←20↙19↙18←18←18↙16↖17↙16↙15↙12←12↙11↙10↙5↙4↙2](#21-timesamurai-2121212020191818181617161512121110542)
+* [⇢ ⇢ ⇢ 22. comicforge 22↙20←20↙19←19↙18↙16←16←16↙13↙10↙5↙2](#22-comicforge-222020191918161616131052)
+* [⇢ ⇢ ⇢ 23. rampage 23↙22↙19↙18←18↙16↙14←14↙13↙8↙3](#23-rampage-23221918181614141383)
+* [⇢ ⇢ ⇢ 24. ds-sim 24←24↙23↙22←22↙21↙20←20←20↙19←19↙18↙17↙15←15↙13↙12↖25←25←25↙21](#24-ds-sim-242423222221202020191918171515131225252521)
+* [⇢ ⇢ ⇢ 25. gogios 25↖27↙26↙25↖26↙25↙24←24←24↙22←22↙21←21↙20←20↙18↖19↙16↙15↙12↙11](#25-gogios-252726252625242424222221212020181916151211)
+* [⇢ ⇢ ⇢ 26. epimetheus 26↖28↙27↙26↙25↙24↙23←23←23↙21←21↙20↙19↙17←17↙15↙13↙8←8↙6↙4](#26-epimetheus-26282726252423232321212019171715138864)
+* [⇢ ⇢ ⇢ 27. yoga 27↖29↙28↙27←27↙26↙25←25←25↙24←24↙23↙22↙21←21↙19↙17↙13↖14↙11↖12](#27-yoga-272928272726252525242423222121191713141112)
+* [⇢ ⇢ ⇢ 28. rcm 28↙26↙25↙24←24↙23↙22←22←22↖25←25↙24↙23↙22←22↙20↙15↙12↖13↙10←10](#28-rcm-282625242423222222252524232222201512131010)
+* [⇢ ⇢ ⇢ 29. gemtexter 29↖30↙29↙28←28←28↙27←27←27←27↖28↙27←27↖28←28↙27↙26↙22←22←22←22](#29-gemtexter-293029282828272727272827272828272622222222)
+* [⇢ ⇢ ⇢ 30. scifi 30↖31↙30↙29←29↙27↙26←26←26↙23←23↙22↙20↙19←19↙17↙16↙10←10↙8←8](#30-scifi-3031302929272626262323222019191716101088)
+* [⇢ ⇢ ⇢ 31. gos 31↖32↙31↙30←30↙29↙28←28↖30↙29←29↙28↙26↙25←25↙24↙23↙19←19↙18←18](#31-gos-313231303029282830292928262525242319191818)
+* [⇢ ⇢ ⇢ 32. log4jbench 32↖33↙32↙31←31↙30↙29←29←29↙28↙27↙26↙25↙23←23↙21↙20↙14↙12↙9←9](#32-log4jbench-3233323131302929292827262523232120141299)
+* [⇢ ⇢ ⇢ 33. timr 33↖34↙33←33←33↙32↙31←31↖32↙31←31↙30↙29↙27←27↙26↙25↙21←21↙20↙19](#33-timr-333433333332313132313130292727262521212019)
+* [⇢ ⇢ ⇢ 34. foostats 34↖35↙34↙32←32↙31↙30←30↖31↙30←30↙29↙28↙26←26↙25↙24↙20←20↙19↙17](#34-foostats-343534323231303031303029282626252420201917)
+* [⇢ ⇢ ⇢ 35. wireguardmeshgenerator 35↖36↙35↙34←34↙33↙32←32↖33↙32←32↙31↙30↙29←29↙28↙27↙23←23←23←23](#35-wireguardmeshgenerator-353635343433323233323231302929282723232323)
+* [⇢ ⇢ ⇢ 36. ioriot 36↖37↙36↙35←35↙34↙33←33↖34↙33←33↙32↙31↙30←30←30↙29↖34↖35↙34↖35](#36-ioriot-363736353534333334333332313030302934353435)
+* [⇢ ⇢ ⇢ 37. quicklogger 37↖38↙37↙36←36↙35↙34←34↖35↙34←34↙33↙32↙31←31←31↙30↙26←26←26↙25](#37-quicklogger-373837363635343435343433323131313026262625)
+* [⇢ ⇢ ⇢ 38. quicklog 38↖39↙38↙37←37↙36↙35←35↖36↙35←35](#38-quicklog-3839383737363535363535)
+* [⇢ ⇢ ⇢ 39. sillybench 39↖40↙39↙38←38↙37↙36←36↖37↙36←36↙34↙33↙32←32←32↙31↙27←27←27←27](#39-sillybench-394039383837363637363634333232323127272727)
+* [⇢ ⇢ ⇢ 40. terraform 40↖41↙40↙39←39↙38↙37←37↖38↙37←37↙35↙34↙33←33←33↙32↙28←28←28↙26](#40-terraform-404140393938373738373735343333333228282826)
+* [⇢ ⇢ ⇢ 41. guprecords 41↖42↙41↙40←40↙39↙38←38↖39↙38←38↙36↙35↙34←34←34↙33↖39↙29↖40↙29](#41-guprecords-414241404039383839383836353434343339294029)
+* [⇢ ⇢ ⇢ 42. photoalbum 42↖43↙42↙41←41↙40←40←40↖42↙41←41↙40↙39↙38←38←38↙37↙32↖33↙32↖34](#42-photoalbum-424342414140404042414140393838383732333234)
+* [⇢ ⇢ ⇢ 43. geheim 43↖44↙43↙42←42↙41↙39←39↖40↙39←39↙37↙36↙35←35←35↙34↙29↖30↙29↖30](#43-geheim-434443424241393940393937363535353429302930)
+* [⇢ ⇢ ⇢ 44. gorum 44↖45↙44↙43←43↙42↙41←41←41↙40←40↙38↙37↙36←36←36↙35↙30↖31↙30↙28](#44-gorum-444544434342414141404038373636363530313028)
+* [⇢ ⇢ ⇢ 45. docker-radicale-server 45↖46↙45↙44←44↙43↙42←42↖43↙42←42↙39↙38↙37←37←37↙36↙31↖32↙31←31](#45-docker-radicale-server-454645444443424243424239383737373631323131)
+* [⇢ ⇢ ⇢ 46. randomjournalpage 46↖47↙46↙45←45↙44↙43←43↖44↙43←43↙41↙40↙39←39←39↙38↙33↖34↙33←33](#46-randomjournalpage-464746454544434344434341403939393833343333)
+* [⇢ ⇢ ⇢ 47. staticfarm-apache-handlers 47↖49↙47←47←47↙46↙45←45↖46↙45←45↙43↙42↙41←41↖42↙41↙37↖38←38↖40](#47-staticfarm-apache-handlers-474947474746454546454543424141424137383840)
+* [⇢ ⇢ ⇢ 48. ipv6test 48↖50↙48←48←48↙47↙46←46↖47↙46←46↙44↙43↙42←42↙41↙40↙36↖37←37↙36](#48-ipv6test-485048484847464647464644434242414036373736)
+* [⇢ ⇢ ⇢ 49. algorithms 49↙48↖49↙46←46↙45↙44←44↖45↙44←44↙42↙41↙40←40←40↙39↙35↖36←36↙32](#49-algorithms-494849464645444445444442414040403935363632)
+* [⇢ ⇢ ⇢ 50. sway-autorotate 50↖51↙50↙49←49↙48↙47←47↖48↙47←47↙45↙44↙43←43←43↙42↙38↖39←39↙38](#50-sway-autorotate-505150494948474748474745444343434238393938)
+* [⇢ ⇢ ⇢ 51. mon 51↖52↙51↙50←50↙49↙48←48↖49↙48←48↙46↙45↙44←44←44↙43↙40←40↖41↙39](#51-mon-515251505049484849484846454444444340404139)
+* [⇢ ⇢ ⇢ 52. fapi 52↖53↙52↙51←51↙50↙49←49↖50↙49←49↙47↙46↙45←45↖46↙44↙41←41↖42↖44](#52-fapi-525352515150494950494947464545464441414244)
+* [⇢ ⇢ ⇢ 53. xerl 53↖57↙56←56←56↙55↙50←50↖51↙50←50↙48↙47↙46←46↙45↖48↙45←45↙35↖42](#53-xerl-535756565655505051505048474646454845453542)
+* [⇢ ⇢ ⇢ 54. pingdomfetch 54←54↙53↙52←52↙51←51←51↖52↙51←51↙49↙48↙47←47←47↙45↙42←42↖43↙41](#54-pingdomfetch-545453525251515152515149484747474542424341)
+* [⇢ ⇢ ⇢ 55. playground 55←55↙54←54←54↙53←53←53](#55-playground-5555545454535353)
+* [⇢ ⇢ ⇢ 56. loadbars 56↙23↙22↙21←21↙20↙19←19←19↖53←53↙51↙50↙49←49←49↙46↙6←6↙4↖47](#56-loadbars-562322212120191919535351504949494666447)
+* [⇢ ⇢ ⇢ 57. pwgrep 57↙56↙55←55←55↙54←54←54←54←54←54↙52↙51↙50←50←50↙47↙44←44↖45↖50](#57-pwgrep-575655555554545454545452515050504744444550)
+* [⇢ ⇢ ⇢ 58. awksite 58←58↙57←57←57↙56↙55←55←55←55←55↙53↙52↙51←51←51↙49↙46←46←46↖61](#58-awksite-585857575756555555555553525151514946464661)
+* [⇢ ⇢ ⇢ 59. gotop 59←59↙58←58←58↙57↙56←56←56←56←56↙54↙53↙52←52←52↙50↙47←47←47↖48](#59-gotop-595958585857565656565654535252525047474748)
+* [⇢ ⇢ ⇢ 60. japi 60←60↙59←59←59↙58↙57←57←57←57←57↙55↙54↙53←53←53↙51↙48←48←48↖53](#60-japi-606059595958575757575755545353535148484853)
+* [⇢ ⇢ ⇢ 61. perldaemon 61←61↙60←60←60↙59↙58←58←58←58←58↙56↙55↙54←54←54↙52←52↙49↖52↙51](#61-perldaemon-616160606059585858585856555454545252495251)
+* [⇢ ⇢ ⇢ 62. rubyfy 62←62↙61←61←61↙60↙59←59←59←59←59↙57↙56↙55←55←55↙53↙49↖50↙49←49](#62-rubyfy-626261616160595959595957565555555349504949)
+* [⇢ ⇢ ⇢ 63. netdiff 63←63↙62↖63←63↙62↙61←61←61←61←61↙59↙58↙57←57←57↙55↙51↖52↙51↖56](#63-netdiff-636362636362616161616159585757575551525156)
+* [⇢ ⇢ ⇢ 64. perl-c-fibonacci 64←64↙63↙62←62↙61↙60←60←60←60←60↙58↙57↙56←56←56↙54↙50↖51↙50↙45](#64-perl-c-fibonacci-646463626261606060606058575656565450515045)
+* [⇢ ⇢ ⇢ 65. muttdelay 65←65↙64←64←64↙63↙62←62←62←62←62↙60↙59↙58←58←58↙56↙54←54←54↖55](#65-muttdelay-656564646463626262626260595858585654545455)
+* [⇢ ⇢ ⇢ 66. cpuinfo 66←66↙65←65←65↙64↙63←63←63←63←63↙61↙60↙59←59←59↙57←57←57↙56↖59](#66-cpuinfo-666665656564636363636361605959595757575659)
+* [⇢ ⇢ ⇢ 67. dyndns 67←67↙66←66←66↙65↙64←64↖65←65←65↙63↙62↙61←61←61↙59←59←59↙58↖62](#67-dyndns-676766666665646465656563626161615959595862)
+* [⇢ ⇢ ⇢ 68. debroid 68←68↙67←67←67↙66↙65←65↖66←66←66↙64↙63↙62←62←62↙60←60←60↙59↙57](#68-debroid-686867676766656566666664636262626060605957)
+* [⇢ ⇢ ⇢ 69. netcalendar 69←69←69←69←69↙68↙67←67↖68←68←68↙66↙65↙64←64←64↙61↙55←55←55↙46](#69-netcalendar-696969696968676768686866656464646155555546)
+* [⇢ ⇢ ⇢ 70. jsmstrade 70←70←70←70←70↙69↙68←68↖69←69←69↙67↙66↙65←65←65↙62↙53←53←53↙52](#70-jsmstrade-707070707069686869696967666565656253535352)
+* [⇢ ⇢ ⇢ 71. template 71←71←71←71←71↙70←70←70↙64←64←64↙62↙61↙60←60←60↙58←58←58↙57↖60](#71-template-717171717170707064646462616060605858585760)
+* [⇢ ⇢ ⇢ 72. ychat 72↖76↙68←68←68↙67↙66←66↖67←67←67↙65↙64↙63←63←63←63←63←63↙62↙43](#72-ychat-727668686867666667676765646363636363636243)
+* [⇢ ⇢ ⇢ 73. vs-sim 73↙72←72←72←72↙71↙69←69↖70←70←70↙68↙67↙66←66←66↙64↙56←56↖63←63](#73-vs-sim-737272727271696970707068676666666456566363)
+* [⇢ ⇢ ⇢ 74. perl-poetry 74↙73←73←73←73↙72↙71←71←71←71←71↙69↙68↙67←67←67↙65↙61←61↙60↙54](#74-perl-poetry-747373737372717171717169686767676561616054)
+* [⇢ ⇢ ⇢ 75. fype 75↙74←74↙53←53↙52←52←52↖53↙52←52↙50↙49↙48←48←48↖66↙43←43↖44↙37](#75-fype-757474535352525253525250494848486643434437)
+* [⇢ ⇢ ⇢ 76. hsbot 76↙75←75↙74←74↙73↙72←72←72←72←72↙70↙69↙68←68←68↙67↙62←62↙61↙58](#76-hsbot-767575747473727272727270696868686762626158)
 
 ## Overall Statistics
 
-* 📦 Total Projects: 75
-* 📊 Total Commits: 13,485
-* 📈 Total Lines of Code: 687,545
-* 📄 Total Lines of Documentation: 294,280
-* 💻 Languages: Go (49.3%), Java (8.7%), Shell (7.0%), C++ (5.4%), Dart (4.6%), C (3.7%), C/C++ (3.1%), XML (3.0%), YAML (2.7%), Perl (2.3%), JavaScript (1.8%), JSON (1.7%), Ruby (1.3%), HTML (1.1%), TypeScript (1.1%), CSS (1.0%), Config (0.7%), HCL (0.4%), Python (0.4%), Make (0.3%), TOML (0.1%)
-* 📚 Documentation: Text (76.2%), Markdown (22.6%), LaTeX (1.1%)
-* 🚀 Release Status: 42 released, 33 experimental (56.0% with releases, 44.0% experimental)
+* 📦 Total Projects: 76
+* 📊 Total Commits: 14,195
+* 📈 Total Lines of Code: 645,759
+* 📄 Total Lines of Documentation: 298,632
+* 💻 Languages: Go (52.8%), Java (9.3%), Shell (6.4%), C (5.6%), Dart (4.9%), XML (3.5%), YAML (2.9%), Perl (2.3%), JavaScript (2.0%), JSON (1.8%), C/C++ (1.4%), TypeScript (1.1%), CSS (1.1%), Ruby (1.1%), HTML (0.9%), C++ (0.8%), Config (0.5%), HCL (0.4%), Python (0.4%), Make (0.3%), TOML (0.1%)
+* 📚 Documentation: Text (75.2%), Markdown (23.7%), LaTeX (1.1%)
+* 🚀 Release Status: 41 released, 35 experimental (53.9% with releases, 46.1% experimental)
 
 ## Projects
 
-### 1. gonf 1
+### 1. dtail 1↖13↖14↙13↙12↙11↙9←9←9↙6↙4↙2↙1↖10←10↙8↙6↙2↙1↖21↙20
+
+* 💻 Languages: Go (95.2%), Shell (2.3%), JSON (1.0%), C (0.7%), Make (0.5%), C/C++ (0.1%)
+* 📚 Documentation: Text (97.9%), Markdown (2.1%)
+* 📊 Commits: 784
+* 📈 Lines of Code: 56634
+* 📄 Lines of Documentation: 220971
+* 🏷️ Tags: 27
+* 📅 Development Period: 2020-01-09 to 2026-07-18
+* 🏆 Score: 68.8 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Apache-2.0
+* 🏷️ Latest Release: v4.3.3 (2024-08-23)
+
+
+[![dtail screenshot](showcase/dtail/image-1.png "dtail screenshot")](showcase/dtail/image-1.png)  
+
+DTail (a distributed tail program) is a DevOps tool for engineers programmed in Google Go for following (tailing), catting and grepping (including gzip and zstd decompression support) log files on many machines concurrently. An advanced feature of DTail is to execute distributed MapReduce aggregations across many devices.
+
+[View on Codeberg](https://codeberg.org/snonux/dtail)  
+[View on GitHub](https://github.com/snonux/dtail)  
+For cgit access go to c-git dot f3s dot buetow dot org slash dtail
+
+---
+
+### 2. ggaze 2↙1
+
+* 💻 Languages: C (91.4%), C/C++ (6.5%), XML (1.3%), Python (0.8%)
+* 📚 Documentation: Markdown (98.4%), Text (1.6%)
+* 📊 Commits: 35
+* 📈 Lines of Code: 11922
+* 📄 Lines of Documentation: 2430
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-07-12 to 2026-07-22
+* 🏆 Score: 61.0 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: GPL-3.0
+* 🧪 Status: Experimental (no releases yet)
+
+
+**ggaze (GNOME Gaze)** is a small, fast, native GTK4 image viewer written in C for Fedora Linux, designed to quickly preview a folder of camera downloads, cull rejects, and move on — think `feh`/`nsxiv`/`qiv` but GNOME-native and KISS (no library, database, or sidecars). Its workflow pairs a gthumb-style thumbnail grid with a full-window large view, plus rich keyboard-driven actions: navigation, zoom/pan, EXIF info overlay, mark/select, trash (with undo) or permanent delete, configurable move destinations, external program launchers, shell-script runners, optional GEGL quick-enhance and crop/straighten/rotate, clipboard copy, fullscreen, and slideshow.
+
+**Architecture:** A meson/ninja C project built on GTK4 + libadwaita + GLib, with a strict main-thread-touches-GTK / decode-in-`GTask`-threads split and a "one active load per window, last-write-wins" invariant backed by a bounded `GdkTexture` LRU. Plain-C modules (navigator, loader, detect, thumbnail, trash, mover, opener, runner, enhancer, info, texturecache, clipboard) are display-free and unit-tested standalone; GTK widgets live in `app`, `window`, `viewer`, `gridview`, and `shortcuts`. Decode backends are pluggable behind `GGAZE_HAVE_*` guards (pixbuf default; optional `gegl`, `jxl`, `avif`, `heif` as meson `feature`s), so a minimal GdkPixbuf-only build stays valid and fast. Testing is two mandatory tracks (unit ≥80% coverage via gcov for plain-C modules; integration suites for cross-module flows with offscreen GTK and real temp dirs), plus an ASan/UBSan leak-check pass after every milestone.
+
+[View on Codeberg](https://codeberg.org/snonux/ggaze)  
+[View on GitHub](https://github.com/snonux/ggaze)  
+For cgit access go to c-git dot f3s dot buetow dot org slash ggaze
+
+---
+
+### 3. dotfiles 3↖6←6↙4↙3↙2↖3←3↖8↙7←7←7↖9↙8←8↙6↙4↙3↖5↙3←3
+
+* 💻 Languages: Shell (74.5%), Config (7.0%), TOML (6.2%), CSS (6.0%), Python (3.3%), JSON (2.2%), Ruby (0.6%), INI (0.1%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 1148
+* 📈 Lines of Code: 5403
+* 📄 Lines of Documentation: 18312
+* 🏷️ Tags: 0
+* 📅 Development Period: 2023-07-30 to 2026-07-22
+* 🏆 Score: 38.4 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+These are all my dotfiles. I can install them locally on my laptop and/or workstation as well as remotely on any server.
+
+[View on Codeberg](https://codeberg.org/snonux/dotfiles)  
+[View on GitHub](https://github.com/snonux/dotfiles)  
+For cgit access go to c-git dot f3s dot buetow dot org slash dotfiles
+
+---
+
+### 4. shuriken.sh 4↙3↙2↙1←1←1
+
+* 💻 Languages: Shell (99.5%), Config (0.4%), Docker (0.1%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 348
+* 📈 Lines of Code: 24240
+* 📄 Lines of Documentation: 952
+* 🏷️ Tags: 32
+* 📅 Development Period: 2011-11-19 to 2026-07-18
+* 🏆 Score: 26.8 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.13.0 (2026-07-18)
+
+
+[![shuriken.sh screenshot](showcase/shuriken.sh/image-1.svg "shuriken.sh screenshot")](showcase/shuriken.sh/image-1.svg)  
+
+shuriken is a Bash script for Unix like operating systems (such as Linux) to generate static web photo albums.
+The resulting static photo album is pure HTML+CSS (without any JavaScript!).
+
+[View on Codeberg](https://codeberg.org/snonux/shuriken.sh)  
+[View on GitHub](https://github.com/snonux/shuriken.sh)  
+For cgit access go to c-git dot f3s dot buetow dot org slash shuriken.sh
+
+---
+
+### 5. conf 5↙4↙3←3↖7←7↙6←6↙4↖5↖14↙12↙10↙7←7↖9↙7↖9←9↙7↙5
+
+* 💻 Languages: YAML (75.2%), Shell (11.0%), Perl (7.9%), Python (2.8%), Make (1.3%), JSON (0.5%), Docker (0.5%), TOML (0.3%), Config (0.3%), Ruby (0.2%), HTML (0.1%)
+* 📚 Documentation: Markdown (97.5%), Text (2.5%)
+* 📊 Commits: 1015
+* 📈 Lines of Code: 24071
+* 📄 Lines of Documentation: 7537
+* 🏷️ Tags: 0
+* 📅 Development Period: 2021-12-28 to 2026-07-20
+* 🏆 Score: 24.8 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+This is my personal config repository. Including...
+
+[View on Codeberg](https://codeberg.org/snonux/conf)  
+[View on GitHub](https://github.com/snonux/conf)  
+For cgit access go to c-git dot f3s dot buetow dot org slash conf
+
+---
+
+### 6. tasksamurai 6↙5↙4↙2↖15↙14↙13←13↖14↙11↙9←9↙7↙5←5↖23↙22↙18←18↙16←16
+
+* 💻 Languages: Go (99.9%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 343
+* 📈 Lines of Code: 15859
+* 📄 Lines of Documentation: 265
+* 🏷️ Tags: 24
+* 📅 Development Period: 2025-06-19 to 2026-07-19
+* 🏆 Score: 24.0 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: BSD-2-Clause
+* 🏷️ Latest Release: v0.18.1 (2026-06-27)
+
+
+[![tasksamurai screenshot](showcase/tasksamurai/image-1.png "tasksamurai screenshot")](showcase/tasksamurai/image-1.png)  
+
+Task Samurai invokes the `task` command to read and modify tasks. The tasks are displayed in a Bubble Tea table where each row represents a task. Hotkeys trigger Taskwarrior commands such as starting, completing or annotating tasks. The UI refreshes automatically after each action so the table is always up to date.
+
+[View on Codeberg](https://codeberg.org/snonux/tasksamurai)  
+[View on GitHub](https://github.com/snonux/tasksamurai)  
+For cgit access go to c-git dot f3s dot buetow dot org slash tasksamurai
+
+---
+
+### 7. gonf 7↙2↙1
 
 * 💻 Languages: Go (100.0%)
-* 📚 Documentation: Markdown (99.2%), Text (0.8%)
-* 📊 Commits: 25
-* 📈 Lines of Code: 2828
-* 📄 Lines of Documentation: 118
+* 📚 Documentation: Markdown (99.3%), Text (0.7%)
+* 📊 Commits: 28
+* 📈 Lines of Code: 3373
+* 📄 Lines of Documentation: 136
 * 🏷️ Tags: 0
-* 📅 Development Period: 2026-07-04 to 2026-07-07
-* 🏆 Score: 81.3 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2026-07-04 to 2026-07-09
+* 🏆 Score: 19.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -125,87 +267,16 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gonf
 
 ---
 
-### 2. shuriken.sh 2↙1←1←1
-
-* 💻 Languages: Shell (99.6%), Config (0.3%), Docker (0.1%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 343
-* 📈 Lines of Code: 23042
-* 📄 Lines of Documentation: 825
-* 🏷️ Tags: 31
-* 📅 Development Period: 2011-11-19 to 2026-06-28
-* 🏆 Score: 48.3 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: 0.12.4 (2026-06-28)
-
-
-[![shuriken.sh screenshot](showcase/shuriken.sh/image-1.svg "shuriken.sh screenshot")](showcase/shuriken.sh/image-1.svg)  
-
-shuriken is a Bash script for Unix like operating systems (such as Linux) to generate static web photo albums.
-The resulting static photo album is pure HTML+CSS (without any JavaScript!).
-
-[View on Codeberg](https://codeberg.org/snonux/shuriken.sh)  
-[View on GitHub](https://github.com/snonux/shuriken.sh)  
-For cgit access go to c-git dot f3s dot buetow dot org slash shuriken.sh
-
----
-
-### 3. conf 3←3↖7←7↙6←6↙4↖5↖14↙12↙10↙7←7↖9↙7↖9←9↙7↙5
-
-* 💻 Languages: YAML (75.7%), Shell (10.5%), Perl (8.0%), Python (2.8%), Make (1.0%), JSON (0.6%), Docker (0.5%), Config (0.3%), TOML (0.3%), Ruby (0.2%), HTML (0.1%)
-* 📚 Documentation: Markdown (97.4%), Text (2.6%)
-* 📊 Commits: 998
-* 📈 Lines of Code: 23773
-* 📄 Lines of Documentation: 7431
-* 🏷️ Tags: 0
-* 📅 Development Period: 2021-12-28 to 2026-07-07
-* 🏆 Score: 43.8 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-This is my personal config repository. Including...
-
-[View on Codeberg](https://codeberg.org/snonux/conf)  
-[View on GitHub](https://github.com/snonux/conf)  
-For cgit access go to c-git dot f3s dot buetow dot org slash conf
-
----
-
-### 4. tasksamurai 4↙2↖15↙14↙13←13↖14↙11↙9←9↙7↙5←5↖23↙22↙18←18↙16←16
-
-* 💻 Languages: Go (99.9%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 338
-* 📈 Lines of Code: 15490
-* 📄 Lines of Documentation: 264
-* 🏷️ Tags: 24
-* 📅 Development Period: 2025-06-19 to 2026-06-27
-* 🏆 Score: 40.7 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: BSD-2-Clause
-* 🏷️ Latest Release: v0.18.1 (2026-06-27)
-
-
-[![tasksamurai screenshot](showcase/tasksamurai/image-1.png "tasksamurai screenshot")](showcase/tasksamurai/image-1.png)  
-
-Task Samurai invokes the `task` command to read and modify tasks. The tasks are displayed in a Bubble Tea table where each row represents a task. Hotkeys trigger Taskwarrior commands such as starting, completing or annotating tasks. The UI refreshes automatically after each action so the table is always up to date.
-
-[View on Codeberg](https://codeberg.org/snonux/tasksamurai)  
-[View on GitHub](https://github.com/snonux/tasksamurai)  
-For cgit access go to c-git dot f3s dot buetow dot org slash tasksamurai
-
----
-
-### 5. hexai 5←5↙2↖5↖7←7↙6↙4↖5↙3↖8↙6←6↙4↙1←1↖3↖15↙2
+### 8. hexai 8↙7↙5←5↙2↖5↖7←7↙6↙4↖5↙3↖8↙6←6↙4↙1←1↖3↖15↙2
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 557
+* 📊 Commits: 558
 * 📈 Lines of Code: 47443
 * 📄 Lines of Documentation: 3894
-* 🏷️ Tags: 105
-* 📅 Development Period: 2025-08-01 to 2026-07-08
-* 🏆 Score: 27.2 (combines recent activity, code size, tags, and release status)
+* 🏷️ Tags: 106
+* 📅 Development Period: 2025-08-01 to 2026-07-15
+* 🏆 Score: 18.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.42.0 (2026-07-02)
 
@@ -220,29 +291,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash hexai
 
 ---
 
-### 6. dotfiles 6↙4↙3↙2↖3←3↖8↙7←7←7↖9↙8←8↙6↙4↙3↖5↙3←3
-
-* 💻 Languages: Shell (72.9%), Config (7.3%), TOML (6.9%), CSS (6.4%), Python (3.5%), JSON (2.3%), Ruby (0.6%), INI (0.1%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 1114
-* 📈 Lines of Code: 5078
-* 📄 Lines of Documentation: 16665
-* 🏷️ Tags: 0
-* 📅 Development Period: 2023-07-30 to 2026-07-08
-* 🏆 Score: 24.8 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-These are all my dotfiles. I can install them locally on my laptop and/or workstation as well as remotely on any server.
-
-[View on Codeberg](https://codeberg.org/snonux/dotfiles)  
-[View on GitHub](https://github.com/snonux/dotfiles)  
-For cgit access go to c-git dot f3s dot buetow dot org slash dotfiles
-
----
-
-### 7. gitsyncer 7↙6↙5↙3↖10←10←10↖20←20↙19↙18←18←18↙16↙14↙11←11↖17↙15
+### 9. gitsyncer 9↙8↙7↙6↙5↙3↖10←10←10↖20←20↙19↙18←18←18↙16↙14↙11←11↖17↙15
 
 * 💻 Languages: Go (95.2%), Shell (4.5%), JSON (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -251,7 +300,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash dotfiles
 * 📄 Lines of Documentation: 2497
 * 🏷️ Tags: 43
 * 📅 Development Period: 2025-06-23 to 2026-06-17
-* 🏆 Score: 16.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 12.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.18.5 (2026-06-17)
 
@@ -264,7 +313,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gitsyncer
 
 ---
 
-### 8. gt 8←8↙6↙4↙1←1↖28↙26←26↙25↙24←24←24↙22↙21↙17←17↙14↙13
+### 10. gt 10↙9↙8←8↙6↙4↙1←1↖28↙26←26↙25↙24←24←24↙22↙21↙17←17↙14↙13
 
 * 💻 Languages: Go (97.7%), Shell (2.0%), YAML (0.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -273,7 +322,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gitsyncer
 * 📄 Lines of Documentation: 4351
 * 🏷️ Tags: 7
 * 📅 Development Period: 2025-11-25 to 2026-05-25
-* 🏆 Score: 13.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 10.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.5.1 (2026-05-25)
 
@@ -288,29 +337,29 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gt
 
 ---
 
-### 9. irregular.ninja 9↙7↙4
+### 11. foo.zone 11↖25↙24↙23←23↙22↙21←21←21↙18←18↙17↙16↙13←13↙10↙8↖64←64←64↙6
 
-* 💻 Languages: Config (100.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 19
-* 📈 Lines of Code: 75
-* 📄 Lines of Documentation: 45
+* 💻 Languages: XML (98.4%), Shell (1.3%), Go (0.3%)
+* 📚 Documentation: Text (86.4%), Markdown (13.6%)
+* 📊 Commits: 1843
+* 📈 Lines of Code: 21604
+* 📄 Lines of Documentation: 176
 * 🏷️ Tags: 0
-* 📅 Development Period: 2026-06-15 to 2026-06-19
-* 🏆 Score: 11.0 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2021-04-29 to 2026-07-18
+* 🏆 Score: 8.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
 
-The architecture is straightforward: source photos live outside the repo (referenced via symlinks), and `just` recipes invoke `shuriken.sh` to transform them into static albums. This keeps the repo lean while making builds reproducible and easy to automate—just run `just all` to regenerate both sites, or target a single album individually.
+Each format is in it's own branch in this repository. E.g.:
 
-[View on Codeberg](https://codeberg.org/snonux/irregular.ninja)  
-[View on GitHub](https://github.com/snonux/irregular.ninja)  
-For cgit access go to c-git dot f3s dot buetow dot org slash irregular.ninja
+[View on Codeberg](https://codeberg.org/snonux/foo.zone)  
+[View on GitHub](https://github.com/snonux/foo.zone)  
+For cgit access go to c-git dot f3s dot buetow dot org slash foo.zone
 
 ---
 
-### 10. snonux 10←10↖11↙10↙8←8↙7↙3↙2↖4↙3←3←3↙2↖5
+### 12. snonux 12↙10←10←10↖11↙10↙8←8↙7↙3↙2↖4↙3←3←3↙2↖5
 
 * 💻 Languages: JSON (36.9%), JavaScript (26.9%), Go (23.7%), CSS (12.6%)
 * 📚 Documentation: Text (79.8%), Markdown (20.2%)
@@ -319,7 +368,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash irregular.ninja
 * 📄 Lines of Documentation: 1139
 * 🏷️ Tags: 29
 * 📅 Development Period: 2026-04-06 to 2026-07-08
-* 🏆 Score: 10.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 8.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.18.0 (2026-07-06)
 
@@ -332,7 +381,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash snonux
 
 ---
 
-### 11. ior 11↙9↙8←8↙5←5←5↙1↖12↖14↙13↖14←14↙12↙9↙4↙2↙1←1
+### 13. ior 13↙11←11↙9↙8←8↙5←5←5↙1↖12↖14↙13↖14←14↙12↙9↙4↙2↙1←1
 
 * 💻 Languages: Go (90.2%), C (8.9%), Shell (0.4%), JSON (0.2%), C/C++ (0.2%), Docker (0.1%)
 * 📚 Documentation: Markdown (83.9%), Text (16.1%)
@@ -341,7 +390,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash snonux
 * 📄 Lines of Documentation: 3008
 * 🏷️ Tags: 3
 * 📅 Development Period: 2024-01-18 to 2026-05-14
-* 🏆 Score: 10.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 8.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.1.0 (2026-05-14)
 
@@ -356,7 +405,51 @@ For cgit access go to c-git dot f3s dot buetow dot org slash ior
 
 ---
 
-### 12. hypr 12↙11↙9↙6↙2←2←2↖17↙16↙15↙14↙11←11↙7↙3
+### 14. irregular.ninja 14↙12↙9↙7↙4
+
+* 💻 Languages: Config (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 21
+* 📈 Lines of Code: 112
+* 📄 Lines of Documentation: 48
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-06-15 to 2026-07-18
+* 🏆 Score: 7.8 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+The architecture is straightforward: source photos live outside the repo (referenced via symlinks), and `just` recipes invoke `shuriken.sh` to transform them into static albums. This keeps the repo lean while making builds reproducible and easy to automate—just run `just all` to regenerate both sites, or target a single album individually.
+
+[View on Codeberg](https://codeberg.org/snonux/irregular.ninja)  
+[View on GitHub](https://github.com/snonux/irregular.ninja)  
+For cgit access go to c-git dot f3s dot buetow dot org slash irregular.ninja
+
+---
+
+### 15. goprecords 15↖16↙15↙14←14↙12↙11←11←11↙9↙6←6↙4↙2←2↖29↙28↙24←24←24←24
+
+* 💻 Languages: Go (97.5%), Shell (2.2%), Docker (0.3%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 170
+* 📈 Lines of Code: 7359
+* 📄 Lines of Documentation: 1008
+* 🏷️ Tags: 17
+* 📅 Development Period: 2013-03-22 to 2026-07-20
+* 🏆 Score: 6.7 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.5.2 (2026-06-07)
+
+
+`goprecords` is a Go command-line program that generates uptime reports for hosts based on the input record files from `uptimed`. It supports importing records into SQLite and querying for reports, or reporting directly from a stats directory.
+
+[View on Codeberg](https://codeberg.org/snonux/goprecords)  
+[View on GitHub](https://github.com/snonux/goprecords)  
+For cgit access go to c-git dot f3s dot buetow dot org slash goprecords
+
+---
+
+### 16. hypr 16↙14↙12↙11↙9↙6↙2←2←2↖17↙16↙15↙14↙11←11↙7↙3
 
 * 💻 Languages: TypeScript (51.7%), Ruby (33.0%), JSON (7.8%), Shell (4.1%), TOML (3.4%)
 * 📚 Documentation: Markdown (100.0%)
@@ -365,7 +458,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash ior
 * 📄 Lines of Documentation: 2948
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-03-21 to 2026-06-17
-* 🏆 Score: 9.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 6.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -381,7 +474,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash hypr
 
 ---
 
-### 13. player 13↙12↙10↙9↙4←4↙3↙2↙1←1
+### 17. player 17↙15↙13↙12↙10↙9↙4←4↙3↙2↙1←1
 
 * 💻 Languages: Go (44.9%), Dart (41.0%), JavaScript (7.7%), TypeScript (2.4%), CSS (2.1%), HTML (0.7%), JSON (0.3%), YAML (0.3%), Shell (0.2%), XML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -390,7 +483,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash hypr
 * 📄 Lines of Documentation: 6954
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-04-28 to 2026-05-23
-* 🏆 Score: 8.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 6.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -403,53 +496,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash player
 
 ---
 
-### 14. dtail 14↙13↙12↙11↙9←9←9↙6↙4↙2↙1↖10←10↙8↙6↙2↙1↖21↙20
-
-* 💻 Languages: Go (94.9%), Shell (2.3%), JSON (1.2%), C (0.8%), Make (0.5%), C/C++ (0.1%)
-* 📚 Documentation: Text (98.1%), Markdown (1.9%)
-* 📊 Commits: 734
-* 📈 Lines of Code: 49273
-* 📄 Lines of Documentation: 220598
-* 🏷️ Tags: 27
-* 📅 Development Period: 2020-01-09 to 2026-04-24
-* 🏆 Score: 8.5 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Apache-2.0
-* 🏷️ Latest Release: v4.3.3 (2024-08-23)
-
-
-[![dtail screenshot](showcase/dtail/image-1.png "dtail screenshot")](showcase/dtail/image-1.png)  
-
-DTail (a distributed tail program) is a DevOps tool for engineers programmed in Google Go for following (tailing), catting and grepping (including gzip and zstd decompression support) log files on many machines concurrently. An advanced feature of DTail is to execute distributed MapReduce aggregations across many devices.
-
-[View on Codeberg](https://codeberg.org/snonux/dtail)  
-[View on GitHub](https://github.com/snonux/dtail)  
-For cgit access go to c-git dot f3s dot buetow dot org slash dtail
-
----
-
-### 15. goprecords 15↙14←14↙12↙11←11←11↙9↙6←6↙4↙2←2↖29↙28↙24←24←24←24
-
-* 💻 Languages: Go (97.5%), Shell (2.2%), Docker (0.3%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 169
-* 📈 Lines of Code: 7299
-* 📄 Lines of Documentation: 1002
-* 🏷️ Tags: 16
-* 📅 Development Period: 2013-03-22 to 2026-06-27
-* 🏆 Score: 7.7 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.5.2 (2026-06-07)
-
-
-`goprecords` is a Go command-line program that generates uptime reports for hosts based on the input record files from `uptimed`. It supports importing records into SQLite and querying for reports, or reporting directly from a stats directory.
-
-[View on Codeberg](https://codeberg.org/snonux/goprecords)  
-[View on GitHub](https://github.com/snonux/goprecords)  
-For cgit access go to c-git dot f3s dot buetow dot org slash goprecords
-
----
-
-### 16. totalrecall 16↙15↙13←13↙12←12←12↙10↙8←8↙6↙4←4↙1↖18↙15↖16↙13↖14
+### 18. totalrecall 18↙17↙16↙15↙13←13↙12←12←12↙10↙8←8↙6↙4←4↙1↖18↙15↖16↙13↖14
 
 * 💻 Languages: Go (98.8%), HTML (0.4%), CSS (0.3%), Shell (0.3%), YAML (0.2%)
 * 📚 Documentation: Markdown (96.0%), Text (4.0%)
@@ -458,7 +505,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash goprecords
 * 📄 Lines of Documentation: 400
 * 🏷️ Tags: 43
 * 📅 Development Period: 2025-07-14 to 2026-06-18
-* 🏆 Score: 7.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 6.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.29.3 (2026-06-18)
 
@@ -473,7 +520,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash totalrecall
 
 ---
 
-### 17. fastforge 17↙16←16↙15←15←15←15↙12↙11↙10↙5↙1←1↖3
+### 19. fastforge 19↙18↙17↙16←16↙15←15←15←15↙12↙11↙10↙5↙1←1↖3
 
 * 💻 Languages: C (92.4%), C/C++ (4.1%), JavaScript (2.6%), Make (0.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -482,7 +529,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash totalrecall
 * 📄 Lines of Documentation: 232
 * 🏷️ Tags: 1
 * 📅 Development Period: 2026-04-06 to 2026-04-15
-* 🏆 Score: 5.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v1.0.0 (2026-04-15)
 
@@ -497,7 +544,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash fastforge
 
 ---
 
-### 18. foostore 18↙17←17←17←17←17←17↙15←15↙13↙12↖16←16↙14↙11↙7←7↙5↖7
+### 20. foostore 20↙19↙18↙17←17←17←17←17←17↙15←15↙13↙12↖16←16↙14↙11↙7←7↙5↖7
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -506,7 +553,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash fastforge
 * 📄 Lines of Documentation: 162
 * 🏷️ Tags: 12
 * 📅 Development Period: 2018-05-26 to 2026-04-29
-* 🏆 Score: 5.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.8.1 (2026-04-29)
 
@@ -519,27 +566,29 @@ For cgit access go to c-git dot f3s dot buetow dot org slash foostore
 
 ---
 
-### 19. rampage 19↙18←18↙16↙14←14↙13↙8↙3
+### 21. timesamurai 21←21←21↙20←20↙19↙18←18←18↙16↖17↙16↙15↙12←12↙11↙10↙5↙4↙2
 
-* 💻 Languages: Go (100.0%)
-* 📊 Commits: 2
-* 📈 Lines of Code: 736
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-05-03 to 2026-05-04
-* 🏆 Score: 4.8 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
+* 💻 Languages: Go (99.3%), Shell (0.6%), YAML (0.1%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 96
+* 📈 Lines of Code: 10363
+* 📄 Lines of Documentation: 112
+* 🏷️ Tags: 5
+* 📅 Development Period: 2025-06-25 to 2026-03-26
+* 🏆 Score: 4.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.8.0 (2026-03-26)
 
 
-rampage: source code repository.
+> **🚧 PRE-ALPHA SOFTWARE:** This project is in a pre-alpha state and is intended for my own personal use only. Use at your own risk.
 
-[View on Codeberg](https://codeberg.org/snonux/rampage)  
-[View on GitHub](https://github.com/snonux/rampage)  
-For cgit access go to c-git dot f3s dot buetow dot org slash rampage
+[View on Codeberg](https://codeberg.org/snonux/timesamurai)  
+[View on GitHub](https://github.com/snonux/timesamurai)  
+For cgit access go to c-git dot f3s dot buetow dot org slash timesamurai
 
 ---
 
-### 20. comicforge 20↙19←19↙18↙16←16←16↙13↙10↙5↙2
+### 22. comicforge 22↙20←20↙19←19↙18↙16←16←16↙13↙10↙5↙2
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (95.9%), Text (4.1%)
@@ -548,7 +597,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash rampage
 * 📄 Lines of Documentation: 998
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-04-19 to 2026-04-23
-* 🏆 Score: 4.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -563,55 +612,27 @@ For cgit access go to c-git dot f3s dot buetow dot org slash comicforge
 
 ---
 
-### 21. timesamurai 21↙20←20↙19↙18←18←18↙16↖17↙16↙15↙12←12↙11↙10↙5↙4↙2
+### 23. rampage 23↙22↙19↙18←18↙16↙14←14↙13↙8↙3
 
-* 💻 Languages: Go (99.3%), Shell (0.6%), YAML (0.1%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 96
-* 📈 Lines of Code: 10363
-* 📄 Lines of Documentation: 112
-* 🏷️ Tags: 5
-* 📅 Development Period: 2025-06-25 to 2026-03-26
-* 🏆 Score: 4.6 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: MIT
-* 🏷️ Latest Release: v0.8.0 (2026-03-26)
+* 💻 Languages: Go (100.0%)
+* 📊 Commits: 2
+* 📈 Lines of Code: 736
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-05-03 to 2026-05-04
+* 🏆 Score: 3.9 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
 
 
-> **🚧 PRE-ALPHA SOFTWARE:** This project is in a pre-alpha state and is intended for my own personal use only. Use at your own risk.
+rampage: source code repository.
 
-[View on Codeberg](https://codeberg.org/snonux/timesamurai)  
-[View on GitHub](https://github.com/snonux/timesamurai)  
-For cgit access go to c-git dot f3s dot buetow dot org slash timesamurai
+[View on Codeberg](https://codeberg.org/snonux/rampage)  
+[View on GitHub](https://github.com/snonux/rampage)  
+For cgit access go to c-git dot f3s dot buetow dot org slash rampage
 
 ---
 
-### 22. loadbars 22↙21←21↙20↙19←19←19↖53←53↙51↙50↙49←49←49↙46↙6←6↙4↖47
-
-* 💻 Languages: Go (92.8%), Shell (7.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 537
-* 📈 Lines of Code: 6595
-* 📄 Lines of Documentation: 328
-* 🏷️ Tags: 38
-* 📅 Development Period: 2010-11-05 to 2026-03-02
-* 🏆 Score: 4.4 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v0.11.1 (2026-02-17)
-
-
-[![loadbars screenshot](showcase/loadbars/image-1.gif "loadbars screenshot")](showcase/loadbars/image-1.gif)  
-
-Loadbars is a real-time server load monitoring tool that visualizes CPU, memory, network, load average, and disk I/O statistics for multiple remote Linux servers simultaneously in an SDL2 window. It connects to hosts via SSH (using key-based auth) and runs an embedded Bash script that reads from `/proc`, parsing metrics like per-core CPU usage, RAM/swap, network throughput, and disk I/O — then renders them as vertical colored bars side by side. Unlike graphing tools that require data collection over time, Loadbars shows only the current state (like `top` or `vmstat`), making it useful for quick, at-a-glance monitoring of cluster health across many machines.
-
-Architecturally, the Go binary embeds the remote monitoring script at build time and runs it locally or over SSH via `bash -s`, so remote hosts need only bash and `/proc` (no Go installation required). The codebase is organized into `internal/` packages: `collector` handles script execution and metric parsing, `display` manages the SDL2 rendering loop and hotkey-driven toggles (per-core vs. aggregate views, extended peak lines, memory/network/load/disk bars), `config` manages CLI flags and `~/.loadbarsrc` persistence, and `stats` defines the shared data structures. macOS is supported as a client for monitoring remote Linux hosts, though local monitoring requires Linux.
-
-[View on Codeberg](https://codeberg.org/snonux/loadbars)  
-[View on GitHub](https://github.com/snonux/loadbars)  
-For cgit access go to c-git dot f3s dot buetow dot org slash loadbars
-
----
-
-### 23. ds-sim 23↙22←22↙21↙20←20←20↙19←19↙18↙17↙15←15↙13↙12↖25←25←25↙21
+### 24. ds-sim 24←24↙23↙22←22↙21↙20←20←20↙19←19↙18↙17↙15←15↙13↙12↖25←25←25↙21
 
 * 💻 Languages: Java (98.6%), Shell (0.9%), CSS (0.4%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -620,7 +641,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash loadbars
 * 📄 Lines of Documentation: 3103
 * 🏷️ Tags: 2
 * 📅 Development Period: 2008-05-15 to 2026-03-30
-* 🏆 Score: 4.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: 1.1.0 (2026-03-27)
 
@@ -635,64 +656,18 @@ For cgit access go to c-git dot f3s dot buetow dot org slash ds-sim
 
 ---
 
-### 24. foo.zone 24↙23←23↙22↙21←21←21↙18←18↙17↙16↙13←13↙10↙8↖64←64←64↙6
+### 25. gogios 25↖27↙26↙25↖26↙25↙24←24←24↙22←22↙21←21↙20←20↙18↖19↙16↙15↙12↙11
 
-* 💻 Languages: XML (98.2%), Shell (1.5%), Go (0.3%)
-* 📚 Documentation: Text (86.2%), Markdown (13.8%)
-* 📊 Commits: 1766
-* 📈 Lines of Code: 19910
-* 📄 Lines of Documentation: 174
-* 🏷️ Tags: 0
-* 📅 Development Period: 2021-04-29 to 2026-04-05
-* 🏆 Score: 3.5 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-Each format is in it's own branch in this repository. E.g.:
-
-[View on Codeberg](https://codeberg.org/snonux/foo.zone)  
-[View on GitHub](https://github.com/snonux/foo.zone)  
-For cgit access go to c-git dot f3s dot buetow dot org slash foo.zone
-
----
-
-### 25. rcm 25↙24←24↙23↙22←22←22↖25←25↙24↙23↙22←22↙20↙15↙12↖13↙10←10
-
-* 💻 Languages: Ruby (99.8%), TOML (0.2%)
-* 📚 Documentation: Markdown (99.9%), Text (0.1%)
-* 📊 Commits: 115
-* 📈 Lines of Code: 3780
-* 📄 Lines of Documentation: 989
-* 🏷️ Tags: 3
-* 📅 Development Period: 2024-12-05 to 2026-05-11
-* 🏆 Score: 3.3 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v0.1.1 (2026-03-01)
-
-
-[![rcm screenshot](showcase/rcm/image-1.png "rcm screenshot")](showcase/rcm/image-1.png)  
-
-A KISS (Keep It Simple, Stupid) configuration management system written in Ruby, designed for personal use.
-
-[View on Codeberg](https://codeberg.org/snonux/rcm)  
-[View on GitHub](https://github.com/snonux/rcm)  
-For cgit access go to c-git dot f3s dot buetow dot org slash rcm
-
----
-
-### 26. gogios 26↙25↖26↙25↙24←24←24↙22←22↙21←21↙20←20↙18↖19↙16↙15↙12↙11
-
-* 💻 Languages: Go (98.9%), JSON (0.7%), YAML (0.5%)
+* 💻 Languages: Go (98.9%), JSON (0.6%), YAML (0.5%)
 * 📚 Documentation: Markdown (94.9%), Text (5.1%)
-* 📊 Commits: 112
-* 📈 Lines of Code: 3845
+* 📊 Commits: 114
+* 📈 Lines of Code: 3864
 * 📄 Lines of Documentation: 394
-* 🏷️ Tags: 10
-* 📅 Development Period: 2023-04-17 to 2026-03-28
-* 🏆 Score: 2.6 (combines recent activity, code size, tags, and release status)
+* 🏷️ Tags: 11
+* 📅 Development Period: 2023-04-17 to 2026-07-18
+* 🏆 Score: 2.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.4.1 (2026-02-16)
+* 🏷️ Latest Release: v1.4.2 (2026-07-18)
 
 
 [![gogios screenshot](showcase/gogios/image-1.png "gogios screenshot")](showcase/gogios/image-1.png)  
@@ -705,7 +680,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gogios
 
 ---
 
-### 27. epimetheus 27↙26↙25↙24↙23←23←23↙21←21↙20↙19↙17←17↙15↙13↙8←8↙6↙4
+### 26. epimetheus 26↖28↙27↙26↙25↙24↙23←23←23↙21←21↙20↙19↙17←17↙15↙13↙8←8↙6↙4
 
 * 💻 Languages: Go (85.2%), Shell (14.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -714,7 +689,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gogios
 * 📄 Lines of Documentation: 1736
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-02-07 to 2026-03-07
-* 🏆 Score: 2.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -729,7 +704,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash epimetheus
 
 ---
 
-### 28. yoga 28↙27←27↙26↙25←25←25↙24←24↙23↙22↙21←21↙19↙17↙13↖14↙11↖12
+### 27. yoga 27↖29↙28↙27←27↙26↙25←25←25↙24←24↙23↙22↙21←21↙19↙17↙13↖14↙11↖12
 
 * 💻 Languages: Go (69.1%), HTML (30.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -738,7 +713,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash epimetheus
 * 📄 Lines of Documentation: 196
 * 🏷️ Tags: 9
 * 📅 Development Period: 2025-10-01 to 2026-03-07
-* 🏆 Score: 2.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.4.0 (2026-01-28)
 
@@ -753,7 +728,31 @@ For cgit access go to c-git dot f3s dot buetow dot org slash yoga
 
 ---
 
-### 29. gemtexter 29↙28←28←28↙27←27←27←27↖28↙27←27↖28←28↙27↙26↙22←22←22←22
+### 28. rcm 28↙26↙25↙24←24↙23↙22←22←22↖25←25↙24↙23↙22←22↙20↙15↙12↖13↙10←10
+
+* 💻 Languages: Ruby (99.6%), TOML (0.4%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 109
+* 📈 Lines of Code: 1719
+* 📄 Lines of Documentation: 778
+* 🏷️ Tags: 3
+* 📅 Development Period: 2024-12-05 to 2026-03-02
+* 🏆 Score: 2.2 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v0.1.1 (2026-03-01)
+
+
+[![rcm screenshot](showcase/rcm/image-1.png "rcm screenshot")](showcase/rcm/image-1.png)  
+
+A KISS (Keep It Simple, Stupid) configuration management system written in Ruby, designed for personal use.
+
+[View on Codeberg](https://codeberg.org/snonux/rcm)  
+[View on GitHub](https://github.com/snonux/rcm)  
+For cgit access go to c-git dot f3s dot buetow dot org slash rcm
+
+---
+
+### 29. gemtexter 29↖30↙29↙28←28←28↙27←27←27←27↖28↙27←27↖28←28↙27↙26↙22←22←22←22
 
 * 💻 Languages: Shell (55.9%), CSS (31.0%), HTML (11.2%), Config (1.8%)
 * 📚 Documentation: Text (75.1%), Markdown (24.9%)
@@ -762,7 +761,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash yoga
 * 📄 Lines of Documentation: 1195
 * 🏷️ Tags: 6
 * 📅 Development Period: 2021-05-21 to 2026-06-03
-* 🏆 Score: 2.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
 
@@ -775,7 +774,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gemtexter
 
 ---
 
-### 30. scifi 30↙29←29↙27↙26←26←26↙23←23↙22↙20↙19←19↙17↙16↙10←10↙8←8
+### 30. scifi 30↖31↙30↙29←29↙27↙26←26←26↙23←23↙22↙20↙19←19↙17↙16↙10←10↙8←8
 
 * 💻 Languages: JSON (36.6%), JavaScript (30.2%), CSS (29.6%), HTML (3.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -784,7 +783,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gemtexter
 * 📄 Lines of Documentation: 874
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-01-25 to 2026-03-13
-* 🏆 Score: 2.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -797,7 +796,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash scifi
 
 ---
 
-### 31. gos 31↙30←30↙29↙28←28↖30↙29←29↙28↙26↙25←25↙24↙23↙19←19↙18←18
+### 31. gos 31↖32↙31↙30←30↙29↙28←28↖30↙29←29↙28↙26↙25←25↙24↙23↙19←19↙18←18
 
 * 💻 Languages: Go (99.6%), JSON (0.2%), Shell (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -806,7 +805,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash scifi
 * 📄 Lines of Documentation: 477
 * 🏷️ Tags: 17
 * 📅 Development Period: 2024-05-04 to 2026-07-05
-* 🏆 Score: 2.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.3.1 (2026-07-05)
 
@@ -821,7 +820,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gos
 
 ---
 
-### 32. log4jbench 32↙31←31↙30↙29←29←29↙28↙27↙26↙25↙23←23↙21↙20↙14↙12↙9←9
+### 32. log4jbench 32↖33↙32↙31←31↙30↙29←29←29↙28↙27↙26↙25↙23←23↙21↙20↙14↙12↙9←9
 
 * 💻 Languages: Java (78.9%), XML (21.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -830,7 +829,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gos
 * 📄 Lines of Documentation: 119
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-01-09 to 2026-01-09
-* 🏆 Score: 1.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -843,7 +842,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash log4jbench
 
 ---
 
-### 33. timr 33←33←33↙32↙31←31↖32↙31←31↙30↙29↙27←27↙26↙25↙21←21↙20↙19
+### 33. timr 33↖34↙33←33←33↙32↙31←31↖32↙31←31↙30↙29↙27←27↙26↙25↙21←21↙20↙19
 
 * 💻 Languages: Go (96.0%), Shell (4.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -865,7 +864,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash timr
 
 ---
 
-### 34. foostats 34↙32←32↙31↙30←30↖31↙30←30↙29↙28↙26←26↙25↙24↙20←20↙19↙17
+### 34. foostats 34↖35↙34↙32←32↙31↙30←30↖31↙30←30↙29↙28↙26←26↙25↙24↙20←20↙19↙17
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -887,7 +886,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash foostats
 
 ---
 
-### 35. wireguardmeshgenerator 35↙34←34↙33↙32←32↖33↙32←32↙31↙30↙29←29↙28↙27↙23←23←23←23
+### 35. wireguardmeshgenerator 35↖36↙35↙34←34↙33↙32←32↖33↙32←32↙31↙30↙29←29↙28↙27↙23←23←23←23
 
 * 💻 Languages: Ruby (64.8%), YAML (35.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -896,7 +895,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash foostats
 * 📄 Lines of Documentation: 24
 * 🏷️ Tags: 1
 * 📅 Development Period: 2025-04-18 to 2026-07-03
-* 🏆 Score: 1.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -909,7 +908,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash wireguardmeshgenera
 
 ---
 
-### 36. ioriot 36↙35←35↙34↙33←33↖34↙33←33↙32↙31↙30←30←30↙29↖34↖35↙34↖35
+### 36. ioriot 36↖37↙36↙35←35↙34↙33←33↖34↙33←33↙32↙31↙30←30←30↙29↖34↖35↙34↖35
 
 * 💻 Languages: C (58.7%), C/C++ (22.5%), Config (17.9%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -933,7 +932,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash ioriot
 
 ---
 
-### 37. quicklogger 37↙36←36↙35↙34←34↖35↙34←34↙33↙32↙31←31←31↙30↙26←26←26↙25
+### 37. quicklogger 37↖38↙37↙36←36↙35↙34←34↖35↙34←34↙33↙32↙31←31←31↙30↙26←26←26↙25
 
 * 💻 Languages: Go (96.3%), XML (2.3%), Shell (0.9%), TOML (0.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -957,7 +956,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash quicklogger
 
 ---
 
-### 38. quicklog 38↙37←37↙36↙35←35↖36↙35←35
+### 38. quicklog 38↖39↙38↙37←37↙36↙35←35↖36↙35←35
 
 * 💻 Languages: Dart (53.9%), CMake (13.5%), Kotlin (9.9%), C++ (9.2%), XML (8.0%), YAML (3.5%), C/C++ (2.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -984,7 +983,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash quicklog
 
 ---
 
-### 39. sillybench 39↙38←38↙37↙36←36↖37↙36←36↙34↙33↙32←32←32↙31↙27←27←27←27
+### 39. sillybench 39↖40↙39↙38←38↙37↙36←36↖37↙36←36↙34↙33↙32←32←32↙31↙27←27←27←27
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1006,7 +1005,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash sillybench
 
 ---
 
-### 40. terraform 40↙39←39↙38↙37←37↖38↙37←37↙35↙34↙33←33←33↙32↙28←28←28↙26
+### 40. terraform 40↖41↙40↙39←39↙38↙37←37↖38↙37←37↙35↙34↙33←33←33↙32↙28←28←28↙26
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1029,7 +1028,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash terraform
 
 ---
 
-### 41. guprecords 41↙40←40↙39↙38←38↖39↙38←38↙36↙35↙34←34←34↙33↖39↙29↖40↙29
+### 41. guprecords 41↖42↙41↙40←40↙39↙38←38↖39↙38←38↙36↙35↙34←34←34↙33↖39↙29↖40↙29
 
 * 💻 Languages: Raku (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1052,7 +1051,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash guprecords
 
 ---
 
-### 42. photoalbum 42↙41←41↙40←40←40↖42↙41←41↙40↙39↙38←38←38↙37↙32↖33↙32↖34
+### 42. photoalbum 42↖43↙42↙41←41↙40←40←40↖42↙41←41↙40↙39↙38←38←38↙37↙32↖33↙32↖34
 
 * 💻 Languages: Shell (92.5%), Make (4.6%), Config (2.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1076,7 +1075,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash photoalbum
 
 ---
 
-### 43. geheim 43↙42←42↙41↙39←39↖40↙39←39↙37↙36↙35←35←35↙34↙29↖30↙29↖30
+### 43. geheim 43↖44↙43↙42←42↙41↙39←39↖40↙39←39↙37↙36↙35←35←35↙34↙29↖30↙29↖30
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1099,7 +1098,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash geheim
 
 ---
 
-### 44. gorum 44↙43←43↙42↙41←41←41↙40←40↙38↙37↙36←36←36↙35↙30↖31↙30↙28
+### 44. gorum 44↖45↙44↙43←43↙42↙41←41←41↙40←40↙38↙37↙36←36←36↙35↙30↖31↙30↙28
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1122,7 +1121,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gorum
 
 ---
 
-### 45. docker-radicale-server 45↙44←44↙43↙42←42↖43↙42←42↙39↙38↙37←37←37↙36↙31↖32↙31←31
+### 45. docker-radicale-server 45↖46↙45↙44←44↙43↙42←42↖43↙42←42↙39↙38↙37←37←37↙36↙31↖32↙31←31
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1145,7 +1144,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash docker-radicale-ser
 
 ---
 
-### 46. randomjournalpage 46↙45←45↙44↙43←43↖44↙43←43↙41↙40↙39←39←39↙38↙33↖34↙33←33
+### 46. randomjournalpage 46↖47↙46↙45←45↙44↙43←43↖44↙43←43↙41↙40↙39←39←39↙38↙33↖34↙33←33
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1168,7 +1167,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash randomjournalpage
 
 ---
 
-### 47. staticfarm-apache-handlers 47←47←47↙46↙45←45↖46↙45←45↙43↙42↙41←41↖42↙41↙37↖38←38↖40
+### 47. staticfarm-apache-handlers 47↖49↙47←47←47↙46↙45←45↖46↙45←45↙43↙42↙41←41↖42↙41↙37↖38←38↖40
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1193,7 +1192,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash staticfarm-apache-h
 
 ---
 
-### 48. ipv6test 48←48←48↙47↙46←46↖47↙46←46↙44↙43↙42←42↙41↙40↙36↖37←37↙36
+### 48. ipv6test 48↖50↙48←48←48↙47↙46←46↖47↙46←46↙44↙43↙42←42↙41↙40↙36↖37←37↙36
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1216,7 +1215,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash ipv6test
 
 ---
 
-### 49. algorithms 49↙46←46↙45↙44←44↖45↙44←44↙42↙41↙40←40←40↙39↙35↖36←36↙32
+### 49. algorithms 49↙48↖49↙46←46↙45↙44←44↖45↙44←44↙42↙41↙40←40←40↙39↙35↖36←36↙32
 
 * 💻 Languages: Go (99.2%), Make (0.8%)
 * 📚 Documentation: Text (90.3%), Markdown (9.7%)
@@ -1239,7 +1238,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash algorithms
 
 ---
 
-### 50. sway-autorotate 50↙49←49↙48↙47←47↖48↙47←47↙45↙44↙43←43←43↙42↙38↖39←39↙38
+### 50. sway-autorotate 50↖51↙50↙49←49↙48↙47←47↖48↙47←47↙45↙44↙43←43←43↙42↙38↖39←39↙38
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1262,7 +1261,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash sway-autorotate
 
 ---
 
-### 51. mon 51↙50←50↙49↙48←48↖49↙48←48↙46↙45↙44←44←44↙43↙40←40↖41↙39
+### 51. mon 51↖52↙51↙50←50↙49↙48←48↖49↙48←48↙46↙45↙44←44←44↙43↙40←40↖41↙39
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -1287,7 +1286,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash mon
 
 ---
 
-### 52. fapi 52↙51←51↙50↙49←49↖50↙49←49↙47↙46↙45←45↖46↙44↙41←41↖42↖44
+### 52. fapi 52↖53↙52↙51←51↙50↙49←49↖50↙49←49↙47↙46↙45←45↖46↙44↙41←41↖42↖44
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -1312,7 +1311,30 @@ For cgit access go to c-git dot f3s dot buetow dot org slash fapi
 
 ---
 
-### 53. pingdomfetch 53↙52←52↙51←51←51↖52↙51←51↙49↙48↙47←47←47↙45↙42←42↖43↙41
+### 53. xerl 53↖57↙56←56←56↙55↙50←50↖51↙50←50↙48↙47↙46←46↙45↖48↙45←45↙35↖42
+
+* 💻 Languages: CSS (54.6%), XML (39.1%), Perl (4.0%), Make (2.2%)
+* 📚 Documentation: Text (91.2%), Org (4.9%), Markdown (3.9%)
+* 📊 Commits: 663
+* 📈 Lines of Code: 815
+* 📄 Lines of Documentation: 102
+* 🏷️ Tags: 0
+* 📅 Development Period: 2011-03-06 to 2021-11-02
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
+
+Those are the host templates to be used with Xerl itself.
+
+[View on Codeberg](https://codeberg.org/snonux/xerl)  
+[View on GitHub](https://github.com/snonux/xerl)  
+For cgit access go to c-git dot f3s dot buetow dot org slash xerl
+
+---
+
+### 54. pingdomfetch 54←54↙53↙52←52↙51←51←51↖52↙51←51↙49↙48↙47←47←47↙45↙42←42↖43↙41
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1337,7 +1359,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash pingdomfetch
 
 ---
 
-### 54. playground 54←54←54↙53←53←53
+### 55. playground 55←55↙54←54←54↙53←53←53
 
 * 💻 Languages: Ruby (100.0%)
 * 📊 Commits: 5
@@ -1358,7 +1380,32 @@ For cgit access go to c-git dot f3s dot buetow dot org slash playground
 
 ---
 
-### 55. pwgrep 55←55←55↙54←54←54←54←54←54↙52↙51↙50←50←50↙47↙44←44↖45↖50
+### 56. loadbars 56↙23↙22↙21←21↙20↙19←19←19↖53←53↙51↙50↙49←49←49↙46↙6←6↙4↖47
+
+* 💻 Languages: Perl (97.4%), Make (2.6%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 501
+* 📈 Lines of Code: 1828
+* 📄 Lines of Documentation: 100
+* 🏷️ Tags: 24
+* 📅 Development Period: 2010-11-05 to 2015-05-23
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.7.5 (2014-06-22)
+
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
+
+Loadbars is a real-time server load monitoring tool that visualizes CPU, memory, network, load average, and disk I/O statistics for multiple remote Linux servers simultaneously in an SDL2 window. It connects to hosts via SSH (using key-based auth) and runs an embedded Bash script that reads from `/proc`, parsing metrics like per-core CPU usage, RAM/swap, network throughput, and disk I/O — then renders them as vertical colored bars side by side. Unlike graphing tools that require data collection over time, Loadbars shows only the current state (like `top` or `vmstat`), making it useful for quick, at-a-glance monitoring of cluster health across many machines.
+
+Architecturally, the Go binary embeds the remote monitoring script at build time and runs it locally or over SSH via `bash -s`, so remote hosts need only bash and `/proc` (no Go installation required). The codebase is organized into `internal/` packages: `collector` handles script execution and metric parsing, `display` manages the SDL2 rendering loop and hotkey-driven toggles (per-core vs. aggregate views, extended peak lines, memory/network/load/disk bars), `config` manages CLI flags and `~/.loadbarsrc` persistence, and `stats` defines the shared data structures. macOS is supported as a client for monitoring remote Linux hosts, though local monitoring requires Linux.
+
+[View on Codeberg](https://codeberg.org/snonux/loadbars)  
+[View on GitHub](https://github.com/snonux/loadbars)  
+For cgit access go to c-git dot f3s dot buetow dot org slash loadbars
+
+---
+
+### 57. pwgrep 57↙56↙55←55←55↙54←54←54←54←54←54↙52↙51↙50←50←50↙47↙44←44↖45↖50
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (75.0%), Markdown (25.0%)
@@ -1381,28 +1428,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash pwgrep
 
 ---
 
-### 56. xerl 56←56←56↙55↙50←50↖51↙50←50↙48↙47↙46←46↙45↖48↙45←45↙35↖42
-
-* 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
-* 📊 Commits: 143
-* 📈 Lines of Code: 1675
-* 🏷️ Tags: 1
-* 📅 Development Period: 2011-03-06 to 2026-03-07
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.0.0 (2018-12-22)
-
-⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
-
-Those are the host templates to be used with Xerl itself.
-
-[View on Codeberg](https://codeberg.org/snonux/xerl)  
-[View on GitHub](https://github.com/snonux/xerl)  
-For cgit access go to c-git dot f3s dot buetow dot org slash xerl
-
----
-
-### 57. awksite 57←57←57↙56↙55←55←55←55←55↙53↙52↙51←51←51↙49↙46←46←46↖61
+### 58. awksite 58←58↙57←57←57↙56↙55←55←55←55←55↙53↙52↙51←51←51↙49↙46←46←46↖61
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
 * 📚 Documentation: Markdown (50.0%), Text (50.0%)
@@ -1427,7 +1453,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash awksite
 
 ---
 
-### 58. gotop 58←58←58↙57↙56←56←56←56←56↙54↙53↙52←52←52↙50↙47←47←47↖48
+### 59. gotop 59←59↙58←58←58↙57↙56←56←56←56←56↙54↙53↙52←52←52↙50↙47←47←47↖48
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
 * 📚 Documentation: Markdown (60.0%), Text (40.0%)
@@ -1450,7 +1476,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash gotop
 
 ---
 
-### 59. japi 59←59←59↙58↙57←57←57←57←57↙55↙54↙53←53←53↙51↙48←48←48↖53
+### 60. japi 60←60↙59←59←59↙58↙57←57←57←57←57↙55↙54↙53←53←53↙51↙48←48←48↖53
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1475,7 +1501,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash japi
 
 ---
 
-### 60. perldaemon 60←60←60↙59↙58←58←58←58←58↙56↙55↙54←54←54↙52←52↙49↖52↙51
+### 61. perldaemon 61←61↙60←60←60↙59↙58←58←58←58←58↙56↙55↙54←54←54↙52←52↙49↖52↙51
 
 * 💻 Languages: Perl (72.7%), Shell (23.9%), Config (3.4%)
 * 📊 Commits: 111
@@ -1497,7 +1523,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash perldaemon
 
 ---
 
-### 61. rubyfy 61←61←61↙60↙59←59←59←59←59↙57↙56↙55←55←55↙53↙49↖50↙49←49
+### 62. rubyfy 62←62↙61←61←61↙60↙59←59←59←59←59↙57↙56↙55←55←55↙53↙49↖50↙49←49
 
 * 💻 Languages: Ruby (98.5%), JSON (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1520,7 +1546,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash rubyfy
 
 ---
 
-### 62. netdiff 62↖63←63↙62↙61←61←61←61←61↙59↙58↙57←57←57↙55↙51↖52↙51↖56
+### 63. netdiff 63←63↙62↖63←63↙62↙61←61←61←61←61↙59↙58↙57←57←57↙55↙51↖52↙51↖56
 
 * 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
 * 📚 Documentation: Text (100.0%)
@@ -1545,7 +1571,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash netdiff
 
 ---
 
-### 63. perl-c-fibonacci 63↙62←62↙61↙60←60←60←60←60↙58↙57↙56←56←56↙54↙50↖51↙50↙45
+### 64. perl-c-fibonacci 64←64↙63↙62←62↙61↙60←60←60←60←60↙58↙57↙56←56←56↙54↙50↖51↙50↙45
 
 * 💻 Languages: C (80.4%), Make (19.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1568,7 +1594,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash perl-c-fibonacci
 
 ---
 
-### 64. muttdelay 64←64←64↙63↙62←62←62←62←62↙60↙59↙58←58←58↙56↙54←54←54↖55
+### 65. muttdelay 65←65↙64←64←64↙63↙62←62←62←62←62↙60↙59↙58←58←58↙56↙54←54←54↖55
 
 * 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1593,7 +1619,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash muttdelay
 
 ---
 
-### 65. cpuinfo 65←65←65↙64↙63←63←63←63←63↙61↙60↙59←59←59↙57←57←57↙56↖59
+### 66. cpuinfo 66←66↙65←65←65↙64↙63←63←63←63←63↙61↙60↙59←59←59↙57←57←57↙56↖59
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1616,7 +1642,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash cpuinfo
 
 ---
 
-### 66. dyndns 66←66←66↙65↙64←64↖65←65←65↙63↙62↙61←61←61↙59←59←59↙58↖62
+### 67. dyndns 67←67↙66←66←66↙65↙64←64↖65←65←65↙63↙62↙61←61←61↙59←59←59↙58↖62
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1641,7 +1667,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash dyndns
 
 ---
 
-### 67. debroid 67←67←67↙66↙65←65↖66←66←66↙64↙63↙62←62←62↙60←60←60↙59↙57
+### 68. debroid 68←68↙67←67←67↙66↙65←65↖66←66←66↙64↙63↙62←62←62↙60←60←60↙59↙57
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1666,30 +1692,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash debroid
 
 ---
 
-### 68. ychat 68←68←68↙67↙66←66↖67←67←67↙65↙64↙63←63←63←63←63←63↙62↙43
-
-* 💻 Languages: C++ (54.9%), C/C++ (23.0%), Shell (13.8%), Perl (2.5%), HTML (2.5%), Config (2.3%), Make (0.8%), CSS (0.2%)
-* 📚 Documentation: Text (100.0%)
-* 📊 Commits: 21
-* 📈 Lines of Code: 67884
-* 📄 Lines of Documentation: 127
-* 🏷️ Tags: 0
-* 📅 Development Period: 2008-05-15 to 2014-06-30
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: GPL-2.0
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
-
-ychat: source code repository.
-
-[View on Codeberg](https://codeberg.org/snonux/ychat)  
-[View on GitHub](https://github.com/snonux/ychat)  
-For cgit access go to c-git dot f3s dot buetow dot org slash ychat
-
----
-
-### 69. netcalendar 69←69←69↙68↙67←67↖68←68←68↙66↙65↙64←64←64↙61↙55←55←55↙46
+### 69. netcalendar 69←69←69←69←69↙68↙67←67↖68←68←68↙66↙65↙64←64←64↙61↙55←55←55↙46
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
 * 📚 Documentation: Text (89.5%), Markdown (10.5%)
@@ -1714,7 +1717,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash netcalendar
 
 ---
 
-### 70. jsmstrade 70←70←70↙69↙68←68↖69←69←69↙67↙66↙65←65←65↙62↙53←53←53↙52
+### 70. jsmstrade 70←70←70←70←70↙69↙68←68↖69←69←69↙67↙66↙65←65←65↙62↙53←53←53↙52
 
 * 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1739,7 +1742,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash jsmstrade
 
 ---
 
-### 71. template 71←71←71↙70←70←70↙64←64←64↙62↙61↙60←60←60↙58←58←58↙57↖60
+### 71. template 71←71←71←71←71↙70←70←70↙64←64←64↙62↙61↙60←60←60↙58←58←58↙57↖60
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1764,7 +1767,30 @@ For cgit access go to c-git dot f3s dot buetow dot org slash template
 
 ---
 
-### 72. vs-sim 72←72←72↙71↙69←69↖70←70←70↙68↙67↙66←66←66↙64↙56←56↖63←63
+### 72. ychat 72↖76↙68←68←68↙67↙66←66↖67←67←67↙65↙64↙63←63←63←63←63←63↙62↙43
+
+* 💻 Languages: C++ (51.1%), C/C++ (29.9%), Shell (15.9%), HTML (1.4%), Perl (1.2%), Make (0.4%), CSS (0.1%)
+* 📚 Documentation: Text (100.0%)
+* 📊 Commits: 21
+* 📈 Lines of Code: 9958
+* 📄 Lines of Documentation: 103
+* 🏷️ Tags: 0
+* 📅 Development Period: 2008-05-15 to 2014-07-01
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: GPL-2.0
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
+
+ychat: source code repository.
+
+[View on Codeberg](https://codeberg.org/snonux/ychat)  
+[View on GitHub](https://github.com/snonux/ychat)  
+For cgit access go to c-git dot f3s dot buetow dot org slash ychat
+
+---
+
+### 73. vs-sim 73↙72←72←72←72↙71↙69←69↖70←70←70↙68↙67↙66←66←66↙64↙56←56↖63←63
 
 * 💻 Languages: Java (98.8%), Shell (0.7%), XML (0.4%)
 * 📚 Documentation: LaTeX (98.3%), Text (1.4%), Markdown (0.3%)
@@ -1789,7 +1815,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash vs-sim
 
 ---
 
-### 73. perl-poetry 73←73←73↙72↙71←71←71←71←71↙69↙68↙67←67←67↙65↙61←61↙60↙54
+### 74. perl-poetry 74↙73←73←73←73↙72↙71←71←71←71←71↙69↙68↙67←67←67↙65↙61←61↙60↙54
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1812,7 +1838,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash perl-poetry
 
 ---
 
-### 74. fype 74↙53←53↙52←52←52↖53↙52←52↙50↙49↙48←48←48↖66↙43←43↖44↙37
+### 75. fype 75↙74←74↙53←53↙52←52←52↖53↙52←52↙50↙49↙48←48←48↖66↙43←43↖44↙37
 
 * 💻 Languages: C (72.1%), C/C++ (20.7%), HTML (5.7%), Make (1.5%)
 * 📚 Documentation: Text (71.3%), LaTeX (28.7%)
@@ -1835,7 +1861,7 @@ For cgit access go to c-git dot f3s dot buetow dot org slash fype
 
 ---
 
-### 75. hsbot 75↙74←74↙73↙72←72←72←72←72↙70↙69↙68←68←68↙67↙62←62↙61↙58
+### 76. hsbot 76↙75←75↙74←74↙73↙72←72←72←72←72↙70↙69↙68←68←68↙67↙62←62↙61↙58
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 81

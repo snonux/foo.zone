@@ -6,7 +6,7 @@ This is the third and final post in the series. Part 1 is the demo-driven tour: 
 
 [![Live flamegraph](./unveiling-ior-ng/00-hero-flamegraph.png "Live flamegraph")](./unveiling-ior-ng/00-hero-flamegraph.png)  
 
-[I/O Riot NG on Codeberg](https://codeberg.org/snonux/ior)  
+[I/O Riot NG on Codeberg](https://github.com/snonux/ior)  
 
 [2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour](./2026-05-08-unveiling-ior-ng-part-1.md)  
 [2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
@@ -217,7 +217,7 @@ One v1.1.0 change is directly relevant to the syscall-coverage story above: prob
 
 That's the bottom of the stack. For the dashboard surface (what ior looks like, how the seven tabs behave, how filtering and recording work in practice) Part 1 is the demo-driven tour with all the GIFs. For the install dance and the why-the-binary-is-portable story (eBPF, CO-RE, static linking), Part 2 is the install + portability companion.
 
-[Source on Codeberg](https://codeberg.org/snonux/ior)  
+[Source on Codeberg](https://github.com/snonux/ior)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

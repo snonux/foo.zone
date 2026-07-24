@@ -8,7 +8,7 @@ Hexai is an AI add-on for Helix. It speaks LSP, so it also works with other edit
 
 Hexai has been an undercover pet project of mine since around mid-last year. As I write this it is at version `0.42.1`, so it has been quietly growing for a good while before this first proper write-up.
 
-[Hexai source code](https://codeberg.org/snonux/hexai)  
+[Hexai source code](https://github.com/snonux/hexai)  
 [Helix editor](https://helix-editor.com)  
 
 [![Hexai logo](./unveiling-hexai/01-logo.png "Hexai logo")](./unveiling-hexai/01-logo.png)  
@@ -47,10 +47,10 @@ These are opinionated tools. They reflect how I work — Helix inside tmux, a te
 The easiest way is to install the binaries with `go install`. Each binary is a separate `cmd/` package:
 
 ```sh
-go install codeberg.org/snonux/hexai/cmd/hexai@latest
-go install codeberg.org/snonux/hexai/cmd/hexai-lsp-server@latest
-go install codeberg.org/snonux/hexai/cmd/hexai-tmux-action@latest
-go install codeberg.org/snonux/hexai/cmd/ask@latest
+go install github.com/snonux/hexai/cmd/hexai@latest
+go install github.com/snonux/hexai/cmd/hexai-lsp-server@latest
+go install github.com/snonux/hexai/cmd/hexai-tmux-action@latest
+go install github.com/snonux/hexai/cmd/ask@latest
 ```
 
 If you prefer to build from a checkout, Hexai uses Mage:
@@ -328,8 +328,8 @@ Tags:        agent
 
 This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of `ask`: the `agent-task-management` skill knows how to read and update the `ask` task list, and the `/work-on-tasks` command uses that skill to work through a whole backlog on its own — pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run `/work-on-tasks`, and it chews through the queue one task at a time.
 
-[agent-task-management skill](https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/skills/agent-task-management)  
-[/work-on-tasks command](https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/commands/work-on-tasks.md)  
+[agent-task-management skill](https://github.com/snonux/dotfiles/src/branch/master/prompts/skills/agent-task-management)  
+[/work-on-tasks command](https://github.com/snonux/dotfiles/src/branch/master/prompts/commands/work-on-tasks.md)  
 
 ## Running multiple providers side by side
 

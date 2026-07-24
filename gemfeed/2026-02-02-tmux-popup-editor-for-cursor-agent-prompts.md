@@ -81,9 +81,9 @@ And this is how it looks like after sending back the text to the Cursor Agent's 
 
 And here is the full script. It is a bit ugly since it's shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go with proper unit tests, config-file, multi-agent support and release it once I have time. But it works well enough for now.
 
-> Update 2026-02-08: This functionality has been integrated into the hexai project (https://codeberg.org/snonux/hexai) with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode. The hexai version includes unit tests, configuration files, and better agent detection. While still experimental, it's more robust than this shell script. See the hexai-tmux-edit command for details.
+> Update 2026-02-08: This functionality has been integrated into the hexai project (https://github.com/snonux/hexai) with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode. The hexai version includes unit tests, configuration files, and better agent detection. While still experimental, it's more robust than this shell script. See the hexai-tmux-edit command for details.
 
-[https://codeberg.org/snonux/hexai](https://codeberg.org/snonux/hexai)  
+[https://github.com/snonux/hexai](https://github.com/snonux/hexai)  
 
 ```bash
 #!/usr/bin/env bash
@@ -362,7 +362,7 @@ Another thing is, what if Cursor decides to change the design of its TUI? I woul
 
 If I get a chance, I'll clean it up and rewrite it in Go (and release it properly or include it into Hexai, another AI related tool of mine, of which I haven't blogged about yet). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.
 
-[https://codeberg.org/snonux/hexai](https://codeberg.org/snonux/hexai)  
+[https://github.com/snonux/hexai](https://github.com/snonux/hexai)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

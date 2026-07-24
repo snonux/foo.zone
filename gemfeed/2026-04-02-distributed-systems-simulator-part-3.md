@@ -4,7 +4,7 @@
 
 This is the third and final blog post of the Distributed Systems Simulator series. This part covers advanced simulation examples, the Raft consensus protocol, and the extensible Protocol API.
 
-[ds-sim on Codeberg (modernized, English-translated version)](https://codeberg.org/snonux/ds-sim)  
+[ds-sim on Codeberg (modernized, English-translated version)](https://github.com/snonux/ds-sim)  
 
 These are all the posts of this series:
 
@@ -249,8 +249,8 @@ The modernized successor ds-sim (version 1.1.0) has been updated to Java 21 and 
 * 208 unit tests
 * 269 configurable settings
 
-[ds-sim source code on Codeberg](https://codeberg.org/snonux/ds-sim)  
-[vs-sim source code on Codeberg (original German version, 2008)](https://codeberg.org/snonux/vs-sim)  
+[ds-sim source code on Codeberg](https://github.com/snonux/ds-sim)  
+[vs-sim source code on Codeberg (original German version, 2008)](https://github.com/snonux/vs-sim)  
 
 Other related posts are:
 
