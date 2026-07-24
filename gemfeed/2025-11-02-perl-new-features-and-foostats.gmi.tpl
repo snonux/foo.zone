@@ -139,7 +139,7 @@ These are the 30-day reports generated (already linked earlier in this post, but
 
 The complete source lives on Codeberg here:
 
-=> https://codeberg.org/snonux/foostats Foostats on Codeberg
+=> https://github.com/snonux/foostats Foostats on Codeberg
 
 Now let's go to some new Perl features:
 

@@ -531,7 +531,7 @@ Fancy stuff like OOP or Unicode or threading is not planed. But fancy stuff like
 
 You can find all of this on the GitHub page. There is also an "examples" folders containing some Fype scripts!
 
-=> https://codeberg.org/snonux/fype
+=> https://github.com/snonux/fype
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

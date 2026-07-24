@@ -84,7 +84,7 @@ I connect my Kobo Forma to my Linux laptop via a USB-C cable. The device is auto
 
 To keep my reading progress synchronized across multiple devices (my Kobo, my phone, and my Linux laptop), I run a `koreader-sync-server` instance in my k3s cluster. This allows me to pick up reading where I left off, no matter which device I'm using.
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/kobo-sync-server
+=> https://github.com/snonux/conf/src/branch/master/f3s/kobo-sync-server
 
 => ./cloudless-kobo-forma-with-koreader/sync-server.jpg Custom sync server configuration
 

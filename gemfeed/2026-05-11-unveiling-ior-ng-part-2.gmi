@@ -31,7 +31,7 @@ This is Part 2 of three. Part 1 is the demo-driven tour: what ior looks like, ho
 The short answer: Use Docker (or Podman). One command, no toolchain setup, works from any Docker-capable Linux host with BTF available:
 
 ```sh
-git clone https://codeberg.org/snonux/ior ~/git/ior
+git clone https://github.com/snonux/ior ~/git/ior
 cd ~/git/ior
 mage buildDocker
 ```
@@ -87,7 +87,7 @@ sudo cp -v zstd-1.5.5/lib/libzstd.a /usr/lib64/
 
 # 5) Clone ior + libbpfgo, pin libbpfgo, build the static libbpf archive, install mage.
 mkdir -p ~/git
-git clone https://codeberg.org/snonux/ior ~/git/ior
+git clone https://github.com/snonux/ior ~/git/ior
 git clone https://github.com/aquasecurity/libbpfgo ~/git/libbpfgo
 git -C ~/git/libbpfgo checkout v0.9.2-libbpf-1.5.1
 git -C ~/git/libbpfgo submodule update --init --recursive

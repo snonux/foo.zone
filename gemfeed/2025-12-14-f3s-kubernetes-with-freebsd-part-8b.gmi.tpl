@@ -450,9 +450,9 @@ If storage fills up, you can reduce retention to 72h, add sampling in Alloy, or 
 
 All config files are on Codeberg:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/tempo Tempo configuration
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/loki Alloy configuration (updated for traces)
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/tracing-demo Demo tracing application
+=> https://github.com/snonux/conf/src/branch/master/f3s/tempo Tempo configuration
+=> https://github.com/snonux/conf/src/branch/master/f3s/loki Alloy configuration (updated for traces)
+=> https://github.com/snonux/conf/src/branch/master/f3s/tracing-demo Demo tracing application
 
 Other *BSD-related posts:
 

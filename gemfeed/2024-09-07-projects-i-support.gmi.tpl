@@ -48,7 +48,7 @@ I am a Patreon of the Cup o' Go Podcast. The podcast helps me stay updated with 
 Codeberg e.V. is a nonprofit organization that provides online resources for software development and collaboration. I am a user and a supporting member, paying an annual membership of €24. I didn't have to pay that membership fee, as Codeberg offers all the services I use for free.
 
 => https://codeberg.org
-=> https://codeberg.org/snonux https://codeberg.org/snonux - My Codeberg page
+=> https://github.com/snonux https://github.com/snonux - My Codeberg page
 
 ## GrapheneOS
 

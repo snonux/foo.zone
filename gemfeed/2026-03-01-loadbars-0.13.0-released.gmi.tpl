@@ -8,7 +8,7 @@ Loadbars is a real-time server load monitoring tool. It connects to one or more 
 
 Loadbars can connect to hundreds of servers in parallel; the GIF above doesn't do it justice — at scale you get a wall of bars that makes it easy to spot outliers and compare hosts at a glance.
 
-=> https://codeberg.org/snonux/loadbars Loadbars on Codeberg
+=> https://github.com/snonux/loadbars Loadbars on Codeberg
 
 << template::inline::toc
 

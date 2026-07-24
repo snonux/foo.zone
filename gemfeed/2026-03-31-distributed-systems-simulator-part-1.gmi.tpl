@@ -4,7 +4,7 @@
 
 This is the first blog post of the Distributed Systems Simulator series, written for the recent v1.1.0 release. It explores the Java-based Distributed Systems Simulator program I created as my diploma thesis at the Aachen University of Applied Sciences (August 2008). The simulator offers both built-in implementations of common distributed systems algorithms and an extensible framework that allows researchers and practitioners to implement and test their own custom protocols within the simulation environment.
 
-=> https://codeberg.org/snonux/ds-sim ds-sim on Codeberg (modernized, English-translated version)
+=> https://github.com/snonux/ds-sim ds-sim on Codeberg (modernized, English-translated version)
 
 These are all the posts of this series:
 
@@ -36,7 +36,7 @@ The modernized ds-sim requires Java 21 or higher and Maven 3.8 or higher.
 
 ```
 # Clone the repository
-git clone https://codeberg.org/snonux/ds-sim.git
+git clone https://github.com/snonux/ds-sim.git
 cd ds-sim
 
 # Set JAVA_HOME if needed (e.g. on Fedora Linux)
@@ -62,7 +62,7 @@ After building, the following artifacts are available in the `target/` directory
 
 The project also includes 208 unit tests that can be run with `mvn test`. Example simulation files for all built-in protocols are included in the `saved-simulations/` directory.
 
-=> https://codeberg.org/snonux/ds-sim ds-sim source code on Codeberg
+=> https://github.com/snonux/ds-sim ds-sim source code on Codeberg
 
 ## Fundamentals
 

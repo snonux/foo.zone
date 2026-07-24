@@ -43,7 +43,7 @@ But now, let's continue with the small projects worth mentioning :-)
 
 `photoalbum.sh` is a minimal static HTML photo album generator. I use it to drive "The Irregular Ninja" site and for some ad-hoc (personal) albums to share photos with the family and friends.
 
-=> https://codeberg.org/snonux/photoalbum
+=> https://github.com/snonux/photoalbum
 
 ### The Irregular Ninja
 
@@ -69,7 +69,7 @@ I bullet journal. I write my notes into a Leuchtturm paper notebook. Once full, 
 
 Once in a while I want to revisit older notes and ideas. For that I have written a simple Bash script `randomjournalpage.sh` which randomly picks a PDF file from a folder and extracts 42 pages from it at a random page offset and opens them in a PDF viewer (Evince in this case, as I am a GNOME user). 
 
-=> https://codeberg.org/snonux/randomjournalpage
+=> https://github.com/snonux/randomjournalpage
 
 There's also a weekly `CRON` job on my servers to send me a reminder that I might want to read in my old journals again. My laptop also runs this script each time it boots and saves the output to a NextCloud folder. From there, it's synchronized to the NextCloud server so I can pick it up from there with my smartphone later when I am "on the road".
 
@@ -129,7 +129,7 @@ Pos |            System |               Kernel |        Uptime |
  20 |              mars |  Linux 3.2.0-4-amd64 | 190d 05:44:21 |
 ```
 
-=> https://codeberg.org/snonux/guprecords 
+=> https://github.com/snonux/guprecords 
 
 This all is of no real practical use but fun!
 
@@ -137,7 +137,7 @@ This all is of no real practical use but fun!
 
 The `rexfiles` project contains all Rex files for my (personal) server setup automation. A `Rexfile` is written in a Perl DSL run by the Rex configuration management system. It's pretty much KISS and that's why I love it. It suits my personal needs perfectly. 
 
-=> https://codeberg.org/snonux/conf
+=> https://github.com/snonux/conf
 => https://www.rexify.org
 
 This is an E-Mail I posted to the Rex mailing list:
@@ -167,7 +167,7 @@ echo foo.example.com |
 ./rubyfy.rb --root --command reboot --precondition /var/run/maintenance.lock
 ```
 
-=> https://codeberg.org/snonux/rubyfy
+=> https://github.com/snonux/rubyfy
 
 ## A KISS dynamic DNS solution
 
@@ -187,7 +187,7 @@ ssh dyndns@dyndnsserver /path/to/dyndns-update \
   local.buetow.org. A 137.226.50.91 30
 ```
 
-=> https://codeberg.org/snonux/dyndns
+=> https://github.com/snonux/dyndns
 
 ## CPU information gatherer for Linux
 
@@ -211,7 +211,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 0023961 Bogomips total
 ```
 
-=> https://codeberg.org/snonux/cpuinfo
+=> https://github.com/snonux/cpuinfo
 
 ## Show differences of two files over the network
 
@@ -219,13 +219,13 @@ This is a shell wrapper to use the standard diff tool over the network to compar
 
 1. Open two terminal windows and login to two different hosts (you could use ClusterSSH or `tmux` here). 2. Run on the first host `netdiff otherhost.example.org /file/to/diff.txt` and run on the second host `netdiff firsthost.example.org /file/to/diff.txt`. 3. You then will see the file differences.
 
-=> https://codeberg.org/snonux/netdiff
+=> https://github.com/snonux/netdiff
 
 ## Delay sending out E-Mails with Mutt
 
 This is a shell script for the Mutt email client for delaying sending out E-Mails. For example, you want to write an email on Saturday but don't want to bother the recipient earlier than Monday. It relies on CRON.
 
-=> https://codeberg.org/snonux/muttdelay
+=> https://github.com/snonux/muttdelay
 
 ## Graphical UI for sending text messages
 
@@ -233,7 +233,7 @@ This is a shell script for the Mutt email client for delaying sending out E-Mail
 
 => ./sweating-the-small-stuff/jsmstrade.png
 
-=> https://codeberg.org/snonux/jsmstrade
+=> https://github.com/snonux/jsmstrade
 => https://smstrade.de
 
 ## IPv6 and IPv4 connectivity testing site
@@ -246,7 +246,7 @@ I don't have it running on any of my servers at the moment. This means that ther
 
 `japi` s a small Perl script for listing open Jira issues. It might be broken by now as the Jira APIs may have changed. Sorry! But feel free to fork and modernize it. :-)
 
-=> https://codeberg.org/snonux/jsmstrade
+=> https://github.com/snonux/jsmstrade
  
 ## Debian running on "your" Android phone
 

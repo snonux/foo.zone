@@ -10,7 +10,7 @@ The answer is: well enough for small projects like this.
 
 If you want the full feature guide, the README links to a detailed doc for every feature covered here and more:
 
-=> https://codeberg.org/snonux/gt gt on Codeberg
+=> https://github.com/snonux/gt gt on Codeberg
 => ./gt-calculator/logo.svg gt logo
 
 The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn't run them locally either — I rented Hyperstack VMs with NVidia GPU just to get a feel for the quality before investing in hardware. The point was to test models that don't require a cloud API and could realistically run on your own box.
@@ -475,7 +475,7 @@ In practice this means tab-completion for all 36 constants, every metric unit (b
 ## Installation
 
 ```sh
-go install codeberg.org/snonux/gt/cmd/gt@latest
+go install github.com/snonux/gt/cmd/gt@latest
 ```
 
 Or from the source directory: `mage install`.
@@ -488,7 +488,7 @@ The local LLM experiment worked. The code is clean enough, the tests pass, the d
 
 For the complete and always-up-to-date feature guide, detailed docs for every feature, and the source code, head to the repo.
 
-=> https://codeberg.org/snonux/gt gt on Codeberg
+=> https://github.com/snonux/gt gt on Codeberg
 
 But will I now invest a couple of thousand dollars in hardware to run Qwen 3 Coder Next, Qwen 3.6 35B or 27B? (I used the dense 27B model most of the time to build `gt`). Unfortunately, no. I don't think it's worth the cost yet, as cloud models are still cheaper and more convenient and the frontier ones also much more "intelligent".
 

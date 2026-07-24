@@ -4,7 +4,7 @@
 
 This is the second blog post of the Distributed Systems Simulator series. This part covers all 10 built-in protocols with examples.
 
-=> https://codeberg.org/snonux/ds-sim ds-sim on Codeberg (modernized, English-translated version)
+=> https://github.com/snonux/ds-sim ds-sim on Codeberg (modernized, English-translated version)
 
 These are all the posts of this series:
 

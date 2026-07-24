@@ -24,7 +24,7 @@ Together, these form the "PLG" stack (Prometheus, Loki, Grafana) extended with T
 
 All manifests for the f3s stack live in my configuration repository:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s
+=> https://github.com/snonux/conf/src/branch/master/f3s github.com/snonux/conf/f3s
 
 ## Important Note: GitOps Migration
 
@@ -33,7 +33,7 @@ All manifests for the f3s stack live in my configuration repository:
 **To view the exact configuration as it existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:
 
 ```sh
-$ git clone https://codeberg.org/snonux/conf.git
+$ git clone https://github.com/snonux/conf.git
 $ cd conf
 $ git checkout 15a86f3  # Last commit before ArgoCD migration
 $ cd f3s/prometheus/
@@ -97,7 +97,7 @@ Create the directories on the NFS server for persistent storage:
 The configuration repository contains a `Justfile` that automates the deployment. `just` is a handy command runner—think of it as a simpler, more modern alternative to `make`. I use it throughout the f3s repository to wrap repetitive Helm and kubectl commands:
 
 => https://github.com/casey/just just - A handy way to save and run project-specific commands
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus codeberg.org/snonux/conf/f3s/prometheus
+=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus github.com/snonux/conf/f3s/prometheus
 
 To install everything:
 
@@ -168,7 +168,7 @@ etcd_server_has_leader 1
 
 The full `persistence-values.yaml` and all other Prometheus configuration files are available on Codeberg:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus codeberg.org/snonux/conf/f3s/prometheus
+=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus github.com/snonux/conf/f3s/prometheus
 
 The persistent volume definitions bind to specific paths on the NFS share using `hostPath` volumes—the same pattern used for other services in Part 7:
 
@@ -212,7 +212,7 @@ Create the data directory on the NFS server:
 
 The Loki configuration also lives in the repository:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/loki codeberg.org/snonux/conf/f3s/loki
+=> https://github.com/snonux/conf/src/branch/master/f3s/loki github.com/snonux/conf/f3s/loki
 
 To install:
 
@@ -529,7 +529,7 @@ spec:
 
 This file is saved as `freebsd-recording-rules.yaml` and applied as part of the Prometheus installation. The `os="freebsd"` label (set in the scrape config) ensures these rules only apply to FreeBSD hosts. After applying, the memory panels in the Node Exporter dashboards populate correctly for FreeBSD.
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml freebsd-recording-rules.yaml on Codeberg
+=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml freebsd-recording-rules.yaml on Codeberg
 
 ### Disk I/O metrics limitation
 
@@ -830,8 +830,8 @@ zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
 
 All ZFS-related configuration files are available on Codeberg:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/zfs-recording-rules.yaml zfs-recording-rules.yaml on Codeberg
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/zfs-dashboards.yaml zfs-dashboards.yaml on Codeberg
+=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/zfs-recording-rules.yaml zfs-recording-rules.yaml on Codeberg
+=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/zfs-dashboards.yaml zfs-dashboards.yaml on Codeberg
 
 ## Monitoring external OpenBSD hosts
 
@@ -939,7 +939,7 @@ spec:
 
 This file is saved as `openbsd-recording-rules.yaml` and applied alongside the FreeBSD rules. Note that OpenBSD doesn't expose a buffer memory metric, so that rule is omitted.
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml openbsd-recording-rules.yaml on Codeberg
+=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml openbsd-recording-rules.yaml on Codeberg
 
 After running `just upgrade`, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.
 
@@ -958,8 +958,8 @@ The next part covers the final pillar of observability: distributed tracing with
 
 All configuration files are available on Codeberg:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus Prometheus, Grafana, and recording rules configuration
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/loki Loki and Alloy configuration
+=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus Prometheus, Grafana, and recording rules configuration
+=> https://github.com/snonux/conf/src/branch/master/f3s/loki Loki and Alloy configuration
 
 Other *BSD-related posts:
 

@@ -7,7 +7,7 @@ These are my social media posts from the last six months. I keep them here to re
 These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.
 
 => ../about/index.gmi My about page
-=> https://codeberg.org/snonux/gos
+=> https://github.com/snonux/gos
 
 << template::inline::toc
 
@@ -501,7 +501,7 @@ Thats interesting, running `#Android` in `#Kubernetes`
 
 Before wiping the pre-installed `#Windows` 11 Pro on my new Beelink mini PC, I tested `#WSL2` with `#Fedora` `#Linux`. I compiled my pet project, I/O Riot NG (ior), which requires many system libraries, including `#BPF`. I’m impressed—everything works just like on native Fedora, and my tool runs and traces I/O syscalls with BPF out of the box. I might would prefer now Windows over MacOS if I had to chose between those two for work.
 
-=> https://codeberg.org/snonux/ior codeberg.org/snonux/ior
+=> https://github.com/snonux/ior github.com/snonux/ior
 
 ### Some might hate me saying this, but didnt ...
 

@@ -6,7 +6,7 @@ Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google 
 
 With compatibility with the Nagios Check API, Gogios offers a simple yet effective solution to monitor a limited number of resources. In theory, Gogios scales to a couple of thousand checks, though. You can clone it from Codeberg here:
 
-=> https://codeberg.org/snonux/gogios
+=> https://github.com/snonux/gogios
 
 => ./kiss-server-monitoring-with-gogios/gogios-small.png Gogios logo
 
@@ -84,7 +84,7 @@ This document is primarily written for OpenBSD, but applying the corresponding s
 To compile and install Gogios on OpenBSD, follow these steps:
 
 ```shell
-git clone https://codeberg.org/snonux/gogios.git
+git clone https://github.com/snonux/gogios.git
 cd gogios
 go build -o gogios cmd/gogios/main.go
 doas cp gogios /usr/local/bin/gogios

@@ -4,7 +4,7 @@
 
 I proudly announce that I've released Gemtexter version `2.0.0`. What is Gemtexter? It's my minimalist static site generator for Gemini Gemtext, HTML and Markdown written in GNU Bash.
 
-=> https://codeberg.org/snonux/gemtexter
+=> https://github.com/snonux/gemtexter
 
 This is a new major release, so it contains a breaking change (see "Meta cache made obsolete").
 

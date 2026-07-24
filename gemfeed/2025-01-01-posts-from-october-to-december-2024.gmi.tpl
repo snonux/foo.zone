@@ -9,7 +9,7 @@ These are my social media posts from the last three months. I keep them here to 
 These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.
 
 => ../about/index.gmi My about page
-=> https://codeberg.org/snonux/gos
+=> https://github.com/snonux/gos
 
 << template::inline::toc
 

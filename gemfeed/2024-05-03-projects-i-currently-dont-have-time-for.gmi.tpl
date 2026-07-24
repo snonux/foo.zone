@@ -142,7 +142,7 @@ This is similar to the previous idea, but the difference is that the language wo
 
 VS-Sim is an open-source simulator programmed in Java for distributed systems. VS-Sim stands for "Verteilte Systeme Simulator," the German translation for "Distributed Systems Simulator." The VS-Sim project was my diploma thesis at Aachen University of Applied Sciences.
 
-=> https://codeberg.org/snonux/vs-sim
+=> https://github.com/snonux/vs-sim
 
 The ideas I had was:
 

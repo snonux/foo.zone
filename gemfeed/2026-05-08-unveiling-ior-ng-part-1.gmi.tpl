@@ -10,7 +10,7 @@ This is the first of three posts. Part 1 is the demo-driven tour: what `ior` loo
 
 << template::inline::index unveiling-ior-ng
 
-=> https://codeberg.org/snonux/ior I/O Riot NG on Codeberg
+=> https://github.com/snonux/ior I/O Riot NG on Codeberg
 => ./2018-06-01-realistic-load-testing-with-ioriot-for-linux.gmi the original I/O Riot post (2018)
 
 << template::inline::toc
@@ -198,8 +198,8 @@ But the live flamegraph, the stackable stream filters, and the cheap parquet cap
 
 For installing it and the eBPF / CO-RE / static-linking story (why one build runs on every other Linux box you scp it to), see Part 2. For the per-event schema, async-syscall caveats, the probe-generator safeguard against missing new kernel syscalls, and post-mortem SQL on the parquet output, see Part 3.
 
-=> https://codeberg.org/snonux/ior Source on Codeberg
-=> https://codeberg.org/snonux/ior/src/branch/main/docs/tutorial/tutorial.md The full in-repo tutorial
+=> https://github.com/snonux/ior Source on Codeberg
+=> https://github.com/snonux/ior/src/branch/main/docs/tutorial/tutorial.md The full in-repo tutorial
 
 Read the next post of the series:
 

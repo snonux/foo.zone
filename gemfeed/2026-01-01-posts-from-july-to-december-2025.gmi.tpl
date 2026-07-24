@@ -7,7 +7,7 @@ Hello there, I wish you all a happy new year! These are my social media posts fr
 These are from Mastodon and LinkedIn. Have a look at my about page for my social media profiles. This list is generated with Gos, my social media platform sharing tool.
 
 => ../about/index.gmi My about page
-=> https://codeberg.org/snonux/gos
+=> https://github.com/snonux/gos
 
 << template::inline::toc
 

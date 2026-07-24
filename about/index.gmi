@@ -19,8 +19,8 @@
 ## Show me the code
 
 => ./showcase.gmi Project showcase
+=> https://github.com/snonux github.com/snonux - My GitHub page
 => https://codeberg.org/snonux codeberg.org/snonux - My Codeberg page
-=> https://github.com/snonux github.com/snonux - My GitHub page (it's just a mirror of Codeberg, really)
 
 ## Social Media and Communities
 

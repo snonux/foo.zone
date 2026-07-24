@@ -103,7 +103,7 @@ ArgoCD manages everything else via GitOps, but ArgoCD itself needs a bootstrap. 
 
 The installation lives in the config repo:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/argocd codeberg.org/snonux/conf/f3s/argocd
+=> https://github.com/snonux/conf/src/branch/master/f3s/argocd github.com/snonux/conf/f3s/argocd
 
 I deployed it using Helm via a Justfile:
 
@@ -191,7 +191,7 @@ The ingress exposes both a WAN and LAN endpoint:
 
 I didn't want ArgoCD pulling from Codeberg over the internet every time it checks for changes. If Codeberg is down (or my internet is), the cluster can't reconcile. So I set up a Git server inside the cluster itself.
 
-=> https://codeberg.org/snonux/conf/src/commit/190473b/f3s/git-server codeberg.org/snonux/conf/f3s/git-server (at 190473b)
+=> https://github.com/snonux/conf/src/commit/190473b/f3s/git-server github.com/snonux/conf/f3s/git-server (at 190473b)
 
 The git-server runs as a single pod in the `cicd` namespace with two containers sharing a PVC:
 
@@ -211,7 +211,7 @@ There's a chicken-and-egg situation here. The git-server's own ArgoCD Applicatio
 ```yaml
 # argocd-apps/cicd/git-server.yaml
 source:
-  repoURL: https://codeberg.org/snonux/conf.git
+  repoURL: https://github.com/snonux/conf.git
   targetRevision: master
   path: f3s/git-server/helm-chart
 ```
@@ -584,11 +584,11 @@ The migration took a couple of days, doing one or two apps at a time. The result
 
 All the config lives here:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s
+=> https://github.com/snonux/conf/src/branch/master/f3s github.com/snonux/conf/f3s
 
 ArgoCD Application manifests organized by namespace:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/argocd-apps codeberg.org/snonux/conf/f3s/argocd-apps
+=> https://github.com/snonux/conf/src/branch/master/f3s/argocd-apps github.com/snonux/conf/f3s/argocd-apps
 
 I can't imagine going back to running Helm commands manually.
 

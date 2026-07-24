@@ -68,7 +68,7 @@ Domain registration, TLS certificate configuration and configuration of the EFS 
 
 You can find all Terraform manifests here:
 
-=> https://codeberg.org/snonux/terraform
+=> https://github.com/snonux/terraform
 
 Whereas:
 
@@ -115,7 +115,7 @@ Radicale is an excellent minimalist WebDAV calendar and contact synchronisation 
 On Android, it works great together with the DAVx5 client for synchronisation.
 
 => https://radicale.org/
-=> https://codeberg.org/snonux/docker-radicale-server
+=> https://github.com/snonux/docker-radicale-server
 => https://www.davx5.com/
 
 ### `bag.buetow.cloud`
@@ -130,7 +130,7 @@ Wallabag is a self-hostable "save now - read later" service, and it also comes w
 Anki is a great (the greatest) flash-card learning program. I am currently learning Bulgarian as my 3rd language. There is also an Android app that has an offline mode, and advanced users can also self-host the server `anki-sync-server`. For some reason (not going into the details here), I had to build my own Docker image for the server.
 
 => https://apps.ankiweb.net/
-=> https://codeberg.org/snonux/docker-anki-sync-server
+=> https://github.com/snonux/docker-anki-sync-server
 
 ### `vault.buetow.cloud`
 

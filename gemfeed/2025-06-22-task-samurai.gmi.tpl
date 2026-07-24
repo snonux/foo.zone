@@ -35,7 +35,7 @@ Task Samurai invokes the `task` command (that's the original Taskwarrior CLI com
 
 Go to:
 
-=> https://codeberg.org/snonux/tasksamurai
+=> https://github.com/snonux/tasksamurai
 
 And follow the `README.md`!
 

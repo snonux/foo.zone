@@ -15,7 +15,7 @@ Gos is a Go-based replacement (which I wrote) for Buffer.com, providing the abil
 I used Buffer.com to schedule and post my social media messages for a long time. However, over time, there were more problems with that service, including a slow and unintuitive UI, and the free version only allows scheduling up to 10 messages. At one point, they started to integrate an AI assistant (which would seemingly randomly pop up in separate JavaScript-powered input boxes), and then I had enough and decided I had to build my own social sharing tool—and Gos was born.
 
 => https://buffer.com
-=> https://codeberg.org/snonux/gos
+=> https://github.com/snonux/gos
 
 ## Gos features
 
@@ -40,7 +40,7 @@ The prerequisites are:
 Clone the repository:
 
 ```bash
-git clone https://codeberg.org/snonux/gos.git
+git clone https://github.com/snonux/gos.git
 cd gos
 ```
 
@@ -300,7 +300,7 @@ Also, add the `--gemtexterEnable` flag, if you are using Gemtexter:
 gos --gemtexterEnable --geminiSummaryFor 202410,202411,202412
 ```
 
-=> https://codeberg.org/snonux/gemtexter Gemtexter
+=> https://github.com/snonux/gemtexter Gemtexter
 
 In case there are HTTP links that translate directly to the Geminispace for certain capsules, specify the Gemini capsules as a comma-separated list as follows:
 

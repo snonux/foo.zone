@@ -640,7 +640,7 @@ match from local for any action outbound
 
 For the complete `Rexfile` example and all the templates, please look at the Git repository:
 
-=> https://codeberg.org/snonux/conf
+=> https://github.com/snonux/conf
 
 Besides ACME, other things, such as DNS servers, are also rexified. The following command will run all the Rex tasks and configure everything on my frontend machines automatically:
 

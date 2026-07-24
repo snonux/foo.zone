@@ -295,7 +295,7 @@ func BenchmarkCPUSilly2(b *testing.B) {
 
 You can find the repository here:
 
-=> https://codeberg.org/snonux/sillybench
+=> https://github.com/snonux/sillybench
 
 ### Silly FreeBSD host benchmark
 
@@ -304,7 +304,7 @@ To install it on FreeBSD, we run:
 ```sh
 paul@f0:~ % doas pkg install git go
 paul@f0:~ % mkdir ~/git && cd ~/git && \
-  git clone https://codeberg.org/snonux/sillybench && \
+  git clone https://github.com/snonux/sillybench && \
   cd sillybench
 ```
 
@@ -317,12 +317,12 @@ go version go1.24.1 freebsd/amd64
 paul@f0:~/git/sillybench % go test -bench=.
 goos: freebsd
 goarch: amd64
-pkg: codeberg.org/snonux/sillybench
+pkg: github.com/snonux/sillybench
 cpu: Intel(R) N100
 BenchmarkCPUSilly1-4    1000000000               0.4022 ns/op
 BenchmarkCPUSilly2-4    1000000000               0.4027 ns/op
 PASS
-ok      codeberg.org/snonux/sillybench 0.891s
+ok      github.com/snonux/sillybench 0.891s
 ```
 
 ### Silly Rocky Linux VM @ Bhyve benchmark
@@ -332,7 +332,7 @@ OK, let's compare this with the Rocky Linux VM running on Bhyve:
 ```sh
 [root@r0 ~]# dnf install golang git
 [root@r0 ~]# mkdir ~/git && cd ~/git && \
-  git clone https://codeberg.org/snonux/sillybench && \
+  git clone https://github.com/snonux/sillybench && \
   cd sillybench
 ````
 
@@ -344,7 +344,7 @@ go version go1.22.9 (Red Hat 1.22.9-2.el9_5) linux/amd64
 [root@r0 sillybench]# go test -bench=.
 goos: linux
 goarch: amd64
-pkg: codeberg.org/snonux/sillybench
+pkg: github.com/snonux/sillybench
 cpu: Intel(R) N100
 BenchmarkCPUSilly1-4    1000000000               0.4347 ns/op
 BenchmarkCPUSilly2-4    1000000000               0.4345 ns/op
@@ -362,12 +362,12 @@ But here are the results running the same silly benchmark in a FreeBSD Bhyve VM 
 root@freebsd:~/git/sillybench # go test -bench=.
 goos: freebsd
 goarch: amd64
-pkg: codeberg.org/snonux/sillybench
+pkg: github.com/snonux/sillybench
 cpu: Intel(R) N100
 BenchmarkCPUSilly1      1000000000               0.4273 ns/op
 BenchmarkCPUSilly2      1000000000               0.4286 ns/op
 PASS
-ok      codeberg.org/snonux/sillybench  0.949s
+ok      github.com/snonux/sillybench  0.949s
 ```
 
 It's a bit better than Linux! I am sure that this is not really a scientific benchmark, so take the results with a grain of salt!

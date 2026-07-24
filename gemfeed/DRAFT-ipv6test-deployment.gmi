@@ -265,9 +265,9 @@ Additional challenges solved:
 
 The configuration is managed via GitOps with ArgoCD, including the Traefik HelmChartConfig.
 
-=> https://codeberg.org/snonux/ipv6test Source code
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/ipv6test Kubernetes manifests
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/traefik-config Traefik configuration
+=> https://github.com/snonux/ipv6test Source code
+=> https://github.com/snonux/conf/src/branch/master/f3s/ipv6test Kubernetes manifests
+=> https://github.com/snonux/conf/src/branch/master/f3s/traefik-config Traefik configuration
 
 E-Mail your comments to paul@paulbias.net :-)
 

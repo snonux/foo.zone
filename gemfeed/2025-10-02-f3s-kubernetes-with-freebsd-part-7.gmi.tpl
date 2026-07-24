@@ -23,7 +23,7 @@ In this blog post, I am finally going to install k3s (the Kubernetes distributio
 **To view the exact manifests and charts as they existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:
 
 ```sh
-$ git clone https://codeberg.org/snonux/conf.git
+$ git clone https://github.com/snonux/conf.git
 $ cd conf
 $ git checkout 15a86f3  # Last commit before ArgoCD migration
 $ cd f3s/
@@ -817,7 +817,7 @@ The key architectural decisions:
 
 First, install cert-manager to handle certificate lifecycle management for LAN services. The installation is automated with a Justfile:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s/cert-manager codeberg.org/snonux/conf/f3s/cert-manager
+=> https://github.com/snonux/conf/src/branch/master/f3s/cert-manager github.com/snonux/conf/f3s/cert-manager
 
 ```sh
 $ cd conf/f3s/cert-manager
@@ -1023,7 +1023,7 @@ As not all Docker images I want to deploy are available on public Docker registr
 
 All manifests for the f3s stack live in my configuration repository:
 
-=> https://codeberg.org/snonux/conf/src/branch/master/f3s codeberg.org/snonux/conf/f3s
+=> https://github.com/snonux/conf/src/branch/master/f3s github.com/snonux/conf/f3s
 
 Within that repo, the `f3s/registry/` directory contains the Helm chart, a `Justfile`, and a detailed `README`. Here's the condensed walkthrough I used to roll out the registry with Helm.
 
@@ -1040,7 +1040,7 @@ Create the directory that will hold the registry blobs on the NFS share (I ran t
 Clone the repo (or pull the latest changes) on a workstation that has `helm` configured for the cluster, then deploy the chart. The Justfile wraps the commands, but the raw Helm invocation looks like this:
 
 ```sh
-$ git clone https://codeberg.org/snonux/conf/f3s.git
+$ git clone https://github.com/snonux/conf/f3s.git
 $ cd conf/f3s/examples/conf/f3s/registry
 $ helm upgrade --install registry ./helm-chart --namespace infra --create-namespace
 ```

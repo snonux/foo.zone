@@ -7,7 +7,7 @@ The following stats were collected via `uptimed` on all of my personal computers
 > Uptimed is an uptime record daemon keeping track of the highest uptimes a computer system ever had. It uses the system boot time to keep sessions apart from each other.
 
 => https://github.com/rpodgorny/uptimed
-=> https://codeberg.org/snonux/goprecords
+=> https://github.com/snonux/goprecords
 
 Also check out my blog post:
 
