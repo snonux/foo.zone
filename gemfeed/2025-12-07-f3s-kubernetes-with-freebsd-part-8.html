@@ -87,7 +87,7 @@
 <br />
 <span>All manifests for the f3s stack live in my configuration repository:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s'>github.com/snonux/conf/f3s</a><br />
 <br />
 <h2 style='display: inline' id='important-note-gitops-migration'>Important Note: GitOps Migration</h2><br />
 <br />
@@ -99,7 +99,7 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf.git
+<pre>$ git clone https://github.com/snonux/conf.git
 $ cd conf
 $ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
 $ cd f3s/prometheus/
@@ -174,7 +174,7 @@ http://www.gnu.org/software/src-highlite -->
 <span>The configuration repository contains a <span class='inlinecode'>Justfile</span> that automates the deployment. <span class='inlinecode'>just</span> is a handy command runner—think of it as a simpler, more modern alternative to <span class='inlinecode'>make</span>. I use it throughout the f3s repository to wrap repetitive Helm and kubectl commands:</span><br />
 <br />
 <a class='textlink' href='https://github.com/casey/just'>just - A handy way to save and run project-specific commands</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>codeberg.org/snonux/conf/f3s/prometheus</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus'>github.com/snonux/conf/f3s/prometheus</a><br />
 <br />
 <span>To install everything:</span><br />
 <br />
@@ -254,7 +254,7 @@ etcd_server_has_leader <font color="#000000">1</font>
 <br />
 <span>The full <span class='inlinecode'>persistence-values.yaml</span> and all other Prometheus configuration files are available on Codeberg:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>codeberg.org/snonux/conf/f3s/prometheus</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus'>github.com/snonux/conf/f3s/prometheus</a><br />
 <br />
 <span>The persistent volume definitions bind to specific paths on the NFS share using <span class='inlinecode'>hostPath</span> volumes—the same pattern used for other services in Part 7:</span><br />
 <br />
@@ -304,7 +304,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The Loki configuration also lives in the repository:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>codeberg.org/snonux/conf/f3s/loki</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/loki'>github.com/snonux/conf/f3s/loki</a><br />
 <br />
 <span>To install:</span><br />
 <br />
@@ -668,7 +668,7 @@ spec:
 <br />
 <span>This file is saved as <span class='inlinecode'>freebsd-recording-rules.yaml</span> and applied as part of the Prometheus installation. The <span class='inlinecode'>os="freebsd"</span> label (set in the scrape config) ensures these rules only apply to FreeBSD hosts. After applying, the memory panels in the Node Exporter dashboards populate correctly for FreeBSD.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml'>freebsd-recording-rules.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml'>freebsd-recording-rules.yaml on Codeberg</a><br />
 <br />
 <h3 style='display: inline' id='disk-io-metrics-limitation'>Disk I/O metrics limitation</h3><br />
 <br />
@@ -979,8 +979,8 @@ zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
 <br />
 <span>All ZFS-related configuration files are available on Codeberg:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/zfs-recording-rules.yaml'>zfs-recording-rules.yaml on Codeberg</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/zfs-dashboards.yaml'>zfs-dashboards.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/zfs-recording-rules.yaml'>zfs-recording-rules.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/zfs-dashboards.yaml'>zfs-dashboards.yaml on Codeberg</a><br />
 <br />
 <h2 style='display: inline' id='monitoring-external-openbsd-hosts'>Monitoring external OpenBSD hosts</h2><br />
 <br />
@@ -1103,7 +1103,7 @@ spec:
 <br />
 <span>This file is saved as <span class='inlinecode'>openbsd-recording-rules.yaml</span> and applied alongside the FreeBSD rules. Note that OpenBSD doesn&#39;t expose a buffer memory metric, so that rule is omitted.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml'>openbsd-recording-rules.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml'>openbsd-recording-rules.yaml on Codeberg</a><br />
 <br />
 <span>After running <span class='inlinecode'>just upgrade</span>, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.</span><br />
 <br />
@@ -1123,8 +1123,8 @@ spec:
 <br />
 <span>All configuration files are available on Codeberg:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/prometheus'>Prometheus, Grafana, and recording rules configuration</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/loki'>Loki and Alloy configuration</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus'>Prometheus, Grafana, and recording rules configuration</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/loki'>Loki and Alloy configuration</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />

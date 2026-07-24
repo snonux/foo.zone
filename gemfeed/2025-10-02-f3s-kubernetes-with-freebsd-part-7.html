@@ -84,7 +84,7 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf.git
+<pre>$ git clone https://github.com/snonux/conf.git
 $ cd conf
 $ git checkout 15a86f3  <i><font color="silver"># Last commit before ArgoCD migration</font></i>
 $ cd f3s/
@@ -944,7 +944,7 @@ LAN → FreeBSD CARP VIP (192.168.1.138)
 <br />
 <span>First, install cert-manager to handle certificate lifecycle management for LAN services. The installation is automated with a Justfile:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/cert-manager'>codeberg.org/snonux/conf/f3s/cert-manager</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/cert-manager'>github.com/snonux/conf/f3s/cert-manager</a><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -1184,7 +1184,7 @@ $ sudo update-ca-trust
 <br />
 <span>All manifests for the f3s stack live in my configuration repository:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s'>github.com/snonux/conf/f3s</a><br />
 <br />
 <span>Within that repo, the <span class='inlinecode'>f3s/registry/</span> directory contains the Helm chart, a <span class='inlinecode'>Justfile</span>, and a detailed <span class='inlinecode'>README</span>. Here&#39;s the condensed walkthrough I used to roll out the registry with Helm.</span><br />
 <br />
@@ -1207,7 +1207,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ git clone https://codeberg.org/snonux/conf/f3s.git
+<pre>$ git clone https://github.com/snonux/conf/f3s.git
 $ cd conf/f3s/examples/conf/f3s/registry
 $ helm upgrade --install registry ./helm-chart --namespace infra --create-namespace
 </pre>

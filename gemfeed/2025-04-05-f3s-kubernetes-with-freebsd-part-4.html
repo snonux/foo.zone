@@ -398,7 +398,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>You can find the repository here:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/sillybench'>https://codeberg.org/snonux/sillybench</a><br />
+<a class='textlink' href='https://github.com/snonux/sillybench'>https://github.com/snonux/sillybench</a><br />
 <br />
 <h3 style='display: inline' id='silly-freebsd-host-benchmark'>Silly FreeBSD host benchmark</h3><br />
 <br />
@@ -410,7 +410,7 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>paul@f0:~ % doas pkg install git go
 paul@f0:~ % mkdir ~/git &amp;&amp; cd ~/git &amp;&amp; \
-  git clone https://codeberg.org/snonux/sillybench &amp;&amp; \
+  git clone https://github.com/snonux/sillybench &amp;&amp; \
   cd sillybench
 </pre>
 <br />
@@ -426,12 +426,12 @@ go version go1.<font color="#000000">24.1</font> freebsd/amd<font color="#000000
 paul@f0:~/git/sillybench % go <b><u><font color="#000000">test</font></u></b> -bench=.
 goos: freebsd
 goarch: amd64
-pkg: codeberg.org/snonux/sillybench
+pkg: github.com/snonux/sillybench
 cpu: Intel(R) N100
 BenchmarkCPUSilly1-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4022</font> ns/op
 BenchmarkCPUSilly2-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4027</font> ns/op
 PASS
-ok      codeberg.org/snonux/sillybench <font color="#000000">0</font>.891s
+ok      github.com/snonux/sillybench <font color="#000000">0</font>.891s
 </pre>
 <br />
 <h3 style='display: inline' id='silly-rocky-linux-vm--bhyve-benchmark'>Silly Rocky Linux VM @ Bhyve benchmark</h3><br />
@@ -444,7 +444,7 @@ http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre>[root@r0 ~]<i><font color="silver"># dnf install golang git</font></i>
 [root@r0 ~]<i><font color="silver"># mkdir ~/git &amp;&amp; cd ~/git &amp;&amp; \</font></i>
-  git clone https://codeberg.org/snonux/sillybench &amp;&amp; \
+  git clone https://github.com/snonux/sillybench &amp;&amp; \
   cd sillybench
 </pre>
 <br />
@@ -459,7 +459,7 @@ go version go1.<font color="#000000">22.9</font> (Red Hat <font color="#000000">
 [root@r0 sillybench]<i><font color="silver"># go test -bench=.</font></i>
 goos: linux
 goarch: amd64
-pkg: codeberg.org/snonux/sillybench
+pkg: github.com/snonux/sillybench
 cpu: Intel(R) N100
 BenchmarkCPUSilly1-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4347</font> ns/op
 BenchmarkCPUSilly2-<font color="#000000">4</font>    <font color="#000000">1000000000</font>               <font color="#000000">0.4345</font> ns/op
@@ -480,12 +480,12 @@ http://www.gnu.org/software/src-highlite -->
 <pre>root@freebsd:~/git/sillybench <i><font color="silver"># go test -bench=.</font></i>
 goos: freebsd
 goarch: amd64
-pkg: codeberg.org/snonux/sillybench
+pkg: github.com/snonux/sillybench
 cpu: Intel(R) N100
 BenchmarkCPUSilly1      <font color="#000000">1000000000</font>               <font color="#000000">0.4273</font> ns/op
 BenchmarkCPUSilly2      <font color="#000000">1000000000</font>               <font color="#000000">0.4286</font> ns/op
 PASS
-ok      codeberg.org/snonux/sillybench  <font color="#000000">0</font>.949s
+ok      github.com/snonux/sillybench  <font color="#000000">0</font>.949s
 </pre>
 <br />
 <span>It&#39;s a bit better than Linux! I am sure that this is not really a scientific benchmark, so take the results with a grain of salt!</span><br />

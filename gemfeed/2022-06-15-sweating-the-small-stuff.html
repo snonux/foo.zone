@@ -81,7 +81,7 @@
 <br />
 <span><span class='inlinecode'>photoalbum.sh</span> is a minimal static HTML photo album generator. I use it to drive "The Irregular Ninja" site and for some ad-hoc (personal) albums to share photos with the family and friends.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/photoalbum'>https://codeberg.org/snonux/photoalbum</a><br />
+<a class='textlink' href='https://github.com/snonux/photoalbum'>https://github.com/snonux/photoalbum</a><br />
 <br />
 <h3 style='display: inline' id='the-irregular-ninja'>The Irregular Ninja</h3><br />
 <br />
@@ -107,7 +107,7 @@
 <br />
 <span>Once in a while I want to revisit older notes and ideas. For that I have written a simple Bash script <span class='inlinecode'>randomjournalpage.sh</span> which randomly picks a PDF file from a folder and extracts 42 pages from it at a random page offset and opens them in a PDF viewer (Evince in this case, as I am a GNOME user). </span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/randomjournalpage'>https://codeberg.org/snonux/randomjournalpage</a><br />
+<a class='textlink' href='https://github.com/snonux/randomjournalpage'>https://github.com/snonux/randomjournalpage</a><br />
 <br />
 <span>There&#39;s also a weekly <span class='inlinecode'>CRON</span> job on my servers to send me a reminder that I might want to read in my old journals again. My laptop also runs this script each time it boots and saves the output to a NextCloud folder. From there, it&#39;s synchronized to the NextCloud server so I can pick it up from there with my smartphone later when I am "on the road".</span><br />
 <br />
@@ -167,7 +167,7 @@ Pos |            System |               Kernel |        Uptime |
  20 |              mars |  Linux 3.2.0-4-amd64 | 190d 05:44:21 |
 </pre>
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/guprecords'>https://codeberg.org/snonux/guprecords</a><br />
+<a class='textlink' href='https://github.com/snonux/guprecords'>https://github.com/snonux/guprecords</a><br />
 <br />
 <span>This all is of no real practical use but fun!</span><br />
 <br />
@@ -175,7 +175,7 @@ Pos |            System |               Kernel |        Uptime |
 <br />
 <span>The <span class='inlinecode'>rexfiles</span> project contains all Rex files for my (personal) server setup automation. A <span class='inlinecode'>Rexfile</span> is written in a Perl DSL run by the Rex configuration management system. It&#39;s pretty much KISS and that&#39;s why I love it. It suits my personal needs perfectly. </span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf'>https://codeberg.org/snonux/conf</a><br />
+<a class='textlink' href='https://github.com/snonux/conf'>https://github.com/snonux/conf</a><br />
 <a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
 <br />
 <span>This is an E-Mail I posted to the Rex mailing list:</span><br />
@@ -205,7 +205,7 @@ echo foo.example.com |
 ./rubyfy.rb --root --command reboot --precondition /var/run/maintenance.lock
 </pre>
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/rubyfy'>https://codeberg.org/snonux/rubyfy</a><br />
+<a class='textlink' href='https://github.com/snonux/rubyfy'>https://github.com/snonux/rubyfy</a><br />
 <br />
 <h2 style='display: inline' id='a-kiss-dynamic-dns-solution'>A KISS dynamic DNS solution</h2><br />
 <br />
@@ -225,7 +225,7 @@ ssh dyndns@dyndnsserver /path/to/dyndns-update \
   local.buetow.org. A 137.226.50.91 30
 </pre>
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/dyndns'>https://codeberg.org/snonux/dyndns</a><br />
+<a class='textlink' href='https://github.com/snonux/dyndns'>https://github.com/snonux/dyndns</a><br />
 <br />
 <h2 style='display: inline' id='cpu-information-gatherer-for-linux'>CPU information gatherer for Linux</h2><br />
 <br />
@@ -249,7 +249,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 0023961 Bogomips total
 </pre>
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/cpuinfo'>https://codeberg.org/snonux/cpuinfo</a><br />
+<a class='textlink' href='https://github.com/snonux/cpuinfo'>https://github.com/snonux/cpuinfo</a><br />
 <br />
 <h2 style='display: inline' id='show-differences-of-two-files-over-the-network'>Show differences of two files over the network</h2><br />
 <br />
@@ -257,13 +257,13 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span>1. Open two terminal windows and login to two different hosts (you could use ClusterSSH or <span class='inlinecode'>tmux</span> here). 2. Run on the first host <span class='inlinecode'>netdiff otherhost.example.org /file/to/diff.txt</span> and run on the second host <span class='inlinecode'>netdiff firsthost.example.org /file/to/diff.txt</span>. 3. You then will see the file differences.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/netdiff'>https://codeberg.org/snonux/netdiff</a><br />
+<a class='textlink' href='https://github.com/snonux/netdiff'>https://github.com/snonux/netdiff</a><br />
 <br />
 <h2 style='display: inline' id='delay-sending-out-e-mails-with-mutt'>Delay sending out E-Mails with Mutt</h2><br />
 <br />
 <span>This is a shell script for the Mutt email client for delaying sending out E-Mails. For example, you want to write an email on Saturday but don&#39;t want to bother the recipient earlier than Monday. It relies on CRON.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/muttdelay'>https://codeberg.org/snonux/muttdelay</a><br />
+<a class='textlink' href='https://github.com/snonux/muttdelay'>https://github.com/snonux/muttdelay</a><br />
 <br />
 <h2 style='display: inline' id='graphical-ui-for-sending-text-messages'>Graphical UI for sending text messages</h2><br />
 <br />
@@ -271,7 +271,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <a href='./sweating-the-small-stuff/jsmstrade.png'><img src='./sweating-the-small-stuff/jsmstrade.png' /></a><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/jsmstrade'>https://codeberg.org/snonux/jsmstrade</a><br />
+<a class='textlink' href='https://github.com/snonux/jsmstrade'>https://github.com/snonux/jsmstrade</a><br />
 <a class='textlink' href='https://smstrade.de'>https://smstrade.de</a><br />
 <br />
 <h2 style='display: inline' id='ipv6-and-ipv4-connectivity-testing-site'>IPv6 and IPv4 connectivity testing site</h2><br />
@@ -284,7 +284,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span><span class='inlinecode'>japi</span> s a small Perl script for listing open Jira issues. It might be broken by now as the Jira APIs may have changed. Sorry! But feel free to fork and modernize it. :-)</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/jsmstrade'>https://codeberg.org/snonux/jsmstrade</a><br />
+<a class='textlink' href='https://github.com/snonux/jsmstrade'>https://github.com/snonux/jsmstrade</a><br />
 <span> </span><br />
 <h2 style='display: inline' id='debian-running-on-your-android-phone'>Debian running on "your" Android phone</h2><br />
 <br />

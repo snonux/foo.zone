@@ -232,7 +232,7 @@ echo <font color="#808080">"Failover of zone $zone to $MASTER completed"</font>
 <br />
 <span>Check out the whole script here:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/frontends/scripts/dns-failover.ksh'>dns-failover.ksh</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/frontends/scripts/dns-failover.ksh'>dns-failover.ksh</a><br />
 <br />
 <h3 style='display: inline' id='fairly-cheap-and-geo-redundant'>Fairly cheap and geo-redundant</h3><br />
 <br />
@@ -295,7 +295,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Let&#39;s encrypt certificates usually expire after 3 months, so a weekly failover of my VMs is plenty.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/frontends/scripts/acme.sh.tpl'><span class='inlinecode'>acme.sh.tpl</span> - Rex template for the <span class='inlinecode'>acme.sh</span> script of mine.</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/frontends/scripts/acme.sh.tpl'><span class='inlinecode'>acme.sh.tpl</span> - Rex template for the <span class='inlinecode'>acme.sh</span> script of mine.</a><br />
 <a class='textlink' href='https://man.OpenBSD.org/acme-client.1'>https://man.OpenBSD.org/acme-client.1</a><br />
 <a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>Let&#39;s Encrypt with OpenBSD and Rex</a><br />
 <br />
@@ -303,7 +303,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>CRON is sending me an E-Mail whenever a failover is performed (or whenever a failover failed). Furthermore, I am monitoring my DNS servers and hosts through Gogios, the monitoring system I have developed. </span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/gogios'>https://codeberg.org/snonux/gogios</a><br />
+<a class='textlink' href='https://github.com/snonux/gogios'>https://github.com/snonux/gogios</a><br />
 <a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>KISS server monitoring with Gogios</a><br />
 <br />
 <span>Gogios, as I developed it by myself, isn&#39;t part of the OpenBSD base system. </span><br />
@@ -313,7 +313,7 @@ http://www.gnu.org/software/src-highlite -->
 <span>I use Rexify, a friendly configuration management system that allows automatic deployment and configuration.</span><br />
 <br />
 <a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/frontends'>codeberg.org/snonux/rexfiles/frontends</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/frontends'>github.com/snonux/rexfiles/frontends</a><br />
 <br />
 <span>Rex isn&#39;t part of the OpenBSD base system, but I didn&#39;t need to install any external software on OpenBSD either as Rex is invoked from my Laptop!</span><br />
 <br />
@@ -325,7 +325,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>As a password manager, I use <span class='inlinecode'>geheim</span>, a command-line tool I wrote in Ruby with encrypted files in a git repository (I even have it installed in Termux on my Phone). For HA reasons, I simply updated the client code so that it always synchronises the database with both servers when I run the <span class='inlinecode'>sync</span> command there. </span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/geheim'>https://codeberg.org/snonux/geheim</a><br />
+<a class='textlink' href='https://github.com/snonux/geheim'>https://github.com/snonux/geheim</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

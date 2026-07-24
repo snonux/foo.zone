@@ -21,7 +21,7 @@
 <br />
 <span>Hexai has been an undercover pet project of mine since around mid-last year. As I write this it is at version <span class='inlinecode'>0.42.1</span>, so it has been quietly growing for a good while before this first proper write-up.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/hexai'>Hexai source code</a><br />
+<a class='textlink' href='https://github.com/snonux/hexai'>Hexai source code</a><br />
 <a class='textlink' href='https://helix-editor.com'>Helix editor</a><br />
 <br />
 <a href='./unveiling-hexai/01-logo.png'><img alt='Hexai logo' title='Hexai logo' src='./unveiling-hexai/01-logo.png' /></a><br />
@@ -65,10 +65,10 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>go install codeberg.org/snonux/hexai/cmd/hexai@latest
-go install codeberg.org/snonux/hexai/cmd/hexai-lsp-server@latest
-go install codeberg.org/snonux/hexai/cmd/hexai-tmux-action@latest
-go install codeberg.org/snonux/hexai/cmd/ask@latest
+<pre>go install github.com/snonux/hexai/cmd/hexai@latest
+go install github.com/snonux/hexai/cmd/hexai-lsp-server@latest
+go install github.com/snonux/hexai/cmd/hexai-tmux-action@latest
+go install github.com/snonux/hexai/cmd/ask@latest
 </pre>
 <br />
 <span>If you prefer to build from a checkout, Hexai uses Mage:</span><br />
@@ -368,8 +368,8 @@ Tags:        agent
 <br />
 <span>This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of <span class='inlinecode'>ask</span>: the <span class='inlinecode'>agent-task-management</span> skill knows how to read and update the <span class='inlinecode'>ask</span> task list, and the <span class='inlinecode'>/work-on-tasks</span> command uses that skill to work through a whole backlog on its own — pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run <span class='inlinecode'>/work-on-tasks</span>, and it chews through the queue one task at a time.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/skills/agent-task-management'>agent-task-management skill</a><br />
-<a class='textlink' href='https://codeberg.org/snonux/dotfiles/src/branch/master/prompts/commands/work-on-tasks.md'>/work-on-tasks command</a><br />
+<a class='textlink' href='https://github.com/snonux/dotfiles/src/branch/master/prompts/skills/agent-task-management'>agent-task-management skill</a><br />
+<a class='textlink' href='https://github.com/snonux/dotfiles/src/branch/master/prompts/commands/work-on-tasks.md'>/work-on-tasks command</a><br />
 <br />
 <h2 style='display: inline' id='running-multiple-providers-side-by-side'>Running multiple providers side by side</h2><br />
 <br />

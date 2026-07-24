@@ -121,7 +121,7 @@
 <br />
 <span>The installation lives in the config repo:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/argocd'>codeberg.org/snonux/conf/f3s/argocd</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/argocd'>github.com/snonux/conf/f3s/argocd</a><br />
 <br />
 <span>I deployed it using Helm via a Justfile:</span><br />
 <br />
@@ -218,7 +218,7 @@ argocd-server-6b9c4b4f8d-kxw7p                      <font color="#000000">1</fon
 <br />
 <span>I didn&#39;t want ArgoCD pulling from Codeberg over the internet every time it checks for changes. If Codeberg is down (or my internet is), the cluster can&#39;t reconcile. So I set up a Git server inside the cluster itself.</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/commit/190473b/f3s/git-server'>codeberg.org/snonux/conf/f3s/git-server (at 190473b)</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/commit/190473b/f3s/git-server'>github.com/snonux/conf/f3s/git-server (at 190473b)</a><br />
 <br />
 <span>The git-server runs as a single pod in the <span class='inlinecode'>cicd</span> namespace with two containers sharing a PVC:</span><br />
 <br />
@@ -239,7 +239,7 @@ http://git-server.cicd.svc.cluster.local/conf.git
 <pre>
 # argocd-apps/cicd/git-server.yaml
 source:
-  repoURL: https://codeberg.org/snonux/conf.git
+  repoURL: https://github.com/snonux/conf.git
   targetRevision: master
   path: f3s/git-server/helm-chart
 </pre>
@@ -629,11 +629,11 @@ webdav                    https://kubernetes.default.svc  services     default  
 <br />
 <span>All the config lives here:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s'>codeberg.org/snonux/conf/f3s</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s'>github.com/snonux/conf/f3s</a><br />
 <br />
 <span>ArgoCD Application manifests organized by namespace:</span><br />
 <br />
-<a class='textlink' href='https://codeberg.org/snonux/conf/src/branch/master/f3s/argocd-apps'>codeberg.org/snonux/conf/f3s/argocd-apps</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/argocd-apps'>github.com/snonux/conf/f3s/argocd-apps</a><br />
 <br />
 <span>I can&#39;t imagine going back to running Helm commands manually.</span><br />
 <br />
