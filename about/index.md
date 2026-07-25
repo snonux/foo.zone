@@ -20,7 +20,7 @@
 
 [Project showcase](./showcase.md)  
 [github.com/snonux - My GitHub page](https://github.com/snonux)  
-[codeberg.org/snonux - My Codeberg page](https://codeberg.org/snonux)  
+[codeberg.org/snonux - My Codeberg page (Codeberg LLM policies apply)](https://codeberg.org/snonux)  
 
 ## Social Media and Communities
 
