@@ -10,6 +10,7 @@
 * [⇢ ⇢ Gadgets](#gadgets)
 * [⇢ ⇢ ⇢ Mecha Comet](#mecha-comet)
 * [⇢ ⇢ ⇢ reMarkable Paper Pro Move](#remarkable-paper-pro-move)
+* [⇢ ⇢ ⇢ TRMNL](#trmnl)
 * [⇢ ⇢ ⇢ XTeink X4 Pro](#xteink-x4-pro)
 * [⇢ ⇢ Photography](#photography)
 * [⇢ ⇢ ⇢ Fujifilm X100VI](#fujifilm-x100vi)
@@ -81,6 +82,18 @@ What I'd actually use it for:
 [![reMarkable Paper Pro Move](wishlist/remarkable-paper-pro-move.jpg "reMarkable Paper Pro Move")](wishlist/remarkable-paper-pro-move.jpg)  
 
 I'll run it purely offline — no cloud sync, no account beyond what's strictly needed. It's meant to be my always-with-me note taker, since it's even compacter than my Supernote Nomad I already have. Pen on paper feel in something that actually fits in a jacket pocket is the whole appeal.
+
+### TRMNL
+
+[![TRMNL (4-color)](wishlist/trmnl.jpg "TRMNL (4-color)")](wishlist/trmnl.jpg)  
+
+An always-on e-ink info screen for the home office, and the whole thing is open-source software driven — I can self-host the backend and point it at whatever I want. I'm leaning towards the 4-color (BWRY) one, since a bit of red and yellow goes a long way on a dashboard.
+
+What I'd put on it:
+
+* Gogios status — a glance at whether the homelab is happy.
+* A Taskwarrior dashboard, so the current task is always sitting there on the desk.
+* A habit reminder, because apparently I need one.
 
 ### XTeink X4 Pro
 
