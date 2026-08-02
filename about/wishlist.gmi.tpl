@@ -73,13 +73,14 @@ I'll run it purely offline — no cloud sync, no account beyond what's strictly 
 
 => wishlist/trmnl.jpg TRMNL (4-color)
 
-An always-on e-ink info screen for the home office, and the whole thing is open-source software driven — I can self-host the backend and point it at whatever I want. I'm leaning towards the 4-color (BWRY) one, since a bit of red and yellow goes a long way on a dashboard.
+An always-on e-ink info screen for the home office, and the whole thing is open-source software driven — I can self-host the backend and point it at whatever I want. I'm leaning towards the 4-color (BWRY) one.
 
 What I'd put on it:
 
 * Gogios status — a glance at whether the homelab is happy.
 * A Taskwarrior dashboard, so the current task is always sitting there on the desk.
 * A habit reminder, because apparently I need one.
+* Etc...
 
 ### XTeink X4 Pro
 
@@ -93,9 +94,9 @@ Only once the CrossPoint open-source firmware supports highlight by touch. Which
 
 A repairable, long-lived phone — and the one I keep coming back to is running Ubuntu Touch. So this is conditional: I only want it once Ubuntu Touch is fully supported on the Fairphone 6. The draw is the desktop mode (plug in a monitor and it's a little Linux box), plus the usual Ubuntu Touch app wishlist — KOReader, Navidrome/Subsonic client, Syncthing, WireGuard, Wallabag, a markdown notes app, that sort of thing. Until the port is properly done, I'll keep what I have.
 
-Not that I'm in a rush — my current phone is a Pixel 7 Pro on GrapheneOS, going on almost five years now, and it's been great. But it runs out of software updates next year, so there's a natural deadline creeping up. That's really the timing: if Ubuntu Touch on the Fairphone 6 lands around then, it'd be a clean swap.
+Not that I'm in a rush — my current phone is a Pixel 7 Pro on GrapheneOS, going on almost five years now, and it's been great. But it runs out of software updates next year, so there's a natural deadline approaching. That's really the timing: if Ubuntu Touch on the Fairphone 6 lands around then, it'd be a clean swap.
 
-Then again, I'm not fully decided on Ubuntu Touch yet. There's meant to be a Motorola + GrapheneOS announcement around this year or next about officially supporting Motorola devices — and if that lands, a Razr Fold on GrapheneOS might be the more sensible pick. So really it's wait-and-see between the two: Ubuntu Touch on the Fairphone 6, or GrapheneOS on a Motorola foldable.
+Then again, I'm not fully decided on Ubuntu Touch yet. There's meant to be a Motorola + GrapheneOS announcement around this year or next about officially supporting Motorola devices — and if that lands, a Razr Fold on GrapheneOS might be also a good pick. So really it's wait-and-see between the two: Ubuntu Touch on the Fairphone 6 (or another newer device if it comes along), or GrapheneOS on a Motorola foldable.
 
 ## Photography
 
