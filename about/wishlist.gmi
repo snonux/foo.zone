@@ -108,6 +108,8 @@ Only once the CrossPoint open-source firmware supports highlight by touch. Which
 
 A repairable, long-lived phone — and the only one I'd actually want to daily-drive is one running Ubuntu Touch. So this is conditional: I only want it once Ubuntu Touch is fully supported on the Fairphone 6. The draw is the desktop mode (plug in a monitor and it's a little Linux box), plus the usual Ubuntu Touch app wishlist — KOReader, Navidrome/Subsonic client, Syncthing, WireGuard, Wallabag, a markdown notes app, that sort of thing. Until the port is properly done, I'll keep what I have.
 
+Not that I'm in a rush — my current phone is a Pixel 7 Pro on GrapheneOS, going on almost five years now, and it's been great. But it runs out of software updates next year, so there's a natural deadline creeping up. That's really the timing: if Ubuntu Touch on the Fairphone 6 lands around then, it'd be a clean swap.
+
 ## Photography
 
 ### Fujifilm X100VI
