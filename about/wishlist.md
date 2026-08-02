@@ -6,7 +6,7 @@
 * [⇢ ⇢ Introduction](#introduction)
 * [⇢ ⇢ Productivity](#productivity)
 * [⇢ ⇢ ⇢ NVidia DGX Spark](#nvidia-dgx-spark)
-* [⇢ ⇢ ⇢ ThinkPad P16](#thinkpad-p16)
+* [⇢ ⇢ ⇢ ThinkPad P1](#thinkpad-p1)
 * [⇢ ⇢ Gadgets](#gadgets)
 * [⇢ ⇢ ⇢ Mecha Comet](#mecha-comet)
 * [⇢ ⇢ ⇢ reMarkable Paper Pro Move](#remarkable-paper-pro-move)
@@ -53,9 +53,9 @@ What I'd do with it:
 * Background code review on every commit (SOLID, QA, Go best practices) and a nightly audit that files Taskwarrior tasks for whatever it finds.
 * Letting a slow model just chew on batch jobs overnight, with two Pi agents keeping each other alive.
 
-### ThinkPad P16
+### ThinkPad P1
 
-[![ThinkPad P16](wishlist/thinkpad-p16.jpg "ThinkPad P16")](wishlist/thinkpad-p16.jpg)  
+[![ThinkPad P1](wishlist/thinkpad-p1.jpg "ThinkPad P1")](wishlist/thinkpad-p1.jpg)  
 
 For a large display and good CPU performance for photo editing, coding and media content consumption. My current laptop is fine but a 16-inch workstation with a proper HX-class CPU would be a noticeable step up for the heavier stuff — and a big, colour-accurate panel doesn't hurt for culling photos either. If I spec it with an RTX GPU (or a Ryzen AI part) and it behaves on Linux, it could double as a local-LLM host too.
 
@@ -94,7 +94,7 @@ Only once the CrossPoint open-source firmware supports highlight by touch. Which
 
 [![Fujifilm X100VI](wishlist/x100vi.jpg "Fujifilm X100VI")](wishlist/x100vi.jpg)  
 
-I've the X100V already, that's why I hesitate to upgrade, really. The V still takes the same photos; the VI mostly tempts me with the nicer film simulations and a bit more resolution I don't strictly need. If I ever find a good trade-in deal I'll probably cave, but it's hard to justify at full price or I will simply wait for a future X100VII or I will wait until my X100V breaks down!
+I've the X100V already, that's why I hesitate to upgrade, really. The V still takes the same photos; the VI mostly tempts me with the nicer film simulations and a bit more resolution I don't strictly need. If I ever find a good trade-in deal I'll probably cave, but it's hard to justify at full price or I will simply wait for a future X100VII or I will wait until my X100V breaks down! And if I do get one, it has to be the silver — the black one is too stealthy for my taste.
 
 ### Ricoh GR IV
 
