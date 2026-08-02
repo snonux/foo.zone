@@ -12,6 +12,7 @@
 * [⇢ ⇢ ⇢ reMarkable Paper Pro Move](#remarkable-paper-pro-move)
 * [⇢ ⇢ ⇢ TRMNL](#trmnl)
 * [⇢ ⇢ ⇢ XTeink X4 Pro](#xteink-x4-pro)
+* [⇢ ⇢ ⇢ Fairphone 6](#fairphone-6)
 * [⇢ ⇢ Photography](#photography)
 * [⇢ ⇢ ⇢ Fujifilm X100VI](#fujifilm-x100vi)
 * [⇢ ⇢ ⇢ Ricoh GR IV](#ricoh-gr-iv)
@@ -100,6 +101,12 @@ What I'd put on it:
 [![XTeink X4 Pro](wishlist/xteink-x4-pro.jpg "XTeink X4 Pro")](wishlist/xteink-x4-pro.jpg)  
 
 Only once the CrossPoint open-source firmware supports highlight by touch. Which it doesn't at the moment. I read a lot of ePubs and articles, and the whole point of an e-ink reader for me is marking things up without a laptop in front of me — so until that lands I'll keep waiting rather than buying something I'll be mildly annoyed by.
+
+### Fairphone 6
+
+[![Fairphone 6](wishlist/fairphone-6.jpg "Fairphone 6")](wishlist/fairphone-6.jpg)  
+
+A repairable, long-lived phone — and the only one I'd actually want to daily-drive is one running Ubuntu Touch. So this is conditional: I only want it once Ubuntu Touch is fully supported on the Fairphone 6. The draw is the desktop mode (plug in a monitor and it's a little Linux box), plus the usual Ubuntu Touch app wishlist — KOReader, Navidrome/Subsonic client, Syncthing, WireGuard, Wallabag, a markdown notes app, that sort of thing. Until the port is properly done, I'll keep what I have.
 
 ## Photography
 
