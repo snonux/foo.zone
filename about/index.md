@@ -32,6 +32,10 @@
 [Resources, Technical Books, Podcasts, Courses and Guides I recommend](./resources.md)  
 [Novels I've read](./novels.md)  
 
+## My wishlist
+
+[./wishlist.md](./wishlist.md)  
+
 That's all for now...
 
 [Back to the main site](../)  
