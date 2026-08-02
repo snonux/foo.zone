@@ -59,7 +59,7 @@ What I'd do with it:
 
 [![ThinkPad P1](wishlist/thinkpad-p1.jpg "ThinkPad P1")](wishlist/thinkpad-p1.jpg)  
 
-For a large display and good CPU performance for photo editing, coding and media content consumption. My current laptop is fine but a 16-inch workstation with a proper HX-class CPU would be a noticeable step up for the heavier stuff — and a big, colour-accurate panel doesn't hurt for culling photos either. If I spec it with an RTX GPU (or a Ryzen AI part) and it behaves on Linux, it could double as a local-LLM host too.
+For a large display and good CPU performance for photo editing, coding and media content consumption. My current ThinkPad X1 Gen 9 is slowly showing its age, especially when editing RAW photos. A 16-inch workstation with a proper HX-class CPU would be a noticeable step up for the heavier stuff — and a big, colour-accurate panel doesn't hurt for culling photos either. If I spec it with an RTX GPU (or a Ryzen AI part) and it behaves on Linux, it could double as a local-LLM host too.
 
 ## Gadgets
 
