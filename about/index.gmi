@@ -32,6 +32,10 @@
 => ./resources.gmi Resources, Technical Books, Podcasts, Courses and Guides I recommend
 => ./novels.gmi Novels I've read
 
+## My wishlist
+
+=> ./wishlist.gmi
+
 That's all for now...
 
 => ../ Back to the main site
