@@ -109,6 +109,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
+[2026-08-05 'Eat That Frog' book notes](./eat-that-frog.md)  
 [2025-11-02 'The Courage To Be Disliked' book notes (You are currently reading this)](./the-courage-to-be-disliked.md)  
 [2025-06-07 'A Monk's Guide to Happiness' book notes](./a-monks-guide-to-happiness.md)  
 [2025-04-19 'When: The Scientific Secrets of Perfect Timing' book notes](./when.md)  

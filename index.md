@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2026-08-04T19:16:16+03:00 by `Gemtexter`
+> This site was generated at 2026-08-05T22:58:25+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -20,6 +20,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2026-08-05 - 'Eat That Frog' book notes](./gemfeed/2026-08-05-eat-that-frog-book-notes.md)  
 [2026-07-09 - Unveiling Hexai: An AI companion for Helix and the terminal in general](./gemfeed/2026-07-09-unveiling-hexai.md)  
 [2026-07-01 - Posts from January to June 2026](./gemfeed/2026-07-01-posts-from-january-to-june-2026.md)  
 [2026-06-06 - Random Weird Things - Part Ⅳ](./gemfeed/2026-06-06-random-weird-things-iv.md)  
