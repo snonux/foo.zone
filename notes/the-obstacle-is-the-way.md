@@ -100,6 +100,7 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other book notes of mine are:
 
+[2026-08-07 '97 Things Every SRE Should Know' book notes](./97-things-every-sre-should-know.md)  
 [2026-08-05 'Eat That Frog' book notes](./eat-that-frog.md)  
 [2025-11-02 'The Courage To Be Disliked' book notes](./the-courage-to-be-disliked.md)  
 [2025-06-07 'A Monk's Guide to Happiness' book notes](./a-monks-guide-to-happiness.md)  

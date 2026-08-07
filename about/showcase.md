@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-08-04
+Generated on: 2026-08-06
 
 [![Interactive Project Rank History Graph (SVG)](showcase-rank-history.svg "Interactive Project Rank History Graph (SVG)")](showcase-rank-history.svg)  
 
@@ -13,15 +13,15 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ Projects](#projects)
 * [⇢ ⇢ ⇢ 1. conf](#1-conf)
 * [⇢ ⇢ ⇢ 2. dtail](#2-dtail)
-* [⇢ ⇢ ⇢ 3. ggaze](#3-ggaze)
-* [⇢ ⇢ ⇢ 4. shuriken.sh](#4-shurikensh)
-* [⇢ ⇢ ⇢ 5. dotfiles](#5-dotfiles)
+* [⇢ ⇢ ⇢ 3. dotfiles](#3-dotfiles)
+* [⇢ ⇢ ⇢ 4. ggaze](#4-ggaze)
+* [⇢ ⇢ ⇢ 5. shuriken.sh](#5-shurikensh)
 * [⇢ ⇢ ⇢ 6. tasksamurai](#6-tasksamurai)
 * [⇢ ⇢ ⇢ 7. hexai](#7-hexai)
-* [⇢ ⇢ ⇢ 8. gonf](#8-gonf)
-* [⇢ ⇢ ⇢ 9. gitsyncer](#9-gitsyncer)
-* [⇢ ⇢ ⇢ 10. gt](#10-gt)
-* [⇢ ⇢ ⇢ 11. foo.zone](#11-foozone)
+* [⇢ ⇢ ⇢ 8. foo.zone](#8-foozone)
+* [⇢ ⇢ ⇢ 9. gonf](#9-gonf)
+* [⇢ ⇢ ⇢ 10. gitsyncer](#10-gitsyncer)
+* [⇢ ⇢ ⇢ 11. gt](#11-gt)
 * [⇢ ⇢ ⇢ 12. snonux](#12-snonux)
 * [⇢ ⇢ ⇢ 13. ior](#13-ior)
 * [⇢ ⇢ ⇢ 14. goprecords](#14-goprecords)
@@ -32,46 +32,46 @@ This page showcases my side projects, providing an overview of what each project
 * [⇢ ⇢ ⇢ 19. foostore](#19-foostore)
 * [⇢ ⇢ ⇢ 20. fastforge](#20-fastforge)
 * [⇢ ⇢ ⇢ 21. timesamurai](#21-timesamurai)
-* [⇢ ⇢ ⇢ 22. comicforge](#22-comicforge)
-* [⇢ ⇢ ⇢ 23. rampage](#23-rampage)
-* [⇢ ⇢ ⇢ 24. ds-sim](#24-ds-sim)
-* [⇢ ⇢ ⇢ 25. gogios](#25-gogios)
-* [⇢ ⇢ ⇢ 26. yoga](#26-yoga)
-* [⇢ ⇢ ⇢ 27. epimetheus](#27-epimetheus)
-* [⇢ ⇢ ⇢ 28. rcm](#28-rcm)
-* [⇢ ⇢ ⇢ 29. gemtexter](#29-gemtexter)
-* [⇢ ⇢ ⇢ 30. gos](#30-gos)
-* [⇢ ⇢ ⇢ 31. scifi](#31-scifi)
-* [⇢ ⇢ ⇢ 32. log4jbench](#32-log4jbench)
-* [⇢ ⇢ ⇢ 33. timr](#33-timr)
-* [⇢ ⇢ ⇢ 34. foostats](#34-foostats)
-* [⇢ ⇢ ⇢ 35. wireguardmeshgenerator](#35-wireguardmeshgenerator)
-* [⇢ ⇢ ⇢ 36. ioriot](#36-ioriot)
-* [⇢ ⇢ ⇢ 37. quicklogger](#37-quicklogger)
-* [⇢ ⇢ ⇢ 38. quicklog](#38-quicklog)
-* [⇢ ⇢ ⇢ 39. sillybench](#39-sillybench)
-* [⇢ ⇢ ⇢ 40. terraform](#40-terraform)
-* [⇢ ⇢ ⇢ 41. geheim](#41-geheim)
-* [⇢ ⇢ ⇢ 42. gorum](#42-gorum)
-* [⇢ ⇢ ⇢ 43. docker-radicale-server](#43-docker-radicale-server)
-* [⇢ ⇢ ⇢ 44. randomjournalpage](#44-randomjournalpage)
-* [⇢ ⇢ ⇢ 45. failunderd](#45-failunderd)
-* [⇢ ⇢ ⇢ 46. algorithms](#46-algorithms)
-* [⇢ ⇢ ⇢ 47. staticfarm-apache-handlers](#47-staticfarm-apache-handlers)
-* [⇢ ⇢ ⇢ 48. ipv6test](#48-ipv6test)
-* [⇢ ⇢ ⇢ 49. sway-autorotate](#49-sway-autorotate)
-* [⇢ ⇢ ⇢ 50. mon](#50-mon)
-* [⇢ ⇢ ⇢ 51. photoalbum](#51-photoalbum)
-* [⇢ ⇢ ⇢ 52. fapi](#52-fapi)
-* [⇢ ⇢ ⇢ 53. pingdomfetch](#53-pingdomfetch)
-* [⇢ ⇢ ⇢ 54. loadbars](#54-loadbars)
-* [⇢ ⇢ ⇢ 55. playground](#55-playground)
-* [⇢ ⇢ ⇢ 56. pwgrep](#56-pwgrep)
-* [⇢ ⇢ ⇢ 57. xerl](#57-xerl)
-* [⇢ ⇢ ⇢ 58. awksite](#58-awksite)
-* [⇢ ⇢ ⇢ 59. gotop](#59-gotop)
-* [⇢ ⇢ ⇢ 60. japi](#60-japi)
-* [⇢ ⇢ ⇢ 61. guprecords](#61-guprecords)
+* [⇢ ⇢ ⇢ 22. loadbars](#22-loadbars)
+* [⇢ ⇢ ⇢ 23. comicforge](#23-comicforge)
+* [⇢ ⇢ ⇢ 24. rampage](#24-rampage)
+* [⇢ ⇢ ⇢ 25. ds-sim](#25-ds-sim)
+* [⇢ ⇢ ⇢ 26. gogios](#26-gogios)
+* [⇢ ⇢ ⇢ 27. yoga](#27-yoga)
+* [⇢ ⇢ ⇢ 28. epimetheus](#28-epimetheus)
+* [⇢ ⇢ ⇢ 29. rcm](#29-rcm)
+* [⇢ ⇢ ⇢ 30. gemtexter](#30-gemtexter)
+* [⇢ ⇢ ⇢ 31. gos](#31-gos)
+* [⇢ ⇢ ⇢ 32. scifi](#32-scifi)
+* [⇢ ⇢ ⇢ 33. log4jbench](#33-log4jbench)
+* [⇢ ⇢ ⇢ 34. timr](#34-timr)
+* [⇢ ⇢ ⇢ 35. foostats](#35-foostats)
+* [⇢ ⇢ ⇢ 36. wireguardmeshgenerator](#36-wireguardmeshgenerator)
+* [⇢ ⇢ ⇢ 37. ioriot](#37-ioriot)
+* [⇢ ⇢ ⇢ 38. quicklogger](#38-quicklogger)
+* [⇢ ⇢ ⇢ 39. quicklog](#39-quicklog)
+* [⇢ ⇢ ⇢ 40. sillybench](#40-sillybench)
+* [⇢ ⇢ ⇢ 41. terraform](#41-terraform)
+* [⇢ ⇢ ⇢ 42. guprecords](#42-guprecords)
+* [⇢ ⇢ ⇢ 43. photoalbum](#43-photoalbum)
+* [⇢ ⇢ ⇢ 44. geheim](#44-geheim)
+* [⇢ ⇢ ⇢ 45. gorum](#45-gorum)
+* [⇢ ⇢ ⇢ 46. docker-radicale-server](#46-docker-radicale-server)
+* [⇢ ⇢ ⇢ 47. randomjournalpage](#47-randomjournalpage)
+* [⇢ ⇢ ⇢ 48. failunderd](#48-failunderd)
+* [⇢ ⇢ ⇢ 49. algorithms](#49-algorithms)
+* [⇢ ⇢ ⇢ 50. staticfarm-apache-handlers](#50-staticfarm-apache-handlers)
+* [⇢ ⇢ ⇢ 51. ipv6test](#51-ipv6test)
+* [⇢ ⇢ ⇢ 52. sway-autorotate](#52-sway-autorotate)
+* [⇢ ⇢ ⇢ 53. mon](#53-mon)
+* [⇢ ⇢ ⇢ 54. fapi](#54-fapi)
+* [⇢ ⇢ ⇢ 55. xerl](#55-xerl)
+* [⇢ ⇢ ⇢ 56. pingdomfetch](#56-pingdomfetch)
+* [⇢ ⇢ ⇢ 57. playground](#57-playground)
+* [⇢ ⇢ ⇢ 58. pwgrep](#58-pwgrep)
+* [⇢ ⇢ ⇢ 59. awksite](#59-awksite)
+* [⇢ ⇢ ⇢ 60. gotop](#60-gotop)
+* [⇢ ⇢ ⇢ 61. japi](#61-japi)
 * [⇢ ⇢ ⇢ 62. perldaemon](#62-perldaemon)
 * [⇢ ⇢ ⇢ 63. rubyfy](#63-rubyfy)
 * [⇢ ⇢ ⇢ 64. netdiff](#64-netdiff)
@@ -92,11 +92,11 @@ This page showcases my side projects, providing an overview of what each project
 ## Overall Statistics
 
 * 📦 Total Projects: 77
-* 📊 Total Commits: 13,798
-* 📈 Total Lines of Code: 672,066
-* 📄 Total Lines of Documentation: 299,276
-* 💻 Languages: Go (50.9%), Java (8.9%), Shell (6.9%), C (5.4%), Dart (4.7%), XML (3.4%), YAML (2.9%), C++ (2.6%), Perl (2.5%), C/C++ (2.0%), JavaScript (1.9%), JSON (1.7%), TypeScript (1.1%), Ruby (1.0%), HTML (1.0%), CSS (1.0%), Config (0.6%), HCL (0.4%), Python (0.4%), Make (0.3%), TOML (0.1%)
-* 📚 Documentation: Text (75.0%), Markdown (23.9%), LaTeX (1.1%)
+* 📊 Total Commits: 14,459
+* 📈 Total Lines of Code: 711,037
+* 📄 Total Lines of Documentation: 300,379
+* 💻 Languages: Go (48.9%), Java (8.4%), Shell (7.0%), C++ (5.3%), C (5.1%), Dart (4.5%), XML (3.2%), C/C++ (3.1%), YAML (2.8%), Perl (2.1%), JavaScript (1.8%), JSON (1.6%), HTML (1.1%), TypeScript (1.0%), CSS (1.0%), Ruby (1.0%), Config (0.7%), HCL (0.4%), Python (0.4%), Make (0.3%), TOML (0.1%)
+* 📚 Documentation: Text (74.7%), Markdown (24.2%), LaTeX (1.1%)
 * 🚀 Release Status: 41 released, 36 experimental (53.2% with releases, 46.8% experimental)
 
 ## Projects
@@ -105,12 +105,12 @@ This page showcases my side projects, providing an overview of what each project
 
 * 💻 Languages: YAML (76.0%), Shell (10.6%), Perl (7.6%), Python (2.7%), Make (1.3%), JSON (0.5%), Docker (0.5%), Config (0.3%), TOML (0.3%), Ruby (0.2%), HTML (0.1%)
 * 📚 Documentation: Markdown (97.6%), Text (2.4%)
-* 📊 Commits: 1045
-* 📈 Lines of Code: 24887
-* 📄 Lines of Documentation: 8020
+* 📊 Commits: 1049
+* 📈 Lines of Code: 24896
+* 📄 Lines of Documentation: 8098
 * 🏷️ Tags: 0
-* 📅 Development Period: 2021-12-28 to 2026-08-04
-* 🏆 Score: 48.9 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2021-12-28 to 2026-08-05
+* 🏆 Score: 54.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -133,7 +133,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash conf
 * 📄 Lines of Documentation: 220971
 * 🏷️ Tags: 27
 * 📅 Development Period: 2020-01-09 to 2026-07-18
-* 🏆 Score: 30.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 28.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.3.3 (2024-08-23)
 
@@ -148,7 +148,30 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash dtai
 
 ---
 
-### 3. ggaze
+### 3. dotfiles
+
+* 💻 Languages: Shell (74.5%), Config (6.8%), TOML (6.0%), CSS (5.8%), Python (3.1%), JSON (3.1%), Ruby (0.5%), INI (0.1%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 1159
+* 📈 Lines of Code: 5611
+* 📄 Lines of Documentation: 18390
+* 🏷️ Tags: 0
+* 📅 Development Period: 2023-07-30 to 2026-08-04
+* 🏆 Score: 22.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+These are all my dotfiles. I can install them locally on my laptop and/or workstation as well as remotely on any server.
+
+[View on Codeberg](https://codeberg.org/snonux/dotfiles)  
+[View on GitHub](https://github.com/snonux/dotfiles)  
+[View on Forgejo](https://code.f3s.buetow.org/snonux/dotfiles)  
+For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash dotfiles
+
+---
+
+### 4. ggaze
 
 * 💻 Languages: C (91.4%), C/C++ (6.5%), XML (1.3%), Python (0.8%)
 * 📚 Documentation: Markdown (98.4%), Text (1.6%)
@@ -157,7 +180,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash dtai
 * 📄 Lines of Documentation: 2430
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-07-12 to 2026-07-22
-* 🏆 Score: 20.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 18.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: GPL-3.0
 * 🧪 Status: Experimental (no releases yet)
 
@@ -172,7 +195,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash ggaz
 
 ---
 
-### 4. shuriken.sh
+### 5. shuriken.sh
 
 * 💻 Languages: Shell (99.5%), Config (0.4%), Docker (0.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -181,7 +204,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash ggaz
 * 📄 Lines of Documentation: 952
 * 🏷️ Tags: 32
 * 📅 Development Period: 2011-11-19 to 2026-07-18
-* 🏆 Score: 17.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 17.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: 0.13.0 (2026-07-18)
 
@@ -197,29 +220,6 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash shur
 
 ---
 
-### 5. dotfiles
-
-* 💻 Languages: Shell (74.1%), Config (6.9%), TOML (6.1%), CSS (5.9%), Python (3.2%), JSON (3.1%), Ruby (0.5%), INI (0.1%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 1150
-* 📈 Lines of Code: 5515
-* 📄 Lines of Documentation: 18312
-* 🏷️ Tags: 0
-* 📅 Development Period: 2023-07-30 to 2026-07-27
-* 🏆 Score: 17.3 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-These are all my dotfiles. I can install them locally on my laptop and/or workstation as well as remotely on any server.
-
-[View on Codeberg](https://codeberg.org/snonux/dotfiles)  
-[View on GitHub](https://github.com/snonux/dotfiles)  
-[View on Forgejo](https://code.f3s.buetow.org/snonux/dotfiles)  
-For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash dotfiles
-
----
-
 ### 6. tasksamurai
 
 * 💻 Languages: Go (99.9%)
@@ -229,7 +229,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash dotf
 * 📄 Lines of Documentation: 265
 * 🏷️ Tags: 25
 * 📅 Development Period: 2025-06-19 to 2026-07-19
-* 🏆 Score: 16.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 15.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.18.3 (2026-07-19)
 
@@ -253,7 +253,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash task
 * 📄 Lines of Documentation: 3894
 * 🏷️ Tags: 106
 * 📅 Development Period: 2025-08-01 to 2026-07-15
-* 🏆 Score: 13.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 13.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.42.0 (2026-07-02)
 
@@ -268,7 +268,30 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash hexa
 
 ---
 
-### 8. gonf
+### 8. foo.zone
+
+* 💻 Languages: XML (98.4%), Shell (1.3%), Go (0.3%)
+* 📚 Documentation: Text (86.4%), Markdown (13.6%)
+* 📊 Commits: 1860
+* 📈 Lines of Code: 21604
+* 📄 Lines of Documentation: 176
+* 🏷️ Tags: 0
+* 📅 Development Period: 2021-04-29 to 2026-08-04
+* 🏆 Score: 12.4 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+Each format is in it's own branch in this repository. E.g.:
+
+[View on Codeberg](https://codeberg.org/snonux/foo.zone)  
+[View on GitHub](https://github.com/snonux/foo.zone)  
+[View on Forgejo](https://code.f3s.buetow.org/snonux/foo.zone)  
+For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash foo.zone
+
+---
+
+### 9. gonf
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (99.3%), Text (0.7%)
@@ -277,7 +300,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash hexa
 * 📄 Lines of Documentation: 136
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-07-04 to 2026-07-09
-* 🏆 Score: 11.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 11.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -295,7 +318,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gonf
 
 ---
 
-### 9. gitsyncer
+### 10. gitsyncer
 
 * 💻 Languages: Go (95.3%), Shell (4.4%), JSON (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -304,7 +327,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gonf
 * 📄 Lines of Documentation: 2501
 * 🏷️ Tags: 43
 * 📅 Development Period: 2025-06-23 to 2026-07-22
-* 🏆 Score: 10.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 10.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.18.5 (2026-06-17)
 
@@ -317,7 +340,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gits
 
 ---
 
-### 10. gt
+### 11. gt
 
 * 💻 Languages: Go (97.7%), Shell (2.0%), YAML (0.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -326,7 +349,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gits
 * 📄 Lines of Documentation: 4351
 * 🏷️ Tags: 7
 * 📅 Development Period: 2025-11-25 to 2026-05-25
-* 🏆 Score: 8.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 8.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.5.1 (2026-05-25)
 
@@ -341,29 +364,6 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gt
 
 ---
 
-### 11. foo.zone
-
-* 💻 Languages: XML (98.4%), Shell (1.3%), Go (0.3%)
-* 📚 Documentation: Text (86.4%), Markdown (13.6%)
-* 📊 Commits: 1847
-* 📈 Lines of Code: 21604
-* 📄 Lines of Documentation: 176
-* 🏷️ Tags: 0
-* 📅 Development Period: 2021-04-29 to 2026-07-24
-* 🏆 Score: 7.8 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-Each format is in it's own branch in this repository. E.g.:
-
-[View on Codeberg](https://codeberg.org/snonux/foo.zone)  
-[View on GitHub](https://github.com/snonux/foo.zone)  
-[View on Forgejo](https://code.f3s.buetow.org/snonux/foo.zone)  
-For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash foo.zone
-
----
-
 ### 12. snonux
 
 * 💻 Languages: JSON (36.9%), JavaScript (26.9%), Go (23.7%), CSS (12.6%)
@@ -373,7 +373,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash foo.
 * 📄 Lines of Documentation: 1139
 * 🏷️ Tags: 29
 * 📅 Development Period: 2026-04-06 to 2026-07-08
-* 🏆 Score: 7.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 7.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.18.0 (2026-07-06)
 
@@ -395,7 +395,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash snon
 * 📄 Lines of Documentation: 3008
 * 🏷️ Tags: 3
 * 📅 Development Period: 2024-01-18 to 2026-05-14
-* 🏆 Score: 7.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 7.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.1.0 (2026-05-14)
 
@@ -419,7 +419,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash ior
 * 📄 Lines of Documentation: 1008
 * 🏷️ Tags: 17
 * 📅 Development Period: 2013-03-22 to 2026-07-20
-* 🏆 Score: 5.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.5.2 (2026-06-07)
 
@@ -441,7 +441,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gopr
 * 📄 Lines of Documentation: 400
 * 🏷️ Tags: 43
 * 📅 Development Period: 2025-07-14 to 2026-06-18
-* 🏆 Score: 5.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.29.3 (2026-06-18)
 
@@ -465,7 +465,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash tota
 * 📄 Lines of Documentation: 48
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-06-15 to 2026-07-18
-* 🏆 Score: 5.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -487,7 +487,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash irre
 * 📄 Lines of Documentation: 6954
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-04-28 to 2026-05-23
-* 🏆 Score: 5.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -509,7 +509,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash play
 * 📄 Lines of Documentation: 2948
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-03-21 to 2026-06-17
-* 🏆 Score: 5.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -534,7 +534,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash hypr
 * 📄 Lines of Documentation: 162
 * 🏷️ Tags: 12
 * 📅 Development Period: 2018-05-26 to 2026-04-29
-* 🏆 Score: 4.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.8.1 (2026-04-29)
 
@@ -580,7 +580,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash fast
 * 📄 Lines of Documentation: 112
 * 🏷️ Tags: 5
 * 📅 Development Period: 2025-06-25 to 2026-03-26
-* 🏆 Score: 3.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.8.0 (2026-03-26)
 
@@ -593,7 +593,34 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash time
 
 ---
 
-### 22. comicforge
+### 22. loadbars
+
+* 💻 Languages: Go (92.8%), Shell (7.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 537
+* 📈 Lines of Code: 6595
+* 📄 Lines of Documentation: 328
+* 🏷️ Tags: 38
+* 📅 Development Period: 2010-11-05 to 2026-03-02
+* 🏆 Score: 3.7 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🏷️ Latest Release: v0.11.1 (2026-02-17)
+
+
+[![loadbars screenshot](showcase/loadbars/image-1.gif "loadbars screenshot")](showcase/loadbars/image-1.gif)  
+
+Loadbars is a real-time server load monitoring tool that visualizes CPU, memory, network, load average, and disk I/O statistics for multiple remote Linux servers simultaneously in an SDL2 window. It connects to hosts via SSH (using key-based auth) and runs an embedded Bash script that reads from `/proc`, parsing metrics like per-core CPU usage, RAM/swap, network throughput, and disk I/O — then renders them as vertical colored bars side by side. Unlike graphing tools that require data collection over time, Loadbars shows only the current state (like `top` or `vmstat`), making it useful for quick, at-a-glance monitoring of cluster health across many machines.
+
+Architecturally, the Go binary embeds the remote monitoring script at build time and runs it locally or over SSH via `bash -s`, so remote hosts need only bash and `/proc` (no Go installation required). The codebase is organized into `internal/` packages: `collector` handles script execution and metric parsing, `display` manages the SDL2 rendering loop and hotkey-driven toggles (per-core vs. aggregate views, extended peak lines, memory/network/load/disk bars), `config` manages CLI flags and `~/.loadbarsrc` persistence, and `stats` defines the shared data structures. macOS is supported as a client for monitoring remote Linux hosts, though local monitoring requires Linux.
+
+[View on Codeberg](https://codeberg.org/snonux/loadbars)  
+[View on GitHub](https://github.com/snonux/loadbars)  
+[View on Forgejo](https://code.f3s.buetow.org/snonux/loadbars)  
+For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash loadbars
+
+---
+
+### 23. comicforge
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (95.9%), Text (4.1%)
@@ -602,7 +629,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash time
 * 📄 Lines of Documentation: 998
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-04-19 to 2026-04-23
-* 🏆 Score: 3.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -617,7 +644,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash comi
 
 ---
 
-### 23. rampage
+### 24. rampage
 
 * 💻 Languages: Go (100.0%)
 * 📊 Commits: 2
@@ -637,7 +664,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash ramp
 
 ---
 
-### 24. ds-sim
+### 25. ds-sim
 
 * 💻 Languages: Java (98.6%), Shell (0.9%), CSS (0.4%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
@@ -646,7 +673,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash ramp
 * 📄 Lines of Documentation: 3103
 * 🏷️ Tags: 2
 * 📅 Development Period: 2008-05-15 to 2026-03-30
-* 🏆 Score: 3.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: 1.1.0 (2026-03-27)
 
@@ -661,18 +688,18 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash ds-s
 
 ---
 
-### 25. gogios
+### 26. gogios
 
 * 💻 Languages: Go (98.9%), JSON (0.6%), YAML (0.5%)
 * 📚 Documentation: Markdown (94.9%), Text (5.1%)
-* 📊 Commits: 114
-* 📈 Lines of Code: 3864
+* 📊 Commits: 115
+* 📈 Lines of Code: 3932
 * 📄 Lines of Documentation: 394
-* 🏷️ Tags: 11
-* 📅 Development Period: 2023-04-17 to 2026-07-18
-* 🏆 Score: 2.6 (combines recent activity, code size, tags, and release status)
+* 🏷️ Tags: 12
+* 📅 Development Period: 2023-04-17 to 2026-08-04
+* 🏆 Score: 2.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.4.2 (2026-07-18)
+* 🏷️ Latest Release: v1.4.3 (2026-08-04)
 
 
 [![gogios screenshot](showcase/gogios/image-1.png "gogios screenshot")](showcase/gogios/image-1.png)  
@@ -686,7 +713,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gogi
 
 ---
 
-### 26. yoga
+### 27. yoga
 
 * 💻 Languages: Go (69.1%), HTML (30.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -710,7 +737,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash yoga
 
 ---
 
-### 27. epimetheus
+### 28. epimetheus
 
 * 💻 Languages: Go (85.2%), Shell (14.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -734,7 +761,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash epim
 
 ---
 
-### 28. rcm
+### 29. rcm
 
 * 💻 Languages: Ruby (99.6%), TOML (0.4%)
 * 📚 Documentation: Markdown (100.0%)
@@ -759,7 +786,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash rcm
 
 ---
 
-### 29. gemtexter
+### 30. gemtexter
 
 * 💻 Languages: Shell (55.9%), CSS (31.0%), HTML (11.2%), Config (1.8%)
 * 📚 Documentation: Text (75.1%), Markdown (24.9%)
@@ -782,7 +809,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gemt
 
 ---
 
-### 30. gos
+### 31. gos
 
 * 💻 Languages: Go (99.6%), JSON (0.2%), Shell (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -791,7 +818,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gemt
 * 📄 Lines of Documentation: 477
 * 🏷️ Tags: 17
 * 📅 Development Period: 2024-05-04 to 2026-07-05
-* 🏆 Score: 1.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.3.1 (2026-07-05)
 
@@ -807,7 +834,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gos
 
 ---
 
-### 31. scifi
+### 32. scifi
 
 * 💻 Languages: JSON (36.6%), JavaScript (30.2%), CSS (29.6%), HTML (3.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -829,7 +856,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash scif
 
 ---
 
-### 32. log4jbench
+### 33. log4jbench
 
 * 💻 Languages: Java (78.9%), XML (21.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -851,7 +878,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash log4
 
 ---
 
-### 33. timr
+### 34. timr
 
 * 💻 Languages: Go (96.0%), Shell (4.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -873,7 +900,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash timr
 
 ---
 
-### 34. foostats
+### 35. foostats
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -896,16 +923,16 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash foos
 
 ---
 
-### 35. wireguardmeshgenerator
+### 36. wireguardmeshgenerator
 
-* 💻 Languages: Ruby (64.8%), YAML (35.2%)
+* 💻 Languages: Ruby (66.0%), YAML (34.0%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 42
-* 📈 Lines of Code: 922
-* 📄 Lines of Documentation: 24
+* 📊 Commits: 44
+* 📈 Lines of Code: 967
+* 📄 Lines of Documentation: 208
 * 🏷️ Tags: 1
-* 📅 Development Period: 2025-04-18 to 2026-07-03
-* 🏆 Score: 1.2 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2025-04-18 to 2026-08-04
+* 🏆 Score: 1.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
@@ -919,7 +946,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash wire
 
 ---
 
-### 36. ioriot
+### 37. ioriot
 
 * 💻 Languages: C (58.7%), C/C++ (22.5%), Config (17.9%), Make (1.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -944,7 +971,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash iori
 
 ---
 
-### 37. quicklogger
+### 38. quicklogger
 
 * 💻 Languages: Go (96.3%), XML (2.3%), Shell (0.9%), TOML (0.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -968,7 +995,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash quic
 
 ---
 
-### 38. quicklog
+### 39. quicklog
 
 * 💻 Languages: Dart (53.9%), CMake (13.5%), Kotlin (9.9%), C++ (9.2%), XML (8.0%), YAML (3.5%), C/C++ (2.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -995,7 +1022,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash quic
 
 ---
 
-### 39. sillybench
+### 40. sillybench
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1017,7 +1044,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash sill
 
 ---
 
-### 40. terraform
+### 41. terraform
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1041,7 +1068,56 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash terr
 
 ---
 
-### 41. geheim
+### 42. guprecords
+
+* 💻 Languages: Raku (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 97
+* 📈 Lines of Code: 383
+* 📄 Lines of Documentation: 425
+* 🏷️ Tags: 1
+* 📅 Development Period: 2013-03-22 to 2026-03-07
+* 🏆 Score: 0.4 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v1.0.0 (2023-04-29)
+
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
+
+guprecords: source code repository.
+
+[View on Codeberg](https://codeberg.org/snonux/guprecords)  
+[View on GitHub](https://github.com/snonux/guprecords)  
+[View on Forgejo](https://code.f3s.buetow.org/snonux/guprecords)  
+For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash guprecords
+
+---
+
+### 43. photoalbum
+
+* 💻 Languages: Shell (92.5%), Make (4.6%), Config (2.9%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 159
+* 📈 Lines of Code: 908
+* 📄 Lines of Documentation: 42
+* 🏷️ Tags: 18
+* 📅 Development Period: 2011-11-19 to 2026-06-09
+* 🏆 Score: 0.4 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.8.1 (2026-06-09)
+
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
+
+photoalbum is a minimal Bash script for Unix like operating systems (such as Linux) to generate static web photo albums.
+The resulting static photo album is pure HTML+CSS (without any JavaScript!).
+
+[View on Codeberg](https://codeberg.org/snonux/photoalbum)  
+[View on GitHub](https://github.com/snonux/photoalbum)  
+[View on Forgejo](https://code.f3s.buetow.org/snonux/photoalbum)  
+For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash photoalbum
+
+---
+
+### 44. geheim
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1065,7 +1141,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash gehe
 
 ---
 
-### 42. gorum
+### 45. gorum
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1089,7 +1165,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash goru
 
 ---
 
-### 43. docker-radicale-server
+### 46. docker-radicale-server
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1113,7 +1189,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash dock
 
 ---
 
-### 44. randomjournalpage
+### 47. randomjournalpage
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1137,7 +1213,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash rand
 
 ---
 
-### 45. failunderd
+### 48. failunderd
 
 * 💻 Languages: Perl (89.7%), Config (5.0%), Make (3.1%), Shell (2.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1164,7 +1240,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash fail
 
 ---
 
-### 46. algorithms
+### 49. algorithms
 
 * 💻 Languages: Go (96.5%), Make (2.0%), Config (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1187,7 +1263,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash algo
 
 ---
 
-### 47. staticfarm-apache-handlers
+### 50. staticfarm-apache-handlers
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1213,7 +1289,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash stat
 
 ---
 
-### 48. ipv6test
+### 51. ipv6test
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1237,7 +1313,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash ipv6
 
 ---
 
-### 49. sway-autorotate
+### 52. sway-autorotate
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1261,7 +1337,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash sway
 
 ---
 
-### 50. mon
+### 53. mon
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -1286,32 +1362,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash mon
 
 ---
 
-### 51. photoalbum
-
-* 💻 Languages: Shell (78.1%), Make (13.5%), Config (8.4%)
-* 📚 Documentation: Text (100.0%)
-* 📊 Commits: 128
-* 📈 Lines of Code: 311
-* 📄 Lines of Documentation: 45
-* 🏷️ Tags: 14
-* 📅 Development Period: 2011-11-19 to 2022-02-20
-* 🏆 Score: 0.2 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: 0.4.5 (2021-01-24)
-
-⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
-
-photoalbum is a minimal Bash script for Unix like operating systems (such as Linux) to generate static web photo albums.
-The resulting static photo album is pure HTML+CSS (without any JavaScript!).
-
-[View on Codeberg](https://codeberg.org/snonux/photoalbum)  
-[View on GitHub](https://github.com/snonux/photoalbum)  
-[View on Forgejo](https://code.f3s.buetow.org/snonux/photoalbum)  
-For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash photoalbum
-
----
-
-### 52. fapi
+### 54. fapi
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -1336,7 +1387,31 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash fapi
 
 ---
 
-### 53. pingdomfetch
+### 55. xerl
+
+* 💻 Languages: CSS (54.6%), XML (39.1%), Perl (4.0%), Make (2.2%)
+* 📚 Documentation: Text (91.2%), Org (4.9%), Markdown (3.9%)
+* 📊 Commits: 663
+* 📈 Lines of Code: 815
+* 📄 Lines of Documentation: 102
+* 🏷️ Tags: 0
+* 📅 Development Period: 2011-03-06 to 2021-11-02
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Custom License
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
+
+Those are the host templates to be used with Xerl itself.
+
+[View on Codeberg](https://codeberg.org/snonux/xerl)  
+[View on GitHub](https://github.com/snonux/xerl)  
+[View on Forgejo](https://code.f3s.buetow.org/snonux/xerl)  
+For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash xerl
+
+---
+
+### 56. pingdomfetch
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1362,33 +1437,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash ping
 
 ---
 
-### 54. loadbars
-
-* 💻 Languages: Perl (97.4%), Make (2.6%)
-* 📚 Documentation: Text (93.5%), Markdown (6.5%)
-* 📊 Commits: 492
-* 📈 Lines of Code: 1828
-* 📄 Lines of Documentation: 107
-* 🏷️ Tags: 24
-* 📅 Development Period: 2010-11-05 to 2015-05-23
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: 0.7.5 (2014-06-22)
-
-⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
-
-Loadbars is a real-time server load monitoring tool that visualizes CPU, memory, network, load average, and disk I/O statistics for multiple remote Linux servers simultaneously in an SDL2 window. It connects to hosts via SSH (using key-based auth) and runs an embedded Bash script that reads from `/proc`, parsing metrics like per-core CPU usage, RAM/swap, network throughput, and disk I/O — then renders them as vertical colored bars side by side. Unlike graphing tools that require data collection over time, Loadbars shows only the current state (like `top` or `vmstat`), making it useful for quick, at-a-glance monitoring of cluster health across many machines.
-
-Architecturally, the Go binary embeds the remote monitoring script at build time and runs it locally or over SSH via `bash -s`, so remote hosts need only bash and `/proc` (no Go installation required). The codebase is organized into `internal/` packages: `collector` handles script execution and metric parsing, `display` manages the SDL2 rendering loop and hotkey-driven toggles (per-core vs. aggregate views, extended peak lines, memory/network/load/disk bars), `config` manages CLI flags and `~/.loadbarsrc` persistence, and `stats` defines the shared data structures. macOS is supported as a client for monitoring remote Linux hosts, though local monitoring requires Linux.
-
-[View on Codeberg](https://codeberg.org/snonux/loadbars)  
-[View on GitHub](https://github.com/snonux/loadbars)  
-[View on Forgejo](https://code.f3s.buetow.org/snonux/loadbars)  
-For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash loadbars
-
----
-
-### 55. playground
+### 57. playground
 
 * 💻 Languages: Ruby (100.0%)
 * 📊 Commits: 5
@@ -1410,7 +1459,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash play
 
 ---
 
-### 56. pwgrep
+### 58. pwgrep
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (75.0%), Markdown (25.0%)
@@ -1434,29 +1483,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash pwgr
 
 ---
 
-### 57. xerl
-
-* 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
-* 📊 Commits: 143
-* 📈 Lines of Code: 1675
-* 🏷️ Tags: 1
-* 📅 Development Period: 2011-03-06 to 2026-03-07
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v1.0.0 (2018-12-22)
-
-⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
-
-Those are the host templates to be used with Xerl itself.
-
-[View on Codeberg](https://codeberg.org/snonux/xerl)  
-[View on GitHub](https://github.com/snonux/xerl)  
-[View on Forgejo](https://code.f3s.buetow.org/snonux/xerl)  
-For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash xerl
-
----
-
-### 58. awksite
+### 59. awksite
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
 * 📚 Documentation: Markdown (50.0%), Text (50.0%)
@@ -1482,7 +1509,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash awks
 
 ---
 
-### 59. gotop
+### 60. gotop
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
 * 📚 Documentation: Markdown (60.0%), Text (40.0%)
@@ -1506,7 +1533,7 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash goto
 
 ---
 
-### 60. japi
+### 61. japi
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1529,28 +1556,6 @@ DEPRECATED
 [View on GitHub](https://github.com/snonux/japi)  
 [View on Forgejo](https://code.f3s.buetow.org/snonux/japi)  
 For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash japi
-
----
-
-### 61. guprecords
-
-* 💻 Languages: Raku (100.0%)
-* 📊 Commits: 55
-* 📈 Lines of Code: 195
-* 🏷️ Tags: 0
-* 📅 Development Period: 2013-03-22 to 2023-03-09
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
-
-guprecords: source code repository.
-
-[View on Codeberg](https://codeberg.org/snonux/guprecords)  
-[View on GitHub](https://github.com/snonux/guprecords)  
-[View on Forgejo](https://code.f3s.buetow.org/snonux/guprecords)  
-For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash guprecords
 
 ---
 
@@ -1755,13 +1760,13 @@ For Forgejo access go to code dot f3s dot buetow dot org slash snonux slash debr
 
 ### 70. ychat
 
-* 💻 Languages: C++ (52.1%), C/C++ (21.3%), Shell (20.1%), HTML (2.5%), Config (2.1%), Perl (1.5%), Make (0.3%)
+* 💻 Languages: C++ (54.9%), C/C++ (23.0%), Shell (13.8%), Perl (2.5%), HTML (2.5%), Config (2.3%), Make (0.8%), CSS (0.2%)
 * 📚 Documentation: Text (100.0%)
-* 📊 Commits: 27
-* 📈 Lines of Code: 33823
-* 📄 Lines of Documentation: 109
+* 📊 Commits: 21
+* 📈 Lines of Code: 67884
+* 📄 Lines of Documentation: 127
 * 🏷️ Tags: 0
-* 📅 Development Period: 2008-05-15 to 2014-07-01
+* 📅 Development Period: 2008-05-15 to 2014-06-30
 * 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: GPL-2.0
 * 🧪 Status: Experimental (no releases yet)
