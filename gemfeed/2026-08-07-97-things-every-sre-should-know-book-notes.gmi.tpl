@@ -4,30 +4,7 @@
 
 These are my personal book notes of Emil Stolarsky's and Jaime Woo's "97 Things Every SRE Should Know". They are for myself, but I hope they might be useful to you too.
 
-## Table of Contents
-
-* ⇢ "97 Things Every SRE Should Know" book notes
-* ⇢ ⇢ Introduction
-* ⇢ ⇢ Observability
-* ⇢ ⇢ The ancient art of writing things down
-* ⇢ ⇢ The team's health
-* ⇢ ⇢ Sharing responsibilities
-* ⇢ ⇢ The roles and the solo SRE
-* ⇢ ⇢ Being customer-focused
-* ⇢ ⇢ Don't have all the answers
-* ⇢ ⇢ Runbooks
-* ⇢ ⇢ Alerts per shift
-* ⇢ ⇢ Balancing velocity
-* ⇢ ⇢ The power in knowing how to be self-sufficient
-* ⇢ ⇢ Prioritize towards the overall reliability goal
-* ⇢ ⇢ The quiet time vs the burnout
-* ⇢ ⇢ Error budget as a learning budget
-* ⇢ ⇢ Introducing SRE
-* ⇢ ⇢ Heroes and on-call practices
-* ⇢ ⇢ Prevent failures through improved system design
-* ⇢ ⇢ On-call health and postmortems
-* ⇢ ⇢ Time management and cultural considerations
-* ⇢ ⇢ Alert volume vs effectiveness
+<< template::inline::toc
 
 ## Introduction
 
@@ -306,19 +283,7 @@ Introducing SRE courses in academia would signify a new era in engineering.
 
 Other book notes of mine are:
 
-=> ./97-things-every-sre-should-know.gmi 2026-08-07 '97 Things Every SRE Should Know' book notes (You are currently reading this)
-=> ./eat-that-frog.gmi 2026-08-05 'Eat That Frog' book notes
-=> ./the-courage-to-be-disliked.gmi 2025-11-02 'The Courage To Be Disliked' book notes
-=> ./a-monks-guide-to-happiness.gmi 2025-06-07 'A Monk's Guide to Happiness' book notes
-=> ./when.gmi 2025-04-19 'When: The Scientific Secrets of Perfect Timing' book notes
-=> ./staff-engineer.gmi 2024-10-24 'Staff Engineer' book notes
-=> ./the-stoic-challenge.gmi 2024-07-07 'The Stoic Challenge' book notes
-=> ./slow-productivity.gmi 2024-05-01 'Slow Productivity' book notes
-=> ./mind-management.gmi 2023-11-11 'Mind Management' book notes
-=> ./career-guide-and-soft-skills.gmi 2023-07-17 'Software Developers Career Guide and Soft Skills' book notes
-=> ./the-obstacle-is-the-way.gmi 2023-05-06 'The Obstacle is the Way' book notes
-=> ./never-split-the-difference.gmi 2023-04-01 'Never split the difference' book notes
-=> ./the-pragmatic-programmer.gmi 2023-03-16 'The Pragmatic Programmer' book notes
+<< template::inline::rindex book-notes
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
