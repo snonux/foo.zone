@@ -114,6 +114,8 @@ Then again, I'm not fully decided on Ubuntu Touch yet. There's meant to be a Mot
 
 I've the X100V already, that's why I hesitate to upgrade, really. The V still takes the same photos; the VI mostly tempts me with the nicer film simulations and a bit more resolution I don't strictly need. If I ever find a good trade-in deal I'll probably cave, but it's hard to justify at full price or I will simply wait for a future X100VII or I will wait until my X100V breaks down! And if I do get one, it has to be the silver — the black one is too stealthy for my taste.
 
+## Already ordered
+
 ### Ricoh GR IV
 
 => wishlist/ricoh-gr-iv.jpg Ricoh GR IV
