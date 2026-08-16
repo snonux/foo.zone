@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-06-01-gt-calculator.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-06-01-gt-calculator.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-06-01-gt-calculator.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-06-01-gt-calculator.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='gt-calculator---a-calculator-built-with-local-llms'><span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs</h1><br />
 <br />
@@ -83,9 +83,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'3 4 +'</font>                     <i><font color="silver"># one-liner: RPN</font></i>
-gt <font color="#808080">'20% of 150'</font>                <i><font color="silver"># one-liner: percentage</font></i>
-gt                             <i><font color="silver"># interactive REPL</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'3 4 +'</font><font color="#dbd7ca">                     </font><i><font color="#666666"># one-liner: RPN</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'20% of 150'</font><font color="#dbd7ca">                </font><i><font color="#666666"># one-liner: percentage</font></i>
+<font color="#dbd7ca">gt                             </font><i><font color="#666666"># interactive REPL</font></i>
 </pre>
 <br />
 <span>You can also pipe into it: <span class='inlinecode'>echo &#39;1000Mbps @Gbps convert&#39; | gt</span> → <span class='inlinecode'>1</span>.</span><br />
@@ -98,9 +98,9 @@ gt                             <i><font color="silver"># interactive REPL</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'20% of 150'</font>                <i><font color="silver"># → 30.00</font></i>
-gt <font color="#808080">'30 is what % of 150'</font>       <i><font color="silver"># → 20.00%</font></i>
-gt <font color="#808080">'30 is 20% of what'</font>         <i><font color="silver"># → 150.00</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'20% of 150'</font><font color="#dbd7ca">                </font><i><font color="#666666"># → 30.00</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'30 is what % of 150'</font><font color="#dbd7ca">       </font><i><font color="#666666"># → 20.00%</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'30 is 20% of what'</font><font color="#dbd7ca">         </font><i><font color="#666666"># → 150.00</font></i>
 </pre>
 <br />
 <span>Every percentage result shows the formula and intermediate values, so you can verify the math. Useful for tips, discounts, tax, and any "what&#39;s the actual number?" moment.</span><br />
@@ -113,10 +113,10 @@ gt <font color="#808080">'30 is 20% of what'</font>         <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'3 4 +'</font>                     <i><font color="silver"># 7</font></i>
-gt <font color="#808080">'2 10 ^'</font>                    <i><font color="silver"># 1024</font></i>
-gt <font color="#808080">'100 10 / 5 +'</font>              <i><font color="silver"># 15</font></i>
-gt <font color="#808080">'3 4 + 5 6 + *'</font>             <i><font color="silver"># (3+4) × (5+6) = 77</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'3 4 +'</font><font color="#dbd7ca">                     </font><i><font color="#666666"># 7</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'2 10 ^'</font><font color="#dbd7ca">                    </font><i><font color="#666666"># 1024</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'100 10 / 5 +'</font><font color="#dbd7ca">              </font><i><font color="#666666"># 15</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'3 4 + 5 6 + *'</font><font color="#dbd7ca">             </font><i><font color="#666666"># (3+4) × (5+6) = 77</font></i>
 </pre>
 <br />
 <span>Six basic operators: <span class='inlinecode'>+</span>, <span class='inlinecode'>-</span>, <span class='inlinecode'>*</span>, <span class='inlinecode'>/</span>, <span class='inlinecode'>^</span>, <span class='inlinecode'>%</span>. All work on the stack, popping operands and pushing the result.</span><br />
@@ -131,8 +131,8 @@ gt <font color="#808080">'3 4 + 5 6 + *'</font>             <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'17 5 %'</font>                    <i><font color="silver"># → 2</font></i>
-gt <font color="#808080">'100 7 %'</font>                   <i><font color="silver"># → 2</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'17 5 %'</font><font color="#dbd7ca">                    </font><i><font color="#666666"># → 2</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'100 7 %'</font><font color="#dbd7ca">                   </font><i><font color="#666666"># → 2</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='logarithms'>Logarithms</h3><br />
@@ -147,9 +147,9 @@ gt <font color="#808080">'100 7 %'</font>                   <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'1024 lg'</font>                   <i><font color="silver"># → 10</font></i>
-gt <font color="#808080">'1000 log'</font>                  <i><font color="silver"># → 3</font></i>
-gt <font color="#808080">'e ln'</font>                      <i><font color="silver"># → 1.0000000000</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'1024 lg'</font><font color="#dbd7ca">                   </font><i><font color="#666666"># → 10</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'1000 log'</font><font color="#dbd7ca">                  </font><i><font color="#666666"># → 3</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'e ln'</font><font color="#dbd7ca">                      </font><i><font color="#666666"># → 1.0000000000</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='hyper-operators-n-ary'>Hyper operators (n-ary)</h3><br />
@@ -160,10 +160,10 @@ gt <font color="#808080">'e ln'</font>                      <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'1 2 3 4 5 [+]'</font>            <i><font color="silver"># → 15 (sum of all)</font></i>
-gt <font color="#808080">'100 10 20 30 5 [-]'</font>       <i><font color="silver"># → 35 (100-10-20-30-5)</font></i>
-gt <font color="#808080">'2 5 10 [*]'</font>               <i><font color="silver"># → 100 (product)</font></i>
-gt <font color="#808080">'1000 2 2 2 2 [/]'</font>         <i><font color="silver"># → 62.5</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'1 2 3 4 5 [+]'</font><font color="#dbd7ca">            </font><i><font color="#666666"># → 15 (sum of all)</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'100 10 20 30 5 [-]'</font><font color="#dbd7ca">       </font><i><font color="#666666"># → 35 (100-10-20-30-5)</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'2 5 10 [*]'</font><font color="#dbd7ca">               </font><i><font color="#666666"># → 100 (product)</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'1000 2 2 2 2 [/]'</font><font color="#dbd7ca">         </font><i><font color="#666666"># → 62.5</font></i>
 </pre>
 <br />
 <span>Full set: <span class='inlinecode'>[+]</span>, <span class='inlinecode'>[-]</span>, <span class='inlinecode'>[*]</span>, <span class='inlinecode'>[/]</span>, <span class='inlinecode'>[^]</span>, <span class='inlinecode'>[%]</span> for arithmetic, plus <span class='inlinecode'>[lg]</span>, <span class='inlinecode'>[log]</span>, <span class='inlinecode'>[ln]</span> for logarithms. The log hyper operators work differently from the arithmetic ones — they compute the sum of the log function applied to each value, not a left-associative reduction. A quick entropy calculation:</span><br />
@@ -172,7 +172,7 @@ gt <font color="#808080">'1000 2 2 2 2 [/]'</font>         <i><font color="silve
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'0.25 0.5 0.25 [lg]'</font>      <i><font color="silver"># → -5  (information theory entropy bits)</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'0.25 0.5 0.25 [lg]'</font><font color="#dbd7ca">      </font><i><font color="#666666"># → -5  (information theory entropy bits)</font></i>
 </pre>
 <br />
 <span>The square-bracket syntax is inspired by Raku&#39;s hyper operators.</span><br />
@@ -187,9 +187,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'5 3 gt'</font>                    <i><font color="silver"># → true</font></i>
-gt <font color="#808080">'3 5 &lt;'</font>                     <i><font color="silver"># → true</font></i>
-gt <font color="#808080">'5 5 =='</font>                    <i><font color="silver"># → true</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'5 3 gt'</font><font color="#dbd7ca">                    </font><i><font color="#666666"># → true</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'3 5 &lt;'</font><font color="#dbd7ca">                     </font><i><font color="#666666"># → true</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'5 5 =='</font><font color="#dbd7ca">                    </font><i><font color="#666666"># → true</font></i>
 </pre>
 <br />
 <span>Results are <span class='inlinecode'>true</span> or <span class='inlinecode'>false</span>, which coerce into arithmetic (true = 1, false = 0). That means you can do inline conditionals:</span><br />
@@ -198,8 +198,8 @@ gt <font color="#808080">'5 5 =='</font>                    <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'85 80 gt 10 *'</font>             <i><font color="silver"># → 10 (85 &gt; 80, so 1 × 10)</font></i>
-gt <font color="#808080">'50 80 gt 10 *'</font>             <i><font color="silver"># → 0  (50 &lt; 80, so 0 × 10)</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'85 80 gt 10 *'</font><font color="#dbd7ca">             </font><i><font color="#666666"># → 10 (85 &gt; 80, so 1 × 10)</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'50 80 gt 10 *'</font><font color="#dbd7ca">             </font><i><font color="#666666"># → 0  (50 &lt; 80, so 0 × 10)</font></i>
 </pre>
 <br />
 <span>Range validation works by summing boolean results:</span><br />
@@ -208,8 +208,8 @@ gt <font color="#808080">'50 80 gt 10 *'</font>             <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'72 68 gte 100 lte +'</font>       <i><font color="silver"># → 2 (both checks pass, temp is in range)</font></i>
-gt <font color="#808080">'105 68 gte 100 lte +'</font>      <i><font color="silver"># → 1 (out of range)</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'72 68 gte 100 lte +'</font><font color="#dbd7ca">       </font><i><font color="#666666"># → 2 (both checks pass, temp is in range)</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'105 68 gte 100 lte +'</font><font color="#dbd7ca">      </font><i><font color="#666666"># → 1 (out of range)</font></i>
 </pre>
 <br />
 <span>Booleans also do plain arithmetic, which is occasionally useful:</span><br />
@@ -218,8 +218,8 @@ gt <font color="#808080">'105 68 gte 100 lte +'</font>      <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'true true +'</font>               <i><font color="silver"># → 2 (1 + 1)</font></i>
-gt <font color="#808080">'false 5 +'</font>                 <i><font color="silver"># → 5 (0 + 5)</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'true true +'</font><font color="#dbd7ca">               </font><i><font color="#666666"># → 2 (1 + 1)</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'false 5 +'</font><font color="#dbd7ca">                 </font><i><font color="#666666"># → 5 (0 + 5)</font></i>
 </pre>
 <br />
 <h2 style='display: inline' id='variables-and-symbols'>Variables and symbols</h2><br />
@@ -230,9 +230,9 @@ gt <font color="#808080">'false 5 +'</font>                 <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'x 10 :='</font>                   <i><font color="silver"># right assignment</font></i>
-gt <font color="#808080">'20 y =:'</font>                   <i><font color="silver"># left assignment</font></i>
-gt <font color="#808080">'rate 100Mbps ='</font>            <i><font color="silver"># standard (or rate = 100Mbps)</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'x 10 :='</font><font color="#dbd7ca">                   </font><i><font color="#666666"># right assignment</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'20 y =:'</font><font color="#dbd7ca">                   </font><i><font color="#666666"># left assignment</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'rate 100Mbps ='</font><font color="#dbd7ca">            </font><i><font color="#666666"># standard (or rate = 100Mbps)</font></i>
 </pre>
 <br />
 <span><span class='inlinecode'>vars</span> lists them, <span class='inlinecode'>clear</span> wipes all variables and constants, <span class='inlinecode'>:name d</span> deletes one. In REPL mode, variables persist to disk between sessions.</span><br />
@@ -243,10 +243,10 @@ gt <font color="#808080">'rate 100Mbps ='</font>            <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; x <font color="#000000">10</font> :=                     <i><font color="silver"># define x</font></i>
-&gt; x                           <i><font color="silver"># pushes 10 (variable resolved)</font></i>
-&gt; :x                          <i><font color="silver"># pushes :x (the symbol itself)</font></i>
-&gt; :x d                        <i><font color="silver"># deletes the variable x</font></i>
+<pre><font color="#cb7676">&gt;</font><font color="#dbd7ca"> x </font><font color="#bd976a">10</font><font color="#dbd7ca"> </font><font color="#cb7676">:=</font><font color="#dbd7ca">                     </font><i><font color="#666666"># define x</font></i>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> x                           </font><i><font color="#666666"># pushes 10 (variable resolved)</font></i>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> </font><font color="#cb7676">:</font><font color="#dbd7ca">x                          </font><i><font color="#666666"># pushes :x (the symbol itself)</font></i>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> </font><font color="#cb7676">:</font><font color="#dbd7ca">x d                        </font><i><font color="#666666"># deletes the variable x</font></i>
 </pre>
 <br />
 <span>Bare identifiers that don&#39;t match any variable or constant also push as symbols.</span><br />
@@ -259,10 +259,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'pi 2 *'</font>                    <i><font color="silver"># → 6.283185307</font></i>
-gt <font color="#808080">'euler'</font>                     <i><font color="silver"># → 2.718281828</font></i>
-gt <font color="#808080">'phi 10 *'</font>                  <i><font color="silver"># → 16.18 (golden rectangle)</font></i>
-gt <font color="#808080">'sqrt2 sqrt3 *'</font>             <i><font color="silver"># → 2.449 (√6)</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'pi 2 *'</font><font color="#dbd7ca">                    </font><i><font color="#666666"># → 6.283185307</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'euler'</font><font color="#dbd7ca">                     </font><i><font color="#666666"># → 2.718281828</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'phi 10 *'</font><font color="#dbd7ca">                  </font><i><font color="#666666"># → 16.18 (golden rectangle)</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'sqrt2 sqrt3 *'</font><font color="#dbd7ca">             </font><i><font color="#666666"># → 2.449 (√6)</font></i>
 </pre>
 <br />
 <span>Greek letter aliases work too: <span class='inlinecode'>π</span>, <span class='inlinecode'>τ</span>, <span class='inlinecode'>φ</span>, <span class='inlinecode'>√2</span>, <span class='inlinecode'>√3</span>, <span class='inlinecode'>√5</span>.</span><br />
@@ -290,10 +290,10 @@ gt <font color="#808080">'sqrt2 sqrt3 *'</font>             <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'100Mbps'</font>                   <i><font color="silver"># 100 megabits per second</font></i>
-gt <font color="#808080">'5GB'</font>                       <i><font color="silver"># 5 gigabytes</font></i>
-gt <font color="#808080">'1hr'</font>                       <i><font color="silver"># 1 hour</font></i>
-gt <font color="#808080">'70kg'</font>                      <i><font color="silver"># 70 kilograms</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'100Mbps'</font><font color="#dbd7ca">                   </font><i><font color="#666666"># 100 megabits per second</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'5GB'</font><font color="#dbd7ca">                       </font><i><font color="#666666"># 5 gigabytes</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'1hr'</font><font color="#dbd7ca">                       </font><i><font color="#666666"># 1 hour</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'70kg'</font><font color="#dbd7ca">                      </font><i><font color="#666666"># 70 kilograms</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='unit-conversion'>Unit conversion</h3><br />
@@ -304,10 +304,10 @@ gt <font color="#808080">'70kg'</font>                      <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'1000Mbps @Gbps convert'</font>    <i><font color="silver"># → 1</font></i>
-gt <font color="#808080">'1km @mi convert'</font>           <i><font color="silver"># → 0.6213711922</font></i>
-gt <font color="#808080">'60mph @kmh convert'</font>        <i><font color="silver"># → 96.56</font></i>
-gt <font color="#808080">'3day @s convert'</font>           <i><font color="silver"># → 259200</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'1000Mbps @Gbps convert'</font><font color="#dbd7ca">    </font><i><font color="#666666"># → 1</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'1km @mi convert'</font><font color="#dbd7ca">           </font><i><font color="#666666"># → 0.6213711922</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'60mph @kmh convert'</font><font color="#dbd7ca">        </font><i><font color="#666666"># → 96.56</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'3day @s convert'</font><font color="#dbd7ca">           </font><i><font color="#666666"># → 259200</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='metric-aware-arithmetic'>Metric-aware arithmetic</h3><br />
@@ -318,8 +318,8 @@ gt <font color="#808080">'3day @s convert'</font>           <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'1km 500m +'</font>                <i><font color="silver"># → 1.5 (converted to km)</font></i>
-gt <font color="#808080">'1Gbps 500Mbps -'</font>           <i><font color="silver"># → 500 (in Mbps)</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'1km 500m +'</font><font color="#dbd7ca">                </font><i><font color="#666666"># → 1.5 (converted to km)</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'1Gbps 500Mbps -'</font><font color="#dbd7ca">           </font><i><font color="#666666"># → 500 (in Mbps)</font></i>
 </pre>
 <br />
 <span>Multiplication and division do cross-category inference:</span><br />
@@ -328,9 +328,9 @@ gt <font color="#808080">'1Gbps 500Mbps -'</font>           <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'100Mbps 1hr *'</font>             <i><font color="silver"># rate × time = data transferred</font></i>
-gt <font color="#808080">'10GB 2hr /'</font>                <i><font color="silver"># data / time = rate</font></i>
-gt <font color="#808080">'100kmh 1hr * @mi convert'</font>  <i><font color="silver"># → 62.14 miles traveled</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'100Mbps 1hr *'</font><font color="#dbd7ca">             </font><i><font color="#666666"># rate × time = data transferred</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'10GB 2hr /'</font><font color="#dbd7ca">                </font><i><font color="#666666"># data / time = rate</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'100kmh 1hr * @mi convert'</font><font color="#dbd7ca">  </font><i><font color="#666666"># → 62.14 miles traveled</font></i>
 </pre>
 <br />
 <span>Comparison operators are metric-aware too:</span><br />
@@ -339,8 +339,8 @@ gt <font color="#808080">'100kmh 1hr * @mi convert'</font>  <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gt <font color="#808080">'1km 1000m eq'</font>              <i><font color="silver"># → true</font></i>
-gt <font color="#808080">'1GB 1024MB eq'</font>             <i><font color="silver"># → false (SI: 1GB = 1000MB)</font></i>
+<pre><font color="#dbd7ca">gt </font><font color="#bd976a">'1km 1000m eq'</font><font color="#dbd7ca">              </font><i><font color="#666666"># → true</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'1GB 1024MB eq'</font><font color="#dbd7ca">             </font><i><font color="#666666"># → false (SI: 1GB = 1000MB)</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='custom-metrics'>Custom metrics</h3><br />
@@ -351,9 +351,9 @@ gt <font color="#808080">'1GB 1024MB eq'</font>             <i><font color="silv
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>custom define reel <font color="#000000">304.8</font> Distance      <i><font color="silver"># surveyor's reel</font></i>
-custom define fortnight <font color="#000000">1209600</font> Time   <i><font color="silver"># 14 days</font></i>
-custom define cup <font color="#000000">240</font> Weight           <i><font color="silver"># cooking measure</font></i>
+<pre><font color="#dbd7ca">custom define reel </font><font color="#bd976a">304.8</font><font color="#dbd7ca"> Distance      </font><i><font color="#666666"># surveyor's reel</font></i>
+<font color="#dbd7ca">custom define fortnight </font><font color="#bd976a">1209600</font><font color="#dbd7ca"> Time   </font><i><font color="#666666"># 14 days</font></i>
+<font color="#dbd7ca">custom define cup </font><font color="#bd976a">240</font><font color="#dbd7ca"> Weight           </font><i><font color="#666666"># cooking measure</font></i>
 </pre>
 <br />
 <span>Then use them like built-ins:</span><br />
@@ -362,12 +362,12 @@ custom define cup <font color="#000000">240</font> Weight           <i><font col
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; 5reel @m convert
-<font color="#000000">1524</font>
-&gt; 2fortnight @day convert
-<font color="#000000">28</font>
-&gt; 3cup @g convert
-<font color="#000000">720</font>
+<pre><font color="#cb7676">&gt;</font><font color="#dbd7ca"> 5reel @m convert</font>
+<font color="#bd976a">1524</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> 2fortnight @day convert</font>
+<font color="#bd976a">28</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> 3cup @g convert</font>
+<font color="#bd976a">720</font>
 </pre>
 <br />
 <h3 style='display: inline' id='si-vs-iec-modes'>SI vs IEC modes</h3><br />
@@ -382,10 +382,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; metric list
-DataRate, DataSize, Distance, Speed, Time, Universal, Weight
-&gt; metric DataRate
-Gbps, Kbps, Mbps, Tbps, bps
+<pre><font color="#cb7676">&gt;</font><font color="#dbd7ca"> metric list</font>
+<font color="#dbd7ca">DataRate</font><font color="#cb7676">,</font><font color="#dbd7ca"> DataSize</font><font color="#cb7676">,</font><font color="#dbd7ca"> Distance</font><font color="#cb7676">,</font><font color="#dbd7ca"> Speed</font><font color="#cb7676">,</font><font color="#dbd7ca"> Time</font><font color="#cb7676">,</font><font color="#dbd7ca"> Universal</font><font color="#cb7676">,</font><font color="#dbd7ca"> Weight</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> metric DataRate</font>
+<font color="#dbd7ca">Gbps</font><font color="#cb7676">,</font><font color="#dbd7ca"> Kbps</font><font color="#cb7676">,</font><font color="#dbd7ca"> Mbps</font><font color="#cb7676">,</font><font color="#dbd7ca"> Tbps</font><font color="#cb7676">,</font><font color="#dbd7ca"> bps</font>
 </pre>
 <br />
 <span><span class='inlinecode'>metric compatible</span> checks whether two values can be combined before you try:</span><br />
@@ -394,10 +394,10 @@ Gbps, Kbps, Mbps, Tbps, bps
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; 1km 5mi metric compatible
-km (Distance) and mi (Distance): <b><u><font color="#000000">true</font></u></b>
-&gt; 100Mbps 2hr metric compatible
-Mbps (DataRate) and hr (Time): <b><u><font color="#000000">false</font></u></b>
+<pre><font color="#cb7676">&gt;</font><font color="#dbd7ca"> 1km 5mi metric compatible</font>
+<font color="#dbd7ca">km </font><font color="#cb7676">(</font><font color="#dbd7ca">Distance</font><font color="#cb7676">)</font><font color="#dbd7ca"> and mi </font><font color="#cb7676">(</font><font color="#dbd7ca">Distance</font><font color="#cb7676">):</font><font color="#dbd7ca"> </font><b><font color="#4d9375">true</font></b>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> 100Mbps 2hr metric compatible</font>
+<font color="#dbd7ca">Mbps </font><font color="#cb7676">(</font><font color="#dbd7ca">DataRate</font><font color="#cb7676">)</font><font color="#dbd7ca"> and hr </font><font color="#cb7676">(</font><font color="#dbd7ca">Time</font><font color="#cb7676">):</font><font color="#dbd7ca"> </font><b><font color="#4d9375">false</font></b>
 </pre>
 <br />
 <h2 style='display: inline' id='stack-manipulation'>Stack manipulation</h2><br />
@@ -422,10 +422,10 @@ Mbps (DataRate) and hr (Time): <b><u><font color="#000000">false</font></u></b>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; rat off
-Rational mode disabled (using float64)
-&gt; <font color="#000000">0.3</font> <font color="#000000">0.1</font> - <font color="#000000">0.2</font> -
--<font color="#000000">2.775557562e-17</font>
+<pre><font color="#cb7676">&gt;</font><font color="#dbd7ca"> rat off</font>
+<font color="#dbd7ca">Rational mode disabled </font><font color="#cb7676">(</font><font color="#dbd7ca">using float64</font><font color="#cb7676">)</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> </font><font color="#bd976a">0.3</font><font color="#dbd7ca"> </font><font color="#bd976a">0.1</font><font color="#dbd7ca"> - </font><font color="#bd976a">0.2</font><font color="#dbd7ca"> -</font>
+<font color="#dbd7ca">-</font><font color="#bd976a">2.775557562e-17</font>
 </pre>
 <br />
 <span>The result should be <span class='inlinecode'>0</span>, but floating-point rounding errors accumulated. Silent wrong answer.</span><br />
@@ -436,10 +436,10 @@ Rational mode disabled (using float64)
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; rat on
-Rational mode enabled
-&gt; <font color="#000000">0.1</font> <font color="#000000">0.2</font> +
-<font color="#000000">0.3000000000</font>
+<pre><font color="#cb7676">&gt;</font><font color="#dbd7ca"> rat on</font>
+<font color="#dbd7ca">Rational mode enabled</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> </font><font color="#bd976a">0.1</font><font color="#dbd7ca"> </font><font color="#bd976a">0.2</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font>
+<font color="#bd976a">0.3000000000</font>
 </pre>
 <br />
 <span>Internally, <span class='inlinecode'>1/3</span> stays as the exact fraction <span class='inlinecode'>1/3</span>, and <span class='inlinecode'>1/3 * 3</span> computes to exactly <span class='inlinecode'>3/3 = 1</span>. No binary conversion, no rounding.</span><br />
@@ -456,10 +456,10 @@ Rational mode enabled
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ gt --log calc-session.log
-&gt; 1Gbps 1hr *
-&gt; @GB convert
-&gt; quit
+<pre><font color="#dbd7ca">$ gt --log calc-session</font><font color="#cb7676">.</font><font color="#dbd7ca">log</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> 1Gbps 1hr </font><font color="#cb7676">*</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> @GB convert</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> quit</font>
 </pre>
 <br />
 <span>Built-in REPL commands: <span class='inlinecode'>help</span>, <span class='inlinecode'>clear</span>, <span class='inlinecode'>quit</span>/<span class='inlinecode'>exit</span>, <span class='inlinecode'>rpn</span>/<span class='inlinecode'>calc</span>, <span class='inlinecode'>rat</span>, <span class='inlinecode'>stack</span>. <span class='inlinecode'>stack</span> is a shorthand hint for viewing the RPN stack. Tab-completes.</span><br />
@@ -470,41 +470,41 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ gt
-&gt; rate 100Mbps =
-rate = <font color="#000000">100</font>
-&gt; time 2hr =
-time = <font color="#000000">2</font>
-&gt; rate time *
-<font color="#000000">200</font> Mbps
-&gt; metric show
-Mbps, DataRate, base: bps, factor: <font color="#000000">1e+06</font>
-&gt; download 50GB =
-download = <font color="#000000">50</font>
-&gt; speed 100Mbps =
-speed = <font color="#000000">100</font>
-&gt; download speed / @min convert
-<font color="#000000">83.33333333</font>
-&gt; custom define reel <font color="#000000">304.8</font> Distance
-defined custom metric <font color="#808080">"reel"</font> (factor: <font color="#000000">304.8</font>, category: Distance)
-&gt; 5reel @m convert
-<font color="#000000">1524</font>
-&gt; 100Mbps 50Mbps swap -
-<font color="#000000">50</font> Mbps
-&gt; show
-<font color="#000000">50</font> Mbps
-&gt; <font color="#000000">20</font>% of <font color="#000000">150</font>
-<font color="#000000">20.00</font>% of <font color="#000000">150.00</font> = <font color="#000000">30.00</font>
-  Steps: (<font color="#000000">20.00</font> / <font color="#000000">100</font>) * <font color="#000000">150.00</font> = <font color="#000000">0.20</font> * <font color="#000000">150.00</font> = <font color="#000000">30.00</font>
-&gt; rat on
-Rational mode enabled
-&gt; <font color="#000000">1</font> <font color="#000000">3</font> / <font color="#000000">3</font> *
-<font color="#000000">1.0000000000</font>
-&gt; vars
-rate = <font color="#000000">100</font>
-time = <font color="#000000">2</font>
-download = <font color="#000000">50</font>
-speed = <font color="#000000">100</font>
+<pre><font color="#dbd7ca">$ gt</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> rate 100Mbps </font><font color="#cb7676">=</font>
+<font color="#dbd7ca">rate </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">100</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> time 2hr </font><font color="#cb7676">=</font>
+<font color="#dbd7ca">time </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">2</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> rate time </font><font color="#cb7676">*</font>
+<font color="#bd976a">200</font><font color="#dbd7ca"> Mbps</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> metric show</font>
+<font color="#dbd7ca">Mbps</font><font color="#cb7676">,</font><font color="#dbd7ca"> DataRate</font><font color="#cb7676">,</font><font color="#dbd7ca"> base</font><font color="#cb7676">:</font><font color="#dbd7ca"> bps</font><font color="#cb7676">,</font><font color="#dbd7ca"> factor</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">1e+06</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> download 50GB </font><font color="#cb7676">=</font>
+<font color="#dbd7ca">download </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">50</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> speed 100Mbps </font><font color="#cb7676">=</font>
+<font color="#dbd7ca">speed </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">100</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> download speed </font><font color="#cb7676">/</font><font color="#dbd7ca"> @min convert</font>
+<font color="#bd976a">83.33333333</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> custom define reel </font><font color="#bd976a">304.8</font><font color="#dbd7ca"> Distance</font>
+<font color="#dbd7ca">defined custom metric </font><font color="#bd976a">"reel"</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">factor</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">304.8</font><font color="#cb7676">,</font><font color="#dbd7ca"> category</font><font color="#cb7676">:</font><font color="#dbd7ca"> Distance</font><font color="#cb7676">)</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> 5reel @m convert</font>
+<font color="#bd976a">1524</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> 100Mbps 50Mbps swap -</font>
+<font color="#bd976a">50</font><font color="#dbd7ca"> Mbps</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> show</font>
+<font color="#bd976a">50</font><font color="#dbd7ca"> Mbps</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> </font><font color="#bd976a">20</font><font color="#cb7676">%</font><font color="#dbd7ca"> of </font><font color="#bd976a">150</font>
+<font color="#bd976a">20.00</font><font color="#cb7676">%</font><font color="#dbd7ca"> of </font><font color="#bd976a">150.00</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">30.00</font>
+<font color="#dbd7ca">  Steps</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#bd976a">20.00</font><font color="#dbd7ca"> </font><font color="#cb7676">/</font><font color="#dbd7ca"> </font><font color="#bd976a">100</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca"> </font><font color="#bd976a">150.00</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">0.20</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca"> </font><font color="#bd976a">150.00</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">30.00</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> rat on</font>
+<font color="#dbd7ca">Rational mode enabled</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> </font><font color="#bd976a">1</font><font color="#dbd7ca"> </font><font color="#bd976a">3</font><font color="#dbd7ca"> </font><font color="#cb7676">/</font><font color="#dbd7ca"> </font><font color="#bd976a">3</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font>
+<font color="#bd976a">1.0000000000</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> vars</font>
+<font color="#dbd7ca">rate </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">100</font>
+<font color="#dbd7ca">time </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">2</font>
+<font color="#dbd7ca">download </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">50</font>
+<font color="#dbd7ca">speed </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">100</font>
 </pre>
 <br />
 <span>Inline help is built in. Bare <span class='inlinecode'>help</span> lists all commands, and <span class='inlinecode'>help &lt;command&gt;</span> drills into one topic:</span><br />
@@ -513,14 +513,14 @@ speed = <font color="#000000">100</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt; <b><u><font color="#000000">help</font></u></b> rat
-rat on/off/toggle - Switch between float64 and rational number modes
-  rat on       Enable rational mode (exact fractions)
-  rat off      Disable rational mode (use float64)
-  rat toggle   Toggle current mode
-&gt; <b><u><font color="#000000">help</font></u></b> clear
-clear - Clear the screen
-Usage: clear
+<pre><font color="#cb7676">&gt;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">help</font></b><font color="#dbd7ca"> rat</font>
+<font color="#dbd7ca">rat on/off/toggle - Switch between float64 and rational number modes</font>
+<font color="#dbd7ca">  rat on       Enable rational mode </font><font color="#cb7676">(</font><font color="#dbd7ca">exact fractions</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">  rat off      Disable rational mode </font><font color="#cb7676">(</font><font color="#dbd7ca">use float64</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">  rat toggle   Toggle current mode</font>
+<font color="#cb7676">&gt;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">help</font></b><font color="#dbd7ca"> clear</font>
+<font color="#dbd7ca">clear - Clear the screen</font>
+<font color="#dbd7ca">Usage</font><font color="#cb7676">:</font><font color="#dbd7ca"> clear</font>
 </pre>
 <br />
 <span>No need to leave the REPL or dig through docs when you forget a subcommand.</span><br />
@@ -533,26 +533,26 @@ Usage: clear
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Download volume at 1 Gbps for an hour</font></i>
-gt <font color="#808080">'1Gbps 1hr * @GB convert'</font>        <i><font color="silver"># → 450</font></i>
+<pre><i><font color="#666666"># Download volume at 1 Gbps for an hour</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'1Gbps 1hr * @GB convert'</font><font color="#dbd7ca">        </font><i><font color="#666666"># → 450</font></i>
 
-<i><font color="silver"># Internet speed threshold in scripts</font></i>
-MIN_SPEED=$(gt <font color="#808080">'1Gbps @Mbps convert'</font>)  <i><font color="silver"># → 1000</font></i>
+<i><font color="#666666"># Internet speed threshold in scripts</font></i>
+<font color="#bd976a">MIN_SPEED</font><font color="#cb7676">=</font><font color="#bd976a">$(</font><font color="#dbd7ca">gt </font><font color="#bd976a">'1Gbps @Mbps convert'</font><font color="#cb7676">)</font><font color="#dbd7ca">  </font><i><font color="#666666"># → 1000</font></i>
 
-<i><font color="silver"># Travel planning</font></i>
-gt <font color="#808080">'500mi @km convert'</font>              <i><font color="silver"># → 804.67</font></i>
-gt <font color="#808080">'65mph @kmh convert'</font>             <i><font color="silver"># → 104.86</font></i>
+<i><font color="#666666"># Travel planning</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'500mi @km convert'</font><font color="#dbd7ca">              </font><i><font color="#666666"># → 804.67</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'65mph @kmh convert'</font><font color="#dbd7ca">             </font><i><font color="#666666"># → 104.86</font></i>
 
-<i><font color="silver"># Tips, discounts, whatever</font></i>
-gt <font color="#808080">'18% of 63.40'</font>
-gt <font color="#808080">'15% of 89.99'</font>
+<i><font color="#666666"># Tips, discounts, whatever</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'18% of 63.40'</font>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'15% of 89.99'</font>
 
-<i><font color="silver"># File sizes in MiB instead of bytes</font></i>
-find . -exec wc -c {} + | awk <font color="#808080">'{print $1}'</font> | xargs -I{} gt <font color="#808080">'{} @MiB convert'</font>
+<i><font color="#666666"># File sizes in MiB instead of bytes</font></i>
+<font color="#dbd7ca">find </font><font color="#cb7676">.</font><font color="#dbd7ca"> -exec wc -c {} </font><font color="#cb7676">+</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> awk </font><font color="#bd976a">'{print $1}'</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> xargs -I{} gt </font><font color="#bd976a">'{} @MiB convert'</font>
 
-<i><font color="silver"># Quick math</font></i>
-gt <font color="#808080">'pi 5 5 * *'</font>                     <i><font color="silver"># circle area, r=5 → 78.54</font></i>
-gt <font color="#808080">'1000 lg'</font>                        <i><font color="silver"># → 10 (bits needed)</font></i>
+<i><font color="#666666"># Quick math</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'pi 5 5 * *'</font><font color="#dbd7ca">                     </font><i><font color="#666666"># circle area, r=5 → 78.54</font></i>
+<font color="#dbd7ca">gt </font><font color="#bd976a">'1000 lg'</font><font color="#dbd7ca">                        </font><i><font color="#666666"># → 10 (bits needed)</font></i>
 </pre>
 <br />
 <h2 style='display: inline' id='fish-shell-completions'>Fish shell completions</h2><br />
@@ -565,7 +565,7 @@ gt <font color="#808080">'1000 lg'</font>                        <i><font color=
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>cp completions/gt.fish ~/.config/fish/completions/
+<pre><font color="#dbd7ca">cp completions/gt</font><font color="#cb7676">.</font><font color="#dbd7ca">fish </font><font color="#cb7676">~/.</font><font color="#dbd7ca">config/fish/completions</font><font color="#cb7676">/</font>
 </pre>
 <br />
 <span>Or system-wide:</span><br />
@@ -574,7 +574,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>sudo cp completions/gt.fish /usr/local/share/fish/vendor_completions.d/
+<pre><font color="#dbd7ca">sudo cp completions/gt</font><font color="#cb7676">.</font><font color="#dbd7ca">fish /usr/local/share/fish/vendor_completions</font><font color="#cb7676">.</font><font color="#dbd7ca">d</font><font color="#cb7676">/</font>
 </pre>
 <br />
 <span>In practice this means tab-completion for all 36 constants, every metric unit (bps through Tbps, KB through PiB, kmh, mph, knots, etc.), all arithmetic and hyper operators, and the <span class='inlinecode'>metric show</span> / <span class='inlinecode'>metric list</span> / <span class='inlinecode'>custom define</span> subcommand chains. The <span class='inlinecode'>custom define</span> subcommand even completes the valid category names so you don&#39;t have to memorize them.</span><br />
@@ -585,7 +585,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>go install github.com/snonux/gt/cmd/gt@latest
+<pre><font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/gt/cmd/gt@latest</font>
 </pre>
 <br />
 <span>Or from the source directory: <span class='inlinecode'>mage install</span>.</span><br />

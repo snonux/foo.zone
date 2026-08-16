@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='gemtexter---one-bash-script-to-rule-it-all'>Gemtexter - One Bash script to rule it all</h1><br />
 <br />
@@ -114,18 +114,18 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>paul <b><u><font color="#000000">in</font></u></b> uranus <b><u><font color="#000000">in</font></u></b> gemtexter on 🌱 main
-❯ wc -l gemtexter lib/*
-    <font color="#000000">117</font> gemtexter
-     <font color="#000000">59</font> lib/assert.<b><u><font color="#000000">source</font></u></b>.sh
-    <font color="#000000">128</font> lib/atomfeed.<b><u><font color="#000000">source</font></u></b>.sh
-     <font color="#000000">64</font> lib/gemfeed.<b><u><font color="#000000">source</font></u></b>.sh
-    <font color="#000000">161</font> lib/generate.<b><u><font color="#000000">source</font></u></b>.sh
-     <font color="#000000">50</font> lib/git.<b><u><font color="#000000">source</font></u></b>.sh
-    <font color="#000000">162</font> lib/html.<b><u><font color="#000000">source</font></u></b>.sh
-     <font color="#000000">30</font> lib/log.<b><u><font color="#000000">source</font></u></b>.sh
-     <font color="#000000">63</font> lib/md.<b><u><font color="#000000">source</font></u></b>.sh
-     <font color="#000000">834</font> total
+<pre><font color="#dbd7ca">paul </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> uranus </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> gemtexter on 🌱 main</font>
+<font color="#dbd7ca">❯ wc -l gemtexter lib</font><font color="#cb7676">/*</font>
+<font color="#dbd7ca">    </font><font color="#bd976a">117</font><font color="#dbd7ca"> gemtexter</font>
+<font color="#dbd7ca">     </font><font color="#bd976a">59</font><font color="#dbd7ca"> lib/assert</font><font color="#cb7676">.</font><b><font color="#4d9375">source</font></b><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
+<font color="#dbd7ca">    </font><font color="#bd976a">128</font><font color="#dbd7ca"> lib/atomfeed</font><font color="#cb7676">.</font><b><font color="#4d9375">source</font></b><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
+<font color="#dbd7ca">     </font><font color="#bd976a">64</font><font color="#dbd7ca"> lib/gemfeed</font><font color="#cb7676">.</font><b><font color="#4d9375">source</font></b><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
+<font color="#dbd7ca">    </font><font color="#bd976a">161</font><font color="#dbd7ca"> lib/generate</font><font color="#cb7676">.</font><b><font color="#4d9375">source</font></b><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
+<font color="#dbd7ca">     </font><font color="#bd976a">50</font><font color="#dbd7ca"> lib/git</font><font color="#cb7676">.</font><b><font color="#4d9375">source</font></b><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
+<font color="#dbd7ca">    </font><font color="#bd976a">162</font><font color="#dbd7ca"> lib/html</font><font color="#cb7676">.</font><b><font color="#4d9375">source</font></b><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
+<font color="#dbd7ca">     </font><font color="#bd976a">30</font><font color="#dbd7ca"> lib/log</font><font color="#cb7676">.</font><b><font color="#4d9375">source</font></b><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
+<font color="#dbd7ca">     </font><font color="#bd976a">63</font><font color="#dbd7ca"> lib/md</font><font color="#cb7676">.</font><b><font color="#4d9375">source</font></b><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
+<font color="#dbd7ca">     </font><font color="#bd976a">834</font><font color="#dbd7ca"> total</font>
 </pre>
 <br />
 <span>This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn&#39;t produce results instantly but requires few seconds of runtime already. That&#39;s not a problem yet, though. </span><br />
@@ -160,9 +160,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gemtext=<font color="#808080">'=&gt; http://example.org Description of the link'</font>
-assert::equals <font color="#808080">"$(generate::make_link html "</font>$gemtext<font color="#808080">")"</font> \
-    <font color="#808080">'&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'</font>
+<pre><font color="#bd976a">gemtext</font><font color="#cb7676">=</font><font color="#bd976a">'=&gt; http://example.org Description of the link'</font>
+<font color="#dbd7ca">assert</font><font color="#cb7676">::</font><font color="#dbd7ca">equals </font><font color="#bd976a">"$(generate::make_link html "</font><font color="#bd976a">$gemtext</font><font color="#bd976a">")"</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">    </font><font color="#bd976a">'&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'</font>
 </pre>
 <br />
 <h3 style='display: inline' id='markdown-unit-test-example'>Markdown unit test example</h3><br />
@@ -171,9 +171,9 @@ assert::equals <font color="#808080">"$(generate::make_link html "</font>$gemtex
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>gemtext=<font color="#808080">'=&gt; http://example.org Description of the link'</font>
-assert::equals <font color="#808080">"$(generate::make_link md "</font>$gemtext<font color="#808080">")"</font> \
-    <font color="#808080">'[Description of the link](http://example.org)  '</font>
+<pre><font color="#bd976a">gemtext</font><font color="#cb7676">=</font><font color="#bd976a">'=&gt; http://example.org Description of the link'</font>
+<font color="#dbd7ca">assert</font><font color="#cb7676">::</font><font color="#dbd7ca">equals </font><font color="#bd976a">"$(generate::make_link md "</font><font color="#bd976a">$gemtext</font><font color="#bd976a">")"</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">    </font><font color="#bd976a">'[Description of the link](http://example.org)  '</font>
 </pre>
 <br />
 <h2 style='display: inline' id='handcrafted-html-styles'>Handcrafted HTML styles</h2><br />

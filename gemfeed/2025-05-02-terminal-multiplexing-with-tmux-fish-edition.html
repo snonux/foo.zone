@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='terminal-multiplexing-with-tmux---fish-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Fish edition</h1><br />
 <br />
@@ -192,14 +192,14 @@ set-option -g prefix C-g
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>function tmux::search
-    <b><u><font color="#000000">set</font></u></b> -l session (tmux list-sessions | fzf | cut -d: -f<font color="#000000">1</font>)
-    <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">test</font></u></b> -z <font color="#808080">"$TMUX"</font>
-        tmux attach-session -t $session
-    <b><u><font color="#000000">else</font></u></b>
-        tmux switch -t $session
-    end
-end
+<pre><font color="#5da994">function tmux</font><font color="#cb7676">::</font><font color="#dbd7ca">search</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">set</font></b><font color="#dbd7ca"> -l session </font><font color="#cb7676">(</font><font color="#dbd7ca">tmux list-sessions </font><font color="#cb7676">|</font><font color="#dbd7ca"> fzf </font><font color="#cb7676">|</font><font color="#dbd7ca"> cut -d</font><font color="#cb7676">:</font><font color="#dbd7ca"> -f</font><font color="#bd976a">1</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">test</font></b><font color="#dbd7ca"> -z </font><font color="#bd976a">"$TMUX"</font>
+<font color="#dbd7ca">        tmux attach-session -t </font><font color="#bd976a">$session</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">else</font></b>
+<font color="#dbd7ca">        tmux switch -t </font><font color="#bd976a">$session</font>
+<font color="#dbd7ca">    end</font>
+<font color="#dbd7ca">end</font>
 </pre>
 <br />
 <span>All it does is list all currently open sessions in <span class='inlinecode'>fzf</span>, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).</span><br />

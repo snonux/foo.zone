@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-07-09-unveiling-hexai.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-07-09-unveiling-hexai.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-07-09-unveiling-hexai.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-07-09-unveiling-hexai.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='unveiling-hexai-an-ai-companion-for-helix-and-the-terminal-in-general'>Unveiling Hexai: An AI companion for Helix and the terminal in general</h1><br />
 <br />
@@ -65,10 +65,10 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>go install github.com/snonux/hexai/cmd/hexai@latest
-go install github.com/snonux/hexai/cmd/hexai-lsp-server@latest
-go install github.com/snonux/hexai/cmd/hexai-tmux-action@latest
-go install github.com/snonux/hexai/cmd/ask@latest
+<pre><font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/hexai/cmd/hexai@latest</font>
+<font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/hexai/cmd/hexai-lsp-server@latest</font>
+<font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/hexai/cmd/hexai-tmux-action@latest</font>
+<font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/hexai/cmd/ask@latest</font>
 </pre>
 <br />
 <span>If you prefer to build from a checkout, Hexai uses Mage:</span><br />
@@ -77,9 +77,9 @@ go install github.com/snonux/hexai/cmd/ask@latest
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>go install github.com/magefile/mage@latest
-mage build
-mage install
+<pre><font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/magefile/mage@latest</font>
+<font color="#dbd7ca">mage build</font>
+<font color="#dbd7ca">mage install</font>
 </pre>
 <br />
 <span>That drops <span class='inlinecode'>hexai</span>, <span class='inlinecode'>hexai-lsp-server</span>, <span class='inlinecode'>hexai-tmux-action</span>, and <span class='inlinecode'>ask</span> into your <span class='inlinecode'>GOPATH/bin</span>.</span><br />
@@ -173,15 +173,15 @@ What is a Go slice?
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&gt;&gt;!document this function&gt;
+<pre><font color="#cb7676">&gt;&gt;!</font><font color="#dbd7ca">document this function</font><font color="#cb7676">&gt;</font>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">// Foo returns the square of n.</font></i>
-<b><u><font color="#000000">func</font></u></b> Foo(n int) int { <b><u><font color="#000000">return</font></u></b> n * n }
+<pre><i><font color="#666666">// Foo returns the square of n.</font></i>
+<b><font color="#4d9375">func</font></b><font color="#dbd7ca"> </font><font color="#5da994">Foo</font><font color="#cb7676">(</font><font color="#dbd7ca">n int</font><font color="#cb7676">)</font><font color="#dbd7ca"> int </font><font color="#dbd7ca">{</font><font color="#dbd7ca"> </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> n </font><font color="#cb7676">*</font><font color="#dbd7ca"> n </font><font color="#dbd7ca">}</font>
 </pre>
 <br />
 <span>Context is included automatically. For follow-ups, Hexai keeps the last few Q/A pairs above the cursor in mind, so you can ask related questions without repeating yourself.</span><br />
@@ -224,8 +224,8 @@ s  Skip
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>tmux new -s hx
-hx some-file.go
+<pre><font color="#dbd7ca">tmux new -s hx</font>
+<font color="#dbd7ca">hx some-file</font><font color="#cb7676">.</font><font color="#dbd7ca">go</font>
 </pre>
 <br />
 <span>Then select code and hit Alt-a. No special <span class='inlinecode'>tmux.conf</span> is required for the popup itself; the only hard requirement is that Helix lives inside tmux (and tmux 3.2 or newer, since the popup uses tmux&#39;s popup feature).</span><br />
@@ -274,20 +274,20 @@ set -g status-right-length 120
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Ask from stdin</font></i>
-cat some-file.go | hexai
+<pre><i><font color="#666666"># Ask from stdin</font></i>
+<font color="#dbd7ca">cat some-file</font><font color="#cb7676">.</font><font color="#dbd7ca">go </font><font color="#cb7676">|</font><font color="#dbd7ca"> hexai</font>
 
-<i><font color="silver"># Ask from an argument</font></i>
-hexai <font color="#808080">'explain this function'</font>
+<i><font color="#666666"># Ask from an argument</font></i>
+<font color="#dbd7ca">hexai </font><font color="#bd976a">'explain this function'</font>
 
-<i><font color="silver"># Both stdin and argument are concatenated</font></i>
-cat some-file.go | hexai <font color="#808080">'write unit tests for this'</font>
+<i><font color="#666666"># Both stdin and argument are concatenated</font></i>
+<font color="#dbd7ca">cat some-file</font><font color="#cb7676">.</font><font color="#dbd7ca">go </font><font color="#cb7676">|</font><font color="#dbd7ca"> hexai </font><font color="#bd976a">'write unit tests for this'</font>
 
-<i><font color="silver"># Open the global config in $HEXAI_EDITOR or $EDITOR</font></i>
-hexai config
+<i><font color="#666666"># Open the global config in $HEXAI_EDITOR or $EDITOR</font></i>
+<font color="#dbd7ca">hexai config</font>
 
-<i><font color="silver"># Simulate how fast a model feels without calling a provider</font></i>
-hexai --tps-simulation <font color="#000000">12</font>-<font color="#000000">18</font>
+<i><font color="#666666"># Simulate how fast a model feels without calling a provider</font></i>
+<font color="#dbd7ca">hexai --tps-simulation </font><font color="#bd976a">12</font><font color="#dbd7ca">-</font><font color="#bd976a">18</font>
 </pre>
 <br />
 <span>A real one-shot looks like this (only stdout is shown):</span><br />
@@ -309,9 +309,9 @@ sudo dnf install ripgrep
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Same tasks, raw Taskwarrior</font></i>
-task project:hexai list
-task project:hexai +agent next
+<pre><i><font color="#666666"># Same tasks, raw Taskwarrior</font></i>
+<font color="#dbd7ca">task project</font><font color="#cb7676">:</font><font color="#dbd7ca">hexai list</font>
+<font color="#dbd7ca">task project</font><font color="#cb7676">:</font><font color="#dbd7ca">hexai </font><font color="#cb7676">+</font><font color="#dbd7ca">agent next</font>
 </pre>
 <br />
 <span><span class='inlinecode'>ask</span> just hides the project filter, the <span class='inlinecode'>+agent</span> tag, and the raw UUIDs so the day-to-day output stays small and project-local.</span><br />
@@ -322,18 +322,18 @@ task project:hexai +agent next
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Add a task for the current project</font></i>
-ask add priority:H <font color="#808080">"implement config reload"</font>
+<pre><i><font color="#666666"># Add a task for the current project</font></i>
+<font color="#dbd7ca">ask add priority</font><font color="#cb7676">:</font><font color="#dbd7ca">H </font><font color="#bd976a">"implement config reload"</font>
 
-<i><font color="silver"># List pending agent tasks</font></i>
-ask list
+<i><font color="#666666"># List pending agent tasks</font></i>
+<font color="#dbd7ca">ask list</font>
 
-<i><font color="silver"># Start and finish work (ask add prints the alias, e.g. os0)</font></i>
-ask start os0
-ask <b><u><font color="#000000">done</font></u></b> os0
+<i><font color="#666666"># Start and finish work (ask add prints the alias, e.g. os0)</font></i>
+<font color="#dbd7ca">ask start os0</font>
+<font color="#dbd7ca">ask </font><b><font color="#4d9375">done</font></b><font color="#dbd7ca"> os0</font>
 
-<i><font color="silver"># See details without exposing raw UUIDs</font></i>
-ask info os0
+<i><font color="#666666"># See details without exposing raw UUIDs</font></i>
+<font color="#dbd7ca">ask info os0</font>
 </pre>
 <br />
 <span>The IDs shown are stable local aliases, not Taskwarrior&#39;s numeric IDs. Taskwarrior gives you two built-in identifiers: a numeric ID that isn&#39;t stable across syncs and exports, and a UUID that is stable but far too long to type by hand. <span class='inlinecode'>ask</span> instead keeps its own mapping from each task&#39;s UUID to a short, permanent alias (cached under Hexai&#39;s cache dir) — so you get the best of both: a stable, short ID that never changes even if tasks above it get completed or deleted. <span class='inlinecode'>ask info</span> hides the raw UUID unless <span class='inlinecode'>HEXAI_DEBUG</span> is set, so the short alias is the one you actually use day to day.</span><br />

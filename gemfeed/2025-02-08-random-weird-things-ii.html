@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-02-08-random-weird-things-ii.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-02-08-random-weird-things-ii.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-02-08-random-weird-things-ii.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-02-08-random-weird-things-ii.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅱ</h1><br />
 <br />
@@ -79,25 +79,25 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">package</font></u></b> main
+<pre><b><font color="#4d9375">package</font></b><font color="#dbd7ca"> main</font>
 
-<b><u><font color="#000000">import</font></u></b> <font color="#808080">"log"</font>
+<b><font color="#4d9375">import</font></b><font color="#dbd7ca"> </font><font color="#bd976a">"log"</font>
 
-<b><u><font color="#000000">type</font></u></b> fun <b><u><font color="#000000">func</font></u></b>() <b><font color="#000000">string</font></b>
+<b><font color="#4d9375">type</font></b><font color="#dbd7ca"> fun </font><b><font color="#4d9375">func</font></b><font color="#cb7676">()</font><font color="#dbd7ca"> </font><b><font color="#5da994">string</font></b>
 
-<b><u><font color="#000000">func</font></u></b> (f fun) Bar() <b><font color="#000000">string</font></b> {
-        <b><u><font color="#000000">return</font></u></b> <font color="#808080">"Bar"</font>
-}
+<b><font color="#4d9375">func</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">f fun</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#5da994">Bar</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><b><font color="#5da994">string</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#bd976a">"Bar"</font>
+<font color="#dbd7ca">}</font>
 
-<b><u><font color="#000000">func</font></u></b> main() {
-        <b><u><font color="#000000">var</font></u></b> f fun = <b><u><font color="#000000">func</font></u></b>() <b><font color="#000000">string</font></b> {
-                <b><u><font color="#000000">return</font></u></b> <font color="#808080">"Foo"</font>
-        }
-        log.Println(<font color="#808080">"Example 1: "</font>, f())
-        log.Println(<font color="#808080">"Example 2: "</font>, f.Bar())
-        log.Println(<font color="#808080">"Example 3: "</font>, fun(f.Bar).Bar())
-        log.Println(<font color="#808080">"Example 4: "</font>, fun(fun(f.Bar).Bar).Bar())
-}
+<b><font color="#4d9375">func</font></b><font color="#dbd7ca"> </font><font color="#5da994">main</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">var</font></b><font color="#dbd7ca"> f fun </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">func</font></b><font color="#cb7676">()</font><font color="#dbd7ca"> </font><b><font color="#5da994">string</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">                </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#bd976a">"Foo"</font>
+<font color="#dbd7ca">        </font><font color="#dbd7ca">}</font>
+<font color="#dbd7ca">        log</font><font color="#cb7676">.</font><font color="#5da994">Println</font><font color="#cb7676">(</font><font color="#bd976a">"Example 1: "</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#5da994">f</font><font color="#cb7676">())</font>
+<font color="#dbd7ca">        log</font><font color="#cb7676">.</font><font color="#5da994">Println</font><font color="#cb7676">(</font><font color="#bd976a">"Example 2: "</font><font color="#cb7676">,</font><font color="#dbd7ca"> f</font><font color="#cb7676">.</font><font color="#5da994">Bar</font><font color="#cb7676">())</font>
+<font color="#dbd7ca">        log</font><font color="#cb7676">.</font><font color="#5da994">Println</font><font color="#cb7676">(</font><font color="#bd976a">"Example 3: "</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#5da994">fun</font><font color="#cb7676">(</font><font color="#dbd7ca">f</font><font color="#cb7676">.</font><font color="#dbd7ca">Bar</font><font color="#cb7676">).</font><font color="#5da994">Bar</font><font color="#cb7676">())</font>
+<font color="#dbd7ca">        log</font><font color="#cb7676">.</font><font color="#5da994">Println</font><font color="#cb7676">(</font><font color="#bd976a">"Example 4: "</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#5da994">fun</font><font color="#cb7676">(</font><font color="#5da994">fun</font><font color="#cb7676">(</font><font color="#dbd7ca">f</font><font color="#cb7676">.</font><font color="#dbd7ca">Bar</font><font color="#cb7676">).</font><font color="#dbd7ca">Bar</font><font color="#cb7676">).</font><font color="#5da994">Bar</font><font color="#cb7676">())</font>
+<font color="#dbd7ca">}</font>
 </pre>
 <br />
 <span>It runs just fine:</span><br />
@@ -106,11 +106,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>❯ go run main.go
-<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">1</font>:  Foo
-<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">2</font>:  Bar
-<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">3</font>:  Bar
-<font color="#000000">2025</font>/<font color="#000000">02</font>/<font color="#000000">07</font> <font color="#000000">22</font>:<font color="#000000">56</font>:<font color="#000000">14</font> Example <font color="#000000">4</font>:  Bar
+<pre><font color="#dbd7ca">❯ go run main</font><font color="#cb7676">.</font><font color="#dbd7ca">go</font>
+<font color="#bd976a">2025</font><font color="#cb7676">/</font><font color="#bd976a">02</font><font color="#cb7676">/</font><font color="#bd976a">07</font><font color="#dbd7ca"> </font><font color="#bd976a">22</font><font color="#cb7676">:</font><font color="#bd976a">56</font><font color="#cb7676">:</font><font color="#bd976a">14</font><font color="#dbd7ca"> Example </font><font color="#bd976a">1</font><font color="#cb7676">:</font><font color="#dbd7ca">  Foo</font>
+<font color="#bd976a">2025</font><font color="#cb7676">/</font><font color="#bd976a">02</font><font color="#cb7676">/</font><font color="#bd976a">07</font><font color="#dbd7ca"> </font><font color="#bd976a">22</font><font color="#cb7676">:</font><font color="#bd976a">56</font><font color="#cb7676">:</font><font color="#bd976a">14</font><font color="#dbd7ca"> Example </font><font color="#bd976a">2</font><font color="#cb7676">:</font><font color="#dbd7ca">  Bar</font>
+<font color="#bd976a">2025</font><font color="#cb7676">/</font><font color="#bd976a">02</font><font color="#cb7676">/</font><font color="#bd976a">07</font><font color="#dbd7ca"> </font><font color="#bd976a">22</font><font color="#cb7676">:</font><font color="#bd976a">56</font><font color="#cb7676">:</font><font color="#bd976a">14</font><font color="#dbd7ca"> Example </font><font color="#bd976a">3</font><font color="#cb7676">:</font><font color="#dbd7ca">  Bar</font>
+<font color="#bd976a">2025</font><font color="#cb7676">/</font><font color="#bd976a">02</font><font color="#cb7676">/</font><font color="#bd976a">07</font><font color="#dbd7ca"> </font><font color="#bd976a">22</font><font color="#cb7676">:</font><font color="#bd976a">56</font><font color="#cb7676">:</font><font color="#bd976a">14</font><font color="#dbd7ca"> Example </font><font color="#bd976a">4</font><font color="#cb7676">:</font><font color="#dbd7ca">  Bar</font>
 </pre>
 <br />
 <h2 style='display: inline' id='macos'>macOS</h2><br />
@@ -129,20 +129,20 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>❯ touch Maß
-❯ ls -l
--rw-r--r--@ <font color="#000000">1</font> paul  wheel  <font color="#000000">0</font> Feb  <font color="#000000">7</font> <font color="#000000">23</font>:<font color="#000000">02</font> Maß
-❯ touch Mass
-❯ ls -l
--rw-r--r--@ <font color="#000000">1</font> paul  wheel  <font color="#000000">0</font> Feb  <font color="#000000">7</font> <font color="#000000">23</font>:<font color="#000000">02</font> Maß
-❯ rm Mass
-❯ ls -l
+<pre><font color="#dbd7ca">❯ touch Maß</font>
+<font color="#dbd7ca">❯ ls -l</font>
+<font color="#dbd7ca">-rw-r--r--@ </font><font color="#bd976a">1</font><font color="#dbd7ca"> paul  wheel  </font><font color="#bd976a">0</font><font color="#dbd7ca"> Feb  </font><font color="#bd976a">7</font><font color="#dbd7ca"> </font><font color="#bd976a">23</font><font color="#cb7676">:</font><font color="#bd976a">02</font><font color="#dbd7ca"> Maß</font>
+<font color="#dbd7ca">❯ touch Mass</font>
+<font color="#dbd7ca">❯ ls -l</font>
+<font color="#dbd7ca">-rw-r--r--@ </font><font color="#bd976a">1</font><font color="#dbd7ca"> paul  wheel  </font><font color="#bd976a">0</font><font color="#dbd7ca"> Feb  </font><font color="#bd976a">7</font><font color="#dbd7ca"> </font><font color="#bd976a">23</font><font color="#cb7676">:</font><font color="#bd976a">02</font><font color="#dbd7ca"> Maß</font>
+<font color="#dbd7ca">❯ rm Mass</font>
+<font color="#dbd7ca">❯ ls -l</font>
 
-❯ touch Mass
-❯ ls -ltr
--rw-r--r--@ <font color="#000000">1</font> paul  wheel  <font color="#000000">0</font> Feb  <font color="#000000">7</font> <font color="#000000">23</font>:<font color="#000000">02</font> Mass
-❯ rm Maß
-❯ ls -l
+<font color="#dbd7ca">❯ touch Mass</font>
+<font color="#dbd7ca">❯ ls -ltr</font>
+<font color="#dbd7ca">-rw-r--r--@ </font><font color="#bd976a">1</font><font color="#dbd7ca"> paul  wheel  </font><font color="#bd976a">0</font><font color="#dbd7ca"> Feb  </font><font color="#bd976a">7</font><font color="#dbd7ca"> </font><font color="#bd976a">23</font><font color="#cb7676">:</font><font color="#bd976a">02</font><font color="#dbd7ca"> Mass</font>
+<font color="#dbd7ca">❯ rm Maß</font>
+<font color="#dbd7ca">❯ ls -l</font>
 
 </pre>
 <br />
@@ -186,16 +186,16 @@ ADFS::4.$.Documents.Techwriter.Myfile
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>arr = {<font color="#000000">10</font>, <font color="#000000">20</font>, <font color="#000000">30</font>, <font color="#000000">40</font>, <font color="#000000">50</font>}
-print(arr[<font color="#000000">1</font>]) <i><font color="silver">-- Accessing the first element</font></i>
+<pre><font color="#dbd7ca">arr </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font><font color="#bd976a">10</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">20</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">30</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">40</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">50</font><font color="#dbd7ca">}</font>
+<font color="#5da994">print</font><font color="#cb7676">(</font><font color="#dbd7ca">arr</font><font color="#cb7676">[</font><font color="#bd976a">1</font><font color="#cb7676">])</font><font color="#dbd7ca"> </font><i><font color="#666666">-- Accessing the first element</font></i>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>❯ lua foo.lua
-<font color="#000000">10</font>
+<pre><font color="#dbd7ca">❯ lua foo</font><font color="#cb7676">.</font><font color="#dbd7ca">lua</font>
+<font color="#bd976a">10</font>
 </pre>
 <br />
 <span>One-based indexing is more natural for human-readable, mathematical, and theoretical contexts, where counting traditionally starts from one.</span><br />
@@ -210,45 +210,45 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># (C) 2006 by Paul C. Buetow</font></i>
+<pre><i><font color="#666666"># (C) 2006 by Paul C. Buetow</font></i>
 
-Christmas:{time;<i><font color="silver">#!!!</font></i>
+<font color="#dbd7ca">Christmas</font><font color="#cb7676">:</font><font color="#dbd7ca">{</font><font color="#dbd7ca">time</font><font color="#cb7676">;</font><i><font color="#666666">#!!!</font></i>
 
-Children: <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">tell</font></u></b> $wishes;
+<font color="#dbd7ca">Children</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">tell</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$wishes</font><font color="#cb7676">;</font>
 
-Santa: <b><u><font color="#000000">for</font></u></b> $each (@children) { 
-BEGIN { <b><u><font color="#000000">read</font></u></b> $each, $their, wishes <b><u><font color="#000000">and</font></u></b> study them; <b><u><font color="#000000">use</font></u></b> Memoize<i><font color="silver">#ing</font></i>
+<font color="#dbd7ca">Santa</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$each</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#bd976a">@children</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font><font color="#dbd7ca"> </font>
+<font color="#dbd7ca">BEGIN </font><font color="#dbd7ca">{</font><font color="#dbd7ca"> </font><b><font color="#4d9375">read</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$each</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">$their</font><font color="#cb7676">,</font><font color="#dbd7ca"> wishes </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> study them</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">use</font></b><font color="#dbd7ca"> Memoize</font><i><font color="#666666">#ing</font></i>
 
-} <b><u><font color="#000000">use</font></u></b> constant gift, <font color="#808080">'wrapping'</font>; 
-<b><u><font color="#000000">package</font></u></b> Gifts; <b><u><font color="#000000">pack</font></u></b> $each, gift <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">bless</font></u></b> $each <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">goto</font></u></b> deliver
-or <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">import</font></u></b> <b><u><font color="#000000">if</font></u></b> not <b><u><font color="#000000">local</font></u></b> $available,!!! HO, HO, HO;
+<font color="#dbd7ca">}</font><font color="#dbd7ca"> </font><b><font color="#4d9375">use</font></b><font color="#dbd7ca"> constant gift</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">'wrapping'</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font>
+<b><font color="#4d9375">package</font></b><font color="#dbd7ca"> Gifts</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">pack</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$each</font><font color="#cb7676">,</font><font color="#dbd7ca"> gift </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">bless</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$each</font><font color="#dbd7ca"> </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">goto</font></b><font color="#dbd7ca"> deliver</font>
+<font color="#dbd7ca">or </font><b><font color="#4d9375">do</font></b><font color="#dbd7ca"> </font><font color="#666666">import</font><font color="#dbd7ca"> </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> not </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$available</font><font color="#cb7676">,!!!</font><font color="#dbd7ca"> HO</font><font color="#cb7676">,</font><font color="#dbd7ca"> HO</font><font color="#cb7676">,</font><font color="#dbd7ca"> HO</font><font color="#cb7676">;</font>
 
-<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
-<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered; 
+<b><font color="#4d9375">redo</font></b><font color="#dbd7ca"> Santa</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><b><font color="#4d9375">pipe</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$gifts</font><font color="#cb7676">,</font><font color="#dbd7ca"> to_childs</font><font color="#cb7676">;</font>
+<b><font color="#4d9375">redo</font></b><font color="#dbd7ca"> Santa </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">last</font></b><font color="#dbd7ca"> one</font><font color="#cb7676">,</font><font color="#dbd7ca"> is</font><font color="#cb7676">,</font><font color="#dbd7ca"> delivered</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font>
 
-deliver: gift <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">require</font></u></b> diagnostics <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">our</font></u></b> $gifts ,not break;
-<b><u><font color="#000000">do</font></u></b>{ <b><u><font color="#000000">use</font></u></b> NEXT; time; <b><u><font color="#000000">tied</font></u></b> $gifts} <b><u><font color="#000000">if</font></u></b> broken <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">dump</font></u></b> the, broken, ones;
-The_children: <b><u><font color="#000000">sleep</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">wait</font></u></b> <b><u><font color="#000000">for</font></u></b> (<b><u><font color="#000000">each</font></u></b> %gift) <b><u><font color="#000000">and</font></u></b> try { to =&gt; <b><u><font color="#000000">untie</font></u></b> $gifts };
+<font color="#dbd7ca">deliver</font><font color="#cb7676">:</font><font color="#dbd7ca"> gift </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">require</font></b><font color="#dbd7ca"> diagnostics </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">our</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$gifts</font><font color="#dbd7ca"> </font><font color="#cb7676">,</font><font color="#dbd7ca">not break</font><font color="#cb7676">;</font>
+<b><font color="#4d9375">do</font></b><font color="#dbd7ca">{</font><font color="#dbd7ca"> </font><b><font color="#4d9375">use</font></b><font color="#dbd7ca"> NEXT</font><font color="#cb7676">;</font><font color="#dbd7ca"> time</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">tied</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$gifts</font><font color="#dbd7ca">}</font><font color="#dbd7ca"> </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> broken </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">dump</font></b><font color="#dbd7ca"> the</font><font color="#cb7676">,</font><font color="#dbd7ca"> broken</font><font color="#cb7676">,</font><font color="#dbd7ca"> ones</font><font color="#cb7676">;</font>
+<font color="#dbd7ca">The_children</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><b><font color="#4d9375">sleep</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">wait</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><b><font color="#4d9375">each</font></b><font color="#dbd7ca"> </font><font color="#bd976a">%gift</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> try </font><font color="#dbd7ca">{</font><font color="#dbd7ca"> to </font><font color="#cb7676">=&gt;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">untie</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$gifts</font><font color="#dbd7ca"> </font><font color="#dbd7ca">}</font><font color="#cb7676">;</font>
 
-<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
-<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered; 
+<b><font color="#4d9375">redo</font></b><font color="#dbd7ca"> Santa</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><b><font color="#4d9375">pipe</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$gifts</font><font color="#cb7676">,</font><font color="#dbd7ca"> to_childs</font><font color="#cb7676">;</font>
+<b><font color="#4d9375">redo</font></b><font color="#dbd7ca"> Santa </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">last</font></b><font color="#dbd7ca"> one</font><font color="#cb7676">,</font><font color="#dbd7ca"> is</font><font color="#cb7676">,</font><font color="#dbd7ca"> delivered</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font>
 
-The_christmas_tree: formline <b><u><font color="#000000">s</font></u></b><font color="#808080">/ /childrens/</font>, $gifts;
-<b><u><font color="#000000">alarm</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">warn</font></u></b> <b><u><font color="#000000">if</font></u></b> not <b><u><font color="#000000">exists</font></u></b> $Christmas{ tree}, @t, $ENV{HOME};  
-<b><u><font color="#000000">write</font></u></b> &lt;&lt;EMail
- to the parents to buy a new christmas tree!!!!<font color="#000000">111</font>
- <b><u><font color="#000000">and</font></u></b> send the
-EMail
-;<b><u><font color="#000000">wait</font></u></b> <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">redo</font></u></b> deliver until <b><u><font color="#000000">defined</font></u></b> <b><u><font color="#000000">local</font></u></b> $tree;
+<font color="#dbd7ca">The_christmas_tree</font><font color="#cb7676">:</font><font color="#dbd7ca"> formline </font><b><font color="#4d9375">s</font></b><font color="#bd976a">/ /childrens/</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">$gifts</font><font color="#cb7676">;</font>
+<b><font color="#4d9375">alarm</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">warn</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> not </font><b><font color="#4d9375">exists</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$Christmas</font><font color="#dbd7ca">{</font><font color="#dbd7ca"> tree</font><font color="#dbd7ca">}</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">@t</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">$ENV</font><font color="#dbd7ca">{</font><font color="#dbd7ca">HOME</font><font color="#dbd7ca">}</font><font color="#cb7676">;</font><font color="#dbd7ca">  </font>
+<b><font color="#4d9375">write</font></b><font color="#dbd7ca"> </font><font color="#cb7676">&lt;&lt;</font><font color="#dbd7ca">EMail</font>
+<font color="#dbd7ca"> to the parents to buy a new christmas tree</font><font color="#cb7676">!!!!</font><font color="#bd976a">111</font>
+<font color="#dbd7ca"> </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> send the</font>
+<font color="#dbd7ca">EMail</font>
+<font color="#cb7676">;</font><b><font color="#4d9375">wait</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">redo</font></b><font color="#dbd7ca"> deliver until </font><b><font color="#4d9375">defined</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$tree</font><font color="#cb7676">;</font>
 
-<b><u><font color="#000000">redo</font></u></b> Santa, <b><u><font color="#000000">pipe</font></u></b> $gifts, to_childs;
-<b><u><font color="#000000">redo</font></u></b> Santa <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">return</font></u></b> <b><u><font color="#000000">if</font></u></b> <b><u><font color="#000000">last</font></u></b> one, is, delivered ;}
+<b><font color="#4d9375">redo</font></b><font color="#dbd7ca"> Santa</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><b><font color="#4d9375">pipe</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$gifts</font><font color="#cb7676">,</font><font color="#dbd7ca"> to_childs</font><font color="#cb7676">;</font>
+<b><font color="#4d9375">redo</font></b><font color="#dbd7ca"> Santa </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">last</font></b><font color="#dbd7ca"> one</font><font color="#cb7676">,</font><font color="#dbd7ca"> is</font><font color="#cb7676">,</font><font color="#dbd7ca"> delivered </font><font color="#cb7676">;</font><font color="#dbd7ca">}</font>
 
-END {} <b><u><font color="#000000">our</font></u></b> $mission <b><u><font color="#000000">and</font></u></b> <b><u><font color="#000000">do</font></u></b> <b><u><font color="#000000">sleep</font></u></b> until <b><u><font color="#000000">next</font></u></b> Christmas ;}
+<font color="#dbd7ca">END </font><font color="#dbd7ca">{}</font><font color="#dbd7ca"> </font><b><font color="#4d9375">our</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$mission</font><font color="#dbd7ca"> </font><b><font color="#4d9375">and</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">sleep</font></b><font color="#dbd7ca"> until </font><b><font color="#4d9375">next</font></b><font color="#dbd7ca"> Christmas </font><font color="#cb7676">;</font><font color="#dbd7ca">}</font>
 
-__END__
+<font color="#dbd7ca">__END__</font>
 
-This is perl, v5.<font color="#000000">8.8</font> built <b><u><font color="#000000">for</font></u></b> i386-freebsd-64int
+<font color="#dbd7ca">This is perl</font><font color="#cb7676">,</font><font color="#dbd7ca"> v5</font><font color="#cb7676">.</font><font color="#bd976a">8.8</font><font color="#dbd7ca"> built </font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> i386</font><font color="#cb7676">-</font><font color="#dbd7ca">freebsd</font><font color="#cb7676">-</font><font color="#dbd7ca">64int</font>
 </pre>
 <br />
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>More Perl Poetry of mine</a><br />

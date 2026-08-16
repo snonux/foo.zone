@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-X.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-X.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-X.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-X.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-x-gitops-with-argocd'>f3s: Kubernetes with FreeBSD - Part X: GitOps with ArgoCD</h1><br />
 <br />
@@ -141,8 +141,8 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl create namespace cicd
-namespace/cicd created
+<pre><font color="#dbd7ca">$ kubectl create namespace cicd</font>
+<font color="#dbd7ca">namespace/cicd created</font>
 </pre>
 <br />
 <h3 style='display: inline' id='installing-argocd'>Installing ArgoCD</h3><br />
@@ -157,18 +157,18 @@ namespace/cicd created
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ cd conf/f3s/argocd
-$ just install
-helm repo add argo https://argoproj.github.io/argo-helm
-helm repo update
-helm install argocd argo/argo-cd \
-    --namespace cicd \
-    --version <font color="#000000">7.7</font>.<font color="#000000">12</font> \
-    -f values.yaml
-NAME: argocd
-LAST DEPLOYED: ...
-NAMESPACE: cicd
-STATUS: deployed
+<pre><font color="#dbd7ca">$ cd conf/f3s/argocd</font>
+<font color="#dbd7ca">$ just install</font>
+<font color="#dbd7ca">helm repo add argo https</font><font color="#cb7676">:</font><font color="#dbd7ca">//argoproj</font><font color="#cb7676">.</font><font color="#dbd7ca">github</font><font color="#cb7676">.</font><font color="#dbd7ca">io/argo-helm</font>
+<font color="#dbd7ca">helm repo update</font>
+<font color="#dbd7ca">helm install argocd argo/argo-cd </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">    --namespace cicd </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">    --version </font><font color="#bd976a">7.7</font><font color="#cb7676">.</font><font color="#bd976a">12</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">    -f values</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
+<font color="#dbd7ca">NAME</font><font color="#cb7676">:</font><font color="#dbd7ca"> argocd</font>
+<font color="#dbd7ca">LAST DEPLOYED</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">...</font>
+<font color="#dbd7ca">NAMESPACE</font><font color="#cb7676">:</font><font color="#dbd7ca"> cicd</font>
+<font color="#dbd7ca">STATUS</font><font color="#cb7676">:</font><font color="#dbd7ca"> deployed</font>
 </pre>
 <br />
 <span>The <span class='inlinecode'>values.yaml</span> file configures several important aspects:</span><br />
@@ -200,12 +200,12 @@ configs:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ ARGOCD_ADMIN_PASSWORD=$(pwgen -s <font color="#000000">32</font> <font color="#000000">1</font>)
-$ BCRYPT_HASH=$(htpasswd -nbBC <font color="#000000">10</font> <font color="#808080">""</font> <font color="#808080">"$ARGOCD_ADMIN_PASSWORD"</font> | tr -d <font color="#808080">':</font>\n<font color="#808080">'</font> | sed <font color="#808080">'s/$2y/$2a/'</font>)
-$ kubectl create secret generic argocd-secret \
-    --from-literal=admin.password=<font color="#808080">"$BCRYPT_HASH"</font> \
-    -n cicd
-$ echo <font color="#808080">"ArgoCD admin password: $ARGOCD_ADMIN_PASSWORD"</font>
+<pre><font color="#dbd7ca">$ </font><font color="#bd976a">ARGOCD_ADMIN_PASSWORD</font><font color="#cb7676">=</font><font color="#bd976a">$(</font><font color="#dbd7ca">pwgen -s </font><font color="#bd976a">32</font><font color="#dbd7ca"> </font><font color="#bd976a">1</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">$ </font><font color="#bd976a">BCRYPT_HASH</font><font color="#cb7676">=</font><font color="#bd976a">$(</font><font color="#dbd7ca">htpasswd -nbBC </font><font color="#bd976a">10</font><font color="#dbd7ca"> </font><font color="#bd976a">""</font><font color="#dbd7ca"> </font><font color="#bd976a">"$ARGOCD_ADMIN_PASSWORD"</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> tr -d </font><font color="#bd976a">':</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> sed </font><font color="#bd976a">'s/$2y/$2a/'</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">$ kubectl create secret generic argocd-secret </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">    --from-literal</font><font color="#cb7676">=</font><font color="#dbd7ca">admin</font><font color="#cb7676">.</font><font color="#bd976a">password</font><font color="#cb7676">=</font><font color="#bd976a">"$BCRYPT_HASH"</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">    -n cicd</font>
+<font color="#dbd7ca">$ echo </font><font color="#bd976a">"ArgoCD admin password: $ARGOCD_ADMIN_PASSWORD"</font>
 </pre>
 <br />
 <span>Server configuration: Enabled insecure mode since TLS is handled by the OpenBSD edge relays:</span><br />
@@ -223,15 +223,15 @@ server:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl get pods -n cicd
-NAME                                                READY   STATUS    RESTARTS   AGE
-argocd-application-controller-<font color="#000000">0</font>                     <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
-argocd-applicationset-controller-66d6b9b8f4-vhm9k   <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
-argocd-dex-server-7fb556b7dd-xjr2l                  <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
-argocd-notifications-controller-6d8dd4c5f5-b8vwl    <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
-argocd-redis-77b8d6c6d4-mz9hg                       <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
-argocd-repo-server-5f98f77b97-8xtcq                 <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
-argocd-server-6b9c4b4f8d-kxw7p                      <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
+<pre><font color="#dbd7ca">$ kubectl get pods -n cicd</font>
+<font color="#dbd7ca">NAME                                                READY   STATUS    RESTARTS   AGE</font>
+<font color="#dbd7ca">argocd-application-controller-</font><font color="#bd976a">0</font><font color="#dbd7ca">                     </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
+<font color="#dbd7ca">argocd-applicationset-controller-66d6b9b8f4-vhm9k   </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
+<font color="#dbd7ca">argocd-dex-server-7fb556b7dd-xjr2l                  </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
+<font color="#dbd7ca">argocd-notifications-controller-6d8dd4c5f5-b8vwl    </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
+<font color="#dbd7ca">argocd-redis-77b8d6c6d4-mz9hg                       </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
+<font color="#dbd7ca">argocd-repo-server-5f98f77b97-8xtcq                 </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
+<font color="#dbd7ca">argocd-server-6b9c4b4f8d-kxw7p                      </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
 </pre>
 <br />
 <span>I created an ingress to expose the ArgoCD web UI:</span><br />
@@ -267,8 +267,8 @@ spec:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ argocd login argocd.f3s.foo.zone
-$ argocd app list
+<pre><font color="#dbd7ca">$ argocd login argocd</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">foo</font><font color="#cb7676">.</font><font color="#dbd7ca">zone</font>
+<font color="#dbd7ca">$ argocd app list</font>
 </pre>
 <br />
 <h2 style='display: inline' id='argocd-application-structure'>ArgoCD Application Structure</h2><br />
@@ -426,22 +426,22 @@ spec:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>NAMESPACE := <font color="#808080">"services"</font>
-APP_NAME := <font color="#808080">"miniflux"</font>
+<pre><font color="#cb7676">NAMESPACE :=</font><font color="#dbd7ca"> </font><font color="#bd976a">"services"</font>
+<font color="#cb7676">APP_NAME :=</font><font color="#dbd7ca"> </font><font color="#bd976a">"miniflux"</font>
 
-install:
-    kubectl apply -f helm-chart/persistent-volumes.yaml
-    helm install {{APP_NAME}} ./helm-chart --namespace {{NAMESPACE}}
+<font color="#cb7676">install:</font>
+<font color="#dbd7ca">    kubectl apply -f helm-chart/persistent-volumes.yaml</font>
+<font color="#dbd7ca">    helm install {{APP_NAME}} </font><font color="#cb7676">.</font><font color="#dbd7ca">/helm-chart --namespace {{NAMESPACE}}</font>
 
-upgrade:
-    helm upgrade {{APP_NAME}} ./helm-chart --namespace {{NAMESPACE}}
+<font color="#cb7676">upgrade:</font>
+<font color="#dbd7ca">    helm upgrade {{APP_NAME}} </font><font color="#cb7676">.</font><font color="#dbd7ca">/helm-chart --namespace {{NAMESPACE}}</font>
 
-uninstall:
-    helm uninstall {{APP_NAME}} --namespace {{NAMESPACE}}
-    kubectl delete -f helm-chart/persistent-volumes.yaml
+<font color="#cb7676">uninstall:</font>
+<font color="#dbd7ca">    helm uninstall {{APP_NAME}} --namespace {{NAMESPACE}}</font>
+<font color="#dbd7ca">    kubectl delete -f helm-chart/persistent-volumes.yaml</font>
 
-status:
-    @kubectl get all -n {{NAMESPACE}} -l app={{APP_NAME}}
+<font color="#cb7676">status:</font>
+<font color="#dbd7ca">    @kubectl get all -n {{NAMESPACE}} -l </font><font color="#bd976a">app</font><font color="#cb7676">=</font><font color="#dbd7ca">{{APP_NAME}}</font>
 </pre>
 <br />
 <span>Workflow:</span><br />
@@ -490,30 +490,30 @@ spec:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>NAMESPACE := <font color="#808080">"services"</font>
-APP_NAME := <font color="#808080">"miniflux"</font>
+<pre><font color="#cb7676">NAMESPACE :=</font><font color="#dbd7ca"> </font><font color="#bd976a">"services"</font>
+<font color="#cb7676">APP_NAME :=</font><font color="#dbd7ca"> </font><font color="#bd976a">"miniflux"</font>
 
-status:
-    @echo <font color="#808080">"=== Pods ==="</font>
-    @kubectl get pods -n {{NAMESPACE}} -l app={{APP_NAME}}
-    @echo <font color="#808080">""</font>
-    @echo <font color="#808080">"=== Services ==="</font>
-    @kubectl get svc -n {{NAMESPACE}} -l app={{APP_NAME}}
-    @echo <font color="#808080">""</font>
-    @echo <font color="#808080">"=== ArgoCD Status ==="</font>
-    @kubectl get application {{APP_NAME}} -n cicd -o jsonpath=<font color="#808080">'Sync: {.status.sync.status}, Health: {.status.health.status}'</font> <font color="#000000">2</font>&gt;/dev/null &amp;&amp; echo <font color="#808080">""</font>
+<font color="#cb7676">status:</font>
+<font color="#dbd7ca">    @echo </font><font color="#bd976a">"=== Pods ==="</font>
+<font color="#dbd7ca">    @kubectl get pods -n {{NAMESPACE}} -l </font><font color="#bd976a">app</font><font color="#cb7676">=</font><font color="#dbd7ca">{{APP_NAME}}</font>
+<font color="#dbd7ca">    @echo </font><font color="#bd976a">""</font>
+<font color="#dbd7ca">    @echo </font><font color="#bd976a">"=== Services ==="</font>
+<font color="#dbd7ca">    @kubectl get svc -n {{NAMESPACE}} -l </font><font color="#bd976a">app</font><font color="#cb7676">=</font><font color="#dbd7ca">{{APP_NAME}}</font>
+<font color="#dbd7ca">    @echo </font><font color="#bd976a">""</font>
+<font color="#dbd7ca">    @echo </font><font color="#bd976a">"=== ArgoCD Status ==="</font>
+<font color="#dbd7ca">    @kubectl get application {{APP_NAME}} -n cicd -o </font><font color="#bd976a">jsonpath</font><font color="#cb7676">=</font><font color="#bd976a">'Sync: {.status.sync.status}, Health: {.status.health.status}'</font><font color="#dbd7ca"> </font><font color="#bd976a">2</font><font color="#cb7676">&gt;</font><font color="#dbd7ca">/dev/null </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> echo </font><font color="#bd976a">""</font>
 
-sync:
-    @echo <font color="#808080">"Triggering ArgoCD sync..."</font>
-    @kubectl annotate application {{APP_NAME}} -n cicd argocd.argoproj.io/refresh=normal --overwrite
-    @sleep <font color="#000000">2</font>
-    @kubectl get application {{APP_NAME}} -n cicd -o jsonpath=<font color="#808080">'Sync: {.status.sync.status}, Health: {.status.health.status}'</font> &amp;&amp; echo <font color="#808080">""</font>
+<font color="#cb7676">sync:</font>
+<font color="#dbd7ca">    @echo </font><font color="#bd976a">"Triggering ArgoCD sync..."</font>
+<font color="#dbd7ca">    @kubectl annotate application {{APP_NAME}} -n cicd argocd.argoproj.io/refresh</font><font color="#cb7676">=</font><font color="#dbd7ca">normal --overwrite</font>
+<font color="#dbd7ca">    @sleep </font><font color="#bd976a">2</font>
+<font color="#dbd7ca">    @kubectl get application {{APP_NAME}} -n cicd -o </font><font color="#bd976a">jsonpath</font><font color="#cb7676">=</font><font color="#bd976a">'Sync: {.status.sync.status}, Health: {.status.health.status}'</font><font color="#dbd7ca"> </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> echo </font><font color="#bd976a">""</font>
 
-argocd-status:
-    argocd app get {{APP_NAME}} --core
+<font color="#cb7676">argocd-status:</font>
+<font color="#dbd7ca">    argocd app get {{APP_NAME}} --core</font>
 
-logs:
-    kubectl logs -n {{NAMESPACE}} -l app={{APP_NAME}} --tail=<font color="#000000">100</font> -f
+<font color="#cb7676">logs:</font>
+<font color="#dbd7ca">    kubectl logs -n {{NAMESPACE}} -l </font><font color="#bd976a">app</font><font color="#cb7676">=</font><font color="#dbd7ca">{{APP_NAME}} --tail</font><font color="#cb7676">=</font><font color="#bd976a">100</font><font color="#dbd7ca"> -f</font>
 </pre>
 <br />
 <span>New workflow:</span><br />
@@ -529,8 +529,8 @@ logs:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ helm get values miniflux -n services &gt; /tmp/miniflux-backup-values.yaml
-$ kubectl get all,ingress -n services -o yaml &gt; /tmp/miniflux-backup.yaml
+<pre><font color="#dbd7ca">$ helm get values miniflux -n services </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /tmp/miniflux-backup-values</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
+<font color="#dbd7ca">$ kubectl get all</font><font color="#cb7676">,</font><font color="#dbd7ca">ingress -n services -o yaml </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /tmp/miniflux-backup</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
 </pre>
 <br />
 <span>2. Create Application manifest:</span><br />
@@ -538,8 +538,8 @@ $ kubectl get all,ingress -n services -o yaml &gt; /tmp/miniflux-backup.yaml
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl apply -f argocd-apps/services/miniflux.yaml
-application.argoproj.io/miniflux created
+<pre><font color="#dbd7ca">$ kubectl apply -f argocd-apps/services/miniflux</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
+<font color="#dbd7ca">application</font><font color="#cb7676">.</font><font color="#dbd7ca">argoproj</font><font color="#cb7676">.</font><font color="#dbd7ca">io/miniflux created</font>
 </pre>
 <br />
 <span>3. Verify ArgoCD adopted the resources:</span><br />
@@ -547,19 +547,19 @@ application.argoproj.io/miniflux created
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ argocd app get miniflux
-Name:               miniflux
-Project:            default
-Server:             https://kubernetes.default.svc
-Namespace:          services
-URL:                https://argocd.f3s.foo.zone/applications/miniflux
-Repo:               https://github.com/snonux/conf.git
-Target:             master
-Path:               f3s/miniflux/helm-chart
-SyncWindow:         Sync Allowed
-Sync Policy:        Automated (Prune)
-Sync Status:        Synced to master (4e3c216)
-Health Status:      Healthy
+<pre><font color="#dbd7ca">$ argocd app get miniflux</font>
+<font color="#dbd7ca">Name</font><font color="#cb7676">:</font><font color="#dbd7ca">               miniflux</font>
+<font color="#dbd7ca">Project</font><font color="#cb7676">:</font><font color="#dbd7ca">            default</font>
+<font color="#dbd7ca">Server</font><font color="#cb7676">:</font><font color="#dbd7ca">             https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc</font>
+<font color="#dbd7ca">Namespace</font><font color="#cb7676">:</font><font color="#dbd7ca">          services</font>
+<font color="#dbd7ca">URL</font><font color="#cb7676">:</font><font color="#dbd7ca">                https</font><font color="#cb7676">:</font><font color="#dbd7ca">//argocd</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">foo</font><font color="#cb7676">.</font><font color="#dbd7ca">zone/applications/miniflux</font>
+<font color="#dbd7ca">Repo</font><font color="#cb7676">:</font><font color="#dbd7ca">               https</font><font color="#cb7676">:</font><font color="#dbd7ca">//github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/conf</font><font color="#cb7676">.</font><font color="#dbd7ca">git</font>
+<font color="#dbd7ca">Target</font><font color="#cb7676">:</font><font color="#dbd7ca">             master</font>
+<font color="#dbd7ca">Path</font><font color="#cb7676">:</font><font color="#dbd7ca">               f3s/miniflux/helm-chart</font>
+<font color="#dbd7ca">SyncWindow</font><font color="#cb7676">:</font><font color="#dbd7ca">         Sync Allowed</font>
+<font color="#dbd7ca">Sync Policy</font><font color="#cb7676">:</font><font color="#dbd7ca">        Automated </font><font color="#cb7676">(</font><font color="#dbd7ca">Prune</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">Sync Status</font><font color="#cb7676">:</font><font color="#dbd7ca">        Synced to master </font><font color="#cb7676">(</font><font color="#dbd7ca">4e3c216</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">Health Status</font><font color="#cb7676">:</font><font color="#dbd7ca">      Healthy</font>
 </pre>
 <br />
 <span>4. Monitor for issues:</span><br />
@@ -567,12 +567,12 @@ Health Status:      Healthy
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl get pods -n services -l app=miniflux -w
-NAME                                READY   STATUS    RESTARTS   AGE
-miniflux-postgres-556444cb8d-xvv2p  <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          54d
-``
+<pre><font color="#dbd7ca">$ kubectl get pods -n services -l </font><font color="#bd976a">app</font><font color="#cb7676">=</font><font color="#dbd7ca">miniflux -w</font>
+<font color="#dbd7ca">NAME                                READY   STATUS    RESTARTS   AGE</font>
+<font color="#dbd7ca">miniflux-postgres-556444cb8d-xvv2p  </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          54d</font>
+<font color="#dbd7ca">``</font>
 
-<font color="#000000">5</font>. Test the application:
+<font color="#bd976a">5</font><font color="#cb7676">.</font><font color="#dbd7ca"> Test the application</font><font color="#cb7676">:</font>
 </pre>
 <span>$ curl -I https://flux.f3s.foo.zone</span><br />
 <span>HTTP/2 200</span><br />

@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-05-17-unveiling-ior-ng-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-05-17-unveiling-ior-ng-part-3.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-05-17-unveiling-ior-ng-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-05-17-unveiling-ior-ng-part-3.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='unveiling-io-riot-ng--part-3-under-the-hood'>Unveiling I/O Riot NG — Part 3: under the hood</h1><br />
 <br />
@@ -99,14 +99,14 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>clickhouse <b><u><font color="#000000">local</font></u></b> --query <font color="#808080">"</font>
-<font color="#808080">  SELECT comm, syscall, count() AS n,</font>
-<font color="#808080">         formatReadableSize(sum(bytes)) AS total</font>
-<font color="#808080">  FROM file('trace.parquet', Parquet)</font>
-<font color="#808080">  GROUP BY comm, syscall</font>
-<font color="#808080">  ORDER BY n DESC</font>
-<font color="#808080">  LIMIT 10</font>
-<font color="#808080">"</font> --format PrettyCompactNoEscapes
+<pre><font color="#dbd7ca">clickhouse </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> --query </font><font color="#bd976a">"</font>
+<font color="#bd976a">  SELECT comm, syscall, count() AS n,</font>
+<font color="#bd976a">         formatReadableSize(sum(bytes)) AS total</font>
+<font color="#bd976a">  FROM file('trace.parquet', Parquet)</font>
+<font color="#bd976a">  GROUP BY comm, syscall</font>
+<font color="#bd976a">  ORDER BY n DESC</font>
+<font color="#bd976a">  LIMIT 10</font>
+<font color="#bd976a">"</font><font color="#dbd7ca"> --format PrettyCompactNoEscapes</font>
 </pre>
 <br />
 <pre>
@@ -130,15 +130,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>clickhouse <b><u><font color="#000000">local</font></u></b> --query <font color="#808080">"</font>
-<font color="#808080">  SELECT syscall, count() AS n,</font>
-<font color="#808080">         round(quantile(0.5)(latency_ns)/1000,  1) AS p50_us,</font>
-<font color="#808080">         round(quantile(0.99)(latency_ns)/1000, 1) AS p99_us</font>
-<font color="#808080">  FROM file('trace.parquet', Parquet)</font>
-<font color="#808080">  WHERE is_error = 1</font>
-<font color="#808080">  GROUP BY syscall</font>
-<font color="#808080">  ORDER BY p99_us DESC</font>
-<font color="#808080">"</font> --format PrettyCompactNoEscapes
+<pre><font color="#dbd7ca">clickhouse </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> --query </font><font color="#bd976a">"</font>
+<font color="#bd976a">  SELECT syscall, count() AS n,</font>
+<font color="#bd976a">         round(quantile(0.5)(latency_ns)/1000,  1) AS p50_us,</font>
+<font color="#bd976a">         round(quantile(0.99)(latency_ns)/1000, 1) AS p99_us</font>
+<font color="#bd976a">  FROM file('trace.parquet', Parquet)</font>
+<font color="#bd976a">  WHERE is_error = 1</font>
+<font color="#bd976a">  GROUP BY syscall</font>
+<font color="#bd976a">  ORDER BY p99_us DESC</font>
+<font color="#bd976a">"</font><font color="#dbd7ca"> --format PrettyCompactNoEscapes</font>
 </pre>
 <br />
 <pre>
@@ -172,7 +172,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>sudo ior -plain -duration <font color="#000000">15</font> &gt; iotrace.csv
+<pre><font color="#dbd7ca">sudo ior -plain -duration </font><font color="#bd976a">15</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> iotrace</font><font color="#cb7676">.</font><font color="#dbd7ca">csv</font>
 </pre>
 <br />
 <span>The CSV has a one-line ASCII banner at the top followed by the column header <span class='inlinecode'>durationToPrevNs,durationNs,comm,pid.tid,name,ret,notice,file</span> and one row per syscall. (Inside the row the <span class='inlinecode'>comm@pid.tid</span>, <span class='inlinecode'>name=&gt;ret</span> and <span class='inlinecode'>file%(fd,flags)</span> sub-encodings keep the column count low; any half-decent assistant will figure those out unprompted.)</span><br />

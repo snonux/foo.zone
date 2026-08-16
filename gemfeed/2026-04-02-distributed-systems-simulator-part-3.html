@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-04-02-distributed-systems-simulator-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-04-02-distributed-systems-simulator-part-3.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-04-02-distributed-systems-simulator-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-04-02-distributed-systems-simulator-part-3.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='distributed-systems-simulator---part-3-advanced-examples-and-protocol-api'>Distributed Systems Simulator - Part 3: Advanced Examples and Protocol API</h1><br />
 <br />
@@ -205,51 +205,51 @@ VSAbstractEvent
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">public</font></u></b> <b><u><font color="#000000">class</font></u></b> VSReliableMulticastProtocol <b><u><font color="#000000">extends</font></u></b> VSAbstractProtocol {
-    <b><u><font color="#000000">public</font></u></b> VSReliableMulticastProtocol() {
-        <i><font color="silver">// The client initiates requests</font></i>
-        <b><u><font color="#000000">super</font></u></b>(VSAbstractProtocol.HAS_ON_CLIENT_START);
-        <b><u><font color="#000000">super</font></u></b>.setClassname(<b><u><font color="#000000">super</font></u></b>.getClass().toString());
-    }
+<pre><b><font color="#4d9375">public</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">class</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">VSReliableMulticastProtocol</font><font color="#dbd7ca"> </font><b><font color="#4d9375">extends</font></b><font color="#dbd7ca"> VSAbstractProtocol </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">public</font></b><font color="#dbd7ca"> </font><font color="#5da994">VSReliableMulticastProtocol</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">        </font><i><font color="#666666">// The client initiates requests</font></i>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">super</font></b><font color="#cb7676">(</font><font color="#dbd7ca">VSAbstractProtocol</font><font color="#cb7676">.</font><font color="#dbd7ca">HAS_ON_CLIENT_START</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">super</font></b><font color="#cb7676">.</font><font color="#5da994">setClassname</font><font color="#cb7676">(</font><b><font color="#4d9375">super</font></b><font color="#cb7676">.</font><font color="#5da994">getClass</font><font color="#cb7676">().</font><font color="#5da994">toString</font><font color="#cb7676">());</font>
+<font color="#dbd7ca">    </font><font color="#dbd7ca">}</font>
 
-    <b><u><font color="#000000">private</font></u></b> ArrayList&lt;Integer&gt; pids;
+<font color="#dbd7ca">    </font><b><font color="#4d9375">private</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">ArrayList&lt;Integer&gt;</font><font color="#dbd7ca"> pids</font><font color="#cb7676">;</font>
 
-    <i><font color="silver">// Initialize protocol variables (editable in the process editor)</font></i>
-    <b><u><font color="#000000">public</font></u></b> <b><font color="#000000">void</font></b> onClientInit() {
-        Vector&lt;Integer&gt; vec = <b><u><font color="#000000">new</font></u></b> Vector&lt;Integer&gt;();
-        vec.add(<font color="#000000">1</font>); vec.add(<font color="#000000">3</font>);
-        <b><u><font color="#000000">super</font></u></b>.initVector(<font color="#808080">"pids"</font>, vec, <font color="#808080">"PIDs of participating processes"</font>);
-        <b><u><font color="#000000">super</font></u></b>.initLong(<font color="#808080">"timeout"</font>, <font color="#000000">2500</font>, <font color="#808080">"Time until resend"</font>, <font color="#808080">"ms"</font>);
-    }
+<font color="#dbd7ca">    </font><i><font color="#666666">// Initialize protocol variables (editable in the process editor)</font></i>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">public</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">void</font></b><font color="#dbd7ca"> </font><font color="#5da994">onClientInit</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">        </font><font color="#dbd7ca">Vector&lt;Integer&gt;</font><font color="#dbd7ca"> vec </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">new</font></b><font color="#dbd7ca"> Vector</font><font color="#cb7676">&lt;</font><font color="#dbd7ca">Integer</font><font color="#cb7676">&gt;();</font>
+<font color="#dbd7ca">        vec</font><font color="#cb7676">.</font><font color="#5da994">add</font><font color="#cb7676">(</font><font color="#bd976a">1</font><font color="#cb7676">);</font><font color="#dbd7ca"> vec</font><font color="#cb7676">.</font><font color="#5da994">add</font><font color="#cb7676">(</font><font color="#bd976a">3</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">super</font></b><font color="#cb7676">.</font><font color="#5da994">initVector</font><font color="#cb7676">(</font><font color="#bd976a">"pids"</font><font color="#cb7676">,</font><font color="#dbd7ca"> vec</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"PIDs of participating processes"</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">super</font></b><font color="#cb7676">.</font><font color="#5da994">initLong</font><font color="#cb7676">(</font><font color="#bd976a">"timeout"</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">2500</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"Time until resend"</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"ms"</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">    </font><font color="#dbd7ca">}</font>
 
-    <i><font color="silver">// Send multicast to all servers that haven't ACKed yet</font></i>
-    <b><u><font color="#000000">public</font></u></b> <b><font color="#000000">void</font></b> onClientStart() {
-        <b><u><font color="#000000">if</font></u></b> (pids.size() != <font color="#000000">0</font>) {
-            <b><font color="#000000">long</font></b> timeout = <b><u><font color="#000000">super</font></u></b>.getLong(<font color="#808080">"timeout"</font>) + process.getTime();
-            <b><u><font color="#000000">super</font></u></b>.scheduleAt(timeout);
-            VSMessage message = <b><u><font color="#000000">new</font></u></b> VSMessage();
-            message.setBoolean(<font color="#808080">"isMulticast"</font>, <b><u><font color="#000000">true</font></u></b>);
-            <b><u><font color="#000000">super</font></u></b>.sendMessage(message);
-        }
-    }
+<font color="#dbd7ca">    </font><i><font color="#666666">// Send multicast to all servers that haven't ACKed yet</font></i>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">public</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">void</font></b><font color="#dbd7ca"> </font><font color="#5da994">onClientStart</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">pids</font><font color="#cb7676">.</font><font color="#5da994">size</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#cb7676">!=</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">            </font><b><font color="#5da994">long</font></b><font color="#dbd7ca"> timeout </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">super</font></b><font color="#cb7676">.</font><font color="#5da994">getLong</font><font color="#cb7676">(</font><font color="#bd976a">"timeout"</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#dbd7ca"> process</font><font color="#cb7676">.</font><font color="#5da994">getTime</font><font color="#cb7676">();</font>
+<font color="#dbd7ca">            </font><b><font color="#4d9375">super</font></b><font color="#cb7676">.</font><font color="#5da994">scheduleAt</font><font color="#cb7676">(</font><font color="#dbd7ca">timeout</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">            </font><font color="#dbd7ca">VSMessage</font><font color="#dbd7ca"> message </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">new</font></b><font color="#dbd7ca"> </font><font color="#5da994">VSMessage</font><font color="#cb7676">();</font>
+<font color="#dbd7ca">            message</font><font color="#cb7676">.</font><font color="#5da994">setBoolean</font><font color="#cb7676">(</font><font color="#bd976a">"isMulticast"</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><b><font color="#4d9375">true</font></b><font color="#cb7676">);</font>
+<font color="#dbd7ca">            </font><b><font color="#4d9375">super</font></b><font color="#cb7676">.</font><font color="#5da994">sendMessage</font><font color="#cb7676">(</font><font color="#dbd7ca">message</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">        </font><font color="#dbd7ca">}</font>
+<font color="#dbd7ca">    </font><font color="#dbd7ca">}</font>
 
-    <i><font color="silver">// Handle ACK from a server</font></i>
-    <b><u><font color="#000000">public</font></u></b> <b><font color="#000000">void</font></b> onClientRecv(VSMessage recvMessage) {
-        <b><u><font color="#000000">if</font></u></b> (pids.size() != <font color="#000000">0</font> &amp;&amp; recvMessage.getBoolean(<font color="#808080">"isAck"</font>)) {
-            Integer pid = recvMessage.getIntegerObj(<font color="#808080">"pid"</font>);
-            <b><u><font color="#000000">if</font></u></b> (pids.contains(pid))
-                pids.remove(pid);
-            <b><u><font color="#000000">super</font></u></b>.log(<font color="#808080">"ACK from Process "</font> + pid + <font color="#808080">" received!"</font>);
-            <b><u><font color="#000000">if</font></u></b> (pids.size() == <font color="#000000">0</font>) {
-                <b><u><font color="#000000">super</font></u></b>.log(<font color="#808080">"ACKs from all processes received!"</font>);
-                <b><u><font color="#000000">super</font></u></b>.removeSchedules();
-            }
-        }
-    }
+<font color="#dbd7ca">    </font><i><font color="#666666">// Handle ACK from a server</font></i>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">public</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">void</font></b><font color="#dbd7ca"> </font><font color="#5da994">onClientRecv</font><font color="#cb7676">(</font><font color="#dbd7ca">VSMessage</font><font color="#dbd7ca"> recvMessage</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">pids</font><font color="#cb7676">.</font><font color="#5da994">size</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#cb7676">!=</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#dbd7ca"> </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> recvMessage</font><font color="#cb7676">.</font><font color="#5da994">getBoolean</font><font color="#cb7676">(</font><font color="#bd976a">"isAck"</font><font color="#cb7676">))</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">            </font><font color="#dbd7ca">Integer</font><font color="#dbd7ca"> pid </font><font color="#cb7676">=</font><font color="#dbd7ca"> recvMessage</font><font color="#cb7676">.</font><font color="#5da994">getIntegerObj</font><font color="#cb7676">(</font><font color="#bd976a">"pid"</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">            </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">pids</font><font color="#cb7676">.</font><font color="#5da994">contains</font><font color="#cb7676">(</font><font color="#dbd7ca">pid</font><font color="#cb7676">))</font>
+<font color="#dbd7ca">                pids</font><font color="#cb7676">.</font><font color="#5da994">remove</font><font color="#cb7676">(</font><font color="#dbd7ca">pid</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">            </font><b><font color="#4d9375">super</font></b><font color="#cb7676">.</font><font color="#5da994">log</font><font color="#cb7676">(</font><font color="#bd976a">"ACK from Process "</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#dbd7ca"> pid </font><font color="#cb7676">+</font><font color="#dbd7ca"> </font><font color="#bd976a">" received!"</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">            </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">pids</font><font color="#cb7676">.</font><font color="#5da994">size</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#cb7676">==</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">                </font><b><font color="#4d9375">super</font></b><font color="#cb7676">.</font><font color="#5da994">log</font><font color="#cb7676">(</font><font color="#bd976a">"ACKs from all processes received!"</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">                </font><b><font color="#4d9375">super</font></b><font color="#cb7676">.</font><font color="#5da994">removeSchedules</font><font color="#cb7676">();</font>
+<font color="#dbd7ca">            </font><font color="#dbd7ca">}</font>
+<font color="#dbd7ca">        </font><font color="#dbd7ca">}</font>
+<font color="#dbd7ca">    </font><font color="#dbd7ca">}</font>
 
-    <i><font color="silver">// Retry on timeout</font></i>
-    <b><u><font color="#000000">public</font></u></b> <b><font color="#000000">void</font></b> onClientSchedule() { onClientStart(); }
-}
+<font color="#dbd7ca">    </font><i><font color="#666666">// Retry on timeout</font></i>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">public</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">void</font></b><font color="#dbd7ca"> </font><font color="#5da994">onClientSchedule</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font><font color="#dbd7ca"> </font><font color="#5da994">onClientStart</font><font color="#cb7676">();</font><font color="#dbd7ca"> </font><font color="#dbd7ca">}</font>
+<font color="#dbd7ca">}</font>
 </pre>
 <br />
 <h2 style='display: inline' id='project-statistics'>Project Statistics</h2><br />

@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-04-02-f3s-kubernetes-with-freebsd-part-9.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-04-02-f3s-kubernetes-with-freebsd-part-9.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-04-02-f3s-kubernetes-with-freebsd-part-9.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-04-02-f3s-kubernetes-with-freebsd-part-9.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-9-gitops-with-argocd'>f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</h1><br />
 <br />
@@ -129,14 +129,14 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ cd conf/f3s/argocd
-$ just install
-helm repo add argo https://argoproj.github.io/argo-helm
-helm repo update
-kubectl create namespace cicd
-kubectl apply -f persistent-volumes.yaml
-helm install argocd argo/argo-cd --namespace cicd -f values.yaml
-kubectl apply -f ingress.yaml
+<pre><font color="#dbd7ca">$ cd conf/f3s/argocd</font>
+<font color="#dbd7ca">$ just install</font>
+<font color="#dbd7ca">helm repo add argo https</font><font color="#cb7676">:</font><font color="#dbd7ca">//argoproj</font><font color="#cb7676">.</font><font color="#dbd7ca">github</font><font color="#cb7676">.</font><font color="#dbd7ca">io/argo-helm</font>
+<font color="#dbd7ca">helm repo update</font>
+<font color="#dbd7ca">kubectl create namespace cicd</font>
+<font color="#dbd7ca">kubectl apply -f persistent-volumes</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
+<font color="#dbd7ca">helm install argocd argo/argo-cd --namespace cicd -f values</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
+<font color="#dbd7ca">kubectl apply -f ingress</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
 </pre>
 <br />
 <span>Some highlights from <span class='inlinecode'>values.yaml</span>:</span><br />
@@ -182,8 +182,8 @@ notifications:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ just get-password
-<i><font color="silver"># Reads from argocd-initial-admin-secret</font></i>
+<pre><font color="#dbd7ca">$ just get-password</font>
+<i><font color="#666666"># Reads from argocd-initial-admin-secret</font></i>
 </pre>
 <br />
 <h3 style='display: inline' id='accessing-argocd'>Accessing ArgoCD</h3><br />
@@ -194,13 +194,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ kubectl get pods -n cicd
-NAME                                                READY   STATUS    RESTARTS   AGE
-argocd-application-controller-<font color="#000000">0</font>                     <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
-argocd-applicationset-controller-66d6b9b8f4-vhm9k   <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
-argocd-redis-77b8d6c6d4-mz9hg                       <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
-argocd-repo-server-5f98f77b97-8xtcq                 <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
-argocd-server-6b9c4b4f8d-kxw7p                      <font color="#000000">1</font>/<font color="#000000">1</font>     Running   <font color="#000000">0</font>          45d
+<pre><font color="#dbd7ca">$ kubectl get pods -n cicd</font>
+<font color="#dbd7ca">NAME                                                READY   STATUS    RESTARTS   AGE</font>
+<font color="#dbd7ca">argocd-application-controller-</font><font color="#bd976a">0</font><font color="#dbd7ca">                     </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
+<font color="#dbd7ca">argocd-applicationset-controller-66d6b9b8f4-vhm9k   </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
+<font color="#dbd7ca">argocd-redis-77b8d6c6d4-mz9hg                       </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
+<font color="#dbd7ca">argocd-repo-server-5f98f77b97-8xtcq                 </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
+<font color="#dbd7ca">argocd-server-6b9c4b4f8d-kxw7p                      </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          45d</font>
 </pre>
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-9/argocd-login.png'><img alt='ArgoCD login page' title='ArgoCD login page' src='./f3s-kubernetes-with-freebsd-part-9/argocd-login.png' /></a><br />
@@ -252,8 +252,8 @@ source:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ git remote add f3s f3s-git:/repos/conf.git
-$ git push f3s master
+<pre><font color="#dbd7ca">$ git remote add f3s f3s-git</font><font color="#cb7676">:</font><font color="#dbd7ca">/repos/conf</font><font color="#cb7676">.</font><font color="#dbd7ca">git</font>
+<font color="#dbd7ca">$ git push f3s master</font>
 </pre>
 <br />
 <span>ArgoCD detects the change within a few minutes and syncs. No internet required. The whole thing is intentionally minimal--no database, no accounts, no webhooks. Just git over SSH for writes and HTTP for reads.</span><br />
@@ -324,15 +324,15 @@ $ git push f3s master
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>install:
-    kubectl apply -f helm-chart/persistent-volumes.yaml
-    helm install miniflux ./helm-chart --namespace services
+<pre><font color="#cb7676">install:</font>
+<font color="#dbd7ca">    kubectl apply -f helm-chart/persistent-volumes.yaml</font>
+<font color="#dbd7ca">    helm install miniflux </font><font color="#cb7676">.</font><font color="#dbd7ca">/helm-chart --namespace services</font>
 
-upgrade:
-    helm upgrade miniflux ./helm-chart --namespace services
+<font color="#cb7676">upgrade:</font>
+<font color="#dbd7ca">    helm upgrade miniflux </font><font color="#cb7676">.</font><font color="#dbd7ca">/helm-chart --namespace services</font>
 
-uninstall:
-    helm uninstall miniflux --namespace services
+<font color="#cb7676">uninstall:</font>
+<font color="#dbd7ca">    helm uninstall miniflux --namespace services</font>
 </pre>
 <br />
 <span>Workflow: edit chart, run <span class='inlinecode'>just upgrade</span>, hope you didn&#39;t forget anything.</span><br />
@@ -376,19 +376,19 @@ spec:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># 1. Apply the Application manifest</font></i>
-$ kubectl apply -f argocd-apps/services/miniflux.yaml
-application.argoproj.io/miniflux created
+<pre><i><font color="#666666"># 1. Apply the Application manifest</font></i>
+<font color="#dbd7ca">$ kubectl apply -f argocd-apps/services/miniflux</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
+<font color="#dbd7ca">application</font><font color="#cb7676">.</font><font color="#dbd7ca">argoproj</font><font color="#cb7676">.</font><font color="#dbd7ca">io/miniflux created</font>
 
-<i><font color="silver"># 2. Verify ArgoCD adopted the existing resources</font></i>
-$ argocd app get miniflux
-Name:               miniflux
-Sync Status:        Synced to master (4e3c216)
-Health Status:      Healthy
+<i><font color="#666666"># 2. Verify ArgoCD adopted the existing resources</font></i>
+<font color="#dbd7ca">$ argocd app get miniflux</font>
+<font color="#dbd7ca">Name</font><font color="#cb7676">:</font><font color="#dbd7ca">               miniflux</font>
+<font color="#dbd7ca">Sync Status</font><font color="#cb7676">:</font><font color="#dbd7ca">        Synced to master </font><font color="#cb7676">(</font><font color="#dbd7ca">4e3c216</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">Health Status</font><font color="#cb7676">:</font><font color="#dbd7ca">      Healthy</font>
 
-<i><font color="silver"># 3. Test that the app still works</font></i>
-$ curl -I https://flux.f3s.foo.zone
-HTTP/<font color="#000000">2</font> <font color="#000000">200</font>
+<i><font color="#666666"># 3. Test that the app still works</font></i>
+<font color="#dbd7ca">$ curl -I https</font><font color="#cb7676">:</font><font color="#dbd7ca">//flux</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">foo</font><font color="#cb7676">.</font><font color="#dbd7ca">zone</font>
+<font color="#dbd7ca">HTTP</font><font color="#cb7676">/</font><font color="#bd976a">2</font><font color="#dbd7ca"> </font><font color="#bd976a">200</font>
 </pre>
 <br />
 <span>About 10 minutes, zero downtime. ArgoCD saw that the running resources already matched the Helm chart in Git and just adopted them.</span><br />
@@ -399,27 +399,27 @@ HTTP/<font color="#000000">2</font> <font color="#000000">200</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>status:
-    @kubectl get pods -n services -l app=miniflux-server
-    @kubectl get pods -n services -l app=miniflux-postgres
-    @kubectl get application miniflux -n cicd \
-        -o jsonpath=<font color="#808080">'Sync: {.status.sync.status}, Health: {.status.health.status}'</font>
+<pre><font color="#cb7676">status:</font>
+<font color="#dbd7ca">    @kubectl get pods -n services -l </font><font color="#bd976a">app</font><font color="#cb7676">=</font><font color="#dbd7ca">miniflux-server</font>
+<font color="#dbd7ca">    @kubectl get pods -n services -l </font><font color="#bd976a">app</font><font color="#cb7676">=</font><font color="#dbd7ca">miniflux-postgres</font>
+<font color="#dbd7ca">    @kubectl get application miniflux -n cicd </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">        -o </font><font color="#bd976a">jsonpath</font><font color="#cb7676">=</font><font color="#bd976a">'Sync: {.status.sync.status}, Health: {.status.health.status}'</font>
 
-sync:
-    @kubectl annotate application miniflux -n cicd \
-        argocd.argoproj.io/refresh=normal --overwrite
+<font color="#cb7676">sync:</font>
+<font color="#dbd7ca">    @kubectl annotate application miniflux -n cicd </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">        argocd.argoproj.io/refresh</font><font color="#cb7676">=</font><font color="#dbd7ca">normal --overwrite</font>
 
-logs:
-    kubectl logs -n services -l app=miniflux-server --tail=<font color="#000000">100</font> -f
+<font color="#cb7676">logs:</font>
+<font color="#dbd7ca">    kubectl logs -n services -l </font><font color="#bd976a">app</font><font color="#cb7676">=</font><font color="#dbd7ca">miniflux-server --tail</font><font color="#cb7676">=</font><font color="#bd976a">100</font><font color="#dbd7ca"> -f</font>
 
-restart:
-    kubectl rollout restart -n services deployment/miniflux-server
+<font color="#cb7676">restart:</font>
+<font color="#dbd7ca">    kubectl rollout restart -n services deployment/miniflux-server</font>
 
-port-forward port=<font color="#808080">"8080"</font>:
-    kubectl port-forward -n services svc/miniflux {{port}}:<font color="#000000">8080</font>
+<font color="#dbd7ca">port-forward </font><font color="#bd976a">port</font><font color="#cb7676">=</font><font color="#bd976a">"8080"</font><font color="#cb7676">:</font>
+<font color="#dbd7ca">    kubectl port-forward -n services svc/miniflux {{port}}</font><font color="#cb7676">:</font><font color="#bd976a">8080</font>
 
-psql:
-    kubectl <b><u><font color="#000000">exec</font></u></b> -it -n services deployment/miniflux-postgres -- psql -U miniflux
+<font color="#cb7676">psql:</font>
+<font color="#dbd7ca">    kubectl </font><b><font color="#4d9375">exec</font></b><font color="#dbd7ca"> -it -n services deployment/miniflux-postgres -- psql -U miniflux</font>
 </pre>
 <br />
 <span>New workflow: edit chart, commit, push. ArgoCD picks it up within a few minutes. Run <span class='inlinecode'>just sync</span> if you&#39;re impatient.</span><br />
@@ -553,38 +553,38 @@ spec:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ argocd app list
-NAME                      CLUSTER                         NAMESPACE    PROJECT  STATUS  HEALTH   SYNCPOLICY
-alloy                     https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
-anki-sync-server          https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-apache                    https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-argo-rollouts             https://kubernetes.default.svc  cicd         default  Synced  Healthy  Auto-Prune
-audiobookshelf            https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-cert-manager              https://kubernetes.default.svc  infra        default  Synced  Healthy  Auto-Prune
-filebrowser               https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-git-server                https://kubernetes.default.svc  cicd         default  Synced  Healthy  Auto-Prune
-grafana-ingress           https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
-immich                    https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-ipv6test                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-jellyfin                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-keybr                     https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-kobo-sync-server          https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-loki                      https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
-miniflux                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-navidrome                 https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-opodsync                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-pihole                    https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-pkgrepo                   https://kubernetes.default.svc  infra        default  Synced  Healthy  Auto-Prune
-prometheus                https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto
-pushgateway               https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
-radicale                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-registry                  https://kubernetes.default.svc  infra        default  Synced  Healthy  Auto-Prune
-syncthing                 https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-tempo                     https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
-traefik-config            https://kubernetes.default.svc  infra        default  Synced  Healthy  Auto-Prune
-tracing-demo              https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-wallabag                  https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
-webdav                    https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
+<pre><font color="#dbd7ca">$ argocd app list</font>
+<font color="#dbd7ca">NAME                      CLUSTER                         NAMESPACE    PROJECT  STATUS  HEALTH   SYNCPOLICY</font>
+<font color="#dbd7ca">alloy                     https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  monitoring   default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">anki-sync-server          https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">apache                    https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">argo-rollouts             https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  cicd         default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">audiobookshelf            https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">cert-manager              https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  infra        default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">filebrowser               https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">git-server                https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  cicd         default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">grafana-ingress           https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  monitoring   default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">immich                    https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">ipv6test                  https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">jellyfin                  https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">keybr                     https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">kobo-sync-server          https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">loki                      https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  monitoring   default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">miniflux                  https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">navidrome                 https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">opodsync                  https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">pihole                    https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">pkgrepo                   https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  infra        default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">prometheus                https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  monitoring   default  Synced  Healthy  Auto</font>
+<font color="#dbd7ca">pushgateway               https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  monitoring   default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">radicale                  https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">registry                  https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  infra        default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">syncthing                 https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">tempo                     https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  monitoring   default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">traefik-config            https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  infra        default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">tracing-demo              https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">wallabag                  https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
+<font color="#dbd7ca">webdav                    https</font><font color="#cb7676">:</font><font color="#dbd7ca">//kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">svc  services     default  Synced  Healthy  Auto-Prune</font>
 </pre>
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-9/argocd-apps-list.png'><img alt='ArgoCD managing all 30 applications in the f3s cluster' title='ArgoCD managing all 30 applications in the f3s cluster' src='./f3s-kubernetes-with-freebsd-part-9/argocd-apps-list.png' /></a><br />

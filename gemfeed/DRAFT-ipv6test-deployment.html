@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-ipv6test-deployment.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-ipv6test-deployment.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-ipv6test-deployment.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-ipv6test-deployment.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='deploying-an-ipv6-test-service-on-kubernetes'>Deploying an IPv6 Test Service on Kubernetes</h1><br />
 <br />
@@ -43,15 +43,15 @@ Client → relayd (OpenBSD) → Traefik (k3s) → Apache + CGI (Pod)
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/perl</font></i>
-<b><u><font color="#000000">use</font></u></b> strict;
-<b><u><font color="#000000">use</font></u></b> warnings;
+<pre><i><font color="#666666">#!/usr/bin/perl</font></i>
+<b><font color="#4d9375">use</font></b><font color="#dbd7ca"> strict</font><font color="#cb7676">;</font>
+<b><font color="#4d9375">use</font></b><font color="#dbd7ca"> warnings</font><font color="#cb7676">;</font>
 
-<b><u><font color="#000000">print</font></u></b> <font color="#808080">"Content-type: text/html\n\n"</font>;
+<b><font color="#4d9375">print</font></b><font color="#dbd7ca"> </font><font color="#bd976a">"Content-type: text/html\n\n"</font><font color="#cb7676">;</font>
 
-<b><u><font color="#000000">my</font></u></b> $is_ipv4 = ($ENV{REMOTE_ADDR} =~ <font color="#808080">/(?:\d+\.){3}\d/</font>);
-<b><u><font color="#000000">print</font></u></b> <font color="#808080">"You are using: "</font> . ($is_ipv4 ? <font color="#808080">"IPv4"</font> : <font color="#808080">"IPv6"</font>) . <font color="#808080">"\n"</font>;
-<b><u><font color="#000000">print</font></u></b> <font color="#808080">"Client address: $ENV{REMOTE_ADDR}\n"</font>;
+<b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$is_ipv4</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#bd976a">$ENV</font><font color="#dbd7ca">{</font><font color="#dbd7ca">REMOTE_ADDR</font><font color="#dbd7ca">}</font><font color="#dbd7ca"> </font><font color="#cb7676">=~</font><font color="#dbd7ca"> </font><font color="#bd976a">/(?:\d+\.){3}\d/</font><font color="#cb7676">);</font>
+<b><font color="#4d9375">print</font></b><font color="#dbd7ca"> </font><font color="#bd976a">"You are using: "</font><font color="#dbd7ca"> </font><font color="#cb7676">.</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#bd976a">$is_ipv4</font><font color="#dbd7ca"> </font><font color="#cb7676">?</font><font color="#dbd7ca"> </font><font color="#bd976a">"IPv4"</font><font color="#dbd7ca"> </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">"IPv6"</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">.</font><font color="#dbd7ca"> </font><font color="#bd976a">"\n"</font><font color="#cb7676">;</font>
+<b><font color="#4d9375">print</font></b><font color="#dbd7ca"> </font><font color="#bd976a">"Client address: $ENV{REMOTE_ADDR}\n"</font><font color="#cb7676">;</font>
 </pre>
 <br />
 <h2 style='display: inline' id='docker-image'>Docker Image</h2><br />
@@ -148,17 +148,17 @@ http protocol "https" {
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&lt;% <b><u><font color="#000000">for</font></u></b> <b><u><font color="#000000">my</font></u></b> $host (@$f3s_hosts) {
-     <b><u><font color="#000000">my</font></u></b> $is_ipv6_only = $host =~ <font color="#808080">/^ipv6\./</font>;
-     <b><u><font color="#000000">my</font></u></b> $is_ipv4_only = $host =~ <font color="#808080">/^ipv4\./</font>;
--%&gt;
-<font color="#808080">&lt;% unless ($is_ipv6_only) { -%&gt;</font>
-<font color="#808080">&lt;%= $host %&gt;</font>.         <font color="#000000">300</font> IN A <font color="#808080">&lt;%= $ips-&gt;</font>{current_master}{ipv4} %&gt;
-<font color="#808080">&lt;% } -%&gt;</font>
-<font color="#808080">&lt;% unless ($is_ipv4_only) { -%&gt;</font>
-<font color="#808080">&lt;%= $host %&gt;</font>.         <font color="#000000">300</font> IN AAAA <font color="#808080">&lt;%= $ips-&gt;</font>{current_master}{ipv6} %&gt;
-<font color="#808080">&lt;% } -%&gt;</font>
-<font color="#808080">&lt;% } -%&gt;</font>
+<pre><font color="#cb7676">&lt;%</font><font color="#dbd7ca"> </font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$host</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">@</font><font color="#bd976a">$f3s_hosts</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">     </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$is_ipv6_only</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">$host</font><font color="#dbd7ca"> </font><font color="#cb7676">=~</font><font color="#dbd7ca"> </font><font color="#bd976a">/^ipv6\./</font><font color="#cb7676">;</font>
+<font color="#dbd7ca">     </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$is_ipv4_only</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">$host</font><font color="#dbd7ca"> </font><font color="#cb7676">=~</font><font color="#dbd7ca"> </font><font color="#bd976a">/^ipv4\./</font><font color="#cb7676">;</font>
+<font color="#cb7676">-%&gt;</font>
+<font color="#bd976a">&lt;% unless ($is_ipv6_only) { -%&gt;</font>
+<font color="#bd976a">&lt;%= $host %&gt;</font><font color="#cb7676">.</font><font color="#dbd7ca">         </font><font color="#bd976a">300</font><font color="#dbd7ca"> IN A </font><font color="#bd976a">&lt;%= $ips-&gt;</font><font color="#dbd7ca">{</font><font color="#dbd7ca">current_master</font><font color="#dbd7ca">}{</font><font color="#dbd7ca">ipv4</font><font color="#dbd7ca">}</font><font color="#dbd7ca"> </font><font color="#cb7676">%&gt;</font>
+<font color="#bd976a">&lt;% } -%&gt;</font>
+<font color="#bd976a">&lt;% unless ($is_ipv4_only) { -%&gt;</font>
+<font color="#bd976a">&lt;%= $host %&gt;</font><font color="#cb7676">.</font><font color="#dbd7ca">         </font><font color="#bd976a">300</font><font color="#dbd7ca"> IN AAAA </font><font color="#bd976a">&lt;%= $ips-&gt;</font><font color="#dbd7ca">{</font><font color="#dbd7ca">current_master</font><font color="#dbd7ca">}{</font><font color="#dbd7ca">ipv6</font><font color="#dbd7ca">}</font><font color="#dbd7ca"> </font><font color="#cb7676">%&gt;</font>
+<font color="#bd976a">&lt;% } -%&gt;</font>
+<font color="#bd976a">&lt;% } -%&gt;</font>
 </pre>
 <br />
 <span>This ensures:</span><br />
@@ -179,22 +179,22 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>&lt;% <b><u><font color="#000000">for</font></u></b> <b><u><font color="#000000">my</font></u></b> $host (@$acme_hosts) {
-     <i><font color="silver"># Skip ipv4/ipv6 subdomains - they're included as SANs in parent cert</font></i>
-     <b><u><font color="#000000">next</font></u></b> <b><u><font color="#000000">if</font></u></b> $host =~ <font color="#808080">/^(ipv4|ipv6)\./</font>;
--%&gt;
-&lt;%   <b><u><font color="#000000">my</font></u></b> @alt_names = (<font color="#808080">"www.$host"</font>);
-     <b><u><font color="#000000">for</font></u></b> <b><u><font color="#000000">my</font></u></b> $sub_host (@$acme_hosts) {
-         <b><u><font color="#000000">if</font></u></b> ($sub_host =~ <font color="#808080">/^(ipv4|ipv6)\.\Q$host\E$/</font>) {
-             <b><u><font color="#000000">push</font></u></b> @alt_names, $sub_host;
-         }
-     }
--%&gt;
-domain <font color="#808080">&lt;%= $host %&gt;</font> {
-    alternative names { <font color="#808080">&lt;%= join(' ', @alt_names) %&gt;</font> }
-    ...
-}
-<font color="#808080">&lt;% } -%&gt;</font>
+<pre><font color="#cb7676">&lt;%</font><font color="#dbd7ca"> </font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$host</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">@</font><font color="#bd976a">$acme_hosts</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">     </font><i><font color="#666666"># Skip ipv4/ipv6 subdomains - they're included as SANs in parent cert</font></i>
+<font color="#dbd7ca">     </font><b><font color="#4d9375">next</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$host</font><font color="#dbd7ca"> </font><font color="#cb7676">=~</font><font color="#dbd7ca"> </font><font color="#bd976a">/^(ipv4|ipv6)\./</font><font color="#cb7676">;</font>
+<font color="#cb7676">-%&gt;</font>
+<font color="#cb7676">&lt;%</font><font color="#dbd7ca">   </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">@alt_names</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#bd976a">"www.$host"</font><font color="#cb7676">);</font>
+<font color="#dbd7ca">     </font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$sub_host</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">@</font><font color="#bd976a">$acme_hosts</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">         </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#bd976a">$sub_host</font><font color="#dbd7ca"> </font><font color="#cb7676">=~</font><font color="#dbd7ca"> </font><font color="#bd976a">/^(ipv4|ipv6)\.\Q$host\E$/</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">             </font><b><font color="#4d9375">push</font></b><font color="#dbd7ca"> </font><font color="#bd976a">@alt_names</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">$sub_host</font><font color="#cb7676">;</font>
+<font color="#dbd7ca">         </font><font color="#dbd7ca">}</font>
+<font color="#dbd7ca">     </font><font color="#dbd7ca">}</font>
+<font color="#cb7676">-%&gt;</font>
+<font color="#dbd7ca">domain </font><font color="#bd976a">&lt;%= $host %&gt;</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">    alternative names </font><font color="#dbd7ca">{</font><font color="#dbd7ca"> </font><font color="#bd976a">&lt;%= join(' ', @alt_names) %&gt;</font><font color="#dbd7ca"> </font><font color="#dbd7ca">}</font>
+<font color="#dbd7ca">    </font><font color="#cb7676">...</font>
+<font color="#dbd7ca">}</font>
+<font color="#bd976a">&lt;% } -%&gt;</font>
 </pre>
 <br />
 <span>This generates a single certificate for <span class='inlinecode'>ipv6test.f3s.buetow.org</span> that includes:</span><br />
@@ -211,19 +211,19 @@ domain <font color="#808080">&lt;%= $host %&gt;</font> {
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">our</font></u></b> @f3s_hosts = <b><u><font color="#000000">qw</font></u></b>/
-    ...
-    ipv6test.f3s.buetow.org
-    ipv4.ipv6test.f3s.buetow.org
-    ipv6.ipv6test.f3s.buetow.org
-/;
+<pre><b><font color="#4d9375">our</font></b><font color="#dbd7ca"> </font><font color="#bd976a">@f3s_hosts</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">qw</font></b><font color="#cb7676">/</font>
+<font color="#dbd7ca">    </font><font color="#cb7676">...</font>
+<font color="#dbd7ca">    ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org</font>
+<font color="#dbd7ca">    ipv4</font><font color="#cb7676">.</font><font color="#dbd7ca">ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org</font>
+<font color="#dbd7ca">    ipv6</font><font color="#cb7676">.</font><font color="#dbd7ca">ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org</font>
+<font color="#cb7676">/;</font>
 
-<b><u><font color="#000000">our</font></u></b> @acme_hosts = <b><u><font color="#000000">qw</font></u></b>/
-    ...
-    ipv6test.f3s.buetow.org
-    ipv4.ipv6test.f3s.buetow.org
-    ipv6.ipv6test.f3s.buetow.org
-/;
+<b><font color="#4d9375">our</font></b><font color="#dbd7ca"> </font><font color="#bd976a">@acme_hosts</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">qw</font></b><font color="#cb7676">/</font>
+<font color="#dbd7ca">    </font><font color="#cb7676">...</font>
+<font color="#dbd7ca">    ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org</font>
+<font color="#dbd7ca">    ipv4</font><font color="#cb7676">.</font><font color="#dbd7ca">ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org</font>
+<font color="#dbd7ca">    ipv6</font><font color="#cb7676">.</font><font color="#dbd7ca">ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org</font>
+<font color="#cb7676">/;</font>
 </pre>
 <br />
 <span>Running <span class='inlinecode'>rex nsd httpd acme acme_invoke relayd</span> deploys the DNS zone, configures httpd for ACME challenges, obtains the certificates, and reloads relayd.</span><br />
@@ -236,17 +236,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ dig ipv4.ipv6test.f3s.buetow.org A +short
-<font color="#000000">46.23</font>.<font color="#000000">94.99</font>
+<pre><font color="#dbd7ca">$ dig ipv4</font><font color="#cb7676">.</font><font color="#dbd7ca">ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org A </font><font color="#cb7676">+</font><font color="#dbd7ca">short</font>
+<font color="#bd976a">46.23</font><font color="#cb7676">.</font><font color="#bd976a">94.99</font>
 
-$ dig ipv4.ipv6test.f3s.buetow.org AAAA +short
-(no output - IPv4 only)
+<font color="#dbd7ca">$ dig ipv4</font><font color="#cb7676">.</font><font color="#dbd7ca">ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org AAAA </font><font color="#cb7676">+</font><font color="#dbd7ca">short</font>
+<font color="#cb7676">(</font><font color="#dbd7ca">no output - IPv4 only</font><font color="#cb7676">)</font>
 
-$ dig ipv6.ipv6test.f3s.buetow.org AAAA +short
-2a03:<font color="#000000">6000</font>:6f67:<font color="#000000">624</font>::<font color="#000000">99</font>
+<font color="#dbd7ca">$ dig ipv6</font><font color="#cb7676">.</font><font color="#dbd7ca">ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org AAAA </font><font color="#cb7676">+</font><font color="#dbd7ca">short</font>
+<font color="#dbd7ca">2a03</font><font color="#cb7676">:</font><font color="#bd976a">6000</font><font color="#cb7676">:</font><font color="#dbd7ca">6f67</font><font color="#cb7676">:</font><font color="#bd976a">624</font><font color="#cb7676">::</font><font color="#bd976a">99</font>
 
-$ dig ipv6.ipv6test.f3s.buetow.org A +short
-(no output - IPv6 only)
+<font color="#dbd7ca">$ dig ipv6</font><font color="#cb7676">.</font><font color="#dbd7ca">ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org A </font><font color="#cb7676">+</font><font color="#dbd7ca">short</font>
+<font color="#cb7676">(</font><font color="#dbd7ca">no output - IPv6 only</font><font color="#cb7676">)</font>
 </pre>
 <br />
 <span>Verify the application shows the correct test type:</span><br />
@@ -255,8 +255,8 @@ $ dig ipv6.ipv6test.f3s.buetow.org A +short
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ curl -s https://ipv<font color="#000000">4</font>.ipv6test.f3s.buetow.org/cgi-bin/index.pl | grep <font color="#808080">"Test Results"</font>
-&lt;h3&gt;IPv4 Only Test Results:&lt;/h<font color="#000000">3</font>&gt;
+<pre><font color="#dbd7ca">$ curl -s https</font><font color="#cb7676">:</font><font color="#dbd7ca">//ipv</font><font color="#bd976a">4</font><font color="#cb7676">.</font><font color="#dbd7ca">ipv6test</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org/cgi-bin/index</font><font color="#cb7676">.</font><font color="#dbd7ca">pl </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep </font><font color="#bd976a">"Test Results"</font>
+<font color="#cb7676">&lt;</font><font color="#dbd7ca">h3</font><font color="#cb7676">&gt;</font><font color="#dbd7ca">IPv4 Only Test Results</font><font color="#cb7676">:&lt;</font><font color="#dbd7ca">/h</font><font color="#bd976a">3</font><font color="#cb7676">&gt;</font>
 </pre>
 <br />
 <span>The displayed IP should be the real client IP, not an internal cluster address.</span><br />
@@ -273,15 +273,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">sub</font></u></b> html_escape {
-    <b><u><font color="#000000">my</font></u></b> $str = <b><u><font color="#000000">shift</font></u></b>;
-    $str =~ <b><u><font color="#000000">s</font></u></b>/&amp;/&amp;amp;/<b><u><font color="#000000">g</font></u></b>;
-    $str =~ <b><u><font color="#000000">s</font></u></b>/&lt;/&amp;lt;/<b><u><font color="#000000">g</font></u></b>;
-    $str =~ <b><u><font color="#000000">s</font></u></b>/&gt;/&amp;gt;/<b><u><font color="#000000">g</font></u></b>;
-    <b><u><font color="#000000">return</font></u></b> $str;
-}
+<pre><b><font color="#4d9375">sub</font></b><font color="#dbd7ca"> html_escape </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$str</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">shift</font></b><font color="#cb7676">;</font>
+<font color="#dbd7ca">    </font><font color="#bd976a">$str</font><font color="#dbd7ca"> </font><font color="#cb7676">=~</font><font color="#dbd7ca"> </font><b><font color="#4d9375">s</font></b><font color="#dbd7ca">/&amp;/&amp;amp;/</font><b><font color="#4d9375">g</font></b><font color="#cb7676">;</font>
+<font color="#dbd7ca">    </font><font color="#bd976a">$str</font><font color="#dbd7ca"> </font><font color="#cb7676">=~</font><font color="#dbd7ca"> </font><b><font color="#4d9375">s</font></b><font color="#dbd7ca">/&lt;/&amp;lt;/</font><b><font color="#4d9375">g</font></b><font color="#cb7676">;</font>
+<font color="#dbd7ca">    </font><font color="#bd976a">$str</font><font color="#dbd7ca"> </font><font color="#cb7676">=~</font><font color="#dbd7ca"> </font><b><font color="#4d9375">s</font></b><font color="#dbd7ca">/&gt;/&amp;gt;/</font><b><font color="#4d9375">g</font></b><font color="#cb7676">;</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$str</font><font color="#cb7676">;</font>
+<font color="#dbd7ca">}</font>
 
-<b><u><font color="#000000">my</font></u></b> $digremote = html_escape(`dig -<b><u><font color="#000000">x</font></u></b> $ENV{REMOTE_ADDR}`);
+<b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$digremote</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#5da994">html_escape</font><font color="#cb7676">(</font><font color="#dbd7ca">`dig </font><font color="#cb7676">-</font><b><font color="#4d9375">x</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$ENV</font><font color="#dbd7ca">{</font><font color="#dbd7ca">REMOTE_ADDR</font><font color="#dbd7ca">}</font><font color="#dbd7ca">`</font><font color="#cb7676">);</font>
 </pre>
 <br />
 <span>You can verify the output passes validation:</span><br />

@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-06-06-random-weird-things-iv.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-06-06-random-weird-things-iv.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅳ</h1><br />
 <br />
@@ -69,14 +69,14 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ dig @ch.at <font color="#808080">"what is golang"</font> TXT +short
-<font color="#808080">"Golang, or Go, is an open-source programming language developed by Google.</font>
-<font color="#808080">It was created to simplify the development of reliable and efficient software.</font>
-<font color="#808080">Go is known for its simplicity, strong concurrency support, and performance</font>
-<font color="#808080">comparable to C or C++. I"</font> <font color="#808080">"t features garbage collection, type safety, and</font>
-<font color="#808080">built-in support for concurrent programming through goroutines and channels.</font>
-<font color="#808080">Go is widely used for web servers, cloud services, and distributed systems due</font>
-<font color="#808080">to its efficiency and ease of deployme..."</font>
+<pre><font color="#dbd7ca">$ dig @ch</font><font color="#cb7676">.</font><font color="#dbd7ca">at </font><font color="#bd976a">"what is golang"</font><font color="#dbd7ca"> TXT </font><font color="#cb7676">+</font><font color="#dbd7ca">short</font>
+<font color="#bd976a">"Golang, or Go, is an open-source programming language developed by Google.</font>
+<font color="#bd976a">It was created to simplify the development of reliable and efficient software.</font>
+<font color="#bd976a">Go is known for its simplicity, strong concurrency support, and performance</font>
+<font color="#bd976a">comparable to C or C++. I"</font><font color="#dbd7ca"> </font><font color="#bd976a">"t features garbage collection, type safety, and</font>
+<font color="#bd976a">built-in support for concurrent programming through goroutines and channels.</font>
+<font color="#bd976a">Go is widely used for web servers, cloud services, and distributed systems due</font>
+<font color="#bd976a">to its efficiency and ease of deployme..."</font>
 </pre>
 <br />
 <h2 style='display: inline' id='34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</h2><br />
@@ -108,22 +108,22 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># Classic nil safety</font></i>
-user = find_user(id: <font color="#808080">"nonexistent"</font>) <i><font color="silver"># returns nil</font></i>
-puts user.email
-<i><font color="silver"># AI: "Analyzing context... user seems to need an email...</font></i>
-<i><font color="silver">#      returning 'no-reply@example.com'"</font></i>
+<pre><i><font color="#666666"># Classic nil safety</font></i>
+<font color="#dbd7ca">user </font><font color="#cb7676">=</font><font color="#dbd7ca"> find_user</font><font color="#cb7676">(</font><font color="#dbd7ca">id</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">"nonexistent"</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><i><font color="#666666"># returns nil</font></i>
+<font color="#dbd7ca">puts user</font><font color="#cb7676">.</font><font color="#dbd7ca">email</font>
+<i><font color="#666666"># AI: "Analyzing context... user seems to need an email...</font></i>
+<i><font color="#666666">#      returning 'no-reply@example.com'"</font></i>
 
-<i><font color="silver"># Shopping cart magic</font></i>
-cart = session[:cart] <i><font color="silver"># nil because session expired</font></i>
-total = cart.total_price
-<i><font color="silver"># AI: "This looks like e-commerce. Based on similar patterns,</font></i>
-<i><font color="silver">#      I'll return 0.0 to avoid charging $nil"</font></i>
+<i><font color="#666666"># Shopping cart magic</font></i>
+<font color="#dbd7ca">cart </font><font color="#cb7676">=</font><font color="#dbd7ca"> session</font><font color="#cb7676">[:</font><font color="#dbd7ca">cart</font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><i><font color="#666666"># nil because session expired</font></i>
+<font color="#dbd7ca">total </font><font color="#cb7676">=</font><font color="#dbd7ca"> cart</font><font color="#cb7676">.</font><font color="#dbd7ca">total_price</font>
+<i><font color="#666666"># AI: "This looks like e-commerce. Based on similar patterns,</font></i>
+<i><font color="#666666">#      I'll return 0.0 to avoid charging $nil"</font></i>
 
-<i><font color="silver"># The existential crisis</font></i>
-meaning_of_life = <b><u><font color="#000000">nil</font></u></b>
-answer = meaning_of_life.to_i
-<i><font color="silver"># AI: "Clearly this should be 42. I've read Douglas Adams."</font></i>
+<i><font color="#666666"># The existential crisis</font></i>
+<font color="#dbd7ca">meaning_of_life </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">nil</font></b>
+<font color="#dbd7ca">answer </font><font color="#cb7676">=</font><font color="#dbd7ca"> meaning_of_life</font><font color="#cb7676">.</font><font color="#dbd7ca">to_i</font>
+<i><font color="#666666"># AI: "Clearly this should be 42. I've read Douglas Adams."</font></i>
 </pre>
 <br />
 <a class='textlink' href='https://github.com/barodeur/llm_rescuer'>LLM Rescuer</a><br />
@@ -138,25 +138,25 @@ answer = meaning_of_life.to_i
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>$ echo <font color="#808080">"a nginx config for a reverse proxy to localhost:8080"</font> &gt; /mnt/llmfs/nginx.conf
-$ cat /mnt/llmfs/nginx.conf
-server {
-    listen <font color="#000000">80</font>;
-    location / {
-        proxy_pass http://localhost:<font color="#000000">8080</font>;
-    }
-}
+<pre><font color="#dbd7ca">$ echo </font><font color="#bd976a">"a nginx config for a reverse proxy to localhost:8080"</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /mnt/llmfs/nginx</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font>
+<font color="#dbd7ca">$ cat /mnt/llmfs/nginx</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font>
+<font color="#dbd7ca">server {</font>
+<font color="#dbd7ca">    listen </font><font color="#bd976a">80</font><font color="#cb7676">;</font>
+<font color="#dbd7ca">    location </font><font color="#cb7676">/</font><font color="#dbd7ca"> {</font>
+<font color="#dbd7ca">        proxy_pass http</font><font color="#cb7676">:</font><font color="#dbd7ca">//localhost</font><font color="#cb7676">:</font><font color="#bd976a">8080</font><font color="#cb7676">;</font>
+<font color="#dbd7ca">    }</font>
+<font color="#dbd7ca">}</font>
 
-$ echo <font color="#808080">"my todo list for today"</font> &gt; /mnt/llmfs/todo.txt
-$ cat /mnt/llmfs/todo.txt
-- Write blog post
-- Fix that bug <b><u><font color="#000000">in</font></u></b> prod
-- Drink coffee
+<font color="#dbd7ca">$ echo </font><font color="#bd976a">"my todo list for today"</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /mnt/llmfs/todo</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
+<font color="#dbd7ca">$ cat /mnt/llmfs/todo</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
+<font color="#dbd7ca">- Write blog post</font>
+<font color="#dbd7ca">- Fix that bug </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> prod</font>
+<font color="#dbd7ca">- Drink coffee</font>
 
-$ cat /mnt/llmfs/todo.txt
-- Write blog post (<b><u><font color="#000000">done</font></u></b>?)
-- Fix that bug <b><u><font color="#000000">in</font></u></b> prod
-- Drink more coffee
+<font color="#dbd7ca">$ cat /mnt/llmfs/todo</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
+<font color="#dbd7ca">- Write blog post </font><font color="#cb7676">(</font><b><font color="#4d9375">done</font></b><font color="#cb7676">?)</font>
+<font color="#dbd7ca">- Fix that bug </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> prod</font>
+<font color="#dbd7ca">- Drink more coffee</font>
 </pre>
 <br />
 <span>The LLM hallucinates the file contents every single read. Your todo list literally mutates when you look at it. Want a config file? Just describe it in the filename or write a prompt into it. Equal parts brilliant and terrifying.</span><br />

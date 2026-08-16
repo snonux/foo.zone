@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2024-12-15-random-helix-themes.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2024-12-15-random-helix-themes.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='random-helix-themes'>Random Helix Themes</h1><br />
 <br />
@@ -25,33 +25,33 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">export</font></u></b> EDITOR=hx
-<b><u><font color="#000000">export</font></u></b> VISUAL=$EDITOR
-<b><u><font color="#000000">export</font></u></b> GIT_EDITOR=$EDITOR
-<b><u><font color="#000000">export</font></u></b> HELIX_CONFIG_DIR=$HOME/.config/helix
+<pre><b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">EDITOR</font><font color="#cb7676">=</font><font color="#dbd7ca">hx</font>
+<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">VISUAL</font><font color="#cb7676">=</font><font color="#bd976a">$EDITOR</font>
+<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">GIT_EDITOR</font><font color="#cb7676">=</font><font color="#bd976a">$EDITOR</font>
+<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">HELIX_CONFIG_DIR</font><font color="#cb7676">=</font><font color="#bd976a">$HOME</font><font color="#cb7676">/.</font><font color="#dbd7ca">config/helix</font>
 
-editor::helix::random_theme () {
-    <i><font color="silver"># May add more theme search paths based on OS. This one is</font></i>
-    <i><font color="silver"># for Fedora Linux, but there is also MacOS, etc.</font></i>
-    <b><u><font color="#000000">local</font></u></b> -r theme_dir=/usr/share/helix/runtime/themes
-    <b><u><font color="#000000">if</font></u></b> [ ! -d $theme_dir ]; <b><u><font color="#000000">then</font></u></b>
-        echo <font color="#808080">"Helix theme dir $theme_dir doesnt exist"</font>
-        <b><u><font color="#000000">return</font></u></b> <font color="#000000">1</font>
-    <b><u><font color="#000000">fi</font></u></b>
+<font color="#dbd7ca">editor</font><font color="#cb7676">::</font><font color="#dbd7ca">helix</font><font color="#cb7676">::</font><font color="#5da994">random_theme ()</font><font color="#dbd7ca"> {</font>
+<font color="#dbd7ca">    </font><i><font color="#666666"># May add more theme search paths based on OS. This one is</font></i>
+<font color="#dbd7ca">    </font><i><font color="#666666"># for Fedora Linux, but there is also MacOS, etc.</font></i>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">theme_dir</font><font color="#cb7676">=</font><font color="#dbd7ca">/usr/share/helix/runtime/themes</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> </font><font color="#cb7676">!</font><font color="#dbd7ca"> -d </font><font color="#bd976a">$theme_dir</font><font color="#dbd7ca"> </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
+<font color="#dbd7ca">        echo </font><font color="#bd976a">"Helix theme dir $theme_dir doesnt exist"</font>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#bd976a">1</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">fi</font></b>
 
-    <b><u><font color="#000000">local</font></u></b> -r config_file=$HELIX_CONFIG_DIR/config.toml
-    <b><u><font color="#000000">local</font></u></b> -r random_theme=<font color="#808080">"$(basename "</font>$(ls $theme_dir \
-        | grep -v random.toml | grep .toml | sort -R \
-        | head -n <font color="#000000">1</font>)<font color="#808080">" | cut -d. -f1)"</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">config_file</font><font color="#cb7676">=</font><font color="#bd976a">$HELIX_CONFIG_DIR</font><font color="#dbd7ca">/config</font><font color="#cb7676">.</font><font color="#dbd7ca">toml</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">random_theme</font><font color="#cb7676">=</font><font color="#bd976a">"$(basename "</font><font color="#bd976a">$(</font><font color="#dbd7ca">ls </font><font color="#bd976a">$theme_dir</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">        </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep -v random</font><font color="#cb7676">.</font><font color="#dbd7ca">toml </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep </font><font color="#cb7676">.</font><font color="#dbd7ca">toml </font><font color="#cb7676">|</font><font color="#dbd7ca"> sort -R </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">        </font><font color="#cb7676">|</font><font color="#dbd7ca"> head -n </font><font color="#bd976a">1</font><font color="#cb7676">)</font><font color="#bd976a">" | cut -d. -f1)"</font>
 
-    sed <font color="#808080">"/^theme =/ { s/.*/theme = </font>\"<font color="#808080">$random_theme</font>\"<font color="#808080">/; }"</font> \
-        $config_file &gt; $config_file.tmp &amp;&amp; 
-        mv $config_file.tmp $config_file
-}
+<font color="#dbd7ca">    sed </font><font color="#bd976a">"/^theme =/ { s/.*/theme = </font><font color="#cb7676">\"</font><font color="#bd976a">$random_theme</font><font color="#cb7676">\"</font><font color="#bd976a">/; }"</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">        </font><font color="#bd976a">$config_file</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> </font><font color="#bd976a">$config_file</font><font color="#cb7676">.</font><font color="#dbd7ca">tmp </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> </font>
+<font color="#dbd7ca">        mv </font><font color="#bd976a">$config_file</font><font color="#cb7676">.</font><font color="#dbd7ca">tmp </font><font color="#bd976a">$config_file</font>
+<font color="#dbd7ca">}</font>
 
-<b><u><font color="#000000">if</font></u></b> [ -f $HELIX_CONFIG_DIR/config.toml ]; <b><u><font color="#000000">then</font></u></b>
-    editor::helix::random_theme
-<b><u><font color="#000000">fi</font></u></b>
+<b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> -f </font><font color="#bd976a">$HELIX_CONFIG_DIR</font><font color="#dbd7ca">/config</font><font color="#cb7676">.</font><font color="#dbd7ca">toml </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
+<font color="#dbd7ca">    editor</font><font color="#cb7676">::</font><font color="#dbd7ca">helix</font><font color="#cb7676">::</font><font color="#dbd7ca">random_theme</font>
+<b><font color="#4d9375">fi</font></b>
 </pre>
 <br />
 <span>So every time I open a new terminal or shell, <span class='inlinecode'>editor::helix::random_theme</span> gets called, which randomly selects a theme from all installed ones and updates the helix config accordingly.</span><br />
@@ -60,16 +60,16 @@ editor::helix::random_theme () {
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>[paul@earth] ~ % editor::helix::random_theme
-[paul@earth] ~ % head -n <font color="#000000">1</font> ~/.config/helix/config.toml
-theme = <font color="#808080">"jellybeans"</font>
-[paul@earth] ~ % editor::helix::random_theme
-[paul@earth] ~ % head -n <font color="#000000">1</font> ~/.config/helix/config.toml
-theme = <font color="#808080">"rose_pine"</font>
-[paul@earth] ~ % editor::helix::random_theme
-[paul@earth] ~ % head -n <font color="#000000">1</font> ~/.config/helix/config.toml
-theme = <font color="#808080">"noctis"</font>
-[paul@earth] ~ %
+<pre><font color="#cb7676">[</font><font color="#dbd7ca">paul@earth</font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> editor</font><font color="#cb7676">::</font><font color="#dbd7ca">helix</font><font color="#cb7676">::</font><font color="#dbd7ca">random_theme</font>
+<font color="#cb7676">[</font><font color="#dbd7ca">paul@earth</font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> head -n </font><font color="#bd976a">1</font><font color="#dbd7ca"> </font><font color="#cb7676">~/.</font><font color="#dbd7ca">config/helix/config</font><font color="#cb7676">.</font><font color="#dbd7ca">toml</font>
+<font color="#dbd7ca">theme </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"jellybeans"</font>
+<font color="#cb7676">[</font><font color="#dbd7ca">paul@earth</font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> editor</font><font color="#cb7676">::</font><font color="#dbd7ca">helix</font><font color="#cb7676">::</font><font color="#dbd7ca">random_theme</font>
+<font color="#cb7676">[</font><font color="#dbd7ca">paul@earth</font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> head -n </font><font color="#bd976a">1</font><font color="#dbd7ca"> </font><font color="#cb7676">~/.</font><font color="#dbd7ca">config/helix/config</font><font color="#cb7676">.</font><font color="#dbd7ca">toml</font>
+<font color="#dbd7ca">theme </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"rose_pine"</font>
+<font color="#cb7676">[</font><font color="#dbd7ca">paul@earth</font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> editor</font><font color="#cb7676">::</font><font color="#dbd7ca">helix</font><font color="#cb7676">::</font><font color="#dbd7ca">random_theme</font>
+<font color="#cb7676">[</font><font color="#dbd7ca">paul@earth</font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> head -n </font><font color="#bd976a">1</font><font color="#dbd7ca"> </font><font color="#cb7676">~/.</font><font color="#dbd7ca">config/helix/config</font><font color="#cb7676">.</font><font color="#dbd7ca">toml</font>
+<font color="#dbd7ca">theme </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"noctis"</font>
+<font color="#cb7676">[</font><font color="#dbd7ca">paul@earth</font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font>
 </pre>
 <br />
 <h2 style='display: inline' id='a-better-version'>A better version</h2><br />
@@ -80,33 +80,33 @@ theme = <font color="#808080">"noctis"</font>
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">export</font></u></b> EDITOR=hx
-<b><u><font color="#000000">export</font></u></b> VISUAL=$EDITOR
-<b><u><font color="#000000">export</font></u></b> GIT_EDITOR=$EDITOR
-<b><u><font color="#000000">export</font></u></b> HELIX_CONFIG_DIR=$HOME/.config/helix
+<pre><b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">EDITOR</font><font color="#cb7676">=</font><font color="#dbd7ca">hx</font>
+<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">VISUAL</font><font color="#cb7676">=</font><font color="#bd976a">$EDITOR</font>
+<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">GIT_EDITOR</font><font color="#cb7676">=</font><font color="#bd976a">$EDITOR</font>
+<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">HELIX_CONFIG_DIR</font><font color="#cb7676">=</font><font color="#bd976a">$HOME</font><font color="#cb7676">/.</font><font color="#dbd7ca">config/helix</font>
 
-editor::helix::theme::get_random () {
-    <b><u><font color="#000000">for</font></u></b> dir <b><u><font color="#000000">in</font></u></b> $(hx --health \
-        | awk <font color="#808080">'/^Runtime directories/ { print $3 }'</font> | tr <font color="#808080">';'</font> <font color="#808080">' '</font>); <b><u><font color="#000000">do</font></u></b>
-        <b><u><font color="#000000">if</font></u></b> [ -d $dir/themes ]; <b><u><font color="#000000">then</font></u></b>
-            ls $dir/themes
-        <b><u><font color="#000000">fi</font></u></b>
-    <b><u><font color="#000000">done</font></u></b> | grep -F .toml | sort -R | head -n <font color="#000000">1</font> | cut -d. -f<font color="#000000">1</font>
-}
+<font color="#dbd7ca">editor</font><font color="#cb7676">::</font><font color="#dbd7ca">helix</font><font color="#cb7676">::</font><font color="#dbd7ca">theme</font><font color="#cb7676">::</font><font color="#5da994">get_random ()</font><font color="#dbd7ca"> {</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> dir </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$(</font><font color="#dbd7ca">hx --health </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">        </font><font color="#cb7676">|</font><font color="#dbd7ca"> awk </font><font color="#bd976a">'/^Runtime directories/ { print $3 }'</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> tr </font><font color="#bd976a">';'</font><font color="#dbd7ca"> </font><font color="#bd976a">' '</font><font color="#cb7676">);</font><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> -d </font><font color="#bd976a">$dir</font><font color="#dbd7ca">/themes </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
+<font color="#dbd7ca">            ls </font><font color="#bd976a">$dir</font><font color="#dbd7ca">/themes</font>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">fi</font></b>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">done</font></b><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep -F </font><font color="#cb7676">.</font><font color="#dbd7ca">toml </font><font color="#cb7676">|</font><font color="#dbd7ca"> sort -R </font><font color="#cb7676">|</font><font color="#dbd7ca"> head -n </font><font color="#bd976a">1</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> cut -d</font><font color="#cb7676">.</font><font color="#dbd7ca"> -f</font><font color="#bd976a">1</font>
+<font color="#dbd7ca">}</font>
 
-editor::helix::theme::set () {
-    <b><u><font color="#000000">local</font></u></b> -r theme=<font color="#808080">"$1"</font>; <b><u><font color="#000000">shift</font></u></b>
+<font color="#dbd7ca">editor</font><font color="#cb7676">::</font><font color="#dbd7ca">helix</font><font color="#cb7676">::</font><font color="#dbd7ca">theme</font><font color="#cb7676">::</font><font color="#5da994">set ()</font><font color="#dbd7ca"> {</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">theme</font><font color="#cb7676">=</font><font color="#bd976a">"$1"</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">shift</font></b>
 
-    <b><u><font color="#000000">local</font></u></b> -r config_file=$HELIX_CONFIG_DIR/config.toml
+<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">config_file</font><font color="#cb7676">=</font><font color="#bd976a">$HELIX_CONFIG_DIR</font><font color="#dbd7ca">/config</font><font color="#cb7676">.</font><font color="#dbd7ca">toml</font>
 
-    sed <font color="#808080">"/^theme =/ { s/.*/theme = </font>\"<font color="#808080">$theme</font>\"<font color="#808080">/; }"</font> \
-        $config_file &gt; $config_file.tmp &amp;&amp; 
-        mv $config_file.tmp $config_file
-}
+<font color="#dbd7ca">    sed </font><font color="#bd976a">"/^theme =/ { s/.*/theme = </font><font color="#cb7676">\"</font><font color="#bd976a">$theme</font><font color="#cb7676">\"</font><font color="#bd976a">/; }"</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">        </font><font color="#bd976a">$config_file</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> </font><font color="#bd976a">$config_file</font><font color="#cb7676">.</font><font color="#dbd7ca">tmp </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> </font>
+<font color="#dbd7ca">        mv </font><font color="#bd976a">$config_file</font><font color="#cb7676">.</font><font color="#dbd7ca">tmp </font><font color="#bd976a">$config_file</font>
+<font color="#dbd7ca">}</font>
 
-<b><u><font color="#000000">if</font></u></b> [ -f $HELIX_CONFIG_DIR/config.toml ]; <b><u><font color="#000000">then</font></u></b>
-    editor::helix::theme::<b><u><font color="#000000">set</font></u></b> $(editor::helix::theme::get_random)
-<b><u><font color="#000000">fi</font></u></b>
+<b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> -f </font><font color="#bd976a">$HELIX_CONFIG_DIR</font><font color="#dbd7ca">/config</font><font color="#cb7676">.</font><font color="#dbd7ca">toml </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
+<font color="#dbd7ca">    editor</font><font color="#cb7676">::</font><font color="#dbd7ca">helix</font><font color="#cb7676">::</font><font color="#dbd7ca">theme</font><font color="#cb7676">::</font><b><font color="#4d9375">set</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$(editor::helix::theme::get_random)</font>
+<b><font color="#4d9375">fi</font></b>
 </pre>
 <br />
 <span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />

@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-05-11-unveiling-ior-ng-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-05-11-unveiling-ior-ng-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-05-11-unveiling-ior-ng-part-2.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='unveiling-io-riot-ng--part-2-install-and-compile-once-run-everywhere'>Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</h1><br />
 <br />
@@ -48,9 +48,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>git clone https://github.com/snonux/ior ~/git/ior
-cd ~/git/ior
-mage buildDocker
+<pre><font color="#dbd7ca">git clone https</font><font color="#cb7676">:</font><font color="#dbd7ca">//github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/ior </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/ior</font>
+<font color="#dbd7ca">cd </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/ior</font>
+<font color="#dbd7ca">mage buildDocker</font>
 </pre>
 <br />
 <span>First run builds a Rocky Linux 9 builder image (~15–20 minutes). Subsequent runs reuse the cached image and finish in under a minute. The resulting static binary is <span class='inlinecode'>./ior</span>. That&#39;s the officially supported install path, and it&#39;s the right one for anyone who just wants to run <span class='inlinecode'>ior</span> without living in its build system.</span><br />
@@ -73,58 +73,58 @@ mage buildDocker
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver"># 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.</font></i>
-sudo dnf config-manager --set-enabled crb
-sudo dnf install -y epel-release
-sudo dnf install -y gcc clang bpftool elfutils-libelf-devel zlib-static \
-    glibc-static libzstd-devel git make cmake wget rpmdevtools strace bpftrace
-sudo dnf builddep -y elfutils
+<pre><i><font color="#666666"># 1) Enable repos and install build dependencies. CRB ships zlib-static / glibc-static.</font></i>
+<font color="#dbd7ca">sudo dnf config-manager --set-enabled crb</font>
+<font color="#dbd7ca">sudo dnf install -y epel-release</font>
+<font color="#dbd7ca">sudo dnf install -y gcc clang bpftool elfutils-libelf-devel zlib-static </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">    glibc-static libzstd-devel git make cmake wget rpmdevtools strace bpftrace</font>
+<font color="#dbd7ca">sudo dnf builddep -y elfutils</font>
 
-<i><font color="silver"># 2) Install Go 1.26 from go.dev. Rocky 9 ships only Go 1.25.x, ior needs 1.26+.</font></i>
-cd /tmp
-wget -q https://go.dev/dl/go<font color="#000000">1.26</font>.<font color="#000000">2</font>.linux-amd<font color="#000000">64</font>.tar.gz
-sudo tar -C /usr/local -xf go1.<font color="#000000">26.2</font>.linux-amd<font color="#000000">64</font>.tar.gz
-echo <font color="#808080">'export PATH=/usr/local/go/bin:$HOME/go/bin:$PATH'</font> | sudo tee /etc/profile.d/go.sh
-<b><u><font color="#000000">source</font></u></b> /etc/profile.d/go.sh
+<i><font color="#666666"># 2) Install Go 1.26 from go.dev. Rocky 9 ships only Go 1.25.x, ior needs 1.26+.</font></i>
+<font color="#dbd7ca">cd /tmp</font>
+<font color="#dbd7ca">wget -q https</font><font color="#cb7676">:</font><font color="#dbd7ca">//go</font><font color="#cb7676">.</font><font color="#dbd7ca">dev/dl/go</font><font color="#bd976a">1.26</font><font color="#cb7676">.</font><font color="#bd976a">2</font><font color="#cb7676">.</font><font color="#dbd7ca">linux-amd</font><font color="#bd976a">64</font><font color="#cb7676">.</font><font color="#dbd7ca">tar</font><font color="#cb7676">.</font><font color="#dbd7ca">gz</font>
+<font color="#dbd7ca">sudo tar -C /usr/local -xf go1</font><font color="#cb7676">.</font><font color="#bd976a">26.2</font><font color="#cb7676">.</font><font color="#dbd7ca">linux-amd</font><font color="#bd976a">64</font><font color="#cb7676">.</font><font color="#dbd7ca">tar</font><font color="#cb7676">.</font><font color="#dbd7ca">gz</font>
+<font color="#dbd7ca">echo </font><font color="#bd976a">'export PATH=/usr/local/go/bin:$HOME/go/bin:$PATH'</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> sudo tee /etc/profile</font><font color="#cb7676">.</font><font color="#dbd7ca">d/go</font><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
+<b><font color="#4d9375">source</font></b><font color="#dbd7ca"> /etc/profile</font><font color="#cb7676">.</font><font color="#dbd7ca">d/go</font><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
 
-<i><font color="silver"># 3) Build libelf.a from the elfutils source RPM.</font></i>
-mkdir -p ~/src &amp;&amp; cd ~
-dnf download --source elfutils-libelf
-rpm -ivh elfutils-*.src.rpm
-tar -C ~/src -xjf rpmbuild/SOURCES/elfutils-*.tar.bz2
-cd ~/src/elfutils-*
-./configure --enable-deterministic-archives --disable-debuginfod --disable-libdebuginfod
-make -C lib -j$(nproc)
-make -C libelf -j$(nproc)
-sudo cp -v libelf/libelf.a /usr/lib<font color="#000000">64</font>/
+<i><font color="#666666"># 3) Build libelf.a from the elfutils source RPM.</font></i>
+<font color="#dbd7ca">mkdir -p </font><font color="#cb7676">~</font><font color="#dbd7ca">/src </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> cd </font><font color="#cb7676">~</font>
+<font color="#dbd7ca">dnf download --source elfutils-libelf</font>
+<font color="#dbd7ca">rpm -ivh elfutils-</font><font color="#cb7676">*.</font><font color="#dbd7ca">src</font><font color="#cb7676">.</font><font color="#dbd7ca">rpm</font>
+<font color="#dbd7ca">tar -C </font><font color="#cb7676">~</font><font color="#dbd7ca">/src -xjf rpmbuild/SOURCES/elfutils-</font><font color="#cb7676">*.</font><font color="#dbd7ca">tar</font><font color="#cb7676">.</font><font color="#dbd7ca">bz2</font>
+<font color="#dbd7ca">cd </font><font color="#cb7676">~</font><font color="#dbd7ca">/src/elfutils-</font><font color="#cb7676">*</font>
+<font color="#cb7676">.</font><font color="#dbd7ca">/configure --enable-deterministic-archives --disable-debuginfod --disable-libdebuginfod</font>
+<font color="#dbd7ca">make -C lib -j</font><font color="#bd976a">$(nproc)</font>
+<font color="#dbd7ca">make -C libelf -j</font><font color="#bd976a">$(nproc)</font>
+<font color="#dbd7ca">sudo cp -v libelf/libelf</font><font color="#cb7676">.</font><font color="#dbd7ca">a /usr/lib</font><font color="#bd976a">64</font><font color="#cb7676">/</font>
 
-<i><font color="silver"># 4) Build libzstd.a from upstream (libzstd-devel doesn't ship the static archive).</font></i>
-cd /tmp
-wget -q https://github.com/facebook/zstd/releases/download/v<font color="#000000">1.5</font>.<font color="#000000">5</font>/zstd-<font color="#000000">1.5</font>.<font color="#000000">5</font>.tar.gz
-tar xzf zstd-<font color="#000000">1.5</font>.<font color="#000000">5</font>.tar.gz
-make -C zstd-<font color="#000000">1.5</font>.<font color="#000000">5</font>/lib -j$(nproc) libzstd.a
-sudo cp -v zstd-<font color="#000000">1.5</font>.<font color="#000000">5</font>/lib/libzstd.a /usr/lib<font color="#000000">64</font>/
+<i><font color="#666666"># 4) Build libzstd.a from upstream (libzstd-devel doesn't ship the static archive).</font></i>
+<font color="#dbd7ca">cd /tmp</font>
+<font color="#dbd7ca">wget -q https</font><font color="#cb7676">:</font><font color="#dbd7ca">//github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/facebook/zstd/releases/download/v</font><font color="#bd976a">1.5</font><font color="#cb7676">.</font><font color="#bd976a">5</font><font color="#dbd7ca">/zstd-</font><font color="#bd976a">1.5</font><font color="#cb7676">.</font><font color="#bd976a">5</font><font color="#cb7676">.</font><font color="#dbd7ca">tar</font><font color="#cb7676">.</font><font color="#dbd7ca">gz</font>
+<font color="#dbd7ca">tar xzf zstd-</font><font color="#bd976a">1.5</font><font color="#cb7676">.</font><font color="#bd976a">5</font><font color="#cb7676">.</font><font color="#dbd7ca">tar</font><font color="#cb7676">.</font><font color="#dbd7ca">gz</font>
+<font color="#dbd7ca">make -C zstd-</font><font color="#bd976a">1.5</font><font color="#cb7676">.</font><font color="#bd976a">5</font><font color="#dbd7ca">/lib -j</font><font color="#bd976a">$(nproc)</font><font color="#dbd7ca"> libzstd</font><font color="#cb7676">.</font><font color="#dbd7ca">a</font>
+<font color="#dbd7ca">sudo cp -v zstd-</font><font color="#bd976a">1.5</font><font color="#cb7676">.</font><font color="#bd976a">5</font><font color="#dbd7ca">/lib/libzstd</font><font color="#cb7676">.</font><font color="#dbd7ca">a /usr/lib</font><font color="#bd976a">64</font><font color="#cb7676">/</font>
 
-<i><font color="silver"># 5) Clone ior + libbpfgo, pin libbpfgo, build the static libbpf archive, install mage.</font></i>
-mkdir -p ~/git
-git clone https://github.com/snonux/ior ~/git/ior
-git clone https://github.com/aquasecurity/libbpfgo ~/git/libbpfgo
-git -C ~/git/libbpfgo checkout v0.<font color="#000000">9.2</font>-libbpf-<font color="#000000">1.5</font>.<font color="#000000">1</font>
-git -C ~/git/libbpfgo submodule update --init --recursive
-make -C ~/git/libbpfgo libbpfgo-static
-go install github.com/magefile/mage@latest
+<i><font color="#666666"># 5) Clone ior + libbpfgo, pin libbpfgo, build the static libbpf archive, install mage.</font></i>
+<font color="#dbd7ca">mkdir -p </font><font color="#cb7676">~</font><font color="#dbd7ca">/git</font>
+<font color="#dbd7ca">git clone https</font><font color="#cb7676">:</font><font color="#dbd7ca">//github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/ior </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/ior</font>
+<font color="#dbd7ca">git clone https</font><font color="#cb7676">:</font><font color="#dbd7ca">//github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/aquasecurity/libbpfgo </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/libbpfgo</font>
+<font color="#dbd7ca">git -C </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/libbpfgo checkout v0</font><font color="#cb7676">.</font><font color="#bd976a">9.2</font><font color="#dbd7ca">-libbpf-</font><font color="#bd976a">1.5</font><font color="#cb7676">.</font><font color="#bd976a">1</font>
+<font color="#dbd7ca">git -C </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/libbpfgo submodule update --init --recursive</font>
+<font color="#dbd7ca">make -C </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/libbpfgo libbpfgo-static</font>
+<font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/magefile/mage@latest</font>
 
-<i><font color="silver"># 6) Generate the syscall-coverage handlers against THIS kernel and build.</font></i>
-<i><font color="silver"># IOR_FORCE_GENERATE bypasses the strict diff against the committed audit file</font></i>
-<i><font color="silver"># (the committed audit was generated against a different kernel build, and the</font></i>
-<i><font color="silver"># generator's safeguard would otherwise refuse to overwrite it).</font></i>
-cd ~/git/ior
-env IOR_FORCE_GENERATE=<font color="#000000">1</font> GOTOOLCHAIN=auto mage generate
-<i><font color="silver"># GOTOOLCHAIN=auto only required for an older version than 1.26 of GO.</font></i>
-env GOTOOLCHAIN=auto mage all
+<i><font color="#666666"># 6) Generate the syscall-coverage handlers against THIS kernel and build.</font></i>
+<i><font color="#666666"># IOR_FORCE_GENERATE bypasses the strict diff against the committed audit file</font></i>
+<i><font color="#666666"># (the committed audit was generated against a different kernel build, and the</font></i>
+<i><font color="#666666"># generator's safeguard would otherwise refuse to overwrite it).</font></i>
+<font color="#dbd7ca">cd </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/ior</font>
+<font color="#dbd7ca">env </font><font color="#bd976a">IOR_FORCE_GENERATE</font><font color="#cb7676">=</font><font color="#bd976a">1</font><font color="#dbd7ca"> </font><font color="#bd976a">GOTOOLCHAIN</font><font color="#cb7676">=</font><font color="#dbd7ca">auto mage generate</font>
+<i><font color="#666666"># GOTOOLCHAIN=auto only required for an older version than 1.26 of GO.</font></i>
+<font color="#dbd7ca">env </font><font color="#bd976a">GOTOOLCHAIN</font><font color="#cb7676">=</font><font color="#dbd7ca">auto mage all</font>
 
-<i><font color="silver"># 7) Smoke test.</font></i>
-sudo ./ior -plain -duration <font color="#000000">5</font>
+<i><font color="#666666"># 7) Smoke test.</font></i>
+<font color="#dbd7ca">sudo </font><font color="#cb7676">.</font><font color="#dbd7ca">/ior -plain -duration </font><font color="#bd976a">5</font>
 </pre>
 <br />
 <span>If you see <span class='inlinecode'>Probing for 5s</span> followed by CSV rows, the build is good. <span class='inlinecode'>mage buildDocker</span> runs all of this inside a container and hands you back just the final binary — the 15-minute first-run cost buys you never having to think about any of the above again.</span><br />

@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-01-01-using-supernote-nomad-offline.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-01-01-using-supernote-nomad-offline.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='using-supernote-nomad-offline'>Using Supernote Nomad offline</h1><br />
 <br />
@@ -79,32 +79,32 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="silver">#!/usr/bin/env bash</font></i>
+<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
 
-convert () {
-  find . -name \*.note \
-    | <b><u><font color="#000000">while</font></u></b> <b><u><font color="#000000">read</font></u></b> -r note; <b><u><font color="#000000">do</font></u></b>
-        echo supernote-tool convert -a -t pdf <font color="#808080">"$note"</font> <font color="#808080">"${note/.note/.pdf}"</font>
-        supernote-tool convert -a -t pdf <font color="#808080">"$note"</font> <font color="#808080">"${note/.note/.pdf}.tmp"</font>
-        mv <font color="#808080">"${note/.note/.pdf}.tmp"</font> <font color="#808080">"${note/.note/.pdf}"</font>
-        du -hs <font color="#808080">"$note"</font> <font color="#808080">"${note/.note/.pdf}"</font>
-        echo
-      <b><u><font color="#000000">done</font></u></b>
-}
+<font color="#5da994">convert ()</font><font color="#dbd7ca"> {</font>
+<font color="#dbd7ca">  find </font><font color="#cb7676">.</font><font color="#dbd7ca"> -name </font><font color="#cb7676">\*.</font><font color="#dbd7ca">note </font><font color="#cb7676">\</font>
+<font color="#dbd7ca">    </font><font color="#cb7676">|</font><font color="#dbd7ca"> </font><b><font color="#4d9375">while</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">read</font></b><font color="#dbd7ca"> -r note</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b>
+<font color="#dbd7ca">        echo supernote-tool convert -a -t pdf </font><font color="#bd976a">"$note"</font><font color="#dbd7ca"> </font><font color="#bd976a">"${note/.note/.pdf}"</font>
+<font color="#dbd7ca">        supernote-tool convert -a -t pdf </font><font color="#bd976a">"$note"</font><font color="#dbd7ca"> </font><font color="#bd976a">"${note/.note/.pdf}.tmp"</font>
+<font color="#dbd7ca">        mv </font><font color="#bd976a">"${note/.note/.pdf}.tmp"</font><font color="#dbd7ca"> </font><font color="#bd976a">"${note/.note/.pdf}"</font>
+<font color="#dbd7ca">        du -hs </font><font color="#bd976a">"$note"</font><font color="#dbd7ca"> </font><font color="#bd976a">"${note/.note/.pdf}"</font>
+<font color="#dbd7ca">        echo</font>
+<font color="#dbd7ca">      </font><b><font color="#4d9375">done</font></b>
+<font color="#dbd7ca">}</font>
 
-<i><font color="silver"># Make the PDFs available on my Phone as well</font></i>
-copy () {
-  <b><u><font color="#000000">if</font></u></b> [ ! -d ~/Documents/Supernote ]; <b><u><font color="#000000">then</font></u></b>
-    echo <font color="#808080">"Directory ~/Documents/Supernote does not exist, skipping"</font>
-    <b><u><font color="#000000">exit</font></u></b> <font color="#000000">1</font>
-  <b><u><font color="#000000">fi</font></u></b>
+<i><font color="#666666"># Make the PDFs available on my Phone as well</font></i>
+<font color="#5da994">copy ()</font><font color="#dbd7ca"> {</font>
+<font color="#dbd7ca">  </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> </font><font color="#cb7676">!</font><font color="#dbd7ca"> -d </font><font color="#cb7676">~</font><font color="#dbd7ca">/Documents/Supernote </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
+<font color="#dbd7ca">    echo </font><font color="#bd976a">"Directory ~/Documents/Supernote does not exist, skipping"</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">exit</font></b><font color="#dbd7ca"> </font><font color="#bd976a">1</font>
+<font color="#dbd7ca">  </font><b><font color="#4d9375">fi</font></b>
 
-  rsync -delete -av --include=<font color="#808080">'*/'</font> --include=<font color="#808080">'*.pdf'</font> --exclude=<font color="#808080">'*'</font> . ~/Documents/Supernote/
-  echo This was copied from $(pwd) so dont edit manually &gt;~/Documents/Supernote/README.txt
-}
+<font color="#dbd7ca">  rsync -delete -av --include</font><font color="#cb7676">=</font><font color="#bd976a">'*/'</font><font color="#dbd7ca"> --include</font><font color="#cb7676">=</font><font color="#bd976a">'*.pdf'</font><font color="#dbd7ca"> --exclude</font><font color="#cb7676">=</font><font color="#bd976a">'*'</font><font color="#dbd7ca"> </font><font color="#cb7676">.</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca">/Documents/Supernote</font><font color="#cb7676">/</font>
+<font color="#dbd7ca">  echo This was copied from </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca"> so dont edit manually </font><font color="#cb7676">&gt;~</font><font color="#dbd7ca">/Documents/Supernote/README</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
+<font color="#dbd7ca">}</font>
 
-convert
-copy
+<font color="#dbd7ca">convert</font>
+<font color="#dbd7ca">copy</font>
 </pre>
 <br />
 <span>This script does two things:</span><br />

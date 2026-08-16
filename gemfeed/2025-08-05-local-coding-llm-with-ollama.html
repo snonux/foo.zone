@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-08-05-local-coding-llm-with-ollama.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-08-05-local-coding-llm-with-ollama.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='local-llm-for-coding-with-ollama-on-macos'>Local LLM for Coding with Ollama on macOS</h1><br />
 <br />
@@ -105,9 +105,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>brew install ollama
-rehash
-ollama serve
+<pre><font color="#dbd7ca">brew install ollama</font>
+<font color="#dbd7ca">rehash</font>
+<font color="#dbd7ca">ollama serve</font>
 </pre>
 <br />
 <span>Which started up the Ollama server with something like this (the screenshots shows already some requests made):</span><br />
@@ -120,7 +120,7 @@ ollama serve
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>ollama pull qwen2.<font color="#000000">5</font>-coder:14b-instruct
+<pre><font color="#dbd7ca">ollama pull qwen2</font><font color="#cb7676">.</font><font color="#bd976a">5</font><font color="#dbd7ca">-coder</font><font color="#cb7676">:</font><font color="#dbd7ca">14b-instruct</font>
 </pre>
 <br />
 <span>Now, I was ready to go! It wasn&#39;t so difficult. Now, let&#39;s see how I used this model for coding tasks.</span><br />
@@ -133,27 +133,27 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>time echo <font color="#808080">"Write a function in golang to print out the Nth fibonacci number, \</font>
-<font color="#808080">  only the function without the boilerplate"</font> | ollama run qwen2.<font color="#000000">5</font>-coder:14b-instruct
+<pre><font color="#dbd7ca">time echo </font><font color="#bd976a">"Write a function in golang to print out the Nth fibonacci number, \</font>
+<font color="#bd976a">  only the function without the boilerplate"</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> ollama run qwen2</font><font color="#cb7676">.</font><font color="#bd976a">5</font><font color="#dbd7ca">-coder</font><font color="#cb7676">:</font><font color="#dbd7ca">14b-instruct</font>
 
-Output:
+<font color="#dbd7ca">Output</font><font color="#cb7676">:</font>
 
-func fibonacci(n int) int {
-    <b><u><font color="#000000">if</font></u></b> n &lt;= <font color="#000000">1</font> {
-        <b><u><font color="#000000">return</font></u></b> n
-    }
-    a, b := <font color="#000000">0</font>, <font color="#000000">1</font>
-    <b><u><font color="#000000">for</font></u></b> i := <font color="#000000">2</font>; i &lt;= n; i++ {
-        a, b = b, a+b
-    }
-    <b><u><font color="#000000">return</font></u></b> b
-}
+<font color="#dbd7ca">func fibonacci</font><font color="#cb7676">(</font><font color="#dbd7ca">n int</font><font color="#cb7676">)</font><font color="#dbd7ca"> int {</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> n </font><font color="#cb7676">&lt;=</font><font color="#dbd7ca"> </font><font color="#bd976a">1</font><font color="#dbd7ca"> {</font>
+<font color="#dbd7ca">        </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> n</font>
+<font color="#dbd7ca">    }</font>
+<font color="#dbd7ca">    a</font><font color="#cb7676">,</font><font color="#dbd7ca"> b </font><font color="#cb7676">:=</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">1</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> i </font><font color="#cb7676">:=</font><font color="#dbd7ca"> </font><font color="#bd976a">2</font><font color="#cb7676">;</font><font color="#dbd7ca"> i </font><font color="#cb7676">&lt;=</font><font color="#dbd7ca"> n</font><font color="#cb7676">;</font><font color="#dbd7ca"> i</font><font color="#cb7676">++</font><font color="#dbd7ca"> {</font>
+<font color="#dbd7ca">        a</font><font color="#cb7676">,</font><font color="#dbd7ca"> b </font><font color="#cb7676">=</font><font color="#dbd7ca"> b</font><font color="#cb7676">,</font><font color="#dbd7ca"> a</font><font color="#cb7676">+</font><font color="#dbd7ca">b</font>
+<font color="#dbd7ca">    }</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> b</font>
+<font color="#dbd7ca">}</font>
 
-Execution Metrics:
+<font color="#dbd7ca">Execution Metrics</font><font color="#cb7676">:</font>
 
-Executed <b><u><font color="#000000">in</font></u></b>    <font color="#000000">4.90</font> secs      fish           external
-   usr time   <font color="#000000">15.54</font> millis    <font color="#000000">0.31</font> millis   <font color="#000000">15.24</font> millis
-   sys time   <font color="#000000">19.68</font> millis    <font color="#000000">1.02</font> millis   <font color="#000000">18.66</font> millis
+<font color="#dbd7ca">Executed </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca">    </font><font color="#bd976a">4.90</font><font color="#dbd7ca"> secs      fish           external</font>
+<font color="#dbd7ca">   usr time   </font><font color="#bd976a">15.54</font><font color="#dbd7ca"> millis    </font><font color="#bd976a">0.31</font><font color="#dbd7ca"> millis   </font><font color="#bd976a">15.24</font><font color="#dbd7ca"> millis</font>
+<font color="#dbd7ca">   sys time   </font><font color="#bd976a">19.68</font><font color="#dbd7ca"> millis    </font><font color="#bd976a">1.02</font><font color="#dbd7ca"> millis   </font><font color="#bd976a">18.66</font><font color="#dbd7ca"> millis</font>
 </pre>
 <br />
 <span class='quote'>Note, after having written this blog post, I tried the same with the newer model <span class='inlinecode'>qwen3-coder:30b-a3b-q4_K_M</span> (which "just" came out, and it&#39;s a quantised 30B model), and it was much faster:</span><br />
@@ -178,9 +178,9 @@ Executed in    1.83 secs      fish           external
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>brew install aider
-mkdir -p ~/git/aitest &amp;&amp; cd ~/git/aitest &amp;&amp; git init
-aider --model ollama_chat/qwen<font color="#000000">2.5</font>-coder:14b-instruct
+<pre><font color="#dbd7ca">brew install aider</font>
+<font color="#dbd7ca">mkdir -p </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/aitest </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> cd </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/aitest </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> git init</font>
+<font color="#dbd7ca">aider --model ollama_chat/qwen</font><font color="#bd976a">2.5</font><font color="#dbd7ca">-coder</font><font color="#cb7676">:</font><font color="#dbd7ca">14b-instruct</font>
 </pre>
 <br />
 <a class='textlink' href='https://aider.chat'>https://aider.chat</a><br />
@@ -223,11 +223,11 @@ Create a Go project with these files:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>go build cmd/aitest/main.go
-./main -v
-<font color="#000000">0.0</font>.<font color="#000000">0</font>
-./main -dir .
-Number of files <b><u><font color="#000000">in</font></u></b> directory .: <font color="#000000">4</font>
+<pre><font color="#dbd7ca">go build cmd/aitest/main</font><font color="#cb7676">.</font><font color="#dbd7ca">go</font>
+<font color="#cb7676">.</font><font color="#dbd7ca">/main -v</font>
+<font color="#bd976a">0.0</font><font color="#cb7676">.</font><font color="#bd976a">0</font>
+<font color="#cb7676">.</font><font color="#dbd7ca">/main -dir </font><font color="#cb7676">.</font>
+<font color="#dbd7ca">Number of files </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> directory </font><font color="#cb7676">.:</font><font color="#dbd7ca"> </font><font color="#bd976a">4</font>
 </pre>
 <br />
 <h3 style='display: inline' id='the-code'>The code</h3><br />
@@ -238,38 +238,38 @@ Number of files <b><u><font color="#000000">in</font></u></b> directory .: <font
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">package</font></u></b> main
+<pre><b><font color="#4d9375">package</font></b><font color="#dbd7ca"> main</font>
 
-<b><u><font color="#000000">import</font></u></b> (
-	<font color="#808080">"flag"</font>
-	<font color="#808080">"fmt"</font>
-	<font color="#808080">"os"</font>
+<b><font color="#4d9375">import</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font>
+<font color="#dbd7ca">	</font><font color="#bd976a">"flag"</font>
+<font color="#dbd7ca">	</font><font color="#bd976a">"fmt"</font>
+<font color="#dbd7ca">	</font><font color="#bd976a">"os"</font>
 
-	<font color="#808080">"aitest/internal"</font>
-)
+<font color="#dbd7ca">	</font><font color="#bd976a">"aitest/internal"</font>
+<font color="#cb7676">)</font>
 
-<b><u><font color="#000000">func</font></u></b> main() {
-	<b><u><font color="#000000">var</font></u></b> versionFlag <b><font color="#000000">bool</font></b>
-	flag.BoolVar(&amp;versionFlag, <font color="#808080">"v"</font>, false, <font color="#808080">"print version"</font>)
-	dir := flag.String(<font color="#808080">"dir"</font>, <font color="#808080">""</font>, <font color="#808080">"directory to count files in"</font>)
-	flag.Parse()
+<b><font color="#4d9375">func</font></b><font color="#dbd7ca"> </font><font color="#5da994">main</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">	</font><b><font color="#4d9375">var</font></b><font color="#dbd7ca"> versionFlag </font><b><font color="#5da994">bool</font></b>
+<font color="#dbd7ca">	flag</font><font color="#cb7676">.</font><font color="#5da994">BoolVar</font><font color="#cb7676">(&amp;</font><font color="#dbd7ca">versionFlag</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"v"</font><font color="#cb7676">,</font><font color="#dbd7ca"> false</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"print version"</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">	dir </font><font color="#cb7676">:=</font><font color="#dbd7ca"> flag</font><font color="#cb7676">.</font><font color="#5da994">String</font><font color="#cb7676">(</font><font color="#bd976a">"dir"</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">""</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"directory to count files in"</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">	flag</font><font color="#cb7676">.</font><font color="#5da994">Parse</font><font color="#cb7676">()</font>
 
-	<b><u><font color="#000000">if</font></u></b> versionFlag {
-		fmt.Println(internal.GetVersion())
-		<b><u><font color="#000000">return</font></u></b>
-	}
+<font color="#dbd7ca">	</font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> versionFlag </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">		fmt</font><font color="#cb7676">.</font><font color="#5da994">Println</font><font color="#cb7676">(</font><font color="#dbd7ca">internal</font><font color="#cb7676">.</font><font color="#5da994">GetVersion</font><font color="#cb7676">())</font>
+<font color="#dbd7ca">		</font><b><font color="#4d9375">return</font></b>
+<font color="#dbd7ca">	</font><font color="#dbd7ca">}</font>
 
-	<b><u><font color="#000000">if</font></u></b> *dir != <font color="#808080">""</font> {
-		fileCount, err := internal.CountFiles(*dir)
-		<b><u><font color="#000000">if</font></u></b> err != nil {
-			fmt.Fprintf(os.Stderr, <font color="#808080">"Error counting files: %v\n"</font>, err)
-			os.Exit(<font color="#000000">1</font>)
-		}
-		fmt.Printf(<font color="#808080">"Number of files in directory %s: %d\n"</font>, *dir, fileCount)
-	} <b><u><font color="#000000">else</font></u></b> {
-		fmt.Println(<font color="#808080">"No directory specified. No count given."</font>)
-	}
-}
+<font color="#dbd7ca">	</font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">dir </font><font color="#cb7676">!=</font><font color="#dbd7ca"> </font><font color="#bd976a">""</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">		fileCount</font><font color="#cb7676">,</font><font color="#dbd7ca"> err </font><font color="#cb7676">:=</font><font color="#dbd7ca"> internal</font><font color="#cb7676">.</font><font color="#5da994">CountFiles</font><font color="#cb7676">(*</font><font color="#dbd7ca">dir</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">		</font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> err </font><font color="#cb7676">!=</font><font color="#dbd7ca"> nil </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">			fmt</font><font color="#cb7676">.</font><font color="#5da994">Fprintf</font><font color="#cb7676">(</font><font color="#dbd7ca">os</font><font color="#cb7676">.</font><font color="#dbd7ca">Stderr</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"Error counting files: %v\n"</font><font color="#cb7676">,</font><font color="#dbd7ca"> err</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">			os</font><font color="#cb7676">.</font><font color="#5da994">Exit</font><font color="#cb7676">(</font><font color="#bd976a">1</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">		</font><font color="#dbd7ca">}</font>
+<font color="#dbd7ca">		fmt</font><font color="#cb7676">.</font><font color="#5da994">Printf</font><font color="#cb7676">(</font><font color="#bd976a">"Number of files in directory %s: %d\n"</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">dir</font><font color="#cb7676">,</font><font color="#dbd7ca"> fileCount</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">	</font><font color="#dbd7ca">}</font><font color="#dbd7ca"> </font><b><font color="#4d9375">else</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">		fmt</font><font color="#cb7676">.</font><font color="#5da994">Println</font><font color="#cb7676">(</font><font color="#bd976a">"No directory specified. No count given."</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">	</font><font color="#dbd7ca">}</font>
+<font color="#dbd7ca">}</font>
 </pre>
 <br />
 <span>The <span class='inlinecode'>./internal/version.go</span> file:</span><br />
@@ -278,13 +278,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">package</font></u></b> internal
+<pre><b><font color="#4d9375">package</font></b><font color="#dbd7ca"> internal</font>
 
-<b><u><font color="#000000">var</font></u></b> Version = <font color="#808080">"0.0.0"</font>
+<b><font color="#4d9375">var</font></b><font color="#dbd7ca"> Version </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"0.0.0"</font>
 
-<b><u><font color="#000000">func</font></u></b> GetVersion() <b><font color="#000000">string</font></b> {
-	<b><u><font color="#000000">return</font></u></b> Version
-}
+<b><font color="#4d9375">func</font></b><font color="#dbd7ca"> </font><font color="#5da994">GetVersion</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><b><font color="#5da994">string</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">	</font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> Version</font>
+<font color="#dbd7ca">}</font>
 </pre>
 <br />
 <span>The <span class='inlinecode'>./internal/count.go</span> file:</span><br />
@@ -293,27 +293,27 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">package</font></u></b> internal
+<pre><b><font color="#4d9375">package</font></b><font color="#dbd7ca"> internal</font>
 
-<b><u><font color="#000000">import</font></u></b> (
-	<font color="#808080">"os"</font>
-)
+<b><font color="#4d9375">import</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font>
+<font color="#dbd7ca">	</font><font color="#bd976a">"os"</font>
+<font color="#cb7676">)</font>
 
-<b><u><font color="#000000">func</font></u></b> CountFiles(dir <b><font color="#000000">string</font></b>) (int, error) {
-	files, err := os.ReadDir(dir)
-	<b><u><font color="#000000">if</font></u></b> err != nil {
-		<b><u><font color="#000000">return</font></u></b> <font color="#000000">0</font>, err
-	}
+<b><font color="#4d9375">func</font></b><font color="#dbd7ca"> </font><font color="#5da994">CountFiles</font><font color="#cb7676">(</font><font color="#dbd7ca">dir </font><b><font color="#5da994">string</font></b><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">int</font><font color="#cb7676">,</font><font color="#dbd7ca"> error</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">	files</font><font color="#cb7676">,</font><font color="#dbd7ca"> err </font><font color="#cb7676">:=</font><font color="#dbd7ca"> os</font><font color="#cb7676">.</font><font color="#5da994">ReadDir</font><font color="#cb7676">(</font><font color="#dbd7ca">dir</font><font color="#cb7676">)</font>
+<font color="#dbd7ca">	</font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> err </font><font color="#cb7676">!=</font><font color="#dbd7ca"> nil </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">		</font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#cb7676">,</font><font color="#dbd7ca"> err</font>
+<font color="#dbd7ca">	</font><font color="#dbd7ca">}</font>
 
-	count := <font color="#000000">0</font>
-	<b><u><font color="#000000">for</font></u></b> _, file := <b><u><font color="#000000">range</font></u></b> files {
-		<b><u><font color="#000000">if</font></u></b> !file.IsDir() {
-			count++
-		}
-	}
+<font color="#dbd7ca">	count </font><font color="#cb7676">:=</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font>
+<font color="#dbd7ca">	</font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> _</font><font color="#cb7676">,</font><font color="#dbd7ca"> file </font><font color="#cb7676">:=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">range</font></b><font color="#dbd7ca"> files </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">		</font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">!</font><font color="#dbd7ca">file</font><font color="#cb7676">.</font><font color="#5da994">IsDir</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">			count</font><font color="#cb7676">++</font>
+<font color="#dbd7ca">		</font><font color="#dbd7ca">}</font>
+<font color="#dbd7ca">	</font><font color="#dbd7ca">}</font>
 
-	<b><u><font color="#000000">return</font></u></b> count, nil
-}
+<font color="#dbd7ca">	</font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> count</font><font color="#cb7676">,</font><font color="#dbd7ca"> nil</font>
+<font color="#dbd7ca">}</font>
 </pre>
 <br />
 <span>The code is quite straightforward, especially for generating boilerplate code this will be useful for many use cases!</span><br />
@@ -333,7 +333,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>cargo install lsp-ai
+<pre><font color="#dbd7ca">cargo install lsp-ai</font>
 </pre>
 <br />
 <h3 style='display: inline' id='helix-configuration'>Helix Configuration</h3><br />

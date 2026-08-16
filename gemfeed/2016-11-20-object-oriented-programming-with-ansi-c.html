@@ -9,7 +9,7 @@
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2016-11-20-object-oriented-programming-with-ansi-c.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
 <h1 style='display: inline' id='object-oriented-programming-with-ansi-c'>Object oriented programming with ANSI C</h1><br />
 <br />
@@ -34,37 +34,37 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><u><font color="#000000">#include</font></u></b> <font color="#808080">&lt;stdio.h&gt;</font>
+<pre><font color="#666666">#include</font><font color="#dbd7ca"> </font><font color="#bd976a">&lt;stdio.h&gt;</font>
 
-<b><u><font color="#000000">typedef</font></u></b> <b><u><font color="#000000">struct</font></u></b> {
-    <b><font color="#000000">double</font></b> (*calculate)(<b><u><font color="#000000">const</font></u></b> <b><font color="#000000">double</font></b>, <b><u><font color="#000000">const</font></u></b> <b><font color="#000000">double</font></b>);
-    <b><font color="#000000">char</font></b> *name;
-} something_s;
+<b><font color="#4d9375">typedef</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">struct</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">    </font><b><font color="#5da994">double</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(*</font><font color="#dbd7ca">calculate</font><font color="#cb7676">)(</font><b><font color="#4d9375">const</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">double</font></b><font color="#cb7676">,</font><font color="#dbd7ca"> </font><b><font color="#4d9375">const</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">double</font></b><font color="#cb7676">);</font>
+<font color="#dbd7ca">    </font><b><font color="#5da994">char</font></b><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">name</font><font color="#cb7676">;</font>
+<font color="#dbd7ca">}</font><font color="#dbd7ca"> something_s</font><font color="#cb7676">;</font>
 
-<b><font color="#000000">double</font></b> multiplication(<b><u><font color="#000000">const</font></u></b> <b><font color="#000000">double</font></b> a, <b><u><font color="#000000">const</font></u></b> <b><font color="#000000">double</font></b> b) {
-    <b><u><font color="#000000">return</font></u></b> a * b;
-}
+<b><font color="#5da994">double</font></b><font color="#dbd7ca"> </font><font color="#5da994">multiplication</font><font color="#cb7676">(</font><b><font color="#4d9375">const</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">double</font></b><font color="#dbd7ca"> a</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><b><font color="#4d9375">const</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">double</font></b><font color="#dbd7ca"> b</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> a </font><font color="#cb7676">*</font><font color="#dbd7ca"> b</font><font color="#cb7676">;</font>
+<font color="#dbd7ca">}</font>
 
-<b><font color="#000000">double</font></b> division(<b><u><font color="#000000">const</font></u></b> <b><font color="#000000">double</font></b> a, <b><u><font color="#000000">const</font></u></b> <b><font color="#000000">double</font></b> b) {
-    <b><u><font color="#000000">return</font></u></b> a / b;
-}
+<b><font color="#5da994">double</font></b><font color="#dbd7ca"> </font><font color="#5da994">division</font><font color="#cb7676">(</font><b><font color="#4d9375">const</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">double</font></b><font color="#dbd7ca"> a</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><b><font color="#4d9375">const</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">double</font></b><font color="#dbd7ca"> b</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">    </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> a </font><font color="#cb7676">/</font><font color="#dbd7ca"> b</font><font color="#cb7676">;</font>
+<font color="#dbd7ca">}</font>
 
-<b><font color="#000000">int</font></b> main(<b><font color="#000000">void</font></b>) {
-    something_s mult = (something_s) {
-        .calculate = multiplication,
-        .name = <font color="#808080">"Multiplication"</font>
-    };
+<b><font color="#5da994">int</font></b><font color="#dbd7ca"> </font><font color="#5da994">main</font><font color="#cb7676">(</font><b><font color="#5da994">void</font></b><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">    </font><font color="#dbd7ca">something_s</font><font color="#dbd7ca"> mult </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">something_s</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">        </font><font color="#cb7676">.</font><font color="#dbd7ca">calculate </font><font color="#cb7676">=</font><font color="#dbd7ca"> multiplication</font><font color="#cb7676">,</font>
+<font color="#dbd7ca">        </font><font color="#cb7676">.</font><font color="#dbd7ca">name </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"Multiplication"</font>
+<font color="#dbd7ca">    </font><font color="#dbd7ca">}</font><font color="#cb7676">;</font>
 
-    something_s div = (something_s) {
-        .calculate = division,
-        .name = <font color="#808080">"Division"</font>
-    };
+<font color="#dbd7ca">    </font><font color="#dbd7ca">something_s</font><font color="#dbd7ca"> div </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">something_s</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
+<font color="#dbd7ca">        </font><font color="#cb7676">.</font><font color="#dbd7ca">calculate </font><font color="#cb7676">=</font><font color="#dbd7ca"> division</font><font color="#cb7676">,</font>
+<font color="#dbd7ca">        </font><font color="#cb7676">.</font><font color="#dbd7ca">name </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"Division"</font>
+<font color="#dbd7ca">    </font><font color="#dbd7ca">}</font><font color="#cb7676">;</font>
 
-    <b><u><font color="#000000">const</font></u></b> <b><font color="#000000">double</font></b> a = <font color="#000000">3</font>, b = <font color="#000000">2</font>;
+<font color="#dbd7ca">    </font><b><font color="#4d9375">const</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">double</font></b><font color="#dbd7ca"> a </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">3</font><font color="#cb7676">,</font><font color="#dbd7ca"> b </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">2</font><font color="#cb7676">;</font>
 
-    printf(<font color="#808080">"%s(%f, %f) =&gt; %f</font>\n<font color="#808080">"</font>, mult.name, a, b, mult.calculate(a,b));
-    printf(<font color="#808080">"%s(%f, %f) =&gt; %f</font>\n<font color="#808080">"</font>, div.name, a, b, div.calculate(a,b));
-}
+<font color="#dbd7ca">    </font><font color="#5da994">printf</font><font color="#cb7676">(</font><font color="#bd976a">"%s(%f, %f) =&gt; %f</font><font color="#cb7676">\n</font><font color="#bd976a">"</font><font color="#cb7676">,</font><font color="#dbd7ca"> mult</font><font color="#cb7676">.</font><font color="#dbd7ca">name</font><font color="#cb7676">,</font><font color="#dbd7ca"> a</font><font color="#cb7676">,</font><font color="#dbd7ca"> b</font><font color="#cb7676">,</font><font color="#dbd7ca"> mult</font><font color="#cb7676">.</font><font color="#5da994">calculate</font><font color="#cb7676">(</font><font color="#dbd7ca">a</font><font color="#cb7676">,</font><font color="#dbd7ca">b</font><font color="#cb7676">));</font>
+<font color="#dbd7ca">    </font><font color="#5da994">printf</font><font color="#cb7676">(</font><font color="#bd976a">"%s(%f, %f) =&gt; %f</font><font color="#cb7676">\n</font><font color="#bd976a">"</font><font color="#cb7676">,</font><font color="#dbd7ca"> div</font><font color="#cb7676">.</font><font color="#dbd7ca">name</font><font color="#cb7676">,</font><font color="#dbd7ca"> a</font><font color="#cb7676">,</font><font color="#dbd7ca"> b</font><font color="#cb7676">,</font><font color="#dbd7ca"> div</font><font color="#cb7676">.</font><font color="#5da994">calculate</font><font color="#cb7676">(</font><font color="#dbd7ca">a</font><font color="#cb7676">,</font><font color="#dbd7ca">b</font><font color="#cb7676">));</font>
+<font color="#dbd7ca">}</font>
 </pre>
 <br />
 <span>As you can see, you can call the function (pointed by the function pointer) with the same syntax as in C++ or Java:</span><br />
@@ -73,8 +73,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>printf(<font color="#808080">"%s(%f, %f) =&gt; %f</font>\n<font color="#808080">"</font>, mult.name, a, b, mult.calculate(a,b));
-printf(<font color="#808080">"%s(%f, %f) =&gt; %f</font>\n<font color="#808080">"</font>, div.name, a, b, div.calculate(a,b));
+<pre><font color="#5da994">printf</font><font color="#cb7676">(</font><font color="#bd976a">"%s(%f, %f) =&gt; %f</font><font color="#cb7676">\n</font><font color="#bd976a">"</font><font color="#cb7676">,</font><font color="#dbd7ca"> mult</font><font color="#cb7676">.</font><font color="#dbd7ca">name</font><font color="#cb7676">,</font><font color="#dbd7ca"> a</font><font color="#cb7676">,</font><font color="#dbd7ca"> b</font><font color="#cb7676">,</font><font color="#dbd7ca"> mult</font><font color="#cb7676">.</font><font color="#5da994">calculate</font><font color="#cb7676">(</font><font color="#dbd7ca">a</font><font color="#cb7676">,</font><font color="#dbd7ca">b</font><font color="#cb7676">));</font>
+<font color="#5da994">printf</font><font color="#cb7676">(</font><font color="#bd976a">"%s(%f, %f) =&gt; %f</font><font color="#cb7676">\n</font><font color="#bd976a">"</font><font color="#cb7676">,</font><font color="#dbd7ca"> div</font><font color="#cb7676">.</font><font color="#dbd7ca">name</font><font color="#cb7676">,</font><font color="#dbd7ca"> a</font><font color="#cb7676">,</font><font color="#dbd7ca"> b</font><font color="#cb7676">,</font><font color="#dbd7ca"> div</font><font color="#cb7676">.</font><font color="#5da994">calculate</font><font color="#cb7676">(</font><font color="#dbd7ca">a</font><font color="#cb7676">,</font><font color="#dbd7ca">b</font><font color="#cb7676">));</font>
 </pre>
 <br />
 <span>However, that&#39;s just syntactic sugar for:</span><br />
@@ -83,8 +83,8 @@ printf(<font color="#808080">"%s(%f, %f) =&gt; %f</font>\n<font color="#808080">
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>printf(<font color="#808080">"%s(%f, %f) =&gt; %f</font>\n<font color="#808080">"</font>, mult.name, a, b, (*mult.calculate)(a,b));
-printf(<font color="#808080">"%s(%f, %f) =&gt; %f</font>\n<font color="#808080">"</font>, div.name, a, b, (*div.calculate)(a,b));
+<pre><font color="#5da994">printf</font><font color="#cb7676">(</font><font color="#bd976a">"%s(%f, %f) =&gt; %f</font><font color="#cb7676">\n</font><font color="#bd976a">"</font><font color="#cb7676">,</font><font color="#dbd7ca"> mult</font><font color="#cb7676">.</font><font color="#dbd7ca">name</font><font color="#cb7676">,</font><font color="#dbd7ca"> a</font><font color="#cb7676">,</font><font color="#dbd7ca"> b</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#cb7676">(*</font><font color="#dbd7ca">mult</font><font color="#cb7676">.</font><font color="#dbd7ca">calculate</font><font color="#cb7676">)(</font><font color="#dbd7ca">a</font><font color="#cb7676">,</font><font color="#dbd7ca">b</font><font color="#cb7676">));</font>
+<font color="#5da994">printf</font><font color="#cb7676">(</font><font color="#bd976a">"%s(%f, %f) =&gt; %f</font><font color="#cb7676">\n</font><font color="#bd976a">"</font><font color="#cb7676">,</font><font color="#dbd7ca"> div</font><font color="#cb7676">.</font><font color="#dbd7ca">name</font><font color="#cb7676">,</font><font color="#dbd7ca"> a</font><font color="#cb7676">,</font><font color="#dbd7ca"> b</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#cb7676">(*</font><font color="#dbd7ca">div</font><font color="#cb7676">.</font><font color="#dbd7ca">calculate</font><font color="#cb7676">)(</font><font color="#dbd7ca">a</font><font color="#cb7676">,</font><font color="#dbd7ca">b</font><font color="#cb7676">));</font>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -93,10 +93,10 @@ printf(<font color="#808080">"%s(%f, %f) =&gt; %f</font>\n<font color="#808080">
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>pbuetow ~/git/blog/source [<font color="#000000">38268</font>]% gcc oop-c-example.c -o oop-c-example
-pbuetow ~/git/blog/source [<font color="#000000">38269</font>]% ./oop-c-example
-Multiplication(<font color="#000000">3.000000</font>, <font color="#000000">2.000000</font>) =&gt; <font color="#000000">6.000000</font>
-Division(<font color="#000000">3.000000</font>, <font color="#000000">2.000000</font>) =&gt; <font color="#000000">1.500000</font>
+<pre><font color="#dbd7ca">pbuetow </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/blog/source </font><font color="#cb7676">[</font><font color="#bd976a">38268</font><font color="#cb7676">]%</font><font color="#dbd7ca"> gcc oop-c-example</font><font color="#cb7676">.</font><font color="#dbd7ca">c -o oop-c-example</font>
+<font color="#dbd7ca">pbuetow </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/blog/source </font><font color="#cb7676">[</font><font color="#bd976a">38269</font><font color="#cb7676">]%</font><font color="#dbd7ca"> </font><font color="#cb7676">.</font><font color="#dbd7ca">/oop-c-example</font>
+<font color="#dbd7ca">Multiplication</font><font color="#cb7676">(</font><font color="#bd976a">3.000000</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">2.000000</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">=&gt;</font><font color="#dbd7ca"> </font><font color="#bd976a">6.000000</font>
+<font color="#dbd7ca">Division</font><font color="#cb7676">(</font><font color="#bd976a">3.000000</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">2.000000</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">=&gt;</font><font color="#dbd7ca"> </font><font color="#bd976a">1.500000</font>
 </pre>
 <br />
 <span>Not complicated at all, but nice to know and helps to make the code easier to read!</span><br />
@@ -109,7 +109,7 @@ Division(<font color="#000000">3.000000</font>, <font color="#000000">2.000000</
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre>mult.calculate(mult,a,b));
+<pre><font color="#dbd7ca">mult</font><font color="#cb7676">.</font><font color="#5da994">calculate</font><font color="#cb7676">(</font><font color="#dbd7ca">mult</font><font color="#cb7676">,</font><font color="#dbd7ca">a</font><font color="#cb7676">,</font><font color="#dbd7ca">b</font><font color="#cb7676">));</font>
 </pre>
 <br />
 <h2 style='display: inline' id='real-object-oriented-programming-with-c'>Real object oriented programming with C</h2><br />
