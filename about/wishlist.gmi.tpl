@@ -98,6 +98,14 @@ Not that I'm in a rush — my current phone is a Pixel 7 Pro on GrapheneOS, goin
 
 Then again, I'm not fully decided on Ubuntu Touch yet. There's meant to be a Motorola + GrapheneOS announcement around this year or next about officially supporting Motorola devices — and if that lands, a Razr Fold on GrapheneOS might be also a good pick. So really it's wait-and-see between the two: Ubuntu Touch on the Fairphone 6 (or another newer device if it comes along), or GrapheneOS on a Motorola foldable.
 
+### Casio MRG-B5000
+
+=> wishlist/mrg-b5000.jpg Casio MRG-B5000 (Silver)
+=> wishlist/mrg-b5000-2.jpg Casio MRG-B5000 (Silver), side angle
+=> https://www.casio.com/us/watches/gshock/product.MRG-B5000D-1/ Official product page
+
+The MR-G is Casio's top-tier line, and the B5000 is the square one — Super Titanium take on the classic G-SHOCK 5000 shape. I generally like any watch in the MR-G series, but this square model is the one I actually want, ideally in this silver finish.
+
 ## Photography
 
 ### Fujifilm X100VI
