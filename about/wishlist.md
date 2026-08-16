@@ -9,15 +9,16 @@
 * [⇢ ⇢ ⇢ ThinkPad P1](#thinkpad-p1)
 * [⇢ ⇢ Gadgets](#gadgets)
 * [⇢ ⇢ ⇢ Mecha Comet](#mecha-comet)
-* [⇢ ⇢ ⇢ reMarkable Paper Pro Move](#remarkable-paper-pro-move)
 * [⇢ ⇢ ⇢ TRMNL](#trmnl)
 * [⇢ ⇢ ⇢ Fairphone 6](#fairphone-6)
 * [⇢ ⇢ ⇢ Casio MRG-B5000](#casio-mrg-b5000)
 * [⇢ ⇢ Photography](#photography)
 * [⇢ ⇢ ⇢ Fujifilm X100VI](#fujifilm-x100vi)
-* [⇢ ⇢ Not anymore](#not-anymore)
-* [⇢ ⇢ ⇢ Redundant: XTeink X4 Pro](#redundant-xteink-x4-pro)
-* [⇢ ⇢ ⇢ Already ordered: Ricoh GR IV](#already-ordered-ricoh-gr-iv)
+* [⇢ ⇢ Maybe later](#maybe-later)
+* [⇢ ⇢ ⇢ reMarkable Paper Pro Move](#remarkable-paper-pro-move)
+* [⇢ ⇢ ⇢ XTeink X4 Pro](#xteink-x4-pro)
+* [⇢ ⇢ Already orderes](#already-orderes)
+* [⇢ ⇢ ⇢ Ricoh GR IV](#ricoh-gr-iv)
 
 ## Introduction
 
@@ -83,13 +84,6 @@ What I'd actually use it for:
 * Quicklog / jotting down ideas on the go, plus a Pomodoro timer and Taskwarrior (Task Samurai) when I'm away from the desk.
 * The boring-but-useful bits: weather forecast, Wi-Fi analyser, document & password store, and a small Umhängetasche to carry it in.
 
-### reMarkable Paper Pro Move
-
-[![reMarkable Paper Pro Move](wishlist/remarkable-paper-pro-move.jpg "reMarkable Paper Pro Move")](wishlist/remarkable-paper-pro-move.jpg)  
-[Official product page](https://remarkable.com/products/remarkable-paper/pro-move)  
-
-I'll run it purely offline — no cloud sync, no account beyond what's strictly needed. It's meant to be my always-with-me note taker, since it's even compacter than my Supernote Nomad I already have. Pen on paper feel in something that actually fits in a jacket pocket is the whole appeal.
-
 ### TRMNL
 
 [![TRMNL (4-color)](wishlist/trmnl.jpg "TRMNL (4-color)")](wishlist/trmnl.jpg)  
@@ -118,7 +112,6 @@ Then again, I'm not fully decided on Ubuntu Touch yet. There's meant to be a Mot
 ### Casio MRG-B5000
 
 [![Casio MRG-B5000 (Silver)](wishlist/mrg-b5000.jpg "Casio MRG-B5000 (Silver)")](wishlist/mrg-b5000.jpg)  
-[![Casio MRG-B5000 (Silver), side angle](wishlist/mrg-b5000-2.jpg "Casio MRG-B5000 (Silver), side angle")](wishlist/mrg-b5000-2.jpg)  
 [Official product page](https://www.casio.com/us/watches/gshock/product.MRG-B5000D-1/)  
 
 The MR-G is Casio's top-tier line, and the B5000 is the square one — Super Titanium take on the classic G-SHOCK 5000 shape. I generally like any watch in the MR-G series, but this square model is the one I actually want, ideally in this silver finish.
@@ -132,18 +125,29 @@ The MR-G is Casio's top-tier line, and the B5000 is the square one — Super Tit
 
 I've the X100V already, that's why I hesitate to upgrade, really. The V still takes the same photos; the VI mostly tempts me with the nicer film simulations and a bit more resolution I don't strictly need. If I ever find a good trade-in deal I'll probably cave, but it's hard to justify at full price or I will simply wait for a future X100VII or I will wait until my X100V breaks down! And if I do get one, it has to be the silver — the black one is too stealthy for my taste.
 
-## Not anymore
+## Maybe later
 
-### Redundant: XTeink X4 Pro
+### reMarkable Paper Pro Move
 
-For now, I keep using my Supernote Nomad also as a eReader device. 
+For now, I keep using my Supernote Nomad.
+
+[![reMarkable Paper Pro Move](wishlist/remarkable-paper-pro-move.jpg "reMarkable Paper Pro Move")](wishlist/remarkable-paper-pro-move.jpg)  
+[Official product page](https://remarkable.com/products/remarkable-paper/pro-move)  
+
+I'll run it purely offline — no cloud sync, no account beyond what's strictly needed. It's meant to be my always-with-me note taker, since it's even compacter than my Supernote Nomad I already have. Pen on paper feel in something that actually fits in a jacket pocket is the whole appeal.
+
+### XTeink X4 Pro
+
+For now, I will use my Supernote Nomad as an always-with-me eReader device using KOReader software.
 
 [![XTeink X4 Pro](wishlist/xteink-x4-pro.jpg "XTeink X4 Pro")](wishlist/xteink-x4-pro.jpg)  
 [Official product page](https://www.xteink.com/products/xteink-x4-pro-pocket-ereader)  
 
 Only once the CrossPoint open-source firmware supports highlight by touch. Which it doesn't at the moment. I read a lot of ePubs and articles, and the whole point of an e-ink reader for me is marking things up without a laptop in front of me — so until that lands I'll keep waiting rather than buying something I'll be mildly annoyed by.
 
-### Already ordered: Ricoh GR IV
+## Already orderes
+
+### Ricoh GR IV
 
 [![Ricoh GR IV](wishlist/ricoh-gr-iv.jpg "Ricoh GR IV")](wishlist/ricoh-gr-iv.jpg)  
 [Official product page](https://www.ricoh-imaging.co.jp/english/products/gr-4/)  
