@@ -87,13 +87,6 @@ What I'd put on it:
 * A habit reminder, because apparently I need one.
 * Etc...
 
-### XTeink X4 Pro
-
-=> wishlist/xteink-x4-pro.jpg XTeink X4 Pro
-=> https://www.xteink.com/products/xteink-x4-pro-pocket-ereader Official product page
-
-Only once the CrossPoint open-source firmware supports highlight by touch. Which it doesn't at the moment. I read a lot of ePubs and articles, and the whole point of an e-ink reader for me is marking things up without a laptop in front of me — so until that lands I'll keep waiting rather than buying something I'll be mildly annoyed by.
-
 ### Fairphone 6
 
 => wishlist/fairphone-6.jpg Fairphone 6
@@ -114,9 +107,18 @@ Then again, I'm not fully decided on Ubuntu Touch yet. There's meant to be a Mot
 
 I've the X100V already, that's why I hesitate to upgrade, really. The V still takes the same photos; the VI mostly tempts me with the nicer film simulations and a bit more resolution I don't strictly need. If I ever find a good trade-in deal I'll probably cave, but it's hard to justify at full price or I will simply wait for a future X100VII or I will wait until my X100V breaks down! And if I do get one, it has to be the silver — the black one is too stealthy for my taste.
 
-## Already ordered
+## Not anymore
 
-### Ricoh GR IV
+### Redundant: XTeink X4 Pro
+
+For now, I keep using my Supernote Nomad also as a eReader device. 
+
+=> wishlist/xteink-x4-pro.jpg XTeink X4 Pro
+=> https://www.xteink.com/products/xteink-x4-pro-pocket-ereader Official product page
+
+Only once the CrossPoint open-source firmware supports highlight by touch. Which it doesn't at the moment. I read a lot of ePubs and articles, and the whole point of an e-ink reader for me is marking things up without a laptop in front of me — so until that lands I'll keep waiting rather than buying something I'll be mildly annoyed by.
+
+### Already ordered: Ricoh GR IV
 
 => wishlist/ricoh-gr-iv.jpg Ricoh GR IV
 => https://www.ricoh-imaging.co.jp/english/products/gr-4/ Official product page
