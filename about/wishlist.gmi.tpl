@@ -66,13 +66,6 @@ What I'd actually use it for:
 * Quicklog / jotting down ideas on the go, plus a Pomodoro timer and Taskwarrior (Task Samurai) when I'm away from the desk.
 * The boring-but-useful bits: weather forecast, Wi-Fi analyser, document & password store, and a small Umhängetasche to carry it in.
 
-### reMarkable Paper Pro Move
-
-=> wishlist/remarkable-paper-pro-move.jpg reMarkable Paper Pro Move
-=> https://remarkable.com/products/remarkable-paper/pro-move Official product page
-
-I'll run it purely offline — no cloud sync, no account beyond what's strictly needed. It's meant to be my always-with-me note taker, since it's even compacter than my Supernote Nomad I already have. Pen on paper feel in something that actually fits in a jacket pocket is the whole appeal.
-
 ### TRMNL
 
 => wishlist/trmnl.jpg TRMNL (4-color)
@@ -117,9 +110,16 @@ I've the X100V already, that's why I hesitate to upgrade, really. The V still ta
 
 ## Not anymore
 
-### Redundant: XTeink X4 Pro
+### Redundant: reMarkable Paper Pro Move
 
-For now, I keep using my Supernote Nomad also as a eReader device. 
+For now, I keep using my Supernote Nomad.
+
+=> wishlist/remarkable-paper-pro-move.jpg reMarkable Paper Pro Move
+=> https://remarkable.com/products/remarkable-paper/pro-move Official product page
+
+I'll run it purely offline — no cloud sync, no account beyond what's strictly needed. It's meant to be my always-with-me note taker, since it's even compacter than my Supernote Nomad I already have. Pen on paper feel in something that actually fits in a jacket pocket is the whole appeal.
+
+### Redundant: XTeink X4 Pro
 
 => wishlist/xteink-x4-pro.jpg XTeink X4 Pro
 => https://www.xteink.com/products/xteink-x4-pro-pocket-ereader Official product page
