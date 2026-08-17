@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>f3s: Kubernetes with FreeBSD - Part 10: A new Home</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-10.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-10.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
+</p>
+<h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-10-a-new-home'>f3s: Kubernetes with FreeBSD - Part 10: A new Home</h1><br />
+<br />
+<span>This is the 10th post in the f3s series about my self-hosting home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
+<a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<span>The f3s cluster outgrew my desk. A while back I wrote about the DeskPi RackMate T0 sitting on my desk — a cute 4U setup for audio gear and a switch. The actual compute stuff lived elsewhere behind my TV.</span><br />
+<br />
+<a class='textlink' href='./2026-02-22-my-desk-rack.html'>My desk rack: DeskPi RackMate T0</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-10/rack-overview.jpg'><img alt='The new 8U RackMate T1 next to the electricity main box' title='The new 8U RackMate T1 next to the electricity main box' src='./f3s-kubernetes-with-freebsd-part-10/rack-overview.jpg' /></a><br />
+<br />
+<span>So I got the bigger sibling: an 8U DeskPi RackMate T1, a 10-inch mini server cabinet. It&#39;s now mounted on the wall right next to my apartment entrance, sitting under the electricity main box and the internet router.</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-10-a-new-home'>f3s: Kubernetes with FreeBSD - Part 10: A new Home</a></li>
+<li>⇢ <a href='#what-s-in-the-rack-front'>What&#39;s in the rack (front)</a></li>
+<li>⇢ <a href='#what-s-in-the-rack-back'>What&#39;s in the rack (back)</a></li>
+<li>⇢ <a href='#cable-management-and-heat'>Cable management and heat</a></li>
+<li>⇢ <a href='#jetkvm'>JetKVM</a></li>
+<li>⇢ <a href='#the-raspberry-pis'>The Raspberry Pis</a></li>
+<li>⇢ <a href='#usb-nas-and-backups'>USB NAS and backups</a></li>
+<li>⇢ <a href='#shelly-plug-and-fan-control'>Shelly Plug and fan control</a></li>
+<li>⇢ <a href='#wrapping-up'>Wrapping up</a></li>
+</ul><br />
+<h2 style='display: inline' id='what-s-in-the-rack-front'>What&#39;s in the rack (front)</h2><br />
+<br />
+<span>The front is where the action is. From top to bottom:</span><br />
+<br />
+<pre>
+┌─────────────────────────┐
+│  [JetKVM]  [f3]         │  ← f3 Beelink + JetKVM
+├─────────────────────────┤
+│     [16-port Switch]    │  ← DIGITUS 1 Gbit/s
+├─────────────────────────┤
+│   [4 Power: Beelinks]   │  ← power strip
+├─────────────────────────┤
+│  [JetKVM]  [f2]         │  ← f2 Beelink + JetKVM
+├─────────────────────────┤
+│     [Cable Brush]       │  ← cable pass-through
+├─────────────────────────┤
+│  [JetKVM]  [f1]         │  ← f1 Beelink + JetKVM
+├─────────────────────────┤
+│    [4 Power: Pis]       │  ← power strip
+├─────────────────────────┤
+│  [JetKVM]  [f0]         │  ← f0 Beelink + JetKVM
+└─────────────────────────┘
+        RackMate T1
+          (front)
+</pre>
+<br />
+<span><span class='inlinecode'>f3</span> sits at the top. It&#39;s not part of the k3s cluster — I run FreeBSD on the bare metal there plus a Rocky Linux bhyve VM for agent workloads. Below that is the 16-port DIGITUS gigabit switch. Then a 4-socket power strip feeding the Beelinks. <span class='inlinecode'>f2</span> is the next compute node, then a 1U brush panel for cables, then <span class='inlinecode'>f1</span>, another power strip for the Raspberry Pis, and finally <span class='inlinecode'>f0</span> at the bottom.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-10/rack-front.jpg'><img alt='Front of the RackMate T1' title='Front of the RackMate T1' src='./f3s-kubernetes-with-freebsd-part-10/rack-front.jpg' /></a><br />
+<br />
+<span>A silent USB fan sits on the floor (and at the back) blowing air up from the bottom (and the back). More on cooling later.</span><br />
+<br />
+<h2 style='display: inline' id='what-s-in-the-rack-back'>What&#39;s in the rack (back)</h2><br />
+<br />
+<span>The back is messier, by design. I left open space for cable routing.</span><br />
+<br />
+<pre>
+┌─────────────────────────┐
+│                         │
+│    [Open: cables]       │  ← 2U cable access
+│                         │
+├─────────────────────────┤
+│  [4 Power + switch]     │  ← 1U power (2 strips + switch)
+├─────────────────────────┤
+│                         │
+│      [USB Fan]          │  ← 2U fan across, cable access when fan removed
+│                         │
+├─────────────────────────┤
+│                         │
+│  [Pi0][Pi1][Pi2][Pi3]   │  ← 2U 4× Raspberry Pi 3
+│                         │
+├─────────────────────────┤
+│    [Open: cables]       │  ← 1U cable access
+└─────────────────────────┘
+        RackMate T1
+          (back)
+</pre>
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-10/rack-back.jpg'><img alt='Back of the rack with the USB fan' title='Back of the rack with the USB fan' src='./f3s-kubernetes-with-freebsd-part-10/rack-back.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='cable-management-and-heat'>Cable management and heat</h2><br />
+<br />
+<span>These were by far the hardest parts of this build.</span><br />
+<br />
+<span>Cables in a 10-inch rack are a pain. Power bricks, HDMI leads (for the JetKVM), USB cables, Ethernet — everything is longer than it needs to be for this tiny cabinet. I ended up adding cable holders on the outside of the rack for all the cables. It&#39;s not pretty when you peek at it, but it works!</span><br />
+<br />
+<span>Heat was the other battle. The Beelink S12 Pro boxes are small and fanless-ish (they have tiny internal fans, but they&#39;re not server-grade). Stacked directly on top of each other they&#39;d cook (I had them cooked once before, this was when I re-arranged the whole rack setup). I had to leave gaps between units for air circulation. The bottom fan pushes cool air up, the back fan pulls hot air out, and the gaps let air actually move across the heatsinks.</span><br />
+<br />
+<span>The fans are basically silent. I can barely hear them. The Beelinks themselves sometimes still run warm and the internal fans spin up and are louder than the external fans — I&#39;ve seen up to 94°C under real workload (e.g. photo processingin Immich app running in the k3s cluster). That&#39;s on the warm side but still within spec. I&#39;m keeping an eye on it since there is now also a Prometheus alerting rule for when it becomes too hot.</span><br />
+<br />
+<h2 style='display: inline' id='jetkvm'>JetKVM</h2><br />
+<br />
+<span>Each Beelink has its own JetKVM — a tiny USB-powered KVM-over-IP device. You plug it into HDMI and USB on the target machine, and it gives you full remote control down to the BIOS level. </span><br />
+<br />
+<a class='textlink' href='https://jetkvm.com'>JetKVM</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-10/jetkvm-white.jpg'><img alt='JetKVM device' title='JetKVM device' src='./f3s-kubernetes-with-freebsd-part-10/jetkvm-white.jpg' /></a><br />
+<br />
+<span>This is huge for a homelab. When a FreeBSD box won&#39;t boot or you need to mess with UEFI settings, you don&#39;t want to drag a monitor and keyboard over. You open the JetKVM web UI and you&#39;re there.</span><br />
+<br />
+<span>The rack mounts for the Beelink + JetKVM rows had to be 3D printed. I found a nice seller on Etsy who printed them for me. I needed four JetKVMs total but run out of stock. I could only get three directly. The fourth one I had to import from Japan to complete the setup.</span><br />
+<br />
+<h2 style='display: inline' id='the-raspberry-pis'>The Raspberry Pis</h2><br />
+<br />
+<span>The four Pi 3s live in the back, mounted on a custom 3D-printed tray.</span><br />
+<br />
+<span><span class='inlinecode'>pi0</span> and <span class='inlinecode'>pi1</span> run NetBSD 11 in an HA pair, serving static content like <span class='inlinecode'>snonux.foo</span> and a few other sites. They also host random personal stuff I share with family — photos, files, etc. On top of that, they run a small CGI application that lets me remotely power down and power up (via WoL) all the Beelink computers and the USB fans (the latter through the Shelly plug API). It&#39;s authenticated with API keys and uses transport encryption. I can trigger it from my watch or anything else that can hit an HTTP endpoint. More on that setup in a later post.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-10/rack-back-rpis.jpg'><img alt='Close-up of the four Raspberry Pis in the back' title='Close-up of the four Raspberry Pis in the back' src='./f3s-kubernetes-with-freebsd-part-10/rack-back-rpis.jpg' /></a><br />
+<br />
+<span>The two Pi&#39;s wired into the WireGuard mesh so the OpenBSD relay VMs on the internet-facing hosts can route traffic to them. I wrote about the mesh setup in an earlier post in this series.</span><br />
+<br />
+<span><span class='inlinecode'>pi2</span> and <span class='inlinecode'>pi3</span> run Rocky Linux with PiHole in Docker. I point my DNS at them and surf without ads.</span><br />
+<br />
+<a class='textlink' href='https://pi-hole.net'>Pi-hole</a><br />
+<br />
+<h2 style='display: inline' id='usb-nas-and-backups'>USB NAS and backups</h2><br />
+<br />
+<span>On the shelf next to the rack sits a Sabrent USB enclosure with four 2TB drives. I run it as a backup ZFS pool, connected to <span class='inlinecode'>f1</span> which handles all the backup jobs.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-10/usb-backup-nas.jpg'><img alt='Sabrent USB NAS with four 2TB drives' title='Sabrent USB NAS with four 2TB drives' src='./f3s-kubernetes-with-freebsd-part-10/usb-backup-nas.jpg' /></a><br />
+<br />
+<span>Every quarter I import the pool and copy important data to it — not just from the f3s cluster, but from everything else too. I also keep separate external USB drives for offsite storage, and I upload encrypted incremental ZFS snapshots to AWS S3 Glacier Deep Archive.</span><br />
+<br />
+<span>The backup setup itself is worth a full post. I&#39;m planning to write that at some time — some things are going to change in the next couple of months as I refine the flow.</span><br />
+<br />
+<span>Also on the shelf is the UPS from a previous post of this series. It keeps the switch and the NAS alive during short outages. Now, it also powers my Fibre router. So when there is power outage, my fibre internet will continue working, too!</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-10/ups-closeup.jpg'><img alt='UPS on the shelf next to the rack' title='UPS on the shelf next to the rack' src='./f3s-kubernetes-with-freebsd-part-10/ups-closeup.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='shelly-plug-and-fan-control'>Shelly Plug and fan control</h2><br />
+<br />
+<span>There&#39;s a tiny Shelly Plug M Gen3 sitting in the setup — one of those smart power plugs running embedded Linux with an API. I use it to turn the rack fans on and off remotely.</span><br />
+<br />
+<h2 style='display: inline' id='wrapping-up'>Wrapping up</h2><br />
+<br />
+<span>The whole thing lives in a corner I never used much — right by the door, under the electrical panel. It doesn&#39;t take up desk space anymore and I can walk up to it when I need physical access.</span><br />
+<br />
+<span>It&#39;s not enterprise-grade, but it doesn&#39;t need to be. It&#39;s perfect for a homelab. The goal was to get the cluster off my TV area, keep it cool, and keep it accessible. So far it&#39;s working.</span><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
