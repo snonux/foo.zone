@@ -17,7 +17,7 @@
 * [⇢ ⇢ Maybe later](#maybe-later)
 * [⇢ ⇢ ⇢ reMarkable Paper Pro Move](#remarkable-paper-pro-move)
 * [⇢ ⇢ ⇢ XTeink X4 Pro](#xteink-x4-pro)
-* [⇢ ⇢ Already orderes](#already-orderes)
+* [⇢ ⇢ Already ordered](#already-ordered)
 * [⇢ ⇢ ⇢ Ricoh GR IV](#ricoh-gr-iv)
 
 ## Introduction
@@ -145,7 +145,7 @@ For now, I will use my Supernote Nomad as an always-with-me eReader device using
 
 Only once the CrossPoint open-source firmware supports highlight by touch. Which it doesn't at the moment. I read a lot of ePubs and articles, and the whole point of an e-ink reader for me is marking things up without a laptop in front of me — so until that lands I'll keep waiting rather than buying something I'll be mildly annoyed by.
 
-## Already orderes
+## Already ordered
 
 ### Ricoh GR IV
 

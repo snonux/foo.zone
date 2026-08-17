@@ -379,7 +379,6 @@ The MCP server that ships with Hexai is experimental and may get cut too. As tim
 ## Other related posts:
 
 [2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
-[2026-02-14 - Meta slash commands for prompts and context](./2026-02-14-meta-slash-commands-for-prompts-and-context.md)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
