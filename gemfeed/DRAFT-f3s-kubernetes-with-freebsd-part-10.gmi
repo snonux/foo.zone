@@ -15,19 +15,10 @@ This is the 10th post in the f3s series about my self-hosting home lab. f3s? The
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
-The f3s cluster outgrew my desk. A while back I wrote about the DeskPi RackMate T0 sitting on my desk — a cute 4U setup for audio gear and a switch. The actual compute stuff lived elsewhere behind my TV.
-
-=> ./2026-02-22-my-desk-rack.gmi My desk rack: DeskPi RackMate T0
-
-So I got the bigger sibling: an 8U DeskPi RackMate T1, a 10-inch mini server cabinet. It's now mounted on the wall right next to my apartment entrance, sitting under the electricity main box and the internet router.
-
-=> https://deskpi.com/products/deskpi-rackmate-t1-2 DeskPi RackMate T1 (10 inch, 8U)
-
-=> ./f3s-kubernetes-with-freebsd-part-10/rack-overview.jpg The new 8U RackMate T1 next to the electricity main box
-
 ## Table of Contents
 
 * ⇢ f3s: Kubernetes with FreeBSD - Part 10: A New Home
+* ⇢ ⇢ DeskPi RackMate T0 and T1
 * ⇢ ⇢ What's in the rack (front)
 * ⇢ ⇢ What's in the rack (back)
 * ⇢ ⇢ Cable management and heat
@@ -37,6 +28,24 @@ So I got the bigger sibling: an 8U DeskPi RackMate T1, a 10-inch mini server cab
 * ⇢ ⇢ USB NAS and backups
 * ⇢ ⇢ Shelly Plug and fan control
 * ⇢ ⇢ Wrapping up
+
+## DeskPi RackMate T0 and T1
+
+The f3s cluster outgrew it's original design. The original setup looked like this:
+
+=> ./f3s-kubernetes-with-freebsd-part-2/3beelinks.jpg
+
+A while back I wrote about the DeskPi RackMate T0 sitting on my desk — a cute 4U setup for audio gear and a switch. The actual compute stuff lived elsewhere behind my TV.
+
+=> ./2026-02-22-my-desk-rack.gmi My desk rack: DeskPi RackMate T0
+
+=> ./my-deskrack/deskrack.jpg DeskPi RackMate T0 sitting on my desk
+
+For my f3s cluster I now got the bigger sibling: an 8U DeskPi RackMate T1, a 10-inch mini server cabinet. It's now sitting on top of a shelf right next to my apartment entrance, sitting under the electricity main box and the internet router.
+
+=> https://deskpi.com/products/deskpi-rackmate-t1-2 DeskPi RackMate T1 (10 inch, 8U)
+
+=> ./f3s-kubernetes-with-freebsd-part-10/rack-overview.jpg The new 8U RackMate T1 next to the electricity main box
 
 ## What's in the rack (front)
 
@@ -106,7 +115,7 @@ The Beelinks and the Pis are shallow, so they only eat the front half of the cab
 
 These were by far the hardest parts of this build.
 
-Cables in a 10-inch rack are a pain. Power bricks, HDMI leads (for the JetKVM), USB cables, Ethernet — everything is longer than it needs to be for this tiny cabinet. I ended up adding cable holders on the outside of the rack for all the cables. It's not pretty when you peek at it, but it works!
+Cables in a 10-inch rack are a pain. Power bricks, HDMI leads (for the JetKVM), USB cables, Ethernet — everything is longer than it needs to be for this tiny cabinet. I ended up adding cable holders on the outside of the rack for all the cables. It's not pretty when you look at it, but it works!
 
 Heat was the other battle. The Beelink S12 Pro boxes are small and not built for stacking. The internal fans are tiny — nothing server-grade. Stacked directly on top of each other they'd cook, and I know that because I cooked them once already, back when I rearranged the whole setup. So I had to leave gaps between units for air circulation. The bottom fan pushes cool air up, the back fan pulls hot air out, and the gaps let air actually move across the heatsinks.
 
@@ -118,13 +127,11 @@ Each Beelink has its own JetKVM — a tiny USB-powered KVM-over-IP device. You p
 
 => https://jetkvm.com JetKVM
 
-=> ./f3s-kubernetes-with-freebsd-part-10/jetkvm-white.jpg JetKVM device
-
-=> ./f3s-kubernetes-with-freebsd-part-10/jetkvm.png JetKVM with its little display showing the device IP
+=> ./f3s-kubernetes-with-freebsd-part-10/jetkvm.png JetKVM with its little dsplay showing the device IP
 
 This is huge for a homelab. When a FreeBSD box won't boot or you need to mess with UEFI settings, you don't want to drag a monitor and keyboard over. You open the JetKVM web UI and you're there.
 
-The rack mounts for the Beelink + JetKVM rows had to be 3D printed. I found a nice seller on Etsy who printed them for me. I needed four JetKVMs in total, but the seller had run out of stock. I could only get three directly. The fourth one I had to import from Japan to complete the setup.
+The rack mounts for the Beelink + JetKVM rows had to be 3D printed. I found a nice seller on Etsy who printed them for me. I needed four JetKVMs in total, but the the JetKVM had run out of stock. I could only get three directly. The fourth one I had to import from Japan to complete the setup.
 
 ## The Raspberry Pis
 
@@ -172,7 +179,7 @@ The USB fans hang off a Shelly Plug M Gen3 — one of those smart power plugs ru
 
 ## Wrapping up
 
-The whole thing lives in a corner I never used much — right by the door, under the electrical panel. It doesn't take up desk space anymore and I can walk up to it when I need physical access.
+The whole thing is located in a corner I never used much. It doesn't take up space elswhere anymore and I can walk up to it with a small ladder when I need physical access.
 
 It's not enterprise-grade, but it doesn't need to be. Off the TV area, cool enough, and I can reach it without moving furniture. Good enough.
 
