@@ -33,6 +33,7 @@ So I got the bigger sibling: an 8U DeskPi RackMate T1, a 10-inch mini server cab
 * ⇢ ⇢ Cable management and heat
 * ⇢ ⇢ JetKVM
 * ⇢ ⇢ The Raspberry Pis
+* ⇢ ⇢ ⇢ Powering the rack up and down from a watch
 * ⇢ ⇢ USB NAS and backups
 * ⇢ ⇢ Shelly Plug and fan control
 * ⇢ ⇢ Wrapping up
@@ -129,7 +130,7 @@ The rack mounts for the Beelink + JetKVM rows had to be 3D printed. I found a ni
 
 The four Pi 3s live in the back, mounted on a custom 3D-printed tray.
 
-`pi0` and `pi1` run NetBSD 11 in an HA pair, serving static content like `snonux.foo` and a few other sites. They also host random personal stuff I share with family — photos, files, etc. On top of that, they run a small CGI application that lets me remotely power down and power up (via Wake-on-LAN) all the Beelink computers, and switch the USB fans on and off. It's authenticated with API keys and uses transport encryption. I can trigger it from my watch or anything else that can hit an HTTP endpoint. More on that setup in a later post.
+`pi0` and `pi1` run NetBSD 11 in an HA pair, serving static content like `snonux.foo` and a few other sites. They also host random personal stuff I share with family — photos, files, etc.
 
 => ./f3s-kubernetes-with-freebsd-part-10/rack-back-rpis.jpg Close-up of the four Raspberry Pis in the back
 
@@ -140,6 +141,10 @@ Both Pis are wired into the WireGuard mesh so the OpenBSD relay VMs on the inter
 `pi2` and `pi3` run Rocky Linux with Pi-hole in Docker. I point my DNS at them and surf without ads.
 
 => https://pi-hole.net Pi-hole
+
+### Powering the rack up and down from a watch
+
+On top of the web serving, `pi0` and `pi1` run a small CGI application that lets me remotely power down and power up (via Wake-on-LAN) all the Beelink computers, and switch the USB fans on and off. It's authenticated with API keys and uses transport encryption. I can trigger it from my watch or anything else that can hit an HTTP endpoint. More on that setup in a later post.
 
 ## USB NAS and backups
 
