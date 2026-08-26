@@ -32,9 +32,10 @@
 => ./resources.gmi Resources, Technical Books, Podcasts, Courses and Guides I recommend
 => ./novels.gmi Novels I've read
 
-## My wishlist
+## My gadgets and wishlist
 
-=> ./wishlist.gmi
+=> ./gadgets.gmi Gadgets I already own
+=> ./wishlist.gmi Gadgets I still want
 
 That's all for now...
 

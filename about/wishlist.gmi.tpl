@@ -8,6 +8,10 @@ This small page is my wishlist. So if you want to gift me something... Note some
 
 Don't take the ordering too seriously — it shifts depending on what I'm currently fiddling with. Items move up when a project of mine suddenly needs them, and down again once the urge passes.
 
+For the gadgets I already have (including ones that used to be on this list), see:
+
+=> ./gadgets.gmi My gadgets
+
 ```
 ⠀⠀⠀⠀⠀⠀⠀⣠⡶⢶⣤⡀⠀⠀⠀⠀⠀⠀⢀⣤⡶⢶⣄⠀⠀⠀⠀⠀⠀⠀
 ⠀⠀⠀⠀⠀⠀⠀⣿⡀⠀⠈⠛⢷⣄⠀⠀⣠⡾⠛⠁⠀⢀⣿⠀⠀⠀⠀⠀⠀⠀
@@ -126,14 +130,5 @@ For now, I will use my Supernote Nomad as an always-with-me eReader device using
 => https://www.xteink.com/products/xteink-x4-pro-pocket-ereader Official product page
 
 Only once the CrossPoint open-source firmware supports highlight by touch. Which it doesn't at the moment. I read a lot of ePubs and articles, and the whole point of an e-ink reader for me is marking things up without a laptop in front of me — so until that lands I'll keep waiting rather than buying something I'll be mildly annoyed by.
-
-## Already ordered
-
-### Ricoh GR IV
-
-=> wishlist/ricoh-gr-iv.jpg Ricoh GR IV
-=> https://www.ricoh-imaging.co.jp/english/products/gr-4/ Official product page
-
-I had a Ricoh GR III, but it's kaputt now. This was/will be my always-with-me-camera. There's nothing else quite like a GR for fitting in a jacket pocket and disappearing into a crowd — the phone is fine for snapshots but it's not the same thing. Whenever the IV is actually in stock and not marked up to the moon, I'll likely grab one.
 
 => ./ Go back
