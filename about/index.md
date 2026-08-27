@@ -32,9 +32,10 @@
 [Resources, Technical Books, Podcasts, Courses and Guides I recommend](./resources.md)  
 [Novels I've read](./novels.md)  
 
-## My wishlist
+## My gadgets and wishlist
 
-[./wishlist.md](./wishlist.md)  
+[Gadgets I already own](./gadgets.md)  
+[Gadgets I still want](./wishlist.md)  
 
 That's all for now...
 
