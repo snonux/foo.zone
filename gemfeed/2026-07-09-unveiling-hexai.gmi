@@ -4,7 +4,7 @@
 
 I have been using Helix as my main editor for a while now. It is fast, modal, and stays out of the way. The one thing I missed was a bit of LLM help without leaving the editor or opening a browser tab. So I built Hexai.
 
-Hexai is an AI add-on for Helix. It speaks LSP, so it also works with other editors in theory, but I only test it with Helix. It gives me inline completions, in-editor chat, code actions, a terminal CLI, a tmux popup action runner, and a small task manager for agent work. It is written in Go, lives on Codeberg, and is configured through plain TOML files.
+Hexai is an AI add-on for Helix. It speaks LSP, so it also works with other editors in theory, but I only test it with Helix. It gives me inline completions, in-editor chat, code actions, a terminal CLI, a tmux popup action runner, and a small task manager for agent work. It is written in Go, and is configured through plain TOML files.
 
 Hexai has been an undercover pet project of mine since around mid-last year. As I write this it is at version `0.42.1`, so it has been quietly growing for a good while before this first proper write-up.
 
@@ -374,7 +374,7 @@ Hexai is a personal tool, and it will keep changing. Things go in and come back 
 
 => ./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.gmi 2026-02-02 - A tmux popup editor for Cursor Agent CLI prompts
 
-The MCP server that ships with Hexai is experimental and may get cut too. As time goes on I will keep trying ideas — maybe a whole coding agent one day, maybe not. If you want to poke at it or open an issue, it lives on Codeberg.
+The MCP server that ships with Hexai is experimental and may get cut too. As time goes on I will keep trying ideas — maybe a whole coding agent one day, maybe not.
 
 ## Other related posts:
 

@@ -7,6 +7,7 @@
 * ⇢ ⇢ Ricoh GR IV
 * ⇢ ⇢ Kobo Forma
 * ⇢ ⇢ Supernote Nomad
+* ⇢ ⇢ Pebble Time 2
 * ⇢ ⇢ Looking for more?
 
 ## Introduction
@@ -37,6 +38,16 @@ Found this device 7 years ago and it's still my go-to for reading PDFs and ePubs
 => ../gemfeed/2026-01-01-using-supernote-nomad-offline.gmi Using the Supernote Nomad offline
 
 My always-with-me note taker and e-ink reader. I use it purely offline — no cloud sync, no account beyond what's strictly needed. It doubles as an ePub reader via KOReader, so between this and the Kobo Forma I've got most of my reading and note-taking covered without a laptop in front of me.
+
+## Pebble Time 2
+
+=> gadgets/pebble-time-2.jpg Pebble Time 2
+=> https://repebble.com/products/pebble-time-2 Official product page
+
+My favourite watch right now. It runs entirely on open-source software (PebbleOS), which means I can build any app I want for it — I've already made two: FastForge for intermittent fasting tracking, and RESTForge for calling self-describing Siren REST backends.
+
+=> https://github.com/snonux/fastforge FastForge on GitHub
+=> https://github.com/snonux/restforge RESTForge on GitHub
 
 ## Looking for more?
 
