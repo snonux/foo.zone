@@ -1,5 +1,7 @@
 # f3s: Kubernetes with FreeBSD - Part 10: A New Home
 
+> Published at 2026-09-01T00:00:00+03:00
+
 This is the 10th post in the f3s series about my self-hosting home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.
 
 => ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi 2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage
@@ -12,6 +14,7 @@ This is the 10th post in the f3s series about my self-hosting home lab. f3s? The
 => ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi 2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability
 => ./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.gmi 2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo
 => ./2026-04-02-f3s-kubernetes-with-freebsd-part-9.gmi 2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD
+=> ./2026-09-01-f3s-kubernetes-with-freebsd-part-10.gmi 2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home (You are currently reading this)
 
 => ./f3s-kubernetes-with-freebsd-part-1/f3slogo.png f3s logo
 
@@ -135,9 +138,7 @@ The rack mounts for the Beelink + JetKVM rows had to be 3D printed. I found a ni
 
 ## The Raspberry Pis
 
-The four Pi 3s live in the back, mounted on a custom 3D-printed tray.
-
-`pi0` and `pi1` run NetBSD 11 in an HA pair, serving static content like `snonux.foo` and a few other sites. They also host random personal stuff I share with family — photos, files, etc.
+The four Pi 3s live in the back. `pi0` and `pi1` run NetBSD 11 in an HA pair, serving static content like `snonux.foo` and a few other sites. They also host random personal stuff I share with family — photos, files, etc.
 
 => ./f3s-kubernetes-with-freebsd-part-10/rack-back-rpis.jpg Close-up of the four Raspberry Pis in the back
 
@@ -185,6 +186,7 @@ It's not enterprise-grade, but it doesn't need to be. Off the TV area, cool enou
 
 Other *BSD-related posts:
 
+=> ./2026-09-01-f3s-kubernetes-with-freebsd-part-10.gmi 2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home (You are currently reading this)
 => ./2026-04-02-f3s-kubernetes-with-freebsd-part-9.gmi 2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD
 => ./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.gmi 2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo
 => ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi 2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability

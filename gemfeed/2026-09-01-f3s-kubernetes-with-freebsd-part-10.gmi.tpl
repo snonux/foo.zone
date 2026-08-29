@@ -1,5 +1,7 @@
 # f3s: Kubernetes with FreeBSD - Part 10: A New Home
 
+> Published at 2026-09-01T00:00:00+03:00
+
 This is the 10th post in the f3s series about my self-hosting home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.
 
 << template::inline::index f3s-kubernetes-with-freebsd-part
@@ -114,9 +116,7 @@ The rack mounts for the Beelink + JetKVM rows had to be 3D printed. I found a ni
 
 ## The Raspberry Pis
 
-The four Pi 3s live in the back, mounted on a custom 3D-printed tray.
-
-`pi0` and `pi1` run NetBSD 11 in an HA pair, serving static content like `snonux.foo` and a few other sites. They also host random personal stuff I share with family — photos, files, etc.
+The four Pi 3s live in the back. `pi0` and `pi1` run NetBSD 11 in an HA pair, serving static content like `snonux.foo` and a few other sites. They also host random personal stuff I share with family — photos, files, etc.
 
 => ./f3s-kubernetes-with-freebsd-part-10/rack-back-rpis.jpg Close-up of the four Raspberry Pis in the back
 
