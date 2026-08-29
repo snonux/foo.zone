@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2026-08-18T23:55:21+03:00 by `Gemtexter`
+> This site was generated at 2026-08-29T18:03:52+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -20,6 +20,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2026-09-01 - f3s: Kubernetes with FreeBSD - Part 10: A New Home](./gemfeed/2026-09-01-f3s-kubernetes-with-freebsd-part-10.md)  
 [2026-08-07 - '97 Things Every SRE Should Know' book notes](./gemfeed/2026-08-07-97-things-every-sre-should-know-book-notes.md)  
 [2026-08-05 - 'Eat That Frog' book notes](./gemfeed/2026-08-05-eat-that-frog-book-notes.md)  
 [2026-07-09 - Unveiling Hexai: An AI companion for Helix and the terminal in general](./gemfeed/2026-07-09-unveiling-hexai.md)  

@@ -14,6 +14,7 @@ This is the 8th blog post about the f3s series for my self-hosting demands in a 
 [2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability (You are currently reading this)](./2025-12-07-f3s-kubernetes-with-freebsd-part-8.md)  
 [2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo](./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.md)  
 [2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD](./2026-04-02-f3s-kubernetes-with-freebsd-part-9.md)  
+[2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home](./2026-09-01-f3s-kubernetes-with-freebsd-part-10.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -1011,6 +1012,7 @@ All configuration files are available on Codeberg:
 
 Other *BSD-related posts:
 
+[2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home](./2026-09-01-f3s-kubernetes-with-freebsd-part-10.md)  
 [2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD](./2026-04-02-f3s-kubernetes-with-freebsd-part-9.md)  
 [2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo](./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.md)  
 [2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability (You are currently reading this)](./2025-12-07-f3s-kubernetes-with-freebsd-part-8.md)  
