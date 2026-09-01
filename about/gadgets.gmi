@@ -70,7 +70,7 @@ A 4U DeskPi RackMate T0 on my desk keeps the listening setup tidy: S.M.S.L PL200
 => https://www.kinesis-ergo.com/advantage360-professional/ Official product page
 => ../gemfeed/2024-08-05-typing-127.1-words-per-minute.gmi Typing 127.1 words per minute
 
-My daily-driver keyboard at the desk. Concave, ortholinear, split — it cured a bout of RSI and pushed me into proper ten-finger touch typing. Runs ZMK on the Professional model; I build firmware locally when the keymap changes. I also have a custom Adv.360 build with Gateron Baby Kangaroo switches, but this is the one that stays on the desk.
+My daily-driver keyboard at the desk. Concave, ortholinear, split — it cured a bout of RSI and pushed me into proper ten-finger touch typing. Runs ZMK on the Professional model; I build firmware locally when the keymap changes. I also have a custom Adv.360 build with Gateron Baby Kangaroo switches.
 
 ## Glove80
 
