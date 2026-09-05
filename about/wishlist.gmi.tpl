@@ -102,6 +102,21 @@ Then again, I'm not fully decided on Ubuntu Touch yet. There's meant to be a Mot
 
 The MR-G is Casio's top-tier line, and the B5000 is the square one — Super Titanium take on the classic G-SHOCK 5000 shape. I generally like any watch in the MR-G series, but this square model is the one I actually want, ideally in this silver finish.
 
+### Neo Geo AES+
+
+=> wishlist/neogeo-aes-plus.jpg Neo Geo AES+
+=> https://plaionreplai.com/products/neogeo-aes Official product page
+
+SNK and Plaion REPLAI are bringing the AES back as a proper hardware reissue — real ASIC silicon, not emulation, not FPGA. Original cardiges and new ones both work, HDMI for a modern TV.
+
+### Flipper One
+
+=> wishlist/flipper-one.jpg Flipper One
+=> https://docs.flipper.net/one Official docs / developer portal
+=> https://blog.flipper.net/flipper-one-we-need-your-help/ Announcement post
+
+Not the Flipper Zero — it's Flipper's open Linux networking gadget / pocket cyberdeck. Dual Gigabit Ethernet, Wi-Fi 6E, M.2 for modems or SSDs, HDMI out, the whole "plug it into the homelab and poke at things" fantasy. 
+
 ## Photography
 
 ### Fujifilm X100VI
