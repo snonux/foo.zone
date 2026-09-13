@@ -55,7 +55,7 @@ The WireGuard tunnel is the interesting bit. A single `wg1` interface on the ope
 
 Both VMs are `n3-A100x1` flavors: one A100 80 GB PCIe, 28 vCPUs, 120 GB RAM, in a Canadian region. When the A100 flavor is sold out, the config flips to `n3-H100x1` — 80 GB as well, and everything else stays the same.
 
-The default model on VM1 is `Qwen/Qwen3.8-27B-FP8` — a dense 27B model with a native 262K context window, FP8-quantized. VM2 runs `Gemma 4 31B` (AWQ 4-bit) by default, so I can work on two projects in parallel with two different models and compare how they behave.
+The default model on VM1 is `Qwen/Qwen3.8-27B-FP8` — a dense 27B model with a native 262K context window, FP8-quantized. As of writing, that is also my main model in this setup, and every number measured in this post is measured on it. VM2 runs `Gemma 4 31B` (AWQ 4-bit) by default, so I can work on two projects in parallel with two different models and compare how they behave.
 
 Each VM's TOML config defines named presets, so switching models does not mean reprovisioning:
 
@@ -72,14 +72,81 @@ Each VM's TOML config defines named presets, so switching models does not mean r
 
 `ruby hyperstack.rb --vm 1 model switch nemotron-super` stops the running container, starts a new one with the preset's flags, and waits for readiness. The model download on first run is the slow part (~45 GB for the 27B); after that the weights are cached on the VM's ephemeral NVMe disk and a switch takes a few minutes.
 
-Two details worth knowing:
+Two details:
 
 * Qwen3.8 is brand new, so VM1 runs the `vllm/vllm-openai:nightly` image until stable vLLM ships support for the architecture.
 * The big 120B MoE (Nemotron-3-Super) has to have its context capped at 32K and prefix caching disabled to fit on a single A100 — the weights alone take most of the 80 GB. That tension between model size and context length is the core of VRAM budgeting (more below).
 
+### Why this is the daily driver
+
+The official model card benchmarks Qwen3.8-27B against its predecessor, Qwen's own closed-weight Qwen3.7-Plus, a 30B-class competitor, and the frontier Opus 4.6 Max. The coding-relevant rows:
+
+```
+                                       Qwen3.8-27B Qwen3.6-27B Qwen3.7-Plus Muse Glimmer-30B Opus 4.6 Max
+Terminal Bench 2.1 (terminal coding)          73.0        63.4         64.0             51.7         78.2
+SWE-bench Pro (agentic coding)                61.7        53.5         57.6             51.2         53.4
+DeepSWE 1.1 (agentic coding)                  42.2        13.3         14.2               --           --
+QwenSWEBench (software engineering)           79.0        49.3         59.2               --         63.8
+LiveCodeBench v6 (competitive coding)         90.3        83.9         89.6               --         88.8
+GPQA Diamond (scientific reasoning)           89.2        87.8         90.3             83.5         91.3
+HLE (multidisciplinary reasoning)             30.8        24.0         34.7             22.0         40.0
+```
+
+It beats its direct predecessor on every row, and the rows that match how I use it are the interesting ones: on SWE-bench Pro (agentic coding) the 27B dense model scores 61.7, ahead of Opus 4.6 Max's 53.4 and Muse Glimmer's 51.2; on terminal coding it runs 73.0 to Qwen3.6's 63.4; on competitive coding (90.3) it even edges Opus (88.8). That's a model I can run on a single rented A100 that beats models I can only rent per-token, on the benchmarks that resemble my actual workload.
+
+The fine print: these are vendor-reported numbers from the official model card, a couple of the benchmarks are Qwen's own, and the Opus 4.6 Max SWE-bench Pro figure is the officially reported one. I take the direction, not the exact decimals. Simon Willison ran the model on a DGX Spark and an M5 Max MacBook the week it shipped, and his verdict matches mine — an excellent model that defaults to wildly overthinking, because its reasoning effort defaults to `xhigh`:
+
+=> https://simonwillison.net/2026/Aug/16/qwen-38-27b/ Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things (Simon Willison)
+
+He even drove pi with it — the same agent this post is about, the same model in a 4-bit quant, on different hardware.
+
+## Inside the VM
+
+Once the tunnel is up, the VM is just another machine on your network, and I mostly work on it over its WireGuard address rather than the public IP:
+
+```fish
+$ ssh ubuntu@192.168.3.1
+ubuntu@hyperstack1:~$ hostname
+hyperstack1
+```
+
+The provisioner pins the VM's SSH host keys into a per-VM `known_hosts` file, so an unexpected key change fails closed instead of prompting me. The public IP works too, but the tunnel is the point.
+
+The entire "AI service" from the inside is one Docker container:
+
+```
+$ docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED       STATUS       PORTS     NAMES
+aa1845729f93   vllm/vllm-openai:nightly   "vllm serve --model …"   2 hours ago   Up 2 hours             vllm_qwen38_27b
+```
+
+The interesting part of the container's log is the `Engine 0` line vLLM emits every ten seconds — the same line the `watch` dashboard parses (one line omitted; the snapshot is from later in the day, after the window measured in the numbers section):
+
+```
+$ docker logs --tail 4 vllm_qwen38_27b 2>&1 | grep "Engine 0"
+(APIServer pid=1) INFO 09-13 08:56:54 [loggers.py:311] Engine 000: Avg prompt
+throughput: 0.0 tokens/s, Avg generation throughput: 53.6 tokens/s, Running:
+2 reqs, Waiting: 0 reqs, GPU KV cache usage: 59.3%, Prefix cache hit rate: 96.9%
+(APIServer pid=1) INFO 09-13 08:57:14 [loggers.py:311] Engine 000: Avg prompt
+throughput: 0.0 tokens/s, Avg generation throughput: 48.3 tokens/s, Running:
+1 reqs, Waiting: 0 reqs, GPU KV cache usage: 33.3%, Prefix cache hit rate: 96.9%
+```
+
+Follow it live with `docker logs -f vllm_qwen38_27b 2>&1 | grep "Engine 0"`, or watch the hardware side with `nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,power.draw --format=csv -l 5`.
+
 ## How the inference actually works
 
 This is the part I set out to learn, so here is the mental model that finally clicked.
+
+### CUDA: the layer under everything
+
+Before the engine, the platform. CUDA is NVIDIA's GPU computing stack: the driver that talks to the chip, the runtime and math libraries on top of it, and the toolchain that compiles code into the small kernels the GPU executes. The A100's thousands of small cores — the reason prefill runs at thousands of tokens per second — are programmed through CUDA, and the entire Python/PyTorch/vLLM stack sits on top of it. Every prefill and decode step in this setup is a batch of CUDA kernels launched on the A100, including the special ones (FlashAttention, Marlin) that vLLM uses to beat the default implementations.
+
+You can see all the layers in the VM image name: `Ubuntu Server 24.04 LTS R570 CUDA 12.8 with Docker` — the OS, the GPU driver (570.195.03 on my VM), the CUDA 12.8 stack, and Docker, which is exactly what vLLM needs. The container sees the GPU through `--gpus all`; Docker's NVIDIA toolkit injects the driver and the device into the container, and the model's math runs entirely on the GPU — the CPU just orchestrates, schedules, and tokenizes.
+
+### What vLLM actually is
+
+vLLM is an open-source inference engine: the program that takes a model's weights and turns prompts into tokens at high throughput. Ollama does the same job packaged for convenience: one command pulls a quantized model and it's serving. vLLM is the lower-level engine you run yourself, in Docker, with flags, and tune per model. Ollama optimizes for "make it run"; vLLM optimizes for throughput, context length, and batching, and exposes the knobs — `--max-model-len`, `--gpu-memory-utilization`, `--enable-prefix-caching`, as they appear later in this section — so you can spend the VRAM the way the workload needs it.
 
 An LLM request has two phases:
 
@@ -103,7 +170,7 @@ At startup, vLLM loads the weights, then allocates the rest of the allowed VRAM 
 
 `--enable-prefix-caching` keeps those KV blocks around between requests instead of freeing them. If a new request shares a prefix with a previous one — same system prompt, same conversation history — the shared part is not prefilled again. The tokens are served from cache.
 
-For a coding agent this is huge. Every turn of a pi session resends the system prompt plus the entire conversation. Without prefix caching, that whole context is re-prefilled on every single turn. With it, most of the prompt arrives already computed. My current sessions sit at an 80–94% hit rate (numbers below).
+For a coding agent this is huge. Every turn of a pi session resends the system prompt plus the entire conversation. Without prefix caching, that whole context is re-prefilled on every single turn. With it, most of the prompt arrives already computed. My current sessions sit at an 80–97% hit rate (numbers below).
 
 This is also the main reason I moved from Ollama to vLLM:
 
@@ -112,7 +179,7 @@ This is also the main reason I moved from Ollama to vLLM:
 * Chunked prefill: vLLM interleaves prefill chunks with decode, so a huge prompt does not stall everything. Ollama cannot.
 * Quant kernels: vLLM has Marlin kernels for AWQ 4-bit models, which the smaller MoEs on the preset list rely on.
 
-Ollama is fine for quick experiments. For an agent that sends 100K+ token contexts dozens of times a day, the difference between "recompute the whole prefix" and "compute the ~15% that changed" is the difference between usable and painful.
+Ollama is fine for quick experiments. For an agent that sends 100K+ token contexts dozens of times a day, recomputing the whole prefix every turn is painful; computing the ~15% that changed is usable.
 
 ## How the pi coding agent connects
 
@@ -141,16 +208,18 @@ Pi ships deliberately minimal — no permission popups, no plan mode, no built-i
 
 * `web-search` — `web_search` and `web_fetch` tools backed by DuckDuckGo (no API key), so the agent looks things up instead of guessing from training data.
 * `inline-bash` — `!{cmd}` in a prompt expands the command's output before it reaches the model; that is how `git status`, logs, and `nvidia-smi` output end up inside a question.
-* `ask-mode` — `/ask` flips the session into a read-only investigation mode: understand the codebase and read logs without the agent touching a single file.
-* `loop-scheduler` — `/loop` re-sends a prompt on an interval and `/watch` fires one when the agent goes idle or a response contains a substring; that is how I babysit long builds and flaky services.
+* `ask-mode` — `/ask` flips the session into a read-only investigation mode: understand the codebase and read logs without the agent touching a single file. Before I let a model near code I don't fully know, this is the first call: `/ask why does the tunnel setup regenerate keys on the second run?`
+* `loop-scheduler` — `/loop` re-sends a prompt on an interval and `/watch` fires when the agent goes idle or a response contains a substring. The two forms I actually use: `/loop 10m check the VM status and warn me if KV cache usage is above 80%` for the periodic check, and the reactive `/watch contains ERROR => summarize the latest error and propose a fix`. That is how I babysit long builds and flaky services.
 * `handoff` — `/handoff <goal>` compacts the session into a self-contained prompt for a fresh one, so a long-lived agent does not drown in its own history.
-* `fresh-subagent` — the `subagent` tool and `/subagent` command run a self-contained task in a clean context with its own log file, while the main session stays focused.
-* `btw` — `/btw` asks a one-shot side question against the current context without polluting the session history.
-* `agent-plan-mode` — `/plan` separates planning from execution: a read-only planning mode, a numbered plan, and the plan converted into real tasks before anything gets built.
+* `fresh-subagent` — the `subagent` tool and `/subagent` command run a self-contained task in a clean `pi` process with its own log file, while the main session stays focused: `/subagent review the last commit and list the risks` gives me the verdict without the digging.
+* `btw` — a mid-task question that must not derail the context: `/btw which file owns the SSH host key bootstrap logic?` The answer appears in a temporary overlay and stays out of the session history.
+* `agent-plan-mode` — `/plan` separates planning from execution: a read-only planning mode, a numbered plan, then the plan converted into real tasks before anything gets built. That is how the multi-step work in this repo stays on rails.
 * `modal-editor` — an in-TUI modal editor for composing long prompts without fighting the line editor.
 * `session-name` — labels a session with something more useful than the first prompt line.
 
-The long tail is smaller: `nemotron-tool-repair` fixes the malformed tool calls the Nemotron models occasionally emit, `prompt-history` quietly records the last 500 prompts, and `reload-runtime` hot-reloads extensions with `/reload-runtime` when I change them.
+The long tail is smaller: `nemotron-tool-repair` fixes the malformed tool calls the Nemotron models occasionally emit, and `prompt-history` quietly records the last 500 prompts.
+
+For the record: `handoff`, `inline-bash`, `session-name`, and `reload-runtime` are upstream pi examples installed locally; the rest are my own.
 
 ## The numbers: tokens per second and friends
 
@@ -194,10 +263,10 @@ Every element of that panel has a job:
 
 All of it is collected with a single SSH call per VM over the tunnel: `nvidia-smi` for the hardware rows, `docker logs --tail 200` filtered to vLLM's `Engine 0` line for the rest.
 
-The engine log kept all of it: 474 samples from a single ~80 minute work morning, with two or three agents active for most of it. What the numbers mean in practice:
+The engine log kept all of it: 474 samples from a single ~80 minute work morning, with two or three agents active for most of it. What the numbers mean:
 
-* Decode: ~40 tok/s for a single conversation, up to ~110 tok/s in total when two or three are decoding at once — batching keeps the GPU saturated. Benchmark numbers for 27B FP8 on this GPU land at 40–99 tok/s. For a coding agent that is comfortable — you can read a generated line about as fast as it arrives.
-* Prefill: benchmarks for 27B FP8 on this GPU land at 5,000–11,000 tok/s at peak. The `Avg prompt throughput` in the log looks much lower (a rolling max of ~3,000 tok/s in my morning) because it is a rolling average, and because most of the prompt never needs computing at all — 80–94% of it came from the prefix cache. The GPU only prefills the ~5–20% that is new.
+* Decode: ~40 tok/s for a single conversation, up to ~110 tok/s in total when two or three are decoding at once — batching keeps the GPU saturated. Benchmark numbers for 27B FP8 on this GPU land at 40–99 tok/s. For a coding agent that's comfortable — you can read a generated line about as fast as it arrives.
+* Prefill: benchmarks for 27B FP8 on this GPU land at 5,000–11,000 tok/s at peak. The `Avg prompt throughput` in the log looks much lower (a rolling max of ~3,000 tok/s in my morning) because it is a rolling average, and because most of the prompt never needs computing at all — 80–97% of it came from the prefix cache. The GPU only prefills the ~3–20% that is new.
 * KV cache usage: ~16% for most of the morning, up to 40% when two long conversations were in flight. The pool is everything left after the weights, and even at 40% vLLM was nowhere near running out of context.
 * GPU: ~80 W and 57°C idle; under a real burst it hits 100% utilization, 299 W, and 66°C — the A100 PCIe is a 300 W card, so a full burst runs it right at its power limit.
 
@@ -217,11 +286,11 @@ Hyperstack bills per minute. The relevant prices (as of September 2026):
 So one VM running 24/7 costs around $1,000/month; two VMs around $1,900. That sounds expensive until you remember the alternative I was actually considering:
 
 * RTX 5090 32 GB — $1,999 MSRP, $3,000–5,000 in the real world of 2026. But 32 GB is a hard ceiling: the 27B FP8 model with its 262K context does not fit, and anything 70B+ is out of the question. I would be buying a card that cannot run the models I actually want to test.
-* DGX Spark, 128 GB unified memory — $3,999 launch price (closer to $5,000 in 2026, memory shortages being what they are). It can run 200B inference, but the memory bandwidth is laptop-class. It is a fascinating machine for fitting big models, not for decoding them fast.
+* DGX Spark, 128 GB unified memory — $3,999 launch price (closer to $5,000 in 2026, memory shortages being what they are). It can run 200B inference, but the memory bandwidth is laptop-class. It's a fascinating machine for fitting big models, not for decoding them fast.
 
-The rented A100, meanwhile, runs everything on the preset list — including the 120B MoE — for $1.35 an hour, and costs me exactly zero when I am not using it. The `gt` project ran on exactly this setup, and its whole GPU bill is trivial next to the cost of owning the hardware it gave me access to.
+The rented A100, meanwhile, runs everything on the preset list — including the 120B MoE — for $1.35 an hour, and costs me exactly zero when I am not using it. The `gt` project ran on exactly this setup, and its whole GPU bill is trivial next to what the hardware it needed would have cost.
 
-Monthly cost is the wrong unit though — the real comparison is per token, because that is what you are actually consuming. Here are the honest numbers from this morning's engine log: 1.3 hours of GPU time ($1.78), ~11M prompt tokens of which 90–95% came from the prefix cache, plus ~250K generated tokens.
+Monthly cost is the wrong unit though — the real comparison is per token. Here are the honest numbers from this morning's engine log: 1.3 hours of GPU time ($1.78), ~11M prompt tokens of which 90–95% came from the prefix cache, plus ~250K generated tokens.
 
 * New prompt tokens (prefill): roughly $0.05–0.15 per million on the A100, versus $0.21 on OpenRouter for the same model (`qwen/qwen3.8-27b`, live pricing, September 2026).
 * Cached prompt tokens: effectively free — they are looked up in the KV cache, not computed. OpenRouter charges $0.15 per million for the same privilege.
@@ -237,9 +306,13 @@ So where does that leave the question from the gt post — will I invest a coupl
 
 To be specific about the DGX Spark though: I don't think it is worth buying just yet. The models it can run are already capable of real work — that part is settled. What settles it is the economics: the cloud APIs are much cheaper for the hours I actually use a local model, and a $5,000 box only pays off if you run it around the clock, which is not my usage pattern.
 
-So I might just wait for one of two things. Either my ThinkPad finally breaks down and I end up buying a beefy replacement with local-LLM capabilities to begin with — the RTX Spark class of machine, if it ever gets proper Linux support, since it is a Windows platform out of the box. Or the next superchip generation shows up: the successor to the Grace Blackwell silicon inside the current DGX Spark, most likely the Vera Rubin generation, is probably somewhere in 2027 or 2028. Buying a $5,000 inference box right before its successor arrives with more memory and more bandwidth is exactly the trap renting keeps me out of.
+There is the other side of the ledger though, and it's not small: a local box is the only option in this whole story that is actually local. A rented VM still means my code and prompts sit on someone else's hardware, and an API means they leave the house entirely. Privacy is one reason. The bigger one is independence — I simply do not like being dependent on cloud providers for the tools I use every day, with their price changes, rate limits, and models that quietly disappear. And the tinkerer in me wants to self-host as much as possible: a GPU on my desk I can experiment with at 2 a.m. while the meter does not run beats a VM that bills $1.35 an hour for being awake.
+
+So I might just wait for one of two things. Either my ThinkPad finally breaks down and I end up buying a beefy replacement with local-LLM capabilities to begin with — the RTX Spark class of machine, if it ever gets proper Linux support, since it is a Windows platform out of the box. Or the next superchip generation shows up: the successor to the Grace Blackwell silicon inside the current DGX Spark — the Vera Rubin generation, probably 2027 or 2028. Buying a $5,000 inference box right before its successor arrives with more memory and more bandwidth is exactly the trap renting keeps me out of.
 
 What I am keeping is the workflow: a coding agent that I can point at any model, that runs my code and my prompts on infrastructure I control, and that I can tear down to zero cost when the project is done.
+
+If you want the setup itself, it is all in the repo: `git clone https://github.com/snonux/hypr` gets you the provisioner, the WireGuard script, the per-VM model presets, and the pi extensions, with a README that explains every flag.
 
 If you want to try this without writing any Ruby at all, the manual path is short: rent a GPU VM with CUDA and Docker, pull `vllm/vllm-openai`, run it with `--enable-prefix-caching --gpu-memory-utilization 0.92 --max-model-len 262144`, tunnel in with WireGuard or a port forward, and point any OpenAI-compatible client at it. Everything else in `hypr` is convenience around those four steps.
 
