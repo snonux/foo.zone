@@ -126,24 +126,4 @@ Not the Flipper Zero — it's Flipper's open Linux networking gadget / pocket cy
 
 I've the X100V already, that's why I hesitate to upgrade, really. The V still takes the same photos; the VI mostly tempts me with the nicer film simulations and a bit more resolution I don't strictly need. If I ever find a good trade-in deal I'll probably cave, but it's hard to justify at full price or I will simply wait for a future X100VII or I will wait until my X100V breaks down! And if I do get one, it has to be the silver — the black one is too stealthy for my taste.
 
-## Maybe later
-
-### reMarkable Paper Pro Move
-
-For now, I keep using my Supernote Nomad.
-
-=> wishlist/remarkable-paper-pro-move.jpg reMarkable Paper Pro Move
-=> https://remarkable.com/products/remarkable-paper/pro-move Official product page
-
-I'll run it purely offline — no cloud sync, no account beyond what's strictly needed. It's meant to be my always-with-me note taker, since it's even compacter than my Supernote Nomad I already have. Pen on paper feel in something that actually fits in a jacket pocket is the whole appeal.
-
-### XTeink X4 Pro
-
-For now, I will use my Supernote Nomad as an always-with-me eReader device using KOReader software.
-
-=> wishlist/xteink-x4-pro.jpg XTeink X4 Pro
-=> https://www.xteink.com/products/xteink-x4-pro-pocket-ereader Official product page
-
-Only once the CrossPoint open-source firmware supports highlight by touch. Which it doesn't at the moment. I read a lot of ePubs and articles, and the whole point of an e-ink reader for me is marking things up without a laptop in front of me — so until that lands I'll keep waiting rather than buying something I'll be mildly annoyed by.
-
 => ./ Go back
