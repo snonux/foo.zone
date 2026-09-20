@@ -10,15 +10,7 @@
 
 => ./paul.jpg Paul Buetow
 
-## Table of Contents
-
-* ⇢ About
-* ⇢ ⇢ Now
-* ⇢ ⇢ My sites
-* ⇢ ⇢ Show me the code
-* ⇢ ⇢ Social Media and Communities
-* ⇢ ⇢ Books I've read
-* ⇢ ⇢ My gadgets and wishlist
+<< template::inline::toc
 
 ## Now
 
