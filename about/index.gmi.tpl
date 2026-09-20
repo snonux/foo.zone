@@ -16,7 +16,7 @@
 
 Stuff I'm currently up to:
 
-* Learning for the Bulgarian passport
+* Learning Bulgarian for the passport
 * Digging into AI engineering without taking the slop route — still finding my way there
 
 ## My sites
