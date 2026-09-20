@@ -253,6 +253,10 @@ abbr pi-hyperstack-gemma4 pi --model hyperstack2/cyankiwi/gemma-4-31B-it-AWQ-4bi
 
 My standard setup is a tmux session with one pi per pane — `pi-coder` on Qwen3.8 in pane 0, `pi-gemma4` in pane 1, each working on a different project against its own VM. When one model gets stuck on a task, I hand the same problem to the other pane and compare.
 
+What a session looks like in practice — diff on top, the model's reasoning in the middle, shell output at the bottom while it chews through a real task:
+
+=> ./running-my-own-llms/pi-coding-agent.png pi coding agent mid-task: diff, reasoning, and shell in one TUI
+
 ### The extensions
 
 Pi ships deliberately minimal — no permission popups, no plan mode, no built-in sub-agents. The `hypr` repo bundles a set of TypeScript extensions that fill in the gaps. The ones I use daily:
