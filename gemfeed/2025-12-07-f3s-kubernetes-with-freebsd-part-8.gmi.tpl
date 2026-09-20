@@ -166,7 +166,7 @@ Verify etcd metrics are exposed:
 etcd_server_has_leader 1
 ```
 
-The full `persistence-values.yaml` and all other Prometheus configuration files are available on Codeberg:
+The full `persistence-values.yaml` and all other Prometheus configuration files are available on GitHub:
 
 => https://github.com/snonux/conf/src/branch/master/f3s/prometheus github.com/snonux/conf/f3s/prometheus
 
@@ -529,7 +529,7 @@ spec:
 
 This file is saved as `freebsd-recording-rules.yaml` and applied as part of the Prometheus installation. The `os="freebsd"` label (set in the scrape config) ensures these rules only apply to FreeBSD hosts. After applying, the memory panels in the Node Exporter dashboards populate correctly for FreeBSD.
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml freebsd-recording-rules.yaml on Codeberg
+=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml freebsd-recording-rules.yaml on GitHub
 
 ### Disk I/O metrics limitation
 
@@ -828,10 +828,9 @@ zfs_pool_capacity_percent{pool="zroot"} 10
 zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
 ```
 
-All ZFS-related configuration files are available on Codeberg:
+All ZFS-related configuration files are available on GitHub:
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/zfs-recording-rules.yaml zfs-recording-rules.yaml on Codeberg
-=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/zfs-dashboards.yaml zfs-dashboards.yaml on Codeberg
+=> https://github.com/snonux/conf
 
 ## Monitoring external OpenBSD hosts
 
@@ -939,7 +938,7 @@ spec:
 
 This file is saved as `openbsd-recording-rules.yaml` and applied alongside the FreeBSD rules. Note that OpenBSD doesn't expose a buffer memory metric, so that rule is omitted.
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml openbsd-recording-rules.yaml on Codeberg
+=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml openbsd-recording-rules.yaml on GitHub
 
 After running `just upgrade`, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.
 
@@ -956,7 +955,7 @@ The next part covers the final pillar of observability: distributed tracing with
 
 => ./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.gmi Part 8b: Distributed Tracing with Tempo
 
-All configuration files are available on Codeberg:
+All configuration files are available on GitHub:
 
 => https://github.com/snonux/conf/src/branch/master/f3s/prometheus Prometheus, Grafana, and recording rules configuration
 => https://github.com/snonux/conf/src/branch/master/f3s/loki Loki and Alloy configuration

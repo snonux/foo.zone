@@ -137,9 +137,9 @@ These are the 30-day reports generated (already linked earlier in this post, but
 
 `foostats_main` is the command entry point. `--parse-logs` refreshes the gzipped files, `--replicate` runs the cross-host sync, and `--report` rebuilds the HTML and Gemini report pages. `--all` performs everything in one go. Defaults point to `/var/www/htdocs/buetow.org/self/foostats` for data, `/var/gemini/stats.foo.zone` for Gemtext output, and `/var/www/htdocs/gemtexter/stats.foo.zone` for HTML output. Replication always forces the three most recent days' worth of data across HTTPS and leaves older files untouched to save bandwidth.
 
-The complete source lives on Codeberg here:
+The complete source lives on GitHub here:
 
-=> https://github.com/snonux/foostats Foostats on Codeberg
+=> https://github.com/snonux/foostats Foostats on GitHub
 
 Now let's go to some new Perl features:
 

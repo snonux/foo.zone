@@ -60,7 +60,6 @@ Architecturally it's a clean three-layer design: a public `api` package exposes 
 
 This is my personal config repository. Including...
 
-=> https://codeberg.org/snonux/conf View on Codeberg
 => https://github.com/snonux/conf View on GitHub
 
 ---
@@ -81,7 +80,6 @@ This is my personal config repository. Including...
 
 These are all my dotfiles. I can install them locally on my laptop and/or workstation as well as remotely on any server.
 
-=> https://codeberg.org/snonux/dotfiles View on Codeberg
 => https://github.com/snonux/dotfiles View on GitHub
 
 ---
@@ -386,7 +384,6 @@ FastForge is a Pebble watchapp for intermittent fasting tracking, built with the
 
 Each format is in it's own branch in this repository. E.g.:
 
-=> https://codeberg.org/snonux/foo.zone View on Codeberg
 => https://github.com/snonux/foo.zone View on GitHub
 
 ---
@@ -558,7 +555,6 @@ Runs two A100 VMs concurrently — each serving a different model — with [Pi](
 
 Gogios is a lightweight and minimalistic monitoring tool not designed for large-scale monitoring. It is ideal for monitoring self-hosted servers on a tiny scale, such as only a handful of servers or virtual machines (e.g. my personal infrastructure). If you have limited resources to monitor and require a simple yet effective solution, Gogios is an excellent choice. However, for larger environments with more complex monitoring requirements, it might be necessary to consider other monitoring solutions better suited for managing and scaling with increased monitoring demands.
 
-=> https://codeberg.org/snonux/gogios View on Codeberg
 => https://github.com/snonux/gogios View on GitHub
 
 ---
@@ -583,7 +579,6 @@ Loadbars is a real-time server load monitoring tool that visualizes CPU, memory,
 
 Architecturally, the Go binary embeds the remote monitoring script at build time and runs it locally or over SSH via `bash -s`, so remote hosts need only bash and `/proc` (no Go installation required). The codebase is organized into `internal/` packages: `collector` handles script execution and metric parsing, `display` manages the SDL2 rendering loop and hotkey-driven toggles (per-core vs. aggregate views, extended peak lines, memory/network/load/disk bars), `config` manages CLI flags and `~/.loadbarsrc` persistence, and `stats` defines the shared data structures. macOS is supported as a client for monitoring remote Linux hosts, though local monitoring requires Linux.
 
-=> https://codeberg.org/snonux/loadbars View on Codeberg
 => https://github.com/snonux/loadbars View on GitHub
 
 ---
@@ -664,7 +659,6 @@ rampage: source code repository.
 
 This is the source code of my personal internet site and blog engine. All content is written in Gemini Gemtext format, but the script `gemtexter` generates multiple other static output formats (with zero JavaScript) from it. You can reach the site(s)...
 
-=> https://codeberg.org/snonux/gemtexter View on Codeberg
 => https://github.com/snonux/gemtexter View on GitHub
 
 ---
@@ -709,7 +703,6 @@ This is the source code of my personal internet site and blog engine. All conten
 
 A KISS (Keep It Simple, Stupid) configuration management system written in Ruby, designed for personal use.
 
-=> https://codeberg.org/snonux/rcm View on Codeberg
 => https://github.com/snonux/rcm View on GitHub
 
 ---
@@ -754,7 +747,6 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 Gos is a Go-based replacement for Buffer.com, providing the ability to schedule and manage social media posts from the command line. It can be run, for example, every time you open a new shell or only once every N hours when you open a new shell.
 
-=> https://codeberg.org/snonux/gos View on Codeberg
 => https://github.com/snonux/gos View on GitHub
 
 ---
@@ -815,7 +807,6 @@ A simple command-line tool to track time spent on tasks. It has been primarily c
 
 A privacy-respecting web analytics tool for OpenBSD that processes HTTP/HTTPS and Gemini protocol logs to generate anonymous site statistics. Designed for the foo.zone ecosystem and similar sites, it provides comprehensive traffic analysis while preserving visitor privacy through SHA3-512 IP hashing.
 
-=> https://codeberg.org/snonux/foostats View on Codeberg
 => https://github.com/snonux/foostats View on GitHub
 
 ---
@@ -856,7 +847,6 @@ A minimal Java tool to benchmark Log4j2 logging throughput with configurable con
 
 Have a look at the `wireguardmeshgenerator.yaml`
 
-=> https://codeberg.org/snonux/wireguardmeshgenerator View on Codeberg
 => https://github.com/snonux/wireguardmeshgenerator View on GitHub
 
 ---
@@ -879,7 +869,6 @@ Have a look at the `wireguardmeshgenerator.yaml`
 
 ...is an I/O benchmarking tool for Linux based operating systems which captures I/O operations on a (possibly production) server in order to replay the exact same I/O operations on a load test machine.
 
-=> https://codeberg.org/snonux/ioriot View on Codeberg
 => https://github.com/snonux/ioriot View on GitHub
 
 ---
@@ -968,7 +957,6 @@ To compare how fast this runs on FreeBSD vs a Linux Bhyve VM
 
 Go to AWS Secrets manager manually and create it!
 
-=> https://codeberg.org/snonux/terraform View on Codeberg
 => https://github.com/snonux/terraform View on GitHub
 
 ---
@@ -991,7 +979,6 @@ Go to AWS Secrets manager manually and create it!
 photoalbum is a minimal Bash script for Unix like operating systems (such as Linux) to generate static web photo albums.
 The resulting static photo album is pure HTML+CSS (without any JavaScript!).
 
-=> https://codeberg.org/snonux/photoalbum View on Codeberg
 => https://github.com/snonux/photoalbum View on GitHub
 
 ---
@@ -1013,7 +1000,6 @@ The resulting static photo album is pure HTML+CSS (without any JavaScript!).
 
 guprecords: source code repository.
 
-=> https://codeberg.org/snonux/guprecords View on Codeberg
 => https://github.com/snonux/guprecords View on GitHub
 
 ---
@@ -1035,7 +1021,6 @@ guprecords: source code repository.
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. I have switched to another solution and will not be doing any further work on this project.
 
-=> https://codeberg.org/snonux/geheim View on Codeberg
 => https://github.com/snonux/geheim View on GitHub
 
 ---
@@ -1057,7 +1042,6 @@ guprecords: source code repository.
 
 Gogios is a minimalistic quorum manager.
 
-=> https://codeberg.org/snonux/gorum View on Codeberg
 => https://github.com/snonux/gorum View on GitHub
 
 ---
@@ -1079,7 +1063,6 @@ Gogios is a minimalistic quorum manager.
 
 For the Radicale server https://radicale.org
 
-=> https://codeberg.org/snonux/docker-radicale-server View on Codeberg
 => https://github.com/snonux/docker-radicale-server View on GitHub
 
 ---
@@ -1101,7 +1084,6 @@ For the Radicale server https://radicale.org
 
 This is a quick and dirty script which I use personally to grab a random PDF file (a scanned version of one of my bullet journals) and to extract a random set of pages from it in order to reflect/read what was happening in the past. This also includes various notes of books I have read and random ideas I wrote down and my want to reconsider.
 
-=> https://codeberg.org/snonux/randomjournalpage View on Codeberg
 => https://github.com/snonux/randomjournalpage View on GitHub
 
 ---
@@ -1126,7 +1108,6 @@ FailunderD is a zero-dependency failover automation daemon written in Perl for O
 
 Architecturally, it follows a small plugin-module pattern: `bin/failunderd` handles daemonization, PID management, signal handling, config parsing, and a timing-accurate main loop; `FailunderD::RunModules` dynamically discovers and instantiates modules from a configured directory and schedules their execution with sub-interval carry-over to avoid drift; `FailunderD::Logger` is a syslog/STDOUT singleton that also dispatches mail notifications via sendmail. The only shipped module, `FailunderD::Modules::Handler`, performs the actual health checks, status-file writes (atomic via tmp+rename), remote status fetches, score aggregation, and daily email reports — making the failover logic itself pluggable without touching the daemon core.
 
-=> https://codeberg.org/snonux/failunderd View on Codeberg
 => https://github.com/snonux/failunderd View on GitHub
 
 ---
@@ -1171,7 +1152,6 @@ DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
     feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/staticfarm-apache-handlers View on Codeberg
 => https://github.com/snonux/staticfarm-apache-handlers View on GitHub
 
 ---
@@ -1193,7 +1173,6 @@ DEPRECATED
 
 This is a quick and dirty Perl-based IPv6 test website.
 
-=> https://codeberg.org/snonux/ipv6test View on Codeberg
 => https://github.com/snonux/ipv6test View on GitHub
 
 ---
@@ -1215,7 +1194,6 @@ This is a quick and dirty Perl-based IPv6 test website.
 
 This is a fork of https://github.com/tedk0n/autorotate_sway_script
 
-=> https://codeberg.org/snonux/sway-autorotate View on Codeberg
 => https://github.com/snonux/sway-autorotate View on GitHub
 
 ---
@@ -1285,7 +1263,6 @@ DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
     feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/pingdomfetch View on Codeberg
 => https://github.com/snonux/pingdomfetch View on GitHub
 
 ---
@@ -1307,7 +1284,6 @@ DEPRECATED
 
 Those are the host templates to be used with Xerl itself.
 
-=> https://codeberg.org/snonux/xerl View on Codeberg
 => https://github.com/snonux/xerl View on GitHub
 
 ---
@@ -1329,7 +1305,6 @@ Those are the host templates to be used with Xerl itself.
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/pwgrep View on Codeberg
 => https://github.com/snonux/pwgrep View on GitHub
 
 ---
@@ -1349,7 +1324,6 @@ Those are the host templates to be used with Xerl itself.
 
 playground: source code repository.
 
-=> https://codeberg.org/snonux/playground View on Codeberg
 => https://github.com/snonux/playground View on GitHub
 
 ---
@@ -1373,7 +1347,6 @@ DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
     feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/japi View on Codeberg
 => https://github.com/snonux/japi View on GitHub
 
 ---
@@ -1397,7 +1370,6 @@ Awksite is a minimal CGI application written entirely in GNU AWK that generates 
 
 It's useful for quickly standing up simple dynamic websites—like server status pages—without needing a full programming language runtime or web framework. The architecture is straightforward: `index.cgi` reads the config, emits an HTTP header, and iterates over the template line by line, recursively resolving any `%%placeholder%%` tags by looking up values (or executing shell commands) from the config.
 
-=> https://codeberg.org/snonux/awksite View on Codeberg
 => https://github.com/snonux/awksite View on GitHub
 
 ---
@@ -1419,7 +1391,6 @@ It's useful for quickly standing up simple dynamic websites—like server status
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/gotop View on Codeberg
 => https://github.com/snonux/gotop View on GitHub
 
 ---
@@ -1440,7 +1411,6 @@ It's useful for quickly standing up simple dynamic websites—like server status
 PerlDaemon is a minimal daemon for Linux and other UNIX a like operating system
 programmed in Perl.  It can be extended to fit any task...
 
-=> https://codeberg.org/snonux/perldaemon View on Codeberg
 => https://github.com/snonux/perldaemon View on GitHub
 
 ---
@@ -1462,7 +1432,6 @@ programmed in Perl.  It can be extended to fit any task...
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/rubyfy View on Codeberg
 => https://github.com/snonux/rubyfy View on GitHub
 
 ---
@@ -1486,7 +1455,6 @@ DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
     feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/netdiff View on Codeberg
 => https://github.com/snonux/netdiff View on GitHub
 
 ---
@@ -1508,7 +1476,6 @@ DEPRECATED
 
 perl-c-fibonacci: source code repository.
 
-=> https://codeberg.org/snonux/perl-c-fibonacci View on Codeberg
 => https://github.com/snonux/perl-c-fibonacci View on GitHub
 
 ---
@@ -1532,7 +1499,6 @@ DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
     feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/muttdelay View on Codeberg
 => https://github.com/snonux/muttdelay View on GitHub
 
 ---
@@ -1554,7 +1520,6 @@ DEPRECATED
 
 cpuinfo - A small and humble tool to print out CPU data
 
-=> https://codeberg.org/snonux/cpuinfo View on Codeberg
 => https://github.com/snonux/cpuinfo View on GitHub
 
 ---
@@ -1578,7 +1543,6 @@ DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
     feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/dyndns View on Codeberg
 => https://github.com/snonux/dyndns View on GitHub
 
 ---
@@ -1602,7 +1566,6 @@ DEPRECATED
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/debroid View on Codeberg
 => https://github.com/snonux/debroid View on GitHub
 
 ---
@@ -1624,7 +1587,6 @@ DEPRECATED
 
 ychat: source code repository.
 
-=> https://codeberg.org/snonux/ychat View on Codeberg
 => https://github.com/snonux/ychat View on GitHub
 
 ---
@@ -1648,7 +1610,6 @@ ychat: source code repository.
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/netcalendar View on Codeberg
 => https://github.com/snonux/netcalendar View on GitHub
 
 ---
@@ -1672,7 +1633,6 @@ ychat: source code repository.
 
 > **⚠️ DEPRECATED:** This project is no longer maintained. No further updates, bug fixes, or feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/jsmstrade View on Codeberg
 => https://github.com/snonux/jsmstrade View on GitHub
 
 ---
@@ -1696,7 +1656,6 @@ DEPRECATED
     This project is no longer maintained. No further updates, bug fixes, or
     feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/template View on Codeberg
 => https://github.com/snonux/template View on GitHub
 
 ---
@@ -1720,7 +1679,6 @@ DEPRECATED
 
 VS-Sim is an open source simulator programmed in Java for distributed systems. VS-Sim stands for "Verteilte Systeme Simulator" which is the german translation for "Distributed Sytstems Simulator".
 
-=> https://codeberg.org/snonux/vs-sim View on Codeberg
 => https://github.com/snonux/vs-sim View on GitHub
 
 ---
@@ -1742,7 +1700,6 @@ VS-Sim is an open source simulator programmed in Java for distributed systems. V
 
 **F**or **Y**our **P**rogram **E**xecution — a lightweight scripting language.
 
-=> https://codeberg.org/snonux/fype View on Codeberg
 => https://github.com/snonux/fype View on GitHub
 
 ---
@@ -1764,7 +1721,6 @@ VS-Sim is an open source simulator programmed in Java for distributed systems. V
 
 Here you find some Poetry written in Perl.
 
-=> https://codeberg.org/snonux/perl-poetry View on Codeberg
 => https://github.com/snonux/perl-poetry View on GitHub
 
 ---
@@ -1785,7 +1741,6 @@ Here you find some Poetry written in Perl.
 This project is no longer maintained. No further updates, bug fixes, or
 feature additions will be made. Use at your own risk.
 
-=> https://codeberg.org/snonux/hsbot View on Codeberg
 => https://github.com/snonux/hsbot View on GitHub
 
 ---

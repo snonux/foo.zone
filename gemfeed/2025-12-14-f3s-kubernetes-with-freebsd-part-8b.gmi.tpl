@@ -448,7 +448,7 @@ If storage fills up, you can reduce retention to 72h, add sampling in Alloy, or 
 
 ## Configuration Files
 
-All config files are on Codeberg:
+All config files are on GitHub:
 
 => https://github.com/snonux/conf/src/branch/master/f3s/tempo Tempo configuration
 => https://github.com/snonux/conf/src/branch/master/f3s/loki Alloy configuration (updated for traces)
