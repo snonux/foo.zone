@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-09-13
+Generated on: 2026-09-20
 
 => showcase-rank-history.svg Interactive Project Rank History Graph (SVG)
 
@@ -11,25 +11,70 @@ This page showcases my side projects, providing an overview of what each project
 ## Overall Statistics
 
 * 📦 Total Projects: 81
-* 📊 Total Commits: 15,227
-* 📈 Total Lines of Code: 832,042
-* 📄 Total Lines of Documentation: 310,716
-* 💻 Languages: Go (49.9%), Java (7.2%), Shell (6.9%), C (6.7%), Dart (5.6%), C++ (4.5%), C/C++ (2.9%), XML (2.8%), JavaScript (2.5%), YAML (2.3%), Perl (1.8%), JSON (1.4%), HTML (0.9%), CSS (0.9%), TypeScript (0.9%), Ruby (0.8%), Config (0.6%), Python (0.3%), HCL (0.3%), Make (0.3%)
-* 📚 Documentation: Text (72.2%), Markdown (26.7%), LaTeX (1.1%)
-* 🚀 Release Status: 46 released, 35 experimental (56.8% with releases, 43.2% experimental)
+* 📊 Total Commits: 15,425
+* 📈 Total Lines of Code: 862,179
+* 📄 Total Lines of Documentation: 313,182
+* 💻 Languages: Go (51.5%), Java (7.0%), Shell (6.8%), C (6.5%), Dart (5.4%), C++ (4.4%), C/C++ (2.8%), XML (2.7%), JavaScript (2.4%), YAML (2.3%), Perl (1.7%), JSON (1.4%), HTML (0.9%), CSS (0.9%), TypeScript (0.9%), Ruby (0.8%), Config (0.6%), Python (0.3%), HCL (0.3%), Make (0.3%)
+* 📚 Documentation: Text (71.7%), Markdown (27.3%), LaTeX (1.1%)
+* 🚀 Release Status: 47 released, 34 experimental (58.0% with releases, 42.0% experimental)
 
 ## Projects
 
-### 1. dotfiles
+### 1. gonf
 
-* 💻 Languages: Shell (70.7%), Config (6.4%), TOML (5.7%), Go (5.4%), CSS (5.4%), Python (2.9%), JSON (2.9%), Ruby (0.5%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 1262
-* 📈 Lines of Code: 6014
-* 📄 Lines of Documentation: 21009
+* 💻 Languages: Go (100.0%)
+* 📚 Documentation: Markdown (99.9%)
+* 📊 Commits: 159
+* 📈 Lines of Code: 31581
+* 📄 Lines of Documentation: 1375
+* 🏷️ Tags: 35
+* 📅 Development Period: 2026-07-04 to 2026-09-16
+* 🏆 Score: 109.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.12.1 (2026-09-16)
+
+
+=> showcase/gonf/image-1.svg gonf screenshot
+
+**gonf** is a pure-Go, KISS-style configuration-management tool in the spirit of Puppet/Chef but written entirely in Go with no external DSL or runtime. You declare desired system state directly in Go using a small, declarative API — `File`, `Dir`, `Link`, `Package` (and their `No*`/`IsAbsent` counterparts) — passing functional options like `WithContent`, `WithMode`, `WithSource`, `WithPrune`, `IsLatest`, etc. A single `api.Apply()` then reconciles every declared resource against the actual filesystem/package state.
+
+Architecturally it's a clean three-layer design: a public `api` package exposes the resource constructors and `Apply` entry point; an `internal/resource` package provides a thread-safe **repository** that registers resources by unique ID and topologically sorts them (with circular-dependency detection) before invoking each resource's `Applier`; and per-type packages (`file`, `dir`, `link`, `pkg`) implement the concrete reconciliation logic. Options are decoupled from resources via small capability interfaces (`Moded`, `Sourced`, `Contented`, `Prunable`, `Latestable`, `Linkable`, …), so new resource types or options can be added without touching existing code. A `cmd/gonf` binary wires it together and currently runs an `examples` configuration as a demonstration.
+
+=> https://github.com/snonux/gonf View on GitHub
+
+---
+
+### 2. conf
+
+* 💻 Languages: YAML (68.8%), Shell (15.8%), Perl (7.1%), Go (2.7%), Python (2.5%), Make (1.4%), JSON (0.5%), TOML (0.3%), Docker (0.3%), Config (0.3%), Ruby (0.2%), HTML (0.1%)
+* 📚 Documentation: Markdown (98.1%), Text (1.9%)
+* 📊 Commits: 1160
+* 📈 Lines of Code: 26763
+* 📄 Lines of Documentation: 10002
 * 🏷️ Tags: 0
-* 📅 Development Period: 2023-07-30 to 2026-09-13
-* 🏆 Score: 73.9 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2021-12-28 to 2026-09-19
+* 🏆 Score: 72.0 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+This is my personal config repository. Including...
+
+=> https://codeberg.org/snonux/conf View on Codeberg
+=> https://github.com/snonux/conf View on GitHub
+
+---
+
+### 3. dotfiles
+
+* 💻 Languages: Shell (71.0%), Config (6.1%), TOML (5.9%), Go (5.5%), CSS (5.2%), Python (2.8%), JSON (2.7%), Ruby (0.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 1288
+* 📈 Lines of Code: 6243
+* 📄 Lines of Documentation: 21085
+* 🏷️ Tags: 0
+* 📅 Development Period: 2023-07-30 to 2026-09-20
+* 🏆 Score: 57.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -41,7 +86,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 
 ---
 
-### 2. timesamurai
+### 4. timesamurai
 
 * 💻 Languages: Go (98.3%), Shell (1.2%), JSON (0.4%)
 * 📚 Documentation: Markdown (100.0%)
@@ -50,7 +95,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 * 📄 Lines of Documentation: 140
 * 🏷️ Tags: 10
 * 📅 Development Period: 2025-06-25 to 2026-08-30
-* 🏆 Score: 40.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 27.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.10.1 (2026-08-30)
 
@@ -63,7 +108,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 
 ---
 
-### 3. syncmaster
+### 5. syncmaster
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -72,7 +117,7 @@ These are all my dotfiles. I can install them locally on my laptop and/or workst
 * 📄 Lines of Documentation: 645
 * 🏷️ Tags: 7
 * 📅 Development Period: 2026-08-24 to 2026-08-27
-* 🏆 Score: 28.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 21.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.4.0 (2026-08-27)
 
@@ -84,28 +129,7 @@ cameras and Supernote Nomad — with geotagging and `.note`→PDF conversion.
 
 ---
 
-### 4. conf
-
-* 💻 Languages: YAML (73.5%), Shell (12.9%), Perl (7.6%), Python (2.7%), Make (1.5%), JSON (0.5%), TOML (0.4%), Docker (0.3%), Config (0.3%), Ruby (0.2%), HTML (0.1%)
-* 📚 Documentation: Markdown (97.8%), Text (2.2%)
-* 📊 Commits: 1119
-* 📈 Lines of Code: 25063
-* 📄 Lines of Documentation: 8851
-* 🏷️ Tags: 0
-* 📅 Development Period: 2021-12-28 to 2026-09-09
-* 🏆 Score: 27.5 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-This is my personal config repository. Including...
-
-=> https://codeberg.org/snonux/conf View on Codeberg
-=> https://github.com/snonux/conf View on GitHub
-
----
-
-### 5. restforge
+### 6. restforge
 
 * 💻 Languages: Go (46.2%), Dart (30.9%), JavaScript (15.6%), C (3.4%), C/C++ (1.1%), Python (0.6%), Shell (0.6%), CMake (0.5%), C++ (0.4%), XML (0.3%), Kotlin (0.2%), YAML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -114,7 +138,7 @@ This is my personal config repository. Including...
 * 📄 Lines of Documentation: 3190
 * 🏷️ Tags: 2
 * 📅 Development Period: 2026-08-08 to 2026-08-19
-* 🏆 Score: 22.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 17.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.6.1 (2026-08-19)
 
@@ -129,7 +153,7 @@ Architecturally, the three implementations share no code but are held to one wri
 
 ---
 
-### 6. gitsyncer
+### 7. gitsyncer
 
 * 💻 Languages: Go (96.6%), Shell (3.3%), JSON (0.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -138,7 +162,7 @@ Architecturally, the three implementations share no code but are held to one wri
 * 📄 Lines of Documentation: 2575
 * 🏷️ Tags: 48
 * 📅 Development Period: 2025-06-23 to 2026-08-15
-* 🏆 Score: 20.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 17.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.19.3 (2026-08-15)
 
@@ -149,7 +173,7 @@ GitSyncer is a tool for synchronizing git repositories between multiple organiza
 
 ---
 
-### 7. f3sctl
+### 8. f3sctl
 
 * 💻 Languages: Go (98.2%), JavaScript (1.8%)
 * 📚 Documentation: Markdown (100.0%)
@@ -158,7 +182,7 @@ GitSyncer is a tool for synchronizing git repositories between multiple organiza
 * 📄 Lines of Documentation: 1245
 * 🏷️ Tags: 12
 * 📅 Development Period: 2026-08-08 to 2026-08-17
-* 🏆 Score: 18.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 15.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.6.1 (2026-08-17)
 
@@ -171,7 +195,7 @@ Architecturally it's a single Go binary that behaves as three different programs
 
 ---
 
-### 8. tasksamurai
+### 9. tasksamurai
 
 * 💻 Languages: Go (99.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -180,7 +204,7 @@ Architecturally it's a single Go binary that behaves as three different programs
 * 📄 Lines of Documentation: 651
 * 🏷️ Tags: 37
 * 📅 Development Period: 2025-06-19 to 2026-09-03
-* 🏆 Score: 15.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 13.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.21.0 (2026-09-03)
 
@@ -193,7 +217,7 @@ Task Samurai invokes the `task` command to read and modify tasks. The tasks are 
 
 ---
 
-### 9. dtail
+### 10. dtail
 
 * 💻 Languages: Go (95.2%), Shell (2.3%), JSON (1.0%), C (0.7%), Make (0.5%), C/C++ (0.1%)
 * 📚 Documentation: Text (97.9%), Markdown (2.1%)
@@ -202,7 +226,7 @@ Task Samurai invokes the `task` command to read and modify tasks. The tasks are 
 * 📄 Lines of Documentation: 220971
 * 🏷️ Tags: 27
 * 📅 Development Period: 2020-01-09 to 2026-07-18
-* 🏆 Score: 10.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 9.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v4.3.3 (2024-08-23)
 
@@ -215,28 +239,6 @@ DTail (a distributed tail program) is a DevOps tool for engineers programmed in 
 
 ---
 
-### 10. ggaze
-
-* 💻 Languages: C (91.8%), C/C++ (7.3%), XML (0.5%), Python (0.3%)
-* 📚 Documentation: Markdown (95.7%), Text (4.3%)
-* 📊 Commits: 167
-* 📈 Lines of Code: 30780
-* 📄 Lines of Documentation: 2919
-* 🏷️ Tags: 1
-* 📅 Development Period: 2026-07-12 to 2026-08-11
-* 🏆 Score: 10.7 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: GPL-3.0
-* 🧪 Status: Experimental (no releases yet)
-
-
-**ggaze (GNOME Gaze)** is a small, fast, native GTK4 image viewer written in C for Fedora Linux, designed to quickly preview a folder of camera downloads, cull rejects, and move on — think `feh`/`nsxiv`/`qiv` but GNOME-native and KISS (no library, database, or sidecars). Its workflow pairs a gthumb-style thumbnail grid with a full-window large view, plus rich keyboard-driven actions: navigation, zoom/pan, EXIF info overlay, mark/select, trash (with undo) or permanent delete, configurable move destinations, external program launchers, shell-script runners, optional GEGL quick-enhance and crop/straighten/rotate, clipboard copy, fullscreen, and slideshow.
-
-**Architecture:** A meson/ninja C project built on GTK4 + libadwaita + GLib, with a strict main-thread-touches-GTK / decode-in-`GTask`-threads split and a "one active load per window, last-write-wins" invariant backed by a bounded `GdkTexture` LRU. Plain-C modules (navigator, loader, detect, thumbnail, trash, mover, opener, runner, enhancer, info, texturecache, clipboard) are display-free and unit-tested standalone; GTK widgets live in `app`, `window`, `viewer`, `gridview`, and `shortcuts`. Decode backends are pluggable behind `GGAZE_HAVE_*` guards (pixbuf default; optional `gegl`, `jxl`, `avif`, `heif` as meson `feature`s), so a minimal GdkPixbuf-only build stays valid and fast. Testing is two mandatory tracks (unit ≥80% coverage via gcov for plain-C modules; integration suites for cross-module flows with offscreen GTK and real temp dirs), plus an ASan/UBSan leak-check pass after every milestone.
-
-=> https://github.com/snonux/ggaze View on GitHub
-
----
-
 ### 11. shuriken.sh
 
 * 💻 Languages: Shell (99.0%), Config (0.4%), Perl (0.4%), Docker (0.1%), XML (0.1%)
@@ -246,7 +248,7 @@ DTail (a distributed tail program) is a DevOps tool for engineers programmed in 
 * 📄 Lines of Documentation: 951
 * 🏷️ Tags: 36
 * 📅 Development Period: 2011-11-19 to 2026-08-04
-* 🏆 Score: 10.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 9.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.14.1 (2026-08-04)
 
@@ -260,7 +262,29 @@ The resulting static photo album is pure HTML+CSS (without any JavaScript!).
 
 ---
 
-### 12. hexai
+### 12. ggaze
+
+* 💻 Languages: C (91.8%), C/C++ (7.3%), XML (0.5%), Python (0.3%)
+* 📚 Documentation: Markdown (95.7%), Text (4.3%)
+* 📊 Commits: 167
+* 📈 Lines of Code: 30780
+* 📄 Lines of Documentation: 2919
+* 🏷️ Tags: 1
+* 📅 Development Period: 2026-07-12 to 2026-08-11
+* 🏆 Score: 9.0 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: GPL-3.0
+* 🧪 Status: Experimental (no releases yet)
+
+
+**ggaze (GNOME Gaze)** is a small, fast, native GTK4 image viewer written in C for Fedora Linux, designed to quickly preview a folder of camera downloads, cull rejects, and move on — think `feh`/`nsxiv`/`qiv` but GNOME-native and KISS (no library, database, or sidecars). Its workflow pairs a gthumb-style thumbnail grid with a full-window large view, plus rich keyboard-driven actions: navigation, zoom/pan, EXIF info overlay, mark/select, trash (with undo) or permanent delete, configurable move destinations, external program launchers, shell-script runners, optional GEGL quick-enhance and crop/straighten/rotate, clipboard copy, fullscreen, and slideshow.
+
+**Architecture:** A meson/ninja C project built on GTK4 + libadwaita + GLib, with a strict main-thread-touches-GTK / decode-in-`GTask`-threads split and a "one active load per window, last-write-wins" invariant backed by a bounded `GdkTexture` LRU. Plain-C modules (navigator, loader, detect, thumbnail, trash, mover, opener, runner, enhancer, info, texturecache, clipboard) are display-free and unit-tested standalone; GTK widgets live in `app`, `window`, `viewer`, `gridview`, and `shortcuts`. Decode backends are pluggable behind `GGAZE_HAVE_*` guards (pixbuf default; optional `gegl`, `jxl`, `avif`, `heif` as meson `feature`s), so a minimal GdkPixbuf-only build stays valid and fast. Testing is two mandatory tracks (unit ≥80% coverage via gcov for plain-C modules; integration suites for cross-module flows with offscreen GTK and real temp dirs), plus an ASan/UBSan leak-check pass after every milestone.
+
+=> https://github.com/snonux/ggaze View on GitHub
+
+---
+
+### 13. hexai
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -269,7 +293,7 @@ The resulting static photo album is pure HTML+CSS (without any JavaScript!).
 * 📄 Lines of Documentation: 3894
 * 🏷️ Tags: 107
 * 📅 Development Period: 2025-08-01 to 2026-08-09
-* 🏆 Score: 8.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 8.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.42.0 (2026-07-02)
 
@@ -282,7 +306,7 @@ Hexai, the AI addition for your Helix Editor (https://helix-editor.com) .. Other
 
 ---
 
-### 13. comicforge
+### 14. comicforge
 
 * 💻 Languages: Go (99.3%), YAML (0.7%)
 * 📚 Documentation: Markdown (96.2%), Text (3.8%)
@@ -291,7 +315,7 @@ Hexai, the AI addition for your Helix Editor (https://helix-editor.com) .. Other
 * 📄 Lines of Documentation: 1074
 * 🏷️ Tags: 2
 * 📅 Development Period: 2026-04-19 to 2026-09-03
-* 🏆 Score: 7.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 6.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.1.1 (2026-08-22)
 
@@ -304,7 +328,27 @@ ComicForge turns a vocabulary file into a generated comic package. It uses Gemin
 
 ---
 
-### 14. fastforge
+### 15. snonux
+
+* 💻 Languages: JSON (35.8%), JavaScript (28.4%), Go (23.3%), CSS (12.6%)
+* 📚 Documentation: Text (80.4%), Markdown (19.6%)
+* 📊 Commits: 125
+* 📈 Lines of Code: 24302
+* 📄 Lines of Documentation: 1174
+* 🏷️ Tags: 33
+* 📅 Development Period: 2026-04-06 to 2026-08-02
+* 🏆 Score: 5.5 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.19.3 (2026-08-02)
+
+
+**WIP** - A microblog generator project
+
+=> https://github.com/snonux/snonux View on GitHub
+
+---
+
+### 16. fastforge
 
 * 💻 Languages: C (94.7%), C/C++ (3.8%), JavaScript (0.8%), Make (0.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -313,7 +357,7 @@ ComicForge turns a vocabulary file into a generated comic package. It uses Gemin
 * 📄 Lines of Documentation: 271
 * 🏷️ Tags: 7
 * 📅 Development Period: 2026-04-06 to 2026-08-16
-* 🏆 Score: 5.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v1.4.0 (2026-08-14)
 
@@ -326,27 +370,7 @@ FastForge is a Pebble watchapp for intermittent fasting tracking, built with the
 
 ---
 
-### 15. snonux
-
-* 💻 Languages: JSON (35.8%), JavaScript (28.4%), Go (23.3%), CSS (12.6%)
-* 📚 Documentation: Text (80.4%), Markdown (19.6%)
-* 📊 Commits: 125
-* 📈 Lines of Code: 24302
-* 📄 Lines of Documentation: 1174
-* 🏷️ Tags: 33
-* 📅 Development Period: 2026-04-06 to 2026-08-02
-* 🏆 Score: 5.8 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: MIT
-* 🏷️ Latest Release: v0.19.3 (2026-08-02)
-
-
-**WIP** - A microblog generator project
-
-=> https://github.com/snonux/snonux View on GitHub
-
----
-
-### 16. foo.zone
+### 17. foo.zone
 
 * 💻 Languages: XML (98.4%), Shell (1.3%), Go (0.3%)
 * 📚 Documentation: Text (86.4%), Markdown (13.6%)
@@ -355,7 +379,7 @@ FastForge is a Pebble watchapp for intermittent fasting tracking, built with the
 * 📄 Lines of Documentation: 176
 * 🏷️ Tags: 0
 * 📅 Development Period: 2021-04-29 to 2026-08-04
-* 🏆 Score: 5.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -367,7 +391,7 @@ Each format is in it's own branch in this repository. E.g.:
 
 ---
 
-### 17. gt
+### 18. gt
 
 * 💻 Languages: Go (97.7%), Shell (2.0%), YAML (0.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -376,7 +400,7 @@ Each format is in it's own branch in this repository. E.g.:
 * 📄 Lines of Documentation: 4351
 * 🏷️ Tags: 7
 * 📅 Development Period: 2025-11-25 to 2026-05-25
-* 🏆 Score: 5.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.5.1 (2026-05-25)
 
@@ -389,31 +413,6 @@ A simple AI-engineered command-line percentage calculator written in Go. No fron
 
 ---
 
-### 18. gonf
-
-* 💻 Languages: Go (100.0%)
-* 📚 Documentation: Markdown (99.3%), Text (0.7%)
-* 📊 Commits: 28
-* 📈 Lines of Code: 3373
-* 📄 Lines of Documentation: 136
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-07-04 to 2026-07-09
-* 🏆 Score: 5.0 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-=> showcase/gonf/image-1.svg gonf screenshot
-
-**gonf** is a pure-Go, KISS-style configuration-management tool in the spirit of Puppet/Chef but written entirely in Go with no external DSL or runtime. You declare desired system state directly in Go using a small, declarative API — `File`, `Dir`, `Link`, `Package` (and their `No*`/`IsAbsent` counterparts) — passing functional options like `WithContent`, `WithMode`, `WithSource`, `WithPrune`, `IsLatest`, etc. A single `api.Apply()` then reconciles every declared resource against the actual filesystem/package state.
-
-Architecturally it's a clean three-layer design: a public `api` package exposes the resource constructors and `Apply` entry point; an `internal/resource` package provides a thread-safe **repository** that registers resources by unique ID and topologically sorts them (with circular-dependency detection) before invoking each resource's `Applier`; and per-type packages (`file`, `dir`, `link`, `pkg`) implement the concrete reconciliation logic. Options are decoupled from resources via small capability interfaces (`Moded`, `Sourced`, `Contented`, `Prunable`, `Latestable`, `Linkable`, …), so new resource types or options can be added without touching existing code. A `cmd/gonf` binary wires it together and currently runs an `examples` configuration as a demonstration.
-
-=> https://codeberg.org/snonux/gonf View on Codeberg
-=> https://github.com/snonux/gonf View on GitHub
-
----
-
 ### 19. ior
 
 * 💻 Languages: Go (90.2%), C (8.9%), Shell (0.4%), JSON (0.2%), C/C++ (0.2%), Docker (0.1%)
@@ -423,7 +422,7 @@ Architecturally it's a clean three-layer design: a public `api` package exposes 
 * 📄 Lines of Documentation: 3008
 * 🏷️ Tags: 3
 * 📅 Development Period: 2024-01-18 to 2026-05-14
-* 🏆 Score: 4.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.1.0 (2026-05-14)
 
@@ -445,7 +444,7 @@ Architecturally it's a clean three-layer design: a public `api` package exposes 
 * 📄 Lines of Documentation: 1075
 * 🏷️ Tags: 18
 * 📅 Development Period: 2013-03-22 to 2026-08-13
-* 🏆 Score: 4.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.6.0 (2026-08-13)
 
@@ -465,7 +464,7 @@ Architecturally it's a clean three-layer design: a public `api` package exposes 
 * 📄 Lines of Documentation: 400
 * 🏷️ Tags: 43
 * 📅 Development Period: 2025-07-14 to 2026-06-18
-* 🏆 Score: 4.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.29.3 (2026-06-18)
 
@@ -487,7 +486,7 @@ Architecturally it's a clean three-layer design: a public `api` package exposes 
 * 📄 Lines of Documentation: 6954
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-04-28 to 2026-05-23
-* 🏆 Score: 3.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -498,7 +497,27 @@ Player is an opinionated KISS web media player. It is designed to be simple, lig
 
 ---
 
-### 23. hypr
+### 23. foostore
+
+* 💻 Languages: Go (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 130
+* 📈 Lines of Code: 10592
+* 📄 Lines of Documentation: 162
+* 🏷️ Tags: 12
+* 📅 Development Period: 2018-05-26 to 2026-04-29
+* 🏆 Score: 3.3 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.8.1 (2026-04-29)
+
+
+> **🚧 PRE-ALPHA SOFTWARE:** This project is in active early development, unstable, and intended for personal use. Expect bugs, breaking changes, missing safeguards, and possible data loss. Backward compatibility and upgrade paths are not guaranteed. Use at your own risk.
+
+=> https://github.com/snonux/foostore View on GitHub
+
+---
+
+### 24. hypr
 
 * 💻 Languages: TypeScript (51.6%), Ruby (32.9%), JSON (8.1%), Shell (4.1%), TOML (3.4%)
 * 📚 Documentation: Markdown (100.0%)
@@ -507,7 +526,7 @@ Player is an opinionated KISS web media player. It is designed to be simple, lig
 * 📄 Lines of Documentation: 2948
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-03-21 to 2026-07-30
-* 🏆 Score: 3.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -521,47 +540,7 @@ Runs two A100 VMs concurrently — each serving a different model — with [Pi](
 
 ---
 
-### 24. foostore
-
-* 💻 Languages: Go (100.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 130
-* 📈 Lines of Code: 10592
-* 📄 Lines of Documentation: 162
-* 🏷️ Tags: 12
-* 📅 Development Period: 2018-05-26 to 2026-04-29
-* 🏆 Score: 3.4 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.8.1 (2026-04-29)
-
-
-> **🚧 PRE-ALPHA SOFTWARE:** This project is in active early development, unstable, and intended for personal use. Expect bugs, breaking changes, missing safeguards, and possible data loss. Backward compatibility and upgrade paths are not guaranteed. Use at your own risk.
-
-=> https://github.com/snonux/foostore View on GitHub
-
----
-
-### 25. irregular.ninja
-
-* 💻 Languages: Config (100.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 21
-* 📈 Lines of Code: 112
-* 📄 Lines of Documentation: 48
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-06-15 to 2026-07-18
-* 🏆 Score: 3.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-The architecture is straightforward: source photos live outside the repo (referenced via symlinks), and `just` recipes invoke `shuriken.sh` to transform them into static albums. This keeps the repo lean while making builds reproducible and easy to automate—just run `just all` to regenerate both sites, or target a single album individually.
-
-=> https://github.com/snonux/irregular.ninja View on GitHub
-
----
-
-### 26. gogios
+### 25. gogios
 
 * 💻 Languages: Go (98.9%), JSON (0.6%), YAML (0.5%)
 * 📚 Documentation: Markdown (96.7%), Text (3.3%)
@@ -570,7 +549,7 @@ The architecture is straightforward: source photos live outside the repo (refere
 * 📄 Lines of Documentation: 610
 * 🏷️ Tags: 14
 * 📅 Development Period: 2023-04-17 to 2026-08-13
-* 🏆 Score: 3.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.4.5 (2026-08-13)
 
@@ -584,7 +563,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 
 ---
 
-### 27. loadbars
+### 26. loadbars
 
 * 💻 Languages: Go (92.8%), Shell (7.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -593,7 +572,7 @@ Gogios is a lightweight and minimalistic monitoring tool not designed for large-
 * 📄 Lines of Documentation: 328
 * 🏷️ Tags: 38
 * 📅 Development Period: 2010-11-05 to 2026-03-02
-* 🏆 Score: 3.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.11.1 (2026-02-17)
 
@@ -609,6 +588,26 @@ Architecturally, the Go binary embeds the remote monitoring script at build time
 
 ---
 
+### 27. irregular.ninja
+
+* 💻 Languages: Config (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 21
+* 📈 Lines of Code: 112
+* 📄 Lines of Documentation: 48
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-06-15 to 2026-07-18
+* 🏆 Score: 2.8 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+The architecture is straightforward: source photos live outside the repo (referenced via symlinks), and `just` recipes invoke `shuriken.sh` to transform them into static albums. This keeps the repo lean while making builds reproducible and easy to automate—just run `just all` to regenerate both sites, or target a single album individually.
+
+=> https://github.com/snonux/irregular.ninja View on GitHub
+
+---
+
 ### 28. ds-sim
 
 * 💻 Languages: Java (98.6%), Shell (0.9%), CSS (0.4%)
@@ -618,7 +617,7 @@ Architecturally, the Go binary embeds the remote monitoring script at build time
 * 📄 Lines of Documentation: 3103
 * 🏷️ Tags: 2
 * 📅 Development Period: 2008-05-15 to 2026-03-30
-* 🏆 Score: 2.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: 1.1.0 (2026-03-27)
 
@@ -638,7 +637,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 * 📈 Lines of Code: 736
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-05-03 to 2026-05-04
-* 🏆 Score: 2.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -701,7 +700,7 @@ This is the source code of my personal internet site and blog engine. All conten
 * 📄 Lines of Documentation: 778
 * 🏷️ Tags: 3
 * 📅 Development Period: 2024-12-05 to 2026-03-02
-* 🏆 Score: 1.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.1.1 (2026-03-01)
 
@@ -746,7 +745,7 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 * 📄 Lines of Documentation: 477
 * 🏷️ Tags: 17
 * 📅 Development Period: 2024-05-04 to 2026-07-05
-* 🏆 Score: 1.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.3.1 (2026-07-05)
 
@@ -800,27 +799,7 @@ A simple command-line tool to track time spent on tasks. It has been primarily c
 
 ---
 
-### 37. log4jbench
-
-* 💻 Languages: Java (78.9%), XML (21.1%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 4
-* 📈 Lines of Code: 774
-* 📄 Lines of Documentation: 119
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-01-09 to 2026-01-09
-* 🏆 Score: 1.3 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: MIT
-* 🧪 Status: Experimental (no releases yet)
-
-
-A minimal Java tool to benchmark Log4j2 logging throughput with configurable concurrent threads and various logging configurations.
-
-=> https://github.com/snonux/log4jbench View on GitHub
-
----
-
-### 38. foostats
+### 37. foostats
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -838,6 +817,26 @@ A privacy-respecting web analytics tool for OpenBSD that processes HTTP/HTTPS an
 
 => https://codeberg.org/snonux/foostats View on Codeberg
 => https://github.com/snonux/foostats View on GitHub
+
+---
+
+### 38. log4jbench
+
+* 💻 Languages: Java (78.9%), XML (21.1%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 4
+* 📈 Lines of Code: 774
+* 📄 Lines of Documentation: 119
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-01-09 to 2026-01-09
+* 🏆 Score: 1.3 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🧪 Status: Experimental (no releases yet)
+
+
+A minimal Java tool to benchmark Log4j2 logging throughput with configurable concurrent threads and various logging configurations.
+
+=> https://github.com/snonux/log4jbench View on GitHub
 
 ---
 
@@ -1355,31 +1354,7 @@ playground: source code repository.
 
 ---
 
-### 62. awksite
-
-* 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
-* 📚 Documentation: Markdown (50.0%), Text (50.0%)
-* 📊 Commits: 3
-* 📈 Lines of Code: 122
-* 📄 Lines of Documentation: 12
-* 🏷️ Tags: 1
-* 📅 Development Period: 2011-01-27 to 2026-03-07
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.2 (2011-01-27)
-
-⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
-
-Awksite is a minimal CGI application written entirely in GNU AWK that generates dynamic HTML pages using a simple template engine. It reads key-value pairs from a configuration file (`awksite.conf`), where values can be static strings or shell commands (prefixed with `!`), then substitutes `%%key%%` placeholders in an HTML template file with the corresponding values. It also supports a `!sort` directive to insert sorted file contents. The entire runtime is a single 88-line AWK script, making it incredibly lightweight and portable across any Unix system with GNU AWK.
-
-It's useful for quickly standing up simple dynamic websites—like server status pages—without needing a full programming language runtime or web framework. The architecture is straightforward: `index.cgi` reads the config, emits an HTTP header, and iterates over the template line by line, recursively resolving any `%%placeholder%%` tags by looking up values (or executing shell commands) from the config.
-
-=> https://codeberg.org/snonux/awksite View on Codeberg
-=> https://github.com/snonux/awksite View on GitHub
-
----
-
-### 63. japi
+### 62. japi
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1400,6 +1375,30 @@ DEPRECATED
 
 => https://codeberg.org/snonux/japi View on Codeberg
 => https://github.com/snonux/japi View on GitHub
+
+---
+
+### 63. awksite
+
+* 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
+* 📚 Documentation: Markdown (50.0%), Text (50.0%)
+* 📊 Commits: 3
+* 📈 Lines of Code: 122
+* 📄 Lines of Documentation: 12
+* 🏷️ Tags: 1
+* 📅 Development Period: 2011-01-27 to 2026-03-07
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.2 (2011-01-27)
+
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
+
+Awksite is a minimal CGI application written entirely in GNU AWK that generates dynamic HTML pages using a simple template engine. It reads key-value pairs from a configuration file (`awksite.conf`), where values can be static strings or shell commands (prefixed with `!`), then substitutes `%%key%%` placeholders in an HTML template file with the corresponding values. It also supports a `!sort` directive to insert sorted file contents. The entire runtime is a single 88-line AWK script, making it incredibly lightweight and portable across any Unix system with GNU AWK.
+
+It's useful for quickly standing up simple dynamic websites—like server status pages—without needing a full programming language runtime or web framework. The architecture is straightforward: `index.cgi` reads the config, emits an HTTP header, and iterates over the template line by line, recursively resolving any `%%placeholder%%` tags by looking up values (or executing shell commands) from the config.
+
+=> https://codeberg.org/snonux/awksite View on Codeberg
+=> https://github.com/snonux/awksite View on GitHub
 
 ---
 
@@ -1726,29 +1725,7 @@ VS-Sim is an open source simulator programmed in Java for distributed systems. V
 
 ---
 
-### 78. perl-poetry
-
-* 💻 Languages: Perl (100.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 2
-* 📈 Lines of Code: 191
-* 📄 Lines of Documentation: 8
-* 🏷️ Tags: 0
-* 📅 Development Period: 2014-03-24 to 2014-03-24
-* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
-
-Here you find some Poetry written in Perl.
-
-=> https://codeberg.org/snonux/perl-poetry View on Codeberg
-=> https://github.com/snonux/perl-poetry View on GitHub
-
----
-
-### 79. fype
+### 78. fype
 
 * 💻 Languages: C (72.1%), C/C++ (20.7%), HTML (5.7%), Make (1.5%)
 * 📚 Documentation: Text (71.3%), LaTeX (28.7%)
@@ -1767,6 +1744,28 @@ Here you find some Poetry written in Perl.
 
 => https://codeberg.org/snonux/fype View on Codeberg
 => https://github.com/snonux/fype View on GitHub
+
+---
+
+### 79. perl-poetry
+
+* 💻 Languages: Perl (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 2
+* 📈 Lines of Code: 191
+* 📄 Lines of Documentation: 8
+* 🏷️ Tags: 0
+* 📅 Development Period: 2014-03-24 to 2014-03-24
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
+
+Here you find some Poetry written in Perl.
+
+=> https://codeberg.org/snonux/perl-poetry View on Codeberg
+=> https://github.com/snonux/perl-poetry View on GitHub
 
 ---
 
