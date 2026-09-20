@@ -69,6 +69,14 @@ My daily-driver keyboard at the desk. Concave, ortholinear, split — it cured a
 
 The travel keyboard. Same ergonomic idea as the Kinesis — concave ortholinear split — but much lighter, with low-profile Red Pro switches. I mapped it as close to the Kinesis layout as possible so I can swap between them without relearning muscle memory. Bubble wrap beats the bulky official case in a rucksack.
 
+## Kensington SlimBlade Pro
+
+=> gadgets/kensington-slimblade-pro.jpg Kensington SlimBlade Pro trackball
+=> https://www.kensington.com/p/products/electronic-control-solutions/trackball-products/slimblade-pro-trackball/ Official product page
+=> https://snonux.foo/#post-2026-09-19-093831 snonux.foo microblog note
+
+My favourite “mouse” on the main desk now. Finger-operated trackball, twist-to-scroll, and it barely moves on the desk — which is the whole point when you're already parked at a Kinesis. Wireless when I want it, USB when I don't.
+
 ## Looking for more?
 
 If a gadget isn't on this page yet, it's probably still on my wishlist.
