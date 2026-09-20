@@ -12,6 +12,9 @@ A few months in, the setup has grown into a small toolchain I call `hypr`. One R
 
 This post walks through the setup: what runs where, how the inference actually works (prefill, decode, KV cache, prefix caching), the numbers I see in practice, and where the "should I buy hardware" question stands now.
 
+Birgitta Böckeler's memo in the Fowler "Exploring Gen AI" series is useful related reading — a factor checklist for whether local models are viable for agentic coding. Her stack is Apple Silicon + LM Studio; mine is rented A100 + vLLM. Same problem space, different boxes. The factors still map.
+
+=> https://martinfowler.com/articles/exploring-gen-ai/local-models-for-coding-factors.html Viability of local models for coding (Birgitta Böckeler / Martin Fowler)
 => https://github.com/snonux/hypr hypr on GitHub
 => https://pi.dev Pi coding agent
 
@@ -21,8 +24,10 @@ This post walks through the setup: what runs where, how the inference actually w
 
 * ⇢ Running my own LLMs for coding: Hyperstack, vLLM and the pi coding agent
 * ⇢ ⇢ The setup at a glance
+* ⇢ ⇢ What actually decides if this works
 * ⇢ ⇢ The VMs and the models
 * ⇢ ⇢ ⇢ Why this is the daily driver
+* ⇢ ⇢ ⇢ Reasoning: leave it on or turn it off?
 * ⇢ ⇢ Inside the VM
 * ⇢ ⇢ How the inference actually works
 * ⇢ ⇢ ⇢ CUDA: the layer under everything
@@ -30,7 +35,10 @@ This post walks through the setup: what runs where, how the inference actually w
 * ⇢ ⇢ ⇢ Prefix caching: the big one for agentic coding
 * ⇢ ⇢ How the pi coding agent connects
 * ⇢ ⇢ ⇢ The extensions
+* ⇢ ⇢ ⇢ What the extensions cost
+* ⇢ ⇢ ⇢ Tool calling in practice
 * ⇢ ⇢ The numbers: tokens per second and friends
+* ⇢ ⇢ What I trust it with (and what I don't)
 * ⇢ ⇢ What it costs, and do I buy the hardware?
 * ⇢ ⇢ Wrapping up
 
@@ -66,6 +74,22 @@ The WireGuard tunnel is the interesting bit. A single `wg1` interface on the ope
 * `watch` — live dashboard: GPU, throughput, KV cache per VM
 * `model switch <preset>` — hot-swap the model on a running VM
 
+## What actually decides if this works
+
+Short version, before the walkthrough — what actually decides whether a rented (or owned) box is usable as a coding-agent backend. Not marketing specs. The stuff that bites you mid-session:
+
+* VRAM — weights plus the KV cache pool. If the weights don't fit, you crash or crawl.
+* Memory bandwidth — decode is bandwidth-bound. "Fits" and "feels fast" are different questions.
+* Parameter count vs quantization — bigger usually helps until the model eats the card mid-conversation.
+* MoE vs dense — huge total params, small active set; better quality per GB when it works.
+* Context vs weights — every token of context costs VRAM the weights already claimed.
+* Reasoning cost — thinking tokens burn latency and context; sometimes you want them off.
+* Tool-calling reliability — without working tools you are back to copy-paste chat.
+* Harness overhead — every extension and tool schema eats scarce context.
+* Runtime — plug-and-play vs knobs and throughput. hypr picks the second.
+
+The rest of the post digs into each of these for this stack.
+
 ## The VMs and the models
 
 Both VMs are `n3-A100x1` flavors: one A100 80 GB PCIe, 28 vCPUs, 120 GB RAM, in a Canadian region. When the A100 flavor is sold out, the config flips to `n3-H100x1` — 80 GB as well, and everything else stays the same.
@@ -92,6 +116,12 @@ Two details:
 * Qwen3.8 is brand new, so VM1 runs the `vllm/vllm-openai:nightly` image until stable vLLM ships support for the architecture.
 * The big 120B MoE (Nemotron-3-Super) has to have its context capped at 32K and prefix caching disabled to fit on a single A100 — the weights alone take most of the 80 GB. That tension between model size and context length is the core of VRAM budgeting (more below).
 
+A few notes on how to read that list. Several presets are MoEs — Nemotron-3-Super, `qwen36-35b-a3b`, `qwen3-coder-30b`. MoE means a huge total parameter count with only a small active set per token, so you get denser-model quality for less of the card. That's why `qwen36-35b-a3b` sits at ~18 GB with 3B active, and why Nemotron can be 120B total with 12B active and still fit (barely) once you cap context.
+
+Quantization is the other half of the same story. FP8 is my daily driver on the 27B — good quality, ~45 GB, room left for a long context. AWQ-4bit is how the rest of the list packs into leftover VRAM; you trade some quality for footprint and speed. I have not tried QAT yet.
+
+And size as a viability factor, not a brag: bigger is usually better until it crashes mid-conversation. The Nemotron preset is the extreme case on this card — weights eat most of the 80 GB, context shrinks to 32K, prefix caching goes off. Same lesson Böckeler got from stuffing an 80B into 64 GB of unified memory, told from the other direction.
+
 ### Why this is the daily driver
 
 The official model card benchmarks Qwen3.8-27B against its predecessor, Qwen's own closed-weight Qwen3.7-Plus, a 30B-class competitor, and the frontier Opus 4.6 Max. The coding-relevant rows:
@@ -114,6 +144,10 @@ The fine print: these are vendor-reported numbers from the official model card, 
 => https://simonwillison.net/2026/Aug/16/qwen-38-27b/ Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things (Simon Willison)
 
 He even drove pi with it — the same agent this post is about, the same model in a 4-bit quant, on different hardware.
+
+### Reasoning: leave it on or turn it off?
+
+Willison's "wildly overthinking" note matches what I see — Qwen3.8 defaults to `xhigh` reasoning effort and will happily burn a pile of "Wait… Actually… But wait…" tokens before touching a file. I have not done a clean on-vs-off bake-off on my own tasks yet, so I will not pretend I have numbers. What I can say: for agent turns where I already know the shape of the change, the thinking is often just latency and context tax. Worth a dedicated experiment later; for now I live with the default and interrupt when it spirals.
 
 ## Inside the VM
 
@@ -196,6 +230,8 @@ This is also the main reason I moved from Ollama to vLLM:
 
 Ollama is fine for quick experiments. For an agent that sends 100K+ token contexts dozens of times a day, recomputing the whole prefix every turn is painful; computing the ~15% that changed is usable.
 
+One more thing on UX: vLLM + hypr wins on throughput and knobs. It loses on "download and go". Ollama is still nicer if you just want a model serving in two minutes. hypr is deliberately not that — that's part of the rent-vs-buy trade.
+
 ## How the pi coding agent connects
 
 Pi is the frontend. It speaks the OpenAI chat completions API, and vLLM serves exactly that on `:11434` — so pi points straight at the VM over the tunnel. No translation proxy in between.
@@ -235,6 +271,14 @@ Pi ships deliberately minimal — no permission popups, no plan mode, no built-i
 The long tail is smaller: `nemotron-tool-repair` fixes the malformed tool calls the Nemotron models occasionally emit, and `prompt-history` quietly records the last 500 prompts.
 
 For the record: `handoff`, `inline-bash`, `session-name`, and `reload-runtime` are upstream pi examples installed locally; the rest are my own.
+
+### What the extensions cost
+
+Every tool schema and skill description lands in the system prompt. I have not measured the exact token bill of the full extension set, but it is not free — and on a rented box with a smaller AWQ preset, context is already the scarce resource. Practical rule of thumb I am following: on the 27B FP8 daily driver the full set is fine; on the ~18 GB AWQ presets I start with fewer tools and add them when I need them. Fewer tools also means fewer chances for a small model to pick the wrong one or mangle the args.
+
+### Tool calling in practice
+
+I have not run a systematic tool-call bake-off across the preset list. What I do know from daily use: the Nemotron models occasionally emit malformed tool calls, and that is why `nemotron-tool-repair` exists — it patches the broken ones so the session can continue instead of stalling. On Qwen3.8 I rarely need that crutch; when a turn goes sideways I am more often fighting overthinking than broken JSON. No failure-rate table from me until I actually measure one. Böckeler's caveat still stands though: without reliable tool calls you fall back to copy-paste chat, and that is exactly the difference between an agent and a chatbot with a terminal pasted in.
 
 ## The numbers: tokens per second and friends
 
@@ -287,9 +331,19 @@ The engine log kept all of it: 474 samples from a single ~80 minute work morning
 
 One more thing I did not expect: three pi agents against the same VM at once. Three tmux panes, three conversations, all Qwen3.8 27B FP8 on one A100, and I noticed no slowdown on any of them. vLLM continuous-batches concurrent requests — while one agent waits on its next line, the GPU is decoding the other two — so the `Running:` counter in the engine log just climbs, and each conversation keeps its own slice of the KV cache pool. The morning's log shows all three running at the same time around 07:30, with total decode throughput pushing ~100 tok/s and the KV cache never above ~32% — three full agent conversations still only fill the pool about a third of the way. Apparently this hardware parallelizes inference pretty well.
 
+One caveat on all of these morning numbers: a lot of factors interact. Prompt length, whether the prefix cache is warm, how many agents share the GPU, whether reasoning is chewing tokens, which extensions are loaded — change any of those and the same model on the same card looks different. Same lesson Böckeler opens with. Treat the figures as one morning's snapshot, not a leaderboard.
+
 Per-turn latency for a full agent step (prompt in, answer out) is roughly 10–15 seconds with vLLM on this hardware, versus ~28 seconds I measured with Ollama at 32K context — and Ollama was truncating my context at 32K while vLLM runs the full 262K.
 
 Startup is the other number that matters for the "rent, don't buy" math: with a warm model cache, container start to ready takes about five minutes (weight load is a few seconds; the rest is torch.compile and CUDA graph capture). Cold, with a fresh ~45 GB model download, 10+ minutes. The provisioner polls the API for up to 30 minutes and treats the first successful response as done.
+
+## What I trust it with (and what I don't)
+
+The `gt` calculator was the proof case — a real project built almost entirely on this stack. Day to day I also use it for ops babysitting via `/loop` and `/watch`: check the VM, watch a build, poke me when something smells wrong. That is work I trust it with.
+
+Vendor SWE-bench numbers are not my session success rate. Hit-and-miss still happens. When a turn starts looping or the model gets lost in its own plan, I bounce the hard bit to a hosted frontier model and bring the answer back. I am not going to invent a neat trust inventory of task types I have not actually classified.
+
+Bottom line, same place Böckeler lands: powerful and usable for a tinkerer. Not yet invisible infrastructure you can forget about.
 
 ## What it costs, and do I buy the hardware?
 
@@ -300,8 +354,10 @@ Hyperstack bills per minute. The relevant prices (as of September 2026):
 
 So one VM running 24/7 costs around $1,000/month; two VMs around $1,900. That sounds expensive until you remember the alternative I was actually considering:
 
-* RTX 5090 32 GB — $1,999 MSRP, $3,000–5,000 in the real world of 2026. But 32 GB is a hard ceiling: the 27B FP8 model with its 262K context does not fit, and anything 70B+ is out of the question. I would be buying a card that cannot run the models I actually want to test.
-* DGX Spark, 128 GB unified memory — $3,999 launch price (closer to $5,000 in 2026, memory shortages being what they are). It can run 200B inference, but the memory bandwidth is laptop-class. It's a fascinating machine for fitting big models, not for decoding them fast.
+* RTX 5090 32 GB — $1,999 MSRP, $3,000–5,000 in the real world of 2026. But 32 GB is a hard ceiling: the 27B FP8 model with its 262K context does not fit, and anything 70B+ is out of the question. I would be buying a card that cannot run the models I actually want to test. Even when a model does fit, consumer cards usually bring less memory bandwidth than a rented A100 — so "it loads" is not the same as "it feels fast" while the agent is decoding.
+* DGX Spark, 128 GB unified memory — $3,999 launch price (closer to $5,000 in 2026, memory shortages being what they are). It can run 200B inference, but the memory bandwidth is laptop-class. It's a fascinating machine for fitting big models, not for decoding them fast. Same bandwidth lesson as above, just louder.
+
+If you do buy hardware instead, watch the stack too. A Mac or a DGX Spark box mostly lives in GGUF / MLX / LM Studio land. hypr is the NVIDIA / Hugging Face / vLLM path. The models overlap; the weight formats and runtimes don't. Mixing the two in your head is a good way to buy the wrong box.
 
 The rented A100, meanwhile, runs everything on the preset list — including the 120B MoE — for $1.35 an hour, and costs me exactly zero when I am not using it. The `gt` project ran on exactly this setup, and its whole GPU bill is trivial next to what the hardware it needed would have cost.
 
