@@ -1,14 +1,28 @@
 # Deploying an IPv6 Test Service on Kubernetes
 
-## Introduction
-
-Deploying a simple IPv6/IPv4 connectivity test application to the f3s Kubernetes cluster. It displays visitors' IP addresses and tells them whether they're connecting via IPv6 or IPv4—useful for testing dual-stack connectivity.
+I deployed a small IPv6/IPv4 test page to the f3s cluster. It shows you your IP address and whether you came in over IPv6 or IPv4, which is handy for checking dual-stack connectivity.
 
 The interesting bit was preserving the original client IP address through multiple reverse proxies: from the OpenBSD relayd frontends, through Traefik ingress, to the Apache CGI backend.
 
 => ./2024-11-17-f3s-kubernetes-with-freebsd-part-1.gmi f3s series
 
-## Architecture Overview
+## Table of Contents
+
+* ⇢ Deploying an IPv6 Test Service on Kubernetes
+* ⇢ ⇢ Request flow
+* ⇢ ⇢ The Application
+* ⇢ ⇢ Docker Image
+* ⇢ ⇢ Kubernetes Deployment
+* ⇢ ⇢ Configuring Traefik to Trust Forwarded Headers
+* ⇢ ⇢ Relayd Configuration
+* ⇢ ⇢ IPv4-Only and IPv6-Only Subdomains
+* ⇢ ⇢ TLS Certificates with Subject Alternative Names
+* ⇢ ⇢ DNS and TLS Deployment
+* ⇢ ⇢ Testing
+* ⇢ ⇢ W3C Compliant HTML
+* ⇢ ⇢ Summary
+
+## Request flow
 
 The request flow looks like this:
 
@@ -119,13 +133,13 @@ http protocol "https" {
 
 ## IPv4-Only and IPv6-Only Subdomains
 
-To properly test IPv4 and IPv6 connectivity separately, three hostnames are configured:
+To test IPv4 and IPv6 separately, I set up three hostnames:
 
 * ipv6test.f3s.buetow.org - Dual stack (A + AAAA records)
 * ipv4.ipv6test.f3s.buetow.org - IPv4 only (A record only)
 * ipv6.ipv6test.f3s.buetow.org - IPv6 only (AAAA record only)
 
-The NSD zone template dynamically generates the correct record types:
+The NSD zone template picks the record types from the hostname prefix:
 
 ```perl
 <% for my $host (@$f3s_hosts) {
@@ -141,10 +155,7 @@ The NSD zone template dynamically generates the correct record types:
 <% } -%>
 ```
 
-This ensures:
-* Hosts starting with `ipv6.` get only AAAA records
-* Hosts starting with `ipv4.` get only A records
-* All other hosts get both A and AAAA records
+So `ipv6.` hosts only get AAAA records, `ipv4.` hosts only A records, and everything else gets both.
 
 The Kubernetes ingress handles all three hostnames, routing to the same backend service.
 
@@ -152,7 +163,7 @@ The Kubernetes ingress handles all three hostnames, routing to the same backend 
 
 Since Let's Encrypt validates domains via HTTP, the IPv6-only subdomain (`ipv6.ipv6test.f3s.buetow.org`) cannot be validated directly—Let's Encrypt's validation servers use IPv4. The solution is to include all subdomains as Subject Alternative Names (SANs) in the parent certificate.
 
-The ACME client configuration template dynamically builds the SAN list:
+The ACME client config template builds the SAN list:
 
 ```perl
 <% for my $host (@$acme_hosts) {
@@ -229,10 +240,7 @@ The displayed IP should be the real client IP, not an internal cluster address.
 
 ## W3C Compliant HTML
 
-The CGI script generates valid HTML5 that passes W3C validation. Key considerations:
-
-* Proper DOCTYPE, charset, and lang attributes
-* HTML-escaping command outputs (dig output contains `<<>>` characters)
+The CGI script produces valid HTML5 (the W3C validator is happy). Two things were needed for that: a proper DOCTYPE, charset and lang attribute, and HTML-escaping the command outputs, because dig prints `<<>>`:
 
 ```perl
 sub html_escape {
@@ -252,16 +260,9 @@ You can verify the output passes validation:
 
 ## Summary
 
-Preserving client IP addresses through multiple reverse proxies requires configuration at each layer:
+To keep the real client IP through all the proxies, each layer needs a bit of config: relayd sets `X-Forwarded-For`, Traefik has to trust that header from the relay IPs (`forwardedHeaders.trustedIPs`), and Apache uses `mod_remoteip` to put it back into `REMOTE_ADDR`.
 
-1. **relayd**: Sets `X-Forwarded-For` header
-2. **Traefik**: Trusts headers from known proxy IPs via `forwardedHeaders.trustedIPs`
-3. **Apache**: Uses `mod_remoteip` to set `REMOTE_ADDR` from the header
-
-Additional challenges solved:
-
-* **TLS for IPv6-only hosts**: Use SANs to include all subdomains in a single certificate validated via the dual-stack parent domain
-* **W3C compliance**: HTML-escape all command outputs to handle special characters
+Two other things I ran into: the IPv6-only host can't get its own Let's Encrypt cert, so it rides along as a SAN on the dual-stack parent cert. And the dig output has to be HTML-escaped to keep the HTML valid.
 
 The configuration is managed via GitOps with ArgoCD, including the Traefik HelmChartConfig.
 
@@ -269,6 +270,6 @@ The configuration is managed via GitOps with ArgoCD, including the Traefik HelmC
 => https://github.com/snonux/conf/tree/master/f3s/ipv6test Kubernetes manifests
 => https://github.com/snonux/conf/tree/master/f3s/traefik-config Traefik configuration
 
-E-Mail your comments to paul@paulbias.net :-)
+E-Mail your comments to `paul@nospam.buetow.org` :-)
 
-=> ./index.gmi ← Back to the index
+=> ../ Back to the main site

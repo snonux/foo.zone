@@ -29,8 +29,8 @@ So I wrote `guprecords.raku`, a Raku script which merges the uptime stats of all
 
 Guprecords stands for global uptime records. The code is here:
 
-=> https://codeberg.org/snonux/guprecords Guprecords (Raku)
-=> https://codeberg.org/snonux/goprecords Goprecords (Go)
+=> https://github.com/snonux/guprecords Guprecords (Raku)
+=> https://github.com/snonux/goprecords Goprecords (Go)
 => https://raku.org The Raku Programming Language
 => https://go.dev The Go Programming Language
 

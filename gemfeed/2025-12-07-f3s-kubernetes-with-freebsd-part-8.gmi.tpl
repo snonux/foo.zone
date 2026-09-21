@@ -768,7 +768,8 @@ zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
 
 All ZFS-related configuration files are available on GitHub:
 
-=> https://github.com/snonux/conf
+=> https://github.com/snonux/conf/blob/master/f3s/prometheus/zfs-recording-rules.yaml zfs-recording-rules.yaml on GitHub
+=> https://github.com/snonux/conf/blob/master/f3s/prometheus/zfs-dashboards.yaml zfs-dashboards.yaml on GitHub
 
 ## Monitoring external OpenBSD hosts
 

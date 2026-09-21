@@ -270,7 +270,7 @@ Gogios, as I developed it by myself, isn't part of the OpenBSD base system.
 I use Rexify, a friendly configuration management system that allows automatic deployment and configuration.
 
 => https://www.rexify.org
-=> https://github.com/snonux/conf/tree/master/frontends github.com/snonux/rexfiles/frontends
+=> https://github.com/snonux/conf/tree/master/frontends github.com/snonux/conf/frontends
 
 Rex isn't part of the OpenBSD base system, but I didn't need to install any external software on OpenBSD either as Rex is invoked from my Laptop!
 

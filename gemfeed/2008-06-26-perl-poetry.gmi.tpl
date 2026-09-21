@@ -159,7 +159,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 
 ## More...
 
-Did you like what you saw? Have a look at Codeberg to see my other poems too:
+Did you like what you saw? Have a look at GitHub to see my other poems too:
 
 => https://github.com/snonux/perl-poetry
 

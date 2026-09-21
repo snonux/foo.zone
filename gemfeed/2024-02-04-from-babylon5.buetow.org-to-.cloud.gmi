@@ -145,7 +145,7 @@ Wallabag is a self-hostable "save now - read later" service, and it also comes w
 Anki is a great (the greatest) flash-card learning program. I am currently learning Bulgarian as my 3rd language. There is also an Android app that has an offline mode, and advanced users can also self-host the server `anki-sync-server`. For some reason (not going into the details here), I had to build my own Docker image for the server.
 
 => https://apps.ankiweb.net/
-=> https://github.com/snonux/docker-anki-sync-server
+=> https://github.com/snonux/conf/tree/master/babylon5/docker-start-anki-sync-server
 
 ### `vault.buetow.cloud`
 

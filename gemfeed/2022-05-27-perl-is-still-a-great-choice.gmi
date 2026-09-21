@@ -130,7 +130,7 @@ In most other programming languages, you won't know instantly what's the "basic 
 ## Where do I personally still use perl?
 
 * I use Rexify for my OpenBSD server automation. Rexify is a configuration management system developed in Perl with similar features to Ansible but less bloated. It suits my personal needs perfectly.
-* I have written a couple of smaller to medium-sized Perl scripts which I (mostly) still use regularly. You can find them on my Codeberg page.
+* I have written a couple of smaller to medium-sized Perl scripts which I (mostly) still use regularly. You can find them on my GitHub page.
 * My day-to-day workflow heavily relies on "ack-grep". Ack is a tool developed in Perl aimed at programmers and can be used for quick searches on source code at the command line.
 * I aim to leave my OpenBSD servers as "vanilla" as possible (trying to rely only on the standard/base installation without installing additional software from the packaging system or ports tree). All my scripts are written either Bourne shell or in Perl here. So there is no need to install additional interpreters.
 * Here and there, I drop a Perl one-liner in order to get stuff done (work and personally). A wise Perl Monk would say: "One one-liner a day keeps the troubles away".

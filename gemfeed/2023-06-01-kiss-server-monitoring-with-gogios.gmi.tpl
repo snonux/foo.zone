@@ -4,7 +4,7 @@
 
 Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.
 
-It runs standard Nagios check plugins and is meant for a handful of hosts. In theory, Gogios scales to a couple of thousand checks, though. You can clone it from Codeberg here:
+It runs standard Nagios check plugins and is meant for a handful of hosts. In theory, Gogios scales to a couple of thousand checks, though. You can clone it from GitHub here:
 
 => https://github.com/snonux/gogios
 

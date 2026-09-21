@@ -637,9 +637,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 * 🧪 Status: Experimental (no releases yet)
 
 
-rampage: source code repository.
-
-Rampage source is not published on GitHub (repo missing after Codeberg→GitHub move).
+Rampage was an experimental Go project. The repository is no longer published (missing after the Codeberg→GitHub move; no public archive found).
 
 ---
 
@@ -725,7 +723,9 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 > **🚧 PRE-ALPHA SOFTWARE:** This project is in a pre-alpha state and is intended for my own personal use only. Use at your own risk.
 
-=> https://github.com/snonux/conf/blob/master/f3s/prometheus/epimetheus-dashboard.yaml Related: epimetheus Grafana dashboard in conf (standalone repo unpublished)
+The epimetheus source repository is not published on GitHub. A related Grafana dashboard lives in the conf repo:
+
+=> https://github.com/snonux/conf/blob/master/f3s/prometheus/epimetheus-dashboard.yaml epimetheus-dashboard.yaml in conf
 
 ---
 
