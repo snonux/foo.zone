@@ -148,7 +148,7 @@ int main(void) {
 
 ## 6. Object oriented shell scripts using `ksh`
 
-Experienced software developers are aware that scripting languages like Python, Perl, Ruby, and JavaScript support object-oriented programming (OOP) concepts such as classes and inheritance. However, many might be surprised to learn that the latest version of the Korn shell (Version 93t+) also supports OOP. In ksh93, OOP is implemented using user-defined types:
+Everyone knows that Python, Perl, Ruby and JavaScript do OOP. But did you know that the Korn shell (ksh93t+) does too? It's done through user-defined types:
 
 ```ksh
 #!/usr/bin/ksh93
@@ -212,7 +212,7 @@ func main() {
 
 ## 8. "I am a Teapot" HTTP response code
 
-Defined in 1998 as one of the IETF's traditional April Fools' jokes (RFC 2324), the Hyper Text Coffee Pot Control Protocol specifies an HTTP status code that is not intended for actual HTTP server implementation. According to the RFC, this code should be returned by teapots when asked to brew coffee. This status code also serves as an Easter egg on some websites, such as Google.com's "I'm a teapot" feature. Occasionally, it is used to respond to a blocked request, even though the more appropriate response would be the 403 Forbidden status code.
+RFC 2324 (an IETF April Fools' joke from 1998) defines the Hyper Text Coffee Pot Control Protocol. A teapot should return HTTP 418 when asked to brew coffee. Some sites use it as an Easter egg (Google has one), and some use it for blocked requests where a 403 would be the proper answer.
 
 => https://en.wikipedia.org/wiki/List_of_HTTP_status_codes#418
 

@@ -51,9 +51,9 @@ At the top is the S.M.S.L PL200T, a CD transport with anti-vibration design. It 
 
 => ./my-deskrack/deskrack-cdtransport.jpg CD transport and air-quality monitor on top
 
-A CD transport is not the same as a CD player. A CD player has a built-in DAC (digital-to-analog converter) and outputs analogue audio—you plug it into an amp or active speakers and you're done. A CD transport only reads the disc and outputs a digital signal (e.g. coaxial or optical S/PDIF). It has no DAC. You feed that digital stream into an external DAC, which then does the conversion. The idea is to separate the mechanical part (spinning the disc, reading the pits) from the conversion stage, so you can use one DAC for CDs, streaming, and other sources, and upgrade or swap the transport and the DAC independently.
+A CD transport is not the same as a CD player. A CD player has a built-in DAC (digital-to-analog converter) and outputs analogue audio—you plug it into an amp or active speakers and you're done. A CD transport only reads the disc and outputs a digital signal (e.g. coaxial or optical S/PDIF). It has no DAC. You feed that digital stream into an external DAC, which then does the conversion. This way one DAC serves CDs and streaming, and I can swap the transport or the DAC independently.
 
-In the age of streaming and files, putting on a real CD is still a pleasure. You own the disc and the sound isn't at the mercy of a subscription or a server. You pick an album, put it in, and listen from start to finish—no endless scrolling, no algorithm. The format is fixed (16-bit/44.1 kHz), so what you hear is consistent and often better than heavily compressed streams. And there's something satisfying about the ritual: handling the case, the disc, and the artwork instead of tapping a screen.
+I still like putting on a real CD. You own the disc, you pick an album and listen to it start to finish, and no algorithm gets in the way. And 16-bit/44.1 kHz is often better than a compressed stream anyway.
 
 ### Power and charging: PinePower Desktop + 1U shelf
 
@@ -101,6 +101,6 @@ I have a second setup for high-res listening next to my bed. On the nightstand s
 => https://www.fiio.com Fiio K13 R2R
 => https://www.denon.com Denon AH-D9200
 
-That's the full desk rack: CD transport and air monitor on top, PinePower and charging shelf, switch, then Topping E50 and L50 at the bottom, with the Hifiman Sundara as the main output and the Supernote Nomad sitting next to it. I hope that you found this interesting.
+That's the whole rack. I hope you found this interesting.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)

@@ -56,7 +56,6 @@ Let's begin...
 * ⇢ ⇢ ⇢ IPv6 NAT on OpenBSD gateways
 * ⇢ ⇢ ⇢ Manual OpenBSD interface configuration
 * ⇢ ⇢ ⇢ Verifying dual-stack connectivity
-* ⇢ ⇢ ⇢ Benefits of dual-stack
 * ⇢ ⇢ Happy WireGuard-ing
 * ⇢ ⇢ Managing Roaming Client Tunnels
 * ⇢ ⇢ ⇢ Manual gateway failover configuration
@@ -67,7 +66,7 @@ Let's begin...
 
 ## Introduction
 
-By default, traffic within my home LAN, including traffic inside a k3s cluster, is not encrypted. While it resides in the "secure" home LAN, adopting a zero-trust policy means encryption is still preferable to ensure confidentiality and security. So we decide to secure all the traffic of all f3s participating hosts by building a mesh network:
+By default, traffic within my home LAN, including traffic inside a k3s cluster, is not encrypted. It's in the "secure" home LAN, but I'd rather not trust the LAN (zero trust and all that), so it should be encrypted anyway. So we decide to secure all the traffic of all f3s participating hosts by building a mesh network:
 
 => ./f3s-kubernetes-with-freebsd-part-5/wireguard-full-mesh-with-roaming.svg WireGuard mesh network topology
 
@@ -111,7 +110,7 @@ We won't cover all the details in this blog post, as we only focus on setting up
 
 I have decided to use WireGuard as the VPN technology for this purpose.
 
-WireGuard is a lightweight, modern, and secure VPN protocol designed for simplicity, speed, and strong cryptography. It is an excellent choice due to its minimal codebase, ease of configuration, high performance, and robust security, utilizing state-of-the-art encryption standards. WireGuard is supported on various operating systems, and its implementations are compatible with each other. Therefore, establishing WireGuard VPN tunnels between FreeBSD, Linux, and OpenBSD is seamless. This cross-platform availability makes it suitable for setups like the one described in this blog series.
+WireGuard is a small, modern VPN protocol. The codebase is tiny, the configuration is simple, and it's fast. It's available on FreeBSD, Linux, and OpenBSD, and the implementations talk to each other, which is exactly what I need here.
 
 We could have used Tailscale for an easy to set up and manage the WireGuard network, but the benefits of creating our own mesh network are:
 
@@ -328,7 +327,7 @@ pass in on wg0
 pass in inet proto udp from any to any port 56709
 ```
 
-The NAT rule translates outgoing traffic from the WireGuard network (192.168.2.0/24) to the gateway's public IP. The firewall rules permit WireGuard traffic on the wg0 interface and UDP port 56709. After updating `/etc/pf.conf`, reload the firewall:
+After updating `/etc/pf.conf`, reload the firewall:
 
 ```sh
 blowfish$ doas pfctl -f /etc/pf.conf
@@ -448,7 +447,7 @@ Whereas there are two main sections. One is `[Interface]`, which configures the 
 And in the following, there is one `[Peer]` section for every peer node on the mesh network:
 
 * `PublicKey`: The public key of the remote peer is used to authenticate their identity.
-* `PresharedKey`: An optional symmetric key is used to enhance security (used in addition to PublicKey).
+* `PresharedKey`: An optional extra symmetric key on top of the PublicKey.
 * `AllowedIPs`: IPs or subnets routed through this peer (traffic is allowed to/from these IPs).
 * `Endpoint`: The public IP:port combination of the remote peer for connection.
 * `PersistentKeepalive`: Keeps the tunnel alive by sending periodic packets; used for NAT traversal.
@@ -465,15 +464,13 @@ Without this, we might never have a VPN tunnel open, as the systems in the LAN m
 
 ### Preshared key
 
-In a WireGuard configuration, the PSK (preshared key) is an optional additional layer of symmetric encryption used alongside the standard public key cryptography. It is a shared secret known to both peers that enhances security by requiring an attacker to compromise both the private keys and the PSK to decrypt communication. While optional, using a PSK is better as it strengthens the cryptographic security, mitigating risks of potential vulnerabilities in the key exchange process.
+The PSK (preshared key) is an optional extra symmetric key on top of the public key crypto. Both peers know it, so an attacker would need both the private keys and the PSK to decrypt anything. It's also a hedge against future weaknesses in the key exchange.
 
 So, because it's better, we are using it.
 
 ## Mesh network generator
 
-Manually generating `wg0.conf` files for every peer in a mesh network setup is cumbersome because each peer requires its own unique public/private key pair and a preshared key for each VPN tunnel (resulting in 29 preshared keys for 8 hosts). This complexity scales almost exponentially with the number of peers as the relationships between all peers must be explicitly defined, including their unique configurations such as `AllowedIPs` and `Endpoint` and optional settings like `PersistentKeepalive`. Automating the process ensures consistency, reduces human error, saves considerable time, and allows for centralized management of configuration files.
-
-Instead, a script can handle key generation, coordinate relationships, and generate all necessary configuration files simultaneously, making it scalable and far less error-prone.
+Writing the `wg0.conf` for every peer by hand is cumbersome. Every peer needs its own key pair, every tunnel needs a preshared key (29 of them for 8 hosts), and both ends need matching `AllowedIPs`, `Endpoint` and `PersistentKeepalive` entries. That gets out of hand quickly, so I automated it.
 
 I have written a Ruby script `wireguardmeshgenerator.rb` to do this for our purposes:
 
@@ -667,18 +664,18 @@ hosts:
       - earth
 ```
 
-The file specifies details such as SSH user settings, configuration directories, sudo or reload commands, and IP/domain assignments for both internal LAN-facing interfaces and WireGuard (`wg0`) interfaces. Each host is assigned specific roles, including internal participants and publicly accessible nodes with internet-facing IPs, enabling the creation of a fully connected mesh VPN.
+Per host, the file holds the SSH details (user, config dir, sudo and reload commands) and the IPs and domains of the LAN (or internet) interface and the `wg0` interface. Hosts with an `internet` section are the publicly reachable ones.
 
-Roaming clients: Note the `earth` and `pixel7pro` entries—these are configured differently from the infrastructure hosts. They have no `lan` or `internet` sections, which signals to the generator that they are roaming clients. The `exclude_peers` configuration ensures they only connect to the internet gateways (`blowfish` and `fishfinger`) and are not reachable by LAN hosts. The generator automatically configures these clients with `AllowedIPs = 0.0.0.0/0, ::/0` to route all traffic through the VPN, includes DNS configuration (`1.1.1.1, 8.8.8.8`), and enables `PersistentKeepalive` for NAT traversal.
+The `earth` and `pixel7pro` entries look different: they have no `lan` or `internet` section, which tells the generator that they are roaming clients. `exclude_peers` limits them to the two internet gateways (`blowfish` and `fishfinger`), so the LAN hosts can't reach them. The generator gives them `AllowedIPs = 0.0.0.0/0, ::/0` (route everything through the VPN), DNS servers (`1.1.1.1, 8.8.8.8`), and `PersistentKeepalive` for NAT traversal.
 
 ### `wireguardmeshgenerator.rb` overview
 
 The `wireguardmeshgenerator.rb` script consists of the following base classes:
 
-* `KeyTool`: Manages WireGuard key generation and retrieval. It ensures the presence of public/private key pairs and preshared keys (PSKs). If keys are missing, it generates them using the `wg` tool. It provides methods to read the public/private keys and retrieve or generate a PSK for communication with a peer. The keys are stored in a temp directory on the system from where the generator is run.
+* `KeyTool`: Manages WireGuard key generation and retrieval. If a key pair or a PSK is missing, it generates it with the `wg` tool. It provides methods to read the public/private keys and retrieve or generate a PSK for communication with a peer. The keys are stored in a temp directory on the system from where the generator is run.
 * `PeerSnippet`: A `Struct` representing the configuration for a single WireGuard peer in the mesh. Based on the provided attributes and configuration, it generates the peer's WireGuard configuration, including public key, PSK, allowed IPs, endpoint, and keepalive settings.
 * `WireguardConfig`: This function generates WireGuard configuration files for the specified host in the mesh network. It includes the `[Interface]` section for the host itself and the `[Peer]` sections for all other peers. It can also clean up generated files and directories and create the required directory structure for storing configuration files locally on the system from which the script is run.
-* `InstallConfig`: Handles uploading, installing, and restarting the WireGuard service on remote hosts using SSH and SCP. It ensures the configuration file is uploaded to the remote machine, the necessary directories are present and correctly configured, and the WireGuard service reloads with the new configuration.
+* `InstallConfig`: Uploads the config file to the remote host via SCP, creates the directories if needed, moves the file into place, and reloads the WireGuard service via SSH.
 
 At the end (if you want to see the code for the stuff listed above, go to the Git repo and have a look), we glue it all together in this block:
 
@@ -969,11 +966,11 @@ For the laptop, manually copy the generated configuration:
 > sudo systemctl disable wg-quick@wg0.service  # Prevent auto-start
 ```
 
-The service is disabled from auto-start so the VPN is only active when manually started. This allows selective VPN usage based on need.
+The service stays disabled, so the VPN is only up when I start it by hand.
 
 ## Adding IPv6 support to the mesh
 
-After setting up the IPv4-only mesh network, I decided to add dual-stack IPv6 support to enable more networking capabilities and prepare for the future. All 10 hosts (8 infrastructure + 2 roaming clients) now have both IPv4 and IPv6 addresses on their WireGuard interfaces.
+After the IPv4-only mesh was running, I added IPv6 as well (dual-stack). Mostly to learn, and to be ready when I need it. All 10 hosts (8 infrastructure + 2 roaming clients) now have both IPv4 and IPv6 addresses on their WireGuard interfaces.
 
 ### IPv6 addressing scheme
 
@@ -1001,7 +998,7 @@ fd42:beef:cafe:2::201/64  - pixel7pro.wg0 (roaming phone)
 
 The mesh generator required two modifications to support dual-stack configurations:
 
-**1. Address generation (`address` method)**
+1. Address generation (`address` method):
 
 The generator now outputs multiple `Address` directives when IPv6 is present:
 
@@ -1021,7 +1018,7 @@ def address
 end
 ```
 
-**2. AllowedIPs generation (`peers` method)**
+2. AllowedIPs generation (`peers` method):
 
 For mesh peers, both IPv4 and IPv6 addresses are included in AllowedIPs:
 
@@ -1074,8 +1071,6 @@ up
 !/usr/local/bin/wg setconf wg0 /etc/wireguard/wg0.conf
 ```
 
-Important: The IPv6 address must be specified before the `up` directive. This ensures the interface has both addresses configured before WireGuard peers are loaded.
-
 Apply the configuration:
 
 ```sh
@@ -1103,16 +1098,7 @@ root@r0:~ # ping6 -c 2 fd42:beef:cafe:2::130  # IPv6 to f0
 64 bytes from fd42:beef:cafe:2::130: icmp_seq=2 ttl=64 time=0.909 ms
 ```
 
-The dual-stack configuration is backward compatible—hosts without the `ipv6` field in the YAML configuration will continue to generate IPv4-only configs.
-
-### Benefits of dual-stack
-
-Adding IPv6 to the mesh network provides:
-
-* Future-proofing: Ready for IPv6-only services and networks
-* Compatibility: Dual-stack maintains full IPv4 compatibility
-* Learning: Hands-on experience with IPv6 networking
-* Flexibility: Roaming clients can access both IPv4 and IPv6 internet resources
+Hosts without an `ipv6` field in the YAML still get IPv4-only configs.
 
 ## Happy WireGuard-ing
 
@@ -1300,7 +1286,7 @@ Since roaming clients like `earth` and `pixel7pro` connect on-demand rather than
 
 The default configuration for roaming clients includes both gateways (blowfish and fishfinger) with `AllowedIPs = 0.0.0.0/0, ::/0`. However, WireGuard doesn't automatically failover between multiple peers with identical `AllowedIPs` routes. When both gateways are configured this way, WireGuard uses the first peer with a recent handshake. If that gateway goes down, traffic won't automatically switch to the backup gateway.
 
-To enable manual failover, separate configuration files can be created for roaming clients (earth laptop and pixel7pro phone), each containing only a single gateway peer. This provides explicit control over which gateway handles traffic.
+So for manual failover, I generate two config files per roaming client, each with only one gateway peer. Then I pick the gateway by picking the config.
 
 Configuration files for pixel7pro (phone):
 
@@ -1331,8 +1317,6 @@ Install both configurations:
 sudo cp dist/earth/etc/wireguard/wg0-blowfish.conf /etc/wireguard/
 sudo cp dist/earth/etc/wireguard/wg0-fishfinger.conf /etc/wireguard/
 ```
-
-This approach provides explicit control over which gateway handles roaming client traffic, useful when one gateway needs maintenance or experiences connectivity issues.
 
 ### Starting and stopping on earth (Fedora laptop)
 
@@ -1381,38 +1365,11 @@ earth$ sudo systemctl stop wg-quick@wg0-blowfish.service
 earth$ sudo systemctl start wg-quick@wg0-fishfinger.service
 ```
 
-The services remain `disabled` to prevent auto-start on boot, allowing manual control of when the VPN is active and which gateway to use.
-
 ### Starting and stopping on pixel7pro (Android phone)
 
 On Android using the official WireGuard app, you now have two tunnel profiles (wg0-blowfish and wg0-fishfinger) after importing the QR codes:
 
-Starting a tunnel:
-
-* 1. Open the WireGuard app
-* 2. Tap the toggle switch next to either `wg0-blowfish` or `wg0-fishfinger` tunnel configuration
-* 3. The switch turns blue/green and shows "Active"
-* 4. A key icon appears in the notification bar indicating VPN is active
-* 5. All traffic now routes through the selected gateway
-
-Stopping the tunnel:
-
-* 1. Open the WireGuard app
-* 2. Tap the toggle switch again to disable it
-* 3. The switch turns gray and shows "Inactive"
-* 4. The notification bar key icon disappears
-* 5. Normal internet routing resumes
-
-Switching between gateways:
-
-* 1. Disable the currently active tunnel (e.g., wg0-blowfish)
-* 2. Enable the other tunnel (e.g., wg0-fishfinger)
-* Only enable one tunnel at a time
-
-Quick toggling from notification:
-
-* Pull down the notification shade
-* Tap the WireGuard notification to quickly enable/disable the tunnel without opening the app
+In the WireGuard app, tap the toggle next to `wg0-blowfish` or `wg0-fishfinger` to start that tunnel (a key icon shows up in the notification bar). Tap it again to stop. Only enable one at a time. The WireGuard notification in the shade also works as a quick toggle.
 
 The WireGuard Android app supports automatically activating tunnels based on:
 
@@ -1437,7 +1394,7 @@ Check which gateway is active: Check the transfer statistics with `sudo wg show`
 
 ## Conclusion
 
-Having a mesh network on our hosts is great for securing all the traffic between them for our future k3s setup. A self-managed WireGuard mesh network is better than Tailscale as it eliminates reliance on a third party and provides full control over the configuration. It reduces unnecessary abstraction and "magic," enabling easier debugging and ensuring full ownership of our network.
+All traffic between the f3s hosts is now encrypted, ready for the k3s setup. Doing it myself instead of using Tailscale means no third party, no magic, and I understand every line of the config, which helps when debugging.
 
 Read the next post of this series:
 

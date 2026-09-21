@@ -55,7 +55,7 @@ I connect my Supernote Nomad to my Linux laptop via a USB-C cable. The device is
 
 ### Converting Notes to PDF
 
-To make my notes accessible and shareable, I convert them from the proprietary `.note` format to PDF. For this, I use a fantastic open-source tool called `supernote-tool`. It's not an official tool from Ratta, but it works flawlessly.
+To make my notes accessible and shareable, I convert them from the proprietary `.note` format to PDF. For this, I use the open-source `supernote-tool`. It's not an official Ratta tool, but it works well.
 
 => https://github.com/jya-dev/supernote-tool
 
@@ -111,13 +111,13 @@ One usually updates the software or firmware of the Supernote Nomad via Wi-Fi. H
 
 ## The Writing Experience
 
-The writing feel of the Supernote Nomad is simply great. The combination of the screen's texture and the ceramic nib of the pen creates a feeling that is remarkably close to writing on real paper. The latency is almost non-existent, and the pressure sensitivity allows for a natural and expressive writing experience. It's great to write on, and it makes me want to take more notes.
+Writing on the Nomad feels great. The screen texture plus the ceramic pen nib comes close to real paper, and there's basically no lag. It makes me want to take more notes.
 
 => ./using-supernote-nomad-offline/nomad1.jpg Another picture of the Supernote Nomad
 
 ## Conclusion
 
-The Supernote Nomad has become an additional tool for me. By using it offline, I've created a distraction-free and private note-taking environment. The simple, manual workflow for transferring and converting notes gives me full control over my data, and the writing experience is second to none. If you're looking for a digital notebook that respects your privacy and helps you focus, I highly recommend giving the Supernote Nomad a try with an offline-first approach.
+Used offline, the Nomad gives me a private note-taking device without distractions, and the manual USB workflow means I keep all my data. Recommended, if you want a digital notebook and don't need the cloud.
 
 The Supernote didn't fully replace my traditional paper journals, though. Each of them has its own use case. However, that is outside the scope of this blog post.
 

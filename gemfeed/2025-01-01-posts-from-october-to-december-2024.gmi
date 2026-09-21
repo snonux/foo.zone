@@ -323,7 +323,7 @@ It's the small things, which make Unix like systems, like GNU/Linux, interesting
 
 ### My New Year's resolution is not to start any ...
 
-My New Year's resolution is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.<nil>17491
+My New Year's resolution is not to start any new non-fiction books (or only very few) but to re-read and listen to my favorites, which I read to reflect on and see things from different perspectives. Every time you re-read a book, you gain new insights.
 
 Other related posts:
 

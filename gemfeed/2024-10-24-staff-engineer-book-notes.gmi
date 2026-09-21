@@ -53,7 +53,7 @@ You need to know a bit about a lot of things (infra, security, product, etc.) bu
 
 ## Mentorship and Sponsorship
 
-Mentoring is obvious -- help people grow technically and career-wise. But sponsorship is the one that surprised me: actively advocating for people, creating opportunities for them, pushing them forward. It's not just answering questions, it's putting your reputation behind someone.
+Mentoring is obvious -- help people grow technically and career-wise. But sponsorship is the one that surprised me: actively advocating for people, creating opportunities for them, pushing them forward. You put your reputation behind someone.
 
 ## Managing Up and Across
 
@@ -73,7 +73,7 @@ A lot of the problems you deal with are poorly defined. Nobody knows exactly wha
 
 ## Visible and Invisible Work
 
-A huge chunk of Staff Engineer work is invisible. Aligning teams, influencing decisions, resolving conflicts -- none of that shows up as commits. Larson says you need to get comfortable with that, which I think is genuinely hard for engineers who are used to shipping things.
+A huge chunk of Staff Engineer work is invisible. Aligning teams, influencing decisions, resolving conflicts -- none of that shows up as commits. Larson says you need to get comfortable with that, which is hard for engineers who are used to shipping things.
 
 ## Scaling Yourself
 
@@ -102,7 +102,7 @@ A Staff engineer is, like a Manager, a leader. However, being a Manager is a spe
 
 The more senior you become, the more responsibility you will have to cope with them in less time. Balance your speed of progress with your personal life, don't work late hours and don't skip these personal care events.
 
-Do fewer things but do them better. Everything done will accelerate the organization. Everything else will drag it down—quality over quantity.
+Do fewer things but do them better. Everything done will accelerate the organization. Everything else will drag it down. Quality over quantity.
 
 Don't work at ten things and progress slowly; focus on one thing and finish it.
 

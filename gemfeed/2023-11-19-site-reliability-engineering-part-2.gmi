@@ -25,20 +25,17 @@ This is the second part of my Site Reliability Engineering (SRE) series. I am cu
 ⠀⠀⠀⠀⠀⠀⠴⠶⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠿⠶⠦⠀⠀
 ```
 
-## Striking the Right Balance Between Reliability and Speed
+## Balancing reliability and speed
 
-Site Reliability Engineering is more than just a bunch of best practices or methods. It's a guiding light for engineering teams, helping them navigate the tricky waters of modern software development and system management.
-In the world of software production, there are two big forces that often clash: the push for fast feature releases (velocity) and the need for reliable systems. Traditionally, moving faster meant more risk. SRE helps balance these opposing goals with things like error budgets and SLIs/SLOs. These tools give teams a clear way to measure how much they can push changes without hurting system health. So, the error budget becomes a balancing act, helping teams trade off between innovation and reliability.
+Two forces clash in software production: shipping features fast (velocity) and keeping the system reliable. Traditionally, moving faster meant more risk. SRE balances the two with error budgets and SLIs/SLOs. They tell a team how much they can push changes before it hurts the service.
 
-Finding the right balance in SRE means juggling operations and coding. Ideally, engineers should split their time 50/50 between these tasks. This isn't just a random rule; it highlights how much SRE values both maintaining smooth operations and driving innovation. This way, SREs not only handle today's problems but also prepare for tomorrow's challenges.
+Balance also means juggling operations and coding. Ideally, an SRE splits the time 50/50 between the two. Otherwise, you're only ever fighting today's fires and never get to the work which prevents tomorrow's.
 
-But not all operations tasks are the same. SRE makes a clear distinction between "ops work" and "toil." Ops work is essential for maintaining systems and adds value, while toil is the repetitive, boring stuff that doesn’t. It's super important to recognize and minimize toil because a culture that lets engineers get bogged down in it will kill innovation and growth. The way an organization handles toil says a lot about its operational health and commitment to balance.
+But not all operations tasks are the same. SRE makes a clear distinction between "ops work" and "toil." Ops work is essential for maintaining systems and adds value, while toil is the repetitive, boring stuff that doesn't. Toil has to be recognized and reduced, otherwise engineers drown in it and nothing new gets built. How an organization handles toil says a lot about its health.
 
-A key part of finding operational balance is the tools and processes that SREs use. Great monitoring and observability tools, especially those that can handle lots of complex data, are essential. This isn’t just about having the right tech—it shows that the organization values proactive problem-solving. With systems that can spot potential issues early, SREs can keep things stable while still pushing forward.
+Good monitoring and observability tooling is essential, especially when there's a lot of data. When you can spot issues early, you can keep things stable while still moving forward.
 
-Operational balance isn't just about tech or processes; it's also about people. The well-being of on-call engineers is just as important as the health of the services they manage. Doing postmortems after incidents, having continuous feedback loops, and identifying gaps in tools, skills, or resources all help make sure the human side of operations gets the attention it deserves.
-
-In the end, finding operational balance in SRE is an ongoing journey, not a one-time thing. Companies need to keep reassessing their practices, tools, and especially their culture. When they get this balance right, they can keep innovating without sacrificing the reliability of their systems, leading to long-term success.
+And it's about people. The well-being of the on-call engineers matters as much as the health of the services. Postmortems after incidents and regular feedback about gaps in tools, skills or resources are how the human side gets looked after.
 
 That all sounds pretty idealistic. The reality is that getting the perfect balance is really tough. No system is ever going to be perfect. But hey, we should still strive for it!
 

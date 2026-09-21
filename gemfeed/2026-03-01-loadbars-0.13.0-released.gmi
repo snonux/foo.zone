@@ -28,7 +28,7 @@ Loadbars can connect to hundreds of servers in parallel; the GIF above doesn't d
 
 ## What Loadbars is (and isn't)
 
-Loadbars shows the current state only. It is not a tool for collecting loads and drawing graphs for later analysis. There is no history, no recording, no database. Tools like Prometheus or Grafana require significant setup before producing results. Loadbars lets you observe the current state immediately: one binary, SSH (or local), and you're done.
+Loadbars shows the current state only. It is not a tool for collecting loads and drawing graphs for later analysis. There is no history and no database. Prometheus and Grafana need a lot of setup before they show anything. Loadbars is one binary plus SSH, and you see the current state right away.
 
 ```
 ┌─ Loadbars 0.13.0 ─────────────────────────────────────────┐
@@ -45,61 +45,61 @@ Loadbars shows the current state only. It is not a tool for collecting loads and
 
 * Deployments and rollouts: watch CPU, memory, and network across app servers or nodes while you deploy. Spot the one that isn't coming up or is stuck under load.
 * Load testing: run your load tool against a cluster and see which hosts (or cores) are saturated, whether memory or disk I/O is the bottleneck, and how load spreads.
-* Quick health sweep: no dashboards set up yet? SSH to a handful of hosts and run Loadbars. You get an instant picture of who's busy, who's idle, and who's swapping.
+* Quick health sweep: no dashboards yet? Point Loadbars at a handful of hosts and see who's busy and who's swapping.
 * Comparing hosts: side-by-side bars make it easy to see if one machine is hotter than the rest (e.g. after a config change or migration).
 * Local tuning: run `loadbars --hosts localhost` while you benchmark or stress a single box; the bars and load-average view help correlate activity with what you're doing.
 
 ## What's new since the Perl version
 
-The original Loadbars (Perl + SDL, ~2010–2013) had CPU, memory, network, ClusterSSH, and a config file. The Go rewrite and subsequent releases added the following. Why each one matters:
+The original Loadbars (Perl + SDL, ~2010–2013) had CPU, memory, network, ClusterSSH, and a config file. The Go rewrite added:
 
-* Load average bars: the Perl version had no load average. Now you get 1/5/15-minute load per host. Useful because load average is the classic "how queued is this box" signal — you see saturation and trends at a glance without reading numbers.
+* Load average bars: the Perl version had no load average. Now you get 1/5/15-minute load per host.
 
-* Disk I/O bars: disk was invisible in the Perl version. You now get read/write throughput (and optionally utilization %) per host or per device. Whole-disk devices only (partitions, loop, ram, zram, and device-mapper are excluded). Useful when you need to tell "is this slow because of CPU or because of disk?" — especially with many hosts, one disk-heavy host stands out. Disk smoothing (config diskaverage, hotkeys b/x) lets you tune how much the bars are averaged.
+* Disk I/O bars: disk was invisible in the Perl version. You now get read/write throughput (and optionally utilization %) per host or per device. Whole-disk devices only (partitions, loop, ram, zram, and device-mapper are excluded). Handy to tell whether a box is slow because of CPU or disk. With many hosts, the disk-heavy one stands out. Disk smoothing (config diskaverage, hotkeys b/x) lets you tune how much the bars are averaged.
 
-* Extended peak line on CPU: a 1px line shows max system+user over the last N samples. Useful to see short spikes that the stacked bar might smooth out, so you don't miss bursty load.
+* Extended peak line on CPU: a 1px line shows max system+user over the last N samples. It catches short spikes that the stacked bar might smooth out.
 
-* Tooltips and host highlight: hover the mouse over any bar to see a tooltip with exact values (CPU %, memory, network, load, or disk depending on bar type). The hovered host's bars are highlighted (inverted) so you can tell which host you're over. Useful when you have hundreds of bars and want to read a specific number or confirm which host a bar belongs to.
+* Tooltips and host highlight: hover the mouse over any bar to see a tooltip with exact values (CPU %, memory, network, load, or disk depending on bar type). The hovered host's bars are highlighted (inverted) so you can tell which host you're over.
 
 * GuestNice in CPU bars: CPU bars now show GuestNice as a lime green segment (above Nice). One more breakdown for virtualized or container workloads.
 
 * Version in window title: the default SDL title is "Loadbars <version> (press h for help on stdout)". Override with --title when you need a custom label.
 
-* Global average CPU line (key g): a single red line across all hosts at the fleet-average CPU. Useful when you have hundreds of bars: you instantly see which hosts are above or below average without comparing bar heights in your head.
+* Global average CPU line (key g): a single red line across all hosts at the fleet-average CPU. With hundreds of bars you see at once which hosts are above or below average.
 
-* Global I/O average line (key i): same idea for iowait+IRQ. Useful to spot which hosts are waiting on I/O more than the rest — quick way to find the disk-bound or interrupt-heavy machines.
+* Global I/O average line (key i): same idea for iowait+IRQ, to spot the hosts waiting on I/O more than the rest.
 
-* Host separator lines (key s): a thin red vertical line between each host's bars. Useful at scale so you don't lose track of where one host ends and the next begins when the window is full of bars.
+* Host separator lines (key s): a thin red vertical line between each host's bars.
 
-* Scale reset (key r): reset the auto-scale for load and disk back to the floor. Useful after a big spike so the bars don't stay compressed for the rest of the session.
+* Scale reset (key r): reset the auto-scale for load and disk back to the floor, e.g. after a big spike.
 
-* Toggle CPU off (key 1 cycles through aggregate → per-core → off): the Perl version didn't let you turn CPU bars off. Useful when you want to focus only on memory, network, load, or disk and reduce clutter.
+* Toggle CPU off (key 1 cycles through aggregate → per-core → off): the Perl version didn't let you turn CPU bars off.
 
-* maxbarsperrow: wrap bars into multiple rows instead of one long row. Useful with many hosts so the window doesn't become impossibly wide; you get a grid and can still scan everything.
+* maxbarsperrow: wrap bars into multiple rows instead of one long row.
 
 * maxwidth: cap on window width in pixels (default 1900). Stops the window growing unbounded with many hosts; use together with maxbarsperrow for a predictable layout.
 
-* Startup visibility flags: --showmem, --shownet, --showload, --extended, --cpumode, --diskmode (and friends) let you start with the bars you care about already on. Useful so you don't have to press 2, 3, 4, 5 every time.
+* Startup visibility flags: --showmem, --shownet, --showload, --extended, --cpumode, --diskmode (and friends) let you start with the bars you care about already on. No need to press 2, 3, 4, 5 every time.
 
-* Window title (--title): set the SDL window title. Useful when you run several Loadbars windows (e.g. one per cluster or environment) and need to tell them apart in your taskbar or window list.
+* Window title (--title): set the SDL window title. Handy to tell several Loadbars windows apart in your taskbar.
 
-* SSH options (--sshopts): pass extra flags to ssh (e.g. ConnectTimeout, ProxyJump). Useful on locked-down or jump-host setups so Loadbars works without changing your global SSH config for a one-off session.
+* SSH options (--sshopts): pass extra flags to ssh (e.g. ConnectTimeout, ProxyJump). That way you don't have to change your global SSH config for a one-off session.
 
-* hasagent: skip extra SSH agent checks when you know the key is already loaded. Useful to avoid startup delay or warnings when you've already run ssh-add and are monitoring many hosts.
+* hasagent: skip extra SSH agent checks when you know the key is already loaded. Avoids startup delay or warnings when you've already run ssh-add.
 
-* Config file covers every option: any flag from --help can be set in ~/.loadbarsrc (no leading --). Perl had a config but the Go version supports the full set. Useful for reproducible setups and sharing.
+* Config file covers every option: any flag from --help can be set in ~/.loadbarsrc (no leading --). Perl had a config but the Go version supports the full set.
 
 * Positional host arguments: you can run `loadbars server1 server2` without --hosts. Convenience when you only have a few hosts.
 
-* macOS as client: run the Loadbars binary on a Mac and connect to Linux servers via SSH. The Perl version was Linux-only. Useful to watch production from a laptop without a Linux VM or second machine.
+* macOS as client: run the Loadbars binary on a Mac and connect to Linux servers via SSH. The Perl version was Linux-only. No Linux VM needed to watch production from a laptop.
 
-* Single static binary: no Perl runtime, no SDL Perl modules, no CPAN. Useful for deployment — copy one file to a jump host or new machine and run it.
+* Single static binary: no Perl runtime, no SDL Perl modules, no CPAN. Copy one file to a jump host and run it.
 
-* Unit tests: mage test (or go test). The Go version has proper tests; useful for development and catching regressions.
+* Unit tests: mage test (or go test). The Go version has proper tests.
 
-* Window resize (arrow keys): resize the window with the keyboard (left/right = width, up/down = height). Useful to fit more or fewer bars on screen without touching the mouse. (The Perl version had mouse-based resize; Go uses arrow keys.)
+* Window resize (arrow keys): resize the window with the keyboard (left/right = width, up/down = height). Fit more or fewer bars on screen without touching the mouse. (The Perl version had mouse-based resize; Go uses arrow keys.)
 
-* Hundreds of hosts in parallel: the Go implementation connects to all hosts concurrently and keeps polling without blocking. The Perl version struggled with many hosts. Useful for large fleets; you get a real "wall of bars" instead of a subset.
+* Hundreds of hosts in parallel: the Go implementation connects to all hosts concurrently and keeps polling without blocking. The Perl version struggled with many hosts.
 
 ## Core features
 

@@ -30,7 +30,7 @@ Three qualities necessary but learnable to form a habit of getting things done:
 * 2. Discipline
 * 3. Determination
 
-Visualize yourself as the person who gets important stuff done on time and consistently. Definiteness of purpose and desire to achieve are crucial. Clarity is likely the most important concept in productivity. The more clarity, the more determination, and the easier it is to eat the frog. Strive for clarity. Think on paper and write out exactly what you want. Unwritten goals are merely wishes or fantasies.
+Visualize yourself as the person who gets important stuff done on time and consistently. You need a definite purpose and the desire to achieve it. Clarity is likely the most important concept in productivity. The more clarity, the more determination, and the easier it is to eat the frog. Strive for clarity. Think on paper and write out exactly what you want. Unwritten goals are merely wishes or fantasies.
 
 ## Goal Setting and Planning
 
@@ -73,14 +73,14 @@ Whatever task you undertake, add twenty percent to the planned time—then you m
 * Set goals to improve in areas that need development.
 * Identify and develop skills that have the biggest positive impact on your life.
 * Continual improvement transforms your life.
-* Effective work leads to a decent work-life balance, enhancing life quality at home.
+* Working effectively gives you a decent work-life balance and a better life at home.
 
 ## Maintaining Productivity
 
 Start with the highest value task of the day by just getting started—often the hardest part. A tidy desk makes starting easier.
 Prepare ahead to get eighty percent right and correct the rest later. Don’t be a perfectionist. Be ready to fail; you miss one hundred percent of the shots you don't take. Focus on one thing at a time to enhance efficiency. Divide "big frogs" into many small tasks to tackle procrastination.
 
-Continuous learning is essential for success. When you know how to do something, procrastination decreases. Learn what you need—prioritize learning. Utilize commute times effectively (e.g., listening to educational audio). Identify key skills and limiters; prioritize improvement in these areas. Decide to excel in your chosen field and enjoy it.
+Continuous learning is essential for success. When you know how to do something, procrastination decreases. Learn what you need—prioritize learning. Use the commute (e.g. listen to educational audio). Identify key skills and limiters; prioritize improvement in these areas. Decide to excel in your chosen field and enjoy it.
 
 Take responsibility—don’t wait for others to motivate you. Leaders work without supervision. Develop the habit of putting pressure on yourself and choosing your own "frog."
 
@@ -92,7 +92,7 @@ Technology can be a best friend or worst enemy. Unplug regularly (e.g., one day 
 
 Avoid task switching and context shifting. Minimize message checking in the mornings. Only check messages briefly if needed, and limit to twice per day. Cultivate a habit of focused work every morning (e.g., two to three hours).
 
-The "Salami Slice" or "Swiss Cheese" method facilitates tackling daunting projects by breaking them into smaller pieces. Urgency triggers high performance. Aim to accomplish three to five things in a workday to achieve ninety percent focus.
+The "Salami Slice" or "Swiss Cheese" method: break daunting projects into smaller pieces. Urgency triggers high performance. Aim to accomplish three to five things in a workday to achieve ninety percent focus.
 
 Improve specific key skills to increase productivity and enter "the zone."
 

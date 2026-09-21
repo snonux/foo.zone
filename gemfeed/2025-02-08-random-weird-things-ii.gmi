@@ -101,9 +101,7 @@ For personal computing, I don't use Apple, but I have to use it for work.
 
 Know German? In German, the letter "sharp s" is written as ß. ß is treated the same as ss on macOS.
 
-On a case-insensitive file system like macOS, not only are uppercase and lowercase letters treated the same, but non-Latin characters like the German "ß" are also considered equivalent to their Latin counterparts (in this case, "ss").
-
-So, even though "Maß" and "Mass" are not strictly equivalent, the macOS file system still treats them as the same filename due to its handling of Unicode characters. This can sometimes lead to unexpected behaviour. Check this out:
+So "Maß" and "Mass" end up being the same filename on macOS. Check this out:
 
 ```sh
 ❯ touch Maß
@@ -131,13 +129,13 @@ MacOS can use the colon as a file path separator on its ADFS (file system). A ty
 ADFS::4.$.Documents.Techwriter.Myfile
 ```
 
-I can't reproduce this on my (work) Mac, though, as it now uses the APFS file system. In essence, ADFS is an older file system, while APFS is a contemporary file system optimized for Apple's modern devices.
+I can't reproduce this on my (work) Mac, though, as it now uses the APFS file system. ADFS is old; APFS is what Macs use now.
 
 => https://social.jvns.ca/@b0rk/113041293527832730
 
 ## 16. Polyglots - programs written in multiple languages
 
-A coding polyglot is a program that runs in multiple programming languages without any changes. People usually write them as a fun challenge — you exploit syntax overlaps between languages to make the same file valid (and meaningful) in each one.
+A polyglot is a program that is valid in multiple programming languages without any changes. People write them for fun, exploiting syntax overlaps between the languages.
 
 Check out my very own polyglot:
 
@@ -145,9 +143,9 @@ Check out my very own polyglot:
 
 ## 17. Languages, where indices start at 1
 
-Array indices start at 1 instead of 0 in some programming languages, known as one-based indexing. This can be controversial because zero-based indexing is more common in popular languages like C, C++, Java, and Python. One-based indexing can lead to off-by-one errors when developers switch between languages with different indexing schemes.
+Some languages start array indices at 1 instead of 0. Switching between those and the usual 0-based ones (C, Java, Python, ...) is a nice source of off-by-one errors.
 
-Languages with One-Based Indexing:
+Languages with one-based indexing:
 
 * Fortran
 * MATLAB
@@ -168,11 +166,9 @@ print(arr[1]) -- Accessing the first element
 10
 ```
 
-One-based indexing is more natural for human-readable, mathematical, and theoretical contexts, where counting traditionally starts from one.
-
 ## 18. Perl Poetry
 
-Perl Poetry is a playful and creative practice within the programming community where Perl code is written as a poem. These poems are crafted to be syntactically valid Perl code and make sense as poetic text, often with whimsical or humorous intent. This showcases Perl's flexibility and expressiveness, as well as the creativity of its programmers.
+Perl Poetry is Perl code written as a poem. It has to be syntactically valid Perl and still read as a poem. Perl's syntax is loose enough to make that possible.
 
 See this Poetry of my own; the Perl interpreter does not yield any syntax error parsing that. But also, the Peom doesn't do anything useful then executed:
 
@@ -222,7 +218,7 @@ This is perl, v5.8.8 built for i386-freebsd-64int
 
 ## 19. CSS3 is turing complete
 
-Turns out CSS3 is Turing complete — you can simulate a Turing machine using nothing but CSS animations and styles, no JavaScript needed. Keyframe animations can encode state transitions and perform calculations, which is wild considering CSS is supposed to just make things look pretty.
+Turns out CSS3 is Turing complete. You can simulate a Turing machine with nothing but CSS animations and styles, without any JavaScript. Keyframe animations can encode state transitions, which is wild considering CSS is supposed to just make things look pretty.
 
 => https://stackoverflow.com/questions/2497146/is-css-turing-complete Is CSS turing complete?
 
@@ -232,7 +228,7 @@ Check out this 100% CSS implementation of the Conways Game of Life:
 
 => https://github.com/propjockey/css-conways-game-of-life CSS Conways Game of Life
 
-Conway's Game of Life is Turing complete because it can simulate a universal Turing machine, meaning it can perform any computation that a computer can, given the right initial conditions and sufficient time and space. Suppose a language can implement Conway's Game of Life. In that case, it demonstrates the language's ability to handle complex state transitions and computations. It has the necessary constructs (like iteration, conditionals, and data manipulation) to simulate any algorithm, thus confirming its Turing completeness.
+Conway's Game of Life is itself Turing complete, so if you can implement it in CSS, CSS must be Turing complete too.
 
 ## 20. The biggest shell programs 
 
