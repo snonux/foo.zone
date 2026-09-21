@@ -18,7 +18,7 @@
 <br />
 <span>This is the third and final blog post of the Distributed Systems Simulator series. This part covers advanced simulation examples, the Raft consensus protocol, and the extensible Protocol API.</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/ds-sim'>ds-sim on Codeberg (modernized, English-translated version)</a><br />
+<a class='textlink' href='https://github.com/snonux/ds-sim'>ds-sim on GitHub (modernized, English-translated version)</a><br />
 <br />
 <span>These are all the posts of this series:</span><br />
 <br />
@@ -109,28 +109,19 @@ for (i := 0; i &lt; n; i++) {
 009395ms: PID: 2; ... Leader elected by majority vote: process 2 (term 1)
 </pre>
 <br />
-<span>That transition is followed immediately by new heartbeats and a new <span class='inlinecode'>appendEntry</span>, which is exactly what you want to see in a Raft simulation: leadership is not just declared, it is exercised.</span><br />
+<span>That transition is followed immediately by new heartbeats and a new <span class='inlinecode'>appendEntry</span>, so the new leader starts doing leader work right away.</span><br />
 <br />
-<span>At <span class='inlinecode'>12002ms</span>, the old leader <span class='inlinecode'>P1</span> recovers. Importantly, it does not try to reclaim control. Instead, it receives heartbeats from <span class='inlinecode'>P2</span> and answers with <span class='inlinecode'>heartbeatAck</span> messages, rejoining the cluster as a follower. That is one of the most useful teaching moments in the log, because it makes the term-based leadership model concrete: the recovered node does not become leader again just because it used to be one.</span><br />
+<span>At <span class='inlinecode'>12002ms</span>, the old leader <span class='inlinecode'>P1</span> recovers. It doesn&#39;t try to take the leadership back. It receives heartbeats from <span class='inlinecode'>P2</span>, answers with <span class='inlinecode'>heartbeatAck</span> messages, and rejoins as a follower. This is the term-based leadership model in action: a recovered node doesn&#39;t become leader again just because it used to be one.</span><br />
 <br />
-<span>At <span class='inlinecode'>20000ms</span>, <span class='inlinecode'>P3</span> crashes. The cluster continues running with <span class='inlinecode'>P2</span> as leader and <span class='inlinecode'>P1</span> as follower for the rest of the 60-second simulation. The log remains dominated by periodic heartbeats from <span class='inlinecode'>P2</span> and acknowledgments from <span class='inlinecode'>P1</span>, showing that the system stays stable even after a second failure.</span><br />
+<span>At <span class='inlinecode'>20000ms</span>, <span class='inlinecode'>P3</span> crashes. The cluster continues running with <span class='inlinecode'>P2</span> as leader and <span class='inlinecode'>P1</span> as follower for the rest of the 60-second simulation. From then on the log is just heartbeats from <span class='inlinecode'>P2</span> and acknowledgments from <span class='inlinecode'>P1</span>.</span><br />
 <br />
-<span>This single scenario demonstrates several core Raft properties in one replay:</span><br />
+<span>So one small run covers startup, replication, leader failure, reelection, reintegration of the old leader, and a follower crash.</span><br />
 <br />
-<ul>
-<li>Stable startup leadership</li>
-<li>Heartbeats and follower acknowledgments</li>
-<li>Log replication</li>
-<li>Leader failure detection</li>
-<li>Majority-based reelection</li>
-<li>Safe reintegration of a recovered former leader</li>
-<li>Continued service after a later follower crash</li>
-</ul><br />
-<span>It is also a good example of why a simulator is useful for distributed systems. In a real production system, reconstructing this sort of sequence would require stitching together logs from multiple nodes. Here, the message flow, the crashes, the recoveries, and the Lamport/vector timestamps are all visible in one place.</span><br />
+<span>In production you&#39;d have to stitch this sequence together from the logs of several nodes. Here it&#39;s all in one place.</span><br />
 <br />
 <h2 style='display: inline' id='protocol-api'>Protocol API</h2><br />
 <br />
-<span>The simulator was designed from the ground up to be extensible. Users can implement their own protocols in Java by extending the <span class='inlinecode'>VSAbstractProtocol</span> base class. Each protocol has its own class in the <span class='inlinecode'>protocols.implementations</span> package.</span><br />
+<span>You can implement your own protocols in Java by extending the <span class='inlinecode'>VSAbstractProtocol</span> base class. Each protocol has its own class in the <span class='inlinecode'>protocols.implementations</span> package.</span><br />
 <br />
 <h3 style='display: inline' id='class-hierarchy'>Class Hierarchy</h3><br />
 <br />
@@ -274,8 +265,8 @@ http://www.gnu.org/software/src-highlite -->
 <li>208 unit tests</li>
 <li>269 configurable settings</li>
 </ul><br />
-<a class='textlink' href='https://github.com/snonux/ds-sim'>ds-sim source code on Codeberg</a><br />
-<a class='textlink' href='https://github.com/snonux/vs-sim'>vs-sim source code on Codeberg (original German version, 2008)</a><br />
+<a class='textlink' href='https://github.com/snonux/ds-sim'>ds-sim source code on GitHub</a><br />
+<a class='textlink' href='https://github.com/snonux/vs-sim'>vs-sim source code on GitHub (original German version, 2008)</a><br />
 <br />
 <span>Other related posts are:</span><br />
 <br />

@@ -44,13 +44,13 @@
 <li>⇢ ⇢ <a href='#configuring-zdata-zfs-pool-encryption'>Configuring <span class='inlinecode'>zdata</span> ZFS pool encryption</a></li>
 <li>⇢ ⇢ <a href='#migrating-bhyve-vms-to-an-encrypted-bhyve-zfs-volume'>Migrating Bhyve VMs to an encrypted <span class='inlinecode'>bhyve</span> ZFS volume</a></li>
 <li>⇢ <a href='#zfs-replication-with-zrepl'>ZFS Replication with <span class='inlinecode'>zrepl</span></a></li>
-<li>⇢ ⇢ <a href='#understanding-replication-requirements'>Understanding Replication Requirements</a></li>
+<li>⇢ ⇢ <a href='#replication-requirements'>Replication requirements</a></li>
 <li>⇢ ⇢ <a href='#installing-zrepl'>Installing <span class='inlinecode'>zrepl</span></a></li>
 <li>⇢ ⇢ <a href='#configuring-zrepl-on-f1-sink'>Configuring <span class='inlinecode'>zrepl</span> on <span class='inlinecode'>f1</span> (sink)</a></li>
 <li>⇢ ⇢ <a href='#enabling-and-starting-zrepl-services'>Enabling and starting <span class='inlinecode'>zrepl</span> services</a></li>
 <li>⇢ ⇢ <a href='#monitoring-replication'>Monitoring replication</a></li>
 <li>⇢ ⇢ <a href='#verifying-replication-after-reboot'>Verifying replication after reboot</a></li>
-<li>⇢ ⇢ <a href='#understanding-failover-limitations-and-design-decisions'>Understanding Failover Limitations and Design Decisions</a></li>
+<li>⇢ ⇢ <a href='#failover-limitations'>Failover limitations</a></li>
 <li>⇢ ⇢ <a href='#mounting-the-nfs-datasets'>Mounting the NFS datasets</a></li>
 <li>⇢ <a href='#troubleshooting-files-not-appearing-in-replication'>Troubleshooting: Files not appearing in replication</a></li>
 <li>⇢ ⇢ <a href='#configuring-automatic-key-loading-on-boot'>Configuring automatic key loading on boot</a></li>
@@ -97,7 +97,7 @@
 <li>Pod mobility: If a pod moves to another node, it loses access to its data</li>
 <li>No redundancy: Hardware failure means data loss</li>
 </ul><br />
-<span>This post implements a robust storage solution using:</span><br />
+<span>In this post, I set up the storage using:</span><br />
 <br />
 <ul>
 <li>CARP: For high availability with automatic IP failover</li>
@@ -105,7 +105,7 @@
 <li>ZFS: For data integrity, encryption, and efficient snapshots</li>
 <li><span class='inlinecode'>zrepl</span>: For continuous ZFS replication between nodes</li>
 </ul><br />
-<span>The result is a highly available, encrypted storage system that survives node failures while providing shared storage to all Kubernetes pods.</span><br />
+<span>The result: encrypted, replicated storage that all pods can share and that survives a node failure.</span><br />
 <br />
 <span>Other than what was mentioned in the first post of this blog series, we aren&#39;t using HAST, but <span class='inlinecode'>zrepl</span> for data replication. Read more about it later in this blog post.</span><br />
 <br />
@@ -148,14 +148,14 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='zfs-encryption-keys'>ZFS encryption keys</h2><br />
 <br />
-<span>ZFS native encryption requires encryption keys to unlock datasets. We need a secure method to store these keys that balances security with operational needs:</span><br />
+<span>ZFS native encryption requires encryption keys to unlock datasets. The keys have to live somewhere safe, but they also have to be there at boot:</span><br />
 <br />
 <ul>
 <li>Security: Keys must not be stored on the same disks they encrypt</li>
 <li>Availability: Keys must be available at boot for automatic mounting</li>
 <li>Portability: Keys should be easily moved between systems for recovery</li>
 </ul><br />
-<span>Using USB flash drives as hardware key storage provides a convenient and elegant solution. The encrypted data is unreadable without physical access to the USB key, protecting against disk theft or improper disposal. In production environments, you may use enterprise key management systems; however, for a home lab, USB keys offer good security with minimal complexity.</span><br />
+<span>I put the keys on USB sticks. Without the stick, the disks are unreadable, which covers disk theft and sloppy disposal. A real production setup would use a proper key management system, but for a home lab, USB sticks are good enough and simple.</span><br />
 <br />
 <h3 style='display: inline' id='ufs-on-usb-keys'>UFS on USB keys</h3><br />
 <br />
@@ -344,9 +344,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='zfs-replication-with-zrepl'>ZFS Replication with <span class='inlinecode'>zrepl</span></h2><br />
 <br />
-<span>Data replication is the cornerstone of high availability. While CARP handles IP failover (see later in this post), we need continuous data replication to ensure the backup server has current data when it becomes active. Without replication, failover would result in data loss or require shared storage (like iSCSI), which introduces a single point of failure.</span><br />
+<span>CARP (see later in this post) only moves the IP address. The backup node also needs current data, so we need continuous replication. Without it, a failover means data loss, or we&#39;d need shared storage like iSCSI, which is a single point of failure.</span><br />
 <br />
-<h3 style='display: inline' id='understanding-replication-requirements'>Understanding Replication Requirements</h3><br />
+<h3 style='display: inline' id='replication-requirements'>Replication requirements</h3><br />
 <br />
 <span>Our storage system has different replication needs:</span><br />
 <br />
@@ -354,13 +354,13 @@ http://www.gnu.org/software/src-highlite -->
 <li>NFS data (<span class='inlinecode'>/data/nfs/k3svolumes</span>): Soon, it will contain active Kubernetes persistent volumes. Needs frequent replication (every minute) to minimise data loss during failover.</li>
 <li>VM data (<span class='inlinecode'>/zroot/bhyve/freebsd</span>): Contains VM images that change less frequently. Can tolerate longer replication intervals (every 10 minutes).</li>
 </ul><br />
-<span>The 1-minute replication window is perfectly acceptable for my personal use cases. This isn&#39;t a high-frequency trading system or a real-time database—it&#39;s storage for personal projects, development work, and home lab experiments. Losing at most 1 minute of work in a disaster scenario is a reasonable trade-off for the reliability and simplicity of snapshot-based replication. Additionally, in the case of a "1 minute of data loss," I would likely still have the data available on the client side.</span><br />
+<span>The 1-minute replication window is perfectly acceptable for my personal use cases. It&#39;s a home lab, not a trading system. Losing at most 1 minute of work in a disaster scenario is a reasonable trade-off for the reliability and simplicity of snapshot-based replication. Additionally, in the case of a "1 minute of data loss," I would likely still have the data available on the client side.</span><br />
 <br />
-<span>Why use <span class='inlinecode'>zrepl</span> instead of HAST? While HAST (Highly Available Storage) is FreeBSD&#39;s native solution for high-availability storage and supports synchronous replication—thus eliminating the mentioned 1-minute window—I&#39;ve chosen <span class='inlinecode'>zrepl</span> for several important reasons:</span><br />
+<span>Why use <span class='inlinecode'>zrepl</span> instead of HAST? While HAST (Highly Available Storage) is FreeBSD&#39;s native solution for high-availability storage and supports synchronous replication—thus eliminating the mentioned 1-minute window—I&#39;ve chosen <span class='inlinecode'>zrepl</span> for a few reasons:</span><br />
 <br />
 <ul>
 <li>HAST can cause ZFS corruption: HAST operates at the block level and doesn&#39;t understand ZFS&#39;s transactional semantics. During failover, in-flight transactions can lead to corrupted zpools. I&#39;ve experienced this firsthand (I am confident I have configured something wrong) - the automatic failover would trigger while ZFS was still writing, resulting in an unmountable pool.</li>
-<li>ZFS-aware replication: <span class='inlinecode'>zrepl</span> understands ZFS datasets and snapshots. It replicates at the dataset level, ensuring each snapshot is a consistent point-in-time copy. This is fundamentally safer than block-level replication.</li>
+<li>ZFS-aware replication: <span class='inlinecode'>zrepl</span> understands ZFS datasets and snapshots. It replicates at the dataset level, ensuring each snapshot is a consistent point-in-time copy.</li>
 <li>Snapshot history: With <span class='inlinecode'>zrepl</span>, you get multiple recovery points (every minute for NFS data in our setup). If corruption occurs, you can roll back to any previous snapshot. HAST only gives you the current state.</li>
 <li>Easier recovery: When something goes wrong with <span class='inlinecode'>zrepl</span>, you still have intact snapshots on both sides. With HAST, a corrupted primary often means a corrupted secondary as well.</li>
 </ul><br />
@@ -504,9 +504,9 @@ http://www.gnu.org/software/src-highlite -->
 <li><span class='inlinecode'>f0_to_f1_nfsdata</span>: Replicates NFS data every minute for faster failover recovery</li>
 <li><span class='inlinecode'>f0_to_f1_freebsd</span>: Replicates FreeBSD VM every ten minutes (less critical)</li>
 </ul><br />
-<span>The FreeBSD VM is only used for development purposes, so it doesn&#39;t require as frequent replication as the NFS data. It&#39;s off-topic to this blog series, but it showcases how <span class='inlinecode'>zrepl</span>&#39;s flexibility in handling different datasets with varying replication needs.</span><br />
+<span>The FreeBSD VM is only used for development purposes, so it doesn&#39;t require as frequent replication as the NFS data. It&#39;s off-topic for this series, but it shows that <span class='inlinecode'>zrepl</span> can handle different datasets with different intervals.</span><br />
 <br />
-<span>Furthermore:</span><br />
+<span>Also:</span><br />
 <br />
 <ul>
 <li>We&#39;re specifically replicating <span class='inlinecode'>zdata/enc/nfsdata</span> instead of the entire <span class='inlinecode'>zdata/enc</span> dataset. This dedicated dataset will contain all the data we later want to expose via NFS, keeping a clear separation between replicated NFS data and other local encrypted data.</li>
@@ -616,7 +616,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-6/zrepl.png'><img alt='zrepl status' title='zrepl status' src='./f3s-kubernetes-with-freebsd-part-6/zrepl.png' /></a><br />
 <br />
-<span>With this setup, both <span class='inlinecode'>zdata/enc/nfsdata</span> and <span class='inlinecode'>zroot/bhyve/freebsd</span> on <span class='inlinecode'>f0</span> will be automatically replicated to <span class='inlinecode'>f1</span> every 1 minute (or 10 minutes in the case of the FreeBSD VM), with encrypted snapshots preserved on both sides. The pruning policy ensures that we keep the last 10 snapshots while managing disk space efficiently.</span><br />
+<span>With this setup, both <span class='inlinecode'>zdata/enc/nfsdata</span> and <span class='inlinecode'>zroot/bhyve/freebsd</span> on <span class='inlinecode'>f0</span> will be automatically replicated to <span class='inlinecode'>f1</span> every 1 minute (or 10 minutes in the case of the FreeBSD VM), with encrypted snapshots preserved on both sides. The pruning policy keeps the last 10 snapshots plus the grid, so disk space doesn&#39;t run away.</span><br />
 <br />
 <span>The replicated data appears on <span class='inlinecode'>f1</span> under <span class='inlinecode'>zdata/sink/</span> with the source host and dataset hierarchy preserved:</span><br />
 <br />
@@ -659,20 +659,14 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#cb7676">.</font>
 </pre>
 <br />
-<span>The timestamps confirm that replication resumed automatically after the reboot, ensuring continuous data protection. We can also write a test file to the NFS data directory on <span class='inlinecode'>f0</span> and verify whether it appears on <span class='inlinecode'>f1</span> after a minute.</span><br />
+<span>The timestamps show that replication picked up again after the reboot. We can also write a test file to the NFS data directory on <span class='inlinecode'>f0</span> and verify whether it appears on <span class='inlinecode'>f1</span> after a minute.</span><br />
 <br />
-<h3 style='display: inline' id='understanding-failover-limitations-and-design-decisions'>Understanding Failover Limitations and Design Decisions</h3><br />
+<h3 style='display: inline' id='failover-limitations'>Failover limitations</h3><br />
 <br />
 <span>Our system intentionally fails over to a read-only copy of the replica in the event of the primary&#39;s failure. This is due to the nature of <span class='inlinecode'>zrepl</span>, which only replicates data in one direction. If we mount the data set on the sink node in read-write mode, it would cause the ZFS dataset to diverge from the original, and the replication would break. It can still be mounted read-write on the sink node in case of a genuine issue on the primary node, but that step is left intentionally manual. Therefore, we don&#39;t need to fix the replication later on manually.</span><br />
 <br />
-<span>So in summary:</span><br />
+<span>The short version: automatic read-write failover risks split-brain if the network hiccups, and I&#39;d rather have a few minutes of downtime than two diverged datasets. With manual failover, I always know which copy is the real one.</span><br />
 <br />
-<ul>
-<li>Split-brain prevention: Automatic failover to a read-write copy can cause both nodes to become active simultaneously if network communication fails. This leads to data divergence that&#39;s extremely difficult to resolve.</li>
-<li>False positive protection: Temporary network issues or high load can trigger unwanted failovers. Manual intervention ensures that failovers occur only when truly necessary.</li>
-<li>Data integrity over availability: For storage systems, data consistency is paramount. A few minutes of downtime is preferable to data corruption in this specific use case.</li>
-<li>Simplified recovery: With manual failover, you always know which dataset is authoritative, making recovery more straightforward.</li>
-</ul><br />
 <h3 style='display: inline' id='mounting-the-nfs-datasets'>Mounting the NFS datasets</h3><br />
 <br />
 <span>To make the NFS data accessible on both nodes, we need to mount it. On <span class='inlinecode'>f0</span>, this is straightforward:</span><br />
@@ -816,7 +810,7 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <h3 style='display: inline' id='troubleshooting-zrepl-replication-not-working'>Troubleshooting: zrepl Replication Not Working</h3><br />
 <br />
-<span>If <span class='inlinecode'>zrepl</span> replication is not working, here&#39;s a systematic approach to diagnose and fix common issues:</span><br />
+<span>If <span class='inlinecode'>zrepl</span> replication is not working, here&#39;s what I check:</span><br />
 <br />
 <h3 style='display: inline' id='check-if-zrepl-services-are-running'>Check if zrepl Services are Running</h3><br />
 <br />
@@ -859,12 +853,12 @@ http://www.gnu.org/software/src-highlite -->
 <li>Different snapshot naming schemes are in use</li>
 <li>The receiver dataset was created independently</li>
 </ul><br />
-<span>**Error message example:**</span><br />
+<span>Error message example:</span><br />
 <pre>
 no common snapshot or suitable bookmark between sender and receiver
 </pre>
 <br />
-<span>**Solution: Clean up conflicting snapshots on receiver**</span><br />
+<span>Solution: clean up conflicting snapshots on the receiver.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -893,7 +887,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">paul@f0</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas zrepl status --mode raw</font>
 </pre>
 <br />
-<span>**Verification that replication is working:**</span><br />
+<span>To verify that replication is working:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -966,11 +960,9 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">paul@f1</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas zfs list -t snapshot -r zdata/sink </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep zrepl </font><font color="#cb7676">|</font><font color="#dbd7ca"> tail -</font><font color="#bd976a">5</font>
 </pre>
 <br />
-<span>This troubleshooting process resolves the most common <span class='inlinecode'>zrepl</span> issues and ensures continuous data replication between your storage nodes.</span><br />
-<br />
 <h2 style='display: inline' id='carp-common-address-redundancy-protocol'>CARP (Common Address Redundancy Protocol)</h2><br />
 <br />
-<span>High availability is crucial for storage systems. If the storage server goes down, all NFS clients (which will also be Kubernetes pods later on in this series) lose access to their persistent data. CARP provides a solution by creating a virtual IP address that automatically migrates to a different server during failures. This means that clients point to that VIP for NFS mounts and are always contacting the current primary node.</span><br />
+<span>If the storage server goes down, all NFS clients (later: the Kubernetes pods) lose their persistent data. CARP helps here: it creates a virtual IP that moves to the other server when the current one fails. Clients mount from the VIP and always end up at the current primary.</span><br />
 <br />
 <h3 style='display: inline' id='how-carp-works'>How CARP Works</h3><br />
 <br />
@@ -1172,19 +1164,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='configuring-stunnel-for-nfs-encryption-with-carp-failover'>Configuring Stunnel for NFS Encryption with CARP Failover</h3><br />
 <br />
-<span>Using stunnel with client certificate authentication for NFS encryption provides several advantages:</span><br />
+<span>Why stunnel with client certificates? It works with any NFS version on any OS, NFS itself doesn&#39;t need to know about it, and only clients with a certificate signed by my CA get in.</span><br />
 <br />
-<ul>
-<li>Compatibility: Works with any NFS version and between different operating systems</li>
-<li>Strong encryption: Uses TLS/SSL with configurable cipher suites</li>
-<li>Transparent: Applications don&#39;t need modification, encryption happens at the transport layer</li>
-<li>Performance: Minimal overhead (~2% in benchmarks)</li>
-<li>Flexibility: Can encrypt any TCP-based protocol, not just NFS</li>
-<li>Strong Authentication: Client certificates provide cryptographic proof of identity</li>
-<li>Access Control: Only clients with valid certificates signed by your CA can connect</li>
-<li>Certificate Revocation: You can revoke access by removing certificates from the CA</li>
-</ul><br />
-<span>Stunnel integrates seamlessly with our CARP setup:</span><br />
+<span>Stunnel and CARP fit together like this:</span><br />
 <br />
 <pre>
                     CARP VIP (192.168.1.138)
@@ -1196,7 +1178,7 @@ http://www.gnu.org/software/src-highlite -->
                     Clients connect here
 </pre>
 <br />
-<span>The key insight is that stunnel binds to the CARP VIP. When CARP fails over, the VIP is moved to the new master, and stunnel starts there automatically. Clients maintain their connection to the same IP throughout.</span><br />
+<span>The trick: stunnel binds to the CARP VIP. When CARP fails over, the VIP is moved to the new master, and stunnel starts there automatically. Clients maintain their connection to the same IP throughout.</span><br />
 <br />
 <h3 style='display: inline' id='creating-a-certificate-authority-for-client-authentication'>Creating a Certificate Authority for Client Authentication</h3><br />
 <br />
@@ -1365,15 +1347,13 @@ http://www.gnu.org/software/src-highlite -->
 <li>When <span class='inlinecode'>f1</span> becomes CARP MASTER: stunnel on <span class='inlinecode'>f1</span> starts accepting connections on <span class='inlinecode'>192.168.1.138:2323</span></li>
 <li>The backup server&#39;s stunnel process will fail to bind to the VIP and won&#39;t accept connections</li>
 </ul><br />
-<span>This ensures that clients always connect to the active NFS server through the CARP VIP. To ensure clean failover behaviour and prevent stale file handles, we&#39;ll update our <span class='inlinecode'>carpcontrol.sh</span> script so that:</span><br />
+<span>So clients always land on the active NFS server. For a clean failover without stale file handles, <span class='inlinecode'>carpcontrol.sh</span> now:</span><br />
 <br />
 <ul>
 <li>Stops NFS services on BACKUP nodes (preventing split-brain scenarios)</li>
 <li>Starts NFS services only on the MASTER node</li>
 <li>Manages stunnel binding to the CARP VIP</li>
 </ul><br />
-<span>This approach ensures clients can only connect to the active server, eliminating stale handles from the inactive server:</span><br />
-<br />
 <span class='quote'>Update: Fixed the script at Sat 3 Jan 23:55:11 EET 2026 - changed <span class='inlinecode'>$1</span> to <span class='inlinecode'>$2</span> because devd passes <span class='inlinecode'>$subsystem $type</span>, so the state is in the second argument.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
@@ -1660,7 +1640,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> echo </font><font color="#bd976a">"* * * * * /usr/local/bin/carp-auto-failback.sh"</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> doas crontab -</font>
 </pre>
 <br />
-<span>The enhanced CARP script provides integrated control over auto-failback. To temporarily turn off automatic failback (e.g., for <span class='inlinecode'>f0</span> maintenance), we run:</span><br />
+<span>The <span class='inlinecode'>carp</span> script also toggles auto-failback. To temporarily turn off automatic failback (e.g., for <span class='inlinecode'>f0</span> maintenance), we run:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -1701,8 +1681,6 @@ http://www.gnu.org/software/src-highlite -->
 <li>Failback occurs: Typically 2-3 minutes after boot completes</li>
 <li>Logging: All attempts logged for troubleshooting</li>
 </ul><br />
-<span>This ensures <span class='inlinecode'>f0</span> automatically resumes its role as primary storage server after any reboot, while providing administrative control when needed.</span><br />
-<br />
 <h2 style='display: inline' id='client-configuration-for-nfs-via-stunnel'>Client Configuration for NFS via Stunnel</h2><br />
 <br />
 <span>To mount NFS shares with stunnel encryption, clients must install and configure stunnel using their client certificates.</span><br />
@@ -2014,7 +1992,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>On 2026-05-10, r2 spent about 50 minutes with a broken NFS mount that neither the mountpoint check nor the stat probe caught. Reads were fine — the kernel was returning cached metadata — but every write was hanging. The root cause was a stale stunnel session after a CARP failover that left the TLS transport wedged.</span><br />
 <br />
-<span>The script grew three new things in response. First, a **write probe**: every run tries to write and delete a tiny healthcheck file (<span class='inlinecode'>timeout 5s sh -c "echo \$\$ &gt; .healthcheck.$(hostname) &amp;&amp; rm -f ..."</span>). If that times out, the mount is broken regardless of what stat says. Second, <span class='inlinecode'>fix_mount</span> got stronger: it now kills D-state processes that are pinning the mount (scanning <span class='inlinecode'>/proc/*/wchan</span> for <span class='inlinecode'>nfs_*</span> waiters), does a lazy <span class='inlinecode'>umount -l</span> after the forced one in case <span class='inlinecode'>umount -f</span> can&#39;t detach, and restarts stunnel before the fresh <span class='inlinecode'>mount</span> so the TLS session is actually clean. The whole function runs under a 60-second hard deadline so the 10-second timer can&#39;t pile up indefinitely. Third, after five consecutive repair failures (~50 s), the node cordons itself via <span class='inlinecode'>kubectl cordon</span> and calls <span class='inlinecode'>systemctl reboot</span> — a Rocky Linux VM reboots in about 30 seconds, which is faster than trying to dig out a wedged kernel NFS state by hand.</span><br />
+<span>The script grew three new things in response. First, a write probe: every run tries to write and delete a tiny healthcheck file (<span class='inlinecode'>timeout 5s sh -c "echo \$\$ &gt; .healthcheck.$(hostname) &amp;&amp; rm -f ..."</span>). If that times out, the mount is broken regardless of what stat says. Second, <span class='inlinecode'>fix_mount</span> got stronger: it now kills D-state processes that are pinning the mount (scanning <span class='inlinecode'>/proc/*/wchan</span> for <span class='inlinecode'>nfs_*</span> waiters), does a lazy <span class='inlinecode'>umount -l</span> after the forced one in case <span class='inlinecode'>umount -f</span> can&#39;t detach, and restarts stunnel before the fresh <span class='inlinecode'>mount</span> so the TLS session is actually clean. The whole function runs under a 60-second hard deadline so the 10-second timer can&#39;t pile up indefinitely. Third, after five consecutive repair failures (~50 s), the node cordons itself via <span class='inlinecode'>kubectl cordon</span> and calls <span class='inlinecode'>systemctl reboot</span> — a Rocky Linux VM reboots in about 30 seconds, which is faster than trying to dig out a wedged kernel NFS state by hand.</span><br />
 <br />
 <span>Prometheus now tracks all of this via a textfile metric (<span class='inlinecode'>nfs_mount_monitor_consecutive_failures</span>) that node_exporter picks up on every scrape. A warning fires at three consecutive failures, critical at five.</span><br />
 <br />
@@ -2024,7 +2002,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='complete-failover-test'>Complete Failover Test</h3><br />
 <br />
-<span>Here&#39;s a comprehensive test of the failover behaviour with all optimisations in place:</span><br />
+<span>Here&#39;s a full failover test with everything in place:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -2064,16 +2042,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>3-10 seconds: Soft mounts ensure quick failure of operations</li>
 <li>Within 10 seconds: Automatic recovery via systemd timer</li>
 </ul><br />
-<span>Benefits of the Optimised Setup:</span><br />
-<br />
-<ul>
-<li>No hanging processes - Soft mounts fail quickly</li>
-<li>Clean failover - Old server stops serving immediately</li>
-<li>Fast automatic recovery - No manual intervention needed</li>
-<li>Predictable timing - Recovery within 10 seconds with systemd timer</li>
-<li>Better visibility - systemd journal provides detailed logs</li>
-</ul><br />
-<span>Important Considerations:</span><br />
+<span>A few caveats:</span><br />
 <br />
 <ul>
 <li>Recent writes (within 1 minute) may not be visible after failover due to replication lag</li>
@@ -2149,45 +2118,21 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
-<span>We&#39;ve built a robust, encrypted storage system for our FreeBSD-based Kubernetes cluster that provides:</span><br />
+<span>That&#39;s the storage: encrypted ZFS, replicated every minute with <span class='inlinecode'>zrepl</span>, NFS over stunnel behind a CARP VIP. What I learned: native NFS/TLS between Linux and FreeBSD didn&#39;t work for me, so stunnel it is. And for storage, I prefer a manual failover over a clever automatic one.</span><br />
 <br />
-<ul>
-<li>High Availability: CARP ensures the storage VIP moves automatically during failures</li>
-<li>Data Protection: ZFS encryption protects data at rest, stunnel protects data in transit</li>
-<li>Continuous Replication: 1-minute RPO for the data, automated via <span class='inlinecode'>zrepl</span></li>
-<li>Secure Access: Client certificate authentication prevents unauthorised access</li>
-</ul><br />
-<span>Some key lessons learned are:</span><br />
-<br />
-<ul>
-<li>Stunnel vs Native NFS/TLS: While native encryption would be ideal, stunnel provides better cross-platform compatibility</li>
-<li>Manual vs Automatic Failover: For storage systems, controlled failover often prevents more problems than it causes</li>
-<li>Client Compatibility: Different NFS implementations behave differently - test thoroughly</li>
-</ul><br />
 <h2 style='display: inline' id='future-storage-explorations'>Future Storage Explorations</h2><br />
 <br />
-<span>While <span class='inlinecode'>zrepl</span> provides excellent snapshot-based replication for disaster recovery, there are other storage technologies worth exploring for the f3s project:</span><br />
+<span>A few other storage options I might look at later:</span><br />
 <br />
 <h3 style='display: inline' id='minio-for-s3-compatible-object-storage'>MinIO for S3-Compatible Object Storage</h3><br />
 <br />
-<span>MinIO is a high-performance, S3-compatible object storage system that could complement our ZFS-based storage. Some potential use cases:</span><br />
+<span>MinIO gives me an S3 API on top of the ZFS storage, and it can replicate between sites, which would map to f0/f1/f2.</span><br />
 <br />
-<ul>
-<li>S3 API compatibility: Many modern applications expect S3-style object storage APIs. MinIO could provide this interface while using our ZFS storage as the backend.</li>
-<li>Multi-site replication: MinIO supports active-active replication across multiple sites, which could work well with our f0/f1/f2 node setup.</li>
-<li>Kubernetes native: MinIO has excellent Kubernetes integration with operators and CSI drivers, making it ideal for the f3s k3s environment.</li>
-</ul><br />
 <h3 style='display: inline' id='moosefs-for-distributed-high-availability'>MooseFS for Distributed High Availability</h3><br />
 <br />
-<span>MooseFS is a fault-tolerant, distributed file system that could provide proper high-availability storage:</span><br />
+<span>MooseFS is a distributed POSIX filesystem with real automatic failover, per-directory replication levels, and native FreeBSD support.</span><br />
 <br />
-<ul>
-<li>True HA: Unlike our current setup, which requires manual failover, MooseFS provides automatic failover with no single point of failure.</li>
-<li>POSIX compliance: Applications can use MooseFS like any regular filesystem, no code changes needed.</li>
-<li>Flexible redundancy: Configure different replication levels per directory or file, optimising storage efficiency.</li>
-<li>FreeBSD support: MooseFS has native FreeBSD support, making it a natural fit for the f3s project.</li>
-</ul><br />
-<span>Both technologies could run on top of our encrypted ZFS volumes, combining ZFS&#39;s data integrity and encryption features with distributed storage capabilities. This would be particularly interesting for workloads that need either S3-compatible APIs (MinIO) or transparent distributed POSIX storage (MooseFS). What about Ceph and GlusterFS? Unfortunately, there doesn&#39;t seem to be great native FreeBSD support for them. However, other alternatives also appear suitable for my use case.</span><br />
+<span>Both could run on top of the encrypted ZFS datasets. Ceph and GlusterFS? No decent FreeBSD support, as far as I can tell.</span><br />
 <br />
 <span>Read the next post of this series:</span><br />
 <br />

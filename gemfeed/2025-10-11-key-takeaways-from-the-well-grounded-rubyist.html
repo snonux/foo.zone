@@ -41,7 +41,7 @@
 <br />
 <h2 style='display: inline' id='the-object-model'>The Object Model</h2><br />
 <br />
-<span>One of the most fascinating aspects of Ruby is its object model. The book does a great job of explaining the details.</span><br />
+<span>Ruby&#39;s object model is the part I found most interesting. The book explains it well.</span><br />
 <br />
 <h3 style='display: inline' id='everything-is-an-object-almost'>Everything is an object (almost)</h3><br />
 <br />
@@ -70,8 +70,6 @@ http://www.gnu.org/software/src-highlite -->
 <i><font color="#666666"># =&gt; main</font></i>
 </pre>
 <br />
-<span>This code demonstrates how <span class='inlinecode'>self</span> changes depending on the context. At the top level, it&#39;s <span class='inlinecode'>main</span>, an instance of <span class='inlinecode'>Object</span>. When <span class='inlinecode'>foo</span> is called without a receiver, it&#39;s called on <span class='inlinecode'>main</span>.</span><br />
-<br />
 <h3 style='display: inline' id='singleton-methods'>Singleton Methods</h3><br />
 <br />
 <span>You can add methods to individual objects. These are called singleton methods.</span><br />
@@ -93,7 +91,7 @@ http://www.gnu.org/software/src-highlite -->
 <i><font color="#666666"># obj2.shout would raise a NoMethodError</font></i>
 </pre>
 <br />
-<span>Here, the <span class='inlinecode'>shout</span> method is only available on the <span class='inlinecode'>obj</span> object. This is a powerful feature for adding behavior to specific instances.</span><br />
+<span><span class='inlinecode'>shout</span> only exists on <span class='inlinecode'>obj</span>.</span><br />
 <br />
 <h3 style='display: inline' id='classes-are-objects'>Classes are Objects</h3><br />
 <br />
@@ -114,7 +112,7 @@ http://www.gnu.org/software/src-highlite -->
 <i><font color="#666666"># =&gt; Hello from a dynamically created class!</font></i>
 </pre>
 <br />
-<span>This shows how to create a new class and assign it to a constant. This is what happens behind the scenes when you use the <span class='inlinecode'>class</span> keyword.</span><br />
+<span>That&#39;s what the <span class='inlinecode'>class</span> keyword does behind the scenes.</span><br />
 <br />
 <h2 style='display: inline' id='control-flow-and-methods'>Control Flow and Methods</h2><br />
 <br />
@@ -153,7 +151,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='blocks-and-yield'>Blocks and <span class='inlinecode'>yield</span></h3><br />
 <br />
-<span>Blocks are a cornerstone of Ruby. You can pass them to methods to customize their behavior. The <span class='inlinecode'>yield</span> keyword is used to call the block.</span><br />
+<span>Blocks are everywhere in Ruby. <span class='inlinecode'>yield</span> calls the block that was passed to the method.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -173,7 +171,7 @@ http://www.gnu.org/software/src-highlite -->
 <i><font color="#666666"># Inside the block</font></i>
 </pre>
 <br />
-<span>This simple iterator shows how <span class='inlinecode'>yield</span> transfers control to the block. You can also pass arguments to <span class='inlinecode'>yield</span> and get a return value from the block.</span><br />
+<span><span class='inlinecode'>yield</span> can also take arguments and return the block&#39;s value:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -188,11 +186,7 @@ http://www.gnu.org/software/src-highlite -->
 <i><font color="#666666"># =&gt; The block returned 10</font></i>
 </pre>
 <br />
-<span>This demonstrates passing an argument to the block and using its return value.</span><br />
-<br />
 <h2 style='display: inline' id='fun-with-data-types'>Fun with Data Types</h2><br />
-<br />
-<span>Ruby&#39;s core data types are full of nice little features.</span><br />
 <br />
 <h3 style='display: inline' id='symbols'>Symbols</h3><br />
 <br />
@@ -215,11 +209,9 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">p my_hash</font><font color="#cb7676">[:</font><font color="#dbd7ca">name</font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><i><font color="#666666"># =&gt; "Paul"</font></i>
 </pre>
 <br />
-<span>This code highlights the difference between strings and symbols and shows the convenient hash syntax.</span><br />
-<br />
 <h3 style='display: inline' id='arrays-and-hashes'>Arrays and Hashes</h3><br />
 <br />
-<span>Arrays and hashes have a rich API. The <span class='inlinecode'>%w</span> and <span class='inlinecode'>%i</span> shortcuts for creating arrays of strings and symbols are very handy.</span><br />
+<span><span class='inlinecode'>%w</span> and <span class='inlinecode'>%i</span> are handy shortcuts for arrays of strings and symbols.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -234,7 +226,7 @@ http://www.gnu.org/software/src-highlite -->
 <i><font color="#666666"># =&gt; [:one, :two, :three]</font></i>
 </pre>
 <br />
-<span>A quick way to create arrays. You can also retrieve multiple values at once.</span><br />
+<span><span class='inlinecode'>values_at</span> fetches several elements at once:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -249,11 +241,9 @@ http://www.gnu.org/software/src-highlite -->
 <i><font color="#666666"># =&gt; [1, 3]</font></i>
 </pre>
 <br />
-<span>The <span class='inlinecode'>values_at</span> method is a concise way to get multiple elements.</span><br />
-<br />
 <h2 style='display: inline' id='final-thoughts'>Final Thoughts</h2><br />
 <br />
-<span>These are just a few of the many things I learned from "The Well-Grounded Rubyist". The book gave me a much deeper appreciation for the language and its design. If you are a Ruby programmer, I highly recommend it. Meanwhile, I also read the book "Programming Ruby 3.3", just I didn&#39;t have time to process my notes there yet. </span><br />
+<span>These are just a few of the many things I learned from "The Well-Grounded Rubyist". If you write Ruby, read it. Meanwhile, I also read the book "Programming Ruby 3.3", just I didn&#39;t have time to process my notes there yet. </span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

@@ -56,7 +56,7 @@
 </ul><br />
 <span>Everything uses the same <span class='inlinecode'>config.toml</span>, the same provider pool, and the same prompt overrides. I can switch models in one place and the LSP, CLI, and popup all follow along.</span><br />
 <br />
-<span>These are opinionated tools. They reflect how I work — Helix inside tmux, a terminal CLI, a thin Taskwarrior wrapper — not a generic plugin system. If your workflow matches mine, they get out of the way; if it doesn&#39;t, you will probably want to tweak the config or fork it.</span><br />
+<span>These are opinionated tools. They reflect how I work: Helix inside tmux, a terminal CLI, a thin Taskwarrior wrapper. If your workflow is different, you&#39;ll probably want to tweak the config or fork it.</span><br />
 <br />
 <h2 style='display: inline' id='installing-it'>Installing it</h2><br />
 <br />
@@ -100,7 +100,7 @@ model = "qwen3-coder:30b-a3b-q4_K_M"
 base_url = "http://localhost:11434"
 </pre>
 <br />
-<span>Because that points at <span class='inlinecode'>localhost</span>, nothing leaves your machine — prompt, code, and reply all stay local. That is the main reason I keep a local Ollama around.</span><br />
+<span>Because that points at <span class='inlinecode'>localhost</span>, nothing leaves your machine. That&#39;s the main reason I keep a local Ollama around.</span><br />
 <br />
 <span>For OpenAI, the config is similar:</span><br />
 <br />
@@ -317,7 +317,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span><span class='inlinecode'>ask</span> just hides the project filter, the <span class='inlinecode'>+agent</span> tag, and the raw UUIDs so the day-to-day output stays small and project-local.</span><br />
 <br />
-<span>That scoping is also a security boundary, and the main reason I let an LLM agent touch my Taskwarrior database at all. Because <span class='inlinecode'>ask</span> always applies the <span class='inlinecode'>project:REPO +agent</span> filter, the agent can only see and modify tasks in its own current project — it cannot delete, reprioritize, or even see anything outside that filter. So <span class='inlinecode'>ask</span> is really a safety wrapper around <span class='inlinecode'>task</span>: you can hand it to a coding agent without giving it free rein over the rest of your tasks.</span><br />
+<span>That scoping is also the reason I let an LLM agent touch my Taskwarrior database at all. The agent only sees the tasks matching <span class='inlinecode'>project:REPO +agent</span> and can&#39;t touch anything else.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -337,7 +337,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">ask info os0</font>
 </pre>
 <br />
-<span>The IDs shown are stable local aliases, not Taskwarrior&#39;s numeric IDs. Taskwarrior gives you two built-in identifiers: a numeric ID that isn&#39;t stable across syncs and exports, and a UUID that is stable but far too long to type by hand. <span class='inlinecode'>ask</span> instead keeps its own mapping from each task&#39;s UUID to a short, permanent alias (cached under Hexai&#39;s cache dir) — so you get the best of both: a stable, short ID that never changes even if tasks above it get completed or deleted. <span class='inlinecode'>ask info</span> hides the raw UUID unless <span class='inlinecode'>HEXAI_DEBUG</span> is set, so the short alias is the one you actually use day to day.</span><br />
+<span>The IDs shown are stable local aliases, not Taskwarrior&#39;s numeric IDs. Taskwarrior gives you two built-in identifiers: a numeric ID that isn&#39;t stable across syncs and exports, and a UUID that is stable but far too long to type by hand. <span class='inlinecode'>ask</span> keeps its own mapping from each task&#39;s UUID to a short, permanent alias (cached under Hexai&#39;s cache dir). The alias doesn&#39;t change when tasks above it get completed or deleted. <span class='inlinecode'>ask info</span> hides the raw UUID unless <span class='inlinecode'>HEXAI_DEBUG</span> is set, so the short alias is the one you actually use day to day.</span><br />
 <br />
 <span><span class='inlinecode'>ask</span> works from anywhere inside the project git tree and derives the project name from the repo root. To manage tasks for another project, use <span class='inlinecode'>ask proj:hexai list</span>.</span><br />
 <br />
@@ -369,8 +369,8 @@ Tags:        agent
 <br />
 <span>This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of <span class='inlinecode'>ask</span>: the <span class='inlinecode'>agent-task-management</span> skill knows how to read and update the <span class='inlinecode'>ask</span> task list, and the <span class='inlinecode'>/work-on-tasks</span> command uses that skill to work through a whole backlog on its own — pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run <span class='inlinecode'>/work-on-tasks</span>, and it chews through the queue one task at a time.</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/dotfiles/src/branch/master/prompts/skills/agent-task-management'>agent-task-management skill</a><br />
-<a class='textlink' href='https://github.com/snonux/dotfiles/src/branch/master/prompts/commands/work-on-tasks.md'>/work-on-tasks command</a><br />
+<a class='textlink' href='https://github.com/snonux/dotfiles/tree/master/prompts/skills/agent-task-management'>agent-task-management skill</a><br />
+<a class='textlink' href='https://github.com/snonux/dotfiles/blob/master/prompts/commands/work-on-tasks.md'>/work-on-tasks command</a><br />
 <br />
 <h2 style='display: inline' id='running-multiple-providers-side-by-side'>Running multiple providers side by side</h2><br />
 <br />
@@ -402,7 +402,7 @@ Reads a file and echoes each line. Returns early on open errors.
 <br />
 <h2 style='display: inline' id='what-to-watch-out-for'>What to watch out for</h2><br />
 <br />
-<span>A few honest caveats:</span><br />
+<span>A few caveats:</span><br />
 <br />
 <ul>
 <li>I mainly test Hexai with Helix inside tmux. Other editors might work through LSP, but your mileage will vary.</li>

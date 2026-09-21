@@ -20,14 +20,8 @@
 <br />
 <a class='textlink' href='./2024-06-23-terminal-multiplexing-with-tmux.html'>./2024-06-23-terminal-multiplexing-with-tmux.html</a><br />
 <br />
-<span>Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:</span><br />
+<span>Tmux (Terminal Multiplexer) runs multiple terminal sessions within a single window. It manages sessions, windows and panes, keeps your workspace around when you disconnect, and is very configurable.</span><br />
 <br />
-<ul>
-<li>Session management</li>
-<li>Window and Pane management</li>
-<li>Persistent Workspace</li>
-<li>Customization</li>
-</ul><br />
 <a class='textlink' href='https://github.com/tmux/tmux/wiki'>https://github.com/tmux/tmux/wiki</a><br />
 <br />
 <pre>
@@ -139,7 +133,7 @@ function _tmux::cleanup_default
 end
 </pre>
 <br />
-<span>The cleanup function kills all open Tmux sessions that haven&#39;t been renamed properly yet—but only if they aren&#39;t attached (e.g., don&#39;t run in the foreground in any terminal). Cleaning them up automatically keeps my Tmux sessions as neat and tidy as possible. </span><br />
+<span>The cleanup function kills all open Tmux sessions that haven&#39;t been renamed yet, but only if they aren&#39;t attached (e.g., don&#39;t run in the foreground in any terminal). That keeps my session list tidy. </span><br />
 <br />
 <h3 style='display: inline' id='renaming-sessions'>Renaming sessions</h3><br />
 <br />
@@ -395,7 +389,7 @@ bind-key P setw synchronize-panes on
 bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded"
 </pre>
 <br />
-<span>We discussed <span class='inlinecode'>synchronized panes</span> earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (remote SSH sessions) receive the same keystrokes. This is very useful when you want to run the same commands on many servers at once, such as navigating to a common directory, restarting a couple of services at once, or running tools like <span class='inlinecode'>htop</span> to quickly monitor system resources.</span><br />
+<span>We discussed <span class='inlinecode'>synchronized panes</span> earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (remote SSH sessions) receive the same keystrokes. Very useful when you want to run the same commands on many servers at once, e.g. restarting a service everywhere or running <span class='inlinecode'>htop</span> on all of them.</span><br />
 <br />
 <span>The last one reloads my Tmux configuration on the fly.</span><br />
 <br />

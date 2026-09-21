@@ -49,9 +49,9 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 </ul><br />
 <h2 style='display: inline' id='funcname'><span class='inlinecode'>FUNCNAME</span></h2><br />
 <br />
-<span><span class='inlinecode'>FUNCNAME</span> is an array you are looking for a way to dynamically determine the name of the current function (which could be considered the callee in the context of its own execution), you can use the special variable <span class='inlinecode'>FUNCNAME</span>. This is an array variable that contains the names of all shell functions currently in the execution call stack. The element <span class='inlinecode'>FUNCNAME[0]</span> holds the name of the currently executing function, <span class='inlinecode'>FUNCNAME[1]</span> the name of the function that called that, and so on.</span><br />
+<span><span class='inlinecode'>FUNCNAME</span> is an array variable holding the names of all shell functions currently on the call stack. <span class='inlinecode'>FUNCNAME[0]</span> is the function currently executing, <span class='inlinecode'>FUNCNAME[1]</span> the function which called it, and so on.</span><br />
 <br />
-<span>This is particularly useful for logging when you want to include the callee function in the log output. E.g. look at this log helper:</span><br />
+<span>That&#39;s handy for logging. E.g. look at this log helper:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini

@@ -80,11 +80,11 @@
 <br />
 <h2 style='display: inline' id='not-arm-but-intel-n100-'>Not ARM but Intel N100 </h2><br />
 <br />
-<span>I needed something compact, efficient, and capable enough to handle the demands of a small-scale Kubernetes cluster and preferably something I don&#39;t have to assemble a lot. After researching, I decided on the Beelink S12 Pro with Intel N100 CPUs.</span><br />
+<span>I needed something small and power-efficient that can run a small k3s cluster, and preferably nothing I have to assemble. After researching, I decided on the Beelink S12 Pro with Intel N100 CPUs.</span><br />
 <br />
 <a class='textlink' href='https://www.bee-link.com/products/beelink-mini-s12-pro-n100'>Beelink Mini S12 Pro N100 official page</a><br />
 <br />
-<span>The Intel N100 CPUs are built on the "Alder Lake-N" architecture. These chips are designed to balance performance and energy efficiency well. With four cores, they&#39;re more than capable of running multiple containers, even with moderate workloads. Plus, they consume only around 8W of power (ok, that&#39;s more than the Pis...), keeping the electricity bill low enough and the setup quiet - perfect for 24/7 operation.</span><br />
+<span>The Intel N100 CPUs are built on the "Alder Lake-N" architecture. Four cores are plenty for a few containers, and the chip only draws around 8W (ok, that&#39;s more than the Pis...), so the electricity bill stays low and the boxes stay quiet. Good enough for running 24/7.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-2/f3s-collage1.jpg'><img alt='Beelink preparation' title='Beelink preparation' src='./f3s-kubernetes-with-freebsd-part-2/f3s-collage1.jpg' /></a><br />
 <br />
@@ -359,9 +359,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Updated Sun 11 Jan 10:30:00 EET 2026</span><br />
 <br />
-<span>As mentioned in the hardware specs above, the Beelink S12 Pro supports Wake-on-LAN (WoL), which allows me to remotely power on the machines over the network. This is particularly useful since I don&#39;t need all three machines running 24/7, and I can save power by shutting them down when not needed and waking them up on demand.</span><br />
+<span>The Beelink S12 Pro supports Wake-on-LAN (WoL). I don&#39;t need all three machines running 24/7, so I shut them down when I don&#39;t need them and wake them up over the network on demand.</span><br />
 <br />
-<span>The good news is that FreeBSD already has WoL support enabled by default on the Realtek network interface, as evidenced by the <span class='inlinecode'>WOL_MAGIC</span> option shown in the <span class='inlinecode'>ifconfig re0</span> output above (line 215).</span><br />
+<span>FreeBSD already has WoL enabled on the Realtek interface. See the <span class='inlinecode'>WOL_MAGIC</span> option in the <span class='inlinecode'>ifconfig re0</span> output above.</span><br />
 <br />
 <h2 style='display: inline' id='setting-up-wol-on-the-laptop'>Setting up WoL on the laptop</h2><br />
 <br />
@@ -491,7 +491,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">✓ WoL packets sent</font><font color="#cb7676">.</font><font color="#dbd7ca"> Machines should boot </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> a few seconds</font><font color="#cb7676">.</font>
 </pre>
 <br />
-<span>Within 30-50 seconds, all three machines successfully booted up and became accessible via SSH!</span><br />
+<span>After 30-50 seconds, all three were up and reachable via SSH.</span><br />
 <br />
 <span>This also works fine over WiFi, by the way — as long as the laptop and the Beelinks are on the same local network, the router bridges everything. And <span class='inlinecode'>wol-f3s shutdown</span> does the reverse (SSH + <span class='inlinecode'>doas poweroff</span>), so I can spin the whole cluster up and down pretty quickly.</span><br />
 <br />
@@ -504,8 +504,6 @@ http://www.gnu.org/software/src-highlite -->
 <li>Disable "ERP Support" or "ErP Ready" (this can prevent WoL from working)</li>
 <li>Enable "Power on by PCI-E" or "Wake on PCI-E"</li>
 </ul><br />
-<span>The exact menu names vary, but these settings are typically found in the Power Management or Advanced sections of the BIOS.</span><br />
-<br />
 <h1 style='display: inline' id='conclusion'>Conclusion</h1><br />
 <br />
 <span>Honestly, the Beelink S12 Pro with the N100 is kind of perfect for this — tiny, cheap, sips power, and runs both Linux and FreeBSD without drama. I&#39;m pretty happy with it.</span><br />

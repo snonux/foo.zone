@@ -35,25 +35,25 @@
 <br />
 <ul>
 <li><a href='#random-weird-things---part-'>Random Weird Things - Part Ⅲ</a></li>
-<li>⇢ <a href='#21-doom-in-typescripts-type-system'>21. Doom in TypeScript’s type system</a></li>
+<li>⇢ <a href='#21-doom-in-typescript-s-type-system'>21. Doom in TypeScript&#39;s type system</a></li>
 <li>⇢ <a href='#run-it-in-a-pdf'>Run it in a PDF</a></li>
 <li>⇢ ⇢ <a href='#22-doom-inside-a-pdf'>22. Doom inside a PDF</a></li>
 <li>⇢ ⇢ <a href='#23-linux-inside-a-pdf'>23. Linux inside a PDF</a></li>
 <li>⇢ <a href='#24-sqlite-loves-tcl'>24. SQLite loves Tcl</a></li>
-<li>⇢ <a href='#25-fossil-e-and-a-tcltk-chat'>25. Fossil, “e”, and a Tcl/Tk chat</a></li>
+<li>⇢ <a href='#25-fossil-e-and-a-tcltk-chat'>25. Fossil, "e", and a Tcl/Tk chat</a></li>
 <li>⇢ <a href='#26-kubernetes-from-an-excel-spreadsheet'>26. Kubernetes from an Excel spreadsheet</a></li>
-<li>⇢ <a href='#27-sre-means-sorry'>27. SRE means “Sorry…”</a></li>
+<li>⇢ <a href='#27-sre-means-sorry'>27. SRE means "Sorry…"</a></li>
 <li>⇢ <a href='#28-touch-grass-the-app'>28. Touch Grass, the app</a></li>
 <li>⇢ <a href='#29-blogging-with-the-c-preprocessor'>29. Blogging with the C preprocessor</a></li>
 <li>⇢ <a href='#30-accidentally-turing-complete'>30. Accidentally Turing-complete</a></li>
 </ul><br />
-<h2 style='display: inline' id='21-doom-in-typescripts-type-system'>21. Doom in TypeScript’s type system</h2><br />
+<h2 style='display: inline' id='21-doom-in-typescript-s-type-system'>21. Doom in TypeScript&#39;s type system</h2><br />
 <br />
 <span>Yes, really. Someone has implemented Doom to run within the TypeScript type system—compile-time madness, but fun to watch.</span><br />
 <br />
 <a class='textlink' href='https://www.youtube.com/watch?v=0mCsluv5FXA'>Doom in the TS type system</a><br />
 <br />
-<span>TypeScript’s type checker is surprisingly expressive: conditional types, recursion, and template literal types let you encode nontrivial logic that “executes” during compilation. The demo exploits this to build a tiny ray-caster that renders as compiler errors or types. It’s wildly impractical, but a great reminder that enough expressiveness plus recursion tends to drift toward Turing completeness.</span><br />
+<span>The type checker is expressive enough (conditional types, recursion, template literal types) to run a tiny ray-caster. Completely impractical, but it shows how quickly a type system becomes Turing complete.</span><br />
 <br />
 <h2 style='display: inline' id='run-it-in-a-pdf'>Run it in a PDF</h2><br />
 <br />
@@ -63,7 +63,7 @@
 <br />
 <a class='textlink' href='https://github.com/ading2210/doompdf'>doompdf</a><br />
 <br />
-<span>This relies on features like PDF JavaScript and interactive objects, which some viewers still support. Expect mixed results: many modern readers sandbox or disable scripting by default for security. If you try it, use a compatible desktop viewer and be prepared for portability quirks.</span><br />
+<span>It needs a PDF viewer with JavaScript enabled, and most disable that nowadays. So it may or may not work for you.</span><br />
 <br />
 <h3 style='display: inline' id='23-linux-inside-a-pdf'>23. Linux inside a PDF</h3><br />
 <br />
@@ -71,7 +71,7 @@
 <br />
 <a class='textlink' href='https://github.com/ading2210/linuxpdf'>linuxpdf</a><br />
 <br />
-<span>Like the Doom-in-PDF trick, this leans on the PDF runtime to host unconventional logic and rendering. It’s more of an art piece than a daily driver, but it shows how “document” formats can accidentally become platforms. The security posture of PDF viewers varies significantly, so expect inconsistent behaviour across different apps.</span><br />
+<span>Same trick as the Doom one. A PDF is a platform now, apparently.</span><br />
 <br />
 <h2 style='display: inline' id='24-sqlite-loves-tcl'>24. SQLite loves Tcl</h2><br />
 <br />
@@ -79,15 +79,15 @@
 <br />
 <a class='textlink' href='https://www.tcl-lang.org/community/tcl2017/assets/talk93/Paper.html'>Tcl 2017 paper</a><br />
 <br />
-<span>The famous single-file <span class='inlinecode'>sqlite3.c</span> is not hand-edited—developers maintain sources, plus build scripts that knit everything together deterministically. Their Tcl-centric tooling provides them with reproducible builds and a very opinionated workflow. It’s a great counterexample to the idea that “serious” projects must standardise on the most popular build stacks.</span><br />
+<span>The famous single-file <span class='inlinecode'>sqlite3.c</span> isn&#39;t hand-edited; Tcl scripts generate it from the real sources. Nobody says a serious project has to use the popular build stack.</span><br />
 <br />
-<h2 style='display: inline' id='25-fossil-e-and-a-tcltk-chat'>25. Fossil, “e”, and a Tcl/Tk chat</h2><br />
+<h2 style='display: inline' id='25-fossil-e-and-a-tcltk-chat'>25. Fossil, "e", and a Tcl/Tk chat</h2><br />
 <br />
-<span>The SQLite folks use a custom Tcl/Tk editor called “e”, a homegrown VCS (Fossil), and even a Tcl/Tk chat room for development—peak bespoke tooling.</span><br />
+<span>The SQLite folks use a custom Tcl/Tk editor called "e", a homegrown VCS (Fossil), and even a Tcl/Tk chat room for development—peak bespoke tooling.</span><br />
 <br />
 <a class='textlink' href='https://www.tcl-lang.org/community/tcl2017/assets/talk93/Paper.html'>More details in the paper</a><br />
 <br />
-<span>Fossil bundles source control, tickets, wiki, and a web UI into a single portable binary—no external services required. The “e” editor and chat complete a tight, integrated loop tailored to their team’s needs and constraints. It’s delightfully “boring tech” that has produced one of the most reliable databases on earth.</span><br />
+<span>Fossil is source control, tickets, wiki and web UI in one binary. Boring tech, and it produced one of the most reliable databases around.</span><br />
 <br />
 <h2 style='display: inline' id='26-kubernetes-from-an-excel-spreadsheet'>26. Kubernetes from an Excel spreadsheet</h2><br />
 <br />
@@ -95,13 +95,11 @@
 <br />
 <a class='textlink' href='https://github.com/learnk8s/xlskubectl'>xlskubectl</a><br />
 <br />
-<span>Resources are rows; columns map to fields; the tool renders YAML and applies it for you. It’s oddly ergonomic for demos, audits, or letting non‑YAML‑native teammates propose changes. Obviously, be careful—permissions and review gates still matter even if your “IDE” is Excel.</span><br />
+<span>Resources are rows, columns are fields, the tool renders the YAML and applies it. Please don&#39;t point this at production.</span><br />
 <br />
-<h2 style='display: inline' id='27-sre-means-sorry'>27. SRE means “Sorry…”</h2><br />
+<h2 style='display: inline' id='27-sre-means-sorry'>27. SRE means "Sorry…"</h2><br />
 <br />
-<span>An industry joke (or truth?) that SRE (short for Site Reliability Engineer) stands for “Sorry…”. </span><br />
-<br />
-<span>Anecdotes are a good reminder that failure is inevitable and empathy is essential. The best takeaways are about clear communication, graceful degradation, and blameless postmortems. Laughing helps, but guardrails and good on‑call hygiene help even more.</span><br />
+<span>An industry joke (or truth?) that SRE (short for Site Reliability Engineer) stands for "Sorry…".</span><br />
 <br />
 <h2 style='display: inline' id='28-touch-grass-the-app'>28. Touch Grass, the app</h2><br />
 <br />
@@ -109,15 +107,13 @@
 <br />
 <a class='textlink' href='https://touchgrass.now/'>Touch grass</a><br />
 <br />
-<span>It’s simple and playful—sometimes that’s the nudge you need to break doomscroll loops. Treat it like a micro‑ritual: set a reminder, step outside, reset. Your eyes (and nervous system) will thank you.</span><br />
-<br />
 <h2 style='display: inline' id='29-blogging-with-the-c-preprocessor'>29. Blogging with the C preprocessor</h2><br />
 <br />
-<span>Use the C preprocessor to assemble a blog. It shouldn’t work this well—and yet.</span><br />
+<span>Use the C preprocessor to assemble a blog. It shouldn&#39;t work this well—and yet.</span><br />
 <br />
 <a class='textlink' href='https://wheybags.com/blog/macroblog.html'>Macroblog with cpp</a><br />
 <br />
-<span>Posts are stitched together with <span class='inlinecode'>#include</span>s and macros, giving you DRY content blocks and repeatable builds. It’s hacky, fast, and delightfully text‑only—perfect for people who think makefiles are a UI. Would I recommend it for everyone? No. Is it charming and effective? Absolutely.</span><br />
+<span>Posts are stitched together with <span class='inlinecode'>#include</span> and macros. Hacky, but it works, and I kind of like it.</span><br />
 <br />
 <h2 style='display: inline' id='30-accidentally-turing-complete'>30. Accidentally Turing-complete</h2><br />
 <br />
@@ -125,7 +121,7 @@
 <br />
 <a class='textlink' href='https://beza1e1.tuxen.de/articles/accidentally_turing_complete.html'>Accidentally Turing-complete</a><br />
 <br />
-<span>Give a system conditionals, state, and unbounded composition, and it often crosses the threshold into general computation—whether that was the goal or not. The list includes items such as CSS, regular expression dialects, and even card games. It’s a fun lens for understanding why “just a configuration language” can get complicated fast.</span><br />
+<span>CSS, some regex dialects, card games... Once a thing has conditionals and state, it tends to become a computer whether you wanted it or not.</span><br />
 <br />
 <span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

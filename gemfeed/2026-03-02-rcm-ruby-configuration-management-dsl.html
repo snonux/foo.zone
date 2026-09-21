@@ -51,11 +51,11 @@
 <br />
 <span>I&#39;ve used (and still use) the usual suspects in configuration management: Puppet, Ansible, etc. They are powerful, but also come with orchestration layers, agents, inventories, and a lot of moving parts. For my personal machines I wanted something smaller: one Ruby process, one configuration file, a few resource types, and good enough safety features.</span><br />
 <br />
-<span>I&#39;ve always been a fan of Ruby&#39;s metaprogramming features, and this project let me explore them in a focused, practical way.</span><br />
+<span>I&#39;ve always liked Ruby&#39;s metaprogramming, and this project was a good excuse to play with it.</span><br />
 <br />
 <span>Because of that metaprogramming support, Ruby is a great fit for DSLs. You can get very close to natural language without inventing a brand-new syntax. RCM leans into that: the goal is to read a configuration and understand what happens without jumping between multiple files or templating languages.</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/rcm'>RCM repo on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/rcm'>RCM repo on GitHub</a><br />
 <br />
 <h2 style='display: inline' id='how-the-dsl-feels'>How the DSL feels</h2><br />
 <br />
@@ -163,8 +163,6 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Inside that block, calls such as <span class='inlinecode'>hostname</span> and <span class='inlinecode'>is</span> don&#39;t map to normal Ruby methods. Instead, RCM&#39;s DSL objects see those calls in <span class='inlinecode'>method_missing</span>, and interpret them as "check the current hostname" and "compare it to this symbol". This lets the DSL stay small and flexible: adding a new keyword can be as simple as handling another case in <span class='inlinecode'>method_missing</span>, without changing the Ruby syntax at all.</span><br />
 <br />
-<span>Put differently: you can write what looks like a tiny English sentence (<span class='inlinecode'>hostname is :earth</span>) and Ruby breaks it into method calls (<span class='inlinecode'>hostname</span>, then <span class='inlinecode'>is</span>) that RCM can interpret dynamically. Those "barewords" are not special syntax; they are just regular Ruby method names that the DSL catches and turns into configuration logic at runtime.</span><br />
-<br />
 <span>Here&#39;s a simplified sketch of how such a condition object could look in Ruby:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
@@ -227,7 +225,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='cutting-rcm-010'>Cutting RCM 0.1.0</h2><br />
 <br />
-<span>As of this post I&#39;m tagging and releasing **RCM 0.1.0**. About 99% of the code has been written by me so far, and before AI agents take over more of the boilerplate and wiring work, it felt like a good moment to cut a release and mark this mostly‑human baseline.</span><br />
+<span>As of this post I&#39;m tagging and releasing RCM 0.1.0. About 99% of the code has been written by me so far, and before AI agents take over more of the boilerplate and wiring work, it felt like a good moment to cut a release and mark this mostly‑human baseline.</span><br />
 <br />
 <span>Future changes will very likely involve more automated help, but 0.1.0 is the snapshot of the original, hand‑crafted version of the tool.</span><br />
 <br />
@@ -402,7 +400,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><font color="#4d9375">end</font></b>
 </pre>
 <br />
-<span>If you find RCM interesting, feel free to browse the code, adapt it to your own setup, or just steal ideas for your own Ruby DSLs. I will probably extend it with more features over time as my own needs evolve.</span><br />
+<span>If you find RCM interesting, have a look at the code or steal ideas for your own Ruby DSL. I&#39;ll extend it when I need something new.</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

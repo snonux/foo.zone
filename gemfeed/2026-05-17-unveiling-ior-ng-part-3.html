@@ -20,7 +20,7 @@
 <br />
 <a href='./unveiling-ior-ng/00-hero-flamegraph.png'><img alt='Live flamegraph' title='Live flamegraph' src='./unveiling-ior-ng/00-hero-flamegraph.png' /></a><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/ior'>I/O Riot NG on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/ior'>I/O Riot NG on GitHub</a><br />
 <br />
 <a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
 <a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
@@ -76,7 +76,7 @@
 <br />
 <span>The safeguard piece is that the list of ignored syscalls is also extracted into a checked-in audit file (<span class='inlinecode'>internal/c/generated_tracepoints_result.txt</span>) and <span class='inlinecode'>mage generate</span> diffs the new run against the committed copy. If a future kernel adds a syscall ior hasn&#39;t seen before, that diff will show it, and a strict-mode regen will fail the build until a human reviews the new entry. So either the new syscall is genuinely not file-I/O (drop a one-line ignore rule, commit the diff) or it is (extend the classifier, commit the new handler). Either way it&#39;s not a silent miss.</span><br />
 <br />
-<span>The current numbers are 234 active tracepoint handlers (117 enter+exit pairs) and 249 ignored syscalls, all enumerated in that one generated file. Compared to the old I/O Riot, where coverage was "however much of the kernel I happened to remember to type out", that&#39;s a meaningful step forward.</span><br />
+<span>The current numbers are 234 active tracepoint handlers (117 enter+exit pairs) and 249 ignored syscalls, all enumerated in that one generated file. Compared to the old I/O Riot, where coverage was "however much of the kernel I happened to remember to type out", that&#39;s a lot better.</span><br />
 <br />
 <span>(I hit this safeguard in practice during the Rocky Linux 9 install in Part 2: the committed audit was generated against a newer kernel, and the strict diff against Rocky&#39;s 5.14 refused to overwrite it. The <span class='inlinecode'>IOR_FORCE_GENERATE=1</span> env var skips the strict check and regenerates against the live kernel, which is the right thing on a fresh build host.)</span><br />
 <br />
@@ -88,11 +88,11 @@
 <br />
 <span><span class='inlinecode'>mage integrationTest</span> builds both binaries and runs the suite in parallel up to <span class='inlinecode'>INTEGRATION_PARALLEL</span> (default <span class='inlinecode'>NumCPU * 2</span>). <span class='inlinecode'>mage integrationTestSerial</span> does the same one at a time, which is the right knob when triaging a flake. They need root because of <span class='inlinecode'>CAP_BPF</span>, and they self-skip when not root.</span><br />
 <br />
-<span>What this buys, in practice: when CO-RE field offsets shift under me, when libbpfgo bumps a major version, when a new kernel quietly changes which syscalls bookkeep <span class='inlinecode'>bytes</span> at submission vs. completion, the suite&#39;s the thing that goes red first (not that I believe the kernel would introduce such a breaking change, so maybe this is a bad example). The codegen safeguard tells me "the kernel surface changed". The integration harness tells me "and here&#39;s specifically what ior is now getting wrong about it". That&#39;s much better than the old "wait for the next time I notice the flamegraph looks weird" workflow.</span><br />
+<span>In practice: if CO-RE field offsets shift, or libbpfgo bumps a major version, this suite goes red first. The codegen safeguard tells me that the kernel surface changed. The integration tests tell me what ior now gets wrong about it. Before, I&#39;d find out the next time the flamegraph looked weird.</span><br />
 <br />
 <h2 style='display: inline' id='querying-a-parquet-trace-with-clickhouse'>Querying a parquet trace with ClickHouse</h2><br />
 <br />
-<span>The schema is flat and stable: <span class='inlinecode'>seq, time_ns, gap_ns, latency_ns, comm, pid, tid, syscall, fd, ret, bytes, file, is_error, filter_epoch</span>. ClickHouse Local reads parquet directly without a server, which makes it a perfect post-mortem tool — point it at the file and run SQL:</span><br />
+<span>The schema is flat and stable: <span class='inlinecode'>seq, time_ns, gap_ns, latency_ns, comm, pid, tid, syscall, fd, ret, bytes, file, is_error, filter_epoch</span>. ClickHouse Local reads parquet directly without a server, so you can just point it at the file and run SQL:</span><br />
 <br />
 <a class='textlink' href='https://clickhouse.com/docs/operations/utilities/clickhouse-local'>ClickHouse Local — single-binary SQL over Parquet/CSV, no server needed</a><br />
 <br />
@@ -161,13 +161,13 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Real output, by the way: those rows are from a 30-second <span class='inlinecode'>ior -parquet trace.parquet</span> capture on the laptop I&#39;m typing this on. <span class='inlinecode'>notify-rs inoti…</span> is the inotify thread of some Rust app I had open; <span class='inlinecode'>cosmic-term</span> is the COSMIC desktop&#39;s terminal emulator. The slowest p99 errors are the directory-walking syscalls (statx, newfstatat, mkdir) at ~16 µs, bog standard.</span><br />
 <br />
-<span>Same trick works in DuckDB (<span class='inlinecode'>duckdb -c "SELECT ... FROM &#39;trace.parquet&#39;"</span>), pandas, polars, anything that reads Parquet. The point of streaming Parquet rather than ior&#39;s native <span class='inlinecode'>.ior.zst</span> format is exactly this: once it&#39;s on disk, you&#39;re in the standard data-tools ecosystem.</span><br />
+<span>Same trick works in DuckDB (<span class='inlinecode'>duckdb -c "SELECT ... FROM &#39;trace.parquet&#39;"</span>), pandas, polars, anything that reads Parquet. That&#39;s why ior streams Parquet and not only its native <span class='inlinecode'>.ior.zst</span> format: once it&#39;s on disk, any standard data tool can read it.</span><br />
 <br />
 <a class='textlink' href='https://duckdb.org/'>DuckDB — single-binary embedded SQL, also reads Parquet directly</a><br />
 <br />
 <h2 style='display: inline' id='asking-an-ai-to-do-the-reading-for-you'>Asking an AI to do the reading for you</h2><br />
 <br />
-<span>Parquet is great if you already have an angle of attack. Sometimes you don&#39;t. You just want to know "what&#39;s hammering this box right now, and is any of it interesting?" That&#39;s where pasting a chunk of trace into an LLM and asking it to look turns out to be a surprisingly effective first pass. ior&#39;s <span class='inlinecode'>-plain</span> mode emits CSV, which is exactly the format AI assistants are best at chewing through:</span><br />
+<span>Parquet is great if you already have an angle of attack. Sometimes you don&#39;t. You just want to know "what&#39;s hammering this box right now, and is any of it interesting?" Pasting a chunk of the trace into an LLM works well as a first pass. ior&#39;s <span class='inlinecode'>-plain</span> mode emits CSV, which LLMs handle fine:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -224,7 +224,7 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
 /sys, /dev/dri, ~/.config and the Cosmic/Flatpak search dirs.
 </pre>
 <br />
-<span>Two things this is unreasonably good at. First, joining the dots between <span class='inlinecode'>comm</span>, <span class='inlinecode'>syscall</span> and <span class='inlinecode'>path</span> columns to give you a one-paragraph "this is what your machine is doing", the kind of summary that would take you ten ClickHouse queries to assemble by hand. Second, flagging things that are statistically weird without you having to know what to look for: the 100%-error <span class='inlinecode'>mkdir</span> was the EEXIST loop in cosmic-term, the 84%-error <span class='inlinecode'>newfstatat</span> was systemd-oomd racing process exits, the surface-eDP-1 outlier was the only entry on the list with high per-event latency.</span><br />
+<span>Two things it&#39;s good at. Joining <span class='inlinecode'>comm</span>, <span class='inlinecode'>syscall</span> and <span class='inlinecode'>path</span> into a one-paragraph "this is what your machine is doing" that would take me ten ClickHouse queries by hand. And flagging things that are statistically weird without me knowing what to look for: the 100%-error <span class='inlinecode'>mkdir</span> was the EEXIST loop in cosmic-term, the 84%-error <span class='inlinecode'>newfstatat</span> was systemd-oomd racing process exits, the surface-eDP-1 outlier was the only entry on the list with high per-event latency.</span><br />
 <br />
 <span>A few caveats worth knowing before you rely on this:</span><br />
 <br />
@@ -233,17 +233,17 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
 <li>The model is reading text, not running SQL. It will round, it will sometimes miscount the long tail, and it cannot tell you a true p99 from a 250k-row sample without writing code. Treat the output as a lead-generator: it points you at suspects, then you confirm with ClickHouse on the parquet file.</li>
 <li>For deeper questions ("what changed between these two traces?", "which pids dominate during the 12:34 spike?") an agentic assistant that can run shell commands does much better. It&#39;ll write the awk/clickhouse query itself, run it, and feed the result back into its own analysis.</li>
 </ul><br />
-<span>The combination that&#39;s worked best for me in practice: capture parquet with <span class='inlinecode'>-parquet</span>, also capture a <span class='inlinecode'>-plain</span> CSV slice for the AI to read, ask the AI for a triage pass, then drill into the suspects with ClickHouse on the parquet file. Triage and ground-truth, in that order.</span><br />
+<span>What works for me: capture parquet with <span class='inlinecode'>-parquet</span>, capture a <span class='inlinecode'>-plain</span> CSV slice as well, let the AI do a triage pass on the CSV, then check the suspects with ClickHouse on the parquet file.</span><br />
 <br />
 <h2 style='display: inline' id='what-s-new-in-v110'>What&#39;s new in v1.1.0</h2><br />
 <br />
-<span>One v1.1.0 change is directly relevant to the syscall-coverage story above: probe attach is now tolerant of missing tracepoints. The codegen safeguard still flags new arrivals at build time, but when the resulting binary lands on a kernel that lacks one of its handlers (because the syscall is newer than the host kernel, or the tracepoint name was renamed under it), ior logs a one-line warning per missing probe and keeps attaching the rest, instead of failing startup with a hard error. Codegen keeps the list honest going forward; the runtime change makes the binary forgiving going backward. The new <span class='inlinecode'>ior.el8</span> build (Part 2&#39;s <span class='inlinecode'>mage buildDockerEl8</span> target, for RHEL/Rocky/Alma 8 hosts on 4.18 kernels) leans on this directly — it ships handlers for tracepoints that only exist on newer kernels, and now just skips them at attach instead of aborting.</span><br />
+<span>One v1.1.0 change is directly relevant to the syscall-coverage story above: probe attach is now tolerant of missing tracepoints. The codegen safeguard still flags new arrivals at build time, but when the resulting binary lands on a kernel that lacks one of its handlers (because the syscall is newer than the host kernel, or the tracepoint name was renamed under it), ior logs a one-line warning per missing probe and keeps attaching the rest, instead of failing startup with a hard error. The new <span class='inlinecode'>ior.el8</span> build (Part 2&#39;s <span class='inlinecode'>mage buildDockerEl8</span> target, for RHEL/Rocky/Alma 8 hosts on 4.18 kernels) leans on this directly — it ships handlers for tracepoints that only exist on newer kernels, and now just skips them at attach instead of aborting.</span><br />
 <br />
 <h2 style='display: inline' id='wrapping-up'>Wrapping up</h2><br />
 <br />
 <span>That&#39;s the bottom of the stack. For the dashboard surface (what ior looks like, how the seven tabs behave, how filtering and recording work in practice) Part 1 is the demo-driven tour with all the GIFs. For the install dance and the why-the-binary-is-portable story (eBPF, CO-RE, static linking), Part 2 is the install + portability companion.</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/ior'>Source on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/ior'>Source on GitHub</a><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

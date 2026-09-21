@@ -66,7 +66,7 @@
 <li>⇢ ⇢ <a href='#grafana-dashboards'>Grafana Dashboards</a></li>
 <li>⇢ ⇢ <a href='#deployment'>Deployment</a></li>
 <li>⇢ ⇢ <a href='#verifying-zfs-metrics-in-prometheus'>Verifying ZFS Metrics in Prometheus</a></li>
-<li>⇢ ⇢ <a href='#key-metrics-to-monitor'>Key Metrics to Monitor</a></li>
+<li>⇢ ⇢ <a href='#what-i-actually-look-at'>What I actually look at</a></li>
 <li>⇢ ⇢ <a href='#zfs-pool-and-dataset-metrics-via-textfile-collector'>ZFS Pool and Dataset Metrics via Textfile Collector</a></li>
 <li>⇢ <a href='#monitoring-external-openbsd-hosts'>Monitoring external OpenBSD hosts</a></li>
 <li>⇢ ⇢ <a href='#installing-node-exporter-on-openbsd'>Installing Node Exporter on OpenBSD</a></li>
@@ -76,7 +76,7 @@
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
-<span>In this blog post, I set up a complete observability stack for the k3s cluster. Observability is crucial for understanding what&#39;s happening inside the cluster—whether its tracking resource usage, debugging issues, or analysing application behaviour. The stack consists of five main components, all deployed into the <span class='inlinecode'>monitoring</span> namespace:</span><br />
+<span>In this blog post, I set up an observability stack for the k3s cluster, so I can see what&#39;s going on inside it. Five components, all in the <span class='inlinecode'>monitoring</span> namespace:</span><br />
 <br />
 <ul>
 <li>Prometheus: time-series database for metrics collection and alerting</li>
@@ -85,17 +85,17 @@
 <li>Alloy: telemetry collector that ships logs and traces from all pods to Loki and Tempo</li>
 <li>Tempo: distributed tracing backend for request flow analysis across microservices</li>
 </ul><br />
-<span>Together, these form the "PLG" stack (Prometheus, Loki, Grafana) extended with Tempo for distributed tracing, which is a popular open-source alternative to commercial observability platforms.</span><br />
+<span>That&#39;s the "PLG" stack (Prometheus, Loki, Grafana) plus Tempo.</span><br />
 <br />
 <span>All manifests for the f3s stack live in my configuration repository:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s'>github.com/snonux/conf/f3s</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s'>github.com/snonux/conf/f3s</a><br />
 <br />
 <h2 style='display: inline' id='important-note-gitops-migration'>Important Note: GitOps Migration</h2><br />
 <br />
-<span>**Note:** After publishing this blog post, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Kubernetes manifests, Helm charts, and Justfiles in the repository have been reorganized for ArgoCD-based continuous deployment.</span><br />
+<span>Note: After publishing this post, I migrated the f3s cluster from imperative Helm deployments to GitOps with ArgoCD, and reorganised the manifests, Helm charts and Justfiles in the repository for that.</span><br />
 <br />
-<span>**To view the exact configuration as it existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:</span><br />
+<span>To see the configuration as it was when I wrote this post, check out the pre-ArgoCD revision:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -107,13 +107,13 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">$ cd f3s/prometheus</font><font color="#cb7676">/</font>
 </pre>
 <br />
-<span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
+<span>The current master branch contains the ArgoCD-managed versions with:</span><br />
 <ul>
 <li>Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></li>
 <li>Resources organized under <span class='inlinecode'>prometheus/manifests/</span>, <span class='inlinecode'>loki/</span>, etc.</li>
 <li>Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</li>
 </ul><br />
-<span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD). </span><br />
+<span>The concepts are the same, only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD).</span><br />
 <br />
 <h2 style='display: inline' id='persistent-storage-recap'>Persistent storage recap</h2><br />
 <br />
@@ -176,7 +176,7 @@ http://www.gnu.org/software/src-highlite -->
 <span>The configuration repository contains a <span class='inlinecode'>Justfile</span> that automates the deployment. <span class='inlinecode'>just</span> is a handy command runner—think of it as a simpler, more modern alternative to <span class='inlinecode'>make</span>. I use it throughout the f3s repository to wrap repetitive Helm and kubectl commands:</span><br />
 <br />
 <a class='textlink' href='https://github.com/casey/just'>just - A handy way to save and run project-specific commands</a><br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus'>github.com/snonux/conf/f3s/prometheus</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/prometheus'>github.com/snonux/conf/f3s/prometheus</a><br />
 <br />
 <span>To install everything:</span><br />
 <br />
@@ -198,7 +198,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">STATUS</font><font color="#cb7676">:</font><font color="#dbd7ca"> deployed</font>
 </pre>
 <br />
-<span>The <span class='inlinecode'>persistence-values.yaml</span> configures Prometheus and Grafana to use the NFS-backed persistent volumes I mentioned earlier, ensuring data survives pod restarts. It also enables scraping of etcd and kube-controller-manager metrics:</span><br />
+<span><span class='inlinecode'>persistence-values.yaml</span> points Prometheus and Grafana at the NFS-backed volumes from above. It also enables scraping of etcd and kube-controller-manager metrics:</span><br />
 <br />
 <pre>
 kubeEtcd:
@@ -254,9 +254,9 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">etcd_server_has_leader </font><font color="#bd976a">1</font>
 </pre>
 <br />
-<span>The full <span class='inlinecode'>persistence-values.yaml</span> and all other Prometheus configuration files are available on Codeberg:</span><br />
+<span>The full <span class='inlinecode'>persistence-values.yaml</span> and all other Prometheus configuration files are available on GitHub:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus'>github.com/snonux/conf/f3s/prometheus</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/prometheus'>github.com/snonux/conf/f3s/prometheus</a><br />
 <br />
 <span>The persistent volume definitions bind to specific paths on the NFS share using <span class='inlinecode'>hostPath</span> volumes—the same pattern used for other services in Part 7:</span><br />
 <br />
@@ -287,7 +287,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='installing-loki-and-alloy'>Installing Loki and Alloy</h2><br />
 <br />
-<span>While Prometheus handles metrics, Loki handles logs. It&#39;s designed to be cost-effective and easy to operate—it doesn&#39;t index the contents of logs, only the metadata (labels), making it very efficient for storage.</span><br />
+<span>While Prometheus handles metrics, Loki handles logs. It only indexes the labels, not the log contents, so it&#39;s cheap on storage.</span><br />
 <br />
 <span>Alloy is Grafana&#39;s telemetry collector (the successor to Promtail). It runs as a DaemonSet on each node, tails container logs, and ships them to Loki.</span><br />
 <br />
@@ -306,7 +306,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The Loki configuration also lives in the repository:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/loki'>github.com/snonux/conf/f3s/loki</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/loki'>github.com/snonux/conf/f3s/loki</a><br />
 <br />
 <span>To install:</span><br />
 <br />
@@ -334,9 +334,9 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">STATUS</font><font color="#cb7676">:</font><font color="#dbd7ca"> deployed</font>
 </pre>
 <br />
-<span>Loki runs in single-binary mode with a single replica (<span class='inlinecode'>loki-0</span>), which is appropriate for a home lab cluster. This means there&#39;s only one Loki pod running at any time. If the node hosting Loki fails, Kubernetes will automatically reschedule the pod to another worker node—but there will be a brief downtime (typically under a minute) while this happens. For my home lab use case, this is perfectly acceptable.</span><br />
+<span>Loki runs in single-binary mode with a single replica (<span class='inlinecode'>loki-0</span>), which is appropriate for a home lab cluster. This means there&#39;s only one Loki pod running at any time. If the node hosting Loki fails, Kubernetes will automatically reschedule the pod to another worker node—but there will be a brief downtime (typically under a minute) while this happens. Fine for a home lab.</span><br />
 <br />
-<span>For full high-availability, you&#39;d deploy Loki in microservices mode with separate read, write, and backend components, backed by object storage like S3 or MinIO instead of local filesystem storage. That&#39;s a more complex setup that I might explore in a future blog post—but for now, the single-binary mode with NFS-backed persistence strikes the right balance between simplicity and durability.</span><br />
+<span>For full high-availability, you&#39;d deploy Loki in microservices mode with separate read, write, and backend components, backed by object storage like S3 or MinIO instead of local filesystem storage. Maybe in a future post. For now, single-binary mode on NFS is good enough.</span><br />
 <br />
 <h3 style='display: inline' id='configuring-alloy'>Configuring Alloy</h3><br />
 <br />
@@ -468,9 +468,7 @@ http://www.gnu.org/software/src-highlite -->
 <li><span class='inlinecode'>alertmanager-prometheus-kube-prometheus-alertmanager-0</span>: the Alertmanager instance that receives alerts from Prometheus, deduplicates them, groups related alerts together, and routes notifications to the appropriate receivers (email, Slack, PagerDuty, etc.). It runs as a StatefulSet with persistent storage for silences and notification state.</li>
 </ul><br />
 <ul>
-<li><span class='inlinecode'>alloy-g5fgj, alloy-nfw8w, alloy-tg9vj</span>: three Alloy pods running as a DaemonSet, one on each k3s node. Each pod tails the container logs from its local node via the Kubernetes API and forwards them to Loki. This ensures log collection continues even if a node becomes isolated from the others.</li>
-</ul><br />
-<ul>
+<li><span class='inlinecode'>alloy-g5fgj, alloy-nfw8w, alloy-tg9vj</span>: three Alloy pods running as a DaemonSet, one on each k3s node. Each pod tails the container logs from its local node via the Kubernetes API and forwards them to Loki.</li>
 <li><span class='inlinecode'>loki-0</span>: the single Loki instance running in single-binary mode. It receives log streams from Alloy, stores them in chunks on the NFS-backed persistent volume, and serves queries from Grafana. The <span class='inlinecode'>-0</span> suffix indicates it&#39;s a StatefulSet pod.</li>
 </ul><br />
 <ul>
@@ -480,9 +478,7 @@ http://www.gnu.org/software/src-highlite -->
 <li><span class='inlinecode'>prometheus-kube-prometheus-operator-...</span>: the Prometheus Operator that watches for custom resources (ServiceMonitor, PodMonitor, PrometheusRule) and automatically configures Prometheus to scrape new targets. This allows applications to declare their own monitoring requirements.</li>
 </ul><br />
 <ul>
-<li><span class='inlinecode'>prometheus-kube-state-metrics-...</span>: generates metrics about the state of Kubernetes objects themselves: how many pods are running, pending, or failed; deployment replica counts; node conditions; PVC status; and more. Essential for cluster-level dashboards.</li>
-</ul><br />
-<ul>
+<li><span class='inlinecode'>prometheus-kube-state-metrics-...</span>: generates metrics about the state of Kubernetes objects themselves: how many pods are running, pending, or failed; deployment replica counts; node conditions; PVC status; and more.</li>
 <li><span class='inlinecode'>prometheus-prometheus-kube-prometheus-prometheus-0</span>: the Prometheus server that scrapes metrics from all configured targets (pods, services, nodes), stores them in a time-series database, evaluates alerting rules, and serves queries to Grafana.</li>
 </ul><br />
 <ul>
@@ -670,7 +666,7 @@ spec:
 <br />
 <span>This file is saved as <span class='inlinecode'>freebsd-recording-rules.yaml</span> and applied as part of the Prometheus installation. The <span class='inlinecode'>os="freebsd"</span> label (set in the scrape config) ensures these rules only apply to FreeBSD hosts. After applying, the memory panels in the Node Exporter dashboards populate correctly for FreeBSD.</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml'>freebsd-recording-rules.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/blob/master/f3s/prometheus/freebsd-recording-rules.yaml'>freebsd-recording-rules.yaml on GitHub</a><br />
 <br />
 <h3 style='display: inline' id='disk-io-metrics-limitation'>Disk I/O metrics limitation</h3><br />
 <br />
@@ -680,7 +676,7 @@ spec:
 <br />
 <h2 style='display: inline' id='zfs-monitoring-for-freebsd-servers'>ZFS Monitoring for FreeBSD Servers</h2><br />
 <br />
-<span>The FreeBSD servers (f0, f1, f2) that provide NFS storage to the k3s cluster have ZFS filesystems. Monitoring ZFS performance is crucial for understanding storage performance and cache efficiency.</span><br />
+<span>The FreeBSD servers (f0, f1, f2) that provide NFS storage to the k3s cluster have ZFS filesystems. I also want to see how ZFS and its cache are doing.</span><br />
 <br />
 <h3 style='display: inline' id='node-exporter-zfs-collector'>Node Exporter ZFS Collector</h3><br />
 <br />
@@ -706,7 +702,7 @@ paul@f0:~ % curl -s http://localhost:9100/metrics | grep node_zfs_arcstats | wc 
 <br />
 <h3 style='display: inline' id='zfs-recording-rules'>ZFS Recording Rules</h3><br />
 <br />
-<span>Created recording rules for easier dashboard consumption in zfs-recording-rules.yaml:</span><br />
+<span>I added recording rules in <span class='inlinecode'>zfs-recording-rules.yaml</span> so the dashboards get simpler:</span><br />
 <br />
 <pre>
 apiVersion: monitoring.coreos.com/v1
@@ -753,70 +749,9 @@ spec:
 </ul><br />
 <h3 style='display: inline' id='grafana-dashboards'>Grafana Dashboards</h3><br />
 <br />
-<span>Created two comprehensive ZFS monitoring dashboards (zfs-dashboards.yaml):</span><br />
+<span>I made two ZFS dashboards (<span class='inlinecode'>zfs-dashboards.yaml</span>):</span><br />
 <br />
-<span>**Dashboard 1: FreeBSD ZFS (per-host detailed view)**</span><br />
-<br />
-<span>Includes variables to select:</span><br />
-<br />
-<ul>
-<li>FreeBSD server (f0, f1, or f2)</li>
-<li>ZFS pool (zdata, zroot, or all)</li>
-</ul><br />
-<span>Pool Overview Row:</span><br />
-<br />
-<ul>
-<li>Pool Capacity gauge (with thresholds: green &lt;70%, yellow &lt;85%, red &gt;85%)</li>
-<li>Pool Health status (ONLINE/DEGRADED/FAULTED with color coding)</li>
-<li>Total Pool Size stat</li>
-<li>Free Space stat</li>
-<li>Pool Space Usage Over Time (stacked: used + free)</li>
-<li>Pool Capacity Trend time series</li>
-</ul><br />
-<span>Dataset Statistics Row:</span><br />
-<br />
-<ul>
-<li>Table showing all datasets with columns: Pool, Dataset, Used, Available, Referenced</li>
-<li>Automatically filters by selected pool</li>
-</ul><br />
-<span>ARC Cache Statistics Row:</span><br />
-<br />
-<ul>
-<li>ARC Hit Rate gauge (red &lt;70%, yellow &lt;90%, green &gt;=90%)</li>
-<li>ARC Size time series (current, target, max)</li>
-<li>ARC Memory Usage percentage gauge</li>
-<li>ARC Hits vs Misses rate</li>
-<li>ARC Data vs Metadata stacked time series</li>
-</ul><br />
-<span>**Dashboard 2: FreeBSD ZFS Summary (cluster-wide overview)**</span><br />
-<br />
-<span>Cluster-Wide Pool Statistics Row:</span><br />
-<br />
-<ul>
-<li>Total Storage Capacity across all servers</li>
-<li>Total Used space</li>
-<li>Total Free space</li>
-<li>Average Pool Capacity gauge</li>
-<li>Pool Health Status (worst case across cluster)</li>
-<li>Total Pool Space Usage Over Time</li>
-<li>Per-Pool Capacity time series (all pools on all hosts)</li>
-</ul><br />
-<span>Per-Host Pool Breakdown Row:</span><br />
-<br />
-<ul>
-<li>Bar gauge showing capacity by host and pool</li>
-<li>Table with all pools: Host, Pool, Size, Used, Free, Capacity %, Health</li>
-</ul><br />
-<span>Cluster-Wide ARC Statistics Row:</span><br />
-<br />
-<ul>
-<li>Average ARC Hit Rate gauge across all hosts</li>
-<li>ARC Hit Rate by Host time series</li>
-<li>Total ARC Size Across Cluster</li>
-<li>Total ARC Hits vs Misses (cluster-wide sum)</li>
-<li>ARC Size by Host</li>
-</ul><br />
-<span>Dashboard Visualization:</span><br />
+<span>The first one is per host: pool capacity and health, a dataset table, and ARC stats (hit rate, size, data vs metadata). The second one aggregates the same across all three hosts. Screenshots:</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-dashboard.png'><img alt='ZFS monitoring dashboard in Grafana showing pool capacity, health, and I/O throughput' title='ZFS monitoring dashboard in Grafana showing pool capacity, health, and I/O throughput' src='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-dashboard.png' /></a><br />
 <a href='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-arc-stats.png'><img alt='ZFS ARC cache statistics showing hit rate, memory usage, and size trends' title='ZFS ARC cache statistics showing hit rate, memory usage, and size trends' src='./f3s-kubernetes-with-freebsd-part-8/grafana-zfs-arc-stats.png' /></a><br />
@@ -824,7 +759,7 @@ spec:
 <br />
 <h3 style='display: inline' id='deployment'>Deployment</h3><br />
 <br />
-<span>Applied the resources to the cluster:</span><br />
+<span>Then I applied them:</span><br />
 <br />
 <pre>
 cd /home/paul/git/conf/f3s/prometheus
@@ -832,7 +767,7 @@ kubectl apply -f zfs-recording-rules.yaml
 kubectl apply -f zfs-dashboards.yaml
 </pre>
 <br />
-<span>Updated Justfile to include ZFS recording rules in install and upgrade targets:</span><br />
+<span>And added them to the Justfile:</span><br />
 <br />
 <pre>
 install:
@@ -871,22 +806,15 @@ kubectl exec -n monitoring prometheus-prometheus-kube-prometheus-prometheus-0 -c
 ]
 </pre>
 <br />
-<h3 style='display: inline' id='key-metrics-to-monitor'>Key Metrics to Monitor</h3><br />
+<h3 style='display: inline' id='what-i-actually-look-at'>What I actually look at</h3><br />
 <br />
-<ul>
-<li>ARC Hit Rate: Should typically be above 90% for optimal performance. Lower hit rates indicate the ARC cache is too small or workload has poor locality.</li>
-<li>ARC Memory Usage: Shows how much of the maximum ARC size is being used. If consistently at or near maximum, the ARC is effectively utilizing available memory.</li>
-<li>Data vs Metadata: Typically data should dominate, but workloads with many small files will show higher metadata percentages.</li>
-<li>MRU vs MFU: Most Recently Used vs Most Frequently Used cache. The ratio depends on workload characteristics.</li>
-<li>Pool Capacity: Monitor pool usage to ensure adequate free space. ZFS performance degrades when pools exceed 80% capacity.</li>
-<li>Pool Health: Should always show ONLINE (green). DEGRADED (yellow) indicates a disk issue requiring attention. FAULTED (red) requires immediate action.</li>
-<li>Dataset Usage: Track which datasets are consuming the most space to identify growth trends and plan capacity.</li>
-</ul><br />
+<span>ARC hit rate (should be above 90%), pool capacity (ZFS gets slow above 80%), and pool health (anything but ONLINE means a disk problem).</span><br />
+<br />
 <h3 style='display: inline' id='zfs-pool-and-dataset-metrics-via-textfile-collector'>ZFS Pool and Dataset Metrics via Textfile Collector</h3><br />
 <br />
-<span>To complement the ARC statistics from node_exporter&#39;s built-in ZFS collector, I added pool capacity and dataset metrics using the textfile collector feature.</span><br />
+<span>node_exporter&#39;s ZFS collector only covers the ARC, so I added pool capacity and dataset sizes via the textfile collector.</span><br />
 <br />
-<span>Created a script at <span class='inlinecode'>/usr/local/bin/zfs_pool_metrics.sh</span> on each FreeBSD server:</span><br />
+<span>The script, <span class='inlinecode'>/usr/local/bin/zfs_pool_metrics.sh</span> on each FreeBSD server:</span><br />
 <br />
 <pre>
 #!/bin/sh
@@ -947,7 +875,7 @@ mkdir -p /var/tmp/node_exporter
 mv "$OUTPUT_FILE" "$FINAL_FILE"
 </pre>
 <br />
-<span>Deployed to all FreeBSD servers:</span><br />
+<span>Copied to all FreeBSD servers:</span><br />
 <br />
 <pre>
 for host in f0 f1 f2; do
@@ -979,10 +907,10 @@ zfs_pool_capacity_percent{pool="zroot"} 10
 zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
 </pre>
 <br />
-<span>All ZFS-related configuration files are available on Codeberg:</span><br />
+<span>All ZFS-related configuration files are available on GitHub:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/zfs-recording-rules.yaml'>zfs-recording-rules.yaml on Codeberg</a><br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/zfs-dashboards.yaml'>zfs-dashboards.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/blob/master/f3s/prometheus/zfs-recording-rules.yaml'>zfs-recording-rules.yaml on GitHub</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/blob/master/f3s/prometheus/zfs-dashboards.yaml'>zfs-dashboards.yaml on GitHub</a><br />
 <br />
 <h2 style='display: inline' id='monitoring-external-openbsd-hosts'>Monitoring external OpenBSD hosts</h2><br />
 <br />
@@ -1105,28 +1033,20 @@ spec:
 <br />
 <span>This file is saved as <span class='inlinecode'>openbsd-recording-rules.yaml</span> and applied alongside the FreeBSD rules. Note that OpenBSD doesn&#39;t expose a buffer memory metric, so that rule is omitted.</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml'>openbsd-recording-rules.yaml on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/blob/master/f3s/prometheus/openbsd-recording-rules.yaml'>openbsd-recording-rules.yaml on GitHub</a><br />
 <br />
 <span>After running <span class='inlinecode'>just upgrade</span>, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.</span><br />
 <br />
 <h2 style='display: inline' id='summary'>Summary</h2><br />
 <br />
-<span>With Prometheus, Grafana, Loki, and Alloy deployed, I now have visibility into the k3s cluster, the FreeBSD storage servers, and the OpenBSD edge relays:</span><br />
-<br />
-<ul>
-<li>Metrics: Prometheus collects and stores time-series data from all components, including etcd and ZFS</li>
-<li>Logs: Loki aggregates logs from all containers, searchable via Grafana</li>
-<li>Visualisation: Grafana provides dashboards and exploration tools</li>
-<li>Alerting: Alertmanager can notify on conditions defined in Prometheus rules</li>
-</ul><br />
-<span>The next part covers the final pillar of observability: distributed tracing with Grafana Tempo.</span><br />
+<span>That&#39;s metrics and logs for the k3s cluster, the FreeBSD storage servers and the OpenBSD edge relays, all in Grafana. Next up: distributed tracing with Grafana Tempo.</span><br />
 <br />
 <a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>Part 8b: Distributed Tracing with Tempo</a><br />
 <br />
-<span>All configuration files are available on Codeberg:</span><br />
+<span>All configuration files are available on GitHub:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/prometheus'>Prometheus, Grafana, and recording rules configuration</a><br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/loki'>Loki and Alloy configuration</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/prometheus'>Prometheus, Grafana, and recording rules configuration</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/loki'>Loki and Alloy configuration</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />

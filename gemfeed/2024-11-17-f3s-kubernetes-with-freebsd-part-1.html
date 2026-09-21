@@ -64,7 +64,7 @@
 <br />
 <a class='textlink' href='./2024-02-04-from-babylon5.buetow.org-to-.cloud.html'>From <span class='inlinecode'>babylon5.buetow.org</span> to <span class='inlinecode'>.cloud</span></a><br />
 <br />
-<span>Migrating off all my containers from AWS ECS means I need a reliable and scalable environment to host my workloads. I wanted something:</span><br />
+<span>Migrating all my containers off AWS ECS means I need a new home for them. I wanted something:</span><br />
 <br />
 <ul>
 <li>To self-host all my open-source apps (Docker containers).</li>
@@ -81,7 +81,7 @@
 <br />
 <h3 style='display: inline' id='physical-freebsd-nodes-and-linux-vms'>Physical FreeBSD nodes and Linux VMs</h3><br />
 <br />
-<span>The setup starts with three physical FreeBSD nodes deployed into my home LAN. On these, I&#39;m going to run Rocky Linux virtual machines with bhyve. Why Linux VMs in FreeBSD and not Linux directly? I want to leverage the great ZFS integration in FreeBSD (among other features), and I have been using FreeBSD for a while in my home lab. And with bhyve, there is a very performant hypervisor available which makes the Linux VMs de-facto run at native speed (another use case of mine would be maybe running a Windows bhyve VM on one of the nodes - but out of scope for this blog series).</span><br />
+<span>The setup starts with three physical FreeBSD nodes deployed into my home LAN. On these, I&#39;m going to run Rocky Linux virtual machines with bhyve. Why Linux VMs in FreeBSD and not Linux directly? I want the great ZFS integration in FreeBSD (among other features), and I have been using FreeBSD for a while in my home lab. And with bhyve, there is a very performant hypervisor available which makes the Linux VMs de-facto run at native speed (another use case of mine would be maybe running a Windows bhyve VM on one of the nodes - but out of scope for this blog series).</span><br />
 <br />
 <a class='textlink' href='https://www.freebsd.org/'>https://www.freebsd.org/</a><br />
 <a class='textlink' href='https://wiki.freebsd.org/bhyve'>https://wiki.freebsd.org/bhyve</a><br />
@@ -95,7 +95,7 @@
 <br />
 <h3 style='display: inline' id='kubernetes-with-k3s-'>Kubernetes with k3s </h3><br />
 <br />
-<span>These Linux VMs form a three-node k3s Kubernetes cluster, where my containers will reside moving forward. The 3-node k3s cluster will be highly available (in <span class='inlinecode'>etcd</span> mode), and all apps will probably be deployed with Helm. Prometheus will also be running in k3s, collecting time-series metrics and handling monitoring. Additionally, a private Docker registry will be deployed into the k3s cluster, where I will store some of my self-created Docker images. k3s is the perfect distribution of Kubernetes for homelabbers due to its simplicity and the inclusion of the most useful features out of the box!</span><br />
+<span>These Linux VMs form a three-node k3s Kubernetes cluster, where my containers will reside moving forward. The 3-node k3s cluster will be highly available (in <span class='inlinecode'>etcd</span> mode), and all apps will probably be deployed with Helm. Prometheus will also be running in k3s, collecting time-series metrics and handling monitoring. Additionally, a private Docker registry will be deployed into the k3s cluster, where I will store some of my self-created Docker images. k3s is simple and comes with the most useful features out of the box, which makes it a good fit for a home lab.</span><br />
 <br />
 <a class='textlink' href='https://k3s.io/'>https://k3s.io/</a><br />
 <br />
@@ -115,7 +115,7 @@
 <br />
 <span>All apps should be reachable through the internet (e.g., from my phone or computer when travelling). For external connectivity and TLS management, I&#39;ve got two OpenBSD VMs (one hosted by OpenBSD Amsterdam and another hosted by Hetzner) handling public-facing services like DNS, relaying traffic, and automating Let&#39;s Encrypt certificates. </span><br />
 <br />
-<span>All of this (every Linux VM to every OpenBSD box) will be connected via WireGuard tunnels, keeping everything private and secure. There will be 6 WireGuard tunnels (3 k3s nodes times two OpenBSD VMs).</span><br />
+<span>All of this (every Linux VM to every OpenBSD box) will be connected via WireGuard tunnels. There will be 6 WireGuard tunnels (3 k3s nodes times two OpenBSD VMs).</span><br />
 <br />
 <a class='textlink' href='https://en.wikipedia.org/wiki/WireGuard'>https://en.wikipedia.org/wiki/WireGuard</a><br />
 <br />
@@ -130,7 +130,7 @@
 <br />
 <h3 style='display: inline' id='periodic-backups'>Periodic backups</h3><br />
 <br />
-<span>Let&#39;s face it, backups are non-negotiable. </span><br />
+<span>Backups are a must. </span><br />
 <br />
 <span>On the HAST master node, incremental and encrypted ZFS snapshots are created daily and automatically backed up to AWS S3 Glacier Deep Archive via CRON. I have a bunch of scripts already available, which I currently use for a similar purpose on my FreeBSD Home NAS server (an old ThinkPad T440 with an external USB drive enclosure, which I will eventually retire when the HAST setup is ready). I will copy them and slightly modify them to fit the purpose.</span><br />
 <br />
@@ -150,7 +150,7 @@
 <br />
 <h3 style='display: inline' id='prometheus-and-grafana'>Prometheus and Grafana</h3><br />
 <br />
-<span>Inside the k3s cluster, Prometheus will be deployed to handle metrics collection. It will be configured to scrape data from my Kubernetes workloads, nodes, and any services I monitor. Prometheus also integrates with Alertmanager to generate alerts based on predefined thresholds or conditions.</span><br />
+<span>Inside the k3s cluster, Prometheus will be deployed to handle metrics collection. It will scrape the k3s nodes, the workloads and whatever else I want to monitor, and Alertmanager will fire the alerts.</span><br />
 <br />
 <a class='textlink' href='https://prometheus.io'>https://prometheus.io</a><br />
 <br />

@@ -1,0 +1,439 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Running my own LLMs for coding: Hyperstack, vLLM and the pi coding agent</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-running-my-own-llms-for-coding.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-running-my-own-llms-for-coding.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
+</p>
+<h1 style='display: inline' id='running-my-own-llms-for-coding-hyperstack-vllm-and-the-pi-coding-agent'>Running my own LLMs for coding: Hyperstack, vLLM and the pi coding agent</h1><br />
+<br />
+<span>The <span class='inlinecode'>gt</span> calculator was built almost entirely with local LLMs running on rented Hyperstack VMs, and I ended that post with a promise: "I will write another blog post at some point about my setup and what I learned from self-hosting models on Hyperstack." This is that post.</span><br />
+<br />
+<a class='textlink' href='./2026-06-01-gt-calculator.html'>2026-06-01 <span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs</a><br />
+<br />
+<span>The main motivation was a question I wanted to answer before spending money: should I buy hardware to run my own LLMs? A new RTX 5090 with 32 GB VRAM costs a few thousand dollars, and a 128 GB DGX Spark box starts at $3,999. Before putting either on my desk, I wanted to know what it feels like to have a 27B model (and the occasional 120B one) as a daily coding partner. So I rented instead: Hyperstack VMs with A100 80 GB GPUs, spun up when I need them, torn down when I don&#39;t.</span><br />
+<br />
+<a class='textlink' href='https://www.hyperstack.cloud/'>Hyperstack</a><br />
+<br />
+<span>A few months in, the setup has grown into a small toolchain I call <span class='inlinecode'>hypr</span>. One Ruby script manages the whole lifecycle (create the VM, open a WireGuard tunnel, start vLLM with the model of choice), and I can run two VMs at the same time, each with its own model and its own pi coding agent in a tmux pane.</span><br />
+<br />
+<span>In this post I go through the setup, how the inference works under the hood (prefill, decode, KV cache, prefix caching), the numbers I see in practice, and where I stand now on buying hardware.</span><br />
+<br />
+<span>Birgitta Böckeler&#39;s memo in the Fowler "Exploring Gen AI" series is useful related reading: a factor checklist for whether local models are viable for agentic coding. Her stack is Apple Silicon + LM Studio; mine is rented A100 + vLLM. Same problem, different hardware, but her checklist applies here too.</span><br />
+<br />
+<a class='textlink' href='https://martinfowler.com/articles/exploring-gen-ai/local-models-for-coding-factors.html'>Viability of local models for coding (Birgitta Böckeler / Martin Fowler)</a><br />
+<a class='textlink' href='https://github.com/snonux/hypr'>hypr on GitHub</a><br />
+<a class='textlink' href='https://pi.dev'>Pi coding agent</a><br />
+<br />
+<a href='./running-my-own-llms/logo.svg'><img alt='The hypr logo' title='The hypr logo' src='./running-my-own-llms/logo.svg' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#running-my-own-llms-for-coding-hyperstack-vllm-and-the-pi-coding-agent'>Running my own LLMs for coding: Hyperstack, vLLM and the pi coding agent</a></li>
+<li>⇢ <a href='#the-setup-at-a-glance'>The setup at a glance</a></li>
+<li>⇢ <a href='#what-decides-if-this-works'>What decides if this works</a></li>
+<li>⇢ <a href='#the-vms-and-the-models'>The VMs and the models</a></li>
+<li>⇢ ⇢ <a href='#why-this-is-the-daily-driver'>Why this is the daily driver</a></li>
+<li>⇢ ⇢ <a href='#reasoning-leave-it-on-or-turn-it-off'>Reasoning: leave it on or turn it off?</a></li>
+<li>⇢ <a href='#inside-the-vm'>Inside the VM</a></li>
+<li>⇢ <a href='#how-the-inference-works'>How the inference works</a></li>
+<li>⇢ ⇢ <a href='#cuda-the-layer-under-everything'>CUDA: the layer under everything</a></li>
+<li>⇢ ⇢ <a href='#what-vllm-is'>What vLLM is</a></li>
+<li>⇢ ⇢ <a href='#prefix-caching-the-big-one-for-agentic-coding'>Prefix caching: the big one for agentic coding</a></li>
+<li>⇢ <a href='#how-the-pi-coding-agent-connects'>How the pi coding agent connects</a></li>
+<li>⇢ ⇢ <a href='#the-extensions'>The extensions</a></li>
+<li>⇢ ⇢ <a href='#what-the-extensions-cost'>What the extensions cost</a></li>
+<li>⇢ ⇢ <a href='#tool-calling-in-practice'>Tool calling in practice</a></li>
+<li>⇢ <a href='#the-numbers-tokens-per-second-and-friends'>The numbers: tokens per second and friends</a></li>
+<li>⇢ <a href='#what-i-trust-it-with-and-what-i-don-t'>What I trust it with (and what I don&#39;t)</a></li>
+<li>⇢ <a href='#what-it-costs-and-do-i-buy-the-hardware'>What it costs, and do I buy the hardware?</a></li>
+<li>⇢ <a href='#wrapping-up'>Wrapping up</a></li>
+</ul><br />
+<h2 style='display: inline' id='the-setup-at-a-glance'>The setup at a glance</h2><br />
+<br />
+<span>Everything starts on my always-on home server, a Linux VM on a FreeBSD box that I use as an operator machine. The laptop just SSHes in. <span class='inlinecode'>ruby hyperstack.rb --vm 1 create</span> (or <span class='inlinecode'>--vm both</span> for two VMs in parallel) provisions a Hyperstack VM (Ubuntu 24.04 with CUDA and Docker preinstalled, one A100 80 GB PCIe GPU), sets up a WireGuard tunnel, and starts the model in a vLLM Docker container. Five to ten minutes later the model is serving on an OpenAI-compatible API, reachable over the tunnel.</span><br />
+<br />
+<pre>
+                   ┌──────────────┐
+                   │ operator VM  │
+                   │ tmux + pi    │
+                   └───────┬──────┘
+                           │
+      WireGuard wg1 · UDP 56710 · 192.168.3.0/24
+                           │
+             ┌─────────────┴─────────────┐
+             ▼                           ▼
+   ┌───────────────────┐       ┌───────────────────┐
+   │ VM1 · 192.168.3.1 │       │ VM2 · 192.168.3.3 │
+   │ A100 80GB PCIe    │       │ A100 80GB PCIe    │
+   │ vLLM :11434       │       │ vLLM :11434       │
+   │ Qwen3.8 27B FP8   │       │ Gemma 4 31B AWQ   │
+   └───────────────────┘       └───────────────────┘
+</pre>
+<br />
+<span>The WireGuard tunnel is the interesting bit. A single <span class='inlinecode'>wg1</span> interface on the operator machine carries traffic to both VMs at once, and each VM is just another <span class='inlinecode'>[Peer]</span> block in the same config. The vLLM port (11434) is firewalled to the tunnel subnet only, so the API is not exposed to the internet at all. There&#39;s no proxy, no load balancer and no API keys. The tunnel is the security boundary.</span><br />
+<br />
+<span><span class='inlinecode'>hypr</span> is a Ruby script with a small TOML config per VM. The commands that matter:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>create</span> / <span class='inlinecode'>delete</span> — provision or destroy a VM (WireGuard + vLLM included)</li>
+<li><span class='inlinecode'>status</span> — VM, tunnel and model state</li>
+<li><span class='inlinecode'>test</span> — end-to-end inference check over the tunnel</li>
+<li><span class='inlinecode'>watch</span> — live dashboard: GPU, throughput, KV cache per VM</li>
+<li><span class='inlinecode'>model switch &lt;preset&gt;</span> — hot-swap the model on a running VM</li>
+</ul><br />
+<h2 style='display: inline' id='what-decides-if-this-works'>What decides if this works</h2><br />
+<br />
+<span>Before the walkthrough, the short version of what decides whether a rented (or owned) box is usable as a coding-agent backend. Not the marketing specs, but the stuff that bites you mid-session:</span><br />
+<br />
+<ul>
+<li>VRAM — weights plus the KV cache pool. If the weights don&#39;t fit, you crash or crawl.</li>
+<li>Memory bandwidth — decode is bandwidth-bound. "Fits" and "feels fast" are different questions.</li>
+<li>Parameter count vs quantization — bigger usually helps until the weights crowd out context and you start turning features off to load at all.</li>
+<li>MoE vs dense — huge total params, small active set; better quality per GB when it works.</li>
+<li>Context vs weights — every token of context costs VRAM the weights already claimed.</li>
+<li>Reasoning cost — thinking tokens burn latency and context; sometimes you want them off.</li>
+<li>Tool-calling reliability — without working tools you are back to copy-paste chat.</li>
+<li>Harness overhead — every extension and tool schema eats scarce context.</li>
+<li>Runtime — plug-and-play vs knobs and throughput. hypr picks the second.</li>
+</ul><br />
+<span>Some of these get real sections below. Others are asides where the tradeoff shows up. A couple are still stubs, because I have not run the bake-offs yet.</span><br />
+<br />
+<h2 style='display: inline' id='the-vms-and-the-models'>The VMs and the models</h2><br />
+<br />
+<span>Both VMs are <span class='inlinecode'>n3-A100x1</span> flavors: one A100 80 GB PCIe, 28 vCPUs, 120 GB RAM, in a Canadian region. When the A100 flavor is sold out, the config flips to <span class='inlinecode'>n3-H100x1</span> (80 GB as well), and everything else stays the same.</span><br />
+<br />
+<span>The default model on VM1 is <span class='inlinecode'>Qwen/Qwen3.8-27B-FP8</span>, a dense 27B model with a native 262K context window, FP8-quantized. As of writing, that is also my main model in this setup, and every number measured in this post is measured on it. VM2 runs <span class='inlinecode'>Gemma 4 31B</span> (AWQ 4-bit) by default, so I can work on two projects in parallel with two different models and compare how they behave.</span><br />
+<br />
+<span>Each VM&#39;s TOML config defines named presets, so switching models does not mean reprovisioning:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>qwen38-27b</span> — Qwen3.8 27B FP8 (default), ~45 GB VRAM, 262K context</li>
+<li><span class='inlinecode'>qwen36-27b</span> — Qwen3.6 27B FP8, ~45 GB VRAM, 262K context</li>
+<li><span class='inlinecode'>gemma4-31b</span> — Gemma 4 31B IT (AWQ-4bit), ~19 GB VRAM, 32K context</li>
+<li><span class='inlinecode'>nemotron-super</span> — Nemotron-3-Super 120B (Mamba+MoE, 12B active), ~74 GiB VRAM, 32K context</li>
+<li><span class='inlinecode'>qwen36-35b-a3b</span> — Qwen3.6-35B-A3B MoE (AWQ, 3B active), ~18 GB VRAM, 65K context; runs with a quantized KV cache (<span class='inlinecode'>turboquant_k8v4</span>) and chunked prefill disabled</li>
+<li><span class='inlinecode'>qwen3-coder-30b</span> — Qwen3-Coder-30B-A3B (MoE, AWQ), ~18 GB VRAM, 65K context</li>
+<li><span class='inlinecode'>qwen25-coder-32b</span> — Qwen2.5-Coder-32B (AWQ), ~18 GB VRAM, 32K context</li>
+<li><span class='inlinecode'>deepseek-r1-32b</span> — DeepSeek-R1-Distill-Qwen-32B (AWQ), ~18 GB VRAM, 32K context</li>
+<li><span class='inlinecode'>qwen3-32b</span> — Qwen3-32B (AWQ), ~18 GB VRAM, 32K context</li>
+<li><span class='inlinecode'>devstral</span> — Devstral-Small-2507 (AWQ-4bit), ~15 GB VRAM, 32K context</li>
+</ul><br />
+<span><span class='inlinecode'>ruby hyperstack.rb --vm 1 model switch nemotron-super</span> stops the running container, starts a new one with the preset&#39;s flags, and waits for readiness. The model download on first run is the slow part (~45 GB for the 27B); after that the weights are cached on the VM&#39;s ephemeral NVMe disk and a switch takes a few minutes.</span><br />
+<br />
+<span>Two details:</span><br />
+<br />
+<ul>
+<li>Qwen3.8 is brand new, so VM1 runs the <span class='inlinecode'>vllm/vllm-openai:nightly</span> image until stable vLLM ships support for the architecture.</li>
+<li>The big 120B MoE (Nemotron-3-Super) has to have its context capped at 32K and prefix caching disabled to fit on a single A100, since the weights alone take most of the 80 GB. That tension between model size and context length is the core of VRAM budgeting (more below).</li>
+</ul><br />
+<span>A few notes on how to read that list. Several presets are MoEs: Nemotron-3-Super, <span class='inlinecode'>qwen36-35b-a3b</span>, <span class='inlinecode'>qwen3-coder-30b</span>. MoE means a huge total parameter count with only a small active set per token, so you get denser-model quality for less of the card. That&#39;s why <span class='inlinecode'>qwen36-35b-a3b</span> sits at ~18 GB with 3B active, and why Nemotron can be 120B total with 12B active and still fit (barely) once you cap context.</span><br />
+<br />
+<span>Quantization is how the rest of the list packs into leftover VRAM. FP8 is my daily driver on the 27B: good quality, ~45 GB, room left for a long context. AWQ-4bit trades some quality for footprint and speed. I have not tried QAT yet.</span><br />
+<br />
+<span>Bigger is usually better until the weights crowd the card. The Nemotron preset is the extreme case here: weights eat most of the 80 GB, so context has to shrink to 32K and prefix caching goes off just to load. Same shape as stuffing a big model into too little memory: it runs, but you give up the room that makes agent sessions pleasant.</span><br />
+<br />
+<h3 style='display: inline' id='why-this-is-the-daily-driver'>Why this is the daily driver</h3><br />
+<br />
+<span>The official model card benchmarks Qwen3.8-27B against its predecessor, Qwen&#39;s own closed-weight Qwen3.7-Plus, a 30B-class competitor, and the frontier Opus 4.6 Max. The coding-relevant rows:</span><br />
+<br />
+<pre>
+                                       Qwen3.8-27B Qwen3.6-27B Qwen3.7-Plus Muse Glimmer-30B Opus 4.6 Max
+Terminal Bench 2.1 (terminal coding)          73.0        63.4         64.0             51.7         78.2
+SWE-bench Pro (agentic coding)                61.7        53.5         57.6             51.2         53.4
+DeepSWE 1.1 (agentic coding)                  42.2        13.3         14.2               --           --
+QwenSWEBench (software engineering)           79.0        49.3         59.2               --         63.8
+LiveCodeBench v6 (competitive coding)         90.3        83.9         89.6               --         88.8
+GPQA Diamond (scientific reasoning)           89.2        87.8         90.3             83.5         91.3
+HLE (multidisciplinary reasoning)             30.8        24.0         34.7             22.0         40.0
+</pre>
+<br />
+<span>It beats its direct predecessor on every row, and the rows that match how I use it are the interesting ones: on SWE-bench Pro (agentic coding) the 27B dense model scores 61.7, ahead of Opus 4.6 Max&#39;s 53.4 and Muse Glimmer&#39;s 51.2; on terminal coding it runs 73.0 to Qwen3.6&#39;s 63.4; on competitive coding (90.3) it even edges Opus (88.8). That&#39;s a model I can run on a single rented A100 that beats models I can only rent per-token, on the benchmarks that resemble my actual workload.</span><br />
+<br />
+<span>The fine print: these are vendor-reported numbers from the official model card, a couple of the benchmarks are Qwen&#39;s own, and the Opus 4.6 Max SWE-bench Pro figure is the officially reported one. I take the direction, not the exact decimals. Simon Willison ran the model on a DGX Spark and an M5 Max MacBook the week it shipped, and his verdict matches mine: an excellent model that defaults to wildly overthinking, because its reasoning effort defaults to <span class='inlinecode'>xhigh</span>:</span><br />
+<br />
+<a class='textlink' href='https://simonwillison.net/2026/Aug/16/qwen-38-27b/'>Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things (Simon Willison)</a><br />
+<br />
+<span>He even drove pi with it, the same agent this post is about, with the same model in a 4-bit quant on different hardware.</span><br />
+<br />
+<h3 style='display: inline' id='reasoning-leave-it-on-or-turn-it-off'>Reasoning: leave it on or turn it off?</h3><br />
+<br />
+<span>Willison&#39;s note is the useful pointer: Qwen3.8 defaults to <span class='inlinecode'>xhigh</span> reasoning effort and will overthink. I have not done a clean on-vs-off bake-off on my own tasks yet, so I will not pretend I have numbers. What I can say: for agent turns where I already know the shape of the change, the thinking is often just latency and context tax. Worth a dedicated experiment later; for now I live with the default and interrupt when it spirals.</span><br />
+<br />
+<h2 style='display: inline' id='inside-the-vm'>Inside the VM</h2><br />
+<br />
+<span>Once the tunnel is up, the VM is just another machine on your network, and I mostly work on it over its WireGuard address rather than the public IP:</span><br />
+<br />
+<pre>
+$ ssh ubuntu@192.168.3.1
+ubuntu@hyperstack1:~$ hostname
+hyperstack1
+</pre>
+<br />
+<span>The provisioner pins the VM&#39;s SSH host keys into a per-VM <span class='inlinecode'>known_hosts</span> file, so an unexpected key change fails closed instead of prompting me. The public IP works too, but the tunnel is the point.</span><br />
+<br />
+<span>The entire "AI service" from the inside is one Docker container:</span><br />
+<br />
+<pre>
+$ docker ps
+CONTAINER ID   IMAGE                      COMMAND                  CREATED       STATUS       PORTS     NAMES
+aa1845729f93   vllm/vllm-openai:nightly   "vllm serve --model …"   2 hours ago   Up 2 hours             vllm_qwen38_27b
+</pre>
+<br />
+<span>The interesting part of the container&#39;s log is the <span class='inlinecode'>Engine 0</span> line vLLM emits every ten seconds, the same line the <span class='inlinecode'>watch</span> dashboard parses (one line omitted; the snapshot is from later in the day, after the window measured in the numbers section):</span><br />
+<br />
+<pre>
+$ docker logs --tail 4 vllm_qwen38_27b 2&gt;&amp;1 | grep "Engine 0"
+(APIServer pid=1) INFO 09-13 08:56:54 [loggers.py:311] Engine 000: Avg prompt
+throughput: 0.0 tokens/s, Avg generation throughput: 53.6 tokens/s, Running:
+2 reqs, Waiting: 0 reqs, GPU KV cache usage: 59.3%, Prefix cache hit rate: 96.9%
+(APIServer pid=1) INFO 09-13 08:57:14 [loggers.py:311] Engine 000: Avg prompt
+throughput: 0.0 tokens/s, Avg generation throughput: 48.3 tokens/s, Running:
+1 reqs, Waiting: 0 reqs, GPU KV cache usage: 33.3%, Prefix cache hit rate: 96.9%
+</pre>
+<br />
+<span>Follow it live with <span class='inlinecode'>docker logs -f vllm_qwen38_27b 2&gt;&amp;1 | grep "Engine 0"</span>, or watch the hardware side with <span class='inlinecode'>nvidia-smi --query-gpu=temperature.gpu,utilization.gpu,power.draw --format=csv -l 5</span>.</span><br />
+<br />
+<h2 style='display: inline' id='how-the-inference-works'>How the inference works</h2><br />
+<br />
+<span>This is the part I set out to learn, so here is the mental model that finally clicked.</span><br />
+<br />
+<h3 style='display: inline' id='cuda-the-layer-under-everything'>CUDA: the layer under everything</h3><br />
+<br />
+<span>CUDA is NVIDIA&#39;s GPU computing stack: the driver that talks to the chip, the runtime and math libraries on top of it, and the toolchain that compiles code into the small kernels the GPU executes. The A100&#39;s thousands of small cores (the reason prefill runs at thousands of tokens per second) are programmed through CUDA, and the entire Python/PyTorch/vLLM stack sits on top of it. Every prefill and decode step in this setup is a batch of CUDA kernels launched on the A100, including the special ones (FlashAttention, Marlin) that vLLM uses to beat the default implementations.</span><br />
+<br />
+<span>You can see all the layers in the VM image name: <span class='inlinecode'>Ubuntu Server 24.04 LTS R570 CUDA 12.8 with Docker</span>: the OS, the GPU driver (570.195.03 on my VM), the CUDA 12.8 stack, and Docker, which is exactly what vLLM needs. The container sees the GPU through <span class='inlinecode'>--gpus all</span>; Docker&#39;s NVIDIA toolkit injects the driver and the device into the container, and the model&#39;s math runs entirely on the GPU, while the CPU just orchestrates, schedules, and tokenizes.</span><br />
+<br />
+<h3 style='display: inline' id='what-vllm-is'>What vLLM is</h3><br />
+<br />
+<span>vLLM is an open-source inference engine: the program that takes a model&#39;s weights and turns prompts into tokens at high throughput. Ollama does the same job packaged for convenience: one command pulls a quantized model and it&#39;s serving. vLLM is the lower-level engine you run yourself, in Docker, with flags, and tune per model. Ollama optimizes for "make it run"; vLLM optimizes for throughput, context length, and batching, and exposes the knobs (<span class='inlinecode'>--max-model-len</span>, <span class='inlinecode'>--gpu-memory-utilization</span>, <span class='inlinecode'>--enable-prefix-caching</span>, as they appear later in this section) so you can spend the VRAM the way the workload needs it.</span><br />
+<br />
+<span>An LLM request has two phases:</span><br />
+<br />
+<ul>
+<li>Prefill — the model reads the entire prompt and computes attention over all of it in one shot. This is the "thinking about your question" phase. It is parallel and compute-bound, which is why fast GPUs shine here.</li>
+<li>Decode — generating the answer, one token at a time. Every new token depends on the previous one, so this is sequential and memory-bandwidth-bound. This is the phase you are waiting for while the agent "types".</li>
+</ul><br />
+<span>The two phases show up as very different numbers. Prefill runs at thousands of tokens per second, because the entire prompt is one big parallel job, and a datacenter GPU like the A100 is exactly the kind of hardware that eats that for breakfast. Decode runs at tens of tokens per second, because every output token is its own step: the model re-reads the weights from VRAM, produces one token, and starts over. That is one to two orders of magnitude of gap, and it comes from generating one token at a time. The setup can&#39;t fix that. When you "feel" speed in an agent session, you are feeling decode tok/s. Prefill tok/s mostly decides how long the first token takes after you hit enter.</span><br />
+<br />
+<span>The key data structure is the KV cache. To generate the next token, the model has to attend to every previous token, and recomputing that attention from scratch for each new token would be quadratically expensive. So the key and value tensors for all previous tokens are stored in GPU memory and reused. The KV cache grows linearly with context length, and it is the reason "how long a context can I have" is really a VRAM question:</span><br />
+<br />
+<pre>
+VRAM = model weights + KV cache pool + headroom
+
+--gpu-memory-utilization 0.92   → vLLM may use 92% of the 80 GB
+--max-model-len 262144          → context budget: 256K tokens
+</pre>
+<br />
+<span>At startup, vLLM loads the weights, then allocates the rest of the allowed VRAM as a pool of KV cache blocks. That is why <span class='inlinecode'>nvidia-smi</span> shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.</span><br />
+<br />
+<h3 style='display: inline' id='prefix-caching-the-big-one-for-agentic-coding'>Prefix caching: the big one for agentic coding</h3><br />
+<br />
+<span><span class='inlinecode'>--enable-prefix-caching</span> keeps those KV blocks around between requests instead of freeing them. If a new request shares a prefix with a previous one (same system prompt, same conversation history), the shared part is not prefilled again. The tokens are served from cache.</span><br />
+<br />
+<span>For a coding agent this is huge. Every turn of a pi session resends the system prompt plus the entire conversation. Without prefix caching, that whole context is re-prefilled on every single turn. With it, most of the prompt arrives already computed. My current sessions sit at an 80–97% hit rate (numbers below).</span><br />
+<br />
+<span>This is also the main reason I moved from Ollama to vLLM:</span><br />
+<br />
+<ul>
+<li>Prefix caching: vLLM does it block-level, so partial reuse works even when the prompt changes mid-sequence. Ollama requires an exact prefix match from token 0.</li>
+<li>Prefill kernels: vLLM uses FlashAttention v2, ~1.5–2× faster on long prompts.</li>
+<li>Chunked prefill: vLLM interleaves prefill chunks with decode, so a huge prompt does not stall everything. Ollama cannot.</li>
+<li>Quant kernels: vLLM has Marlin kernels for AWQ 4-bit models, which the smaller MoEs on the preset list rely on.</li>
+</ul><br />
+<span>Ollama is fine for quick experiments. For an agent that sends 100K+ token contexts dozens of times a day, recomputing the whole prefix every turn is painful; computing the ~15% that changed is usable.</span><br />
+<br />
+<span>One more thing on UX: vLLM + hypr wins on throughput and knobs. It loses on "download and go". Ollama is still nicer if you just want a model serving in two minutes. hypr is deliberately not that, and that&#39;s part of the rent-vs-buy trade.</span><br />
+<br />
+<h2 style='display: inline' id='how-the-pi-coding-agent-connects'>How the pi coding agent connects</h2><br />
+<br />
+<span>Pi is the frontend. It speaks the OpenAI chat completions API, and vLLM serves exactly that on <span class='inlinecode'>:11434</span>, so pi points straight at the VM over the tunnel, with no translation proxy in between.</span><br />
+<br />
+<span>The repo ships a <span class='inlinecode'>pi/</span> directory that I symlink to <span class='inlinecode'>~/.pi</span>. It defines providers in <span class='inlinecode'>models.json</span>, one per VM, plus a single-VM variant:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>hyperstack1</span> → <span class='inlinecode'>http://hyperstack1.wg1:11434/v1</span> — Qwen3.8 27B FP8</li>
+<li><span class='inlinecode'>hyperstack2</span> → <span class='inlinecode'>http://hyperstack2.wg1:11434/v1</span> — Gemma 4 31B AWQ</li>
+<li><span class='inlinecode'>hyperstack</span> → <span class='inlinecode'>http://hyperstack.wg1:11434/v1</span> — single-VM variant</li>
+</ul><br />
+<span>Every preset from the TOML configs is registered under its provider, so after a <span class='inlinecode'>model switch</span> I can just tell pi to use the new model ID, or hit <span class='inlinecode'>Ctrl+L</span> in the TUI to switch models mid-session without restarting.</span><br />
+<br />
+<span>Fish abbreviations keep the day-to-day short:</span><br />
+<br />
+<pre>
+abbr pi-hyperstack-coder  pi --model hyperstack1/Qwen/Qwen3.8-27B-FP8
+abbr pi-hyperstack-gemma4 pi --model hyperstack2/cyankiwi/gemma-4-31B-it-AWQ-4bit
+</pre>
+<br />
+<span>My standard setup is a tmux session with one pi per pane: <span class='inlinecode'>pi-coder</span> on Qwen3.8 in pane 0, <span class='inlinecode'>pi-gemma4</span> in pane 1, each working on a different project against its own VM. When one model gets stuck on a task, I hand the same problem to the other pane and compare.</span><br />
+<br />
+<span>What a session looks like in practice: diff on top, the model&#39;s reasoning in the middle, shell output at the bottom while it chews through a real task:</span><br />
+<br />
+<a href='./running-my-own-llms/pi-coding-agent.png'><img alt='pi coding agent mid-task: diff, reasoning, and shell in one TUI' title='pi coding agent mid-task: diff, reasoning, and shell in one TUI' src='./running-my-own-llms/pi-coding-agent.png' /></a><br />
+<br />
+<h3 style='display: inline' id='the-extensions'>The extensions</h3><br />
+<br />
+<span>Pi ships deliberately minimal: no permission popups, no plan mode, no built-in sub-agents. The <span class='inlinecode'>hypr</span> repo bundles a set of TypeScript extensions that fill in the gaps. The ones I use daily:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>web-search</span> — <span class='inlinecode'>web_search</span> and <span class='inlinecode'>web_fetch</span> tools backed by DuckDuckGo (no API key), so the agent looks things up instead of guessing from training data.</li>
+<li><span class='inlinecode'>inline-bash</span> — <span class='inlinecode'>!{cmd}</span> in a prompt expands the command&#39;s output before it reaches the model; that is how <span class='inlinecode'>git status</span>, logs, and <span class='inlinecode'>nvidia-smi</span> output end up inside a question.</li>
+<li><span class='inlinecode'>ask-mode</span> — <span class='inlinecode'>/ask</span> flips the session into a read-only investigation mode: understand the codebase and read logs without the agent touching a single file. Before I let a model near code I don&#39;t fully know, this is the first call: <span class='inlinecode'>/ask why does the tunnel setup regenerate keys on the second run?</span></li>
+<li><span class='inlinecode'>loop-scheduler</span> — <span class='inlinecode'>/loop</span> re-sends a prompt on an interval and <span class='inlinecode'>/watch</span> fires when the agent goes idle or a response contains a substring. The two forms I actually use: <span class='inlinecode'>/loop 10m check the VM status and warn me if KV cache usage is above 80%</span> for the periodic check, and the reactive <span class='inlinecode'>/watch contains ERROR =&gt; summarize the latest error and propose a fix</span>. That is how I babysit long builds and flaky services.</li>
+<li><span class='inlinecode'>handoff</span> — <span class='inlinecode'>/handoff &lt;goal&gt;</span> compacts the session into a self-contained prompt for a fresh one, so a long-lived agent does not drown in its own history.</li>
+<li><span class='inlinecode'>fresh-subagent</span> — the <span class='inlinecode'>subagent</span> tool and <span class='inlinecode'>/subagent</span> command run a self-contained task in a clean <span class='inlinecode'>pi</span> process with its own log file, while the main session stays focused: <span class='inlinecode'>/subagent review the last commit and list the risks</span> gives me the verdict without the digging.</li>
+<li><span class='inlinecode'>btw</span> — a mid-task question that must not derail the context: <span class='inlinecode'>/btw which file owns the SSH host key bootstrap logic?</span> The answer appears in a temporary overlay and stays out of the session history.</li>
+<li><span class='inlinecode'>agent-plan-mode</span> — <span class='inlinecode'>/plan</span> separates planning from execution: a read-only planning mode, a numbered plan, then the plan converted into real tasks before anything gets built. That is how the multi-step work in this repo stays on rails.</li>
+<li><span class='inlinecode'>modal-editor</span> — an in-TUI modal editor for composing long prompts without fighting the line editor.</li>
+<li><span class='inlinecode'>session-name</span> — labels a session with something more useful than the first prompt line.</li>
+</ul><br />
+<span>The long tail is smaller: <span class='inlinecode'>nemotron-tool-repair</span> fixes the malformed tool calls the Nemotron models occasionally emit, and <span class='inlinecode'>prompt-history</span> quietly records the last 500 prompts.</span><br />
+<br />
+<span>For the record: <span class='inlinecode'>handoff</span>, <span class='inlinecode'>inline-bash</span>, <span class='inlinecode'>session-name</span>, and <span class='inlinecode'>reload-runtime</span> are upstream pi examples installed locally; the rest are my own.</span><br />
+<br />
+<h3 style='display: inline' id='what-the-extensions-cost'>What the extensions cost</h3><br />
+<br />
+<span>Every tool schema and skill description lands in the system prompt. I have not measured the exact token bill of the full extension set, but it is not free, and on a rented box with a smaller AWQ preset, context is already the scarce resource. On the 27B FP8 daily driver the full set is fine. On the ~18 GB AWQ presets I would start with fewer tools and add them when needed, since fewer tools also means fewer chances for a small model to pick the wrong one or mangle the args. That&#39;s a hypothesis. I haven&#39;t measured it.</span><br />
+<br />
+<h3 style='display: inline' id='tool-calling-in-practice'>Tool calling in practice</h3><br />
+<br />
+<span>I have not run a systematic tool-call bake-off across the preset list. What I do know from daily use: the Nemotron models occasionally emit malformed tool calls, and that is why <span class='inlinecode'>nemotron-tool-repair</span> exists: it patches the broken ones so the session can continue instead of stalling. No failure-rate table from me until I actually measure one. Without reliable tool calls you fall back to copy-paste chat anyway.</span><br />
+<br />
+<h2 style='display: inline' id='the-numbers-tokens-per-second-and-friends'>The numbers: tokens per second and friends</h2><br />
+<br />
+<span>All measured on VM1 (A100 80 GB PCIe, <span class='inlinecode'>Qwen3.8-27B-FP8</span>, 262K context) during a normal work morning:</span><br />
+<br />
+<pre>
+Engine 000: Avg prompt throughput: 253.8 tokens/s, Avg generation
+throughput: 35.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs,
+GPU KV cache usage: 5.0%, Prefix cache hit rate: 81.1%
+</pre>
+<br />
+<span>That is vLLM&#39;s engine log line, emitted every ten seconds. <span class='inlinecode'>ruby hyperstack.rb watch</span> parses it (plus <span class='inlinecode'>nvidia-smi</span>) into a live dashboard, refreshed every two seconds:</span><br />
+<br />
+<pre>
+VM watch    10:34:26  Ctrl-C to stop  refreshing every 2s
+────────────────────────────────────────────────────────────────────────
+
+hyperstack-vm1  hyperstack1.wg1  Qwen3.8-27B-FP8
+  GPU0   NVIDIA A100 80GB PCIe        66°C    299W
+  util        [██████████]  100.0%
+  VRAM        [█████████ ]   90.1%
+  throughput  prefill 767.0 tok/s  decode 34.4 tok/s
+  requests    2 running  0 waiting
+  KV cache    [█         ]   13.7%
+  cache hits  [█████████ ]   93.9%
+</pre>
+<br />
+<a href='./running-my-own-llms/watch-dashboard.png'><img alt='The watch dashboard with two pi sessions in flight' title='The watch dashboard with two pi sessions in flight' src='./running-my-own-llms/watch-dashboard.png' /></a><br />
+<br />
+<span>What the rows mean:</span><br />
+<br />
+<ul>
+<li><span class='inlinecode'>VM watch 10:34:26  Ctrl-C to stop  refreshing every 2s</span> — title bar: current time, how to quit, and the refresh interval.</li>
+<li><span class='inlinecode'>hyperstack-vm1  hyperstack1.wg1  Qwen3.8-27B-FP8</span> — the VM name, its WireGuard hostname, and the model that is loaded.</li>
+<li><span class='inlinecode'>GPU0 NVIDIA A100 80GB PCIe 66°C 299W</span> — straight from <span class='inlinecode'>nvidia-smi</span>: the device, its temperature, and its power draw right now.</li>
+<li><span class='inlinecode'>util</span> — GPU compute utilization. 100% while a burst is being decoded, back to 0% between turns.</li>
+<li><span class='inlinecode'>VRAM</span> — memory used of the 80 GB. It sits at ~90% even when idle, because vLLM preallocates the entire KV cache pool at startup (<span class='inlinecode'>--gpu-memory-utilization 0.92</span>), so this bar shows the budget, not the load.</li>
+<li><span class='inlinecode'>throughput</span> — vLLM&#39;s rolling averages: prefill (prompt) tok/s and decode (generation) tok/s.</li>
+<li><span class='inlinecode'>requests</span> — how many conversations are being decoded right now (<span class='inlinecode'>running</span>) and how many are queued (<span class='inlinecode'>waiting</span>). A sustained <span class='inlinecode'>waiting &gt; 0</span> means the model is overloaded.</li>
+<li><span class='inlinecode'>KV cache</span> — the share of the preallocated KV cache pool in use: your active context as a fraction of everything the GPU can hold.</li>
+<li><span class='inlinecode'>cache hits</span> — the prefix-cache hit rate: the percentage of prompt tokens served from cache instead of being prefilled.</li>
+</ul><br />
+<span>All of it is collected with a single SSH call per VM over the tunnel: <span class='inlinecode'>nvidia-smi</span> for the hardware rows, <span class='inlinecode'>docker logs --tail 200</span> filtered to vLLM&#39;s <span class='inlinecode'>Engine 0</span> line for the rest.</span><br />
+<br />
+<span>The engine log kept all of it: 474 samples from a single ~80 minute work morning, with two or three agents active for most of it. What the numbers mean:</span><br />
+<br />
+<ul>
+<li>Decode: ~40 tok/s for a single conversation, up to ~110 tok/s in total when two or three are decoding at once, because batching keeps the GPU saturated. Benchmark numbers for 27B FP8 on this GPU land at 40–99 tok/s. For a coding agent that&#39;s comfortable: you can read a generated line about as fast as it arrives.</li>
+<li>Prefill: benchmarks for 27B FP8 on this GPU land at 5,000–11,000 tok/s at peak. The <span class='inlinecode'>Avg prompt throughput</span> in the log looks much lower (a rolling max of ~3,000 tok/s in my morning) because it is a rolling average, and because most of the prompt never needs computing at all: 80–97% of it came from the prefix cache. The GPU only prefills the ~3–20% that is new.</li>
+<li>KV cache usage: ~16% for most of the morning, up to 40% when two long conversations were in flight. The pool is everything left after the weights, and even at 40% vLLM was nowhere near running out of context.</li>
+<li>GPU: ~80 W and 57°C idle; under a real burst it hits 100% utilization, 299 W, and 66°C. The A100 PCIe is a 300 W card, so a full burst runs it right at its power limit.</li>
+</ul><br />
+<span>One more thing I did not expect: three pi agents against the same VM at once. Three tmux panes, three conversations, all Qwen3.8 27B FP8 on one A100, and I noticed no slowdown on any of them. vLLM batches concurrent requests (while one agent waits on its next line, the GPU is decoding the other two), so the <span class='inlinecode'>Running:</span> counter in the engine log just climbs, and each conversation keeps its own slice of the KV cache pool. The morning&#39;s log shows all three running at the same time around 07:30, with total decode throughput pushing ~100 tok/s and the KV cache never above ~32%, so three full agent conversations still only fill the pool about a third of the way. Apparently this hardware parallelizes inference pretty well.</span><br />
+<br />
+<span>One caveat on all of these morning numbers: a lot of factors interact. Prompt length, whether the prefix cache is warm, how many agents share the GPU, whether reasoning is chewing tokens, which extensions are loaded. Change any of those and the same model on the same card looks different. Treat the figures as one morning&#39;s snapshot, not a leaderboard.</span><br />
+<br />
+<span>Per-turn latency for a full agent step (prompt in, answer out) is roughly 10–15 seconds with vLLM on this hardware, versus ~28 seconds I measured with Ollama at 32K context, and Ollama was truncating my context at 32K while vLLM runs the full 262K.</span><br />
+<br />
+<span>Startup is the other number that matters for the "rent, don&#39;t buy" math: with a warm model cache, container start to ready takes about five minutes (weight load is a few seconds; the rest is torch.compile and CUDA graph capture). Cold, with a fresh ~45 GB model download, 10+ minutes. The provisioner polls the API for up to 30 minutes and treats the first successful response as done.</span><br />
+<br />
+<h2 style='display: inline' id='what-i-trust-it-with-and-what-i-don-t'>What I trust it with (and what I don&#39;t)</h2><br />
+<br />
+<span>The <span class='inlinecode'>gt</span> calculator was the proof case, a real project built almost entirely on this stack. Day to day I also use it for ops babysitting via <span class='inlinecode'>/loop</span> and <span class='inlinecode'>/watch</span>: check the VM, watch a build, poke me when something smells wrong. That is work I trust it with.</span><br />
+<br />
+<span>Vendor SWE-bench numbers are not my session success rate. Hit-and-miss still happens. When a turn starts looping or the model gets lost in its own plan, I bounce the hard bit to a hosted frontier model and bring the answer back.</span><br />
+<span>Bottom line: it&#39;s good enough that I built a real project on it and keep using it every day. But I still have to babysit it.</span><br />
+<br />
+<h2 style='display: inline' id='what-it-costs-and-do-i-buy-the-hardware'>What it costs, and do I buy the hardware?</h2><br />
+<br />
+<span>Hyperstack bills per minute. The relevant prices (as of September 2026):</span><br />
+<br />
+<ul>
+<li>A100 80 GB: $1.35/h on-demand, from $0.95/h reserved</li>
+<li>H100 80 GB: $2.50/h on-demand, from $1.75/h reserved</li>
+</ul><br />
+<span>So one VM running 24/7 costs around $1,000/month; two VMs around $1,900. That sounds expensive until you remember the alternative I was actually considering:</span><br />
+<br />
+<ul>
+<li>RTX 5090 32 GB — $1,999 MSRP, $3,000–5,000 in the real world of 2026. But 32 GB is a hard ceiling: the 27B FP8 model with its 262K context does not fit, and anything 70B+ is out of the question. I would be buying a card that cannot run the models I actually want to test. Even when a model does fit, consumer cards usually bring less memory bandwidth than a rented A100, so "it loads" is not the same as "it feels fast" while the agent is decoding. Same caveat for a future ThinkPad with a consumer GPU: interesting for privacy and independence (more in Wrapping up), but bandwidth would still decide whether it feels like this A100 or just loads the weights.</li>
+<li>DGX Spark, 128 GB unified memory — $3,999 launch price (closer to $5,000 in 2026, memory shortages being what they are). It can run 200B inference, but the memory bandwidth is laptop-class. It&#39;s a fascinating machine for fitting big models, not for decoding them fast. Same bandwidth lesson as above, just louder.</li>
+</ul><br />
+<span>If you do buy hardware instead, watch the stack too. A Mac or a DGX Spark box mostly lives in GGUF / MLX / LM Studio land. hypr is the NVIDIA / Hugging Face / vLLM path. The models overlap; the weight formats and runtimes don&#39;t. Mixing the two in your head is a good way to buy the wrong box.</span><br />
+<br />
+<span>The rented A100, meanwhile, runs everything on the preset list (including the 120B MoE) for $1.35 an hour, and costs me exactly zero when I am not using it. The <span class='inlinecode'>gt</span> project ran on exactly this setup, and its whole GPU bill is trivial next to what the hardware it needed would have cost.</span><br />
+<br />
+<span>Monthly cost is the wrong unit though. The real comparison is per token. The numbers from this morning&#39;s engine log: 1.3 hours of GPU time ($1.78), ~11M prompt tokens of which 90–95% came from the prefix cache, plus ~250K generated tokens.</span><br />
+<br />
+<ul>
+<li>New prompt tokens (prefill): roughly $0.05–0.15 per million on the A100, versus $0.21 on OpenRouter for the same model (<span class='inlinecode'>qwen/qwen3.8-27b</span>, live pricing, September 2026).</li>
+<li>Cached prompt tokens: effectively free, since they are looked up in the KV cache, not computed. OpenRouter charges $0.15 per million for the same privilege.</li>
+<li>Generated tokens (decode): the weak spot. About $7 per million solo, $3–5 with two or three agents sharing the GPU, versus $2.55 on OpenRouter.</li>
+</ul><br />
+<span>For that morning&#39;s exact workload the math lands at about $0.16 per million total tokens on the VM, versus about $0.20 on OpenRouter. An agentic session is mostly resending the same context, so with a 90%+ cache hit rate the local setup is at parity with the API for the same model, and it gets cheaper the more agents share the GPU, because the $1.35 hour is a fixed cost that three conversations split.</span><br />
+<br />
+<span>Flip the workload and the API wins comfortably: a light session here and there costs almost nothing on OpenRouter, while the VM bills the full hour whether you send tokens or not, and local decode runs about 3× the API price per output token. So: for a full day of heavy agentic work, renting an A100 costs roughly what the API charges per token for the same model, except nothing leaves my infrastructure and nobody rate-limits me. For occasional use, the API is simply cheaper.</span><br />
+<br />
+<span>So where does that leave the question from the gt post: will I invest a couple of thousand dollars in hardware? Still no. The numbers made the decision easy: at current prices, buying a consumer GPU that cannot run the models I want to experiment with, in order to save a $1.35/hour bill that I only run a few hours a day, does not compute. The 128 GB unified-memory boxes (DGX Spark, and the RTX Spark machines shipping later this year) are the first consumer hardware that could genuinely change the math, because they remove the VRAM ceiling. I will watch those closely.</span><br />
+<br />
+<h2 style='display: inline' id='wrapping-up'>Wrapping up</h2><br />
+<br />
+<span>To be specific about the DGX Spark though: I don&#39;t think it is worth buying just yet. The models it can run are capable of real work, that&#39;s not the problem. The economics are: the cloud APIs are much cheaper for the hours I actually use a local model, and a $5,000 box only pays off if you run it around the clock, which is not my usage pattern.</span><br />
+<br />
+<span>There is the other side of the ledger though, and it&#39;s not small: a local box is the only option in this whole story that is actually local. A rented VM still means my code and prompts sit on someone else&#39;s hardware, and an API means they leave the house entirely. Privacy is one reason. The bigger one is independence: I simply do not like being dependent on cloud providers for the tools I use every day, with their price changes, rate limits, and models that quietly disappear. And the tinkerer in me wants to self-host as much as possible: a GPU on my desk I can experiment with at 2 a.m. while the meter does not run beats a VM that bills $1.35 an hour for being awake.</span><br />
+<br />
+<span>So I might just wait for one of two things. Either my ThinkPad finally breaks down and I end up buying a beefy replacement with local-LLM capabilities to begin with (the RTX Spark class of machine, if it ever gets proper Linux support, since it is a Windows platform out of the box). Or the next superchip generation shows up: the successor to the Grace Blackwell silicon inside the current DGX Spark, the Vera Rubin generation, probably 2027 or 2028. Buying a $5,000 inference box right before its successor arrives with more memory and more bandwidth is exactly the trap renting keeps me out of.</span><br />
+<br />
+<span>What stays is the workflow: a coding agent I can point at any model, running on infrastructure I control, that I can tear down when the project is done.</span><br />
+<br />
+<span>If you want the setup itself, it is all in the repo: <span class='inlinecode'>git clone https://github.com/snonux/hypr</span> gets you the provisioner, the WireGuard script, the per-VM model presets, and the pi extensions, with a README that explains every flag.</span><br />
+<br />
+<span>If you want to try this without writing any Ruby at all, the manual path is short: rent a GPU VM with CUDA and Docker, pull <span class='inlinecode'>vllm/vllm-openai</span>, run it with <span class='inlinecode'>--enable-prefix-caching --gpu-memory-utilization 0.92 --max-model-len 262144</span>, tunnel in with WireGuard or a port forward, and point any OpenAI-compatible client at it. Everything else in <span class='inlinecode'>hypr</span> is convenience around those four steps.</span><br />
+<br />
+<span>The models keep improving every few months. The Qwen3.8 on VM1 this month is not the model I was testing in May, and that pace is the real reason renting makes sense: the "right" hardware to own changes before the last one pays for itself.</span><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-06-01-gt-calculator.html'>2026-06-01 <span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs</a><br />
+<a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>

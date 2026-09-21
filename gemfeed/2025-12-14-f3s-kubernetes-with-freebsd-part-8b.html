@@ -49,15 +49,7 @@
 </ul><br />
 <h2 style='display: inline' id='why-distributed-tracing'>Why Distributed Tracing?</h2><br />
 <br />
-<span>In a microservices setup, a single user request can hop through multiple services. Tracing gives you:</span><br />
-<br />
-<ul>
-<li>Request tracking across service boundaries</li>
-<li>Performance bottleneck identification</li>
-<li>Service dependency visualization</li>
-<li>Correlation with logs and metrics</li>
-</ul><br />
-<span>Without it, you&#39;re basically guessing where time gets spent.</span><br />
+<span>In a microservices setup, a single user request can hop through multiple services. Tracing helps here. It shows you which services a request went through, where the time went, and links that to logs and metrics. Without it you&#39;re guessing.</span><br />
 <br />
 <h2 style='display: inline' id='deploying-grafana-tempo'>Deploying Grafana Tempo</h2><br />
 <br />
@@ -374,7 +366,7 @@ kubectl get ingress -n services tracing-demo-ingress
 <br />
 <h3 style='display: inline' id='service-graph'>Service Graph</h3><br />
 <br />
-<span>The service graph view shows visual connections between services — Frontend to Middleware to Backend — with request rates and latencies. It&#39;s generated automatically from trace data using Prometheus metrics.</span><br />
+<span>The service graph view shows the connections between services (Frontend to Middleware to Backend) with request rates and latencies. It&#39;s generated automatically from trace data using Prometheus metrics.</span><br />
 <br />
 <h2 style='display: inline' id='practical-example-end-to-end-trace'>Practical Example: End-to-End Trace</h2><br />
 <br />
@@ -475,7 +467,7 @@ Service: backend
 <br />
 <h2 style='display: inline' id='correlation-between-signals'>Correlation Between Signals</h2><br />
 <br />
-<span>This is where the observability stack really comes together. Tempo integrates with Loki and Prometheus so you can jump between traces, logs, and metrics.</span><br />
+<span>Tempo integrates with Loki and Prometheus so you can jump between traces, logs, and metrics.</span><br />
 <br />
 <span>Traces to logs: click on any span and select "Logs for this span." Loki filters by time range, service name, namespace, and pod. Super useful for figuring out what a service was doing during a specific request.</span><br />
 <br />
@@ -495,11 +487,11 @@ kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
 <br />
 <h2 style='display: inline' id='configuration-files'>Configuration Files</h2><br />
 <br />
-<span>All config files are on Codeberg:</span><br />
+<span>All config files are on GitHub:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/tempo'>Tempo configuration</a><br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/loki'>Alloy configuration (updated for traces)</a><br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/tracing-demo'>Demo tracing application</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/tempo'>Tempo configuration</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/loki'>Alloy configuration (updated for traces)</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/tracing-demo'>Demo tracing application</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />

@@ -51,7 +51,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <li>⇢ <a href='#yes-for-automation'><span class='inlinecode'>yes</span> for automation</a></li>
 <li>⇢ <a href='#forcing-true-to-fail-and-vice-versa'>Forcing <span class='inlinecode'>true</span> to fail (and vice versa)</a></li>
 <li>⇢ <a href='#restricted-bash'>Restricted Bash</a></li>
-<li>⇢ <a href='#useless-use-of-cat-and-when-its-ok'>Useless use of cat (and when it’s ok)</a></li>
+<li>⇢ <a href='#useless-use-of-cat-and-when-it-s-ok'>Useless use of cat (and when it&#39;s ok)</a></li>
 <li>⇢ <a href='#atomic-locking-with-mkdir'>Atomic locking with <span class='inlinecode'>mkdir</span></a></li>
 <li>⇢ <a href='#smarter-globs-and-faster-find-exec'>Smarter globs and faster find-exec</a></li>
 </ul><br />
@@ -233,7 +233,7 @@ base: Good day,  Paul!
 <br />
 <h2 style='display: inline' id='indirect-references-with-namerefs'>Indirect references with namerefs</h2><br />
 <br />
-<span><span class='inlinecode'>declare -n</span> creates a name reference — a variable that points to another variable. It’s cleaner than <span class='inlinecode'>eval</span> for indirection:</span><br />
+<span><span class='inlinecode'>declare -n</span> creates a name reference, a variable that points to another variable. It&#39;s cleaner than <span class='inlinecode'>eval</span> for indirection:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -554,7 +554,7 @@ http://www.gnu.org/software/src-highlite -->
 <li>Running commands with <span class='inlinecode'>/</span> in the name.</li>
 <li>Using <span class='inlinecode'>exec</span>.</li>
 </ul><br />
-<span>It’s a coarse sandbox for highly constrained shells; read <span class='inlinecode'>man bash</span> (RESTRICTED SHELL) for details and caveats.</span><br />
+<span>It&#39;s a coarse sandbox. Read the RESTRICTED SHELL section in <span class='inlinecode'>man bash</span> for the caveats.</span><br />
 <br />
 <span>Example session:</span><br />
 <br />
@@ -569,7 +569,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">rbash -c </font><font color="#bd976a">'exec ls'</font><font color="#dbd7ca">         </font><i><font color="#666666"># exec: restricted</font></i>
 </pre>
 <br />
-<h2 style='display: inline' id='useless-use-of-cat-and-when-its-ok'>Useless use of cat (and when it’s ok)</h2><br />
+<h2 style='display: inline' id='useless-use-of-cat-and-when-it-s-ok'>Useless use of cat (and when it&#39;s ok)</h2><br />
 <br />
 <span>Avoid the extra process if a command already reads files or <span class='inlinecode'>STDIN</span>:</span><br />
 <br />
@@ -594,11 +594,9 @@ http://www.gnu.org/software/src-highlite -->
 <pre><font color="#dbd7ca">cat file1 file2 </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep -i foo</font>
 </pre>
 <br />
-<span>From notes: “Good for interactivity; Useless use of cat” — use judgment.</span><br />
-<br />
 <h2 style='display: inline' id='atomic-locking-with-mkdir'>Atomic locking with <span class='inlinecode'>mkdir</span></h2><br />
 <br />
-<span>Portable advisory locks can be emulated with <span class='inlinecode'>mkdir</span> because it’s atomic:</span><br />
+<span>Portable advisory locks can be emulated with <span class='inlinecode'>mkdir</span> because it&#39;s atomic:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -615,7 +613,7 @@ http://www.gnu.org/software/src-highlite -->
 <b><font color="#4d9375">fi</font></b>
 </pre>
 <br />
-<span>This works well on Linux. Remove the lock in <span class='inlinecode'>trap</span> so crashes don’t leave stale locks.</span><br />
+<span>This works well on Linux. Remove the lock in <span class='inlinecode'>trap</span> so crashes don&#39;t leave stale locks.</span><br />
 <br />
 <h2 style='display: inline' id='smarter-globs-and-faster-find-exec'>Smarter globs and faster find-exec</h2><br />
 <br />

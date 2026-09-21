@@ -31,13 +31,13 @@
 </ul><br />
 <h2 style='display: inline' id='enter-quick-logger'>Enter Quick logger</h2><br />
 <br />
-<span>Enter Quick logger – a compact GUI Android (well, cross-platform due to Fyne) app I&#39;ve crafted using Go and the nifty Fyne framework. With Fyne, the app can be compiled easily into an Android APK. As of this writing, this app&#39;s whole Go source code is only 75 lines short!! This little tool is designed for spontaneous moments, allowing me to quickly log my thoughts as plain text files on my Android phone. There are no fancy file formats. Just plain text!</span><br />
+<span>Quick logger is a small GUI Android app (well, cross-platform, thanks to Fyne) I wrote in Go with the Fyne framework. With Fyne, the app can be compiled easily into an Android APK. As of this writing, this app&#39;s whole Go source code is only 75 lines short!! It lets me quickly log my thoughts as plain text files on my Android phone. No fancy file formats. Just plain text!</span><br />
 <br />
 <a class='textlink' href='https://github.com/snonux/quicklogger'>https://github.com/snonux/quicklogger</a><br />
 <a class='textlink' href='https://fyne.io'>https://fyne.io</a><br />
 <a class='textlink' href='https://go.dev'>https://go.dev</a><br />
 <br />
-<span>There&#39;s no need to navigate complex menus or deal with sync issues. I jot down my Idea, and Quick logger saves it to a plain text file in a designated local folder on my phone. There is one text file per note (timestamp in the file name). Once logged, the file can&#39;t be edited anymore (it keeps it simple). If I want to correct or change a note, I simply write a new one. My notes are always small (usually one short sentence each), so there isn&#39;t the need for an edit functionality. I can edit them later on my actual computer if I want to.</span><br />
+<span>I jot down my Idea, and Quick logger saves it to a plain text file in a designated local folder on my phone. There is one text file per note (timestamp in the file name). Once logged, the file can&#39;t be edited anymore (it keeps it simple). If I want to correct or change a note, I simply write a new one. My notes are always small (usually one short sentence each), so there isn&#39;t the need for an edit functionality. I can edit them later on my actual computer if I want to.</span><br />
 <br />
 <span>With Syncthing, the note files are then synchronised to my home computer to my <span class='inlinecode'>~/Notes</span> directory. From there, a small glue Raku script adds them to my Taskwarrior DB so that I can process them later (e.g. take action on that one Idea I had). That then will delete the original note files from my computer and also (through Syncthing) from my phone.</span><br />
 <br />
@@ -45,9 +45,9 @@
 <a class='textlink' href='https://raku.org'>https://raku.org</a><br />
 <a class='textlink' href='https://taskwarrior.org'>https://taskwarrior.org</a><br />
 <br />
-<span>Quick logger&#39;s user interface is as minimal as it gets. When I launch Quick logger, I&#39;m greeted with a simple window where I can type plain text. Hit the "Log text" button, and voilà – the input is timestamped and saved as a file in my chosen directory. If I need to change the directory, the "Preferences" button brings up a window where I can set the notes folder and get back to logging.</span><br />
+<span>Quick logger&#39;s user interface is as minimal as it gets. When I launch Quick logger, I&#39;m greeted with a simple window where I can type plain text. Hit the "Log text" button, and the input is timestamped and saved as a file in my chosen directory. If I need to change the directory, the "Preferences" button brings up a window where I can set the notes folder and get back to logging.</span><br />
 <br />
-<span>For the code-savvy folks out there, Quick logger is a neat example of what you can achieve with Go and Fyne. It&#39;s a testament to building functional, cross-platform apps without getting bogged down in the nitty-gritty of platform-specific details. Thanks to Fyne, I am pleased with how easy it is to make mobile Android apps in Go.</span><br />
+<span>Quick logger is also a neat little example of what you can do with Go and Fyne without touching any platform-specific details. I am pleased with how easy it is to make Android apps in Go this way.</span><br />
 <br />
 <a href='a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/screenshot-android.png'><img alt='Quick logger running on Android' title='Quick logger running on Android' src='a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang/screenshot-android.png' /></a><br />
 <br />
@@ -65,7 +65,7 @@
 <br />
 <span>Hopefully, I won&#39;t need to use this workaround anymore. But for now, it is a fair tradeoff for what I am getting.</span><br />
 <br />
-<span>I hope this will inspire you to write your own small mobile apps in Go using the awesome Fyne framework! PS: The Quick logger logo was generated by ChatGPT.</span><br />
+<span>Maybe this inspires you to write your own small mobile apps in Go with Fyne. PS: The Quick logger logo was generated by ChatGPT.</span><br />
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />

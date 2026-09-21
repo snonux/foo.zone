@@ -50,9 +50,9 @@
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
-<span>Gos is a Go-based replacement (which I wrote) for Buffer.com, providing the ability to schedule and manage social media posts from the command line. It can be run, for example, every time you open a new shell or only once every N hours when you open a new shell.</span><br />
+<span>Gos is a Go-based replacement (which I wrote) for Buffer.com. It schedules and posts social media messages from the command line. It can be run, for example, every time you open a new shell or only once every N hours when you open a new shell.</span><br />
 <br />
-<span>I used Buffer.com to schedule and post my social media messages for a long time. However, over time, there were more problems with that service, including a slow and unintuitive UI, and the free version only allows scheduling up to 10 messages. At one point, they started to integrate an AI assistant (which would seemingly randomly pop up in separate JavaScript-powered input boxes), and then I had enough and decided I had to build my own social sharing tool—and Gos was born.</span><br />
+<span>I used Buffer.com to schedule and post my social media messages for a long time. However, over time, there were more problems with that service, including a slow and unintuitive UI, and the free version only allows scheduling up to 10 messages. At one point, they started to integrate an AI assistant (which would seemingly randomly pop up in separate JavaScript-powered input boxes), and then I had enough and decided to build my own social sharing tool. And Gos was born.</span><br />
 <br />
 <a class='textlink' href='https://buffer.com'>https://buffer.com</a><br />
 <a class='textlink' href='https://github.com/snonux/gos'>https://github.com/snonux/gos</a><br />
@@ -142,13 +142,11 @@ http://www.gnu.org/software/src-highlite -->
 </ul><br />
 <h3 style='display: inline' id='automatically-managed-fields'>Automatically managed fields</h3><br />
 <br />
-<span>Once you finish the OAuth2 setup (after the initial run of <span class='inlinecode'>gos</span>), some fields—like <span class='inlinecode'>LinkedInAccessToken</span> and <span class='inlinecode'>LinkedInPersonID</span> will get filled in automatically. To check if everything&#39;s working without actually posting anything, you can run the app in dry run mode with the <span class='inlinecode'>--dry</span> option. After OAuth2 is successful, the file will be updated with <span class='inlinecode'>LinkedInClientID</span> and <span class='inlinecode'>LinkedInAccessToken</span>. If the access token expires, it will go through the OAuth2 process again.</span><br />
+<span>Once you finish the OAuth2 setup (after the initial run of <span class='inlinecode'>gos</span>), some fields (like <span class='inlinecode'>LinkedInAccessToken</span> and <span class='inlinecode'>LinkedInPersonID</span>) will get filled in automatically. To check if everything&#39;s working without actually posting anything, you can run the app in dry run mode with the <span class='inlinecode'>--dry</span> option. After OAuth2 is successful, the file will be updated with <span class='inlinecode'>LinkedInClientID</span> and <span class='inlinecode'>LinkedInAccessToken</span>. If the access token expires, it will go through the OAuth2 process again.</span><br />
 <br />
 <h2 style='display: inline' id='invoking-gos'>Invoking Gos</h2><br />
 <br />
-<span>Gos is a command-line tool for posting updates to multiple social media platforms. You can run it with various flags to customize its behaviour, such as posting in dry run mode, limiting posts by size, or targeting specific platforms.</span><br />
-<br />
-<span>Flags control the tool&#39;s behavior. Below are several common ways to invoke Gos and descriptions of the available flags.</span><br />
+<span>You can run Gos with various flags, e.g. for dry run mode, limiting posts by size, or targeting specific platforms.</span><br />
 <br />
 <h3 style='display: inline' id='common-flags'>Common flags</h3><br />
 <br />
@@ -176,7 +174,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>*Dry run mode*</span><br />
 <br />
-<span>Dry run mode lets you simulate the entire posting process without actually sending the posts. This is useful for testing configurations or seeing what would happen before making real posts.</span><br />
+<span>Dry run mode simulates the whole posting process without sending anything. Good for testing the configuration.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -226,7 +224,7 @@ Maybe add a link here: https://foo.zone
 <br />
 <span>Currently, only <span class='inlinecode'>linkedin</span> and <span class='inlinecode'>mastodon</span> are supported, and the shortcuts <span class='inlinecode'>li</span> and <span class='inlinecode'>ma</span> also work.</span><br />
 <br />
-<span>**Examples:**</span><br />
+<span>Examples:</span><br />
 <br />
 <ul>
 <li>To share only on Mastodon: <span class='inlinecode'>~/.gosdir/foopost.share:mastodon.txt</span></li>
@@ -304,7 +302,7 @@ Hello World :-)
 <br />
 <h2 style='display: inline' id='how-queueing-works-in-gos'>How queueing works in gos</h2><br />
 <br />
-<span>When you place a message file in the <span class='inlinecode'>gosDir</span>, Gos processes it by moving the message through a queueing system before posting it to the target social media platforms. A message&#39;s lifecycle includes several key stages, from creation to posting, all managed through the <span class='inlinecode'>./db/platforms/PLATFORM</span> directories.</span><br />
+<span>When you place a message file in the <span class='inlinecode'>gosDir</span>, Gos moves it through a queue in the <span class='inlinecode'>./db/platforms/PLATFORM</span> directories before posting it. The stages are described step by step below.</span><br />
 <br />
 <h3 style='display: inline' id='step-by-step-queueing-process'>Step-by-step queueing process</h3><br />
 <br />
@@ -330,15 +328,15 @@ Hello World :-)
 <br />
 <h3 style='display: inline' id='how-message-selection-works-in-gos'>How message selection works in gos</h3><br />
 <br />
-<span>Gos decides which messages to post using a combination of priority, platform-specific tags, and timing rules. The message selection process ensures that messages are posted according to your configured cadence and targets while respecting pauses between posts and previously met goals.</span><br />
+<span>Gos picks which message to post next based on priority, platform tags, and timing rules.</span><br />
 <br />
 <span>The key factors in message selection are:</span><br />
 <br />
 <ul>
-<li>Target Number of Posts Per Week: The <span class='inlinecode'>-target</span> flag defines how many posts per week should be made to a specific platform. This target helps Gos manage the posting rate, ensuring that the right number of posts are made without exceeding the desired frequency. </li>
-<li>Post History Lookback: The <span class='inlinecode'>-lookback</span> flag tells Gos how many days back to look in the post history to calculate whether the weekly post target has already been met. It ensures that previously posted content is considered before deciding to queue up another message.</li>
+<li>Target Number of Posts Per Week: The <span class='inlinecode'>-target</span> flag defines how many posts per week should be made to a specific platform.</li>
+<li>Post History Lookback: The <span class='inlinecode'>-lookback</span> flag tells Gos how many days back to look in the post history to calculate whether the weekly post target has already been met.</li>
 <li>Message Priority: Messages with no priority value are processed after those with priority. If two messages have the same priority, one is selected randomly.</li>
-<li>Pause Between Posts: The <span class='inlinecode'>-pauseDays</span> flag allows you to specify a minimum number of days to wait between posts for the same platform. This prevents oversaturation of content and ensures that posts are spread out over time.</li>
+<li>Pause Between Posts: The <span class='inlinecode'>-pauseDays</span> flag allows you to specify a minimum number of days to wait between posts for the same platform. That spreads the posts out a bit.</li>
 </ul><br />
 <h2 style='display: inline' id='database-replication'>Database replication</h2><br />
 <br />

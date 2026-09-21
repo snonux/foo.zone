@@ -52,7 +52,7 @@
 <li>⇢ ⇢ <a href='#sync-waves'>Sync Waves</a></li>
 <li>⇢ <a href='#the-result'>The Result</a></li>
 <li>⇢ <a href='#what-changed-day-to-day'>What Changed Day-to-Day</a></li>
-<li>⇢ <a href='#challenges-along-the-way'>Challenges Along the Way</a></li>
+<li>⇢ <a href='#things-that-bit-me'>Things that bit me</a></li>
 <li>⇢ ⇢ <a href='#helm-release-adoption'>Helm Release Adoption</a></li>
 <li>⇢ ⇢ <a href='#persistentvolumes'>PersistentVolumes</a></li>
 <li>⇢ ⇢ <a href='#secrets'>Secrets</a></li>
@@ -75,7 +75,7 @@
 <br />
 <h2 style='display: inline' id='gitops-in-a-nutshell'>GitOps in a Nutshell</h2><br />
 <br />
-<span>Describe your entire desired state in Git, and let an agent in the cluster pull that state and reconcile it continuously. Every change goes through a commit, so you get version history, collaboration, and rollback for free.</span><br />
+<span>Describe your entire desired state in Git, and let an agent in the cluster pull that state and reconcile it continuously. Every change is a commit, so you get history and rollback for free.</span><br />
 <br />
 <span>For Kubernetes specifically:</span><br />
 <br />
@@ -113,7 +113,7 @@
 </ul><br />
 <span>That&#39;s it. No "let me check my shell history to remember how I set this up."</span><br />
 <br />
-<span>It&#39;s also a great way to learn. Setting up GitOps for real--even on a small cluster--teaches you things you won&#39;t pick up from tutorials alone. Debugging sync issues, figuring out sync waves, dealing with secrets management--all stuff that&#39;s directly applicable at work too.</span><br />
+<span>It&#39;s also a good way to learn. Debugging sync issues, sync waves, secrets handling: I run into the same things at work.</span><br />
 <br />
 <span>Beyond that: push to Git, things deploy. No SSH&#39;ing to a workstation to run Helm commands. And if I manually tweak something while debugging and forget about it, ArgoCD reverts it back to the desired state. That&#39;s happened more than once.</span><br />
 <br />
@@ -123,7 +123,7 @@
 <br />
 <span>The installation lives in the config repo:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/argocd'>github.com/snonux/conf/f3s/argocd</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/argocd'>github.com/snonux/conf/f3s/argocd</a><br />
 <br />
 <span>I deployed it using Helm via a Justfile:</span><br />
 <br />
@@ -218,9 +218,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='in-cluster-git-server'>In-Cluster Git Server</h2><br />
 <br />
-<span>I didn&#39;t want ArgoCD pulling from Codeberg over the internet every time it checks for changes. If Codeberg is down (or my internet is), the cluster can&#39;t reconcile. So I set up a Git server inside the cluster itself.</span><br />
+<span>I didn&#39;t want ArgoCD pulling from GitHub over the internet every time it checks for changes. If GitHub is down (or my internet is), the cluster can&#39;t reconcile. So I set up a Git server inside the cluster itself.</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/commit/190473b/f3s/git-server'>github.com/snonux/conf/f3s/git-server (at 190473b)</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/190473b/f3s/git-server'>github.com/snonux/conf/f3s/git-server (at 190473b)</a><br />
 <br />
 <span>The git-server runs as a single pod in the <span class='inlinecode'>cicd</span> namespace with two containers sharing a PVC:</span><br />
 <br />
@@ -236,7 +236,7 @@ http://git-server.cicd.svc.cluster.local/conf.git
 <br />
 <span>For pushing, I use SSH via a NodePort (30022). The git user is locked down to git-shell--no actual shell access. SSH keys are managed through a Kubernetes Secret.</span><br />
 <br />
-<span>There&#39;s a chicken-and-egg situation here. The git-server&#39;s own ArgoCD Application manifest points at Codeberg (not at itself), since ArgoCD needs to bootstrap the git-server before it can use it:</span><br />
+<span>There&#39;s a chicken-and-egg situation here. The git-server&#39;s own ArgoCD Application manifest points at GitHub (not at itself), since ArgoCD needs to bootstrap the git-server before it can use it:</span><br />
 <br />
 <pre>
 # argocd-apps/cicd/git-server.yaml
@@ -246,9 +246,9 @@ source:
   path: f3s/git-server/helm-chart
 </pre>
 <br />
-<span>Once the pod is up, all other apps use the in-cluster URL. The dependency chain is: Codeberg -&gt; git-server -&gt; everything else.</span><br />
+<span>Once the pod is up, all other apps use the in-cluster URL. The dependency chain is: GitHub -&gt; git-server -&gt; everything else.</span><br />
 <br />
-<span>The repo storage lives on NFS. Initial setup was just cloning the Codeberg repo as a bare repo into the NFS volume, then pointing my laptop&#39;s git remote at the NodePort:</span><br />
+<span>The repo storage lives on NFS. Initial setup was just cloning the GitHub repo as a bare repo into the NFS volume, then pointing my laptop&#39;s git remote at the NodePort:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -596,14 +596,14 @@ http://www.gnu.org/software/src-highlite -->
 <span>The practical difference is pretty big:</span><br />
 <br />
 <ul>
-<li>Single source of truth--clone the repo, look at <span class='inlinecode'>argocd-apps/</span>, and you know exactly what&#39;s running. No more <span class='inlinecode'>helm list</span> or guessing.</li>
-<li>Push and forget--edit a Helm value, commit, push. ArgoCD picks it up within a few minutes. No SSH, no <span class='inlinecode'>just upgrade</span>.</li>
-<li>Self-healing--I&#39;ve tweaked things manually for debugging, forgotten about it, and ArgoCD quietly reverted it. That&#39;s saved me from some confusing "why is this behaving differently?" moments.</li>
-<li>Rollback = git revert--<span class='inlinecode'>git revert HEAD &amp;&amp; git push</span> and ArgoCD syncs back to the previous state.</li>
-<li>Disaster recovery--bootstrap k3s, install ArgoCD, apply the Application manifests, wait. The cluster rebuilds itself. I haven&#39;t had to do this for real yet, but I&#39;ve tested it and it works.</li>
-<li>Drift detection--the ArgoCD UI shows immediately if something is out of sync. Much better than running <span class='inlinecode'>kubectl</span> commands and comparing output manually.</li>
+<li>Clone the repo, look at <span class='inlinecode'>argocd-apps/</span>, and you know exactly what&#39;s running. No more <span class='inlinecode'>helm list</span> or guessing.</li>
+<li>Edit a Helm value, commit, push. ArgoCD picks it up within a few minutes. No SSH, no <span class='inlinecode'>just upgrade</span>.</li>
+<li>I&#39;ve tweaked things manually for debugging, forgotten about it, and ArgoCD quietly reverted it. That&#39;s saved me from some confusing "why is this behaving differently?" moments.</li>
+<li>Rollback is <span class='inlinecode'>git revert HEAD &amp;&amp; git push</span>. ArgoCD syncs back to the previous state.</li>
+<li>Disaster recovery: bootstrap k3s, install ArgoCD, apply the Application manifests, wait. I haven&#39;t had to do this for real yet, but I&#39;ve tested it and it works.</li>
+<li>The ArgoCD UI shows immediately if something is out of sync. Much better than running <span class='inlinecode'>kubectl</span> commands and comparing output by hand.</li>
 </ul><br />
-<h2 style='display: inline' id='challenges-along-the-way'>Challenges Along the Way</h2><br />
+<h2 style='display: inline' id='things-that-bit-me'>Things that bit me</h2><br />
 <br />
 <h3 style='display: inline' id='helm-release-adoption'>Helm Release Adoption</h3><br />
 <br />
@@ -627,17 +627,17 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='wrapping-up'>Wrapping Up</h2><br />
 <br />
-<span>The migration took a couple of days, doing one or two apps at a time. The result: 30 applications across 5 namespaces, all managed declaratively through Git. Push a change, it deploys. Break something, <span class='inlinecode'>git revert</span>. Cluster dies, rebuild from the repo.</span><br />
+<span>The migration took a couple of days, doing one or two apps at a time. Now all 30 applications are managed through Git.</span><br />
 <br />
 <span>All the config lives here:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s'>github.com/snonux/conf/f3s</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s'>github.com/snonux/conf/f3s</a><br />
 <br />
 <span>ArgoCD Application manifests organized by namespace:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/argocd-apps'>github.com/snonux/conf/f3s/argocd-apps</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/argocd-apps'>github.com/snonux/conf/f3s/argocd-apps</a><br />
 <br />
-<span>I can&#39;t imagine going back to running Helm commands manually.</span><br />
+<span>I won&#39;t go back to running Helm commands by hand.</span><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />

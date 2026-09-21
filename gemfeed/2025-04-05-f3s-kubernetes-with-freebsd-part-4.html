@@ -59,27 +59,27 @@
 <li>⇢ ⇢ <a href='#freebsd-vm--bhyve-ubench-benchmark'>FreeBSD VM @ Bhyve <span class='inlinecode'>ubench</span> benchmark</a></li>
 <li>⇢ ⇢ <a href='#rocky-linux-vm--bhyve-ubench-benchmark'>Rocky Linux VM @ Bhyve <span class='inlinecode'>ubench</span> benchmark</a></li>
 <li>⇢ <a href='#update-improving-disk-io-performance-for-etcd'>Update: Improving Disk I/O Performance for etcd</a></li>
-<li>⇢ ⇢ <a href='#the-problem'>The Problem</a></li>
-<li>⇢ ⇢ <a href='#the-solution-switch-to-nvme-emulation'>The Solution: Switch to NVMe Emulation</a></li>
+<li>⇢ ⇢ <a href='#the-problem'>The problem</a></li>
+<li>⇢ ⇢ <a href='#the-fix-nvme-emulation'>The fix: NVMe emulation</a></li>
 <li>⇢ ⇢ <a href='#step-1-prepare-the-guest-os'>Step 1: Prepare the Guest OS</a></li>
 <li>⇢ ⇢ <a href='#step-2-update-the-bhyve-configuration'>Step 2: Update the Bhyve Configuration</a></li>
 <li>⇢ ⇢ <a href='#benchmark-results'>Benchmark Results</a></li>
-<li>⇢ ⇢ <a href='#important-notes'>Important Notes</a></li>
+<li>⇢ ⇢ <a href='#caveats'>Caveats</a></li>
 <li>⇢ <a href='#conclusion'>Conclusion</a></li>
 </ul><br />
 <h2 style='display: inline' id='introduction'>Introduction</h2><br />
 <br />
 <span>In this blog post, we are going to install the Bhyve hypervisor.</span><br />
 <br />
-<span>The FreeBSD Bhyve hypervisor is a lightweight, modern hypervisor that enables virtualization on FreeBSD systems. Bhyve&#39;s strengths include its minimal overhead, which allows it to achieve near-native performance for virtual machines. It&#39;s efficient and lightweight, leveraging the capabilities of the FreeBSD operating system for performance and network management.</span><br />
+<span>Bhyve is FreeBSD&#39;s own hypervisor. It&#39;s small, has little overhead, and VMs run at near-native speed (I&#39;ll benchmark that later in this post).</span><br />
 <br />
 <a class='textlink' href='https://wiki.freebsd.org/bhyve'>https://wiki.freebsd.org/bhyve</a><br />
 <br />
-<span>Bhyve supports running various guest operating systems, including FreeBSD, Linux, and Windows, on hardware platforms that support hardware virtualization extensions (such as Intel VT-x or AMD-V). In our case, we are going to virtualize Rocky Linux, which will later in this series be used to run k3s.</span><br />
+<span>It can run FreeBSD, Linux, and Windows guests, as long as the CPU has virtualization extensions (Intel VT-x or AMD-V). We are going to run Rocky Linux VMs, which will later host k3s.</span><br />
 <br />
 <h2 style='display: inline' id='check-for-popcnt-cpu-support'>Check for <span class='inlinecode'>POPCNT</span> CPU support</h2><br />
 <br />
-<span>POPCNT is a CPU instruction that counts the number of set bits (ones) in a binary number. CPU virtualization and Bhyve support for the POPCNT instruction are important because guest operating systems utilize this instruction to perform various tasks more efficiently. If the host CPU supports POPCNT, Bhyve can pass this capability to virtual machines for better performance. Without POPCNT support, some applications might not run or perform sub-optimally in virtualized environments.</span><br />
+<span>POPCNT is a CPU instruction that counts the set bits in a word. Bhyve guests make use of it, so let&#39;s check that the host CPU has it.</span><br />
 <br />
 <span>To check for <span class='inlinecode'>POPCNT</span> support, run:</span><br />
 <br />
@@ -152,9 +152,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>As guest VMs I decided to use Rocky Linux.</span><br />
 <br />
-<span>Using Rocky Linux 9 as a VM-based OS is beneficial primarily because of its long-term support and stable release cycle. This ensures a reliable environment that receives security updates and bug fixes for an extended period, reducing the need for frequent upgrades.</span><br />
+<span>Mainly because of the long support cycle: I get security updates for years without having to do major upgrades all the time.</span><br />
 <br />
-<span>Rocky Linux is community-driven and aims to be fully compatible with enterprise Linux, making it a solid choice for consistency and performance in various deployment scenarios.</span><br />
+<span>It&#39;s community-driven and aims to be fully compatible with enterprise Linux.</span><br />
 <br />
 <a class='textlink' href='https://rockylinux.org/'>https://rockylinux.org/</a><br />
 <br />
@@ -467,7 +467,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">BenchmarkCPUSilly2-</font><font color="#bd976a">4</font><font color="#dbd7ca">    </font><font color="#bd976a">1000000000</font><font color="#dbd7ca">               </font><font color="#bd976a">0.4345</font><font color="#dbd7ca"> ns/op</font>
 </pre>
 <br />
-<span>The Linux benchmark is slightly slower than the FreeBSD one. The Go version is also a bit older. I tried the same with the up-to-date version of Go (1.24.x) with similar results. There could be a slight Bhyve overhead, or FreeBSD is just slightly more efficient in this benchmark. Overall, this shows that Bhyve performs excellently.</span><br />
+<span>The Linux benchmark is slightly slower than the FreeBSD one. The Go version is also a bit older. I tried the same with the up-to-date version of Go (1.24.x) with similar results. There could be a slight Bhyve overhead, or FreeBSD is just slightly more efficient in this benchmark. So Bhyve&#39;s overhead is tiny here.</span><br />
 <br />
 <h3 style='display: inline' id='silly-freebsd-vm--bhyve-benchmark'>Silly FreeBSD VM @ Bhyve benchmark</h3><br />
 <br />
@@ -602,9 +602,9 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span class='quote'>Updated: Fri 26 Dec 08:51:23 EET 2025</span><br />
 <br />
-<span>After running k3s for some time, I noticed frequent etcd leader elections and "apply request took too long" warnings in the logs. Investigation revealed that etcd&#39;s sync writes were extremely slow - around 250 kB/s with the default <span class='inlinecode'>virtio-blk</span> disk emulation. etcd requires fast sync writes (ideally under 10ms fsync latency) for stable operation.</span><br />
+<span>After running k3s for some time, I noticed frequent etcd leader elections and "apply request took too long" warnings in the logs. It turned out that etcd&#39;s sync writes were extremely slow: around 250 kB/s with the default <span class='inlinecode'>virtio-blk</span> disk emulation. etcd needs fast sync writes (ideally under 10ms fsync latency) to be stable.</span><br />
 <br />
-<h3 style='display: inline' id='the-problem'>The Problem</h3><br />
+<h3 style='display: inline' id='the-problem'>The problem</h3><br />
 <br />
 <span>The k3s logs showed etcd struggling with disk I/O:</span><br />
 <br />
@@ -623,7 +623,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#bd976a">8192000</font><font color="#dbd7ca"> bytes copied</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">31.7058</font><font color="#dbd7ca"> s</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">258</font><font color="#dbd7ca"> kB/s</font>
 </pre>
 <br />
-<h3 style='display: inline' id='the-solution-switch-to-nvme-emulation'>The Solution: Switch to NVMe Emulation</h3><br />
+<h3 style='display: inline' id='the-fix-nvme-emulation'>The fix: NVMe emulation</h3><br />
 <br />
 <span>Bhyve&#39;s NVMe emulation provides significantly better I/O performance than <span class='inlinecode'>virtio-blk</span>.</span><br />
 <br />
@@ -645,7 +645,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#cb7676">[</font><font color="#dbd7ca">root@r0 </font><font color="#cb7676">~]</font><i><font color="#666666"># shutdown -h now</font></i>
 </pre>
 <br />
-<span>The <span class='inlinecode'>hostonly=no</span> setting ensures the initramfs includes drivers for hardware not currently present. The <span class='inlinecode'>use_devicesfile = 0</span> tells LVM to scan all block devices rather than only those recorded in <span class='inlinecode'>/etc/lvm/devices/system.devices</span> - this is important because the device path changes from <span class='inlinecode'>/dev/vda</span> to <span class='inlinecode'>/dev/nvme0n1</span>.</span><br />
+<span><span class='inlinecode'>hostonly=no</span> makes dracut include drivers for hardware that isn&#39;t present yet. The <span class='inlinecode'>use_devicesfile = 0</span> tells LVM to scan all block devices rather than only those recorded in <span class='inlinecode'>/etc/lvm/devices/system.devices</span> - this is important because the device path changes from <span class='inlinecode'>/dev/vda</span> to <span class='inlinecode'>/dev/nvme0n1</span>.</span><br />
 <br />
 <h3 style='display: inline' id='step-2-update-the-bhyve-configuration'>Step 2: Update the Bhyve Configuration</h3><br />
 <br />
@@ -686,7 +686,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#bd976a">8192000</font><font color="#dbd7ca"> bytes copied</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">0.330718</font><font color="#dbd7ca"> s</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">24.8</font><font color="#dbd7ca"> MB/s</font>
 </pre>
 <br />
-<span>That&#39;s approximately **100x faster** than before (24.8 MB/s vs 258 kB/s).</span><br />
+<span>That&#39;s roughly 100x faster than before (24.8 MB/s vs 258 kB/s).</span><br />
 <br />
 <span>The etcd metrics also showed healthy fsync latencies:</span><br />
 <br />
@@ -698,7 +698,7 @@ etcd_disk_wal_fsync_duration_seconds_bucket{le="0.004"} 408
 <br />
 <span>Most fsyncs now complete in under 1ms, and there are no more "slow fdatasync" warnings in the logs. The k3s cluster is now stable without spurious leader elections.</span><br />
 <br />
-<h3 style='display: inline' id='important-notes'>Important Notes</h3><br />
+<h3 style='display: inline' id='caveats'>Caveats</h3><br />
 <br />
 <ul>
 <li>Do NOT use <span class='inlinecode'>disk0_opts="nocache,direct"</span> with NVMe emulation - in my testing this actually made performance worse.</li>
@@ -707,11 +707,9 @@ etcd_disk_wal_fsync_duration_seconds_bucket{le="0.004"} 408
 </ul><br />
 <h2 style='display: inline' id='conclusion'>Conclusion</h2><br />
 <br />
-<span>Having Linux VMs running inside FreeBSD&#39;s Bhyve is a solid move for future f3s hosting in my home lab. Bhyve provides a reliable way to manage VMs without much hassle. With Linux VMs, I can tap into all the cool stuff (e.g., Kubernetes, eBPF, systemd) in the Linux world while keeping the steady reliability of FreeBSD.</span><br />
+<span>Linux VMs on FreeBSD&#39;s Bhyve work well for f3s. I get the Linux-only stuff (Kubernetes, eBPF, systemd) while the hosts stay FreeBSD.</span><br />
 <br />
 <span>Future uses (out of scope for this blog series) would be additional VMs for different workloads. For example, how about a Windows or NetBSD VM to tinker with?</span><br />
-<br />
-<span>This flexibility is great for keeping options open and managing different workloads without overcomplicating things. Overall, it&#39;s a nice setup for getting the most out of my hardware and keeping things running smoothly.</span><br />
 <br />
 <span>Read the next post of this series:</span><br />
 <br />

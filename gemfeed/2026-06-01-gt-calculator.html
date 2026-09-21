@@ -16,7 +16,7 @@
 <br />
 <span class='quote'>Published at 2026-05-31T14:24:10+03:00</span><br />
 <br />
-<span>I created a calculator. Not because the world needed another one, but because I wanted to test something: How well do local LLMs hold up as pair programmers on a real project? I want to be independent of the big LLM providers like Anthropic, OpenAI, and company for this <span class='inlinecode'>gt</span>-project.</span><br />
+<span>I created a calculator. The world didn&#39;t need another one, but I wanted to test something: how well do local LLMs hold up as pair programmers on a real project? I want to be independent of the big LLM providers like Anthropic, OpenAI, and company for this <span class='inlinecode'>gt</span>-project.</span><br />
 <br />
 <span>The answer is: well enough for small projects like this.</span><br />
 <br />
@@ -24,7 +24,7 @@
 <br />
 <span>If you want the full feature guide, the README links to a detailed doc for every feature covered here and more:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/gt'>gt on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/gt'>gt on GitHub</a><br />
 <a href='./gt-calculator/logo.svg'><img alt='gt logo' title='gt logo' src='./gt-calculator/logo.svg' /></a><br />
 <br />
 <span>The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn&#39;t run them locally either — I rented Hyperstack VMs with NVidia GPU just to get a feel for the quality before investing in hardware. The point was to test models that don&#39;t require a cloud API and could realistically run on your own box.</span><br />
@@ -33,7 +33,7 @@
 <br />
 <span>This post is about the calculator and what it does. My experience running those LLMs as pair programmers will be a separate post later.</span><br />
 <br />
-<span>And no, this wasn&#39;t vibe-coded. I used a specific technique and a set of AI skills to drive the LLMs. The codebase came out well-structured and maintainable — not the "prompt it and pray" mess. </span><br />
+<span>And no, this wasn&#39;t vibe-coded. I used a specific technique and a set of AI skills to drive the LLMs. The codebase came out reasonably clean and maintainable. </span><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
@@ -68,17 +68,17 @@
 <br />
 <span>Four things drove this.</span><br />
 <br />
-<span>First, I wanted to test local LLMs as coding partners. Not the cloud-hosted ones with infinite context and billions of parameters — the ones you can actually run yourself. I figured a calculator project is big enough to be interesting but small enough to finish.</span><br />
+<span>First, I wanted to test local LLMs as coding partners. Not the cloud-hosted ones, but the ones you can run yourself. I figured a calculator project is big enough to be interesting but small enough to finish.</span><br />
 <br />
 <span>Second, cloud independence is a thing I care about. I build tools that don&#39;t need a network connection to function. Writing software that talks to OpenAI or Anthropic APIs doesn&#39;t count as "running locally." Everything here runs offline.</span><br />
 <br />
-<span>Third, I wanted to learn more about how these models actually work in practice. Not benchmarks or leaderboard scores — the day-to-day experience. How do you operate them? How do you structure prompts? When do they produce clean code versus garbage? Where do they struggle?</span><br />
+<span>Third, I wanted to learn more about how these models actually work in practice. Not benchmarks, the day-to-day experience: how do you operate them, how do you write the prompts, where do they struggle?</span><br />
 <br />
-<span>Finally, the tool needed to be genuinely useful. A toy that calculates <span class='inlinecode'>2 + 2</span> isn&#39;t worth the disk space. I aimed for a calculator I&#39;d actually reach for.</span><br />
+<span>And the tool had to be useful. A toy that calculates <span class='inlinecode'>2 + 2</span> isn&#39;t worth the disk space. I wanted a calculator I&#39;d actually use.</span><br />
 <br />
 <h2 style='display: inline' id='what-it-does'>What it does</h2><br />
 <br />
-<span>At its core, <span class='inlinecode'>gt</span> is a stack-based RPN calculator with percentage support and a full metrics system. It runs as a single binary, has no dependencies, and works three ways:</span><br />
+<span><span class='inlinecode'>gt</span> is a stack-based RPN calculator with percentage support and a full metrics system. It runs as a single binary, has no dependencies, and works three ways:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -272,7 +272,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='the-metrics-system'>The metrics system</h2><br />
 <br />
-<span>This is where <span class='inlinecode'>gt</span> earns its swiss army knife title. Every number carries a unit of measurement, and arithmetic understands those units.</span><br />
+<span>Every number carries a unit of measurement, and arithmetic understands those units.</span><br />
 <br />
 <span>Six built-in categories, plus <span class='inlinecode'>Cool</span> — the default unitless metric for plain numbers. The name comes from Raku&#39;s <span class='inlinecode'>Cool</span> role, which represents things that are "cool enough" to do basic operations (strings, numbers, etc.). In <span class='inlinecode'>gt</span>, Cool values absorb into any metric category during arithmetic, so <span class='inlinecode'>5 100Mbps +</span> treats the <span class='inlinecode'>5</span> as <span class='inlinecode'>5Mbps</span>.</span><br />
 <br />
@@ -431,8 +431,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>The result should be <span class='inlinecode'>0</span>, but floating-point rounding errors accumulated. Silent wrong answer.</span><br />
 <br />
-<span>Rational mode stores numbers as exact fractions using Go&#39;s <span class='inlinecode'>math/big.Rat</span>. <span class='inlinecode'>0.1</span> is stored as <span class='inlinecode'>1/10</span>, <span class='inlinecode'>0.2</span> as <span class='inlinecode'>2/10</span> (simplified to <span class='inlinecode'>1/5</span>), and all arithmetic operates on those exact values. No binary approximation, no silent drift.</span><br />
-<br />
+<span>Rational mode stores numbers as exact fractions using Go&#39;s <span class='inlinecode'>math/big.Rat</span>. <span class='inlinecode'>0.1</span> is stored as <span class='inlinecode'>1/10</span>, <span class='inlinecode'>0.2</span> as <span class='inlinecode'>2/10</span> (simplified to <span class='inlinecode'>1/5</span>), and all arithmetic operates on those exact values.</span><br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -443,8 +442,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#bd976a">0.3000000000</font>
 </pre>
 <br />
-<span>Internally, <span class='inlinecode'>1/3</span> stays as the exact fraction <span class='inlinecode'>1/3</span>, and <span class='inlinecode'>1/3 * 3</span> computes to exactly <span class='inlinecode'>3/3 = 1</span>. No binary conversion, no rounding.</span><br />
-<br />
+<span>Internally, <span class='inlinecode'>1/3</span> stays as the exact fraction <span class='inlinecode'>1/3</span>, and <span class='inlinecode'>1/3 * 3</span> computes to exactly <span class='inlinecode'>3/3 = 1</span>.</span><br />
 <span>REPL-only. Has a known limitation with non-dyadic decimals and metric operations — the docs explain the why.</span><br />
 <br />
 <h2 style='display: inline' id='the-repl'>The REPL</h2><br />
@@ -578,7 +576,7 @@ http://www.gnu.org/software/src-highlite -->
 <pre><font color="#dbd7ca">sudo cp completions/gt</font><font color="#cb7676">.</font><font color="#dbd7ca">fish /usr/local/share/fish/vendor_completions</font><font color="#cb7676">.</font><font color="#dbd7ca">d</font><font color="#cb7676">/</font>
 </pre>
 <br />
-<span>In practice this means tab-completion for all 36 constants, every metric unit (bps through Tbps, KB through PiB, kmh, mph, knots, etc.), all arithmetic and hyper operators, and the <span class='inlinecode'>metric show</span> / <span class='inlinecode'>metric list</span> / <span class='inlinecode'>custom define</span> subcommand chains. The <span class='inlinecode'>custom define</span> subcommand even completes the valid category names so you don&#39;t have to memorize them.</span><br />
+<span><span class='inlinecode'>custom define</span> even completes the category names.</span><br />
 <br />
 <h2 style='display: inline' id='installation'>Installation</h2><br />
 <br />
@@ -599,7 +597,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>For the complete and always-up-to-date feature guide, detailed docs for every feature, and the source code, head to the repo.</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/gt'>gt on Codeberg</a><br />
+<a class='textlink' href='https://github.com/snonux/gt'>gt on GitHub</a><br />
 <br />
 <span>But will I now invest a couple of thousand dollars in hardware to run Qwen 3 Coder Next, Qwen 3.6 35B or 27B? (I used the dense 27B model most of the time to build <span class='inlinecode'>gt</span>). Unfortunately, no. I don&#39;t think it&#39;s worth the cost yet, as cloud models are still cheaper and more convenient and the frontier ones also much more "intelligent".</span><br />
 <br />

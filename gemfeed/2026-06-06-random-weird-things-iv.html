@@ -42,7 +42,7 @@
 <li>⇢ <a href='#33-llm-via-dns'>33. LLM via DNS</a></li>
 <li>⇢ <a href='#34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</a></li>
 <li>⇢ <a href='#35-loss32-win32-on-linux'>35. loss32: Win32 on Linux</a></li>
-<li>⇢ <a href='#36-llm-rescuer-'>36. LLM Rescuer 🤖💰</a></li>
+<li>⇢ <a href='#36-llm-rescuer'>36. LLM Rescuer</a></li>
 <li>⇢ <a href='#37-filesystem-backed-by-an-llm'>37. Filesystem Backed by an LLM</a></li>
 <li>⇢ <a href='#38-qr-code-with-pure-sql-in-postgres'>38. QR Code with Pure SQL in Postgres</a></li>
 <li>⇢ <a href='#39-the-sl-train-in-your-terminal'>39. The SL Train in Your Terminal</a></li>
@@ -50,15 +50,14 @@
 </ul><br />
 <h2 style='display: inline' id='31-gui-apps-in-your-terminal'>31. GUI Apps in Your Terminal</h2><br />
 <br />
-<span>term.everything is a from-scratch Wayland compositor that renders GUI apps inside your terminal. GTK, Qt, whatever — it just grabs it and draws it right there. You can run Firefox or GIMP over SSH and interact with it using your mouse. No X forwarding, no latency nonsense. It actually works.</span><br />
+<span>term.everything is a from-scratch Wayland compositor that renders GUI apps inside your terminal. GTK, Qt, whatever — it just grabs it and draws it right there. You can run Firefox or GIMP over SSH and interact with it using your mouse. No X forwarding needed. It actually works.</span><br />
 <br />
 <a href='./random-weird-things-iv/term-everything.jpg'><img alt='term.everything demo' title='term.everything demo' src='./random-weird-things-iv/term-everything.jpg' /></a><br />
 <a class='textlink' href='https://github.com/mmulet/term.everything'>term.everything</a><br />
 <br />
 <h2 style='display: inline' id='32-templeos'>32. TempleOS</h2><br />
 <br />
-<span>Terry A. Davis spent years single-handedly building a complete 64-bit operating system from scratch because God told him to. It runs at 640×480, uses a custom language called HolyC, has its own compiler, and is designed as a temple. Boot it up and you get scripture, a talking parrot, and probably the weirdest OS you&#39;ll ever see. One of the most fascinating stories in computing.</span><br />
-<br />
+<span>Terry A. Davis spent years single-handedly building a complete 64-bit operating system from scratch because God told him to. It runs at 640×480, uses a custom language called HolyC, has its own compiler, and is designed as a temple. Boot it up and you get scripture, a talking parrot, and probably the weirdest OS you&#39;ll ever see.</span><br />
 <a href='./random-weird-things-iv/templeos.png'><img alt='TempleOS screenshot' title='TempleOS screenshot' src='./random-weird-things-iv/templeos.png' /></a><br />
 <a class='textlink' href='https://templeos.org'>TempleOS</a><br />
 <br />
@@ -88,12 +87,12 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='35-loss32-win32-on-linux'>35. loss32: Win32 on Linux</h2><br />
 <br />
-<span>loss32 is a Linux distro where the entire desktop is classic Win32 apps running natively. ReactOS + WINE on steroids. You get the Windows 98/2000 vibe on a modern Linux kernel. It&#39;s not trying to be practical — it&#39;s pure nostalgia for people who miss the old Windows desktop but don&#39;t want the actual Windows.</span><br />
+<span>loss32 is a Linux distro where the entire desktop is classic Win32 apps running natively. ReactOS + WINE on steroids. You get the Windows 98/2000 vibe on a modern Linux kernel. It&#39;s pure nostalgia for people who miss the old Windows desktop but don&#39;t want the actual Windows.</span><br />
 <br />
 <a href='./random-weird-things-iv/loss32.png'><img alt='loss32 desktop screenshot' title='loss32 desktop screenshot' src='./random-weird-things-iv/loss32.png' /></a><br />
 <a class='textlink' href='https://loss32.org/'>loss32</a><br />
 <br />
-<h2 style='display: inline' id='36-llm-rescuer-'>36. LLM Rescuer 🤖💰</h2><br />
+<h2 style='display: inline' id='36-llm-rescuer'>36. LLM Rescuer</h2><br />
 <br />
 <span>LLM Rescuer is a tiny Ruby gem that hooks into Ruby&#39;s method dispatch so that calling a method on <span class='inlinecode'>nil</span> doesn&#39;t crash — it asks an LLM what the return value should be instead. When a <span class='inlinecode'>NoMethodError</span> would normally explode, the gem catches it, packages up the context (what method was called, what the variable name suggests, maybe the surrounding code), fires that off to an actual LLM API, and returns whatever the model hallucinates as sensible.</span><br />
 <br />
@@ -101,7 +100,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>It tries to keep API costs down by sending only minimal context — just the method name and variable name rather than your whole codebase — but every nil-hit still costs tokens and adds latency.</span><br />
 <br />
-<span>This is runtime monkey-patching powered by a remote AI. Your nil bugs don&#39;t crash, they silently return AI-guessed values. In production this would be a debugging nightmare.</span><br />
+<span>So your nil bugs don&#39;t crash anymore, they silently return whatever the AI guessed. Imagine debugging that in production.</span><br />
 <br />
 <span>Examples:</span><br />
 <br />
@@ -160,13 +159,12 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">- Drink more coffee</font>
 </pre>
 <br />
-<span>The LLM hallucinates the file contents every single read. Your todo list literally mutates when you look at it. Want a config file? Just describe it in the filename or write a prompt into it. Equal parts brilliant and terrifying.</span><br />
-<br />
+<span>The LLM hallucinates the file contents every single read. Your todo list literally mutates when you look at it. Want a config file? Just describe it in the filename or write a prompt into it.</span><br />
 <a class='textlink' href='https://healeycodes.com/filesystem-backed-by-an-llm'>Filesystem Backed by an LLM</a><br />
 <br />
 <h2 style='display: inline' id='38-qr-code-with-pure-sql-in-postgres'>38. QR Code with Pure SQL in Postgres</h2><br />
 <br />
-<span>Someone generated a full QR code using nothing but SQL queries inside PostgreSQL. No extensions, no external tools — just raw Postgres doing things it was never meant to do. I ran the example and watched a QR code materialize in the query result. Mad stuff.</span><br />
+<span>Someone generated a full QR code using nothing but SQL queries inside PostgreSQL. No extensions, just raw Postgres doing things it was never meant to do. I ran the example and watched a QR code materialize in the query result. Mad stuff.</span><br />
 <br />
 <a href='./random-weird-things-iv/pqr.webp'><img alt='QR code generated with pure SQL' title='QR code generated with pure SQL' src='./random-weird-things-iv/pqr.webp' /></a><br />
 <a class='textlink' href='https://tanelpoder.com/posts/generate-qr-code-with-pure-sql-in-postgres/'>Pure SQL QR Code</a><br />

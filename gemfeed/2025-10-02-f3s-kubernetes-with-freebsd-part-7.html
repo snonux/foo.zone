@@ -78,9 +78,9 @@
 <br />
 <h2 style='display: inline' id='important-note-gitops-migration'>Important Note: GitOps Migration</h2><br />
 <br />
-<span>**Note:** After publishing this blog post, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Kubernetes manifests and Helm charts in the repository have been reorganized for ArgoCD-based continuous deployment.</span><br />
+<span>Note: After publishing this post, I migrated the f3s cluster from imperative Helm deployments to GitOps with ArgoCD, and reorganised the manifests and Helm charts in the repository for that.</span><br />
 <br />
-<span>**To view the exact manifests and charts as they existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:</span><br />
+<span>To see the manifests and charts as they were when I wrote this post, check out the pre-ArgoCD revision:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -92,13 +92,13 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">$ cd f3s</font><font color="#cb7676">/</font>
 </pre>
 <br />
-<span>**Current master branch** contains the ArgoCD-managed versions with:</span><br />
+<span>The current master branch contains the ArgoCD-managed versions with:</span><br />
 <ul>
 <li>Application manifests organized under <span class='inlinecode'>argocd-apps/{monitoring,services,infra,test}/</span></li>
 <li>Additional resources under <span class='inlinecode'>*/manifests/</span> directories (e.g., <span class='inlinecode'>prometheus/manifests/</span>)</li>
 <li>Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands</li>
 </ul><br />
-<span>The deployment concepts and architecture remain the same—only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD).</span><br />
+<span>The concepts are the same, only the deployment method changed from imperative (<span class='inlinecode'>helm install/upgrade</span>) to declarative (GitOps with ArgoCD).</span><br />
 <br />
 <h2 style='display: inline' id='updating'>Updating</h2><br />
 <br />
@@ -701,7 +701,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='openbsd-relayd-configuration'>OpenBSD relayd configuration</h3><br />
 <br />
-<span>The OpenBSD edge relays keep the Kubernetes-facing addresses for the f3s ingress endpoints in a shared backend table so TLS traffic for every <span class='inlinecode'>f3s</span> hostname lands on the same pool of k3s nodes (pointing to the WireGuard IP addresses of those nodes - remember, they are running locally in my LAN, wheras the OpenBSD edge relays operate in the public internet):</span><br />
+<span>On the OpenBSD edge relays, all three k3s nodes sit in one backend table (their WireGuard IPs, since the nodes are in my LAN and the relays are on the public internet):</span><br />
 <br />
 <pre>
 table &lt;f3s&gt; {
@@ -759,7 +759,7 @@ http protocol "https" {
 }
 </pre>
 <br />
-<span>Both IPv4 and IPv6 listeners reuse the same protocol definition, making the relay transparent for dual-stack clients while still health checking every k3s backend before forwarding traffic over WireGuard:</span><br />
+<span>The IPv4 and IPv6 relays share the same protocol definition and health check the k3s backends before forwarding over WireGuard:</span><br />
 <br />
 <pre>
 relay "https4" {
@@ -779,13 +779,13 @@ relay "https6" {
 }
 </pre>
 <br />
-<span>In practice, that means relayd terminates TLS with the correct certificate, keeps the three WireGuard-connected backends in rotation, and ships each request to whichever bhyve VM answers first.</span><br />
+<span>So relayd terminates TLS and forwards each request to one of the three nodes over WireGuard.</span><br />
 <br />
 <h3 style='display: inline' id='automatic-failover-when-f3s-cluster-is-down'>Automatic failover when f3s cluster is down</h3><br />
 <br />
 <span class='quote'>Update: This section was added at Tue 30 Dec 10:11:44 EET 2025</span><br />
 <br />
-<span>One important aspect of this setup is graceful degradation: when all three f3s nodes are unreachable (e.g., during maintenance or a power outage in my LAN), users should see a friendly status page instead of an error message.</span><br />
+<span>When all three f3s nodes are down (maintenance, power outage at home), I want visitors to see a status page instead of a connection error.</span><br />
 <br />
 <span>OpenBSD&#39;s relayd supports automatic failover through its health check mechanism. According to the relayd.conf manual:</span><br />
 <br />
@@ -896,28 +896,19 @@ http://www.gnu.org/software/src-highlite -->
 <b><font color="#4d9375">&lt;/html&gt;</font></b>
 </pre>
 <br />
-<span>This approach provides several benefits:</span><br />
-<br />
-<ul>
-<li>Automatic detection: Health checks run continuously; no manual intervention needed</li>
-<li>Instant fallback: When all f3s nodes go down, the next request automatically routes to localhost</li>
-<li>Transparent recovery: When f3s comes back online, health checks pass and traffic resumes automatically</li>
-<li>User experience: Visitors see a helpful message instead of connection errors</li>
-<li>No DNS changes: The same hostnames work whether f3s is up or down</li>
-</ul><br />
-<span>This fallback mechanism has proven invaluable during maintenance windows and unexpected outages, ensuring that users always get a response even when the home lab is offline.</span><br />
+<span>Health checks do all the work: no DNS changes, no manual intervention, and when the cluster comes back, traffic flows again by itself.</span><br />
 <br />
 <h2 style='display: inline' id='exposing-services-via-lan-ingress'>Exposing services via LAN ingress</h2><br />
 <br />
-<span>In addition to external access through the OpenBSD relays, services can also be exposed on the local network using LAN-specific ingresses. This is useful for accessing services from within the home network without going through the internet, reducing latency and providing an alternative path if the external relays are unavailable.</span><br />
+<span>In addition to external access through the OpenBSD relays, services can also be exposed on the local network using LAN-specific ingresses. That way I can reach services from home without a round trip through the internet, and it still works when the external relays are down.</span><br />
 <br />
-<span>The LAN ingress architecture leverages the existing FreeBSD CARP (Common Address Redundancy Protocol) failover infrastructure that&#39;s already in place for NFS-over-TLS (see Part 5). Instead of deploying MetalLB or another LoadBalancer implementation, we reuse the CARP virtual IP (<span class='inlinecode'>192.168.1.138</span>) by adding HTTP/HTTPS forwarding alongside the existing stunnel service on port 2323.</span><br />
+<span>For this, I reuse the FreeBSD CARP VIP (<span class='inlinecode'>192.168.1.138</span>) that already exists for NFS-over-TLS (see Part 6) instead of deploying MetalLB or another LoadBalancer. relayd on the FreeBSD hosts forwards HTTP/HTTPS next to the existing stunnel on port 2323.</span><br />
 <br />
 <h3 style='display: inline' id='architecture-overview'>Architecture overview</h3><br />
 <br />
 <span>The LAN access path differs from external access:</span><br />
 <br />
-<span>**External access (*.f3s.foo.zone):**</span><br />
+<span>External access (*.f3s.foo.zone):</span><br />
 <pre>
 Internet → OpenBSD relayd (TLS termination, Let&#39;s Encrypt)
         → WireGuard tunnel
@@ -925,7 +916,7 @@ Internet → OpenBSD relayd (TLS termination, Let&#39;s Encrypt)
         → Service
 </pre>
 <br />
-<span>**LAN access (*.f3s.lan.foo.zone):**</span><br />
+<span>LAN access (*.f3s.lan.foo.zone):</span><br />
 <pre>
 LAN → FreeBSD CARP VIP (192.168.1.138)
     → FreeBSD relayd (TCP forwarding)
@@ -946,7 +937,7 @@ LAN → FreeBSD CARP VIP (192.168.1.138)
 <br />
 <span>First, install cert-manager to handle certificate lifecycle management for LAN services. The installation is automated with a Justfile:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s/cert-manager'>github.com/snonux/conf/f3s/cert-manager</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/cert-manager'>github.com/snonux/conf/f3s/cert-manager</a><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -1057,7 +1048,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">_relayd  relayd   </font><font color="#bd976a">2903</font><font color="#dbd7ca">  </font><font color="#bd976a">12</font><font color="#dbd7ca">  tcp4   </font><font color="#bd976a">192.168</font><font color="#cb7676">.</font><font color="#bd976a">1.138</font><font color="#cb7676">:</font><font color="#bd976a">443</font><font color="#dbd7ca">     </font><font color="#cb7676">*:*</font>
 </pre>
 <br />
-<span>Repeat the same configuration on f1. Both hosts will run <span class='inlinecode'>relayd</span> listening on the CARP VIP, but only the CARP MASTER will respond to traffic. When failover occurs, the new MASTER takes over seamlessly.</span><br />
+<span>Repeat the same configuration on f1. Both hosts will run <span class='inlinecode'>relayd</span> listening on the CARP VIP, but only the CARP MASTER will respond to traffic. When CARP fails over, the new MASTER just takes over.</span><br />
 <br />
 <h3 style='display: inline' id='adding-lan-ingress-to-services'>Adding LAN ingress to services</h3><br />
 <br />
@@ -1130,7 +1121,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">EOF</font>
 </pre>
 <br />
-<span>The CARP VIP <span class='inlinecode'>192.168.1.138</span> provides high availability—traffic automatically fails over to the backup host if the master goes down.</span><br />
+<span>The CARP VIP <span class='inlinecode'>192.168.1.138</span> fails over to the backup host if the master goes down.</span><br />
 <br />
 <span>Export the self-signed CA certificate:</span><br />
 <br />
@@ -1174,19 +1165,17 @@ http://www.gnu.org/software/src-highlite -->
 <span>The f3s infrastructure now has three distinct TLS offloaders:</span><br />
 <br />
 <ul>
-<li>**OpenBSD relayd**: External internet traffic (<span class='inlinecode'>*.f3s.foo.zone</span>) using Let&#39;s Encrypt</li>
-<li>**Traefik (k3s)**: LAN HTTPS traffic (<span class='inlinecode'>*.f3s.lan.foo.zone</span>) using cert-manager</li>
-<li>**stunnel**: NFS-over-TLS (port 2323) using custom PKI</li>
+<li>OpenBSD relayd: external internet traffic (<span class='inlinecode'>*.f3s.foo.zone</span>), Let&#39;s Encrypt</li>
+<li>Traefik (k3s): LAN HTTPS traffic (<span class='inlinecode'>*.f3s.lan.foo.zone</span>), cert-manager</li>
+<li>stunnel: NFS-over-TLS (port 2323), my own CA</li>
 </ul><br />
-<span>Each serves a different purpose with appropriate certificate management for its use case.</span><br />
-<br />
 <h2 style='display: inline' id='deploying-the-private-docker-image-registry'>Deploying the private Docker image registry</h2><br />
 <br />
 <span>As not all Docker images I want to deploy are available on public Docker registries and as I also build some of them by myself, there is the need of a private registry.</span><br />
 <br />
 <span>All manifests for the f3s stack live in my configuration repository:</span><br />
 <br />
-<a class='textlink' href='https://github.com/snonux/conf/src/branch/master/f3s'>github.com/snonux/conf/f3s</a><br />
+<a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s'>github.com/snonux/conf/f3s</a><br />
 <br />
 <span>Within that repo, the <span class='inlinecode'>f3s/registry/</span> directory contains the Helm chart, a <span class='inlinecode'>Justfile</span>, and a detailed <span class='inlinecode'>README</span>. Here&#39;s the condensed walkthrough I used to roll out the registry with Helm.</span><br />
 <br />
@@ -1209,8 +1198,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ git clone https</font><font color="#cb7676">:</font><font color="#dbd7ca">//github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/conf/f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">git</font>
-<font color="#dbd7ca">$ cd conf/f3s/examples/conf/f3s/registry</font>
+<pre><font color="#dbd7ca">$ git clone https</font><font color="#cb7676">:</font><font color="#dbd7ca">//github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/conf</font><font color="#cb7676">.</font><font color="#dbd7ca">git</font>
+<font color="#dbd7ca">$ cd conf/f3s/registry</font>
 <font color="#dbd7ca">$ helm upgrade --install registry </font><font color="#cb7676">.</font><font color="#dbd7ca">/helm-chart --namespace infra --create-namespace</font>
 </pre>
 <br />
@@ -1312,7 +1301,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='example-anki-sync-server-from-the-private-registry'>Example: Anki Sync Server from the private registry</h2><br />
 <br />
-<span>One of the first workloads I migrated onto the k3s cluster after standing up the registry was my Anki sync server. The configuration repo ships everything in <span class='inlinecode'>examples/conf/f3s/anki-sync-server/</span>: a Docker build context plus a Helm chart that references the freshly built image.</span><br />
+<span>One of the first workloads I migrated onto the k3s cluster after standing up the registry was my Anki sync server. The configuration repo ships everything in <span class='inlinecode'>f3s/anki-sync-server/</span>: a Docker build context plus a Helm chart that references the freshly built image.</span><br />
 <br />
 <h3 style='display: inline' id='build-and-push-the-image'>Build and push the image</h3><br />
 <br />
@@ -1322,7 +1311,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ cd conf/f3s/examples/conf/f3s/anki-sync-server/docker-image</font>
+<pre><font color="#dbd7ca">$ cd conf/f3s/anki-sync-server/docker-image</font>
 <font color="#dbd7ca">$ docker build -t anki-sync-server</font><font color="#cb7676">:</font><font color="#bd976a">25.07</font><font color="#cb7676">.</font><font color="#dbd7ca">5b --build-arg </font><font color="#bd976a">ANKI_VERSION</font><font color="#cb7676">=</font><font color="#bd976a">25.07</font><font color="#cb7676">.</font><font color="#bd976a">5</font><font color="#dbd7ca"> </font><font color="#cb7676">.</font>
 <font color="#dbd7ca">$ docker tag anki-sync-server</font><font color="#cb7676">:</font><font color="#bd976a">25.07</font><font color="#cb7676">.</font><font color="#dbd7ca">5b </font><font color="#cb7676">\</font>
 <font color="#dbd7ca">    r0</font><font color="#cb7676">.</font><font color="#dbd7ca">lan</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org</font><font color="#cb7676">:</font><font color="#bd976a">30001</font><font color="#dbd7ca">/anki-sync-server</font><font color="#cb7676">:</font><font color="#bd976a">25.07</font><font color="#cb7676">.</font><font color="#dbd7ca">5b</font>
@@ -1381,7 +1370,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">$ curl https</font><font color="#cb7676">:</font><font color="#dbd7ca">//anki</font><font color="#cb7676">.</font><font color="#dbd7ca">f3s</font><font color="#cb7676">.</font><font color="#dbd7ca">foo</font><font color="#cb7676">.</font><font color="#dbd7ca">zone/health</font>
 </pre>
 <br />
-<span>All of this runs solely on first-party images that now live in the private registry, proving the full flow from local bild to WireGuard-exposed service.</span><br />
+<span>That&#39;s the full flow: build locally, push to the private registry, serve via WireGuard.</span><br />
 <br />
 <h2 style='display: inline' id='nfsv4-uid-mapping-for-postgres-backed-and-other-apps'>NFSv4 UID mapping for Postgres-backed (and other) apps</h2><br />
 <br />
@@ -1426,7 +1415,7 @@ http://www.gnu.org/software/src-highlite -->
 <font color="#dbd7ca">                -d /var/db/postgres -s /usr/sbin/nologin</font>
 </pre>
 <br />
-<span>Once the UID/GID exist everywhere, the Miniflux chart in <span class='inlinecode'>examples/conf/f3s/miniflux</span> deploys cleanly. The chart provisions both the application and its bundled Postgres database, mounts the exported directory, and builds the DSN at runtime. The important bits live in <span class='inlinecode'>helm-chart/templates/persistent-volumes.yaml</span> and <span class='inlinecode'>deployment.yaml</span>:</span><br />
+<span>Once the UID/GID exist everywhere, the Miniflux chart in <span class='inlinecode'>f3s/miniflux</span> deploys cleanly. The chart provisions both the application and its bundled Postgres database, mounts the exported directory, and builds the DSN at runtime. The important bits live in <span class='inlinecode'>helm-chart/templates/persistent-volumes.yaml</span> and <span class='inlinecode'>deployment.yaml</span>:</span><br />
 <br />
 <pre>
 # Persistent volume lives on the NFS export
@@ -1448,7 +1437,7 @@ containers:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ cd examples/conf/f3s/miniflux/helm-chart</font>
+<pre><font color="#dbd7ca">$ cd f3s/miniflux/helm-chart</font>
 <font color="#dbd7ca">$ mkdir -p /data/nfs/k3svolumes/miniflux/data</font>
 <font color="#dbd7ca">$ kubectl create secret generic miniflux-db-password </font><font color="#cb7676">\</font>
 <font color="#dbd7ca">    --from-literal</font><font color="#cb7676">=</font><font color="#bd976a">fluxdb_password</font><font color="#cb7676">=</font><font color="#bd976a">'YOUR_PASSWORD'</font><font color="#dbd7ca"> -n services</font>
@@ -1471,26 +1460,24 @@ replicaset.apps/miniflux-postgres-556444cb8d   1         1         1       54d
 replicaset.apps/miniflux-server-85d7c64664     1         1         1       54d
 </pre>
 <br />
-<span>Or from the repository root I simply run:</span><br />
-<br />
 <h3 style='display: inline' id='helm-charts-currently-in-service'>Helm charts currently in service</h3><br />
 <br />
-<span>These are the charts that already live under <span class='inlinecode'>examples/conf/f3s</span> and run on the cluster today (and I&#39;ll keep adding more as new services graduate into production):</span><br />
+<span>These charts live under <span class='inlinecode'>f3s</span> and run on the cluster today:</span><br />
 <br />
 <ul>
-<li><span class='inlinecode'>anki-sync-server</span> — custom-built image served from the private registry, stores decks on <span class='inlinecode'>/data/nfs/k3svolumes/anki-sync-server/anki_data</span>, and authenticates through the <span class='inlinecode'>anki-sync-server-secret</span>.</li>
-<li><span class='inlinecode'>koreade-sync-server</span> — Sync server for KOReader.</li>
-<li><span class='inlinecode'>audiobookshelf</span> — media streaming stack with three hostPath mounts (<span class='inlinecode'>config</span>, <span class='inlinecode'>audiobooks</span>, <span class='inlinecode'>podcasts</span>) so the library survives node rebuilds.</li>
-<li><span class='inlinecode'>example-apache</span> — minimal HTTP service I use for smoke-testing ingress and relayd rules.</li>
-<li><span class='inlinecode'>example-apache-volume-claim</span> — Apache plus PVC variant that exercises NFS-backed storage for walkthroughs like the one earlier in this post.</li>
-<li><span class='inlinecode'>miniflux</span> — the Postgres-backed feed reader described above, wired for NFSv4 UID mapping and per-release secrets.</li>
-<li><span class='inlinecode'>opodsync</span> — podsync deployment with its data directory under <span class='inlinecode'>/data/nfs/k3svolumes/opodsync/data</span>.</li>
-<li><span class='inlinecode'>radicale</span> — CalDAV/CardDAV (and gpodder) backend with separate <span class='inlinecode'>collections</span> and <span class='inlinecode'>auth</span> volumes.</li>
-<li><span class='inlinecode'>registry</span> — the plain-HTTP Docker registry exposed on NodePort 30001 and mirrored internally as <span class='inlinecode'>registry.lan.buetow.org:30001</span>.</li>
-<li><span class='inlinecode'>syncthing</span> — two-volume setup for config and shared data, fronted by the <span class='inlinecode'>syncthing.f3s.foo.zone</span> ingress.</li>
-<li><span class='inlinecode'>wallabag</span> — read-it-later service with persistent <span class='inlinecode'>data</span> and <span class='inlinecode'>images</span> directories on the NFS export.</li>
+<li><span class='inlinecode'>anki-sync-server</span>: my own image from the private registry, decks on NFS</li>
+<li><span class='inlinecode'>koreader-sync-server</span>: sync server for KOReader</li>
+<li><span class='inlinecode'>audiobookshelf</span>: audiobooks and podcasts, three hostPath mounts</li>
+<li><span class='inlinecode'>example-apache</span>: the smoke test for ingress and relayd</li>
+<li><span class='inlinecode'>example-apache-volume-claim</span>: same, plus the PVC from earlier in this post</li>
+<li><span class='inlinecode'>miniflux</span>: feed reader with Postgres, see the UID mapping section above</li>
+<li><span class='inlinecode'>opodsync</span>: podcast sync</li>
+<li><span class='inlinecode'>radicale</span>: CalDAV/CardDAV (and gpodder)</li>
+<li><span class='inlinecode'>registry</span>: the plain-HTTP Docker registry on NodePort 30001</li>
+<li><span class='inlinecode'>syncthing</span>: file sync</li>
+<li><span class='inlinecode'>wallabag</span>: read-it-later</li>
 </ul><br />
-<span>I hope you enjoyed this walkthrough. Read the next post of this series:</span><br />
+<span>Read the next post of this series:</span><br />
 <br />
 <a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
 <br />
