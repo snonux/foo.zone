@@ -190,7 +190,7 @@ The ingress exposes both a WAN and LAN endpoint:
 
 ## In-Cluster Git Server
 
-I didn't want ArgoCD pulling from Codeberg over the internet every time it checks for changes. If Codeberg is down (or my internet is), the cluster can't reconcile. So I set up a Git server inside the cluster itself.
+I didn't want ArgoCD pulling from GitHub over the internet every time it checks for changes. If GitHub is down (or my internet is), the cluster can't reconcile. So I set up a Git server inside the cluster itself.
 
 => https://github.com/snonux/conf/tree/190473b/f3s/git-server github.com/snonux/conf/f3s/git-server (at 190473b)
 
@@ -207,7 +207,7 @@ http://git-server.cicd.svc.cluster.local/conf.git
 
 For pushing, I use SSH via a NodePort (30022). The git user is locked down to git-shell--no actual shell access. SSH keys are managed through a Kubernetes Secret.
 
-There's a chicken-and-egg situation here. The git-server's own ArgoCD Application manifest points at Codeberg (not at itself), since ArgoCD needs to bootstrap the git-server before it can use it:
+There's a chicken-and-egg situation here. The git-server's own ArgoCD Application manifest points at GitHub (not at itself), since ArgoCD needs to bootstrap the git-server before it can use it:
 
 ```yaml
 # argocd-apps/cicd/git-server.yaml
@@ -217,9 +217,9 @@ source:
   path: f3s/git-server/helm-chart
 ```
 
-Once the pod is up, all other apps use the in-cluster URL. The dependency chain is: Codeberg -> git-server -> everything else.
+Once the pod is up, all other apps use the in-cluster URL. The dependency chain is: GitHub -> git-server -> everything else.
 
-The repo storage lives on NFS. Initial setup was just cloning the Codeberg repo as a bare repo into the NFS volume, then pointing my laptop's git remote at the NodePort:
+The repo storage lives on NFS. Initial setup was just cloning the GitHub repo as a bare repo into the NFS volume, then pointing my laptop's git remote at the NodePort:
 
 ```sh
 $ git remote add f3s f3s-git:/repos/conf.git
