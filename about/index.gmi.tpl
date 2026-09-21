@@ -17,6 +17,7 @@
 
 Stuff I'm currently up to:
 
+* Being father to my 3 year old daughter
 * Learning Bulgarian for the passport
 * Digging into AI engineering without taking the slop route — still finding my way there
 << # Append every not yet completed Taskwarrior task tagged +now as a bullet, oldest first, so the list stays current without editing this file. That is why the page is marked template::dynamic (always regenerated; task changes don't alter this file's mtime). Newlines in descriptions are collapsed to keep one bullet per task.
