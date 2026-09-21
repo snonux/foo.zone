@@ -26,6 +26,12 @@ Stuff I'm currently up to:
 
 * Learning Bulgarian for the passport
 * Digging into AI engineering without taking the slop route — still finding my way there
+* Listening to the Audiobook "The Courage to be Happy"
+* Reading the eBook "Designing Data Intensive Applications 2nd Edition"
+* Working on next ior aka I/O Riot NG release
+* Working on next DTail release
+* House refurbishment
+* Creating my own configuration management systems called Gonf
 
 ## My sites
 
