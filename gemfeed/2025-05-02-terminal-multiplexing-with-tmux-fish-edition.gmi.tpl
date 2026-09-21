@@ -6,12 +6,7 @@ This is the Fish shell edition of the same post (but for Z-Shell) of mine from l
 
 => ./2024-06-23-terminal-multiplexing-with-tmux.gmi
 
-Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:
-
-* Session management
-* Window and Pane management
-* Persistent Workspace
-* Customization
+Tmux (Terminal Multiplexer) runs multiple terminal sessions within a single window. It manages sessions, windows and panes, keeps your workspace around when you disconnect, and is very configurable.
 
 => https://github.com/tmux/tmux/wiki
 
@@ -105,7 +100,7 @@ function _tmux::cleanup_default
 end
 ```
 
-The cleanup function kills all open Tmux sessions that haven't been renamed properly yet—but only if they aren't attached (e.g., don't run in the foreground in any terminal). Cleaning them up automatically keeps my Tmux sessions as neat and tidy as possible. 
+The cleanup function kills all open Tmux sessions that haven't been renamed yet, but only if they aren't attached (e.g., don't run in the foreground in any terminal). That keeps my session list tidy. 
 
 ### Renaming sessions
 
@@ -356,7 +351,7 @@ bind-key P setw synchronize-panes on
 bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded"
 ```
 
-We discussed `synchronized panes` earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (remote SSH sessions) receive the same keystrokes. This is very useful when you want to run the same commands on many servers at once, such as navigating to a common directory, restarting a couple of services at once, or running tools like `htop` to quickly monitor system resources.
+We discussed `synchronized panes` earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (remote SSH sessions) receive the same keystrokes. Very useful when you want to run the same commands on many servers at once, e.g. restarting a service everywhere or running `htop` on all of them.
 
 The last one reloads my Tmux configuration on the fly.
 

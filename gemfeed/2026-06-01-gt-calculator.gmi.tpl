@@ -2,7 +2,7 @@
 
 > Published at 2026-05-31T14:24:10+03:00
 
-I created a calculator. Not because the world needed another one, but because I wanted to test something: How well do local LLMs hold up as pair programmers on a real project? I want to be independent of the big LLM providers like Anthropic, OpenAI, and company for this `gt`-project.
+I created a calculator. The world didn't need another one, but I wanted to test something: how well do local LLMs hold up as pair programmers on a real project? I want to be independent of the big LLM providers like Anthropic, OpenAI, and company for this `gt`-project.
 
 The answer is: well enough for small projects like this.
 
@@ -19,7 +19,7 @@ The whole thing — code, tests, documentation, even the logo — was built usin
 
 This post is about the calculator and what it does. My experience running those LLMs as pair programmers will be a separate post later.
 
-And no, this wasn't vibe-coded. I used a specific technique and a set of AI skills to drive the LLMs. The codebase came out well-structured and maintainable — not the "prompt it and pray" mess. 
+And no, this wasn't vibe-coded. I used a specific technique and a set of AI skills to drive the LLMs. The codebase came out reasonably clean and maintainable. 
 
 << template::inline::toc
 
@@ -27,17 +27,17 @@ And no, this wasn't vibe-coded. I used a specific technique and a set of AI skil
 
 Four things drove this.
 
-First, I wanted to test local LLMs as coding partners. Not the cloud-hosted ones with infinite context and billions of parameters — the ones you can actually run yourself. I figured a calculator project is big enough to be interesting but small enough to finish.
+First, I wanted to test local LLMs as coding partners. Not the cloud-hosted ones, but the ones you can run yourself. I figured a calculator project is big enough to be interesting but small enough to finish.
 
 Second, cloud independence is a thing I care about. I build tools that don't need a network connection to function. Writing software that talks to OpenAI or Anthropic APIs doesn't count as "running locally." Everything here runs offline.
 
-Third, I wanted to learn more about how these models actually work in practice. Not benchmarks or leaderboard scores — the day-to-day experience. How do you operate them? How do you structure prompts? When do they produce clean code versus garbage? Where do they struggle?
+Third, I wanted to learn more about how these models actually work in practice. Not benchmarks, the day-to-day experience: how do you operate them, how do you write the prompts, where do they struggle?
 
-Finally, the tool needed to be genuinely useful. A toy that calculates `2 + 2` isn't worth the disk space. I aimed for a calculator I'd actually reach for.
+And the tool had to be useful. A toy that calculates `2 + 2` isn't worth the disk space. I wanted a calculator I'd actually use.
 
 ## What it does
 
-At its core, `gt` is a stack-based RPN calculator with percentage support and a full metrics system. It runs as a single binary, has no dependencies, and works three ways:
+`gt` is a stack-based RPN calculator with percentage support and a full metrics system. It runs as a single binary, has no dependencies, and works three ways:
 
 ```sh
 gt '3 4 +'                     # one-liner: RPN
@@ -189,7 +189,7 @@ There's also a `constants` command that lists all 36 in one shot. Edge cases are
 
 ## The metrics system
 
-This is where `gt` earns its swiss army knife title. Every number carries a unit of measurement, and arithmetic understands those units.
+Every number carries a unit of measurement, and arithmetic understands those units.
 
 Six built-in categories, plus `Cool` — the default unitless metric for plain numbers. The name comes from Raku's `Cool` role, which represents things that are "cool enough" to do basic operations (strings, numbers, etc.). In `gt`, Cool values absorb into any metric category during arithmetic, so `5 100Mbps +` treats the `5` as `5Mbps`.
 
@@ -318,8 +318,7 @@ Rational mode disabled (using float64)
 
 The result should be `0`, but floating-point rounding errors accumulated. Silent wrong answer.
 
-Rational mode stores numbers as exact fractions using Go's `math/big.Rat`. `0.1` is stored as `1/10`, `0.2` as `2/10` (simplified to `1/5`), and all arithmetic operates on those exact values. No binary approximation, no silent drift.
-
+Rational mode stores numbers as exact fractions using Go's `math/big.Rat`. `0.1` is stored as `1/10`, `0.2` as `2/10` (simplified to `1/5`), and all arithmetic operates on those exact values.
 ```sh
 > rat on
 Rational mode enabled
@@ -327,8 +326,7 @@ Rational mode enabled
 0.3000000000
 ```
 
-Internally, `1/3` stays as the exact fraction `1/3`, and `1/3 * 3` computes to exactly `3/3 = 1`. No binary conversion, no rounding.
-
+Internally, `1/3` stays as the exact fraction `1/3`, and `1/3 * 3` computes to exactly `3/3 = 1`.
 REPL-only. Has a known limitation with non-dyadic decimals and metric operations — the docs explain the why.
 
 ## The REPL
@@ -444,7 +442,7 @@ Or system-wide:
 sudo cp completions/gt.fish /usr/local/share/fish/vendor_completions.d/
 ```
 
-In practice this means tab-completion for all 36 constants, every metric unit (bps through Tbps, KB through PiB, kmh, mph, knots, etc.), all arithmetic and hyper operators, and the `metric show` / `metric list` / `custom define` subcommand chains. The `custom define` subcommand even completes the valid category names so you don't have to memorize them.
+`custom define` even completes the category names.
 
 ## Installation
 

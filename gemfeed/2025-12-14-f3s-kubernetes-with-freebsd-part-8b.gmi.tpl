@@ -14,14 +14,7 @@ For a preview of what distributed tracing with Tempo looks like in Grafana, chec
 
 ## Why Distributed Tracing?
 
-In a microservices setup, a single user request can hop through multiple services. Tracing gives you:
-
-* Request tracking across service boundaries
-* Performance bottleneck identification
-* Service dependency visualization
-* Correlation with logs and metrics
-
-Without it, you're basically guessing where time gets spent.
+In a microservices setup, a single user request can hop through multiple services. Tracing helps here. It shows you which services a request went through, where the time went, and links that to logs and metrics. Without it you're guessing.
 
 ## Deploying Grafana Tempo
 
@@ -333,7 +326,7 @@ Frontend traces with server errors:
 
 ### Service Graph
 
-The service graph view shows visual connections between services — Frontend to Middleware to Backend — with request rates and latencies. It's generated automatically from trace data using Prometheus metrics.
+The service graph view shows the connections between services (Frontend to Middleware to Backend) with request rates and latencies. It's generated automatically from trace data using Prometheus metrics.
 
 ## Practical Example: End-to-End Trace
 
@@ -428,7 +421,7 @@ More Tempo trace screenshots in the X-RAG blog post:
 
 ## Correlation Between Signals
 
-This is where the observability stack really comes together. Tempo integrates with Loki and Prometheus so you can jump between traces, logs, and metrics.
+Tempo integrates with Loki and Prometheus so you can jump between traces, logs, and metrics.
 
 Traces to logs: click on any span and select "Logs for this span." Loki filters by time range, service name, namespace, and pod. Super useful for figuring out what a service was doing during a specific request.
 

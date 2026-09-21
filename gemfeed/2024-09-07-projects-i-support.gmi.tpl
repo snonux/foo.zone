@@ -27,7 +27,7 @@ This is the list of projects and initiatives I support/sponsor.
 
 ## Motivation
 
-Sponsoring free and open-source projects, even for personal use, is important to ensure the sustainability, security, and continuous improvement of the software. It supports developers who often maintain these projects without compensation, helping them provide updates, new features, and security patches. By contributing, you recognize their efforts, foster a culture of innovation, and benefit from perks like early access or support, all while ensuring the long-term viability of the tools you rely on.
+I sponsor a few free and open-source projects I use. Most maintainers do this in their spare time without getting paid, and a little money helps them keep going.
 
 Albeit I am not putting a lot of money into my sponsoring efforts, it still helps the open-source maintainers because the more little sponsors there are, the higher the total sum.
 
@@ -78,7 +78,7 @@ I implicitly support the OpenBSD project through a VM I have rented at OpenBSD A
 
 ## ProtonMail
 
-I am not directly funding this project, but I am a very happy paying customer, and I am listing it here as an alternative to big tech if you don't want to run your own mail infrastructure. I am listing ProtonMail here as it is a non-profit organization, and I want to emphasize the importance of considering alternatives to big tech.
+I am not directly funding this project, but I am a very happy paying customer, and I am listing it here as an alternative to big tech if you don't want to run your own mail infrastructure. I list ProtonMail here as it is a non-profit, and I think everyone should at least consider alternatives to big tech.
 
 => https://proton.me/
 

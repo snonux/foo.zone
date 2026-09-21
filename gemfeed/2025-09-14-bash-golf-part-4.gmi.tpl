@@ -171,7 +171,7 @@ base: Good day,  Paul!
 
 ## Indirect references with namerefs
 
-`declare -n` creates a name reference — a variable that points to another variable. It’s cleaner than `eval` for indirection:
+`declare -n` creates a name reference, a variable that points to another variable. It's cleaner than `eval` for indirection:
 
 ```bash
 user_name=paul
@@ -434,7 +434,7 @@ Further reading:
 * Running commands with `/` in the name.
 * Using `exec`.
 
-It’s a coarse sandbox for highly constrained shells; read `man bash` (RESTRICTED SHELL) for details and caveats.
+It's a coarse sandbox. Read the RESTRICTED SHELL section in `man bash` for the caveats.
 
 Example session:
 
@@ -446,7 +446,7 @@ rbash -c '/bin/echo hi'    # commands with /: restricted
 rbash -c 'exec ls'         # exec: restricted
 ```
 
-## Useless use of cat (and when it’s ok)
+## Useless use of cat (and when it's ok)
 
 Avoid the extra process if a command already reads files or `STDIN`:
 
@@ -465,11 +465,9 @@ But for interactive composition, or when you truly need to concatenate multiple 
 cat file1 file2 | grep -i foo
 ```
 
-From notes: “Good for interactivity; Useless use of cat” — use judgment.
-
 ## Atomic locking with `mkdir`
 
-Portable advisory locks can be emulated with `mkdir` because it’s atomic:
+Portable advisory locks can be emulated with `mkdir` because it's atomic:
 
 ```bash
 lockdir=/tmp/myjob.lock
@@ -483,7 +481,7 @@ else
 fi
 ```
 
-This works well on Linux. Remove the lock in `trap` so crashes don’t leave stale locks.
+This works well on Linux. Remove the lock in `trap` so crashes don't leave stale locks.
 
 ## Smarter globs and faster find-exec
 

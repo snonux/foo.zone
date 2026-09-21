@@ -18,47 +18,42 @@
 
 With all the AI buzz around coding assistants, and being a bit concerned about being dependent on third-party cloud providers here, I decided to explore the capabilities of local large language models (LLMs) using Ollama. 
 
-Ollama is a powerful tool that brings local AI capabilities directly to your local hardware. By running AI models locally, you can enjoy the benefits of intelligent assistance without relying on cloud services. This document outlines my initial setup and experiences with Ollama, with a focus on coding tasks and agentic coding.
+Ollama runs LLMs on your own hardware. No cloud. This post is about my first setup and experiences with it, mostly for coding and agentic coding.
 
 => https://ollama.com/
 
 ## Why Local LLMs?
 
-Using local AI models through Ollama offers several advantages:
-
-* Data Privacy: Keep your code and data completely private by processing everything locally.
-* Cost-Effective: Reduce reliance on expensive cloud API calls.
-* Reliability: Works seamlessly even with spotty internet or offline.
-* Speed: Avoid network latency and enjoy instant responses while coding. Although I mostly found Ollama slower than commercial LLM providers. However, that may change with the evolution of models and hardware.
+Why local? My code stays on my machine, there's no API bill, and it works offline. It's not faster, though. I mostly found Ollama slower than the commercial providers. That may change with better models and hardware.
 
 ## Hardware Considerations
 
 Running large language models locally is currently limited by consumer hardware capabilities:
 
 * GPU Memory: Most consumer-grade GPUs (even in 2025) top out at 16–24GB of VRAM, making it challenging to run larger models like the 30B (30 billion) parameter LLMs (they go up to the 100 billion and more).
-* RAM Constraints: On my MacBook Pro with M3 CPU and 36GB RAM, I chose a 14B model (`qwen2.5-coder:14b-instruct`) as it represents a practical balance between capability and resource requirements.
+* RAM Constraints: On my MacBook Pro with M3 CPU and 36GB RAM, I chose a 14B model (`qwen2.5-coder:14b-instruct`) as it's the biggest model that runs comfortably on it.
 
-For reference, here are some key points about running large LLMs locally:
+Roughly, this is how model size maps to hardware:
 
 * Models larger than 30B: I don't even think about running them locally. One (e.g. from Qwen, Deepseek or Kimi K2) with several hundred billion parameters could match the "performance" of commercial LLMs (Claude Sonnet 4, etc). Still, for personal use, the hardware demands are just too high (or temporarily "rent" it via the public cloud?).
 * 30B models: Require at least 48GB of GPU VRAM for full inference without quantisation. Currently only feasible on high-end professional GPUs (or an Apple-silicone Mac with enough unified RAM).
 * 14B models: Can run with 16-24GB GPU memory (VRAM), suitable for consumer-grade hardware (or use a quantised larger model)
-* 7B-13B models: Best fit for mainstream consumer hardware, requiring minimal VRAM and running smoothly on mid-range GPUs, but with limited capabilities compared to larger models and more hallucinations.
+* 7B-13B models: Run on pretty much any consumer GPU, but they are noticeably dumber and hallucinate more.
 
 The model I'll be mainly using in this blog post (`qwen2.5-coder:14b-instruct`) is particularly interesting as:
 
 * `instruct`: Indicates this is the instruction-tuned variant, optimised for diverse tasks including coding
-* `coder`: Tells me that this model was trained on a mix of code and text data, making it especially effective for programming assistance
+* `coder`: Tells me that this model was trained on a mix of code and text
 
 => https://ollama.com/library/qwen2.5-coder
 => https://huggingface.co/Qwen/Qwen2.5-Coder-14B-Instruct
 
-For general thinking tasks, I found `deepseek-r1:14b` to be useful (in the future, I also want to try other `qwen` models here). For instance, I utilised `deepseek-r1:14b` to format this blog post and correct some English errors, demonstrating its effectiveness in natural language processing tasks. Additionally, it has proven invaluable for adding context and enhancing clarity in technical explanations, all while running locally on the MacBook Pro. Admittedly, it was a lot slower than "just using ChatGPT", but still within a minute or so. 
+For general thinking tasks, I found `deepseek-r1:14b` to be useful (in the future, I also want to try other `qwen` models here). I actually used `deepseek-r1:14b` to format this post and fix some of my English. It also helped me clarify a few of the technical explanations. All locally on the MacBook Pro. Admittedly, it was a lot slower than "just using ChatGPT", but still within a minute or so. 
 
 => https://ollama.com/library/deepseek-r1:14b
 => https://huggingface.co/deepseek-ai/DeepSeek-R1
 
-A quantised (as mentioned above) LLM which has been converted from high-precision connection (typically 16- or 32-bit floating point) representations to lower-precision formats, such as 8-bit integers. This reduces the overall memory footprint of the model, making it significantly smaller and enabling it to run more efficiently on hardware with limited resources or to allow higher throughput on GPUs and CPUs. The benefits of quantisation include reduced storage and faster inference times due to simpler computations and better memory bandwidth utilisation. However, quantisation can introduce a drop in model accuracy because the lower numerical precision means the model cannot represent parameter values as precisely. In some cases, it may lead to instability or unexpected outputs in specific tasks or edge cases.
+Quantised (as mentioned above) means the model's weights were converted from 16- or 32-bit floats to something smaller, like 8-bit integers. The model gets a lot smaller and faster, and fits into less VRAM. The price is some accuracy, and sometimes weird output in edge cases.
 
 ## Basic Setup and Manual Code Prompting
 
@@ -126,7 +121,7 @@ Executed in    1.83 secs      fish           external
 
 ### Installation
 
-Aider is a tool that enables agentic coding by leveraging AI models (also local ones, as in our case). While setting up OpenAI Codex and OpenCode with Ollama proved challenging (those tools either didn't know how to work with the "tools" (the capability to execute external commands or to edit files for example) or didn't connect at all to Ollama for some reason), Aider worked smoothly.
+Aider is an agentic coding tool, and it works with local models too. While setting up OpenAI Codex and OpenCode with Ollama proved challenging (those tools either didn't know how to work with the "tools" (the capability to execute external commands or to edit files for example) or didn't connect at all to Ollama for some reason), Aider worked smoothly.
 
 To get started, the only thing I had to do was to install it via Homebrew, initialise a Git repository, and then start Aider with the Ollama model `ollama_chat/qwen2.5-coder:14b-instruct`:
 
@@ -261,7 +256,7 @@ The code is quite straightforward, especially for generating boilerplate code th
 
 ## In-Editor Code Completion
 
-To leverage Ollama for real-time code completion in my editor, I have integrated it with Helix, my preferred text editor. Helix supports the LSP (Language Server Protocol), which enables advanced code completion features. The `lsp-ai` is an LSP server that can interface with Ollama models for code completion tasks.
+I also wired Ollama into Helix, my editor, for code completion. Helix speaks LSP, and `lsp-ai` is an LSP server that talks to Ollama.
 
 => https://helix-editor.com
 => https://github.com/SilasMarvin/lsp-ai
@@ -382,21 +377,21 @@ If you want to see more `lsp-ai` configuration examples, they are some for Vim a
 
 ### Code completion in action
 
-The screenshot shows how Ollama's `qwen2.5-coder` model provides code completion suggestions within the Helix editor. LSP auto-completion is triggered by leaving the cursor at position `<CURSOR>` for a short period in the code snippet, and Ollama responds with relevant completions based on the context.
+The screenshot shows how Ollama's `qwen2.5-coder` model provides code completion suggestions within the Helix editor. LSP auto-completion is triggered by leaving the cursor at position `<CURSOR>` for a short period in the code snippet, and Ollama sends back a completion.
 
 => ./local-coding-LLM-with-ollama/helix-lsp-ai.png Completing the fib-function
 
 In the LSP auto-completion, the one prefixed with `ai - ` was generated by `qwen2.5-coder`, the other ones are from other LSP servers (GitHub Copilot, Go linter, Go language server, etc.).
 
-I found GitHub Copilot to be still faster than `qwen2.5-coder:14b`, but the local LLM one is actually workable for me already. And, as mentioned earlier, things will likely improve in the future regarding local LLMs. So I am excited about the future of local LLMs and coding tools like Ollama and Helix.
+I found GitHub Copilot to be still faster than `qwen2.5-coder:14b`, but the local LLM one is actually workable for me already. And, as mentioned earlier, local LLMs will only get better.
 
-> After trying `qwen3-coder:30b-a3b-q4_K_M` (following the publication of this blog post), I found it to be significantly faster and more capable than the previous model, making it a promising option for local coding tasks. Honestly, even my current local setup already handles routine coding stuff pretty well—better than I expected.
+> After trying `qwen3-coder:30b-a3b-q4_K_M` (following the publication of this blog post), it was much faster and more capable. Honestly, my local setup already handles routine coding stuff better than I expected.
 
 ## Conclusion
 
-Will there ever be a time we can run larger models (60B, 100B, ...and larger) on consumer hardware, or even on our phones? We are not quite there yet, but I am optimistic that we will see improvements in the next few years. As hardware capabilities improve and/or become cheaper, and more efficient models are developed (or new techniques will be invented to make language models more effective), the landscape of local AI coding assistants will continue to evolve. 
+Will there ever be a time we can run larger models (60B, 100B, ...and larger) on consumer hardware, or even on our phones? We are not quite there yet, but I am optimistic that we will see improvements in the next few years. Hardware gets cheaper, models get more efficient. We'll see. 
 
-For now, even the models listed in this blog post are very promising already, and they run on consumer-grade hardware (at least in the realm of the initial tests I've performed... the ones in this blog post are overly simplistic, though! But they were good for getting started with Ollama and initial demonstration)! I will continue experimenting with Ollama and other local LLMs to see how they can enhance my coding experience. I may cancel my Copilot subscription, which I currently use only for in-editor auto-completion, at some point.
+For now, even the models listed in this blog post are very promising already, and they run on consumer-grade hardware (at least in the realm of the initial tests I've performed... the ones in this blog post are overly simplistic, though! But they were good for getting started with Ollama and initial demonstration)! I'll keep playing with Ollama and other local LLMs. I may cancel my Copilot subscription, which I currently use only for in-editor auto-completion, at some point.
 
 However, truth be told, I don't think the setup described in this blog post currently matches the performance of commercial models like Claude Code (Sonnet 4, Opus 4), Gemini 2.5 Pro, the OpenAI models and others. Maybe we could get close if we had the high-end hardware needed to run the largest Qwen Coder model available. But, as mentioned already, that is out of reach for occasional coders like me. Furthermore, I want to continue coding manually to some degree, as otherwise I will start to forget how to write for-loops, which would be awkward... However, do we always need the best model when AI can help generate boilerplate or repetitive tasks even with smaller models?
 

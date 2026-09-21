@@ -31,11 +31,11 @@ I've been considering whether to use Raspberry Pis or look for alternatives. It 
 
 ## Not ARM but Intel N100 
 
-I needed something compact, efficient, and capable enough to handle the demands of a small-scale Kubernetes cluster and preferably something I don't have to assemble a lot. After researching, I decided on the Beelink S12 Pro with Intel N100 CPUs.
+I needed something small and power-efficient that can run a small k3s cluster, and preferably nothing I have to assemble. After researching, I decided on the Beelink S12 Pro with Intel N100 CPUs.
 
 => https://www.bee-link.com/products/beelink-mini-s12-pro-n100 Beelink Mini S12 Pro N100 official page
 
-The Intel N100 CPUs are built on the "Alder Lake-N" architecture. These chips are designed to balance performance and energy efficiency well. With four cores, they're more than capable of running multiple containers, even with moderate workloads. Plus, they consume only around 8W of power (ok, that's more than the Pis...), keeping the electricity bill low enough and the setup quiet - perfect for 24/7 operation.
+The Intel N100 CPUs are built on the "Alder Lake-N" architecture. Four cores are plenty for a few containers, and the chip only draws around 8W (ok, that's more than the Pis...), so the electricity bill stays low and the boxes stay quiet. Good enough for running 24/7.
 
 => ./f3s-kubernetes-with-freebsd-part-2/f3s-collage1.jpg Beelink preparation
 
@@ -268,9 +268,9 @@ Idle, all three Beelinks plus the switch consumed 26.2W. But with `ubench` stres
 
 > Updated Sun 11 Jan 10:30:00 EET 2026
 
-As mentioned in the hardware specs above, the Beelink S12 Pro supports Wake-on-LAN (WoL), which allows me to remotely power on the machines over the network. This is particularly useful since I don't need all three machines running 24/7, and I can save power by shutting them down when not needed and waking them up on demand.
+The Beelink S12 Pro supports Wake-on-LAN (WoL). I don't need all three machines running 24/7, so I shut them down when I don't need them and wake them up over the network on demand.
 
-The good news is that FreeBSD already has WoL support enabled by default on the Realtek network interface, as evidenced by the `WOL_MAGIC` option shown in the `ifconfig re0` output above (line 215).
+FreeBSD already has WoL enabled on the Realtek interface. See the `WOL_MAGIC` option in the `ifconfig re0` output above.
 
 ## Setting up WoL on the laptop
 
@@ -385,7 +385,7 @@ Waking up e8:ff:1e:d7:1c:a0...
 ✓ WoL packets sent. Machines should boot in a few seconds.
 ```
 
-Within 30-50 seconds, all three machines successfully booted up and became accessible via SSH!
+After 30-50 seconds, all three were up and reachable via SSH.
 
 This also works fine over WiFi, by the way — as long as the laptop and the Beelinks are on the same local network, the router bridges everything. And `wol-f3s shutdown` does the reverse (SSH + `doas poweroff`), so I can spin the whole cluster up and down pretty quickly.
 
@@ -396,8 +396,6 @@ For WoL to work reliably, make sure to check the BIOS settings on each Beelink:
 * Enable "Wake on LAN" (usually under Power Management)
 * Disable "ERP Support" or "ErP Ready" (this can prevent WoL from working)
 * Enable "Power on by PCI-E" or "Wake on PCI-E"
-
-The exact menu names vary, but these settings are typically found in the Power Management or Advanced sections of the BIOS.
 
 # Conclusion
 

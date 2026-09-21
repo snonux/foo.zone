@@ -13,31 +13,31 @@ Welcome to Part 5 of my Site Reliability Engineering (SRE) series. I'm currently
    \___/
 ```
 
-This time I want to share some themes that build on what we've already covered: how system design and incident analysis fit together, why observability should not be an afterthought, and how a design‑improvement loop keeps systems getting better. Let's dive in!
+This time I want to share some themes that build on what we've already covered: how system design and incident analysis fit together, why observability should not be an afterthought, and how a design‑improvement loop keeps systems getting better.
 
 << template::inline::toc
 
 ## System Design and Incident Analysis
 
-In my experience, a big chunk of SRE work revolves around system design and incident analysis. The thing that really matters is whether your system can contain cascading failures—because if it can't, one bad component can take everything down.
+In my experience, a big chunk of SRE work revolves around system design and incident analysis. The big question is whether the system can contain cascading failures. If it can't, one bad component takes everything down.
 
 ### Resilience and cascading failures
 
-What I've seen work well is thinking about resilience early—at design time, not after the first outage. You look for the weak points, address them before production, and try to keep the blast radius small when (not if) something fails.
+Think about resilience at design time, not after the first outage. Find the weak points before production and keep the blast radius small for when something fails.
 
 ### Learning from incidents
 
-When incidents do happen, their analysis is a goldmine. Every incident exposes gaps—whether in tooling (ops tools that aren't up to the job) or in skills (engineers missing critical know-how). Blaming "human error" doesn't help. The job is to dig into root causes and fix the system. Postmortems that focus on customer impact help us distil lessons and make the system more robust so we're less likely to repeat the same failure.
+When incidents happen, analyse them. Every incident exposes a gap, either in tooling or in skills. Blaming "human error" doesn't help. Dig into the root causes and fix the system. Postmortems that focus on customer impact make it less likely we repeat the same failure.
 
 System design and incident analysis form a feedback loop: we improve the design based on what we learn from incidents, and a better design reduces the impact of the next one.
 
 ## Observability: Don't leave it for when it's too late
 
-Here's something I've seen over and over: teams agree that "we need better observability" when they're already in the middle of an incident—and by then it's too late. Observability is always an afterthought compared to product features. But you really need it in place before things go wrong. Tools that can query high-cardinality data and give you granular insight into what's happening—that's what saves you when chaos hits. So invest in it early. Trust me on this one.
+Teams usually agree that "we need better observability" in the middle of an incident, when it's too late. Observability always loses against product features. But you need it in place before things go wrong: tools that can query high-cardinality data and tell you what is going on right now. Invest in it early.
 
 ## The iterative spirit
 
-We also accept that system design is never "done." We refine it based on real-world performance, incident learnings, and changing needs. Every incident is a chance to learn and improve; the emphasis is on learning, not blame. SREs work with developers, backend teams, and incident response so that the whole system keeps getting better. It's never perfect, but that's kind of the point.
+We also accept that system design is never "done." We refine it based on real-world performance, incident learnings, and changing needs. SREs work with developers and incident response so that the whole system keeps improving. It's never done.
 
 ## Book tips
 

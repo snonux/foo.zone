@@ -128,7 +128,7 @@ I also had the idea of using this as a pet project for work and naming it `Crypt
 
 ### A language that compiles to `bash`
 
-I had an idea to implement a higher-level language with strong typing that could be compiled into native Bash code. This would make all resulting Bash scripts more robust and secure by default. The project would involve developing a parser, lexer, and a Bash code generator. I planned to implement this in Go.
+I had an idea to implement a higher-level language with strong typing that could be compiled into native Bash code. The generated Bash scripts would be safer by default. The project would involve developing a parser, lexer, and a Bash code generator. I planned to implement this in Go.
 
 I had previously implemented a tiny scripting language called Fype (For Your Program Execution), which could have served as inspiration.
 
@@ -186,11 +186,11 @@ I value privacy. It would be great to run my own Matrix server for communication
 
 ### Ampache music server
 
-Ampache is an open-source music streaming server that allows you to host and manage your music collection online, accessible via a web interface. Setting it up involves configuring a web server, installing Ampache, and organising your music files, which can be time-consuming. 
+Ampache is an open-source music streaming server with a web interface. Setting it up (web server, Ampache itself, sorting the music files) takes time I don't have right now. 
 
 ### Librum eBook reader
 
-Librum is a self-hostable e-book reader that allows users to manage and read their e-book collection from a web interface. Designed to be a self-contained platform where users can upload, organise, and access their e-books, Librum emphasises privacy and control over one's digital library.
+Librum is a self-hostable e-book reader with a web interface where you upload and organise your e-books.
 
 => https://github.com/Librum-Reader/Librum
 
@@ -198,7 +198,7 @@ I am using my Kobo devices or my laptop to read these kinds of things for now.
 
 ### Memos - Note-taking service
 
-Memos is a note-taking service that simplifies and streamlines information capture and organisation. It focuses on providing users with a minimalistic and intuitive interface, aiming to enhance productivity without the clutter commonly associated with more complex note-taking apps.
+Memos is a minimalistic self-hosted note-taking service.
 
 => https://www.usememos.com
 
@@ -214,7 +214,7 @@ Bepasty is like a Pastebin for all kinds of files (text, image, audio, video, do
 
 ### Fluent Python
 
-I consider myself an advanced programmer in Ruby, Bash, and Perl. However, Python seems to be ubiquitous nowadays, and most of my colleagues prefer Python over any other languages. Thus, it makes sense for me to also learn and use Python. After conducting some research, "Fluent Python" appears to be the best book for this purpose.
+I consider myself an advanced programmer in Ruby, Bash, and Perl. However, Python seems to be ubiquitous nowadays, and most of my colleagues prefer Python over any other languages. Thus, it makes sense for me to also learn and use Python. After some research, "Fluent Python" appears to be the best book for this.
 
 I don't have time to read this book at the moment, as I am focusing more on Go (Golang) and I know just enough Python to get by (e.g., for code reviews). Additionally, there are still enough colleagues around who can review my Ruby or Bash code.
 
@@ -236,7 +236,7 @@ I am a big fan of science fiction, but my reading list is currently too long any
 
 ### Create a "Why Raku Rox" site
 
-The website "Why Raku Rox" would showcase the unique features and benefits of the Raku programming language and highlight why it is an exceptional choice for developers. Raku, originally known as Perl 6, is a dynamic, expressive language designed for flexible and powerful software development.
+The website "Why Raku Rox" would list the neat features of the Raku programming language (formerly known as Perl 6) and why it's worth a look.
 
 This would be similar to the "Why OpenBSD rocks" site:
 

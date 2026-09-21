@@ -52,17 +52,17 @@ Exercise in the morning to lose weight; you burn up to twenty percent more fat i
 
 ## Breaks and Productivity
 
-Short, restorative breaks enhance performance. Student exam results improved with a half-hour break beforehand. Even micro-breaks can be beneficial—hourly five-minute walking breaks can increase productivity as much as 30-minute walks. Nature-based breaks are more effective than indoor ones, and full detachment in breaks is essential for restoration. Physical activity during breaks boosts concentration and productivity more than long walks do. Complete detachment from work during breaks is critical.
+Short breaks help. Student exam results improved with a half-hour break beforehand. Even micro-breaks count: hourly five-minute walking breaks can boost productivity as much as 30-minute walks. Breaks in nature work better than indoor ones, and physical activity during breaks boosts concentration more than long walks do. The important part: fully detach from work during the break.
 
 ## Napping
 
-Short naps (10-20 minutes) significantly enhance mood, alertness, and cognitive performance, improving learning and problem-solving abilities. Napping increases with age, benefiting mood, flow, and overall health. A "nappuccino," or napping after coffee, offers a double boost, as caffeine takes around 25 minutes to kick in.
+Short naps (10-20 minutes) improve mood, alertness, learning, and problem-solving. Older people nap more, and it's good for mood and health. A "nappuccino," or napping after coffee, offers a double boost, as caffeine takes around 25 minutes to kick in.
 
 ## Scheduling Breaks
 
 * Track breaks just as you do with tasks—aim for three breaks a day.
 * Every 25 minutes, look away and daydream for 20 seconds, or engage in short exercises.
-* Meditating for even three minutes is a highly effective restorative activity.
+* Even three minutes of meditation is a good break.
 * The "Fresh Start Effect" (e.g., beginning a diet on January 1st or a new week) impacts motivation, as does recognizing progress. At the end of each day, spends two minutes to write down accomplishments.
 
 ## Final Impressions
@@ -79,8 +79,6 @@ Life satisfaction tends to dip in midlife, around the forties, but increases aro
 
 * Halfway through a project, there's a concentrated work effort ("Oh Oh Effect"), similar to an alarm when slightly behind schedule.
 * Recognizing daily accomplishments can elevate motivation and satisfaction.
-
-These insights from "When" can guide actions to optimize performance, well-being, and satisfaction across various aspects of life.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

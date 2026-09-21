@@ -98,7 +98,7 @@ These were by far the hardest parts of this build.
 
 Cables in a 10-inch rack are a pain. Power bricks, HDMI leads (for the JetKVM), USB cables, Ethernet — everything is longer than it needs to be for this tiny cabinet. I ended up adding cable holders on the outside of the rack for all the cables. It's not pretty when you look at it, but it works!
 
-Heat was the other battle. The Beelink S12 Pro boxes are small and not built for stacking. The internal fans are tiny — nothing server-grade. Stacked directly on top of each other they'd cook, and I know that because I cooked them once already, back when I rearranged the whole setup. So I had to leave gaps between units for air circulation. The bottom fan pushes cool air up, the back fan pulls hot air out, and the gaps let air actually move across the heatsinks.
+Heat was the other battle. The Beelink S12 Pro boxes are small and not built for stacking. The internal fans are tiny, nothing server-grade. Stacked directly on top of each other they'd cook, and I know that because I cooked them once already, back when I rearranged the whole setup. So I had to leave gaps between units for air circulation. The bottom fan pushes cool air up, the back fan pulls hot air out, and the gaps let air actually move across the heatsinks.
 
 The fans are basically silent. The Beelinks themselves sometimes still run warm and their internal fans spin up louder than the external ones — I've seen up to 94°C under real workload (photo processing in the Immich app running in the k3s cluster). That's on the warm side but still within spec: the Intel N100 only starts throttling near 100°C. Still, I'd rather know about it, so there's now a Prometheus alerting rule that fires when the hottest core stays at or above 90°C for five minutes.
 
@@ -160,7 +160,7 @@ The USB fans hang off a Shelly Plug M Gen3 — one of those smart power plugs ru
 
 The whole thing is located in a corner I never used much. It doesn't take up space elswhere anymore and I can walk up to it with a small ladder when I need physical access.
 
-It's not enterprise-grade, but it doesn't need to be. Off the TV area, cool enough, and I can reach it without moving furniture. Good enough.
+It's not enterprise-grade, but it doesn't need to be. It's out of the TV area, it stays cool enough, and I can reach it without moving furniture. Good enough for me.
 
 Other *BSD-related posts:
 

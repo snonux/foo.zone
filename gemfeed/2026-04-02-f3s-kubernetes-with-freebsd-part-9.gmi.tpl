@@ -26,7 +26,7 @@ So I migrated everything to GitOps with ArgoCD. Now the Git repo is the single s
 
 ## GitOps in a Nutshell
 
-Describe your entire desired state in Git, and let an agent in the cluster pull that state and reconcile it continuously. Every change goes through a commit, so you get version history, collaboration, and rollback for free.
+Describe your entire desired state in Git, and let an agent in the cluster pull that state and reconcile it continuously. Every change is a commit, so you get history and rollback for free.
 
 For Kubernetes specifically:
 
@@ -61,7 +61,7 @@ Honestly, the biggest reason is disaster recovery. If the cluster dies, I can:
 
 That's it. No "let me check my shell history to remember how I set this up."
 
-It's also a great way to learn. Setting up GitOps for real--even on a small cluster--teaches you things you won't pick up from tutorials alone. Debugging sync issues, figuring out sync waves, dealing with secrets management--all stuff that's directly applicable at work too.
+It's also a good way to learn. Debugging sync issues, sync waves, secrets handling: I run into the same things at work.
 
 Beyond that: push to Git, things deploy. No SSH'ing to a workstation to run Helm commands. And if I manually tweak something while debugging and forget about it, ArgoCD reverts it back to the desired state. That's happened more than once.
 
@@ -517,14 +517,14 @@ webdav                    https://kubernetes.default.svc  services     default  
 
 The practical difference is pretty big:
 
-* Single source of truth--clone the repo, look at `argocd-apps/`, and you know exactly what's running. No more `helm list` or guessing.
-* Push and forget--edit a Helm value, commit, push. ArgoCD picks it up within a few minutes. No SSH, no `just upgrade`.
-* Self-healing--I've tweaked things manually for debugging, forgotten about it, and ArgoCD quietly reverted it. That's saved me from some confusing "why is this behaving differently?" moments.
-* Rollback = git revert--`git revert HEAD && git push` and ArgoCD syncs back to the previous state.
-* Disaster recovery--bootstrap k3s, install ArgoCD, apply the Application manifests, wait. The cluster rebuilds itself. I haven't had to do this for real yet, but I've tested it and it works.
-* Drift detection--the ArgoCD UI shows immediately if something is out of sync. Much better than running `kubectl` commands and comparing output manually.
+* Clone the repo, look at `argocd-apps/`, and you know exactly what's running. No more `helm list` or guessing.
+* Edit a Helm value, commit, push. ArgoCD picks it up within a few minutes. No SSH, no `just upgrade`.
+* I've tweaked things manually for debugging, forgotten about it, and ArgoCD quietly reverted it. That's saved me from some confusing "why is this behaving differently?" moments.
+* Rollback is `git revert HEAD && git push`. ArgoCD syncs back to the previous state.
+* Disaster recovery: bootstrap k3s, install ArgoCD, apply the Application manifests, wait. I haven't had to do this for real yet, but I've tested it and it works.
+* The ArgoCD UI shows immediately if something is out of sync. Much better than running `kubectl` commands and comparing output by hand.
 
-## Challenges Along the Way
+## Things that bit me
 
 ### Helm Release Adoption
 
@@ -548,7 +548,7 @@ Without sync waves, Prometheus resources deployed in random order and things bro
 
 ## Wrapping Up
 
-The migration took a couple of days, doing one or two apps at a time. The result: 30 applications across 5 namespaces, all managed declaratively through Git. Push a change, it deploys. Break something, `git revert`. Cluster dies, rebuild from the repo.
+The migration took a couple of days, doing one or two apps at a time. Now all 30 applications are managed through Git.
 
 All the config lives here:
 
@@ -558,7 +558,7 @@ ArgoCD Application manifests organized by namespace:
 
 => https://github.com/snonux/conf/src/branch/master/f3s/argocd-apps github.com/snonux/conf/f3s/argocd-apps
 
-I can't imagine going back to running Helm commands manually.
+I won't go back to running Helm commands by hand.
 
 Other *BSD-related posts:
 

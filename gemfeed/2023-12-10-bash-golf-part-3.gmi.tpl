@@ -22,9 +22,9 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ## `FUNCNAME`
 
-`FUNCNAME` is an array you are looking for a way to dynamically determine the name of the current function (which could be considered the callee in the context of its own execution), you can use the special variable `FUNCNAME`. This is an array variable that contains the names of all shell functions currently in the execution call stack. The element `FUNCNAME[0]` holds the name of the currently executing function, `FUNCNAME[1]` the name of the function that called that, and so on.
+`FUNCNAME` is an array variable holding the names of all shell functions currently on the call stack. `FUNCNAME[0]` is the function currently executing, `FUNCNAME[1]` the function which called it, and so on.
 
-This is particularly useful for logging when you want to include the callee function in the log output. E.g. look at this log helper:
+That's handy for logging. E.g. look at this log helper:
 
 ```bash
 #!/usr/bin/env bash

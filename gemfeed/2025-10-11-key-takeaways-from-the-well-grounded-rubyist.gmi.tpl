@@ -12,7 +12,7 @@ Some time ago, I wrote about my journey into Ruby and how "The Well-Grounded Rub
 
 ## The Object Model
 
-One of the most fascinating aspects of Ruby is its object model. The book does a great job of explaining the details.
+Ruby's object model is the part I found most interesting. The book explains it well.
 
 ### Everything is an object (almost)
 
@@ -38,8 +38,6 @@ foo
 # => main
 ```
 
-This code demonstrates how `self` changes depending on the context. At the top level, it's `main`, an instance of `Object`. When `foo` is called without a receiver, it's called on `main`.
-
 ### Singleton Methods
 
 You can add methods to individual objects. These are called singleton methods.
@@ -58,7 +56,7 @@ obj2 = "another string"
 # obj2.shout would raise a NoMethodError
 ```
 
-Here, the `shout` method is only available on the `obj` object. This is a powerful feature for adding behavior to specific instances.
+`shout` only exists on `obj`.
 
 ### Classes are Objects
 
@@ -76,7 +74,7 @@ instance.say_hello
 # => Hello from a dynamically created class!
 ```
 
-This shows how to create a new class and assign it to a constant. This is what happens behind the scenes when you use the `class` keyword.
+That's what the `class` keyword does behind the scenes.
 
 ## Control Flow and Methods
 
@@ -112,7 +110,7 @@ p check(5) # => "It's a number between 1 and 10"
 
 ### Blocks and `yield`
 
-Blocks are a cornerstone of Ruby. You can pass them to methods to customize their behavior. The `yield` keyword is used to call the block.
+Blocks are everywhere in Ruby. `yield` calls the block that was passed to the method.
 
 ```ruby
 def my_iterator
@@ -129,7 +127,7 @@ my_iterator { puts "Inside the block" }
 # Inside the block
 ```
 
-This simple iterator shows how `yield` transfers control to the block. You can also pass arguments to `yield` and get a return value from the block.
+`yield` can also take arguments and return the block's value:
 
 ```ruby
 def with_return
@@ -141,11 +139,7 @@ with_return { |n| n * 2 }
 # => The block returned 10
 ```
 
-This demonstrates passing an argument to the block and using its return value.
-
 ## Fun with Data Types
-
-Ruby's core data types are full of nice little features.
 
 ### Symbols
 
@@ -165,11 +159,9 @@ my_hash = { name: "Paul", language: "Ruby" }
 p my_hash[:name] # => "Paul"
 ```
 
-This code highlights the difference between strings and symbols and shows the convenient hash syntax.
-
 ### Arrays and Hashes
 
-Arrays and hashes have a rich API. The `%w` and `%i` shortcuts for creating arrays of strings and symbols are very handy.
+`%w` and `%i` are handy shortcuts for arrays of strings and symbols.
 
 ```ruby
 # Array of strings
@@ -181,7 +173,7 @@ p %i[one two three]
 # => [:one, :two, :three]
 ```
 
-A quick way to create arrays. You can also retrieve multiple values at once.
+`values_at` fetches several elements at once:
 
 ```ruby
 arr = [10, 20, 30, 40, 50]
@@ -193,11 +185,9 @@ p hash.values_at(:a, :c)
 # => [1, 3]
 ```
 
-The `values_at` method is a concise way to get multiple elements.
-
 ## Final Thoughts
 
-These are just a few of the many things I learned from "The Well-Grounded Rubyist". The book gave me a much deeper appreciation for the language and its design. If you are a Ruby programmer, I highly recommend it. Meanwhile, I also read the book "Programming Ruby 3.3", just I didn't have time to process my notes there yet. 
+These are just a few of the many things I learned from "The Well-Grounded Rubyist". If you write Ruby, read it. Meanwhile, I also read the book "Programming Ruby 3.3", just I didn't have time to process my notes there yet. 
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

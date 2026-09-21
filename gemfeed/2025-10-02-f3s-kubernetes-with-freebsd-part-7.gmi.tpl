@@ -18,9 +18,9 @@ In this blog post, I am finally going to install k3s (the Kubernetes distributio
 
 ## Important Note: GitOps Migration
 
-**Note:** After publishing this blog post, the f3s cluster was migrated from imperative Helm deployments to declarative GitOps using ArgoCD. The Kubernetes manifests and Helm charts in the repository have been reorganized for ArgoCD-based continuous deployment.
+Note: After publishing this post, I migrated the f3s cluster from imperative Helm deployments to GitOps with ArgoCD, and reorganised the manifests and Helm charts in the repository for that.
 
-**To view the exact manifests and charts as they existed when this blog post was written** (before the ArgoCD migration), check out the pre-ArgoCD revision:
+To see the manifests and charts as they were when I wrote this post, check out the pre-ArgoCD revision:
 
 ```sh
 $ git clone https://github.com/snonux/conf.git
@@ -29,12 +29,12 @@ $ git checkout 15a86f3  # Last commit before ArgoCD migration
 $ cd f3s/
 ```
 
-**Current master branch** contains the ArgoCD-managed versions with:
+The current master branch contains the ArgoCD-managed versions with:
 * Application manifests organized under `argocd-apps/{monitoring,services,infra,test}/`
 * Additional resources under `*/manifests/` directories (e.g., `prometheus/manifests/`)
 * Justfiles updated to trigger ArgoCD syncs instead of direct Helm commands
 
-The deployment concepts and architecture remain the same—only the deployment method changed from imperative (`helm install/upgrade`) to declarative (GitOps with ArgoCD).
+The concepts are the same, only the deployment method changed from imperative (`helm install/upgrade`) to declarative (GitOps with ArgoCD).
 
 ## Updating
 
@@ -579,7 +579,7 @@ This is how it works in `relayd.conf` on OpenBSD:
 
 ### OpenBSD relayd configuration
 
-The OpenBSD edge relays keep the Kubernetes-facing addresses for the f3s ingress endpoints in a shared backend table so TLS traffic for every `f3s` hostname lands on the same pool of k3s nodes (pointing to the WireGuard IP addresses of those nodes - remember, they are running locally in my LAN, wheras the OpenBSD edge relays operate in the public internet):
+On the OpenBSD edge relays, all three k3s nodes sit in one backend table (their WireGuard IPs, since the nodes are in my LAN and the relays are on the public internet):
 
 ```
 table <f3s> {
@@ -637,7 +637,7 @@ http protocol "https" {
 }
 ```
 
-Both IPv4 and IPv6 listeners reuse the same protocol definition, making the relay transparent for dual-stack clients while still health checking every k3s backend before forwarding traffic over WireGuard:
+The IPv4 and IPv6 relays share the same protocol definition and health check the k3s backends before forwarding over WireGuard:
 
 ```
 relay "https4" {
@@ -657,13 +657,13 @@ relay "https6" {
 }
 ```
 
-In practice, that means relayd terminates TLS with the correct certificate, keeps the three WireGuard-connected backends in rotation, and ships each request to whichever bhyve VM answers first.
+So relayd terminates TLS and forwards each request to one of the three nodes over WireGuard.
 
 ### Automatic failover when f3s cluster is down
 
 > Update: This section was added at Tue 30 Dec 10:11:44 EET 2025
 
-One important aspect of this setup is graceful degradation: when all three f3s nodes are unreachable (e.g., during maintenance or a power outage in my LAN), users should see a friendly status page instead of an error message.
+When all three f3s nodes are down (maintenance, power outage at home), I want visitors to see a status page instead of a connection error.
 
 OpenBSD's relayd supports automatic failover through its health check mechanism. According to the relayd.conf manual:
 
@@ -769,27 +769,19 @@ The fallback page itself is straightforward:
 </html>
 ```
 
-This approach provides several benefits:
-
-* Automatic detection: Health checks run continuously; no manual intervention needed
-* Instant fallback: When all f3s nodes go down, the next request automatically routes to localhost
-* Transparent recovery: When f3s comes back online, health checks pass and traffic resumes automatically
-* User experience: Visitors see a helpful message instead of connection errors
-* No DNS changes: The same hostnames work whether f3s is up or down
-
-This fallback mechanism has proven invaluable during maintenance windows and unexpected outages, ensuring that users always get a response even when the home lab is offline.
+Health checks do all the work: no DNS changes, no manual intervention, and when the cluster comes back, traffic flows again by itself.
 
 ## Exposing services via LAN ingress
 
-In addition to external access through the OpenBSD relays, services can also be exposed on the local network using LAN-specific ingresses. This is useful for accessing services from within the home network without going through the internet, reducing latency and providing an alternative path if the external relays are unavailable.
+In addition to external access through the OpenBSD relays, services can also be exposed on the local network using LAN-specific ingresses. That way I can reach services from home without a round trip through the internet, and it still works when the external relays are down.
 
-The LAN ingress architecture leverages the existing FreeBSD CARP (Common Address Redundancy Protocol) failover infrastructure that's already in place for NFS-over-TLS (see Part 5). Instead of deploying MetalLB or another LoadBalancer implementation, we reuse the CARP virtual IP (`192.168.1.138`) by adding HTTP/HTTPS forwarding alongside the existing stunnel service on port 2323.
+For this, I reuse the FreeBSD CARP VIP (`192.168.1.138`) that already exists for NFS-over-TLS (see Part 6) instead of deploying MetalLB or another LoadBalancer. relayd on the FreeBSD hosts forwards HTTP/HTTPS next to the existing stunnel on port 2323.
 
 ### Architecture overview
 
 The LAN access path differs from external access:
 
-**External access (*.f3s.foo.zone):**
+External access (*.f3s.foo.zone):
 ```
 Internet → OpenBSD relayd (TLS termination, Let's Encrypt)
         → WireGuard tunnel
@@ -797,7 +789,7 @@ Internet → OpenBSD relayd (TLS termination, Let's Encrypt)
         → Service
 ```
 
-**LAN access (*.f3s.lan.foo.zone):**
+LAN access (*.f3s.lan.foo.zone):
 ```
 LAN → FreeBSD CARP VIP (192.168.1.138)
     → FreeBSD relayd (TCP forwarding)
@@ -909,7 +901,7 @@ _relayd  relayd   2903  11  tcp4   192.168.1.138:80      *:*
 _relayd  relayd   2903  12  tcp4   192.168.1.138:443     *:*
 ```
 
-Repeat the same configuration on f1. Both hosts will run `relayd` listening on the CARP VIP, but only the CARP MASTER will respond to traffic. When failover occurs, the new MASTER takes over seamlessly.
+Repeat the same configuration on f1. Both hosts will run `relayd` listening on the CARP VIP, but only the CARP MASTER will respond to traffic. When CARP fails over, the new MASTER just takes over.
 
 ### Adding LAN ingress to services
 
@@ -975,7 +967,7 @@ $ sudo tee -a /etc/hosts << 'EOF'
 EOF
 ```
 
-The CARP VIP `192.168.1.138` provides high availability—traffic automatically fails over to the backup host if the master goes down.
+The CARP VIP `192.168.1.138` fails over to the backup host if the master goes down.
 
 Export the self-signed CA certificate:
 
@@ -1011,11 +1003,9 @@ No changes needed to:
 
 The f3s infrastructure now has three distinct TLS offloaders:
 
-* **OpenBSD relayd**: External internet traffic (`*.f3s.foo.zone`) using Let's Encrypt
-* **Traefik (k3s)**: LAN HTTPS traffic (`*.f3s.lan.foo.zone`) using cert-manager
-* **stunnel**: NFS-over-TLS (port 2323) using custom PKI
-
-Each serves a different purpose with appropriate certificate management for its use case.
+* OpenBSD relayd: external internet traffic (`*.f3s.foo.zone`), Let's Encrypt
+* Traefik (k3s): LAN HTTPS traffic (`*.f3s.lan.foo.zone`), cert-manager
+* stunnel: NFS-over-TLS (port 2323), my own CA
 
 ## Deploying the private Docker image registry
 
@@ -1184,7 +1174,7 @@ $ kubectl get ingress anki-sync-server-ingress -n services
 $ curl https://anki.f3s.foo.zone/health
 ```
 
-All of this runs solely on first-party images that now live in the private registry, proving the full flow from local bild to WireGuard-exposed service.
+That's the full flow: build locally, push to the private registry, serve via WireGuard.
 
 ## NFSv4 UID mapping for Postgres-backed (and other) apps
 
@@ -1262,25 +1252,23 @@ replicaset.apps/miniflux-postgres-556444cb8d   1         1         1       54d
 replicaset.apps/miniflux-server-85d7c64664     1         1         1       54d
 ```
 
-Or from the repository root I simply run:
-
 ### Helm charts currently in service
 
-These are the charts that already live under `examples/conf/f3s` and run on the cluster today (and I'll keep adding more as new services graduate into production):
+These charts live under `examples/conf/f3s` and run on the cluster today:
 
-* `anki-sync-server` — custom-built image served from the private registry, stores decks on `/data/nfs/k3svolumes/anki-sync-server/anki_data`, and authenticates through the `anki-sync-server-secret`.
-* `koreade-sync-server` — Sync server for KOReader.
-* `audiobookshelf` — media streaming stack with three hostPath mounts (`config`, `audiobooks`, `podcasts`) so the library survives node rebuilds.
-* `example-apache` — minimal HTTP service I use for smoke-testing ingress and relayd rules.
-* `example-apache-volume-claim` — Apache plus PVC variant that exercises NFS-backed storage for walkthroughs like the one earlier in this post.
-* `miniflux` — the Postgres-backed feed reader described above, wired for NFSv4 UID mapping and per-release secrets.
-* `opodsync` — podsync deployment with its data directory under `/data/nfs/k3svolumes/opodsync/data`.
-* `radicale` — CalDAV/CardDAV (and gpodder) backend with separate `collections` and `auth` volumes.
-* `registry` — the plain-HTTP Docker registry exposed on NodePort 30001 and mirrored internally as `registry.lan.buetow.org:30001`.
-* `syncthing` — two-volume setup for config and shared data, fronted by the `syncthing.f3s.foo.zone` ingress.
-* `wallabag` — read-it-later service with persistent `data` and `images` directories on the NFS export.
+* `anki-sync-server`: my own image from the private registry, decks on NFS
+* `koreader-sync-server`: sync server for KOReader
+* `audiobookshelf`: audiobooks and podcasts, three hostPath mounts
+* `example-apache`: the smoke test for ingress and relayd
+* `example-apache-volume-claim`: same, plus the PVC from earlier in this post
+* `miniflux`: feed reader with Postgres, see the UID mapping section above
+* `opodsync`: podcast sync
+* `radicale`: CalDAV/CardDAV (and gpodder)
+* `registry`: the plain-HTTP Docker registry on NodePort 30001
+* `syncthing`: file sync
+* `wallabag`: read-it-later
 
-I hope you enjoyed this walkthrough. Read the next post of this series:
+Read the next post of this series:
 
 => ./2025-12-07-f3s-kubernetes-with-freebsd-part-8.gmi f3s: Kubernetes with FreeBSD - Part 8: Observability
 

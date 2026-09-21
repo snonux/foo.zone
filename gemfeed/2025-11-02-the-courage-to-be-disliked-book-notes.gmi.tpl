@@ -52,11 +52,11 @@ The challenge is to find the courage to see the world directly, without the filt
 
 * All problems are, at their core, problems of interpersonal relationships. To escape all problems would mean to live alone in the universe, which is impossible.
 * The book identifies three "Life Tasks" that everyone faces: the task of work, the task of friendship, and the task of love.
-* **Competition:** Life is not a competition. When we stop comparing ourselves to others, we cease to see them as enemies. They become comrades, and we can genuinely celebrate their successes. This removes the fear of losing and allows for peace.
-* **Power Struggles:** When someone is angry with you, recognize it as their attempt at a power struggle. The person who attacks you is the one with the problem. Do not get drawn in. Arguing about who is right or wrong is a trap. Admitting a fault is not a defeat.
-* **Horizontal vs. Vertical Relationships:** Strive for "horizontal relationships" based on equality, rather than "vertical relationships" based on hierarchy. Praise and rebuke are forms of manipulation found in vertical relationships. Instead, offer encouragement. (Note: The original author expresses disagreement with applying this to children, feeling a hierarchy is necessary and that children appreciate praise).
-* **Separation of Tasks:** Understand what is your responsibility and what is someone else's. For example, if someone takes advantage of your trust, that is their task. Your task is to decide whether to trust them in the first place.
-* **Confidence in Others:** Having unconditional confidence in others helps build deep relationships and a sense of belonging, turning others into comrades.
+* Competition: Life is not a competition. When we stop comparing ourselves to others, we cease to see them as enemies. They become comrades, and we can genuinely celebrate their successes. This removes the fear of losing and allows for peace.
+* Power struggles: When someone is angry with you, recognize it as their attempt at a power struggle. The person who attacks you is the one with the problem. Do not get drawn in. Arguing about who is right or wrong is a trap. Admitting a fault is not a defeat.
+* Horizontal vs. vertical relationships: Strive for "horizontal relationships" based on equality, rather than "vertical relationships" based on hierarchy. Praise and rebuke are forms of manipulation found in vertical relationships. Instead, offer encouragement. (I don't agree with this when it comes to children. Some hierarchy is necessary there, and children appreciate praise.)
+* Separation of tasks: Understand what is your responsibility and what is someone else's. For example, if someone takes advantage of your trust, that is their task. Your task is to decide whether to trust them in the first place.
+* Confidence in others: Having unconditional confidence in others helps build deep relationships and a sense of belonging, turning others into comrades.
 
 ## Inferiority and Superiority
 

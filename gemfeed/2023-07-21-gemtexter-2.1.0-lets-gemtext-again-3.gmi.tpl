@@ -59,11 +59,7 @@ Gemtexter is there to convert your Gemini Capsule into other formats, such as HT
 
 ## Use of Hack webfont by default
 
-The Hack web font is a typeface designed explicitly for source code. It's a derivative of the Bitstream Vera and DejaVu Mono lineage, but it features many improvements and refinements that make it better suited to reading and writing code.
-
-The font has distinctive glyphs for every character, which helps to reduce confusion between similar-looking characters. For example, the characters "0" (zero), "O" (capital o), and "o" (lowercase o), or "1" (one), "l" (lowercase L), and "I" (capital i) all have distinct looks in Hack, making it easier to read and understand code at a glance.
-
-Hack is open-source and freely available for use and modification under the MIT License.
+The HTML output now uses the Hack web font by default. Hack is a monospace font made for source code, derived from Bitstream Vera / DejaVu Mono. Zero and capital O, one and lowercase L and so on are easy to tell apart. It's MIT licensed.
 
 ## HTML Mastodon verification support
 
