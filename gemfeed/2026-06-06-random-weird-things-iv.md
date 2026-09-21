@@ -27,7 +27,7 @@ Every so often I stumble upon random, weird, and completely unexpected things on
 * [⇢ ⇢ 33. LLM via DNS](#33-llm-via-dns)
 * [⇢ ⇢ 34. Black Hole in ~125 Bytes](#34-black-hole-in-125-bytes)
 * [⇢ ⇢ 35. loss32: Win32 on Linux](#35-loss32-win32-on-linux)
-* [⇢ ⇢ 36. LLM Rescuer 🤖💰](#36-llm-rescuer-)
+* [⇢ ⇢ 36. LLM Rescuer](#36-llm-rescuer)
 * [⇢ ⇢ 37. Filesystem Backed by an LLM](#37-filesystem-backed-by-an-llm)
 * [⇢ ⇢ 38. QR Code with Pure SQL in Postgres](#38-qr-code-with-pure-sql-in-postgres)
 * [⇢ ⇢ 39. The SL Train in Your Terminal](#39-the-sl-train-in-your-terminal)
@@ -35,15 +35,14 @@ Every so often I stumble upon random, weird, and completely unexpected things on
 
 ## 31. GUI Apps in Your Terminal
 
-term.everything is a from-scratch Wayland compositor that renders GUI apps inside your terminal. GTK, Qt, whatever — it just grabs it and draws it right there. You can run Firefox or GIMP over SSH and interact with it using your mouse. No X forwarding, no latency nonsense. It actually works.
+term.everything is a from-scratch Wayland compositor that renders GUI apps inside your terminal. GTK, Qt, whatever — it just grabs it and draws it right there. You can run Firefox or GIMP over SSH and interact with it using your mouse. No X forwarding needed. It actually works.
 
 [![term.everything demo](./random-weird-things-iv/term-everything.jpg "term.everything demo")](./random-weird-things-iv/term-everything.jpg)  
 [term.everything](https://github.com/mmulet/term.everything)  
 
 ## 32. TempleOS
 
-Terry A. Davis spent years single-handedly building a complete 64-bit operating system from scratch because God told him to. It runs at 640×480, uses a custom language called HolyC, has its own compiler, and is designed as a temple. Boot it up and you get scripture, a talking parrot, and probably the weirdest OS you'll ever see. One of the most fascinating stories in computing.
-
+Terry A. Davis spent years single-handedly building a complete 64-bit operating system from scratch because God told him to. It runs at 640×480, uses a custom language called HolyC, has its own compiler, and is designed as a temple. Boot it up and you get scripture, a talking parrot, and probably the weirdest OS you'll ever see.
 [![TempleOS screenshot](./random-weird-things-iv/templeos.png "TempleOS screenshot")](./random-weird-things-iv/templeos.png)  
 [TempleOS](https://templeos.org)  
 
@@ -70,12 +69,12 @@ Thi                                                                    le in you
 
 ## 35. loss32: Win32 on Linux
 
-loss32 is a Linux distro where the entire desktop is classic Win32 apps running natively. ReactOS + WINE on steroids. You get the Windows 98/2000 vibe on a modern Linux kernel. It's not trying to be practical — it's pure nostalgia for people who miss the old Windows desktop but don't want the actual Windows.
+loss32 is a Linux distro where the entire desktop is classic Win32 apps running natively. ReactOS + WINE on steroids. You get the Windows 98/2000 vibe on a modern Linux kernel. It's pure nostalgia for people who miss the old Windows desktop but don't want the actual Windows.
 
 [![loss32 desktop screenshot](./random-weird-things-iv/loss32.png "loss32 desktop screenshot")](./random-weird-things-iv/loss32.png)  
 [loss32](https://loss32.org/)  
 
-## 36. LLM Rescuer 🤖💰
+## 36. LLM Rescuer
 
 LLM Rescuer is a tiny Ruby gem that hooks into Ruby's method dispatch so that calling a method on `nil` doesn't crash — it asks an LLM what the return value should be instead. When a `NoMethodError` would normally explode, the gem catches it, packages up the context (what method was called, what the variable name suggests, maybe the surrounding code), fires that off to an actual LLM API, and returns whatever the model hallucinates as sensible.
 
@@ -83,7 +82,7 @@ So `user.email` on a nil `user` doesn't die. It asks the LLM "someone called `.e
 
 It tries to keep API costs down by sending only minimal context — just the method name and variable name rather than your whole codebase — but every nil-hit still costs tokens and adds latency.
 
-This is runtime monkey-patching powered by a remote AI. Your nil bugs don't crash, they silently return AI-guessed values. In production this would be a debugging nightmare.
+So your nil bugs don't crash anymore, they silently return whatever the AI guessed. Imagine debugging that in production.
 
 Examples:
 
@@ -136,13 +135,12 @@ $ cat /mnt/llmfs/todo.txt
 - Drink more coffee
 ```
 
-The LLM hallucinates the file contents every single read. Your todo list literally mutates when you look at it. Want a config file? Just describe it in the filename or write a prompt into it. Equal parts brilliant and terrifying.
-
+The LLM hallucinates the file contents every single read. Your todo list literally mutates when you look at it. Want a config file? Just describe it in the filename or write a prompt into it.
 [Filesystem Backed by an LLM](https://healeycodes.com/filesystem-backed-by-an-llm)  
 
 ## 38. QR Code with Pure SQL in Postgres
 
-Someone generated a full QR code using nothing but SQL queries inside PostgreSQL. No extensions, no external tools — just raw Postgres doing things it was never meant to do. I ran the example and watched a QR code materialize in the query result. Mad stuff.
+Someone generated a full QR code using nothing but SQL queries inside PostgreSQL. No extensions, just raw Postgres doing things it was never meant to do. I ran the example and watched a QR code materialize in the query result. Mad stuff.
 
 [![QR code generated with pure SQL](./random-weird-things-iv/pqr.webp "QR code generated with pure SQL")](./random-weird-things-iv/pqr.webp)  
 [Pure SQL QR Code](https://tanelpoder.com/posts/generate-qr-code-with-pure-sql-in-postgres/)  

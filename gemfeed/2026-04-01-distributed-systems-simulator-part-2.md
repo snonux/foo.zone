@@ -4,7 +4,7 @@
 
 This is the second blog post of the Distributed Systems Simulator series. This part covers all 10 built-in protocols with examples.
 
-[ds-sim on Codeberg (modernized, English-translated version)](https://github.com/snonux/ds-sim)  
+[ds-sim on GitHub (modernized, English-translated version)](https://github.com/snonux/ds-sim)  
 
 These are all the posts of this series:
 
@@ -57,7 +57,7 @@ Programmed Ping-Pong Events:
 
 It is important that Process 1 activates its Ping-Pong client before starting a Ping-Pong client request. Before a process can start a request, it must have the corresponding protocol activated. This also applies to all other protocols.
 
-**Ping-Pong Storm Variant**
+Ping-Pong Storm variant:
 
 [![Visualization: The Ping-Pong Storm variant with three processes. P1 is the client, P2 and P3 are both servers. The visualization shows an exponentially growing number of messages as each client message generates two server responses, creating a dense web of blue and green message lines.](./distributed-systems-simulator/ping-pong-storm.png "Visualization: The Ping-Pong Storm variant with three processes. P1 is the client, P2 and P3 are both servers. The visualization shows an exponentially growing number of messages as each client message generates two server responses, creating a dense web of blue and green message lines.")](./distributed-systems-simulator/ping-pong-storm.png)  
 

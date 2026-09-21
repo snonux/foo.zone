@@ -6,12 +6,7 @@ This is the Z-Shell version. There is also a Fish version:
 
 [./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md](./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md)  
 
-Tmux (Terminal Multiplexer) is a powerful, terminal-based tool that manages multiple terminal sessions within a single window. Here are some of its primary features and functionalities:
-
-* Session management
-* Window and Pane management
-* Persistent Workspace
-* Customization
+Tmux (Terminal Multiplexer) lets you run several terminal sessions, windows and panes inside a single terminal, and they keep running when you detach.
 
 [https://github.com/tmux/tmux/wiki](https://github.com/tmux/tmux/wiki)  
 
@@ -386,7 +381,7 @@ bind-key P setw synchronize-panes on
 bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf reloaded"
 ```
 
-We discussed `synchronized panes` earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (remote SSH sessions) receive the same keystrokes. This is very useful when you want to run the same commands on many servers at once, such as navigating to a common directory, restarting a couple of services at once, or running tools like `htop` to quickly monitor system resources.
+We discussed `synchronized panes` earlier. I use it all the time in clustered SSH sessions. When enabled, all panes (remote SSH sessions) receive the same keystrokes. Very useful for running the same commands on many servers at once (e.g. restarting a service everywhere or running `htop` on all of them).
 
 The last one reloads my Tmux configuration on the fly.
 

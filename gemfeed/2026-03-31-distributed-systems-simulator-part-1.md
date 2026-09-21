@@ -2,9 +2,9 @@
 
 > Published at 2026-03-31T00:00:00+03:00
 
-This is the first blog post of the Distributed Systems Simulator series, written for the recent v1.1.0 release. It explores the Java-based Distributed Systems Simulator program I created as my diploma thesis at the Aachen University of Applied Sciences (August 2008). The simulator offers both built-in implementations of common distributed systems algorithms and an extensible framework that allows researchers and practitioners to implement and test their own custom protocols within the simulation environment.
+This is the first blog post of the Distributed Systems Simulator series, written for the recent v1.1.0 release. It explores the Java-based Distributed Systems Simulator program I created as my diploma thesis at the Aachen University of Applied Sciences (August 2008). It comes with a bunch of built-in distributed systems protocols, and you can also implement your own.
 
-[ds-sim on Codeberg (modernized, English-translated version)](https://github.com/snonux/ds-sim)  
+[ds-sim on GitHub (modernized, English-translated version)](https://github.com/snonux/ds-sim)  
 
 These are all the posts of this series:
 
@@ -39,7 +39,7 @@ These are all the posts of this series:
 
 ## Motivation
 
-Distributed systems are complex—interactions between nodes, network partitions, failure scenarios are hard to debug in production. A simulator lets you experiment with architectures, observe how systems behave under failure, and learn consensus algorithms, replication strategies, and fault tolerance in a controlled, repeatable environment. No operational overhead, no real infrastructure—just focused exploration of system design.
+Distributed systems are hard to debug in production: many nodes, network partitions, random failures. A simulator lets you watch how a protocol behaves under failure in a controlled and repeatable way, with no real infrastructure needed.
 
 In the literature, one can find many different definitions of a distributed system. Many of these definitions differ from each other, making it difficult to find a single definition that stands alone as the correct one. Andrew Tanenbaum and Maarten van Steen chose the following loose characterization for describing a distributed system:
 
@@ -51,7 +51,7 @@ This thesis aims to make distributed systems easier to understand from a differe
 
 To achieve this, I developed a simulator, particularly for teaching and learning at the University of Applied Sciences Aachen. Protocols from distributed systems with their most important influencing factors can be replicated through simulations. At the same time, there's room for personal experiments—no restriction to a fixed number of protocols. Users can design their own.
 
-The original simulator (VS-Sim) was written in Java 6 in 2008 with a German-language UI. In 2025, I revamped and modernized it as ds-sim: translated the entire codebase and UI from German to English, migrated the build system from hand-rolled Ant scripts to Maven, upgraded from Java 6 to Java 21 (adopting sealed class hierarchies, record types, formatted strings, pattern matching), introduced a proper exception hierarchy and consistent error handling, added comprehensive Javadoc documentation, implemented a headless testing framework (208 unit tests covering core components, the event system, and all protocol implementations), reorganized the project structure to follow standard Maven conventions, and added architecture documentation. Total: 199 files, over 15,000 lines of new code. Back in 2008, I wrote every line by hand in Vim. For the 2025 modernization, Claude Code did most of the heavy lifting—translation, refactoring, test generation, documentation. Times have changed.
+The original simulator (VS-Sim) was written in Java 6 in 2008 with a German-language UI. In 2025, I modernized it as ds-sim: translated the code and UI from German to English, moved from Ant to Maven, upgraded from Java 6 to Java 21 (sealed classes, records, pattern matching), cleaned up error handling, added Javadoc, and wrote 208 unit tests with a headless test setup. Total: 199 files, over 15,000 lines of new code. Back in 2008, I wrote every line by hand in Vim. For the 2025 modernization, Claude Code did most of the heavy lifting—translation, refactoring, test generation, documentation. Times have changed.
 
 ## Installation
 
@@ -85,7 +85,7 @@ After building, the following artifacts are available in the `target/` directory
 
 The project also includes 208 unit tests that can be run with `mvn test`. Example simulation files for all built-in protocols are included in the `saved-simulations/` directory.
 
-[ds-sim source code on Codeberg](https://github.com/snonux/ds-sim)  
+[ds-sim source code on GitHub](https://github.com/snonux/ds-sim)  
 
 ## Fundamentals
 

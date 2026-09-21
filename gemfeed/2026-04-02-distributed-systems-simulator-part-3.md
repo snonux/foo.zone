@@ -4,7 +4,7 @@
 
 This is the third and final blog post of the Distributed Systems Simulator series. This part covers advanced simulation examples, the Raft consensus protocol, and the extensible Protocol API.
 
-[ds-sim on Codeberg (modernized, English-translated version)](https://github.com/snonux/ds-sim)  
+[ds-sim on GitHub (modernized, English-translated version)](https://github.com/snonux/ds-sim)  
 
 These are all the posts of this series:
 
@@ -94,27 +94,19 @@ At `3500ms`, `P1` crashes. The followers still process the last in-flight messag
 009395ms: PID: 2; ... Leader elected by majority vote: process 2 (term 1)
 ```
 
-That transition is followed immediately by new heartbeats and a new `appendEntry`, which is exactly what you want to see in a Raft simulation: leadership is not just declared, it is exercised.
+That transition is followed immediately by new heartbeats and a new `appendEntry`, so the new leader starts doing leader work right away.
 
-At `12002ms`, the old leader `P1` recovers. Importantly, it does not try to reclaim control. Instead, it receives heartbeats from `P2` and answers with `heartbeatAck` messages, rejoining the cluster as a follower. That is one of the most useful teaching moments in the log, because it makes the term-based leadership model concrete: the recovered node does not become leader again just because it used to be one.
+At `12002ms`, the old leader `P1` recovers. It doesn't try to take the leadership back. It receives heartbeats from `P2`, answers with `heartbeatAck` messages, and rejoins as a follower. This is the term-based leadership model in action: a recovered node doesn't become leader again just because it used to be one.
 
-At `20000ms`, `P3` crashes. The cluster continues running with `P2` as leader and `P1` as follower for the rest of the 60-second simulation. The log remains dominated by periodic heartbeats from `P2` and acknowledgments from `P1`, showing that the system stays stable even after a second failure.
+At `20000ms`, `P3` crashes. The cluster continues running with `P2` as leader and `P1` as follower for the rest of the 60-second simulation. From then on the log is just heartbeats from `P2` and acknowledgments from `P1`.
 
-This single scenario demonstrates several core Raft properties in one replay:
+So one small run covers startup, replication, leader failure, reelection, reintegration of the old leader, and a follower crash.
 
-* Stable startup leadership
-* Heartbeats and follower acknowledgments
-* Log replication
-* Leader failure detection
-* Majority-based reelection
-* Safe reintegration of a recovered former leader
-* Continued service after a later follower crash
-
-It is also a good example of why a simulator is useful for distributed systems. In a real production system, reconstructing this sort of sequence would require stitching together logs from multiple nodes. Here, the message flow, the crashes, the recoveries, and the Lamport/vector timestamps are all visible in one place.
+In production you'd have to stitch this sequence together from the logs of several nodes. Here it's all in one place.
 
 ## Protocol API
 
-The simulator was designed from the ground up to be extensible. Users can implement their own protocols in Java by extending the `VSAbstractProtocol` base class. Each protocol has its own class in the `protocols.implementations` package.
+You can implement your own protocols in Java by extending the `VSAbstractProtocol` base class. Each protocol has its own class in the `protocols.implementations` package.
 
 ### Class Hierarchy
 
@@ -249,8 +241,8 @@ The modernized successor ds-sim (version 1.1.0) has been updated to Java 21 and 
 * 208 unit tests
 * 269 configurable settings
 
-[ds-sim source code on Codeberg](https://github.com/snonux/ds-sim)  
-[vs-sim source code on Codeberg (original German version, 2008)](https://github.com/snonux/vs-sim)  
+[ds-sim source code on GitHub](https://github.com/snonux/ds-sim)  
+[vs-sim source code on GitHub (original German version, 2008)](https://github.com/snonux/vs-sim)  
 
 Other related posts are:
 

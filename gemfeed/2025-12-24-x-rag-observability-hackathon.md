@@ -2,7 +2,7 @@
 
 > Published at 2025-12-24T09:45:29+02:00
 
-This post describes my hackathon efforts adding observability to X-RAG, the extensible Retrieval-Augmented Generation (RAG) platform built by my brother Florian. I made time over the weekend to join his 3-day hackathon (attending 2 days) with the goal of instrumenting his existing distributed system with observability. What started as "let's add some metrics" turned into a comprehensive implementation of the three pillars of observability: tracing, metrics, and logs.
+This post describes my hackathon efforts adding observability to X-RAG, the extensible Retrieval-Augmented Generation (RAG) platform built by my brother Florian. I made time over the weekend to join his 3-day hackathon (attending 2 days) with the goal of instrumenting his existing distributed system with observability. What started as "let's add some metrics" ended up covering tracing, metrics, and logs.
 
 [X-RAG source code on GitHub](https://github.com/florianbuetow/x-rag)  
 
@@ -48,7 +48,7 @@ This post describes my hackathon efforts adding observability to X-RAG, the exte
 
 ## What is X-RAG?
 
-X-RAG is the extensible RAG (Retrieval-Augmented Generation) platform running on Kubernetes. The idea behind RAG is simple: instead of asking an LLM to answer questions from its training data alone, you first retrieve relevant documents from your own knowledge base, then feed those documents to the LLM as context. The LLM synthesises an answer grounded in your actual content—reducing hallucinations and enabling answers about private or recent information the model was never trained on.
+X-RAG is the extensible RAG (Retrieval-Augmented Generation) platform running on Kubernetes. The idea behind RAG is simple: instead of asking an LLM to answer questions from its training data alone, you first retrieve relevant documents from your own knowledge base, then feed those documents to the LLM as context. The LLM then answers based on your own content. That reduces hallucinations and lets it answer questions about private or recent stuff it was never trained on.
 
 X-RAG handles the full pipeline: ingest documents, chunk them into searchable pieces, generate vector embeddings, store them in a vector database, and at query time, retrieve relevant chunks and pass them to an LLM for answer generation. The system supports both local LLMs (Florian runs his on a beefy desktop) and cloud APIs like OpenAI. I configured an OpenAI API key since my laptop's CPU and GPU aren't fast enough for decent local inference.
 
@@ -122,9 +122,9 @@ The `kindest/node` image contains everything needed: kubelet, containerd, CNI pl
 └─────────────────────────────────────────────────────────────────────────┘
 ```
 
-Why Kind? It gives you a real Kubernetes environment—the same manifests deploy to production clouds unchanged. No minikube quirks, no Docker Compose translation layer. Just Kubernetes. I already have a k3s cluster running at home, but Kind made collaboration easier—everyone working on X-RAG gets the exact same setup by cloning the repo and running `make cluster-start`.
+Why Kind? It's a real Kubernetes, so the same manifests deploy to production unchanged. I already have a k3s cluster at home, but Kind made collaboration easier: everyone clones the repo, runs `make cluster-start`, and has the same setup.
 
-Florian developed X-RAG on macOS, but it worked seamlessly on my Linux laptop. The only difference was Docker's resource allocation: on macOS you configure limits in Docker Desktop, on Linux it uses host resources directly. That's because under macOS the Linux Docker containers run on an emulation layer as macOS is not Linux.
+Florian developed X-RAG on macOS, but it ran fine on my Linux laptop too. The only difference was Docker's resource allocation: on macOS you configure limits in Docker Desktop, on Linux it uses host resources directly. That's because under macOS the Linux Docker containers run on an emulation layer as macOS is not Linux.
 
 My hardware: a ThinkPad X1 Carbon Gen 9 with an 11th Gen Intel Core i7-1185G7 (4 cores, 8 threads at 3.00GHz) and 32GB RAM (running Fedora Linux). During the hackathon, memory usage peaked around 15GB—comfortable headroom. CPU was the bottleneck; with ~38 pods running across all namespaces (rag-system, monitoring, kube-system, etc.), plus Discord for the remote video call and Tidal streaming hi-res music, things got tight. When rebuilding Docker images or restarting the cluster, Discord video and audio would stutter—my fellow hackers probably wondered why I kept freezing mid-sentence. A beefier CPU would have meant less waiting and smoother calls, but it was manageable.
 
@@ -132,7 +132,7 @@ My hardware: a ThinkPad X1 Carbon Gen 9 with an 11th Gen Intel Core i7-1185G7 (4
 
 When I joined the hackathon, Florian's X-RAG was functional but opaque. With five services communicating via gRPC, Kafka, and HTTP, debugging was cumbersome. When a search request take 5 seconds, there was no visibility into where the time was being spent. Was it the embedding generation? The vector search? The LLM synthesis? Nobody would be able to figure it out quickly.
 
-Distributed systems are inherently opaque. Each service logs its own view of the world, but correlating events across service boundaries is archaeology. Grepping through logs on many pods, trying to mentally reconstruct what happened—not fun. This was the perfect hackathon project: Explore this Observability Stack in greater depth.
+Each service only logs its own view of the world. Correlating events across services means grepping logs on many pods and reconstructing what happened in your head. Not fun. So this was a good hackathon project for me: get to know this observability stack in depth.
 
 ## The observability stack
 
@@ -154,13 +154,13 @@ tempo-55df7dbcdd-t8fg9                1/1     Running
 
 Each component has a specific role:
 
-* `Grafana Alloy`: The unified collector. Receives OTLP from applications, scrapes Prometheus endpoints, tails log files. Think of it as the central nervous system.
-* `Prometheus`: Time-series database for metrics. Stores counters, gauges, and histograms with 15-day retention.
-* `Tempo`: Trace storage. Receives spans via OTLP, correlates them by trace ID, enables TraceQL queries.
-* `Loki`: Log aggregation. Indexes labels (namespace, pod, container), stores log chunks, enables LogQL queries.
-* `Grafana`: The unified UI. Queries all three backends, correlates signals, displays dashboards.
-* `kube-state-metrics`: Exposes Kubernetes object metrics (pod status, deployments, resource requests).
-* `node-exporter`: Exposes host-level metrics (CPU, memory, disk, network) from each Kubernetes node.
+* Grafana Alloy: the collector. Receives OTLP from the apps, scrapes Prometheus endpoints, tails log files.
+* Prometheus: Time-series database for metrics. Stores counters, gauges, and histograms with 15-day retention.
+* Tempo: Trace storage. Receives spans via OTLP, correlates them by trace ID, enables TraceQL queries.
+* Loki: Log aggregation. Indexes labels (namespace, pod, container), stores log chunks, enables LogQL queries.
+* Grafana: The unified UI. Queries all three backends, correlates signals, displays dashboards.
+* kube-state-metrics: Exposes Kubernetes object metrics (pod status, deployments, resource requests).
+* node-exporter: Exposes host-level metrics (CPU, memory, disk, network) from each Kubernetes node.
 
 Everything is accessible via port-forwards:
 
@@ -171,18 +171,18 @@ Everything is accessible via port-forwards:
 
 ## Grafana Alloy: the unified collector
 
-Before diving into the individual signals, I want to highlight Grafana Alloy—the component that ties everything together. Alloy is Grafana's vendor-neutral OpenTelemetry Collector distribution, and it became the backbone of the observability stack.
+Before going into the individual signals, a word on Grafana Alloy, since everything goes through it. Alloy is Grafana's OpenTelemetry Collector distribution.
 
 [Grafana Alloy documentation](https://grafana.com/docs/alloy/latest/)  
 
 Why use a centralised collector instead of having each service push directly to backends?
 
-* `Decoupling`: Applications don't need to know about Prometheus, Tempo, or Loki. They speak OTLP, and Alloy handles the translation.
-* `Unified timestamps`: All telemetry flows through one system, making correlation in Grafana more reliable.
-* `Processing pipeline`: Batch data before sending, filter noisy metrics, enrich with labels—all in one place.
-* `Backend flexibility`: Switch from Tempo to Jaeger without changing application code.
+* Decoupling: Applications don't need to know about Prometheus, Tempo, or Loki. They speak OTLP, and Alloy handles the translation.
+* Unified timestamps: All telemetry flows through one system, making correlation in Grafana more reliable.
+* Processing pipeline: Batch data before sending, filter noisy metrics, enrich with labels—all in one place.
+* Backend flexibility: Switch from Tempo to Jaeger without changing application code.
 
-Alloy uses a configuration language called River, which feels similar to Terraform's HCL—declarative blocks with attributes. If you've written Terraform, River will look familiar. The full Alloy configuration runs to over 1400 lines with comments explaining each section. It handles OTLP receiving, batch processing, Prometheus export, Tempo export, Kubernetes metrics scraping, infrastructure metrics, and pod log collection. All three signals—metrics, traces, logs—flow through this single component, making Alloy the central nervous system of the observability stack.
+Alloy uses a configuration language called River, which feels similar to Terraform's HCL—declarative blocks with attributes. If you've written Terraform, River will look familiar. The full Alloy configuration runs to over 1400 lines with comments explaining each section. It handles OTLP receiving, batch processing, Prometheus export, Tempo export, Kubernetes metrics scraping, infrastructure metrics, and pod log collection.
 
 In the following sections, I'll cover each observability pillar and show the relevant Alloy configuration for each.
 
@@ -258,7 +258,7 @@ Initially, I used Prometheus scraping—each service exposed a /metrics endpoint
 
 ### Alloy configuration for application metrics
 
-The breakthrough came with Grafana Alloy as an OpenTelemetry collector. Services now push metrics via OTLP (OpenTelemetry Protocol), and Alloy converts them to Prometheus format:
+So I switched to Grafana Alloy as an OpenTelemetry collector. Services now push metrics via OTLP (OpenTelemetry Protocol), and Alloy converts them to Prometheus format:
 
 ```
 ┌─────────────┐  ┌─────────────┐  ┌─────────────┐  ┌─────────────┐
@@ -310,7 +310,7 @@ Instead of sending each metric individually, Alloy accumulates up to 1000 metric
 
 Alloy also pulls metrics from Kubernetes itself—kubelet resource metrics, cAdvisor container metrics, and kube-state-metrics for cluster state.
 
-Why three separate sources? It does feel fragmented, but each serves a distinct purpose. `kubelet` exposes resource metrics about pod CPU and memory usage from its own bookkeeping—lightweight summaries of what's running on each node. `cAdvisor` (Container Advisor) runs inside kubelet and provides detailed container-level metrics: CPU throttling, memory working sets, filesystem I/O, network bytes. These are the raw runtime stats from containerd. `kube-state-metrics` is different—it doesn't measure resource usage at all. Instead, it queries the Kubernetes API and exposes the *desired state*: how many replicas a Deployment wants, whether a Pod is pending or running, what resource requests and limits are configured. You need all three because "container used 500MB" (cAdvisor), "pod requested 1GB" (kube-state-metrics), and "node has 4GB available" (kubelet) are complementary views. The fragmentation is a consequence of Kubernetes' architecture—no single component has the complete picture.
+Why three separate sources? It does feel fragmented, but each serves a distinct purpose. `kubelet` exposes resource metrics about pod CPU and memory usage from its own bookkeeping—lightweight summaries of what's running on each node. `cAdvisor` (Container Advisor) runs inside kubelet and provides detailed container-level metrics: CPU throttling, memory working sets, filesystem I/O, network bytes. These are the raw runtime stats from containerd. `kube-state-metrics` is different—it doesn't measure resource usage at all. Instead, it queries the Kubernetes API and exposes the desired state: how many replicas a Deployment wants, whether a Pod is pending or running, what resource requests and limits are configured. You need all three because "container used 500MB" (cAdvisor), "pod requested 1GB" (kube-state-metrics), and "node has 4GB available" (kubelet) are complementary views. The fragmentation is a consequence of Kubernetes' architecture—no single component has the complete picture.
 
 None of these components speak OpenTelemetry—they all expose Prometheus-format metrics via HTTP endpoints. That's why Alloy uses `prometheus.scrape` instead of receiving OTLP pushes. Alloy handles both worlds: OTLP from our applications, Prometheus scraping for infrastructure.
 
@@ -470,7 +470,7 @@ This tree structure answers the critical question: "What called what?" When I se
 
 ### How trace context propagates
 
-The magic that links spans across services is `trace context propagation`. When Service A calls Service B, it must pass along the trace ID and its own span ID (which becomes the parent). OpenTelemetry uses the W3C `traceparent` header:
+What links spans across services is trace context propagation. When Service A calls Service B, it must pass along the trace ID and its own span ID (which becomes the parent). OpenTelemetry uses the W3C `traceparent` header:
 
 ```
 traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01
@@ -507,7 +507,7 @@ with tracer.start_as_current_span("llm.rag_completion") as span:
 
 `Manual spans` fill that gap. By wrapping specific operations (like `llm.rag_completion` or `vector_search.query`), you get visibility into your application's unique behaviour. You can add custom attributes (`llm.model`, `query.top_k`, `cache.hit`) that make traces actually useful for debugging. The downside is maintenance: manual spans are code you write and maintain, and you need to decide where instrumentation adds value versus where it just adds noise. In practice, I found the right balance was auto-instrumentation for framework boundaries (HTTP, gRPC) plus manual spans for the 5-10 operations that actually matter for understanding performance.
 
-The magic is trace context propagation. When the Search UI calls the Search Service via gRPC, the trace ID travels in metadata headers:
+It works through trace context propagation. When the Search UI calls the Search Service via gRPC, the trace ID travels in metadata headers:
 
 ```
 Metadata: [
@@ -558,7 +558,7 @@ In Tempo's UI, I can finally see exactly where time is spent. That 5-second quer
 
 ## Async ingestion trace walkthrough
 
-One of the most powerful aspects of distributed tracing is following requests across async boundaries like message queues. The document ingestion pipeline flows through Kafka, creating spans that are linked even though they execute in different processes at different times.
+Tracing also works across async boundaries like message queues, which I found neat. The document ingestion pipeline flows through Kafka, creating spans that are linked even though they execute in different processes at different times.
 
 ### Step 1: Ingest a document
 
@@ -637,7 +637,7 @@ indexer       | db.insert                | 1038ms  ← Store in Weaviate
 
 The total async processing takes ~1.8 seconds, but the user sees a 16ms response. Without tracing, debugging "why isn't my document showing up in search results?" would require correlating logs from three services manually.
 
-`Key insight`: The trace context propagates through Kafka message headers, allowing the indexer's spans to link back to the original ingestion request. This is configured via OpenTelemetry's Kafka instrumentation.
+The trace context travels in the Kafka message headers (OpenTelemetry's Kafka instrumentation does that), so the indexer's spans link back to the original ingest request.
 
 ### Viewing traces in Grafana
 
@@ -770,7 +770,7 @@ Follow the same steps as above, but use the search trace ID: `9df981cac91857b228
 
 ## Correlating the three signals
 
-The real power comes from correlating traces, metrics, and logs. When an alert fires for high error rate, I follow this workflow:
+The nice part is correlating traces, metrics, and logs. When an alert fires for high error rate, I follow this workflow:
 
 1. Metrics: Prometheus shows error spike started at 10:23:00
 2. Traces: Query Tempo for traces with status=error around that time
@@ -786,14 +786,12 @@ Prometheus exemplars link specific metric samples to trace IDs, so I can click d
 
 During the hackathon, I also created six pre-built Grafana dashboards that are automatically provisioned when the monitoring stack starts:
 
-| Dashboard | Description |
-|-----------|-------------|
-| **X-RAG Overview** | The main dashboard with 22 panels covering request rates, latencies, error rates, and service health across all X-RAG components |
-| **OpenTelemetry HTTP Metrics** | HTTP request/response metrics from OpenTelemetry-instrumented services—request rates, latency percentiles, and status code breakdowns |
-| **Pod System Metrics** | Kubernetes pod resource utilisation: CPU usage, memory consumption, network I/O, disk I/O, and pod state from kube-state-metrics |
-| **Redis** | Cache performance: memory usage, hit/miss rates, commands per second, connected clients, and memory fragmentation |
-| **Kafka** | Message queue health: consumer lag (critical for indexer monitoring), broker status, topic partitions, and throughput |
-| **MinIO** | Object storage metrics: S3 request rates, error counts, traffic volume, bucket sizes, and disk usage |
+* X-RAG Overview: 22 panels with request rates, latencies, error rates, and service health across all X-RAG components
+* OpenTelemetry HTTP Metrics: request rates, latency percentiles, and status codes from the OpenTelemetry-instrumented services
+* Pod System Metrics: CPU, memory, network I/O, disk I/O, and pod state from kube-state-metrics
+* Redis: memory usage, hit/miss rates, commands per second, connected clients, memory fragmentation
+* Kafka: consumer lag (the important one for the indexer), broker status, topic partitions, throughput
+* MinIO: S3 request rates, error counts, traffic, bucket sizes, disk usage
 
 All dashboards are stored as JSON files in `infra/k8s/monitoring/grafana-dashboards/` and deployed via ConfigMaps, so they survive pod restarts and cluster recreations.
 
@@ -802,7 +800,7 @@ All dashboards are stored as JSON files in `infra/k8s/monitoring/grafana-dashboa
 
 ## Results: two days well spent
 
-What did two days of hackathon work achieve? The system went from flying blind to fully instrumented:
+After two days:
 
 * All three pillars implemented: logs (Loki), metrics (Prometheus), traces (Tempo)
 * Unified collection via Grafana Alloy
@@ -812,7 +810,7 @@ What did two days of hackathon work achieve? The system went from flying blind t
 
 The biggest insight from testing? The embedding service wasn't the bottleneck I assumed. Traces revealed that LLM synthesis dominated latency, not embedding generation. Without tracing, optimisation efforts would have targeted the wrong component.
 
-Beyond the technical wins, I had a lot of fun. The hackathon brought together people working on different projects, and I got to know some really nice folks during the sessions themselves. There's something energising about being in a (virtual) room with other people all heads-down on their own challenges—even if you're not collaborating directly, the shared focus is motivating.
+Apart from the tech, I had a lot of fun. People worked on all sorts of projects, and I got to know some nice folks during the sessions. Even in a virtual room, everyone heads-down on their own thing is motivating.
 
 ## SLIs, SLOs and SLAs
 
@@ -830,7 +828,7 @@ For X-RAG specifically, potential SLOs might include:
 
 SLAs (Service Level Agreements) are often confused with SLOs, but they're different. An SLA is a contractual commitment to customers—a legally binding promise with consequences (refunds, credits, penalties) if you fail to meet it. SLOs are internal engineering targets; SLAs are external business promises. Typically, SLAs are less strict than SLOs: if your internal target is 99.9% availability (SLO), your customer contract might promise 99.5% (SLA), giving you a buffer before you owe anyone money.
 
-But then again, X-RAG is a proof-of-concept, a prototype, a learning system—there are no real customers to disappoint. SLOs would become essential if this ever served actual users, and SLAs would follow once there's a business relationship to protect.
+But then again, X-RAG is a prototype. There are no customers to disappoint. SLOs would become essential if this ever served actual users, and SLAs would follow once there's a business relationship to protect.
 
 ## Using Amp for AI-assisted development
 
@@ -852,9 +850,9 @@ I only ran out of the 200k token context window once, during a debugging session
 
 Amp automatically selects the best model for the task at hand. Based on the response speed and Sourcegraph's recent announcements, I believe it was using Claude Opus 4.5 for most of my coding and infrastructure work. The quality was excellent—it understood Python, Kubernetes, OpenTelemetry, and Grafana tooling without much hand-holding.
 
-Let me be clear: without the LLM, I'd never have managed to write all these configuration files by hand in two days. The Alloy config alone is 1400+ lines. But I also reviewed and verified every change manually, verified it made sense, and understood what was being deployed. This wasn't vibe-coding—the whole point of the hackathon was to learn. I already knew Grafana and Prometheus from previous work, but OpenTelemetry, Alloy, Tempo, Loki and the X-RAG system overall were all pretty new to me. By reviewing each generated config and understanding why it was structured that way, I actually learned the tools rather than just deploying magic incantations.
+Without the LLM, I'd never have written all these config files by hand in two days. The Alloy config alone is 1400+ lines. But I also reviewed and verified every change manually, verified it made sense, and understood what was being deployed. This wasn't vibe-coding—the whole point of the hackathon was to learn. I already knew Grafana and Prometheus from previous work, but OpenTelemetry, Alloy, Tempo, Loki and the X-RAG system overall were all pretty new to me. By reviewing each generated config and understanding why it was structured that way, I learned the tools instead of just deploying whatever it spat out.
 
-Cost-wise, I spent around 20 USD on Amp credits over the two-day hackathon. For the amount of code generated, configs reviewed, and debugging assistance—that's remarkably affordable.
+Cost-wise, I spent around 20 USD on Amp credits over the two-day hackathon. That's cheap for what I got out of it.
 
 ## Other changes along the way
 
@@ -870,17 +868,15 @@ Looking at the git history, I made 25 commits during the hackathon. Beyond the m
 
 ## Lessons learned
 
-* Start with metrics, but don't stop there—they tell you *what*, not *why*
-* Trace context propagation is the key to distributed debugging
-* Grafana Alloy as a unified collector simplifies the pipeline
-* Infrastructure metrics matter—your app is only as fast as your data layer
-* The three pillars work together; none is sufficient alone
+* Metrics tell you what is slow, traces tell you why. You need both.
+* Alloy as the single collector kept the pipeline simple.
+* Don't forget the data layer. The Kafka, Redis, and MinIO metrics were as useful as the app metrics.
 
 All manifests and observability code live in Florian's repository:
 
 [X-RAG on GitHub (source code, K8s manifests, observability configs)](https://github.com/florianbuetow/x-rag)  
 
-The best part? Everything I learned during this hackathon—OpenTelemetry instrumentation, Grafana Alloy configuration, trace context propagation, PromQL queries—I can immediately apply at work as we are shifting to that new observability stack and I am going to have a few meetings talking with developers how and what they need to implement for application instrumentalization. Observability patterns are universal, and hands-on experience with a real distributed system beats reading documentation any day.
+Good timing, too: at work we are moving to the same observability stack, and I have a few meetings coming up with developers about what they need to instrument in their applications. So all of this (OpenTelemetry, Alloy, trace propagation, PromQL) is directly useful there.
 
 E-Mail your comments to paul@nospam.buetow.org
 

@@ -69,23 +69,23 @@ animation of sorts.
 * [⇢ ⇢ ⇢ Command-line entry points](#command-line-entry-points)
 * [⇢ ⇢ Packages as real blocks](#packages-as-real-blocks)
 * [⇢ ⇢ ⇢ Scoped packages](#scoped-packages)
-* [⇢ ⇢ Postfix dereferencing keeps data structures tidy](#postfix-dereferencing-keeps-data-structures-tidy)
+* [⇢ ⇢ Postfix dereferencing](#postfix-dereferencing)
 * [⇢ ⇢ ⇢ Clear dereferencing](#clear-dereferencing)
-* [⇢ ⇢ `say` is the default voice now](#say-is-the-default-voice-now)
-* [⇢ ⇢ Lexical subs promote local reasoning](#lexical-subs-promote-local-reasoning)
-* [⇢ ⇢ Reference aliasing makes intent explicit](#reference-aliasing-makes-intent-explicit)
-* [⇢ ⇢ Persistent state without globals](#persistent-state-without-globals)
+* [⇢ ⇢ `say`](#say)
+* [⇢ ⇢ Lexical subs](#lexical-subs)
+* [⇢ ⇢ Reference aliasing](#reference-aliasing)
+* [⇢ ⇢ State variables](#state-variables)
 * [⇢ ⇢ ⇢ Rate limiting state](#rate-limiting-state)
 * [⇢ ⇢ ⇢ De-duplicated logging](#de-duplicated-logging)
 * [⇢ ⇢ Subroutine signatures](#subroutine-signatures)
-* [⇢ ⇢ Defined-or assignment for defaults without boilerplate](#defined-or-assignment-for-defaults-without-boilerplate)
+* [⇢ ⇢ Defined-or assignment](#defined-or-assignment)
 * [⇢ ⇢ Cleanup with `defer`](#cleanup-with-defer)
 * [⇢ ⇢ Builtins and booleans](#builtins-and-booleans)
 * [⇢ ⇢ Conclusion](#conclusion)
 
 ## Motivation
 
-I've been running `foo.zone` for a while now, but I've never looked into visitor statistics or analytics. I value privacy—not just my own, but also the privacy of others (the visitors of this site) — so I hesitated to use any off-the-shelf analytics plugins. All I wanted to collect were:
+I've been running `foo.zone` for a while now, but I've never looked into visitor statistics or analytics. I value privacy, mine and that of the visitors of this site, so I didn't want any off-the-shelf analytics plugin. All I wanted to collect were:
 
 * Which blog posts had the most (unique) visitors
 * Exclude, if possible, any bots and scrapers from the stats
@@ -114,7 +114,7 @@ Foostats is simply a log file analyser, which analyses the OpenBSD httpd and rel
 
 ### Log pipeline
 
-A CRON job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at `https://stats.foo.zone` and `gemini://stats.foo.zone`. The dashboards are humble because traffic on my sites is still light, yet the trends are interesting for spotting patterns. The script is opinionated (I am repeating myself here, I know), and I will probably be the only one ever using it for my own sites. However, the code demonstrates how Perl's newer features help keep a small script like this exciting and fun!
+A CRON job starts Foostats, reads OpenBSD httpd and relayd access logs, and produces the numbers published at `https://stats.foo.zone` and `gemini://stats.foo.zone`. The numbers are small, traffic on my sites is light, but the trends are still interesting. The script is opinionated (I am repeating myself here, I know), and I will probably be the only one ever using it for my own sites. But the code shows off a few of the newer Perl features, and that's what this post is about.
 
 [Foostats (HTTP)](https://stats.foo.zone)  
 [Foostats (Gemini)](gemini://stats.foo.zone)  
@@ -126,7 +126,7 @@ fishfinger$ grep foostats /etc/daily.local
 perl /usr/local/bin/foostats.pl --parse-logs --replicate --report
 ```
 
-Internally, `Foostats::Logreader` parses each line of the log files `/var/log/daemon*` and `/var/www/logs/access_log*`, turns timestamps into `YYYYMMDD/HHMMSS` values, hashes IP addresses with SHA3 (for anonymization), and hands a normalized event to `Foostats::Filter`. The filter compares the URI against entries in `fooodds.txt`, tracks how many times an IP address requests within the exact second, and drops anything suspicious (e.g., from web crawlers or malicious attackers). Valid events reach `Foostats::Aggregator`, which counts requests per protocol, records unique visitors for the Gemtext and Atom feeds, and remembers page-level IP sets. `Foostats::FileOutputter` writes the result as gzipped JSON files—one per day and per protocol—with IPv4/IPv6 splits, filtered counters, feed readership, and hashes for long URLs.
+Internally, `Foostats::Logreader` parses each line of the log files `/var/log/daemon*` and `/var/www/logs/access_log*`, turns timestamps into `YYYYMMDD/HHMMSS` values, hashes IP addresses with SHA3 (for anonymization), and hands a normalized event to `Foostats::Filter`. The filter compares the URI against entries in `fooodds.txt`, tracks how many times an IP address requests within the exact second, and drops anything suspicious (e.g., from web crawlers or malicious attackers). Valid events reach `Foostats::Aggregator`, which counts requests per protocol, records unique visitors for the Gemtext and Atom feeds, and remembers page-level IP sets. `Foostats::FileOutputter` writes the result as gzipped JSON files, one per day and per protocol, with IPv4/IPv6 splits, filtered counters, feed readership, and hashes for long URLs.
 
 ### `fooodds.txt`
 
@@ -162,9 +162,9 @@ These are the 30-day reports generated (already linked earlier in this post, but
 
 `foostats_main` is the command entry point. `--parse-logs` refreshes the gzipped files, `--replicate` runs the cross-host sync, and `--report` rebuilds the HTML and Gemini report pages. `--all` performs everything in one go. Defaults point to `/var/www/htdocs/buetow.org/self/foostats` for data, `/var/gemini/stats.foo.zone` for Gemtext output, and `/var/www/htdocs/gemtexter/stats.foo.zone` for HTML output. Replication always forces the three most recent days' worth of data across HTTPS and leaves older files untouched to save bandwidth.
 
-The complete source lives on Codeberg here:
+The complete source lives on GitHub here:
 
-[Foostats on Codeberg](https://github.com/snonux/foostats)  
+[Foostats on GitHub](https://github.com/snonux/foostats)  
 
 Now let's go to some new Perl features:
 
@@ -206,7 +206,7 @@ package bar {
 }
 ```
 
-## Postfix dereferencing keeps data structures tidy
+## Postfix dereferencing
 
 ### Clear dereferencing
 
@@ -234,9 +234,9 @@ You see that this feature becomes increasingly useful with nested data structure
 print for keys $hash->{stats}->%*;
 ```
 
-Loops over like `$stats->{page_ips}->{urls}->%*` or `$merge{$key}->{$_}->%*` show which level of the structure is in play. The merger in Foostats updates host and URL statistics without building temporary arrays, and the reporter code mirrors the layout of the final tables. Before postfix dereferencing, the same code relied on braces within braces and was harder to read.
+Foostats is full of loops over things like `$stats->{page_ips}->{urls}->%*`. Before postfix dereferencing, that was braces within braces and much harder to read.
 
-## `say` is the default voice now
+## `say`
 
 `say` became the default once the script switched to `use v5.38;`. It adds a newline to every message printed, comparable to Ruby's `puts`, making log messages like "Processing $path" or "Writing report to $report_path" cleaner:
 
@@ -247,7 +247,7 @@ print "Hello, world!\n";    # old way
 say "Hello, world!";        # new way
 ```
 
-## Lexical subs promote local reasoning
+## Lexical subs
 
 Lexical subroutines keep helpers close to the code that needs them. In `Foostats::Logreader::parse_web_logs`, functions such as `my sub parse_date` and `my sub open_file` live only inside that scope.
 
@@ -268,7 +268,7 @@ my $cleaned = process_lines(@raw);
 say for @$cleaned; # prints "foo", "bar", "baz"
 ```
 
-## Reference aliasing makes intent explicit
+## Reference aliasing
 
 Reference aliasing can be enabled with `use feature qw(refaliasing)` and helps communicate intent more clearly (if you remember the Perl syntax, of course—otherwise, it can look rather cryptic). The filter starts with `\my $uri_path = \$event->{uri_path}` so any later modification touches the original event. This is an example with ref aliasing in action:
 
@@ -282,9 +282,9 @@ $foo = 99;
 print $hash->{foo}; # prints 99
 ```
 
-The aggregator in Foostats aliases `$self->{stats}{$date_key}` before updating counters, so the structure remains intact. Combined with subroutine signatures, this makes it obvious when a piece of data is shared instead of copied, preventing silent bugs. This enables having shorter names for long nested data structures.
+The aggregator in Foostats aliases `$self->{stats}{$date_key}` before updating counters, so the structure remains intact. It also gives you a short name for a long nested data structure.
 
-## Persistent state without globals
+## State variables
 
 A Perl state variable is declared with `state $var` and retains its value between calls to the enclosing subroutine. Foostats uses that for rate limiting and de-duplicated logging.
 
@@ -310,7 +310,7 @@ In Foostats, `state` variables store run-specific state without using package gl
 
 ### De-duplicated logging
 
-`state %dedup` keeps the log output of the suspicious calls to one warning per URI. Early versions utilized global hashes for the same tasks, producing inconsistent results during tests. Switching to `state` removed those edge cases.
+`state %dedup` keeps the log output of the suspicious calls to one warning per URI. Early versions used global hashes for that, which gave me inconsistent results in tests. `state` fixed that.
 
 ## Subroutine signatures
 
@@ -339,7 +339,7 @@ my $anon = sub ($name) {
 $anon->("World"); # prints "Hello, World!"
 ```
 
-## Defined-or assignment for defaults without boilerplate
+## Defined-or assignment
 
 The operator `//=` keeps configuration and counters simple. Environment variables may be missing when CRON runs the script, so `//=`, combined with signatures, sets defaults without warnings. Example use of that operator:
 
@@ -372,11 +372,11 @@ sub parse_log_file ($path) {
 }
 ```
 
-This pattern replaces manual `close` calls in every exit path of the subroutine and is more robust than relying solely on object destructors.
+No more `close` in every exit path.
 
 ## Builtins and booleans
 
-The script also utilizes other modern additions that often go unnoticed. `use builtin qw(true false);` combined with `experimental::builtin` provides more real boolean values.
+Foostats also uses a few smaller additions. `use builtin qw(true false);` combined with `experimental::builtin` provides more real boolean values.
 
 ## Conclusion
 

@@ -10,6 +10,23 @@
 
 [![Paul Buetow](./paul.jpg "Paul Buetow")](./paul.jpg)  
 
+## Table of Contents
+
+* [⇢ About](#about)
+* [⇢ ⇢ Now](#now)
+* [⇢ ⇢ My sites](#my-sites)
+* [⇢ ⇢ Show me the code](#show-me-the-code)
+* [⇢ ⇢ Social Media and Communities](#social-media-and-communities)
+* [⇢ ⇢ Books I've read](#books-i-ve-read)
+* [⇢ ⇢ My gadgets and wishlist](#my-gadgets-and-wishlist)
+
+## Now
+
+Stuff I'm currently up to:
+
+* Learning Bulgarian for the passport
+* Digging into AI engineering without taking the slop route — still finding my way there
+
 ## My sites
 
 [My blog here at foo.zone](../)  

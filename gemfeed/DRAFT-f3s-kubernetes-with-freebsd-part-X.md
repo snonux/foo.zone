@@ -33,39 +33,48 @@ This is part X of the f3s series for my self-hosting demands in a home lab. f3s?
 * [⇢ ⇢ ⇢ Before: Imperative Helm deployment](#before-imperative-helm-deployment)
 * [⇢ ⇢ ⇢ After: Declarative GitOps with ArgoCD](#after-declarative-gitops-with-argocd)
 * [⇢ ⇢ ⇢ Migration procedure](#migration-procedure)
-* [⇢ ArgoCD detects change within 3 minutes and syncs automatically](#argocd-detects-change-within-3-minutes-and-syncs-automatically)
-* [⇢ ArgoCD detects drift within 3 minutes](#argocd-detects-drift-within-3-minutes)
-* [⇢ ArgoCD automatically rolls back to the previous state](#argocd-automatically-rolls-back-to-the-previous-state)
-* [⇢ Temporarily point ArgoCD at the feature branch](#temporarily-point-argocd-at-the-feature-branch)
-* [⇢ Verify changes in ArgoCD Web UI](#verify-changes-in-argocd-web-ui)
-* [⇢ If good: merge to master](#if-good-merge-to-master)
-* [⇢ If bad: revert the patch](#if-bad-revert-the-patch)
-* [⇢ root-monitoring.yaml](#root-monitoringyaml)
-* [⇢ Root app deploys all 21 applications automatically](#root-app-deploys-all-21-applications-automatically)
-* [⇢ Or apply by namespace](#or-apply-by-namespace)
+* [⇢ ⇢ Complex Migration: Prometheus with Multi-Source](#complex-migration-prometheus-with-multi-source)
+* [⇢ ⇢ ⇢ Sync Waves and Hooks](#sync-waves-and-hooks)
+* [⇢ ⇢ Migration results](#migration-results)
+* [⇢ ⇢ What I got out of it](#what-i-got-out-of-it)
+* [⇢ ⇢ ⇢ Single source of truth](#single-source-of-truth)
+* [⇢ ⇢ ⇢ Automatic synchronization](#automatic-synchronization)
+* [⇢ ⇢ ⇢ Drift detection and self-healing](#drift-detection-and-self-healing)
+* [⇢ ⇢ ⇢ Easy rollbacks](#easy-rollbacks)
+* [⇢ ⇢ ⇢ Disaster recovery](#disaster-recovery)
+* [⇢ ⇢ ⇢ Documentation by default](#documentation-by-default)
+* [⇢ ⇢ ⇢ Safe experimentation](#safe-experimentation)
+* [⇢ ⇢ What went wrong along the way](#what-went-wrong-along-the-way)
+* [⇢ ⇢ ⇢ Helm release adoption](#helm-release-adoption)
+* [⇢ ⇢ ⇢ Persistent volumes not tracked by Helm](#persistent-volumes-not-tracked-by-helm)
+* [⇢ ⇢ ⇢ Secrets management](#secrets-management)
+* [⇢ ⇢ ⇢ Grafana not reloading datasources](#grafana-not-reloading-datasources)
+* [⇢ ⇢ ⇢ Prometheus with multiple sources](#prometheus-with-multiple-sources)
+* [⇢ ⇢ ⇢ Sync ordering for Prometheus](#sync-ordering-for-prometheus)
+* [⇢ ⇢ Justfile Evolution](#justfile-evolution)
+* [⇢ ⇢ Lessons Learned](#lessons-learned)
+* [⇢ ⇢ Future Improvements](#future-improvements)
+* [⇢ ⇢ ⇢ 1. External Secrets Operator](#1-external-secrets-operator)
+* [⇢ ⇢ ⇢ 2. ApplicationSet for Similar Apps](#2-applicationset-for-similar-apps)
+* [⇢ ⇢ ⇢ 3. App-of-Apps Pattern](#3-app-of-apps-pattern)
+* [⇢ ⇢ ⇢ 4. ArgoCD Image Updater](#4-argocd-image-updater)
+* [⇢ ⇢ Summary](#summary)
 
 ## Introduction
 
 In previous posts, I deployed applications to the k3s cluster using Helm charts and Justfiles—running `just install` or `just upgrade` to imperatively push changes to the cluster. Works fine, but has some drawbacks:
 
-* No single source of truth: The cluster state depends on which commands were run and when
-* Manual synchronization: Every change requires manually running commands
-* Drift detection is hard: No easy way to know if cluster state matches the desired configuration
-* Rollback complexity: Rolling back means re-running old Helm commands
-* No audit trail: Hard to track who changed what and when
+* The cluster state depends on which commands I ran and when. There's no single source of truth.
+* Every change means running commands by hand.
+* I can't easily tell if the cluster still matches the config.
+* Rolling back means digging up old Helm commands.
+* No history of what changed when.
 
-This post covers migrating from imperative Helm deployments to declarative GitOps using ArgoCD. After this, the Git repository becomes the single source of truth, and ArgoCD automatically ensures the cluster matches what's defined in Git.
+This post covers migrating from imperative Helm deployments to declarative GitOps using ArgoCD. After this, the Git repository is the single source of truth, and ArgoCD keeps the cluster in sync with it.
 
 ## What is GitOps?
 
-GitOps is an operational framework that applies DevOps best practices—version control, collaboration, CI/CD—to infrastructure automation. The core idea: the entire desired state lives in Git, and automated processes ensure the actual state matches it.
-
-Key principles:
-
-* Declarative: The system's desired state is described declaratively (YAML manifests, Helm values)
-* Versioned and immutable: All changes are committed to Git, providing a complete history
-* Pulled automatically: An agent in the cluster continuously pulls the desired state from Git
-* Continuously reconciled: The agent ensures the actual state matches the desired state, automatically correcting drift
+GitOps in one sentence: the whole desired state of the cluster lives in Git, and something running in the cluster keeps the real state matching it.
 
 For Kubernetes, this means:
 
@@ -76,24 +85,15 @@ For Kubernetes, this means:
 
 ## What is ArgoCD?
 
-ArgoCD is a declarative, GitOps continuous delivery tool for Kubernetes. It's implemented as a Kubernetes controller that continuously monitors running applications and compares the current, live state against the desired target state defined in Git.
+ArgoCD is a Kubernetes controller that watches a Git repo and compares what's running in the cluster with what's in Git. If they differ, it syncs.
 
 [ArgoCD Documentation](https://argo-cd.readthedocs.io)  
 
-Key features:
-
-* Automated deployment: Monitors Git repositories and automatically syncs changes to the cluster
-* Application definitions: Defines applications as CRDs (Custom Resource Definitions)
-* Health assessment: Understands Kubernetes resources and can determine if an application is healthy
-* Web UI and CLI: Provides both a web interface and command-line tool for managing applications
-* RBAC: Role-based access control for team collaboration
-* SSO integration: Can integrate with existing authentication systems
-* Multi-cluster support: Can manage applications across multiple Kubernetes clusters
-* Sync waves and hooks: Control the order of resource deployment and run jobs at specific lifecycle points
+The bits I care about: applications are CRDs, ArgoCD watches the repo and syncs on its own, it knows what "healthy" means for the usual Kubernetes resources, there's a web UI and a CLI, and sync waves and hooks let me control the deployment order (more on that later).
 
 ## Why ArgoCD for f3s?
 
-For a home lab cluster, ArgoCD provides several benefits:
+Why bother with this for a single home lab cluster? A few reasons.
 
 Disaster recovery: If the entire cluster is lost, I can rebuild it by:
 
@@ -106,9 +106,9 @@ Experimentation safety: I can test changes in a separate Git branch without affe
  
 Drift detection: If I manually change something in the cluster (for debugging), ArgoCD shows the difference and can automatically revert it.
 
-Declarative configuration: The Git repository documents the entire cluster configuration. No need to remember which `just` commands to run or in which order.
+The Git repository documents the whole cluster. I don't have to remember which `just` commands to run, or in which order.
 
-Automatic sync: Push to Git, and changes deploy automatically. No need to SSH to a workstation and run Helm commands.
+And I just push to Git. No more SSHing to a workstation to run Helm.
 
 ## Deploying ArgoCD
 
@@ -127,9 +127,9 @@ namespace/cicd created
 
 The ArgoCD installation lives in the configuration repository:
 
-[github.com/snonux/conf/f3s/argocd](https://github.com/snonux/conf/src/branch/master/f3s/argocd)  
+[github.com/snonux/conf/f3s/argocd](https://github.com/snonux/conf/tree/master/f3s/argocd)  
 
-I deployed ArgoCD using Helm instead of the raw manifests. This provides easier upgrades and customization. The installation is managed via a Justfile:
+I used Helm instead of the raw manifests, mostly because upgrades are easier that way. A Justfile wraps the install:
 
 ```sh
 $ cd conf/f3s/argocd
@@ -146,7 +146,7 @@ NAMESPACE: cicd
 STATUS: deployed
 ```
 
-The `values.yaml` file configures several important aspects:
+A few things in `values.yaml` are worth pointing out.
 
 Persistent storage for the repo-server: ArgoCD clones Git repositories to cache them locally. I configured a persistent volume so the cache survives pod restarts:
 
@@ -230,6 +230,8 @@ spec:
 
 Following the same pattern as other services, the OpenBSD edge relays terminate TLS and forward traffic through WireGuard to the cluster. ArgoCD is now accessible at:
 
+[argocd.f3s.foo.zone](https://argocd.f3s.foo.zone)  
+
 The ArgoCD CLI can also be used for operations:
 
 ```sh
@@ -247,7 +249,8 @@ ArgoCD uses a CRD called `Application` to define what should be deployed. Each a
 Here's a simple example for the miniflux application:
 
 ```yaml
-ind: Application
+apiVersion: argoproj.io/v1alpha1
+kind: Application
 metadata:
   name: miniflux
   namespace: cicd
@@ -337,7 +340,7 @@ I reorganized the configuration repository to support GitOps:
 
 The application directories (miniflux, prometheus, etc.) remained mostly unchanged—ArgoCD references the same Helm charts. The main additions:
 
-1. argocd-apps/: Application manifests organized by Kubernetes namespace for better clarity
+1. argocd-apps/: Application manifests, one directory per Kubernetes namespace
 
 * `monitoring/`: 6 observability applications
 * `services/`: 13 user-facing applications
@@ -347,11 +350,9 @@ The application directories (miniflux, prometheus, etc.) remained mostly unchang
 2. */manifests/: Additional Kubernetes manifests for complex apps (like Prometheus)
 3. Justfiles updated: Changed from `helm install/upgrade` to `argocd app sync`
 
-This organization makes it easy to apply all applications in a specific namespace or manage them independently.
-
 ### Migration Phases
 
-These apps have straightforward Helm charts with no complex dependencies. Pattern established:
+Phase 1: Simple services. These have plain Helm charts and no dependencies. For each one I did the same thing:
 
 * 1. Create Application manifest in `argocd-apps/`
 * 2. Apply with `kubectl apply -f argocd-apps/<app>.yaml`
@@ -375,7 +376,7 @@ Phase 4: Monitoring addons (1 app)
 
 ## Example Migration: Miniflux
 
-Let me walk through the migration of miniflux as a concrete example.
+Here's how the miniflux migration went.
 
 ### Before: Imperative Helm deployment
 
@@ -511,7 +512,7 @@ Health Status:      Healthy
 $ kubectl get pods -n services -l app=miniflux -w
 NAME                                READY   STATUS    RESTARTS   AGE
 miniflux-postgres-556444cb8d-xvv2p  1/1     Running   0          54d
-``
+```
 
 5. Test the application:
 ```sh
@@ -521,10 +522,9 @@ HTTP/2 200
 
 6. Update Justfile and commit changes
 
-Total time: 10 minutes. Zero downtime.
+Took about 10 minutes, no downtime.
 
 ## Complex Migration: Prometheus with Multi-Source
-
 
 The Prometheus migration was more complex because it combines:
 * Upstream Helm chart (kube-prometheus-stack)
@@ -619,10 +619,10 @@ metadata:
   namespace: monitoring
   annotations:
     argocd.argoproj.io/hook: PostSync
-*rgocd.argoproj.io/hook-delete-policy: BeforeHookCreation
-*rgocd.argoproj.io/sync-wave: "10"
-*
-  *plate:
+    argocd.argoproj.io/hook-delete-policy: BeforeHookCreation
+    argocd.argoproj.io/sync-wave: "10"
+spec:
+  template:
     spec:
       serviceAccountName: grafana-restart-sa
       restartPolicy: OnFailure
@@ -638,14 +638,14 @@ metadata:
   backoffLimit: 2
 ```
 
-This *he manual step in the old Justfile that required running `kubectl delete pod` after every upgrade.
+This replaces the manual step in the old Justfile that required running `kubectl delete pod` after every upgrade.
 
-## Migration *sults
+## Migration results
 
-After * all 21 applications to ArgoCD:
+After migrating all 21 applications to ArgoCD:
 
 ```sh
-$ argocd app *st
+$ argocd app list
 NAME                      CLUSTER                         NAMESPACE    PROJECT  STATUS  HEALTH   SYNCPOLICY
 alloy                     https://kubernetes.default.svc  monitoring   default  Synced  Healthy  Auto-Prune
 anki-sync-server          https://kubernetes.default.svc  services     default  Synced  Healthy  Auto-Prune
@@ -679,9 +679,9 @@ ArgoCD Web UI:
 
 [![ArgoCD Application Resource Tree](./f3s-kubernetes-with-freebsd-part-X/argocd-app-tree.png "ArgoCD Application Resource Tree")](./f3s-kubernetes-with-freebsd-part-X/argocd-app-tree.png)  
 
-## Benefits Realized
+## What I got out of it
 
-### 1. Single Source of Truth
+### Single source of truth
 
 The Git repository at `https://github.com/snonux/conf` now contains the complete cluster configuration. Anyone can clone it and see exactly what's deployed:
 
@@ -692,7 +692,7 @@ $ ls argocd-apps/
 alloy.yaml  anki-sync-server.yaml  audiobookshelf.yaml  ...
 ```
 
-### 2. Automatic Synchronization
+### Automatic synchronization
 
 Push to Git, and changes deploy automatically:
 
@@ -707,7 +707,7 @@ $ git push
 
 No need to SSH to a workstation, pull the repo, and run `just upgrade`.
 
-### 3. Drift Detection and Self-Healing
+### Drift detection and self-healing
 
 If someone manually changes a resource in the cluster, ArgoCD detects it:
 
@@ -723,7 +723,7 @@ Sync Status:        OutOfSync from master (4e3c216)
 
 With `selfHeal: true`, ArgoCD automatically reverts the change back to 2 replicas (the value in Git).
 
-### 4. Easy Rollbacks
+### Easy rollbacks
 
 To rollback a change:
 
@@ -739,9 +739,9 @@ Or rollback to a specific commit:
 $ argocd app rollback miniflux <revision-id>
 ```
 
-### 5. Disaster Recovery
+### Disaster recovery
 
-If the entire cluster is destroyed, recovery is straightforward:
+If the whole cluster dies, recovery looks like this:
 
 1. Bootstrap a new k3s cluster
 2. Create namespaces
@@ -754,9 +754,9 @@ $ kubectl apply -f argocd-apps/
 
 Total recovery time: ~30 minutes (mostly waiting for pods to pull images and start).
 
-### 6. Documentation by Default
+### Documentation by default
 
-The Application manifests serve as documentation:
+The Application manifests are the documentation:
 
 * Which Helm chart version is deployed? → Check `targetRevision`
 * What custom values are configured? → Check `valuesObject`
@@ -765,7 +765,7 @@ The Application manifests serve as documentation:
 
 No more guessing or checking `helm list` output.
 
-### 7. Safe Experimentation
+### Safe experimentation
 
 Create a feature branch, make changes, and preview them:
 
@@ -785,9 +785,9 @@ $ kubectl patch application prometheus -n cicd \
 # If bad: revert the patch
 ```
 
-## Challenges and Solutions
+## What went wrong along the way
 
-### Challenge 1: Helm Release Adoption
+### Helm release adoption
 
 When creating an Application for an existing Helm release, ArgoCD needs to "adopt" the resources. This failed initially with errors like:
 
@@ -795,39 +795,37 @@ When creating an Application for an existing Helm release, ArgoCD needs to "adop
 The Helm operation failed with an error: release miniflux failed, and has been uninstalled due to atomic being set: timed out waiting for the condition
 ```
 
-Solution: For existing Helm releases, I first ensured the Application manifest matched the current Helm values exactly. ArgoCD then recognized the resources were already in the desired state and adopted them without re-deploying.
+What fixed it: for existing Helm releases, I first made sure the Application manifest matched the current Helm values exactly. ArgoCD then recognized the resources were already in the desired state and adopted them without re-deploying.
 
-### Challenge 2: Persistent Volumes Not Tracked by Helm
+### Persistent volumes not tracked by Helm
 
 PersistentVolumes are cluster-scoped resources, not namespace-scoped. Many of my Helm charts created PVs using `kubectl apply -f persistent-volumes.yaml` outside of Helm.
 
-Solution: For simple apps, I moved the PV definitions into the Helm chart templates. For complex apps (like Prometheus), I used the multi-source pattern with PVs in the `manifests/` directory with sync wave 0.
+What fixed it: for simple apps, I moved the PV definitions into the Helm chart templates. For complex apps (like Prometheus), I used the multi-source pattern with PVs in the `manifests/` directory with sync wave 0.
 
-### Challenge 3: Secrets Management
+### Secrets management
 
 ArgoCD stores Application manifests in Git, but secrets shouldn't be committed in plaintext.
 
-Solution (current): Secrets are created manually with `kubectl create secret` and referenced by the Helm charts. The secrets themselves aren't managed by ArgoCD.
+What fixed it, for now: secrets are created manually with `kubectl create secret` and referenced by the Helm charts. The secrets themselves aren't managed by ArgoCD.
 
 Future enhancement: Migrate to External Secrets Operator (ESO) to manage secrets declaratively while storing the actual secrets in a separate backend (Kubernetes secrets in a separate namespace, or eventually Vault).
 
-### Challenge 4: Grafana Not Reloading Datasources
+### Grafana not reloading datasources
 
 After updating the Grafana datasources ConfigMap, Grafana wouldn't detect the changes until pods were manually deleted.
 
-Solution: Created a PostSync hook that automatically restarts Grafana pods after every ArgoCD sync. This runs as a Kubernetes Job in sync wave 10, ensuring it executes after all other resources are deployed.
+What fixed it: a PostSync hook that automatically restarts Grafana pods after every ArgoCD sync. It's a Kubernetes Job in sync wave 10, so it runs after everything else.
 
-### Challenge 5: Prometheus With Multiple Sources
+### Prometheus with multiple sources
 
 Prometheus needed both the upstream Helm chart and custom manifests (recording rules, dashboards, PVs).
 
-Solution: Used ArgoCD's multi-source feature to combine:
+What fixed it: ArgoCD's multi-source feature, which combines:
 * Helm chart from `prometheus-community.github.io/helm-charts`
 * Additional manifests from `github.com/snonux/conf.git` at path `f3s/prometheus/manifests`
 
-This keeps the upstream chart cleanly separated from custom configuration.
-
-### Challenge 6: Sync Ordering for Prometheus
+### Sync ordering for Prometheus
 
 Prometheus resources have dependencies:
 * PVs before PVCs
@@ -835,14 +833,12 @@ Prometheus resources have dependencies:
 * PrometheusRule CRDs before Prometheus Operator can process them
 * Grafana must be running before the restart hook executes
 
-Solution: Added sync wave annotations to all resources in `prometheus/manifests/`:
+What fixed it: sync wave annotations on all resources in `prometheus/manifests/`:
 * Wave 0: PVs, RBAC
 * Wave 1: Secrets, ConfigMaps
 * Wave 3: PrometheusRule CRDs (recording rules)
 * Wave 4: Dashboard ConfigMaps
 * Wave 10: PostSync hook (Grafana restart)
-
-ArgoCD deploys resources in wave order, ensuring correct sequencing.
 
 ## Justfile Evolution
 
@@ -885,13 +881,13 @@ The Justfiles now provide:
 
 ## Lessons Learned
 
-1. Incremental migration is safer than big-bang: Migrating one app at a time allowed me to validate the pattern and fix issues before they affected all apps.
+1. One app at a time. That way I could fix the pattern on a small app before touching the big ones.
 
 2. Start with simple apps: The first migration (simple services) established the basic pattern. Complex apps (Prometheus) came later after the pattern was proven.
 
-3. Sync waves are essential for complex apps: Without sync waves, resources deployed in random order and caused failures. Proper ordering eliminated all deployment issues.
+3. Use sync waves for anything non-trivial. Without them the Prometheus resources came up in random order and things failed.
 
-4. Multi-source is powerful: Combining upstream Helm charts with custom manifests keeps configuration clean and maintainable.
+4. Multi-source apps are handy. I can use the upstream Helm chart as-is and keep my own manifests next to it.
 
 5. PostSync hooks replace manual steps: The Grafana restart hook eliminated a manual step that was easy to forget.
 
@@ -899,7 +895,7 @@ The Justfiles now provide:
 
 7. Self-healing prevents configuration drift: Multiple times I've manually tweaked something for debugging, forgotten about it, and ArgoCD automatically reverted it back to the desired state.
 
-8. ArgoCD Web UI is invaluable: Seeing the resource tree, sync status, and health status at a glance is much better than running multiple `kubectl` commands.
+8. The web UI is nice. The resource tree and sync status at a glance beat a pile of `kubectl` commands.
 
 ## Future Improvements
 
@@ -1030,14 +1026,14 @@ When a new image `registry.f3s.foo.zone/miniflux:v2.1.0` is pushed, Image Update
 2. Commits the change
 3. ArgoCD syncs the new image
 
-This creates a fully automated CI/CD pipeline.
-
 ## Summary
 
-Migrating from imperative Helm deployments to declarative GitOps with ArgoCD transformed how I manage the f3s cluster:
- Manual Helm commands for every change
+Before and after, in short:
+
+Before:
+* Manual Helm commands for every change
 * No visibility into cluster state
- Disaster recovery required rebuilding from memory/notes
+* Disaster recovery required rebuilding from memory/notes
 
 After:
 * Git is the single source of truth
@@ -1047,24 +1043,22 @@ After:
 * Disaster recovery: deploy ArgoCD, apply Application manifests, done
 * Organized by namespace for clarity
 
-The migration took several days spread over a few weeks, migrating one application at a time. The result is a more maintainable, reliable, and recoverable cluster.
-
-
+The migration took several days spread over a few weeks, one application at a time.
 
 All 21 applications are now managed via GitOps, with the configuration living in:
 
-[github.com/snonux/conf/f3s](https://github.com/snonux/conf/src/branch/master/f3s)  
+[github.com/snonux/conf/f3s](https://github.com/snonux/conf/tree/master/f3s)  
 
 The ArgoCD Application manifests are organized by namespace:
 
-[github.com/snonux/conf/f3s/argocd-apps](https://github.com/snonux/conf/src/branch/master/f3s/argocd-apps)  
+[github.com/snonux/conf/f3s/argocd-apps](https://github.com/snonux/conf/tree/master/f3s/argocd-apps)  
 
-ArgoCD has become an essential part of the f3s infrastructure, and I can't imagine managing the cluster without it.
+I won't go back to running `just upgrade` by hand.
 
 Other *BSD-related posts:
 
-*emplate::inline::rindex bsd
+<< template::inline::rindex bsd
 
-E-*il your comments to `paul@nospam.buetow.org`
+E-Mail your comments to `paul@nospam.buetow.org`
 
-*./ Back to the main site
+[Back to the main site](../)  

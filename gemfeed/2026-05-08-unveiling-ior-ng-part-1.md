@@ -12,7 +12,7 @@ This is the first of three posts. Part 1 is the demo-driven tour: what `ior` loo
 [2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere](./2026-05-11-unveiling-ior-ng-part-2.md)  
 [2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood](./2026-05-17-unveiling-ior-ng-part-3.md)  
 
-[I/O Riot NG on Codeberg](https://github.com/snonux/ior)  
+[I/O Riot NG on GitHub](https://github.com/snonux/ior)  
 [the original I/O Riot post (2018)](./2018-06-01-realistic-load-testing-with-ioriot-for-linux.md)  
 
 ## Table of Contents
@@ -37,7 +37,7 @@ This is the first of three posts. Part 1 is the demo-driven tour: what `ior` loo
 
 ior attaches BPF tracepoints to a chunk of the synchronous-I/O syscall surface (open, read, write, stat, mmap, sync, link, fcntl, dup, the obvious ones), plus the async ones (`io_uring_*`, `aio_*`). Each enter/exit pair becomes an event with a duration plus an inter-syscall gap, and the events feed a Go Bubble Tea dashboard with seven tabs: a live flamegraph, an overview, sortable per-syscall / per-file / per-process tables, latency histograms, and a live event stream with a stackable filter UI on top.
 
-Same shape as the old I/O Riot in spirit: capture what the system is actually doing, not synthetic load. Different shape in execution: no replay engine, no separate record file unless you ask for one, no kernel-debug-info dance.
+Like the old I/O Riot, it captures what the system is actually doing instead of generating synthetic load. Unlike the old one, there's no replay engine and no record file unless you ask for one. And you don't need kernel debug info anymore.
 
 [![I/O Riot NG logo](./unveiling-ior-ng/00-logo.png "I/O Riot NG logo")](./unveiling-ior-ng/00-logo.png)  
 
@@ -51,15 +51,15 @@ You land on the PID picker. The default selection is "All PIDs", so Enter just d
 
 [![Cold start: PID picker, then the dashboard](./unveiling-ior-ng/01-launch.gif "Cold start: PID picker, then the dashboard")](./unveiling-ior-ng/01-launch.gif)  
 
-The dashboard opens on the live flamegraph. Bars grow as new events arrive. Before walking through the keys, a paragraph on what you're looking at, since flamegraphs are easier to read than they are to describe:
+The dashboard opens on the live flamegraph. Bars grow as new events arrive. First, what you're looking at:
 
 A flamegraph is a histogram of stacks. Each horizontal bar is one entry in a stack; every bar directly above it is a child of that entry, and the stack you read top-to-bottom is the same shape as a call chain. In `ior`, "stack" doesn't mean function-call stack (we don't have userspace symbols [yet]). It means a tuple of dimensions of the trace: by default `comm/path/tracepoint`, so the bottom row is per-process names, the middle row is per-file paths, and the top row is the syscall (`enter_read`, `enter_openat`, etc.). A wide bar means lots of events landed in that bucket, a narrow bar means few. There's no time axis. Left-to-right is just sort order, not chronology. The whole chart is one "where is the I/O coming from?" picture.
 
-The unusual bit: this flamegraph is live. Most of the flamegraph tooling out there (Brendan Gregg's `flamegraph.pl`, all the `perf script | stackcollapse-* | flamegraph.pl` pipelines, every `pprof -web` invocation) produces a static SVG: capture a profile for N seconds, render once, browse the result. `ior`'s tab is not that. Bars grow, shrink, appear, and disappear in real time as events stream in from the kernel, at full screen-refresh rate while the workload runs, with no pause. You can sit on this tab while you change something on the system (start a build, cycle a service, run a query) and watch the I/O shape mutate underneath you. That's a different mental model from the static "I have a profile, let me look at it" workflow most people are used to, and it's what makes the tab actually useful as an at-a-glance diagnostic surface rather than a post-mortem artifact.
+The unusual bit: this flamegraph is live. Most of the flamegraph tooling out there (Brendan Gregg's `flamegraph.pl`, all the `perf script | stackcollapse-* | flamegraph.pl` pipelines, every `pprof -web` invocation) produces a static SVG: capture a profile for N seconds, render once, browse the result. `ior`'s tab is not that. Bars grow, shrink, appear and disappear as events stream in from the kernel. You can sit on this tab, start a build or restart a service, and watch the I/O shape change.
 
 Because it's live, there's also a way to throw away the accumulated history and start the rolling count from "now": `r` resets the baseline. Everything the flamegraph has been counting since launch (or since the last reset) is dropped, and from that moment the chart reflects only events that arrived after the reset. Useful for the "compare before vs after" workflow — change one thing on the box, hit `r` immediately, and the next thirty seconds of accumulation is a fresh picture of the new state. You can also pause (and resume) the flame graph (with the `space` key) to get the static picture.
 
-That visualisation buys you two things you can't easily get from a tabular view. First, hierarchy: it's obvious whether one process is doing ten thousand reads on a single file, or ten thousand reads spread across a hundred files. The first looks like one tall pillar, the second looks like a wide ridge. Second, scale: bar width is proportional to the metric (count or bytes), so a process that did 95% of the work towers over the others. The eye picks that up instantly. The same fact in a sorted table needs you to read numbers and do the ratio in your head.
+Two things are easier to see here than in a table. Hierarchy: ten thousand reads on one file look like a tall pillar, ten thousand reads over a hundred files look like a wide ridge. Scale: bar width is proportional to count or bytes, so the process that did 95% of the work towers over the rest. In a sorted table you'd have to do the ratio in your head.
 
 Useful workflows you can do entirely from this tab:
 
@@ -72,9 +72,9 @@ Now the keys. Movement uses vi-style `h`/`j`/`k`/`l` everywhere in `ior`, and th
 
 The five orderings ship as built-in presets. Read each preset name as bottom→top: the leftmost dimension is what you'll see lined up across the bottom of the chart (the root row), the next one up is its children, and the rightmost is the top row (the leaf). Switching the order changes which dimension you're scanning first when your eye starts at the bottom.
 
-You change ordering with the `o` hotkey, on the fly, while the trace is still running. No restart, no reset, no re-recording — `o` just rebuilds the live chart with the next preset and keeps streaming new events into it. Press it once to flip from "processes at the bottom" to "paths at the bottom" the moment you realise you'd rather slice the data the other way; press it again to keep cycling. The toolbar updates immediately to show the new `o:order(...)` value. Pressing `o` rotates through the presets in this order:
+You change ordering with the `o` hotkey, on the fly, while the trace is still running. `o` rebuilds the live chart with the next preset and keeps streaming events into it. No restart needed. The toolbar updates immediately to show the new `o:order(...)` value. Pressing `o` rotates through the presets in this order:
 
-Concrete screenshots of each preset on the same workload follow each description, so you can see how the same trace data reshapes itself depending on the lens.
+There's a screenshot of each preset on the same workload below each description.
 
 `comm/tracepoint/path` (default) — processes at the bottom, syscalls in the middle, file paths on top. Each comm bar at the root splits into the syscalls it issued, and each syscall splits further into the files it touched. Best general-purpose view: "which programs are doing the I/O, and what kind?"
 
@@ -96,9 +96,9 @@ Concrete screenshots of each preset on the same workload follow each description
 
 [![Ordering 5: comm/path/tracepoint — processes at the bottom, file paths layered above instead of syscalls](./unveiling-ior-ng/13e-order-by-process-paths.png "Ordering 5: comm/path/tracepoint — processes at the bottom, file paths layered above instead of syscalls")](./unveiling-ior-ng/13e-order-by-process-paths.png)  
 
-In every ordering the rule is the same: scan the bottom row to pick a "by what?" dimension, then walk up to drill in. Bar widths always mean the same thing: proportion of the active metric (events or bytes, toggled with `b`). The toolbar at the top of the chart always shows the current ordering as `o:order(<dim1>/<dim2>/<dim3>)`, so you never lose track of which lens you're looking through.
+Whatever the ordering: scan the bottom row, then walk up to drill in. Bar width is always the share of the active metric (events or bytes, toggled with `b`). The toolbar shows the current ordering as `o:order(<dim1>/<dim2>/<dim3>)`.
 
-If you want to skip the rotate-with-`o` dance and pick a custom three-tuple from the start, the headless side has you covered: `-fields comm,tracepoint,path` (or any other valid combination of `comm`, `pid`, `tid`, `tracepoint`, `path`) sets the collapse fields up front, and `-count count|bytes` picks the metric. Both are inherited by the live TUI flamegraph if you go that way, and they're what `mage demo` uses when it wants a specific ordering on a specific tape. Useful for scripted captures where you already know the lens you want.
+You can also set the ordering up front from the command line: `-fields comm,tracepoint,path` (or any other valid combination of `comm`, `pid`, `tid`, `tracepoint`, `path`) sets the collapse fields up front, and `-count count|bytes` picks the metric. Both are inherited by the live TUI flamegraph if you go that way, and they're what `mage demo` uses when it wants a specific ordering on a specific tape. Useful for scripted captures.
 
 [![Live in-TUI flamegraph: navigate, zoom, undo, cycle order + metric](./unveiling-ior-ng/13-tui-flamegraph.gif "Live in-TUI flamegraph: navigate, zoom, undo, cycle order + metric")](./unveiling-ior-ng/13-tui-flamegraph.gif)  
 
@@ -134,7 +134,7 @@ Same shape again, but rows are processes / comms. Best paired with the Stream ta
 
 Two histograms side by side: how long each syscall took (latency), and the wall-clock interval between syscalls on the same thread (gap). Latency tells you "is the kernel slow"; gap tells you "what is the program doing between two kernel calls".
 
-One important point about that gap: `ior` measures it from the exit of one syscall to the entry of the next on the same TID, but it doesn't know what the thread was doing in the meantime. A long gap doesn't mean the thread was idle. It might have been pinned on a CPU running pure userspace code (number-crunching, JSON parsing, GC, a busy loop). All "gap" tells you for sure is "this thread didn't call into the kernel for X microseconds." Whether that's because it was sleeping, blocked on a condition variable, computing, or scheduled out is something the gap value alone cannot answer. Pair it with `top`/`perf top` if you need to disambiguate. Still useful in practice: a syscall-driven workload with surprisingly long gaps is a strong hint that you're CPU-bound somewhere outside the kernel, and that's a different optimisation conversation than slow I/O.
+One important point about that gap: `ior` measures it from the exit of one syscall to the entry of the next on the same TID, but it doesn't know what the thread was doing in the meantime. A long gap doesn't mean the thread was idle. It might have been pinned on a CPU running pure userspace code (number-crunching, JSON parsing, GC, a busy loop). All "gap" tells you for sure is "this thread didn't call into the kernel for X microseconds." Whether that's because it was sleeping, blocked on a condition variable, computing, or scheduled out is something the gap value alone cannot answer. Pair it with `top`/`perf top` if you need to disambiguate. Still useful: long gaps in a syscall-heavy workload are a strong hint that you're CPU-bound in userspace, which is a different problem than slow I/O.
 
 The `dd` loop in the demo workload spreads the latency distribution out so you can actually see the shape.
 
@@ -205,19 +205,19 @@ A handful of TUI additions landed in `v1.1.0` after this post was originally wri
 * Auto-reset timer for the live aggregates. `-resetTimer=<dur>` (default `30s`, `0` disables) sets the cadence at launch; the `I` hotkey cycles `off → 10s → 30s → 60s → 2m → 5m → off` while ior is running, and the dashboard chrome shows the remaining countdown. Same effect as hitting `r` on a schedule — keeps the live trie and stats engine bounded on long traces without you remembering to do it.
 * In-place global filter swap. Pushing or popping the global filter (the Enter-on-a-cell trick, the PID/TID/probe pickers, `ESC` to pop) no longer detaches and reattaches every BPF tracepoint, so the "Attaching tracepoints..." overlay that used to flash for several seconds on busy I/O boxes is gone. Filter changes are now instant.
 * Flame graph TUI keeps up under heavy load. Per-tick snapshot refresh runs on a background goroutine, navigation walks a precomputed ancestry index, and `View()` output is memoized. Keystrokes (pause, zoom, navigate, search) land within one frame even when the live trie is ingesting thousands of events per tick.
-* `-tui-fast-refresh=<dur>` (default `250ms`, `0` disables) makes the flamegraph and stream tabs' high-frequency refresh cadence configurable, in case you want a lighter feel on a slow terminal or a punchier one on a busy workload.
+* `-tui-fast-refresh=<dur>` (default `250ms`, `0` disables) makes the flamegraph and stream tabs' high-frequency refresh cadence configurable, for slow terminals or busy workloads.
 
 ## What's still missing
 
 * No record/replay. That was the whole point of the original I/O Riot. The new one is a tracer, not a workload simulator. I keep going back and forth on whether to put replay back in.
 * No userspace symbol resolution. Stacks are at the syscall surface, not "which line of which library called read".
 
-But the live flamegraph, the stackable stream filters, and the cheap parquet capture together cover the cases I actually hit week to week. The demo above is the easiest way to get a feel for whether it's the kind of tool you want.
+But what's there covers the cases I actually hit. Try the demo and see if it's for you.
 
 For installing it and the eBPF / CO-RE / static-linking story (why one build runs on every other Linux box you scp it to), see Part 2. For the per-event schema, async-syscall caveats, the probe-generator safeguard against missing new kernel syscalls, and post-mortem SQL on the parquet output, see Part 3.
 
-[Source on Codeberg](https://github.com/snonux/ior)  
-[The full in-repo tutorial](https://github.com/snonux/ior/src/branch/main/docs/tutorial/tutorial.md)  
+[Source on GitHub](https://github.com/snonux/ior)  
+[The full in-repo tutorial](https://github.com/snonux/ior/blob/main/docs/tutorial/tutorial.md)  
 
 Read the next post of the series:
 

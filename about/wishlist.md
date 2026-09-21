@@ -12,11 +12,10 @@
 * [⇢ ⇢ ⇢ TRMNL](#trmnl)
 * [⇢ ⇢ ⇢ Fairphone 6](#fairphone-6)
 * [⇢ ⇢ ⇢ Casio MRG-B5000](#casio-mrg-b5000)
+* [⇢ ⇢ ⇢ Neo Geo AES+](#neo-geo-aes)
+* [⇢ ⇢ ⇢ Flipper One](#flipper-one)
 * [⇢ ⇢ Photography](#photography)
 * [⇢ ⇢ ⇢ Fujifilm X100VI](#fujifilm-x100vi)
-* [⇢ ⇢ Maybe later](#maybe-later)
-* [⇢ ⇢ ⇢ reMarkable Paper Pro Move](#remarkable-paper-pro-move)
-* [⇢ ⇢ ⇢ XTeink X4 Pro](#xteink-x4-pro)
 
 ## Introduction
 
@@ -118,6 +117,21 @@ Then again, I'm not fully decided on Ubuntu Touch yet. There's meant to be a Mot
 
 The MR-G is Casio's top-tier line, and the B5000 is the square one — Super Titanium take on the classic G-SHOCK 5000 shape. I generally like any watch in the MR-G series, but this square model is the one I actually want, ideally in this silver finish.
 
+### Neo Geo AES+
+
+[![Neo Geo AES+](wishlist/neogeo-aes-plus.jpg "Neo Geo AES+")](wishlist/neogeo-aes-plus.jpg)  
+[Official product page](https://plaionreplai.com/products/neogeo-aes)  
+
+SNK and Plaion REPLAI are bringing the AES back as a proper hardware reissue — real ASIC silicon, not emulation, not FPGA. Original cardiges and new ones both work, HDMI for a modern TV.
+
+### Flipper One
+
+[![Flipper One](wishlist/flipper-one.jpg "Flipper One")](wishlist/flipper-one.jpg)  
+[Official docs / developer portal](https://docs.flipper.net/one)  
+[Announcement post](https://blog.flipper.net/flipper-one-we-need-your-help/)  
+
+Not the Flipper Zero — it's Flipper's open Linux networking gadget / pocket cyberdeck. Dual Gigabit Ethernet, Wi-Fi 6E, M.2 for modems or SSDs, HDMI out, the whole "plug it into the homelab and poke at things" fantasy. 
+
 ## Photography
 
 ### Fujifilm X100VI
@@ -126,25 +140,5 @@ The MR-G is Casio's top-tier line, and the B5000 is the square one — Super Tit
 [Official product page](https://www.fujifilm-x.com/en-us/products/cameras/x100vi/)  
 
 I've the X100V already, that's why I hesitate to upgrade, really. The V still takes the same photos; the VI mostly tempts me with the nicer film simulations and a bit more resolution I don't strictly need. If I ever find a good trade-in deal I'll probably cave, but it's hard to justify at full price or I will simply wait for a future X100VII or I will wait until my X100V breaks down! And if I do get one, it has to be the silver — the black one is too stealthy for my taste.
-
-## Maybe later
-
-### reMarkable Paper Pro Move
-
-For now, I keep using my Supernote Nomad.
-
-[![reMarkable Paper Pro Move](wishlist/remarkable-paper-pro-move.jpg "reMarkable Paper Pro Move")](wishlist/remarkable-paper-pro-move.jpg)  
-[Official product page](https://remarkable.com/products/remarkable-paper/pro-move)  
-
-I'll run it purely offline — no cloud sync, no account beyond what's strictly needed. It's meant to be my always-with-me note taker, since it's even compacter than my Supernote Nomad I already have. Pen on paper feel in something that actually fits in a jacket pocket is the whole appeal.
-
-### XTeink X4 Pro
-
-For now, I will use my Supernote Nomad as an always-with-me eReader device using KOReader software.
-
-[![XTeink X4 Pro](wishlist/xteink-x4-pro.jpg "XTeink X4 Pro")](wishlist/xteink-x4-pro.jpg)  
-[Official product page](https://www.xteink.com/products/xteink-x4-pro-pocket-ereader)  
-
-Only once the CrossPoint open-source firmware supports highlight by touch. Which it doesn't at the moment. I read a lot of ePubs and articles, and the whole point of an e-ink reader for me is marking things up without a laptop in front of me — so until that lands I'll keep waiting rather than buying something I'll be mildly annoyed by.
 
 [Go back](./)  

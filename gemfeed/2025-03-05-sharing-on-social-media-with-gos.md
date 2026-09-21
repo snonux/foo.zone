@@ -35,9 +35,9 @@ As you may have noticed, I like to share on Mastodon and LinkedIn all the techni
 
 ## Introduction
 
-Gos is a Go-based replacement (which I wrote) for Buffer.com, providing the ability to schedule and manage social media posts from the command line. It can be run, for example, every time you open a new shell or only once every N hours when you open a new shell.
+Gos is a Go-based replacement (which I wrote) for Buffer.com. It schedules and posts social media messages from the command line. It can be run, for example, every time you open a new shell or only once every N hours when you open a new shell.
 
-I used Buffer.com to schedule and post my social media messages for a long time. However, over time, there were more problems with that service, including a slow and unintuitive UI, and the free version only allows scheduling up to 10 messages. At one point, they started to integrate an AI assistant (which would seemingly randomly pop up in separate JavaScript-powered input boxes), and then I had enough and decided I had to build my own social sharing tool—and Gos was born.
+I used Buffer.com to schedule and post my social media messages for a long time. However, over time, there were more problems with that service, including a slow and unintuitive UI, and the free version only allows scheduling up to 10 messages. At one point, they started to integrate an AI assistant (which would seemingly randomly pop up in separate JavaScript-powered input boxes), and then I had enough and decided to build my own social sharing tool. And Gos was born.
 
 [https://buffer.com](https://buffer.com)  
 [https://github.com/snonux/gos](https://github.com/snonux/gos)  
@@ -112,13 +112,11 @@ Example Configuration File (`~/.config/gos/gos.json`):
 
 ### Automatically managed fields
 
-Once you finish the OAuth2 setup (after the initial run of `gos`), some fields—like `LinkedInAccessToken` and `LinkedInPersonID` will get filled in automatically. To check if everything's working without actually posting anything, you can run the app in dry run mode with the `--dry` option. After OAuth2 is successful, the file will be updated with `LinkedInClientID` and `LinkedInAccessToken`. If the access token expires, it will go through the OAuth2 process again.
+Once you finish the OAuth2 setup (after the initial run of `gos`), some fields (like `LinkedInAccessToken` and `LinkedInPersonID`) will get filled in automatically. To check if everything's working without actually posting anything, you can run the app in dry run mode with the `--dry` option. After OAuth2 is successful, the file will be updated with `LinkedInClientID` and `LinkedInAccessToken`. If the access token expires, it will go through the OAuth2 process again.
 
 ## Invoking Gos
 
-Gos is a command-line tool for posting updates to multiple social media platforms. You can run it with various flags to customize its behaviour, such as posting in dry run mode, limiting posts by size, or targeting specific platforms.
-
-Flags control the tool's behavior. Below are several common ways to invoke Gos and descriptions of the available flags.
+You can run Gos with various flags, e.g. for dry run mode, limiting posts by size, or targeting specific platforms.
 
 ### Common flags
 
@@ -145,7 +143,7 @@ Flags control the tool's behavior. Below are several common ways to invoke Gos a
 
 *Dry run mode*
 
-Dry run mode lets you simulate the entire posting process without actually sending the posts. This is useful for testing configurations or seeing what would happen before making real posts.
+Dry run mode simulates the whole posting process without sending anything. Good for testing the configuration.
 
 ```bash
 ./gos --dry
@@ -189,7 +187,7 @@ You can control which platforms a post is shared to, and manage other behaviors 
 
 Currently, only `linkedin` and `mastodon` are supported, and the shortcuts `li` and `ma` also work.
 
-**Examples:**
+Examples:
 
 * To share only on Mastodon: `~/.gosdir/foopost.share:mastodon.txt`
 * To exclude sharing on LinkedIn: `~/.gosdir/foopost.share:-linkedin.txt`
@@ -263,7 +261,7 @@ Hello World :-)
 
 ## How queueing works in gos
 
-When you place a message file in the `gosDir`, Gos processes it by moving the message through a queueing system before posting it to the target social media platforms. A message's lifecycle includes several key stages, from creation to posting, all managed through the `./db/platforms/PLATFORM` directories.
+When you place a message file in the `gosDir`, Gos moves it through a queue in the `./db/platforms/PLATFORM` directories before posting it. The stages are described step by step below.
 
 ### Step-by-step queueing process
 
@@ -289,14 +287,14 @@ When you place a message file in the `gosDir`, Gos processes it by moving the me
 
 ### How message selection works in gos
 
-Gos decides which messages to post using a combination of priority, platform-specific tags, and timing rules. The message selection process ensures that messages are posted according to your configured cadence and targets while respecting pauses between posts and previously met goals.
+Gos picks which message to post next based on priority, platform tags, and timing rules.
 
 The key factors in message selection are:
 
-* Target Number of Posts Per Week: The `-target` flag defines how many posts per week should be made to a specific platform. This target helps Gos manage the posting rate, ensuring that the right number of posts are made without exceeding the desired frequency. 
-* Post History Lookback: The `-lookback` flag tells Gos how many days back to look in the post history to calculate whether the weekly post target has already been met. It ensures that previously posted content is considered before deciding to queue up another message.
+* Target Number of Posts Per Week: The `-target` flag defines how many posts per week should be made to a specific platform.
+* Post History Lookback: The `-lookback` flag tells Gos how many days back to look in the post history to calculate whether the weekly post target has already been met.
 * Message Priority: Messages with no priority value are processed after those with priority. If two messages have the same priority, one is selected randomly.
-* Pause Between Posts: The `-pauseDays` flag allows you to specify a minimum number of days to wait between posts for the same platform. This prevents oversaturation of content and ensures that posts are spread out over time.
+* Pause Between Posts: The `-pauseDays` flag allows you to specify a minimum number of days to wait between posts for the same platform. That spreads the posts out a bit.
 
 ## Database replication
 

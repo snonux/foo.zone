@@ -31,18 +31,18 @@
 
 For fun, I am tracking the uptime of various personal machines (servers, laptops, workstations...). I have been doing this for over ten years now, so I have a lot of statistics collected.
 
-As a result of this, I am introducing `guprecords.raku`, a handy Raku script that helps me combine uptime statistics from multiple servers into one comprehensive report. In this blog post, I'll explore what Guprecords is and some examples of its application. I will also add some notes on Raku.
+So I wrote `guprecords.raku`, a Raku script which merges the uptime stats of all my machines into one report. This post shows what it does, with some examples, plus a few notes on Raku.
 
-Guprecords, or global uptime records, is a Raku script designed to generate a consolidated uptime report from multiple hosts:
+Guprecords stands for global uptime records. The code is here:
 
-[Guprecords (Raku)](https://codeberg.org/snonux/guprecords)  
-[Goprecords (Go)](https://codeberg.org/snonux/goprecords)  
+[Guprecords (Raku)](https://github.com/snonux/guprecords)  
+[Goprecords (Go)](https://github.com/snonux/goprecords)  
 [The Raku Programming Language](https://raku.org)  
 [The Go Programming Language](https://go.dev)  
 
-> **Updated Fri 20 Feb 2026**: Guprecords has also been rewritten in Go as `goprecords` for improved performance and easier distribution. The Go version is fully compatible and supports the same features (categories, metrics, and output formats). The Go version also comes with a server mode and API. Both implementations are maintained and available.
+> Update 2026-02-20: I've since rewritten Guprecords in Go as `goprecords`. It's faster and easier to distribute. It does the same things (same categories, metrics and output formats) and additionally has a server mode with an API. I maintain both.
 
-A previous version of Guprecords was actually written in Perl, the older and more established language from which Raku was developed. One of the primary motivations for rewriting Guprecords in Raku was to learn the language and explore its features. Raku is a more modern and powerful language compared to Perl, and working on a real-world project like Guprecords provided a practical and engaging way to learn the language.
+A previous version of Guprecords was written in Perl. The main reason for the rewrite was to learn Raku, Perl's younger sibling.
 
 Over the last years, I have been reading the following books and resources about Raku:
 
@@ -65,7 +65,7 @@ Guprecords works in three stages:
 $ raku guprecords.raku --stats=dir=$HOME/git/uprecords/stats --all
 ```
 
-This command will generate a comprehensive uptime report from the collected statistics, making it easy to review and enjoy the data.
+That prints the full report.
 
 Guprecords supports the following features:
 
@@ -107,7 +107,7 @@ Top 20 Uptime's by Host
 +-----+-----------------+-----------------------------+
 ```
 
-This table ranks the top 20 hosts based on their total uptime, with the host having the highest uptime at the top. The hosts marked with `*` are still active, means stats were collected within the last couple of months. 
+The hosts marked with `*` are still active, means stats were collected within the last couple of months. 
 
 My up to date stats can be seen here:
 
@@ -147,11 +147,9 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 
 ## Conclusion
 
-Guprecords is a small, yet powerful tool for analyzing uptime statistics. While developing Guprecords, I have come to truly appreciate and love Raku's expressiveness. The language is designed to be both powerful and flexible, allowing developers to express their intentions and logic more clearly and concisely.
+Guprecords is a small tool, but writing it made me like Raku a lot. The language is very expressive; you can say what you mean in very few lines.
 
-Raku's expressive syntax, support for multiple programming paradigms, and unique features, such as grammars and lazy evaluation, make it a joy to work with. 
-
-Working on Guprecords in Raku has been an enjoyable experience, and I've found that Raku's expressiveness has significantly contributed to the overall quality and effectiveness of the script. The language's ability to elegantly express complex logic and data manipulation tasks makes it an excellent choice for developing tools like these, where expressiveness and productiveness are of the utmost importance.
+Multiple paradigms, grammars, lazy evaluation: there is a lot in there.
 
 So far, I have only scratched the surface of what Raku can do. I hope to find more time to become a regular Rakoon (a Raku Programmer). I have many Ideas for other small tools like Guprecords, but the challenge is finding the time. I'd love to explore Raku Grammars and also I would love to explore writing concurrent code in Raku (I also love Go (Golang), btw!). Ideas for future Raku personal projects include:
 

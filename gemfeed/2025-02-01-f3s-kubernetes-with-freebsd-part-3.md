@@ -39,7 +39,7 @@ This is the third blog post about my f3s series for my self-hosting demands in m
 
 ## Introduction
 
-In this blog post, we are setting up the UPS for the cluster. A UPS, or Uninterruptible Power Supply, safeguards my cluster from unexpected power outages and surges. It acts as a backup battery that kicks in when the electricity cuts out—especially useful in my area, where power cuts are frequent—allowing for a graceful system shutdown and preventing data loss and corruption. This is especially important since I will also store some of my data on the f3s nodes.
+In this blog post, we are setting up the UPS for the cluster. A UPS (Uninterruptible Power Supply) is a backup battery that kicks in when the electricity cuts out, which happens quite often in my area. It gives the nodes enough time to shut down gracefully instead of losing or corrupting data. That matters, as I will also store some of my data on the f3s nodes.
 
 ## Changes since last time
 
@@ -95,11 +95,11 @@ I wanted a UPS that I could connect to via FreeBSD, and that would provide enoug
 I decided on the APC Back-UPS BX750MI model because:
 
 * Zero noise level when there is no power cut (some light noise when the battery is in operation during a power cut).
-* Cost: It is relatively affordable (not costing thousands).
-* USB connectivity: Can be connected via USB to one of the FreeBSD hosts to read the UPS status.
+* It's relatively affordable (not costing thousands).
+* It can be connected via USB to one of the FreeBSD hosts to read the UPS status.
 * A power output of 750VA (or 410 watts), suitable for an hour of runtime for my f3s nodes (plus the Wi-Fi router).
-* Multiple power outlets: Can connect all 3 f3s nodes directly.
-* User-replaceable batteries: I can replace the batteries myself after two years or more (depending on usage).
+* It has enough power outlets to connect all 3 f3s nodes directly.
+* The batteries are user-replaceable, so I can swap them myself after two years or more (depending on usage).
 * Its compact design. Overall, I like how it looks.
 
 [![The APC Back-UPS BX750MI in operation.](./f3s-kubernetes-with-freebsd-part-3/apc-back-ups.jpg "The APC Back-UPS BX750MI in operation.")](./f3s-kubernetes-with-freebsd-part-3/apc-back-ups.jpg)  
@@ -222,7 +222,7 @@ END APC  : 2025-01-26 14:44:06 +0200
 
 So far, so good. Host `f0` would shut down itself when short on power. But what about the `f1` and `f2` nodes? They aren't connected directly to the UPS and, therefore, wouldn't know that their power is about to be cut off. For this, `apcupsd` running on the `f1` and `f2` nodes can be configured to retrieve UPS information via the network from the `apcupsd` server running on the `f0` node, which is connected directly to the APC via USB.
 
-Of course, this won't work when `f0` is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. However, I consider this a rare circumstance. Furthermore, in case of an `f0` system crash, sudden power outages on the two other nodes would occur at different times making real data loss (the main concern here) less likely.
+Of course, this won't work when `f0` is down. In this case, no operational node would be connected to the UPS via USB; therefore, the current power status would not be known. But I consider this a rare circumstance. Also, if `f0` crashes, the sudden power outages on the two other nodes would occur at different times, making real data loss (the main concern here) less likely.
 
 And if `f0` is down and `f1` and `f2` receive new data and crash midway, it's likely that a client (e.g., an Android app or another laptop) still has the data stored on it, making data recoverable and data loss overall nearly impossible. I'd receive an alert if any of the nodes go down (more on monitoring later in this blog series).
 

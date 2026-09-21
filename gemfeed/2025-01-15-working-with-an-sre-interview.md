@@ -26,7 +26,7 @@ Below, I am posting the interview here on my blog as well.
 
 ## Preamble 
 
-Florian from Cracking AI Engineering interviewed me about my work as a Principal SRE at Mimecast. We talked about what an Embedded SRE actually does, automation, observability, incident management, and how to work well with an SRE — whether you're a developer, data scientist, or manager.
+Florian from Cracking AI Engineering interviewed me about my work as a Principal SRE at Mimecast. We talked about what an Embedded SRE actually does, automation, observability, incident management, and how to work well with an SRE (whether you're a developer, data scientist, or manager).
 
 ## Introducing Paul
 
@@ -88,7 +88,7 @@ How do you search for and find the correct runbooks?
 
 Do you have an interesting war story you can share with us?
 
-> Sure. At 1&1, we had a proprietary ad server software that ran a SQL query during startup. The query got slower over time, eventually timing out and preventing the server from starting. Since we couldn’t access the source code, we searched the binary for the SQL and patched it. By pinpointing the issue, a developer was able to adjust the SQL. This collaboration between sysadmin and developer perspectives highlights the value of SRE work.
+> Sure. At 1&1, we had a proprietary ad server software that ran a SQL query during startup. The query got slower over time, eventually timing out and preventing the server from starting. Since we couldn’t access the source code, we searched the binary for the SQL and patched it. By pinpointing the issue, a developer was able to adjust the SQL. That's SRE work in a nutshell: the sysadmin and the developer perspective combined.
 
 ## Working with Different Teams
 
@@ -102,7 +102,7 @@ How about working with data scientists or ML engineers? Are there differences?
 
 What about working with managers or the FinOps team?
 
-> We often discuss costs, especially in the cloud, where scaling up resources is easy. It’s crucial to know our metrics: do we have enough capacity? Do we need all instances? Or is the CPU only at 5% utilization? This data helps managers decide whether the budget is sufficient or if optimizations are needed.
+> We often discuss costs, especially in the cloud, where scaling up resources is easy. We need to know our metrics: do we have enough capacity? Do we need all instances? Or is the CPU only at 5% utilization? This data helps managers decide whether the budget is sufficient or if optimizations are needed.
 
 Do you have practical tips for working with SREs?
 
@@ -121,7 +121,7 @@ Let’s talk about AI. How do you use it in your daily work?
 
 Do you think AI could largely replace SREs or significantly change the role?
 
-> I see AI as an additional tool. SRE requires a deep understanding of how distributed systems work internally. While AI can assist with routine tasks or quickly detect anomalies, human expertise is indispensable for complex issues.
+> I see AI as an additional tool. SRE requires a deep understanding of how distributed systems work internally. AI can help with routine tasks or spot anomalies quickly, but for the complex issues you still need a human who understands the system.
 
 ## SRE Learning Resources
 
@@ -171,7 +171,7 @@ Thank you very much for your time and this insightful interview into the world o
 
 ## Closing comments
 
-Thanks for reading! Hopefully there’s something useful in here for your own work. Reliable systems are a team effort, after all.
+Thanks for reading! Hopefully there’s something useful in here for your own work.
 
 E-Mail your comments to `paul@nospam.buetow.org` or contact Florian via the Cracking AI Engineering :-)
 

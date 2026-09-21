@@ -211,7 +211,7 @@ Focus not just on a single night; rather, lay the groundwork for creating an ope
 
 ## Introducing SRE
 
-Bringing SRE means overcoming inertia and requires substantial investment in time to educate and continuously reinforce practices and behaviors.
+Introducing SRE means overcoming inertia. It takes a lot of time to educate people and keep reinforcing the practices.
 
 Change is hard, especially in large organizations. Focus initially on the most critical behaviors to adapt and help spread awareness.
 
@@ -228,7 +228,7 @@ The book also discusses several sources of complexity. The biggest and hardest t
 * Others may doubt the maturity of the company in adopting SRE principles without proper documentation.
 * Basic arguments for SLOs might conflict with existing goals, requiring patient explanation.
 
-SLOs, SLIs, and error budgets will require convincing within the organization. Some may prioritize feature velocity over reliability work. Once engineering, operations, and product teams buy in, it's essential to engage senior leadership. The benefits of SRE practices, such as greater release velocity and early insights into the user experience, should be emphasized to them.
+SLOs, SLIs, and error budgets will require convincing within the organization. Some may prioritize feature velocity over reliability work. Once engineering, operations, and product teams buy in, go to senior leadership. Sell them on release velocity and early insight into the user experience.
 
 The key argument to leadership is that SRE practices will provide better feature velocity over time.
 
@@ -245,7 +245,7 @@ Regular retrospectives and reflection improve on-call experiences. Good communic
 
 ## Prevent failures through improved system design
 
-When a cascading failure occurs, many issues arise simultaneously, overwhelming systems. Even prepared teams can struggle to mitigate without serious user impact. A more effective strategy involves preventing failures through improved system design.
+When a cascading failure occurs, many issues arise simultaneously, overwhelming systems. Even prepared teams struggle to mitigate without user impact. Better to prevent the failures through system design.
 
 * SLIs, SLOs, and SLAs define service health.
 * Availability and reliability are continuously measured.
@@ -254,7 +254,7 @@ When a cascading failure occurs, many issues arise simultaneously, overwhelming 
 
 ## On-call health and postmortems
 
-On-call health is crucial. Postmortems should analyze alerts for noise and automate recurring tasks. Action items from retrospectives should be timely completed.
+On-call health matters. Postmortems should look at alert noise and at what can be automated. Action items from retrospectives need to be done on time.
 
 * Link SLAs to on-call health to get a full picture of service quality.
 * Error budgets concern not just availability but the quality of that availability.
@@ -269,7 +269,7 @@ On-call health is crucial. Postmortems should analyze alerts for noise and autom
 * Over time, "at least 50% code" shifted to "at most 50% ops."
 * Fifty percent ops work sounds viable, but not fifty percent toil.
 
-Toil reduction should be a goal across all engineering disciplines. Reliability and operability demand proactive planning, not just reactive fixes. An SRE team should ensure systems need less human intervention to function. It's crucial to make SRE contributions visible to prevent organizational decay. While we cannot track prevented incidents, preventive efforts are invaluable.
+Toil reduction is a goal for all engineering disciplines, not only SRE. Reliability needs planning, not only fixes. An SRE team should make systems need less human intervention. Make SRE contributions visible. You can't count prevented incidents, but the prevention work is what matters.
 
 * In a complex world, avoid attributing issues solely to human error.
 * Recognize tooling, operational, and resource gaps.
@@ -278,31 +278,31 @@ Toil reduction should be a goal across all engineering disciplines. Reliability 
 * Effective communication and precise writing are invaluable for reliability.
 * SRE adoption is cultural, not merely about automating operations.
 
-Remember, engineering will always face breakages, which can lead to burnout. Mental health is a priority. Error budgets provide data for better decision-making. When faced with incidents outside SREs' control, cultural shifts ensure long-term success.
+Things will always break, and that can lead to burnout. Mental health comes first. Error budgets give you data to decide with. For incidents outside SRE's control, only a culture change helps in the long run.
 
-Building a successful team in large enterprises is challenging. A culture emphasizing knowledge sharing, collaboration, and preparation is more beneficial than runbooks alone.
+Building a good team in a large enterprise is hard. A culture of knowledge sharing and preparation beats runbooks alone.
 
 * Mitigation tooling helps in incident management.
 * Identify escalation paths: developers, back-end teams, or dedicated incident teams.
 * Use consoles, logs, and inspection tools for problem-solving.
 
-SREs protect critical systems, facing excitement and risk of burnout. Reliable systems require quick improvements and avoidance of delay-inducing processes. Modernize systems incrementally, focusing on small, frequent deployments to manage risk.
+SREs protect critical systems. That's exciting and a burnout risk. Reliable systems need quick improvements and no processes that slow everything down. Modernize incrementally with small, frequent deployments.
 
-Establishing a solid SRE culture is vital for sustainable success. Comprehensive documentation should not undergo the same review as code. Heroes do their best work as part of a team; a hero culture isn't essential.
+A solid SRE culture is what makes it last. Documentation shouldn't go through the same review process as code. Heroes do their best work as part of a team; you don't need a hero culture.
 
-* Building happy, healthy on-call rotations fosters better outcomes.
+* Happy, healthy on-call rotations lead to better results.
 * Incentivize, reduce pain points, mentor, and iterate rapidly.
 
 ## Alert volume vs effectiveness
 
-The volume of alerts isn't as critical as handling them effectively. Trust, ownership, communication, and collaboration underpin successful teams, improving processes and reliability. Like maintaining fire safety, regularly test systems to prevent outages.
+How many alerts there are matters less than how well they get handled. Successful teams are built on trust, ownership and communication. Test your systems regularly, like a fire drill.
 
 * Prioritize long-term impacts over daily distractions.
 * SREs need to set limits on toil to mature as a discipline.
 * Engineers must communicate risks clearly and prepare for future gaps exposed by incidents.
 * Individuals understand only parts of complex systems.
 
-Introducing SRE courses in academia would signify a new era in engineering.
+SRE courses at universities would be a big step for the field.
 
 Other book notes of mine are:
 

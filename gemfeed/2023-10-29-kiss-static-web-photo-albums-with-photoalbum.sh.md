@@ -266,7 +266,7 @@ A decent looking (in my opinion, at least) in less than 500 (273 as of this writ
 
 Also, I like the CSS effects which I recently added. In particular, for the Irregular Ninja site, I randomly shuffled the CSS effects you see. The background blur images are the same but rotated 180 degrees and blurred out.
 
-[`photoalbum.sh` source code on Codeberg.](https://github.com/snonux/photoalbum)  
+[`photoalbum.sh` source code on GitHub.](https://github.com/snonux/photoalbum)  
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 

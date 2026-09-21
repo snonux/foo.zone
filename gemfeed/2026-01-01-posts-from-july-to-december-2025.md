@@ -547,7 +547,7 @@ Always enable keepalive? I'd say most of the time. I've seen cases, where connec
 
 ### I just finished reading "Chaos Engineering" by ...
 
-I just finished reading "Chaos Engineering" by Casey Rosenthal—an absolute must-read for anyone passionate about building resilient systems! Chaos Engineering is not abbreaking things randomly—it's a disciplined approach to uncovering weaknesses before they become outages. SREs, this book is packed with practical insights and real-world strategies to strengthen your systems against failure. Highly recommended! `#ChaosEngineering` `#Resilience`
+I just finished reading "Chaos Engineering" by Casey Rosenthal. Chaos Engineering isn't about breaking things randomly, it's about finding weaknesses before they become outages. Recommended for SREs! `#ChaosEngineering` `#Resilience`
 
 [www.oreilly.com/library/view/chaos-engineering/9781492043850/](https://www.oreilly.com/library/view/chaos-engineering/9781492043850/)  
 
@@ -805,7 +805,7 @@ There are some truths in this `#SRE` article: However, in my opinion, the more e
 
 ### The Go flight recorder is a tool that allows ...
 
-The Go flight recorder is a tool that allows developers to capture and analyze the execution of Go programs. It provides insights into performance, memory usage, and other runtime characteristics by recording events and metrics during the program's execution. Yet another tool why Go is awesome! `#go` `#golang` `#tools`
+The Go flight recorder records runtime events of a Go program so you can analyze performance and memory usage afterwards. Yet another tool why Go is awesome! `#go` `#golang` `#tools`
 
 [go.dev/blog/flight-recorder](https://go.dev/blog/flight-recorder)  
 
@@ -957,7 +957,7 @@ That's fun, use the C preprocessor as a HTML template engine! `#c` `#cpp` `#fun`
 
 ### Elvish seems to be a neat little shell. It's ...
 
-Elvish seems to be a neat little shell. It's implemented in `#Golang` and can make use of the great Go standard library. The language is more modern than other shells out there (e.g., supporting nested data structures) and eliminates backward compatibility issues (e.g., awkward string parsing with spaces that often causes problems in traditional shells). Elvish also comes with some neat interactive TUI elements. Furthermore, there will be a whole TUI framework built directly into the shell. If I weren't so deeply intertwined with `#bash` and `#zsh`, I would personally give `#Elvish` a try... Interesting, at least, it is.
+Elvish seems to be a neat little shell. It's implemented in `#Golang` and can make use of the great Go standard library. The language is more modern than other shells out there (e.g., supporting nested data structures) and eliminates backward compatibility issues (e.g., awkward string parsing with spaces that often causes problems in traditional shells). Elvish also comes with some neat interactive TUI elements. There will also be a TUI framework built into the shell. If I weren't so deeply intertwined with `#bash` and `#zsh`, I would personally give `#Elvish` a try... Interesting, at least, it is.
 
 [elv.sh/](https://elv.sh/)  
 
@@ -1004,7 +1004,7 @@ Best thing I've ever read about `#container` `#security` in `#kubernetes`:
 
 ### While acknowledging luck in finding the right ...
 
-While acknowledging luck in finding the right team and company culture, the author stresses that staying and choosing long-term ownership is a deliberate choice for those valuing deep technical ownership over external validation: Why I Ignore The Spotlight as a Staff Engineer `#engineering`
+Staying in one team long term and choosing deep technical ownership over the spotlight is a deliberate choice (plus some luck in finding the right team): Why I Ignore The Spotlight as a Staff Engineer `#engineering`
 
 [lalitm.com/software-engineering-outside-the-spotlight/](https://lalitm.com/software-engineering-outside-the-spotlight/)  
 

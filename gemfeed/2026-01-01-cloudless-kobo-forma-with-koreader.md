@@ -43,11 +43,11 @@ Note: Some of the screenshots in this post are taken from my Kobo Clara HD, whic
 
 ## KOReader to the Rescue
 
-I keep my Kobo Forma disconnected from the cloud entirely, and KOReader makes that possible. KOReader is a versatile, open-source document and image viewer which can also be installed on some E Ink reader devices like the Kobo Forma. No cloud sync, no tracking, just reading.
+I keep my Kobo Forma disconnected from the cloud entirely, and KOReader makes that possible. KOReader is an open-source document viewer which also runs on some E Ink readers like the Kobo Forma. It doesn't sync to any cloud and doesn't track anything.
 
 [KOReader](https://koreader.rocks/)  
 
-By not syncing my reading progress and library to Kobo's cloud service, I retain full ownership and control over my data. There's no risk of my personal reading habits being accessed or mined by third parties. 
+My reading progress and library never leave the device (well, except to my own sync server, see below). Nobody gets to mine my reading habits. 
 
 ### Installation
 
@@ -63,7 +63,7 @@ After the initial install, KOReader can update itself through its menus.
 
 [![KOReader self-update menu](./cloudless-kobo-forma-with-koreader/update.jpg "KOReader self-update menu")](./cloudless-kobo-forma-with-koreader/update.jpg)  
 
-It is worth noting that after the KOReader install, the Kobo Forma still boots into the proprietary window manager. To start KOReader, you have to select it from the new "Nickel Menu". KOReader will then stay open until you reboot the device. It's a small annoyance, but it's well worth it!
+Note that after the KOReader install, the Kobo Forma still boots into the proprietary window manager. To start KOReader, you have to select it from the new "Nickel Menu". KOReader will then stay open until you reboot the device. It's a small annoyance, but it's well worth it!
 
 [![Nickel Menu](./cloudless-kobo-forma-with-koreader/nickel-menu.jpg "Nickel Menu")](./cloudless-kobo-forma-with-koreader/nickel-menu.jpg)  
 
@@ -86,7 +86,7 @@ KOReader is much faster than the stock firmware; it feels about three times as f
 
 ## My Workflow
 
-My workflow is simple and efficient, relying on a direct USB connection to my Linux laptop for sideloading books and a self-hosted sync server for progress synchronization.
+My workflow: USB cable to my Linux laptop for the books, and a self-hosted sync server for the reading progress.
 
 ### Sideloading Books
 
@@ -96,7 +96,7 @@ I connect my Kobo Forma to my Linux laptop via a USB-C cable. The device is auto
 
 To keep my reading progress synchronized across multiple devices (my Kobo, my phone, and my Linux laptop), I run a `koreader-sync-server` instance in my k3s cluster. This allows me to pick up reading where I left off, no matter which device I'm using.
 
-[https://github.com/snonux/conf/src/branch/master/f3s/kobo-sync-server](https://github.com/snonux/conf/src/branch/master/f3s/kobo-sync-server)  
+[https://github.com/snonux/conf/tree/master/f3s/kobo-sync-server](https://github.com/snonux/conf/tree/master/f3s/kobo-sync-server)  
 
 [![Custom sync server configuration](./cloudless-kobo-forma-with-koreader/sync-server.jpg "Custom sync server configuration")](./cloudless-kobo-forma-with-koreader/sync-server.jpg)  
 
@@ -127,7 +127,7 @@ All the books I read you can see here:
 
 ## Conclusion
 
-I'm really happy with this setup. Offline Kobo with KOReader, manual book transfers, self-hosted services—it's simple, private, and the reading experience is just great. If you care about owning your data (and not getting distracted), give it a try.
+I'm really happy with this setup. It's simple, it's private, and reading on it is great. Give it a try if you care about owning your data.
 
 Other related posts:
 

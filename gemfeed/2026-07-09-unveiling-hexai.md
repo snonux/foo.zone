@@ -40,7 +40,7 @@ Hexai is really a bundle of small tools that share the same configuration:
 
 Everything uses the same `config.toml`, the same provider pool, and the same prompt overrides. I can switch models in one place and the LSP, CLI, and popup all follow along.
 
-These are opinionated tools. They reflect how I work — Helix inside tmux, a terminal CLI, a thin Taskwarrior wrapper — not a generic plugin system. If your workflow matches mine, they get out of the way; if it doesn't, you will probably want to tweak the config or fork it.
+These are opinionated tools. They reflect how I work: Helix inside tmux, a terminal CLI, a thin Taskwarrior wrapper. If your workflow is different, you'll probably want to tweak the config or fork it.
 
 ## Installing it
 
@@ -78,7 +78,7 @@ model = "qwen3-coder:30b-a3b-q4_K_M"
 base_url = "http://localhost:11434"
 ```
 
-Because that points at `localhost`, nothing leaves your machine — prompt, code, and reply all stay local. That is the main reason I keep a local Ollama around.
+Because that points at `localhost`, nothing leaves your machine. That's the main reason I keep a local Ollama around.
 
 For OpenAI, the config is similar:
 
@@ -279,7 +279,7 @@ task project:hexai +agent next
 
 `ask` just hides the project filter, the `+agent` tag, and the raw UUIDs so the day-to-day output stays small and project-local.
 
-That scoping is also a security boundary, and the main reason I let an LLM agent touch my Taskwarrior database at all. Because `ask` always applies the `project:REPO +agent` filter, the agent can only see and modify tasks in its own current project — it cannot delete, reprioritize, or even see anything outside that filter. So `ask` is really a safety wrapper around `task`: you can hand it to a coding agent without giving it free rein over the rest of your tasks.
+That scoping is also the reason I let an LLM agent touch my Taskwarrior database at all. The agent only sees the tasks matching `project:REPO +agent` and can't touch anything else.
 
 ```sh
 # Add a task for the current project
@@ -296,7 +296,7 @@ ask done os0
 ask info os0
 ```
 
-The IDs shown are stable local aliases, not Taskwarrior's numeric IDs. Taskwarrior gives you two built-in identifiers: a numeric ID that isn't stable across syncs and exports, and a UUID that is stable but far too long to type by hand. `ask` instead keeps its own mapping from each task's UUID to a short, permanent alias (cached under Hexai's cache dir) — so you get the best of both: a stable, short ID that never changes even if tasks above it get completed or deleted. `ask info` hides the raw UUID unless `HEXAI_DEBUG` is set, so the short alias is the one you actually use day to day.
+The IDs shown are stable local aliases, not Taskwarrior's numeric IDs. Taskwarrior gives you two built-in identifiers: a numeric ID that isn't stable across syncs and exports, and a UUID that is stable but far too long to type by hand. `ask` keeps its own mapping from each task's UUID to a short, permanent alias (cached under Hexai's cache dir). The alias doesn't change when tasks above it get completed or deleted. `ask info` hides the raw UUID unless `HEXAI_DEBUG` is set, so the short alias is the one you actually use day to day.
 
 `ask` works from anywhere inside the project git tree and derives the project name from the repo root. To manage tasks for another project, use `ask proj:hexai list`.
 
@@ -328,8 +328,8 @@ Tags:        agent
 
 This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of `ask`: the `agent-task-management` skill knows how to read and update the `ask` task list, and the `/work-on-tasks` command uses that skill to work through a whole backlog on its own — pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run `/work-on-tasks`, and it chews through the queue one task at a time.
 
-[agent-task-management skill](https://github.com/snonux/dotfiles/src/branch/master/prompts/skills/agent-task-management)  
-[/work-on-tasks command](https://github.com/snonux/dotfiles/src/branch/master/prompts/commands/work-on-tasks.md)  
+[agent-task-management skill](https://github.com/snonux/dotfiles/tree/master/prompts/skills/agent-task-management)  
+[/work-on-tasks command](https://github.com/snonux/dotfiles/blob/master/prompts/commands/work-on-tasks.md)  
 
 ## Running multiple providers side by side
 
@@ -361,7 +361,7 @@ It is handy for comparing local and cloud models, or for just seeing which one g
 
 ## What to watch out for
 
-A few honest caveats:
+A few caveats:
 
 * I mainly test Hexai with Helix inside tmux. Other editors might work through LSP, but your mileage will vary.
 * The `hexai-mcp-server` binary is experimental and effectively deprecated. I manage prompts through slash commands and the agent system now, so the MCP server is not getting much attention.

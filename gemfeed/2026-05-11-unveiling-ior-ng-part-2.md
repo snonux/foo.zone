@@ -111,7 +111,7 @@ If you see `Probing for 5s` followed by CSV rows, the build is good. `mage build
 
 ## A short detour: eBPF and libbpfgo
 
-If you haven't touched eBPF before: it's a small in-kernel bytecode VM. You compile a tiny C program, the kernel verifies it can't crash or loop forever, and then it runs every time some hook fires — a syscall enter/exit, a kprobe, a tracepoint, a network packet. The program writes events into a ring buffer that userspace mmaps and drains. No kernel module, no patched kernel, no debug symbols required.
+If you haven't touched eBPF before: it's a small in-kernel bytecode VM. You compile a tiny C program, the kernel verifies it can't crash or loop forever, and then it runs every time some hook fires — a syscall enter/exit, a kprobe, a tracepoint, a network packet. The program writes events into a ring buffer that userspace mmaps and drains. You don't need a kernel module, a patched kernel, or debug symbols.
 
 [eBPF — the project's umbrella site (docs, talks, ecosystem)](https://ebpf.io)  
 
@@ -154,7 +154,7 @@ I went with libbpfgo specifically because it's a wrapper, not a reimplementation
 
 ## CO-RE — the part that makes the BPF binary actually portable
 
-The headline fact about `ior`'s deployment story: build it once on one box, then `scp ior other-host:/usr/local/bin/` to anywhere else and it just runs. No recompile per kernel, no kernel-debuginfo dance, no DKMS hooks. Two mechanisms make that work, and they reinforce each other.
+You build `ior` once, `scp ior other-host:/usr/local/bin/`, and it runs. There's no recompile per kernel and no kernel-debuginfo package to install. Two things make that work:
 
 ### Static linking
 
@@ -242,23 +242,20 @@ The whole "one build, every host" picture:
 
 The cost of being a libbpf wrapper rather than a pure-Go reimplementation is cgo. Every call from Go into libbpf crosses the cgo boundary, which historically meant tens to ~hundred-ish nanoseconds of overhead per call: register save/restore, a stack switch onto g0, goroutine state bookkeeping. Cheap in absolute terms, but it adds up if you call into C inside a tight loop. `ior` keeps the actual hot path on the kernel side and only crosses into Go once per drained batch of events from the ring buffer, so the per-call cost is amortized over thousands of events. In practice it doesn't show up in profiles.
 
-Go 1.26, the current release at the time of writing (early May 2026), is the one that finally took a serious bite out of cgo's per-call cost. The runtime can elide a chunk of the bookkeeping for calls that don't need it. Real-world wins depend heavily on the workload, but the rough direction is that cgo now feels closer to "an unusually expensive function call" than to "a context switch", which is the right mental model for almost everyone touching a C library from Go. The shorter version: cgo overhead used to be a real footgun for ports that called into C in the inner loop. With Go 1.26 it's a footnote unless you're doing many millions of small calls per second, in which case batching across the boundary still fixes it.
+Go 1.26, the current release at the time of writing (early May 2026), is the one that finally took a serious bite out of cgo's per-call cost. The runtime can elide a chunk of the bookkeeping for calls that don't need it. How much you gain depends on the workload, but cgo now feels more like an expensive function call than a context switch. It used to be a footgun if you called into C in the inner loop. With Go 1.26 it's a footnote unless you do many millions of small calls per second, and then batching still fixes it.
 
 ## What's new in v1.1.0
 
 Two changes since the `1.0.0` release this post was originally written against touch the install / portability story directly:
 
 * `mage buildDockerEl8` is a new build target that produces a sibling binary called `ior.el8`, built inside a Rocky Linux 8 container against its older glibc. Drop it on RHEL/Rocky/Alma 8 hosts where the default Rocky 9-built `ior` would refuse to start with a `version 'GLIBC_2.34' not found` complaint. CO-RE still means one binary across kernel versions; the el8 split is purely about pinning the userspace libc floor lower for older fleets. The Dockerfile mirrors the same source-build dance described above (libelf.a from elfutils, libzstd.a from upstream, Go 1.26 from go.dev), just on top of a Rocky 8 base.
-* Probe attach is now tolerant of missing tracepoints. Older kernels that don't expose every tracepoint v1.1.0 knows about (because the syscall didn't exist yet on that kernel, or the tracepoint name was renamed under it) log a one-line warning per missing probe and continue, instead of aborting startup. Same static binary, more kernels it actually attaches on, fewer surprises when you `scp` it to a host that's a few major versions behind your build box. Pairs naturally with the el8 build above: a Rocky 8 host running a 4.18 kernel will silently skip the tracepoints that arrived in 5.x and keep tracing the ones that exist.
+* Probe attach is now tolerant of missing tracepoints. Older kernels that don't expose every tracepoint v1.1.0 knows about (because the syscall didn't exist yet on that kernel, or the tracepoint name was renamed under it) log a one-line warning per missing probe and continue, instead of aborting startup. Same binary, fewer surprises on hosts with older kernels. Together with the el8 build: a Rocky 8 host running a 4.18 kernel will silently skip the tracepoints that arrived in 5.x and keep tracing the ones that exist.
 
 ## If you want to go deeper
 
-If any of this sounds interesting and you want to learn how to write your own BPF programs, two books are the standard recommendations and both well worth the time:
+If any of this sounds interesting and you want to learn how to write your own BPF programs, these two books are the ones to read:
 
-* "Learning eBPF" by Liz Rice (O'Reilly, 2023) is the friendlier on-ramp. It walks through writing your first programs end-to-end, covers CO-RE and BTF in plain English, and is the book I'd hand to someone who has never touched the kernel side before. Liz also gave the canonical "what is eBPF" conference talk floating around YouTube, which makes a good 40-minute companion.
-* "BPF Performance Tools: Linux System and Application Observability" by Brendan Gregg (Addison-Wesley, 2019) is the encyclopedia. It's where you go after you've understood the basics and now want a complete reference for tracing every subsystem in the kernel — file systems, networking, scheduler, languages, applications — with worked tools for each. The flame-graph-driven analysis style throughout is also exactly how `ior`'s own flamegraph tab thinks about a workload.
-
-Between the two, Rice teaches you the moving parts and Gregg teaches you what to do with them.
+* "Learning eBPF" by Liz Rice (O'Reilly, 2023) is the friendlier on-ramp. It walks through writing your first programs end-to-end, covers CO-RE and BTF in plain English, and is the book I'd hand to someone who has never touched the kernel side before.* "BPF Performance Tools: Linux System and Application Observability" by Brendan Gregg (Addison-Wesley, 2019) is the encyclopedia. It's where you go after you've understood the basics and now want a complete reference for tracing every subsystem in the kernel — file systems, networking, scheduler, languages, applications — with worked tools for each. The flame-graph-driven analysis style throughout is also exactly how `ior`'s own flamegraph tab thinks about a workload.
 
 Read the next post of the series:
 

@@ -11,6 +11,7 @@
 * [⇢ ⇢ Desk audio rack](#desk-audio-rack)
 * [⇢ ⇢ Kinesis Advantage 360 Pro](#kinesis-advantage-360-pro)
 * [⇢ ⇢ Glove80](#glove80)
+* [⇢ ⇢ Kensington SlimBlade Pro](#kensington-slimblade-pro)
 * [⇢ ⇢ Looking for more?](#looking-for-more)
 
 ## Introduction
@@ -79,6 +80,14 @@ My daily-driver keyboard at the desk. Concave, ortholinear, split — it cured a
 [Typing 127.1 words per minute](../gemfeed/2024-08-05-typing-127.1-words-per-minute.md)  
 
 The travel keyboard. Same ergonomic idea as the Kinesis — concave ortholinear split — but much lighter, with low-profile Red Pro switches. I mapped it as close to the Kinesis layout as possible so I can swap between them without relearning muscle memory. Bubble wrap beats the bulky official case in a rucksack.
+
+## Kensington SlimBlade Pro
+
+[![Kensington SlimBlade Pro trackball](gadgets/kensington-slimblade-pro.jpg "Kensington SlimBlade Pro trackball")](gadgets/kensington-slimblade-pro.jpg)  
+[Official product page](https://www.kensington.com/p/products/electronic-control-solutions/trackball-products/slimblade-pro-trackball/)  
+[snonux.foo microblog note](https://snonux.foo/#post-2026-09-19-093831)  
+
+My favourite “mouse” on the main desk now. Finger-operated trackball, twist-to-scroll, and it barely moves on the desk — which is the whole point when you're already parked at a Kinesis. Wireless when I want it, USB when I don't.
 
 ## Looking for more?
 

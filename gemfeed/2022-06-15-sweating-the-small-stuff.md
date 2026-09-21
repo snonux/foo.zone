@@ -289,7 +289,7 @@ PerlDaemon is a minimal daemon for Linux and other Unix like operating systems p
 
 ## More
 
-There are more projects on my Codeberg page but they aren't as tiny as the ones mentioned in this post or aren't finished yet so I won't bother listing them here. However, there also a few more scripts used frequently by me (not publicly accessible (yet?)) which I would like to mention here:
+There are more projects on my GitHub page but they aren't as tiny as the ones mentioned in this post or aren't finished yet so I won't bother listing them here. However, there also a few more scripts used frequently by me (not publicly accessible (yet?)) which I would like to mention here:
 
 ### Work time tracker
 

@@ -36,11 +36,11 @@ RCM is a tiny configuration management system written in Ruby. It gives me a sma
 
 I've used (and still use) the usual suspects in configuration management: Puppet, Ansible, etc. They are powerful, but also come with orchestration layers, agents, inventories, and a lot of moving parts. For my personal machines I wanted something smaller: one Ruby process, one configuration file, a few resource types, and good enough safety features.
 
-I've always been a fan of Ruby's metaprogramming features, and this project let me explore them in a focused, practical way.
+I've always liked Ruby's metaprogramming, and this project was a good excuse to play with it.
 
 Because of that metaprogramming support, Ruby is a great fit for DSLs. You can get very close to natural language without inventing a brand-new syntax. RCM leans into that: the goal is to read a configuration and understand what happens without jumping between multiple files or templating languages.
 
-[RCM repo on Codeberg](https://github.com/snonux/rcm)  
+[RCM repo on GitHub](https://github.com/snonux/rcm)  
 
 ## How the DSL feels
 
@@ -131,8 +131,6 @@ given { hostname is :earth }
 
 Inside that block, calls such as `hostname` and `is` don't map to normal Ruby methods. Instead, RCM's DSL objects see those calls in `method_missing`, and interpret them as "check the current hostname" and "compare it to this symbol". This lets the DSL stay small and flexible: adding a new keyword can be as simple as handling another case in `method_missing`, without changing the Ruby syntax at all.
 
-Put differently: you can write what looks like a tiny English sentence (`hostname is :earth`) and Ruby breaks it into method calls (`hostname`, then `is`) that RCM can interpret dynamically. Those "barewords" are not special syntax; they are just regular Ruby method names that the DSL catches and turns into configuration logic at runtime.
-
 Here's a simplified sketch of how such a condition object could look in Ruby:
 
 ```ruby
@@ -190,7 +188,7 @@ In that space RCM wins: it is small, transparent, and tuned for one person (me!)
 
 ## Cutting RCM 0.1.0
 
-As of this post I'm tagging and releasing **RCM 0.1.0**. About 99% of the code has been written by me so far, and before AI agents take over more of the boilerplate and wiring work, it felt like a good moment to cut a release and mark this mostly‑human baseline.
+As of this post I'm tagging and releasing RCM 0.1.0. About 99% of the code has been written by me so far, and before AI agents take over more of the boilerplate and wiring work, it felt like a good moment to cut a release and mark this mostly‑human baseline.
 
 Future changes will very likely involve more automated help, but 0.1.0 is the snapshot of the original, hand‑crafted version of the tool.
 
@@ -333,7 +331,7 @@ configure do
 end
 ```
 
-If you find RCM interesting, feel free to browse the code, adapt it to your own setup, or just steal ideas for your own Ruby DSLs. I will probably extend it with more features over time as my own needs evolve.
+If you find RCM interesting, have a look at the code or steal ideas for your own Ruby DSL. I'll extend it when I need something new.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)
 
