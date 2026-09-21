@@ -24,7 +24,7 @@ That's the "PLG" stack (Prometheus, Loki, Grafana) plus Tempo.
 
 All manifests for the f3s stack live in my configuration repository:
 
-=> https://github.com/snonux/conf/src/branch/master/f3s github.com/snonux/conf/f3s
+=> https://github.com/snonux/conf/tree/master/f3s github.com/snonux/conf/f3s
 
 ## Important Note: GitOps Migration
 
@@ -97,7 +97,7 @@ Create the directories on the NFS server for persistent storage:
 The configuration repository contains a `Justfile` that automates the deployment. `just` is a handy command runner—think of it as a simpler, more modern alternative to `make`. I use it throughout the f3s repository to wrap repetitive Helm and kubectl commands:
 
 => https://github.com/casey/just just - A handy way to save and run project-specific commands
-=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus github.com/snonux/conf/f3s/prometheus
+=> https://github.com/snonux/conf/tree/master/f3s/prometheus github.com/snonux/conf/f3s/prometheus
 
 To install everything:
 
@@ -168,7 +168,7 @@ etcd_server_has_leader 1
 
 The full `persistence-values.yaml` and all other Prometheus configuration files are available on GitHub:
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus github.com/snonux/conf/f3s/prometheus
+=> https://github.com/snonux/conf/tree/master/f3s/prometheus github.com/snonux/conf/f3s/prometheus
 
 The persistent volume definitions bind to specific paths on the NFS share using `hostPath` volumes—the same pattern used for other services in Part 7:
 
@@ -212,7 +212,7 @@ Create the data directory on the NFS server:
 
 The Loki configuration also lives in the repository:
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/loki github.com/snonux/conf/f3s/loki
+=> https://github.com/snonux/conf/tree/master/f3s/loki github.com/snonux/conf/f3s/loki
 
 To install:
 
@@ -527,7 +527,7 @@ spec:
 
 This file is saved as `freebsd-recording-rules.yaml` and applied as part of the Prometheus installation. The `os="freebsd"` label (set in the scrape config) ensures these rules only apply to FreeBSD hosts. After applying, the memory panels in the Node Exporter dashboards populate correctly for FreeBSD.
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/freebsd-recording-rules.yaml freebsd-recording-rules.yaml on GitHub
+=> https://github.com/snonux/conf/blob/master/f3s/prometheus/freebsd-recording-rules.yaml freebsd-recording-rules.yaml on GitHub
 
 ### Disk I/O metrics limitation
 
@@ -876,7 +876,7 @@ spec:
 
 This file is saved as `openbsd-recording-rules.yaml` and applied alongside the FreeBSD rules. Note that OpenBSD doesn't expose a buffer memory metric, so that rule is omitted.
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus/openbsd-recording-rules.yaml openbsd-recording-rules.yaml on GitHub
+=> https://github.com/snonux/conf/blob/master/f3s/prometheus/openbsd-recording-rules.yaml openbsd-recording-rules.yaml on GitHub
 
 After running `just upgrade`, the OpenBSD hosts appear in Prometheus targets and the Node Exporter dashboards.
 
@@ -888,8 +888,8 @@ That's metrics and logs for the k3s cluster, the FreeBSD storage servers and the
 
 All configuration files are available on GitHub:
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/prometheus Prometheus, Grafana, and recording rules configuration
-=> https://github.com/snonux/conf/src/branch/master/f3s/loki Loki and Alloy configuration
+=> https://github.com/snonux/conf/tree/master/f3s/prometheus Prometheus, Grafana, and recording rules configuration
+=> https://github.com/snonux/conf/tree/master/f3s/loki Loki and Alloy configuration
 
 Other *BSD-related posts:
 

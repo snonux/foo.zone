@@ -199,7 +199,7 @@ But what's there covers the cases I actually hit. Try the demo and see if it's f
 For installing it and the eBPF / CO-RE / static-linking story (why one build runs on every other Linux box you scp it to), see Part 2. For the per-event schema, async-syscall caveats, the probe-generator safeguard against missing new kernel syscalls, and post-mortem SQL on the parquet output, see Part 3.
 
 => https://github.com/snonux/ior Source on GitHub
-=> https://github.com/snonux/ior/src/branch/main/docs/tutorial/tutorial.md The full in-repo tutorial
+=> https://github.com/snonux/ior/blob/main/docs/tutorial/tutorial.md The full in-repo tutorial
 
 Read the next post of the series:
 

@@ -809,7 +809,7 @@ The key architectural decisions:
 
 First, install cert-manager to handle certificate lifecycle management for LAN services. The installation is automated with a Justfile:
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/cert-manager github.com/snonux/conf/f3s/cert-manager
+=> https://github.com/snonux/conf/tree/master/f3s/cert-manager github.com/snonux/conf/f3s/cert-manager
 
 ```sh
 $ cd conf/f3s/cert-manager
@@ -1013,7 +1013,7 @@ As not all Docker images I want to deploy are available on public Docker registr
 
 All manifests for the f3s stack live in my configuration repository:
 
-=> https://github.com/snonux/conf/src/branch/master/f3s github.com/snonux/conf/f3s
+=> https://github.com/snonux/conf/tree/master/f3s github.com/snonux/conf/f3s
 
 Within that repo, the `f3s/registry/` directory contains the Helm chart, a `Justfile`, and a detailed `README`. Here's the condensed walkthrough I used to roll out the registry with Helm.
 
@@ -1030,8 +1030,8 @@ Create the directory that will hold the registry blobs on the NFS share (I ran t
 Clone the repo (or pull the latest changes) on a workstation that has `helm` configured for the cluster, then deploy the chart. The Justfile wraps the commands, but the raw Helm invocation looks like this:
 
 ```sh
-$ git clone https://github.com/snonux/conf/f3s.git
-$ cd conf/f3s/examples/conf/f3s/registry
+$ git clone https://github.com/snonux/conf.git
+$ cd conf/f3s/registry
 $ helm upgrade --install registry ./helm-chart --namespace infra --create-namespace
 ```
 
@@ -1117,14 +1117,14 @@ If the pod pulls successfully, the private registry is ready for use by the rest
 
 ## Example: Anki Sync Server from the private registry
 
-One of the first workloads I migrated onto the k3s cluster after standing up the registry was my Anki sync server. The configuration repo ships everything in `examples/conf/f3s/anki-sync-server/`: a Docker build context plus a Helm chart that references the freshly built image.
+One of the first workloads I migrated onto the k3s cluster after standing up the registry was my Anki sync server. The configuration repo ships everything in `f3s/anki-sync-server/`: a Docker build context plus a Helm chart that references the freshly built image.
 
 ### Build and push the image
 
 The Dockerfile lives under `docker-image/` and takes the Anki release to compile as an `ANKI_VERSION` build argument. The accompanying `Justfile` wraps the steps, but the raw commands look like this:
 
 ```sh
-$ cd conf/f3s/examples/conf/f3s/anki-sync-server/docker-image
+$ cd conf/f3s/anki-sync-server/docker-image
 $ docker build -t anki-sync-server:25.07.5b --build-arg ANKI_VERSION=25.07.5 .
 $ docker tag anki-sync-server:25.07.5b \
     r0.lan.buetow.org:30001/anki-sync-server:25.07.5b
@@ -1210,7 +1210,7 @@ paul@f0:~ % doas pw useradd postgres -u 999 -g postgres \
                 -d /var/db/postgres -s /usr/sbin/nologin
 ```
 
-Once the UID/GID exist everywhere, the Miniflux chart in `examples/conf/f3s/miniflux` deploys cleanly. The chart provisions both the application and its bundled Postgres database, mounts the exported directory, and builds the DSN at runtime. The important bits live in `helm-chart/templates/persistent-volumes.yaml` and `deployment.yaml`:
+Once the UID/GID exist everywhere, the Miniflux chart in `f3s/miniflux` deploys cleanly. The chart provisions both the application and its bundled Postgres database, mounts the exported directory, and builds the DSN at runtime. The important bits live in `helm-chart/templates/persistent-volumes.yaml` and `deployment.yaml`:
 
 ```
 # Persistent volume lives on the NFS export
@@ -1229,7 +1229,7 @@ containers:
 Follow the `README` beside the chart to create the secrets and the target directory:
 
 ```sh
-$ cd examples/conf/f3s/miniflux/helm-chart
+$ cd f3s/miniflux/helm-chart
 $ mkdir -p /data/nfs/k3svolumes/miniflux/data
 $ kubectl create secret generic miniflux-db-password \
     --from-literal=fluxdb_password='YOUR_PASSWORD' -n services
@@ -1254,7 +1254,7 @@ replicaset.apps/miniflux-server-85d7c64664     1         1         1       54d
 
 ### Helm charts currently in service
 
-These charts live under `examples/conf/f3s` and run on the cluster today:
+These charts live under `f3s` and run on the cluster today:
 
 * `anki-sync-server`: my own image from the private registry, decks on NFS
 * `koreader-sync-server`: sync server for KOReader

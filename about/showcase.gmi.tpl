@@ -639,7 +639,7 @@ DS-Sim is a open-source simulator for distributed systems, written in Java. It p
 
 rampage: source code repository.
 
-=> https://github.com/snonux/rampage View on GitHub
+Rampage source is not published on GitHub (repo missing after Codeberg→GitHub move).
 
 ---
 
@@ -725,7 +725,7 @@ A KISS (Keep It Simple, Stupid) configuration management system written in Ruby,
 
 > **🚧 PRE-ALPHA SOFTWARE:** This project is in a pre-alpha state and is intended for my own personal use only. Use at your own risk.
 
-=> https://github.com/snonux/epimetheus View on GitHub
+=> https://github.com/snonux/conf/blob/master/f3s/prometheus/epimetheus-dashboard.yaml Related: epimetheus Grafana dashboard in conf (standalone repo unpublished)
 
 ---
 
@@ -1108,7 +1108,7 @@ FailunderD is a zero-dependency failover automation daemon written in Perl for O
 
 Architecturally, it follows a small plugin-module pattern: `bin/failunderd` handles daemonization, PID management, signal handling, config parsing, and a timing-accurate main loop; `FailunderD::RunModules` dynamically discovers and instantiates modules from a configured directory and schedules their execution with sub-interval carry-over to avoid drift; `FailunderD::Logger` is a syslog/STDOUT singleton that also dispatches mail notifications via sendmail. The only shipped module, `FailunderD::Modules::Handler`, performs the actual health checks, status-file writes (atomic via tmp+rename), remote status fetches, score aggregation, and daily email reports — making the failover logic itself pluggable without touching the daemon core.
 
-=> https://github.com/snonux/failunderd View on GitHub
+=> https://web.archive.org/web/20220627181046/https://codeberg.org/snonux/failunderd failunderd on Codeberg (archived; not on GitHub)
 
 ---
 

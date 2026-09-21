@@ -127,7 +127,7 @@ namespace/cicd created
 
 The ArgoCD installation lives in the configuration repository:
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/argocd github.com/snonux/conf/f3s/argocd
+=> https://github.com/snonux/conf/tree/master/f3s/argocd github.com/snonux/conf/f3s/argocd
 
 I used Helm instead of the raw manifests, mostly because upgrades are easier that way. A Justfile wraps the install:
 
@@ -1047,11 +1047,11 @@ The migration took several days spread over a few weeks, one application at a ti
 
 All 21 applications are now managed via GitOps, with the configuration living in:
 
-=> https://github.com/snonux/conf/src/branch/master/f3s github.com/snonux/conf/f3s
+=> https://github.com/snonux/conf/tree/master/f3s github.com/snonux/conf/f3s
 
 The ArgoCD Application manifests are organized by namespace:
 
-=> https://github.com/snonux/conf/src/branch/master/f3s/argocd-apps github.com/snonux/conf/f3s/argocd-apps
+=> https://github.com/snonux/conf/tree/master/f3s/argocd-apps github.com/snonux/conf/f3s/argocd-apps
 
 I won't go back to running `just upgrade` by hand.
 

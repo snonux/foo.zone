@@ -314,8 +314,8 @@ Tags:        agent
 
 This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of `ask`: the `agent-task-management` skill knows how to read and update the `ask` task list, and the `/work-on-tasks` command uses that skill to work through a whole backlog on its own — pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run `/work-on-tasks`, and it chews through the queue one task at a time.
 
-=> https://github.com/snonux/dotfiles/src/branch/master/prompts/skills/agent-task-management agent-task-management skill
-=> https://github.com/snonux/dotfiles/src/branch/master/prompts/commands/work-on-tasks.md /work-on-tasks command
+=> https://github.com/snonux/dotfiles/tree/master/prompts/skills/agent-task-management agent-task-management skill
+=> https://github.com/snonux/dotfiles/blob/master/prompts/commands/work-on-tasks.md /work-on-tasks command
 
 ## Running multiple providers side by side
 
