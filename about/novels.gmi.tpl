@@ -90,6 +90,9 @@ Poseidons Children Series:
 * 2024 - Zeta (german), Audiobook
 * 2024 - Infinitia (german), Audiobook
 * 2024 - Der Riss (german), eBook
+* 2025 - Origin – Die Entdeckung (german) - Origin-Trilogie, Paperback
+* 2025 - Origin – Die Erweckung (german) - Origin-Trilogie (Joshua Tree), Paperback
+* 2025 - Origin – Die Erlösung (german) - Origin-Trilogie (Brandon Q. Morris), Paperback
 
 ### David Reimer (german)
 
