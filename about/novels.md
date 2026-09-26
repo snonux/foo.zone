@@ -8,6 +8,7 @@
 * [⇢ ⇢ ⇢ Alastair Reynolds](#alastair-reynolds)
 * [⇢ ⇢ ⇢ Arthur C. Clarke](#arthur-c-clarke)
 * [⇢ ⇢ ⇢ Andreas Brandhorst (german)](#andreas-brandhorst-german)
+* [⇢ ⇢ ⇢ Collaborations (german)](#collaborations-german)
 * [⇢ ⇢ ⇢ David Reimer (german)](#david-reimer-german)
 * [⇢ ⇢ ⇢ Ian Banks](#ian-banks)
 * [⇢ ⇢ ⇢ Dan Simmons](#dan-simmons)
@@ -101,9 +102,14 @@ Poseidons Children Series:
 * 2024 - Zeta (german), Audiobook
 * 2024 - Infinitia (german), Audiobook
 * 2024 - Der Riss (german), eBook
-* 2025 - Origin – Die Entdeckung (german) - Origin-Trilogie, Paperback
-* 2025 - Origin – Die Erweckung (german) - Origin-Trilogie (Joshua Tree), Paperback
-* 2025 - Origin – Die Erlösung (german) - Origin-Trilogie (Brandon Q. Morris), Paperback
+
+### Collaborations (german)
+
+Origin-Trilogie (each volume written by a different author):
+
+* 2025 - Origin – Die Entdeckung (german), Andreas Brandhorst, Paperback
+* 2025 - Origin – Die Erweckung (german), Joshua Tree, Paperback
+* 2025 - Origin – Die Erlösung (german), Brandon Q. Morris, Paperback
 
 ### David Reimer (german)
 
