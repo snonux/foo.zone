@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 357" width="860" height="357" role="img">
+<title>How a preset spends the A100's 80 GB</title>
+<style>
+  .bg{fill:#fcfcfb} .t1{fill:#0b0b0b} .t2{fill:#52514e} .mu{fill:#898781} .ln{stroke:#d9d8d4}
+  .s1{fill:#2a78d6} .s2{fill:#eb6834} .s3{fill:#1baf7a} .s0{fill:#e4e3df} .ar{stroke:#52514e;fill:none}
+  .ah{fill:#52514e} .box{fill:#f0efec;stroke:#c3c2b7}
+  text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+  @media (prefers-color-scheme: dark){
+    .bg{fill:#1a1a19} .t1{fill:#ffffff} .t2{fill:#c3c2b7} .ln{stroke:#383835}
+    .s1{fill:#3987e5} .s2{fill:#d95926} .s3{fill:#199e70} .s0{fill:#383835} .ar{stroke:#c3c2b7} .ah{fill:#c3c2b7}
+    .box{fill:#262625;stroke:#52514e}
+  }
+</style>
+<rect class="bg" width="860" height="357" rx="8"/>
+<line class="ln" x1="250.0" x2="250.0" y1="88" y2="285" stroke-width="1"/>
+<line class="ln" x1="390.0" x2="390.0" y1="88" y2="285" stroke-width="1"/>
+<line class="ln" x1="530.0" x2="530.0" y1="88" y2="285" stroke-width="1"/>
+<line class="ln" x1="670.0" x2="670.0" y1="88" y2="285" stroke-width="1"/>
+<line class="ln" x1="810.0" x2="810.0" y1="88" y2="285" stroke-width="1"/>
+<text class="t1" x="24" y="36" font-size="18" font-weight="600">How a preset spends the A100's 80 GB</text>
+<text class="t2" x="24" y="60" font-size="13">Approximate. vLLM loads the weights, then grabs the rest (up to --gpu-memory-utilization) as KV cache pool.</text>
+<text class="t1" x="24" y="112" font-size="14" font-weight="600">Qwen3.8 27B FP8</text>
+<text class="t2" x="24" y="130" font-size="12">262K context</text>
+<rect class="s1" x="250.0" y="95" width="313.0" height="40" rx="0"/>
+<text x="258.0" y="120" font-size="13" fill="#ffffff" font-weight="600">weights ~45 GB</text>
+<rect class="s3" x="565.0" y="95" width="198.2" height="40" rx="0"/>
+<text x="573.0" y="120" font-size="13" fill="#ffffff" font-weight="600">KV cache pool ~29 GB</text>
+<rect class="s0" x="765.2" y="95" width="42.8" height="40" rx="4"/>
+<text class="t1" x="24" y="182" font-size="14" font-weight="600">Gemma 4 31B AWQ</text>
+<text class="t2" x="24" y="200" font-size="12">32K context</text>
+<rect class="s1" x="250.0" y="165" width="131.0" height="40" rx="0"/>
+<text x="258.0" y="190" font-size="13" fill="#ffffff" font-weight="600">weights ~19 GB</text>
+<rect class="s3" x="383.0" y="165" width="380.2" height="40" rx="0"/>
+<text x="391.0" y="190" font-size="13" fill="#ffffff" font-weight="600">KV cache pool ~55 GB</text>
+<rect class="s0" x="765.2" y="165" width="42.8" height="40" rx="4"/>
+<text class="t1" x="24" y="252" font-size="14" font-weight="600">Nemotron-3-Super 120B</text>
+<text class="t2" x="24" y="270" font-size="12">32K ctx, no prefix cache, util 0.98</text>
+<rect class="s1" x="250.0" y="235" width="516.0" height="40" rx="0"/>
+<text x="258.0" y="260" font-size="13" fill="#ffffff" font-weight="600">weights ~74 GiB</text>
+<rect class="s3" x="768.0" y="235" width="28.8" height="40" rx="0"/>
+<rect class="s0" x="798.8" y="235" width="9.2" height="40" rx="4"/>
+<text class="mu" x="250.0" y="305" font-size="12" text-anchor="middle">0 GB</text>
+<text class="mu" x="390.0" y="305" font-size="12" text-anchor="middle">20 GB</text>
+<text class="mu" x="530.0" y="305" font-size="12" text-anchor="middle">40 GB</text>
+<text class="mu" x="670.0" y="305" font-size="12" text-anchor="middle">60 GB</text>
+<text class="mu" x="810.0" y="305" font-size="12" text-anchor="middle">80 GB</text>
+<rect class="s1" x="250" y="322" width="12" height="12" rx="2"/><text class="t2" x="268" y="333" font-size="12">weights (plus runtime overhead)</text>
+<rect class="s3" x="480" y="322" width="12" height="12" rx="2"/><text class="t2" x="498" y="333" font-size="12">KV cache pool</text>
+<rect class="s0" x="620" y="322" width="12" height="12" rx="2"/><text class="t2" x="638" y="333" font-size="12">headroom</text>
+</svg>

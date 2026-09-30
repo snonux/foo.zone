@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 480" width="860" height="480" role="img">
+<title>Progressive skill loading</title>
+<style>
+  .bg{fill:#fcfcfb} .t1{fill:#0b0b0b} .t2{fill:#52514e} .mu{fill:#898781} .ln{stroke:#d9d8d4}
+  .s1{fill:#2a78d6} .s2{fill:#eb6834} .s3{fill:#1baf7a} .s0{fill:#e4e3df} .ar{stroke:#52514e;fill:none}
+  .ah{fill:#52514e} .box{fill:#f0efec;stroke:#c3c2b7} .dim{fill:#f0efec;stroke:#c3c2b7;stroke-dasharray:5 4}
+  text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+  @media (prefers-color-scheme: dark){
+    .bg{fill:#1a1a19} .t1{fill:#ffffff} .t2{fill:#c3c2b7} .ln{stroke:#383835}
+    .s1{fill:#3987e5} .s2{fill:#d95926} .s3{fill:#199e70} .s0{fill:#383835} .ar{stroke:#c3c2b7} .ah{fill:#c3c2b7}
+    .box{fill:#262625;stroke:#52514e} .dim{fill:#262625;stroke:#52514e;stroke-dasharray:5 4}
+  }
+</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bg" width="860" height="480" rx="8"/>
+<text class="t1" x="24" y="36" font-size="18" text-anchor="start" font-weight="600">Progressive skill loading: only load what the task needs</text>
+<text class="t2" x="24" y="58" font-size="12" text-anchor="start" font-weight="400">Example: my blog-writing-style skill. Level 1 is in every request; levels 2 and 3 only after they were loaded.</text>
+<rect class="box" x="24" y="80" width="600" height="142" rx="8"/>
+<rect class="s1" x="24" y="80" width="8" height="142" rx="3"/>
+<text class="t1" x="46" y="104" font-size="14" text-anchor="start" font-weight="600">Level 1 · always in the system prompt</text>
+<text class="t2" x="46" y="122" font-size="12" text-anchor="start" font-weight="400">name + description of every skill</text>
+<text class="t1" x="62" y="146" font-size="12" text-anchor="start" font-weight="400">blog-writing-style: De-LLM blog posts ...</text>
+<text class="t1" x="62" y="168" font-size="12" text-anchor="start" font-weight="400">gemtexter: Manage the foo.zone site ...</text>
+<text class="t1" x="62" y="190" font-size="12" text-anchor="start" font-weight="400">f3s: Hub reference for the homelab ...</text>
+<text class="mu" x="62" y="212" font-size="12" text-anchor="start" font-weight="400">... 44 more</text>
+<text class="t2" x="644" y="155.0" font-size="12" text-anchor="start" font-weight="400">~4K tokens for 47 skills</text>
+<line class="ar" x1="324" y1="224" x2="324" y2="246" stroke-width="2" marker-end="url(#a)"/>
+<text class="mu" x="336" y="240" font-size="11" text-anchor="start" font-weight="400">task: "fix the writing style of this post"</text>
+<rect class="box" x="24" y="250" width="600" height="76" rx="8"/>
+<rect class="s3" x="24" y="250" width="8" height="76" rx="3"/>
+<text class="t1" x="46" y="274" font-size="14" text-anchor="start" font-weight="600">Level 2 · when a task matches</text>
+<text class="t2" x="46" y="292" font-size="12" text-anchor="start" font-weight="400">the model reads the skill's SKILL.md</text>
+<text class="t1" x="62" y="316" font-size="12" text-anchor="start" font-weight="400">SKILL.md: steps, rules, pointers to references</text>
+<text class="t2" x="644" y="292.0" font-size="12" text-anchor="start" font-weight="400">+~2.3K tokens (9 KB)</text>
+<line class="ar" x1="324" y1="328" x2="324" y2="350" stroke-width="2" marker-end="url(#a)"/>
+<text class="mu" x="336" y="344" font-size="11" text-anchor="start" font-weight="400">SKILL.md says: "details in references/..."</text>
+<rect class="box" x="24" y="354" width="600" height="98" rx="8"/>
+<rect class="s2" x="24" y="354" width="8" height="98" rx="3"/>
+<text class="t1" x="46" y="378" font-size="14" text-anchor="start" font-weight="600">Level 3 · only if the instructions need it</text>
+<text class="t2" x="46" y="396" font-size="12" text-anchor="start" font-weight="400">referenced files and scripts</text>
+<text class="t1" x="62" y="420" font-size="12" text-anchor="start" font-weight="400">references/structure-and-visuals.md</text>
+<text class="mu" x="62" y="442" font-size="12" text-anchor="start" font-weight="400">3 other reference files (~11K tokens): skipped</text>
+<text class="t2" x="644" y="407.0" font-size="12" text-anchor="start" font-weight="400">+~1.2K tokens for the one file needed</text>
+</svg>

@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 322" width="860" height="322" role="img">
+<title>Prefix caching over four agent turns</title>
+<style>
+  .bg{fill:#fcfcfb} .t1{fill:#0b0b0b} .t2{fill:#52514e} .mu{fill:#898781} .ln{stroke:#d9d8d4}
+  .s1{fill:#2a78d6} .s2{fill:#eb6834} .s3{fill:#1baf7a} .s4{fill:#eda100} .s5{fill:#e87ba4} .s0{fill:#e4e3df}
+  .ar{stroke:#52514e;fill:none} .ah{fill:#52514e} .box{fill:#f0efec;stroke:#c3c2b7} .wg{stroke:#1baf7a;fill:none}
+  .st1{stroke:#2a78d6} .st2{stroke:#eb6834} .st3{stroke:#1baf7a} .st4{stroke:#eda100} .st5{stroke:#e87ba4}
+  text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+  @media (prefers-color-scheme: dark){
+    .bg{fill:#1a1a19} .t1{fill:#ffffff} .t2{fill:#c3c2b7} .ln{stroke:#383835}
+    .s1{fill:#3987e5} .s2{fill:#d95926} .s3{fill:#199e70} .s4{fill:#c98500} .s5{fill:#d55181} .s0{fill:#383835}
+    .ar{stroke:#c3c2b7} .ah{fill:#c3c2b7} .box{fill:#262625;stroke:#52514e} .wg{stroke:#199e70}
+    .st1{stroke:#3987e5} .st2{stroke:#d95926} .st3{stroke:#199e70} .st4{stroke:#c98500} .st5{stroke:#d55181}
+  }
+</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bg" width="860" height="322" rx="8"/>
+<text class="t1" x="24" y="36" font-size="18" text-anchor="start" font-weight="600">Prefix caching over four agent turns</text>
+<text class="t2" x="24" y="58" font-size="12" text-anchor="start" font-weight="400">Every turn resends everything. Only the new tail has to be prefilled.</text>
+<text class="t2" x="24" y="104" font-size="13" text-anchor="start" font-weight="400">request 1</text>
+<rect class="s2" x="120" y="80" width="217" height="34" rx="3"/>
+<text x="130" y="102" font-size="12" fill="#fff" font-weight="600">system prompt + tools</text>
+<rect class="s2" x="340" y="80" width="57" height="34" rx="3"/>
+<text class="t2" x="410" y="102" font-size="12" text-anchor="start" font-weight="400">all new: full prefill</text>
+<text class="t2" x="24" y="154" font-size="13" text-anchor="start" font-weight="400">request 2</text>
+<rect class="s3" x="120" y="130" width="217" height="34" rx="3"/>
+<text x="130" y="152" font-size="12" fill="#fff" font-weight="600">system prompt + tools</text>
+<rect class="s3" x="340" y="130" width="57" height="34" rx="3"/>
+<rect class="s2" x="400" y="130" width="77" height="34" rx="3"/>
+<text class="t2" x="490" y="152" font-size="12" text-anchor="start" font-weight="400">new: prefill</text>
+<text class="t2" x="24" y="204" font-size="13" text-anchor="start" font-weight="400">request 3</text>
+<rect class="s3" x="120" y="180" width="217" height="34" rx="3"/>
+<text x="130" y="202" font-size="12" fill="#fff" font-weight="600">system prompt + tools</text>
+<rect class="s3" x="340" y="180" width="57" height="34" rx="3"/>
+<rect class="s3" x="400" y="180" width="77" height="34" rx="3"/>
+<rect class="s2" x="480" y="180" width="87" height="34" rx="3"/>
+<text class="t2" x="580" y="202" font-size="12" text-anchor="start" font-weight="400">new: prefill</text>
+<text class="t2" x="24" y="254" font-size="13" text-anchor="start" font-weight="400">request 4</text>
+<rect class="s3" x="120" y="230" width="217" height="34" rx="3"/>
+<text x="130" y="252" font-size="12" fill="#fff" font-weight="600">system prompt + tools</text>
+<rect class="s3" x="340" y="230" width="57" height="34" rx="3"/>
+<rect class="s3" x="400" y="230" width="77" height="34" rx="3"/>
+<rect class="s3" x="480" y="230" width="87" height="34" rx="3"/>
+<rect class="s2" x="570" y="230" width="67" height="34" rx="3"/>
+<text class="t2" x="650" y="252" font-size="12" text-anchor="start" font-weight="400">new: prefill</text>
+<rect class="s3" x="120" y="289" width="12" height="12" rx="2"/>
+<text class="t2" x="138" y="300" font-size="12" text-anchor="start" font-weight="400">served from the prefix cache</text>
+<rect class="s2" x="340" y="289" width="12" height="12" rx="2"/>
+<text class="t2" x="358" y="300" font-size="12" text-anchor="start" font-weight="400">has to be prefilled on the GPU</text>
+</svg>
