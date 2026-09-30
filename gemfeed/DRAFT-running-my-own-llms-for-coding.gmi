@@ -6,7 +6,7 @@ The `gt` calculator was built almost entirely with local LLMs running on rented 
 
 In this post I go through the setup, how the inference works under the hood (prefill, decode, KV cache, prefix caching), the numbers I see in practice, and where I stand now on buying hardware.
 
-=> ./running-my-own-llms/logo.svg The hypr logo
+=> ./running-my-own-llms-for-coding/logo.svg The hypr logo
 
 ## Table of Contents
 
@@ -58,7 +58,7 @@ Birgitta Böckeler's memo in the Fowler "Exploring Gen AI" series is useful rela
 
 Everything starts on my laptop. `ruby hyperstack.rb --vm 1 create` (or `--vm both` for two VMs in parallel) provisions a Hyperstack VM (Ubuntu 24.04 with CUDA and Docker preinstalled, one A100 80 GB PCIe GPU), sets up a WireGuard tunnel to it, and starts the model in a vLLM Docker container. About ten minutes later the model is serving on an OpenAI-compatible API, reachable over the tunnel.
 
-=> ./running-my-own-llms/architecture.svg The setup: pi on the laptop, vLLM on two Hyperstack VMs, WireGuard in between
+=> ./running-my-own-llms-for-coding/architecture.svg The setup: pi on the laptop, vLLM on two Hyperstack VMs, WireGuard in between
 
 The WireGuard tunnel is the interesting bit. A single `wg1` interface on my laptop (Fedora Linux, by the way!) routes traffic to both VMs. The firewall on the Hyperstack VMs only lets in SSH and the WireGuard port, so the vLLM port (11434) is only reachable through the tunnel. There's no other authentication: no proxy, no load balancer, no API keys. The API isn't exposed to the internet at all, and the tunnel is the security boundary.
 
@@ -108,7 +108,7 @@ An LLM request has two phases:
 * Prefill — the model reads the entire prompt and computes attention over all of it in one shot. All prompt tokens can be processed in parallel, so it's compute-bound, and that's where big GPUs shine.
 * Decode — generating the answer, one token at a time. Every new token depends on the previous one, so this is sequential and memory-bandwidth-bound. This is the phase you are waiting for while the agent "types".
 
-=> ./running-my-own-llms/prefill-decode.svg One request: prefill, then decode
+=> ./running-my-own-llms-for-coding/prefill-decode.svg One request: prefill, then decode
 
 The two phases show up as very different numbers. Prefill runs at thousands of tokens per second, because the entire prompt is one big parallel job, and a datacenter GPU like the A100 is exactly the kind of hardware that eats that for breakfast. Decode runs at tens of tokens per second, because every output token is its own step: the model re-reads the weights from VRAM, produces one token, and starts over. That's roughly two orders of magnitude, and no setup can fix it: it's inherent to generating one token at a time. When you "feel" speed in an agent session, you are feeling decode tok/s. Prefill tok/s mostly decides how long the first token takes after you hit enter.
 
@@ -123,7 +123,7 @@ VRAM = model weights + KV cache pool + headroom
 
 At startup, vLLM loads the weights, then allocates the rest of the allowed VRAM as a pool of KV cache blocks. That is why `nvidia-smi` shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.
 
-=> ./running-my-own-llms/vram-budget.svg How three presets split the A100's 80 GB between weights and KV cache
+=> ./running-my-own-llms-for-coding/vram-budget.svg How three presets split the A100's 80 GB between weights and KV cache
 
 ### Prefix caching: the big one for agentic coding
 
@@ -131,7 +131,7 @@ At startup, vLLM loads the weights, then allocates the rest of the allowed VRAM 
 
 For a coding agent this is huge. Every turn of a coding agent session resends the system prompt plus the entire conversation. Without prefix caching, that whole context is re-prefilled on every single turn. With it, most of the prompt arrives already computed. My current sessions sit at an 80–97% hit rate (numbers below).
 
-=> ./running-my-own-llms/prefix-cache.svg Prefix caching over four agent turns
+=> ./running-my-own-llms-for-coding/prefix-cache.svg Prefix caching over four agent turns
 
 This is also the main reason I moved from Ollama to vLLM:
 
@@ -174,7 +174,7 @@ Two details:
 
 Loading a model onto the GPU sounds like "copy 29 GiB from disk to VRAM". That part is actually fast. I restarted the vLLM container on a fresh VM and timed every phase from its log:
 
-=> ./running-my-own-llms/startup-timeline.svg Where the startup time goes: fresh VM vs container restart
+=> ./running-my-own-llms-for-coding/startup-timeline.svg Where the startup time goes: fresh VM vs container restart
 
 On a fresh VM, `hypr create` took about 10 minutes in total:
 
@@ -196,7 +196,7 @@ That's why switching models ad hoc is painful. `model switch` takes at least 2 m
 
 A dense model uses all of its parameters for every token. A mixture-of-experts (MoE) model is split into many "experts", and a small router picks only a few of them per token. So only a small active set does the work, e.g. 3B active out of 35B total.
 
-=> ./running-my-own-llms/moe-vs-dense.svg Dense vs mixture-of-experts: fewer weights read per token, same memory
+=> ./running-my-own-llms-for-coding/moe-vs-dense.svg Dense vs mixture-of-experts: fewer weights read per token, same memory
 
 That makes decode much faster than on a dense model of the same total size, because far fewer weights are read per token. The catch: all experts still have to sit in VRAM, since the router can pick any of them for the next token. You save compute, not memory.
 
@@ -208,7 +208,7 @@ Quantization is how the rest of the list fits. FP8 stores each weight in 8 bits 
 
 The official model card benchmarks Qwen3.8-27B against its predecessor, Qwen's own closed-weight Qwen3.7-Plus, a 30B-class competitor, and the frontier Opus 4.6 Max. Here are the coding-relevant rows as a chart:
 
-=> ./running-my-own-llms/benchmarks.svg Qwen3.8-27B vs Qwen3.6-27B, Qwen3.7-Plus, Muse Glimmer-30B and Opus 4.6 Max (vendor-reported)
+=> ./running-my-own-llms-for-coding/benchmarks.svg Qwen3.8-27B vs Qwen3.6-27B, Qwen3.7-Plus, Muse Glimmer-30B and Opus 4.6 Max (vendor-reported)
 
 It beats its direct predecessor on every row, and the rows that match how I use it are the interesting ones: on SWE-bench Pro (agentic coding) the 27B dense model scores 61.7, ahead of Opus 4.6 Max's 53.4 and Muse Glimmer's 51.2; on terminal coding it runs 73.0 to Qwen3.6's 63.4; on competitive coding (90.3) it even edges Opus (88.8). That's a model I can run on a single rented A100 that beats models I can only rent per-token, on the benchmarks that resemble my actual workload.
 
@@ -290,11 +290,11 @@ My standard setup is a tmux session with one pi per pane: `pi-coder` on Qwen3.8 
 
 Here is what a session looks like in practice. I asked Qwen3.8 on VM1 to add a `version` command to the REPL of `gt`, and then to include the Go runtime version in its output. The screenshot shows the Go diff for the tests, followed by the test run. The footer shows the model and how much of the 262K context the session has used so far:
 
-=> ./running-my-own-llms/pi-go-edit.png pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run
+=> ./running-my-own-llms-for-coding/pi-go-edit.png pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run
 
 And one from an earlier session: diff on top, the model's reasoning in the middle, shell output at the bottom:
 
-=> ./running-my-own-llms/pi-coding-agent.png pi coding agent mid-task: diff, reasoning, and shell in one TUI
+=> ./running-my-own-llms-for-coding/pi-coding-agent.png pi coding agent mid-task: diff, reasoning, and shell in one TUI
 
 ### The system prompt and harness overhead
 
@@ -358,7 +358,7 @@ The model doesn't run anything itself. The harness sends it a list of tool schem
 
 That loop is what makes an agent an agent. It falls apart when the model emits broken JSON or picks the wrong tool.
 
-=> ./running-my-own-llms/agent-loop.svg One agent turn: the tool-calling loop between pi and vLLM
+=> ./running-my-own-llms-for-coding/agent-loop.svg One agent turn: the tool-calling loop between pi and vLLM
 
 ### Tool calling on the wire
 
@@ -431,7 +431,7 @@ For skills to work, the harness puts the name and description of every skill int
 * Level 2 — the skill's `SKILL.md`. The model reads it with a normal file read once a task matches.
 * Level 3 — files the `SKILL.md` points to, like reference docs or scripts. Only read if the instructions for the task at hand need them.
 
-=> ./running-my-own-llms/skill-loading.svg Progressive skill loading: descriptions always, SKILL.md on a match, references only when needed
+=> ./running-my-own-llms-for-coding/skill-loading.svg Progressive skill loading: descriptions always, SKILL.md on a match, references only when needed
 
 And yes, that changes how much context gets used. Level 1 costs context on every single request, even for skills you never use. Levels 2 and 3 cost nothing until they're loaded. But once the model has read a `SKILL.md` or a reference file, it's a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a `/handoff` throws it out. My blog-writing-style skill is a good example: its `SKILL.md` is ~2.3K tokens, and the one reference file a style fix usually needs is another ~1.2K. The other three reference files (~11K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~14K tokens, which is almost half of a 32K preset.
 
@@ -498,7 +498,7 @@ GPU KV cache usage: 5.0%, Prefix cache hit rate: 81.1%
 
 That is vLLM's engine log line, emitted every ten seconds. `ruby hyperstack.rb watch` parses it (plus `nvidia-smi`) into a live dashboard, refreshed every two seconds. It's a colored TUI, so here's a screenshot:
 
-=> ./running-my-own-llms/watch-dashboard.png The hypr watch dashboard during a decode burst
+=> ./running-my-own-llms-for-coding/watch-dashboard.png The hypr watch dashboard during a decode burst
 
 What the rows mean:
 
@@ -559,7 +559,7 @@ Monthly cost is the wrong unit though. The real comparison is per token. The num
 * Cached prompt tokens: effectively free, since they are looked up in the KV cache, not computed. OpenRouter charges $0.15 per million for the same privilege.
 * Generated tokens (decode): the weak spot. About $9 per million with one agent (~40 tok/s), $3–5 with two or three agents sharing the GPU, versus $2.55 on OpenRouter.
 
-=> ./running-my-own-llms/cost-per-token.svg Cost per million tokens: rented A100 vs OpenRouter
+=> ./running-my-own-llms-for-coding/cost-per-token.svg Cost per million tokens: rented A100 vs OpenRouter
 
 For that morning's exact workload the math lands at about $0.16 per million total tokens on the VM, versus about $0.20 on OpenRouter. An agentic session is mostly resending the same context, so with a 90%+ cache hit rate the local setup is at parity with the API for the same model, and it gets cheaper the more agents share the GPU, because the $1.35 hour is a fixed cost that three conversations split.
 
