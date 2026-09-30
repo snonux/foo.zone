@@ -18,9 +18,6 @@ The main motivation was a question I wanted to answer before spending money: sho
 
 A few months in, the setup has grown into a small toolchain I call `hypr`. One Ruby script manages the whole lifecycle (create the VM, open a WireGuard tunnel, start vLLM with the model of choice), and I can run two VMs at the same time, each with its own model and its own pi coding agent in a tmux pane. For example, Qwen3.8 27B works on one project in pane 0 while Gemma 4 31B works on another in pane 1, and when one of them gets stuck I hand the same problem to the other.
 
-Birgitta Böckeler's memo in the Fowler "Exploring Gen AI" series is useful related reading: a factor checklist for whether local models are viable for agentic coding. Her stack is Apple Silicon + LM Studio; mine is rented A100 + vLLM. Same problem, different hardware, but her checklist applies here too.
-
-=> https://martinfowler.com/articles/exploring-gen-ai/local-models-for-coding-factors.html Viability of local models for coding (Birgitta Böckeler / Martin Fowler)
 => https://github.com/snonux/hypr hypr on GitHub
 => https://pi.dev Pi coding agent
 
@@ -50,14 +47,14 @@ Before the walkthrough, a short glossary of the things that matter when you run 
 * Token generation speed (decode tok/s) — the speed you feel while the agent "types".
 * Prefill speed (prompt tok/s) — how fast the prompt is read in. Decides how long you wait for the first token.
 * Parameter count vs quantization — bigger and less quantized is usually better, but costs VRAM. Newer small models can beat older big ones.
-* MoE vs dense — MoE models only use a small part of their parameters per token. Faster, but not smaller.
+* MoE vs dense — MoE models only use a small part of their parameters per token. Faster, but not smaller. Dense models usually are a bit "smarter" but also slower.
 * Context vs weights — every token of context costs VRAM the weights already claimed.
-* Reasoning cost — thinking tokens burn time and context. Sometimes you want them off.
+* LLM reasoning level — Makes the LLM "think harder" in exchange for more tokens.
 * Tool-calling reliability — without working tool calls, you are back to copy-paste chat.
 * Harness overhead — the system prompt, tool schemas and extensions eat context before you type a word.
 * Runtime — plug-and-play (Ollama, LM Studio) vs knobs and throughput (vLLM). hypr picks the second.
 
-The next section explains how inference works: VRAM, the KV cache, prefill, decode and the runtime. MoE and quantization come with the models after that, and the harness topics (system prompt, tool calling) get their own section once pi enters the picture.
+The next section explains how inference works: VRAM, the KV cache, prefill, decode and the runtime. MoE, quantization and reasoning come with the models after that, and the harness topics (system prompt, tool calling) get their own section once pi enters the picture.
 
 ## How the inference works
 
@@ -65,9 +62,21 @@ This is the part I set out to learn, so here is the mental model that finally cl
 
 ### CUDA: the layer under everything
 
-CUDA is NVIDIA's GPU computing stack: the driver that talks to the chip, the runtime and math libraries on top of it, and the toolchain that compiles code into the small kernels the GPU executes. The A100's thousands of small cores (the reason prefill runs at thousands of tokens per second) are programmed through CUDA, and the entire Python/PyTorch/vLLM stack sits on top of it. Every prefill and decode step in this setup is a batch of CUDA kernels launched on the A100, including the special ones (FlashAttention, Marlin) that vLLM uses to beat the default implementations.
+CUDA is NVIDIA's platform for running general-purpose code on a GPU. It has three parts: the driver that talks to the chip, runtime and math libraries (like cuBLAS for matrix multiplication), and a toolchain that compiles code into kernels, the small programs that run on the GPU.
 
-You can see all the layers in the VM image name: `Ubuntu Server 24.04 LTS R570 CUDA 12.8 with Docker`: the OS, the GPU driver (570.195.03 on my VM), the CUDA 12.8 stack, and Docker, which is exactly what vLLM needs. The container sees the GPU through `--gpus all`; Docker's NVIDIA toolkit injects the driver and the device into the container, and the model's math runs entirely on the GPU, while the CPU just orchestrates, schedules, and tokenizes.
+=> ./running-my-own-llms-for-coding/cuda.svg How vLLM uses the GPU through CUDA: CPU launches kernels, the GPU's SMs stream weights from HBM
+
+The split between CPU and GPU is the key to understanding it:
+
+* The CPU (the host) decides what to run. vLLM schedules and batches requests and tokenizes text. PyTorch describes the model as Python code, and then launches kernels on the GPU through the CUDA runtime.
+* The GPU (the device) does the math. The A100 has 108 streaming multiprocessors (SMs). Each SM has CUDA cores, tensor cores for matrix math, and a bit of very fast on-chip memory. A kernel runs as thousands of threads spread over all SMs at once.
+* Memory sits in between. The 80 GB of HBM2e on the card hold the weights and the KV cache. The SMs can read it at ~1.9 TB/s, which is fast, but still much slower than the SMs can compute.
+
+Every prefill and decode step is a batch of kernels launched on the A100. vLLM uses specialized ones where they beat the defaults: FlashAttention for attention, and Marlin for the FP8 weights. That one surprised me: the A100 has no native FP8 support, so vLLM logs "Your GPU does not have native support for FP8 computation" and uses Marlin to unpack the 8-bit weights on the fly. The model still gets the memory savings of FP8, just not FP8 math.
+
+The diagram also shows why decode is memory-bound. For every token, all 28.9 GiB of weights have to stream from HBM through the SMs once. At ~1.9 TB/s, that's about 16 ms per step, so a single conversation can't get more than ~60 tokens per second on this card, no matter how fast the SMs are. I measure ~40. When three conversations are batched, the same weight read produces three tokens, and that's why the total throughput goes up with more agents.
+
+You can see the software layers in the VM image name: `Ubuntu Server 24.04 LTS R570 CUDA 12.8 with Docker`. That's the OS, the GPU driver (570.195.03 on my VM), the CUDA 12.8 stack, and Docker. The vLLM container sees the GPU through `--gpus all`. Docker's NVIDIA toolkit injects the driver and the device into the container, and the model's math runs entirely on the GPU.
 
 ### What vLLM is
 
@@ -186,9 +195,29 @@ But benchmarks are one thing, and real workloads are another. Take all of them w
 
 => https://simonwillison.net/2026/Aug/16/qwen-38-27b/ Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things (Simon Willison)
 
-### Reasoning: leave it on or turn it off?
+### Reasoning: what it is and the effort levels
 
-I haven't done a clean on-vs-off comparison on my own tasks yet, so I won't pretend I have numbers. What I can say: for agent turns where I already know what the change should look like, the thinking is mostly wasted time and context. Worth a dedicated experiment later. For now, I live with the default and interrupt the model when it spirals.
+Reasoning models "think" before they answer. They write out their thoughts first, usually between `<think>` and `</think>` tags, and only then produce the answer or tool call. They were trained (mostly with reinforcement learning) to work through a problem step by step in that scratchpad, and for tricky tasks the answers get noticeably better.
+
+For the inference engine, thinking tokens are completely normal output tokens. They're decoded one by one at decode speed, and they fill the KV cache like everything else. vLLM's reasoning parser (`--reasoning-parser qwen3` in my presets) only splits them from the answer, so pi can show them separately. They're the greyed-out text in the screenshots.
+
+=> ./running-my-own-llms-for-coding/reasoning.svg Reasoning effort: more effort means more thinking tokens before the answer
+
+Many models offer reasoning effort levels: off, low, medium, high, and sometimes xhigh. The model was trained to think shorter or longer depending on the level. How the level reaches the model depends on the model and the API:
+
+* A chat template flag — Qwen's `enable_thinking` switches thinking on or off.
+* A line in the system prompt — e.g. `Reasoning: high` for OpenAI's open-weight gpt-oss models.
+* An API parameter — `reasoning_effort` in OpenAI-style APIs, which the provider translates for the model.
+
+And not every model supports it:
+
+* Non-reasoning models never think, and the level does nothing. On my preset list, that's Qwen2.5-Coder, Qwen3-Coder and Devstral.
+* Always-on models, like DeepSeek-R1-Distill, always think. You can't switch it off.
+* Hybrid models, like Qwen3-32B, Qwen3.6 and Qwen3.8, can switch thinking on and off. Qwen3.8 also has effort levels and defaults to `xhigh`.
+
+Here's a catch I only found while writing this post. pi shows "medium" as the thinking level in its footer. But for Qwen models, pi only sends `enable_thinking: true` or `false` to vLLM. So low, medium and high all just mean "on", and Qwen3.8 then thinks at its own default, `xhigh`. That explains a lot of the overthinking Simon Willison describes. pi also asks the chat template to keep the thinking of earlier turns in the history (`preserve_thinking`), so the thinking keeps taking up context later, too. And for Gemma and Nemotron, my pi config marks the models as non-reasoning, so pi's level does nothing there at all. For Nemotron, that's a config gap on my side: hypr runs it with a reasoning parser, so it thinks anyway, pi just can't turn it off.
+
+I haven't done a clean on-vs-off comparison on my own tasks yet, so I won't pretend I have numbers. But the math is simple: at ~40 tokens per second, 2,000 thinking tokens are 50 seconds before the first word of the answer. For agent turns where I already know what the change should look like, that's mostly wasted time and context. Worth a dedicated experiment later. For now, I live with the default and interrupt the model when it spirals.
 
 ## Inside the VM
 
