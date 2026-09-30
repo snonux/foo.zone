@@ -123,6 +123,24 @@ Ollama is fine for quick experiments. But for an agent that sends 100K+ token co
 
 To be fair, Ollama is still nicer if you just want a model serving in two minutes. vLLM + hypr wins on throughput and knobs and loses on "download and go".
 
+### Speculative decoding (not set up yet)
+
+There's one more decode trick I haven't set up yet, but it fits right here: speculative decoding. The idea is to guess the next few tokens cheaply and let the big model check all the guesses in one go.
+
+=> ./running-my-own-llms-for-coding/speculative.svg Speculative decoding: a cheap guess of 4 tokens, verified by the big model in one pass
+
+How it works:
+
+* A cheap predictor guesses the next few tokens. That's either a small draft model of the same family, or extra prediction layers built into the big model itself (multi-token prediction, MTP).
+* The big model then runs one pass over all the guesses at once, like a tiny prefill. For every position, it computes the token it would have picked itself.
+* The guesses are kept up to the first wrong one. At that position, the big model's own token is used instead. So the output is the same as without the trick, it just arrives faster.
+
+Why is that faster? Because decode is memory-bound (see the CUDA section above). One pass reads all 28.9 GiB of weights from VRAM, no matter if it checks one token or four, and the SMs are mostly idle while they wait for the memory anyway. So checking extra tokens is nearly free. If two or three guesses get accepted on average, one pass produces three or four tokens instead of one. Code is a good fit, because a lot of it is predictable: boilerplate, closing brackets, identifiers that were just used.
+
+It helps less when several agents are already batched, since then the GPU already does more work per weight read. Wrong guesses waste a bit of compute, and the predictor needs some VRAM, which comes out of the KV cache pool.
+
+Would it work in my setup? It's not enabled: the vLLM log on my VM says `speculative_config=None`. But Qwen3.8 ships with an MTP layer built in (`mtp_num_hidden_layers: 1` in its config, with the weights in `mtp.safetensors`), and vLLM supports MTP for this model architecture. So it should be one extra line in the hypr preset, something like `--speculative-config '{"method": "mtp", "num_speculative_tokens": 2}'`. I haven't tested it yet, so I don't know yet how it plays with the FP8 Marlin kernels on the A100, how much KV cache it costs, and whether it still helps with three agents in parallel. That's the next experiment.
+
 ## The VMs and the models
 
 Both VMs are `n3-A100x1` flavors: one A100 80 GB PCIe, 28 vCPUs, 120 GB RAM, in a Canadian region. When the A100 flavor is sold out, the config flips to `n3-H100x1` (80 GB as well, faster, but also pricier), and everything else stays the same.
