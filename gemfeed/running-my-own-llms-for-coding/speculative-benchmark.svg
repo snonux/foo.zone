@@ -1,39 +1,41 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="290" viewBox="0 0 900 290" role="img">
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="320" viewBox="0 0 900 320" role="img">
 <title>Speculative decoding benchmark</title>
 <style>
 .bg{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.mu{fill:#898781}.ln{stroke:#d9d8d4}.s1{fill:#2a78d6}.s0{fill:#a9a8a3}text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 @media(prefers-color-scheme:dark){.bg{fill:#1a1a19}.t1{fill:#fff}.t2{fill:#c3c2b7}.ln{stroke:#383835}.s1{fill:#3987e5}.s0{fill:#6b6a66}}
 </style>
-<rect class="bg" width="900" height="290" rx="4"/>
+<rect class="bg" width="900" height="320" rx="4"/>
 <text class="t1" x="24" y="36" font-size="18" text-anchor="start" font-weight="600">Speculative decoding on Qwen3.8 27B FP8 (A100, measured)</text>
-<text class="t2" x="24" y="60" font-size="12" text-anchor="start" font-weight="400">Decode tokens/s, 6 Go coding prompts × 700 tokens, temperature 0.7, thinking off. Each panel has its own scale.</text>
-<text class="t1" x="24" y="92" font-size="14" text-anchor="start" font-weight="600">One conversation (per-request median)</text>
-<text class="t2" x="174" y="127" font-size="12" text-anchor="end" font-weight="400">no speculative</text>
-<rect class="s0" x="184" y="112" width="63.5" height="22" rx="4"/>
-<text class="t1" x="255.525" y="128" font-size="12" text-anchor="start" font-weight="600">48</text>
-<text class="t2" x="174" y="165" font-size="12" text-anchor="end" font-weight="400">MTP, 2 tokens</text>
-<rect class="s1" x="184" y="150" width="145.0" height="22" rx="4"/>
-<text class="t1" x="337.03125" y="166" font-size="12" text-anchor="start" font-weight="600">110  (2.3×)</text>
-<text class="t2" x="174" y="203" font-size="12" text-anchor="end" font-weight="400">MTP, 3 tokens (default)</text>
-<rect class="s1" x="184" y="188" width="173.2" height="22" rx="4"/>
-<text class="t1" x="365.25" y="204" font-size="12" text-anchor="start" font-weight="600">132  (2.7×)</text>
-<text class="t2" x="174" y="241" font-size="12" text-anchor="end" font-weight="400">MTP, 4 tokens</text>
-<rect class="s1" x="184" y="226" width="180.7" height="22" rx="4"/>
-<text class="t1" x="372.73125" y="242" font-size="12" text-anchor="start" font-weight="600">138  (2.8×)</text>
-<line class="ln" x1="184" x2="184" y1="106" y2="258" stroke-width="1"/>
-<text class="t1" x="462" y="92" font-size="14" text-anchor="start" font-weight="600">Three conversations (total)</text>
-<text class="t2" x="612" y="127" font-size="12" text-anchor="end" font-weight="400">no speculative</text>
-<rect class="s0" x="622" y="112" width="77.9" height="22" rx="4"/>
-<text class="t1" x="707.875" y="128" font-size="12" text-anchor="start" font-weight="600">134</text>
-<text class="t2" x="612" y="165" font-size="12" text-anchor="end" font-weight="400">MTP, 2 tokens</text>
-<rect class="s1" x="622" y="150" width="148.4" height="22" rx="4"/>
-<text class="t1" x="778.4" y="166" font-size="12" text-anchor="start" font-weight="600">254  (1.9×)</text>
-<text class="t2" x="612" y="203" font-size="12" text-anchor="end" font-weight="400">MTP, 3 tokens (default)</text>
-<rect class="s1" x="622" y="188" width="167.0" height="22" rx="4"/>
-<text class="t1" x="797.0083333333333" y="204" font-size="12" text-anchor="start" font-weight="600">286  (2.1×)</text>
-<text class="t2" x="612" y="241" font-size="12" text-anchor="end" font-weight="400">MTP, 4 tokens</text>
-<rect class="s1" x="622" y="226" width="153.6" height="22" rx="4"/>
-<text class="t1" x="783.5916666666667" y="242" font-size="12" text-anchor="start" font-weight="600">263  (2.0×)</text>
-<line class="ln" x1="622" x2="622" y1="106" y2="258" stroke-width="1"/>
-<text class="t2" x="24" y="278" font-size="12" text-anchor="start" font-weight="400">Acceptance: ~90% of drafted tokens with 2, ~86% with 3, ~80% with 4. The cache pool shrinks from 657K to 588K tokens with 3.</text>
+<text class="t2" x="24" y="60" font-size="12" text-anchor="start" font-weight="400">6 Go prompts, up to 700 tokens; temperature 0.7, top_p=0.8, thinking off. Separate panel scales.</text>
+<text class="t1" x="24" y="92" font-size="14" text-anchor="start" font-weight="600">One conversation: median decode tokens/s</text>
+<text class="t2" x="174" y="147" font-size="12" text-anchor="end" font-weight="400">no speculative</text>
+<rect class="s0" x="184" y="132" width="63.5" height="22" rx="4"/>
+<text class="t1" x="255.525" y="148" font-size="12" text-anchor="start" font-weight="600">48</text>
+<text class="t2" x="174" y="185" font-size="12" text-anchor="end" font-weight="400">MTP, 2 tokens</text>
+<rect class="s1" x="184" y="170" width="145.0" height="22" rx="4"/>
+<text class="t1" x="337.03125" y="186" font-size="12" text-anchor="start" font-weight="600">110  (2.3×)</text>
+<text class="t2" x="174" y="223" font-size="12" text-anchor="end" font-weight="400">MTP, 3 tokens (default)</text>
+<rect class="s1" x="184" y="208" width="173.2" height="22" rx="4"/>
+<text class="t1" x="365.25" y="224" font-size="12" text-anchor="start" font-weight="600">132  (2.7×)</text>
+<text class="t2" x="174" y="261" font-size="12" text-anchor="end" font-weight="400">MTP, 4 tokens</text>
+<rect class="s1" x="184" y="246" width="180.7" height="22" rx="4"/>
+<text class="t1" x="372.73125" y="262" font-size="12" text-anchor="start" font-weight="600">138  (2.8×)</text>
+<line class="ln" x1="184" x2="184" y1="126" y2="278" stroke-width="1"/>
+<text class="t1" x="462" y="92" font-size="14" text-anchor="start" font-weight="600">Three conversations: aggregate tokens/s</text>
+<text class="t2" x="612" y="147" font-size="12" text-anchor="end" font-weight="400">no speculative</text>
+<rect class="s0" x="622" y="132" width="77.9" height="22" rx="4"/>
+<text class="t1" x="707.875" y="148" font-size="12" text-anchor="start" font-weight="600">134</text>
+<text class="t2" x="612" y="185" font-size="12" text-anchor="end" font-weight="400">MTP, 2 tokens</text>
+<rect class="s1" x="622" y="170" width="148.4" height="22" rx="4"/>
+<text class="t1" x="778.4" y="186" font-size="12" text-anchor="start" font-weight="600">254  (1.9×)</text>
+<text class="t2" x="612" y="223" font-size="12" text-anchor="end" font-weight="400">MTP, 3 tokens (default)</text>
+<rect class="s1" x="622" y="208" width="167.0" height="22" rx="4"/>
+<text class="t1" x="797.0083333333333" y="224" font-size="12" text-anchor="start" font-weight="600">286  (2.1×)</text>
+<text class="t2" x="612" y="261" font-size="12" text-anchor="end" font-weight="400">MTP, 4 tokens</text>
+<rect class="s1" x="622" y="246" width="153.6" height="22" rx="4"/>
+<text class="t1" x="783.5916666666667" y="262" font-size="12" text-anchor="start" font-weight="600">263  (2.0×)</text>
+<line class="ln" x1="622" x2="622" y1="126" y2="278" stroke-width="1"/>
+<text class="t2" x="24" y="298" font-size="12" text-anchor="start" font-weight="400">Acceptance: ~90% of drafted tokens with 2, ~86% with 3, ~80% with 4. The cache pool shrinks from 657K to 588K tokens with 3.</text>
+<text class="t2" x="24" y="110" font-size="11">Per-request rate after the first token.</text>
+<text class="t2" x="462" y="110" font-size="11">Total output / wall time, including time to first token.</text>
 </svg>
