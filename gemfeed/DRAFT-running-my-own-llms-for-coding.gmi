@@ -20,7 +20,7 @@ In this post I go through the setup, how the inference works under the hood (pre
 * ⇢ ⇢ ⇢ CUDA: how vLLM uses the GPU
 * ⇢ ⇢ ⇢ What vLLM is
 * ⇢ ⇢ ⇢ Prefix caching: the big one for agentic coding
-* ⇢ ⇢ ⇢ Speculative decoding (not set up yet)
+* ⇢ ⇢ ⇢ Speculative decoding: 2.7× faster decode
 * ⇢ ⇢ The VMs and the models
 * ⇢ ⇢ ⇢ Why starting a model takes minutes
 * ⇢ ⇢ ⇢ MoE vs dense, and quantization
@@ -69,6 +69,7 @@ The WireGuard tunnel is the interesting bit. A single `wg1` interface on my lapt
 * `test` — end-to-end inference check over the tunnel
 * `watch` — live dashboard: GPU, throughput, KV cache per VM
 * `model switch <preset>` — replace the serving container with another model on the same VM
+* `--no-speculative` — start the model without speculative decoding (on by default, more below)
 
 ## What decides if this works
 
@@ -154,9 +155,9 @@ Ollama has prefix reuse too, and supports Flash Attention and configurable conte
 
 Ollama is still nicer if I just want a model serving quickly. For several coding agents, I prefer vLLM's batching and cache controls.
 
-### Speculative decoding (not set up yet)
+### Speculative decoding: 2.7× faster decode
 
-There's one more decode trick I haven't set up yet, but it fits right here: speculative decoding. The idea is to guess the next few tokens cheaply and let the big model check all the guesses in one go.
+There's one more decode trick, and it turned out to be the biggest speedup in this whole setup: speculative decoding. The idea is to guess the next few tokens cheaply and let the big model check all the guesses in one go.
 
 => ./running-my-own-llms-for-coding/speculative.svg Speculative decoding: a cheap guess of 4 tokens, verified by the big model in one pass
 
@@ -172,10 +173,21 @@ With probabilistic sampling, the acceptance rule is different: rejection samplin
 
 Why can this be faster? Several draft positions share a read of the main model's weights. At small batch sizes, checking those extra positions can be relatively cheap. Drafting and verification still cost time and memory, though, and rejected guesses waste work. The speedup depends on how often the guesses are accepted. Predictable bits of code, such as boilerplate and repeated identifiers, are a useful case to try.
 
-With several agents already batched, there may be less spare capacity for speculation. I need to measure both cases.
+With several agents already batched, there may be less spare capacity for speculation. So I measured both cases.
 
-It's not enabled in my recorded run: the log says `speculative_config=None`. Qwen3.8's config has `mtp_num_hidden_layers: 1`, and vLLM's recipe supports its built-in MTP head. A starting point is `--speculative-config '{"method": "mtp", "num_speculative_tokens": 2}'`. I haven't tested that combination with FP8 Marlin on the A100, so compatibility, memory use and speed are still open questions for my setup.
+Qwen3.8's config has `mtp_num_hidden_layers: 1`, so the model ships its own MTP head, and vLLM supports it. In vLLM, it's one flag: `--speculative-config '{"method": "mtp", "num_speculative_tokens": 3}'`. I added it to the Qwen3.8 preset in hypr. It's on by default now, and `--no-speculative` on `create` or `model switch` turns it off again.
 
+To see if it pays off, I benchmarked it on the A100: six Go coding prompts with 700 output tokens each, thinking off, first one conversation at a time and then three in parallel. I ran it without speculative decoding and with 2, 3 and 4 drafted tokens:
+
+=> ./running-my-own-llms-for-coding/speculative-benchmark.svg Measured decode speed with and without MTP speculative decoding
+
+That's a lot more than I expected. A single conversation went from 48 to 132 tokens per second with 3 drafted tokens, 2.7 times as fast. Three conversations together went from 134 to 286 tokens per second in total. vLLM's metrics show why: about 86% of the drafted tokens were accepted, so each pass of the big model produced 3.6 tokens on average instead of one. Code seems to be very predictable for the MTP head.
+
+I went with 3 drafted tokens as the default. 4 tokens was a bit faster for a single conversation, but slower with three conversations in parallel, which is my normal agent workload. The price is some memory: the KV cache pool shrank from 657K to 588K tokens, which still fits more than two full 262K contexts. Time to first token didn't change (about 0.4 seconds).
+
+The benchmark numbers are a bit higher than the ~40 tokens per second from my recorded work morning (see "The numbers" below), because the benchmark prompts are short and real sessions carry long contexts. The benchmark script and all the numbers are in the hypr repo.
+
+=> https://github.com/snonux/hypr/blob/main/docs/speculative-decoding.md hypr: speculative decoding benchmark and config
 => https://huggingface.co/Qwen/Qwen3.8-27B-FP8/blob/main/config.json Qwen3.8 FP8 configuration
 => https://recipes.vllm.ai/Qwen/Qwen3.8-27B vLLM's Qwen3.8 recipe, including MTP
 
@@ -277,7 +289,7 @@ And not every model supports it:
 
 Here's a catch I only found while writing this post. pi shows "medium" as the thinking level in its footer. But for Qwen models, pi only sends `enable_thinking: true` or `false` to vLLM. So low, medium and high all just mean "on", and Qwen3.8 then thinks at its own default, `xhigh`. That explains a lot of the overthinking Simon Willison describes. pi also asks the chat template to keep the thinking of earlier turns in the history (`preserve_thinking`), so the thinking keeps taking up context later, too. And for Gemma and Nemotron, my pi config marks the models as non-reasoning, so pi's level does nothing there at all. For Nemotron, that's a config gap on my side: its chat template can enable thinking independently of pi's setting. The reasoning parser only separates that output; it does not turn thinking on.
 
-I haven't done a clean on-vs-off comparison on my own tasks yet, so I won't pretend I have numbers. But the math is simple: at ~40 tokens per second, 2,000 thinking tokens are 50 seconds before the first word of the answer. For agent turns where I already know what the change should look like, that's mostly wasted time and context. Worth a dedicated experiment later. For now, I live with the default and interrupt the model when it spirals.
+I haven't done a clean on-vs-off comparison on my own tasks yet, so I won't pretend I have numbers. But the math is simple: at ~40 tokens per second, 2,000 thinking tokens are 50 seconds before the first word of the answer (about 15 seconds with speculative decoding on). For agent turns where I already know what the change should look like, that's mostly wasted time and context. Worth a dedicated experiment later. For now, I live with the default and interrupt the model when it spirals.
 
 ## Inside the VM
 
@@ -559,7 +571,7 @@ GPU KV cache usage: 5.0%, Prefix cache hit rate: 81.1%
 
 => ./running-my-own-llms-for-coding/watch-dashboard.png The hypr watch dashboard during a decode burst
 
-* One conversation generated about 40 tok/s. Two or three together reached about 100–110 tok/s total.
+* One conversation generated about 40 tok/s. Two or three together reached about 100–110 tok/s total. That was before I turned on speculative decoding, which roughly doubled to tripled these numbers in my benchmark.
 * The busiest ten-second prompt window averaged about 3,000 tok/s. That's an interval average, including gaps, not peak prefill speed.
 * Cache usage was around 16% for much of the morning and reached 40%. Prefix-cache hit rates ranged from 80% to 97%.
 * The GPU drew about 80 W idle and up to 299 W during a burst, with temperatures from 57°C to 66°C.
@@ -586,7 +598,7 @@ The A100 costs $1.35/hour on demand, billed per minute. The H100 fallback is $2.
 
 => https://www.hyperstack.cloud/gpu-pricing Hyperstack pricing
 
-That recorded morning cost about $1.78 for 79 minutes and produced roughly 250K output tokens. If I charge the whole bill to output, that's $7.12 per million tokens, including prompt processing and time spent waiting on tools. Continuous generation at 40 tok/s would work out to $9.38 per million; at 100 tok/s across several agents, $3.75. Those last two are estimates from throughput, not separate charges on my bill.
+That recorded morning cost about $1.78 for 79 minutes and produced roughly 250K output tokens. If I charge the whole bill to output, that's $7.12 per million tokens, including prompt processing and time spent waiting on tools. Continuous generation at 40 tok/s would work out to $9.38 per million; at 100 tok/s across several agents, $3.75. Those last two are estimates from throughput, not separate charges on my bill. With speculative decoding on, the same math gives about $2.84 per million at the benchmarked 132 tok/s, and about $1.31 at 286 tok/s across three conversations.
 
 => ./running-my-own-llms-for-coding/cost-per-token.svg Estimated throughput costs versus the recorded session
 
