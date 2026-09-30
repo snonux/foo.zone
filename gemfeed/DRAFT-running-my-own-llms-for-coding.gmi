@@ -600,11 +600,16 @@ The A100 costs $1.35/hour on demand, billed per minute. The H100 fallback is $2.
 
 => https://www.hyperstack.cloud/gpu-pricing Hyperstack pricing
 
-That recorded morning cost about $1.78 for 79 minutes and produced roughly 250K output tokens. If I charge the whole bill to output, that's $7.12 per million tokens, including prompt processing and time spent waiting on tools. Continuous generation at 40 tok/s would work out to $9.38 per million; at 100 tok/s across several agents, $3.75. Those last two are estimates from throughput, not separate charges on my bill.
+That recorded morning, before speculative decoding, cost about $1.78 for 79 minutes and produced roughly 250K output tokens. If I charge the whole bill to output, that's $7.12 per million tokens, including prompt processing and time spent waiting on tools.
 
-With speculative decoding on, the benchmark delivered 123 tok/s for one conversation when counting the whole run, or about $3.05 per million. Three conversations delivered 286 tok/s, or $1.31 per million. Those include the benchmark's initial waits, but no tool calls or idle time between coding turns.
+Speculative decoding makes the tokens cheaper. In the same short-prompt benchmark, counting the whole run:
 
-=> ./running-my-own-llms-for-coding/cost-per-token.svg Estimated throughput costs versus the recorded session
+* One conversation went from 46.9 to 123 tok/s: $8.00 down to $3.05 per million output tokens, about 62% cheaper.
+* Three conversations went from 133.5 to 286.3 tok/s total: $2.81 down to $1.31 per million, about 53% cheaper.
+
+Those runs had thinking off and included the wait for the first token, but no tool calls or idle gaps between coding turns. I haven't measured the savings over a full work session yet. The VM still costs $1.35/hour either way.
+
+=> ./running-my-own-llms-for-coding/cost-per-token.svg Output cost before and after MTP in the benchmark, plus the earlier work session
 
 I can't yet make a fair API comparison. My earlier estimate of 11M input tokens needs checking: current vLLM logs exclude cache hits from prompt throughput. Cache saves computation but still occupies memory, and the VM keeps billing. An API comparison needs verified token counts and a dated provider quote, including its cache rates.
 

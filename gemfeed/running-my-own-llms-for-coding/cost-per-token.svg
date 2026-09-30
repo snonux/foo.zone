@@ -1,28 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="900" height="360" viewBox="0 0 900 360" role="img">
-<title>A100 rental: output-equivalent cost per million tokens</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="440" viewBox="0 0 900 440" role="img">
+<title>A100 output costs: benchmark before and after speculative decoding</title>
 <style>
 .bg{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#b77900}.s0{fill:#e4e3df}.line{stroke:#52514e;fill:none}.box{fill:#f0efec;stroke:#c3c2b7}text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
 @media(prefers-color-scheme:dark){.bg{fill:#1a1a19}.t1{fill:#fff}.t2{fill:#c3c2b7}.s1{fill:#286fc3}.s2{fill:#b84418}.s3{fill:#087d54}.s0{fill:#383835}.line{stroke:#c3c2b7}.box{fill:#262625;stroke:#52514e}}
 </style>
-<defs>
-<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
-<path d="M0,0 L10,5 L0,10" fill="#777"/>
-</marker>
-</defs>
-<rect x="0" y="0" width="900" height="360" rx="4" class="bg"/>
-<text x="24" y="36" font-size="18" text-anchor="start" class="t1">A100 rental: output-equivalent cost per million tokens</text>
-<text x="24" y="62" font-size="13" text-anchor="start" class="t2">At $1.35/hour. Each bar allocates the entire rental cost to generated tokens.</text>
-<text x="24" y="95" font-size="13" text-anchor="start" class="t1">Sustained-output estimates (exclude extra idle and prefill time)</text>
-<text x="24" y="132" font-size="13" text-anchor="start" class="t2">40 tok/s, one stream</text>
-<rect x="270" y="111" width="468.75" height="28" rx="4" class="s1"/>
-<text x="750" y="131" font-size="13" text-anchor="start" class="t2">$9.38</text>
-<text x="24" y="177" font-size="13" text-anchor="start" class="t2">100 tok/s, aggregate</text>
-<rect x="270" y="156" width="187.5" height="28" rx="4" class="s1"/>
-<text x="470" y="176" font-size="13" text-anchor="start" class="t2">$3.75</text>
-<text x="24" y="225" font-size="13" text-anchor="start" class="t1">Recorded session (includes prompts, tool waits and idle gaps)</text>
-<text x="24" y="263" font-size="13" text-anchor="start" class="t2">$1.78 / 250K output tokens</text>
-<rect x="270" y="242" width="356" height="28" rx="4" class="s2"/>
-<text x="638" y="262" font-size="13" text-anchor="start" class="t2">$7.12</text>
-<text x="24" y="310" font-size="13" text-anchor="start" class="t2">These are alternative accounting views, not separate input and output charges.</text>
-<text x="24" y="333" font-size="13" text-anchor="start" class="t2">An API comparison needs verified input/cache counts and a dated provider quote.</text>
+<rect width="900" height="440" rx="4" class="bg"/>
+<text x="24" y="34" font-size="18" class="t1">A100 rental: cost per million output tokens</text>
+<text x="24" y="58" font-size="13" class="t2">$1.35/hour, with the entire rental cost charged to output. All bars use the same scale.</text>
+<text x="24" y="90" font-size="13" class="t1">Short-prompt benchmark: includes first-token waits; thinking off, no tool calls or idle gaps</text>
+<text x="24" y="127" font-size="13" class="t2">One conversation, no MTP</text>
+<rect x="290" y="107" width="399.79" height="26" rx="4" class="s1"/>
+<text x="699.7867803837953" y="127" font-size="13" class="t2">$8.00</text>
+<text x="24" y="162" font-size="13" class="t2">One conversation, MTP (3)</text>
+<rect x="290" y="142" width="152.44" height="26" rx="4" class="s3"/>
+<text x="452.4390243902439" y="162" font-size="13" class="t2">$3.05</text>
+<text x="24" y="213" font-size="13" class="t2">Three conversations, no MTP</text>
+<rect x="290" y="193" width="140.45" height="26" rx="4" class="s1"/>
+<text x="440.44943820224717" y="213" font-size="13" class="t2">$2.81</text>
+<text x="24" y="248" font-size="13" class="t2">Three conversations, MTP (3)</text>
+<rect x="290" y="228" width="65.49" height="26" rx="4" class="s3"/>
+<text x="365.49074397485157" y="248" font-size="13" class="t2">$1.31</text>
+<text x="24" y="294" font-size="13" class="t1">Earlier work session, before MTP: includes prompt processing, tool waits and idle gaps</text>
+<text x="24" y="330" font-size="13" class="t2">$1.78 / 250K output tokens</text>
+<rect x="290" y="310" width="356.00" height="26" rx="4" class="s2"/>
+<text x="656.0" y="330" font-size="13" class="t2">$7.12</text>
+<text x="24" y="378" font-size="13" class="t2">Benchmark savings: about 62% for one conversation and 53% for three together.</text>
+<text x="24" y="405" font-size="13" class="t2">Full-session savings with MTP haven&#x27;t been measured. The hourly VM price stays the same.</text>
 </svg>
