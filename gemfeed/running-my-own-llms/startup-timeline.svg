@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 306" width="860" height="306" role="img">
+<title>Where the startup time goes</title>
+<style>
+  .bg{fill:#fcfcfb} .t1{fill:#0b0b0b} .t2{fill:#52514e} .mu{fill:#898781} .ln{stroke:#d9d8d4}
+  .s1{fill:#2a78d6} .s2{fill:#eb6834} .s3{fill:#1baf7a} .s4{fill:#eda100} .s0{fill:#e4e3df} .ar{stroke:#52514e;fill:none}
+  .ah{fill:#52514e} .box{fill:#f0efec;stroke:#c3c2b7}
+  text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+  @media (prefers-color-scheme: dark){
+    .bg{fill:#1a1a19} .t1{fill:#ffffff} .t2{fill:#c3c2b7} .ln{stroke:#383835}
+    .s1{fill:#3987e5} .s2{fill:#d95926} .s3{fill:#199e70} .s4{fill:#c98500} .s0{fill:#383835} .ar{stroke:#c3c2b7} .ah{fill:#c3c2b7}
+    .box{fill:#262625;stroke:#52514e}
+  }
+</style>
+<rect class="bg" width="860" height="306" rx="8"/>
+<text class="t1" x="24" y="36" font-size="18" text-anchor="start" font-weight="600">Where the startup time goes (A100, Qwen3.8 27B FP8)</text>
+<text class="t2" x="24" y="58" font-size="12" text-anchor="start" font-weight="400">Measured from the vLLM container log. Loading the weights into VRAM takes only ~5 s.</text>
+<line class="ln" x1="150.0" x2="150.0" y1="82" y2="220" stroke-width="1"/>
+<text class="mu" x="150.0" y="238" font-size="11" text-anchor="middle" font-weight="400">0 min</text>
+<line class="ln" x1="283.6" x2="283.6" y1="82" y2="220" stroke-width="1"/>
+<text class="mu" x="283.6363636363636" y="238" font-size="11" text-anchor="middle" font-weight="400">2 min</text>
+<line class="ln" x1="417.3" x2="417.3" y1="82" y2="220" stroke-width="1"/>
+<text class="mu" x="417.27272727272725" y="238" font-size="11" text-anchor="middle" font-weight="400">4 min</text>
+<line class="ln" x1="550.9" x2="550.9" y1="82" y2="220" stroke-width="1"/>
+<text class="mu" x="550.9090909090909" y="238" font-size="11" text-anchor="middle" font-weight="400">6 min</text>
+<line class="ln" x1="684.5" x2="684.5" y1="82" y2="220" stroke-width="1"/>
+<text class="mu" x="684.5454545454545" y="238" font-size="11" text-anchor="middle" font-weight="400">8 min</text>
+<line class="ln" x1="818.2" x2="818.2" y1="82" y2="220" stroke-width="1"/>
+<text class="mu" x="818.1818181818181" y="238" font-size="11" text-anchor="middle" font-weight="400">10 min</text>
+<text class="t1" x="24" y="108" font-size="14" text-anchor="start" font-weight="600">Fresh VM</text>
+<text class="t2" x="24" y="126" font-size="12" text-anchor="start" font-weight="400">hypr create: 10 min</text>
+<rect class="s1" x="150.0" y="90" width="111.6" height="44" rx="0"/>
+<text x="205.8" y="117" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">VM boot</text>
+<rect class="s2" x="263.6" y="90" width="226.3" height="44" rx="0"/>
+<text x="376.7" y="117" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">bootstrap + image pull</text>
+<rect class="s0" x="491.9" y="90" width="59.2" height="44" rx="0"/>
+<rect class="s2" x="553.1" y="90" width="69.3" height="44" rx="0"/>
+<text x="587.8" y="117" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">model</text>
+<rect class="s3" x="624.4" y="90" width="4.7" height="44" rx="0"/>
+<rect class="s3" x="631.1" y="90" width="44.8" height="44" rx="0"/>
+<rect class="s3" x="677.9" y="90" width="65.9" height="44" rx="0"/>
+<text x="710.8" y="117" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">profile</text>
+<rect class="s4" x="745.8" y="90" width="82.6" height="44" rx="4"/>
+<text x="787.1" y="117" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">graphs</text>
+<text class="t1" x="24" y="178" font-size="14" text-anchor="start" font-weight="600">Restart</text>
+<text class="t2" x="24" y="196" font-size="12" text-anchor="start" font-weight="400">same model: 2 min</text>
+<rect class="s0" x="150.0" y="160" width="40.3" height="44" rx="0"/>
+<rect class="s3" x="192.3" y="160" width="12.5" height="44" rx="0"/>
+<rect class="s4" x="206.8" y="160" width="72.6" height="44" rx="4"/>
+<text x="243.1" y="187" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">graphs</text>
+<rect class="s1" x="24" y="255" width="12" height="12" rx="2"/>
+<text class="t2" x="42" y="266" font-size="12" text-anchor="start" font-weight="400">VM boot + bootstrap</text>
+<rect class="s2" x="189.60000000000002" y="255" width="12" height="12" rx="2"/>
+<text class="t2" x="207.60000000000002" y="266" font-size="12" text-anchor="start" font-weight="400">downloads (image + weights)</text>
+<rect class="s0" x="483.20000000000005" y="255" width="12" height="12" rx="2"/>
+<text class="t2" x="501.20000000000005" y="266" font-size="12" text-anchor="start" font-weight="400">vLLM process start</text>
+<rect class="s3" x="642.4000000000001" y="255" width="12" height="12" rx="2"/>
+<text class="t2" x="660.4000000000001" y="266" font-size="12" text-anchor="start" font-weight="400">load, compile, profile</text>
+<rect class="s4" x="24" y="277" width="12" height="12" rx="2"/>
+<text class="t2" x="42" y="288" font-size="12" text-anchor="start" font-weight="400">CUDA graphs + KV cache</text>
+<text x="653.5" y="117" font-size="11" text-anchor="middle" font-weight="600" fill="#ffffff">compile</text>
+</svg>

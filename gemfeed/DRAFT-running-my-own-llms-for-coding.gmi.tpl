@@ -26,7 +26,7 @@ Birgitta Böckeler's memo in the Fowler "Exploring Gen AI" series is useful rela
 
 ## The setup at a glance
 
-Everything starts on my laptop. `ruby hyperstack.rb --vm 1 create` (or `--vm both` for two VMs in parallel) provisions a Hyperstack VM (Ubuntu 24.04 with CUDA and Docker preinstalled, one A100 80 GB PCIe GPU), sets up a WireGuard tunnel to it, and starts the model in a vLLM Docker container. Five to ten minutes later the model is serving on an OpenAI-compatible API, reachable over the tunnel.
+Everything starts on my laptop. `ruby hyperstack.rb --vm 1 create` (or `--vm both` for two VMs in parallel) provisions a Hyperstack VM (Ubuntu 24.04 with CUDA and Docker preinstalled, one A100 80 GB PCIe GPU), sets up a WireGuard tunnel to it, and starts the model in a vLLM Docker container. About ten minutes later the model is serving on an OpenAI-compatible API, reachable over the tunnel.
 
 => ./running-my-own-llms/architecture.svg The setup: pi on the laptop, vLLM on two Hyperstack VMs, WireGuard in between
 
@@ -122,8 +122,8 @@ The default model on VM1 is `Qwen/Qwen3.8-27B-FP8`, a dense 27B model with a nat
 
 Each VM's TOML config defines named presets, so switching models does not mean reprovisioning:
 
-* `qwen38-27b` — Qwen3.8 27B FP8 (default), ~45 GB VRAM, 262K context
-* `qwen36-27b` — Qwen3.6 27B FP8, ~45 GB VRAM, 262K context
+* `qwen38-27b` — Qwen3.8 27B FP8 (default), ~29 GiB weights, 262K context
+* `qwen36-27b` — Qwen3.6 27B FP8, ~29 GiB weights, 262K context
 * `gemma4-31b` — Gemma 4 31B IT (AWQ-4bit), ~19 GB VRAM, 32K context
 * `nemotron-super` — Nemotron-3-Super 120B (Mamba+MoE, 12B active), ~74 GiB VRAM, 32K context
 * `qwen36-35b-a3b` — Qwen3.6-35B-A3B MoE (AWQ, 3B active), ~18 GB VRAM, 65K context; runs with a quantized KV cache (`turboquant_k8v4`) and chunked prefill disabled
@@ -133,12 +133,34 @@ Each VM's TOML config defines named presets, so switching models does not mean r
 * `qwen3-32b` — Qwen3-32B (AWQ), ~18 GB VRAM, 32K context
 * `devstral` — Devstral-Small-2507 (AWQ-4bit), ~15 GB VRAM, 32K context
 
-`ruby hyperstack.rb --vm 1 model switch nemotron-super` stops the running container, starts a new one with the preset's flags, and waits for readiness. The model download on first run is the slow part (~45 GB for the 27B); after that the weights are cached on the VM's ephemeral NVMe disk and a switch takes a few minutes.
+`ruby hyperstack.rb --vm 1 model switch nemotron-super` stops the running container, starts a new one with the preset's flags, and waits for readiness. The weights are cached on the VM's ephemeral NVMe disk after the first download, but a switch still takes minutes (see below).
 
 Two details:
 
 * Qwen3.8 is brand new, so VM1 runs the `vllm/vllm-openai:nightly` image until stable vLLM ships support for the architecture.
 * The big 120B MoE (Nemotron-3-Super) has to have its context capped at 32K, prefix caching disabled and `--gpu-memory-utilization` raised to 0.98 to fit on a single A100, since the weights alone take most of the 80 GB. That tension between model size and context length is the core of VRAM budgeting (see the VRAM chart above).
+
+### Why starting a model takes minutes
+
+Loading a model onto the GPU sounds like "copy 29 GiB from disk to VRAM". That part is actually fast. I restarted the vLLM container on a fresh VM and timed every phase from its log:
+
+=> ./running-my-own-llms/startup-timeline.svg Where the startup time goes: fresh VM vs container restart
+
+On a fresh VM, `hypr create` took about 10 minutes in total:
+
+* VM boot — ~1.5 minutes until Hyperstack hands over a running VM.
+* Bootstrap — ~3.5 minutes for packages, WireGuard, the firewall and pulling the 32 GB vLLM Docker image.
+* vLLM start — ~1 minute for Python, the API server and the engine to come up.
+* Weights — ~1 minute to download 29 GiB from Hugging Face, then 5 seconds to load them into VRAM.
+* torch.compile — ~40 seconds to compile the model's GPU kernels for this GPU.
+* Profiling run — ~1 minute for a dummy pass at the maximum batch size.
+* CUDA graphs and KV cache — ~1.3 minutes to allocate the KV cache pool and capture CUDA graphs.
+
+The last three are what "loading everything into CUDA" really means. torch.compile turns the model's Python code into fused GPU kernels. The profiling run measures the peak memory the model needs, so vLLM knows how much VRAM is left for the KV cache (40.9 GiB here). And the CUDA graph capture records the exact sequence of GPU kernel launches for each batch size (86 graphs here), so that later every decode step can replay a graph instead of launching hundreds of small kernels from Python one by one. That's a big part of why decode is fast, but it costs time on every start.
+
+A restart of the same container is faster: about 2 minutes. The weights are already on disk, and the compiled kernels come from vLLM's on-disk compile cache (0.55 seconds instead of 30). But the CUDA graphs are captured again on every start (~1 minute), and the Python and API startup doesn't get faster either.
+
+That's why switching models ad hoc is painful. `model switch` takes at least 2 minutes for a model that was already used on this VM, and more for a new one (download plus a cold compile). On top of that, every running agent session loses its prefix cache and has to prefill its whole context again. So instead of switching back and forth, I run two VMs with two different models loaded. Switching between them is then just picking the other provider in pi (`Ctrl+L`), and it's instant.
 
 ### MoE vs dense, and quantization
 
@@ -150,7 +172,7 @@ That makes decode much faster than on a dense model of the same total size, beca
 
 Several presets are MoEs (Nemotron-3-Super, `qwen36-35b-a3b`, `qwen3-coder-30b`). Only the active parameters do the work per token, which is why Nemotron can be 120B total with 12B active and still decode at a usable speed. But remember, all 120B still have to fit into VRAM, and that's why it barely fits once the context is capped. The `qwen36-35b-a3b` preset only fits into ~18 GB because it's also 4-bit quantized.
 
-Quantization is how the rest of the list fits. FP8 stores each weight in 8 bits (a 27B model is ~27 GB of weights, plus some overhead). AWQ-4bit stores each weight in 4 bits and trades some quality for footprint and speed. FP8 on the 27B is my daily driver: good quality, ~45 GB, and still plenty of room left for a long context. I haven't tried QAT (quantization-aware training, where the model is trained to cope with the lower precision) yet.
+Quantization is how the rest of the list fits. FP8 stores each weight in 8 bits (a 27B model is ~27 GB of weights, plus some overhead). AWQ-4bit stores each weight in 4 bits and trades some quality for footprint and speed. FP8 on the 27B is my daily driver: good quality, 28.9 GiB of weights, and 40.9 GiB left for the KV cache. vLLM reports that as 657,281 tokens, enough for about 2.5 full 262K contexts at the same time. I haven't tried QAT (quantization-aware training, where the model is trained to cope with the lower precision) yet.
 
 ### Why this is the daily driver
 
@@ -247,6 +269,56 @@ And one from an earlier session: diff on top, the model's reasoning in the middl
 ### The system prompt and harness overhead
 
 Every harness puts a system prompt in front of every conversation: a hidden first message that tells the model who it is (a coding agent), how to behave (be concise, ask before destroying things, edit files with the edit tool and not with `sed`), which tools it has, and which project rules apply.
+
+Here's what that looks like in pi. This is the start of its built-in system prompt, trimmed a little:
+
+```
+You are an expert coding assistant operating inside pi, a coding agent
+harness. You help users by reading files, executing commands, editing
+code, and writing new files.
+
+Available tools:
+- read: Read file contents
+- bash: Execute bash commands (ls, grep, find, etc.)
+- edit: Make precise file edits with exact text replacement, including
+  multiple disjoint edits in one call
+- write: Create or overwrite files
+
+Guidelines:
+- Use read to examine files instead of cat or sed.
+- Use edit for precise changes (edits[].oldText must match exactly)
+- Use write only for new files or complete rewrites.
+- Be concise in your responses
+- Show file paths clearly when working with files
+```
+
+After that, pi appends the project context (the content of any `AGENTS.md` or `CLAUDE.md` in the project), then the list of skills, and at the very end the current date and working directory:
+
+```
+<project_context>
+Project-specific instructions and guidelines:
+<project_instructions path="/home/paul/git/hypr/AGENTS.md">
+...
+</project_instructions>
+</project_context>
+
+The following skills provide specialized instructions for specific tasks.
+Use the read tool to load a skill's file when the task matches its description.
+
+<available_skills>
+  <skill>
+    <name>blog-writing-style</name>
+    <description>De-LLM blog posts to sound authentically human. ...</description>
+    <location>/home/paul/.pi/skills/blog-writing-style/SKILL.md</location>
+  </skill>
+  ...
+</available_skills>
+
+Current date: 2026-09-30
+Current working directory: /home/paul/git/hypr
+```
+
+The order is not random. Everything that never changes comes first, and the parts that change (the date, the directory) come last. That way the prefix cache can reuse as much of the prompt as possible.
 
 You never type it, but it's resent with every request and takes up KV cache like everything else. So do all the tool definitions (bash, read, edit, `web_search`, ...), skill descriptions (more on skills below), and project instructions such as an `AGENTS.md`. With dozens of tools, that's thousands of tokens before you've typed a word. The good news: all of that is identical on every turn, so it's the first thing prefix caching serves from cache.
 
@@ -425,7 +497,7 @@ One caveat on all of these numbers: prompt length, whether the prefix cache is w
 
 Per-turn latency for a full agent step (prompt in, answer out) is roughly 10–15 seconds with vLLM on this hardware, versus ~28 seconds I measured with Ollama at 32K context, and Ollama was truncating my context at 32K while vLLM runs the full 262K.
 
-Startup is the other number that matters for the "rent, don't buy" math: with a warm model cache, container start to ready takes about five minutes (weight load is a few seconds; the rest is torch.compile and CUDA graph capture). Cold, with a fresh ~45 GB model download, 10+ minutes. The provisioner polls the API for up to 30 minutes and treats the first successful response as done.
+Startup is the other number that matters for the "rent, don't buy" math: about 10 minutes from `create` to the first token on a fresh VM, and about 2 minutes for a container restart (see "Why starting a model takes minutes" above for the breakdown).
 
 ## What I trust it with (and what I don't)
 

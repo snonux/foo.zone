@@ -18,14 +18,14 @@
 <line class="ln" x1="670.0" x2="670.0" y1="88" y2="285" stroke-width="1"/>
 <line class="ln" x1="810.0" x2="810.0" y1="88" y2="285" stroke-width="1"/>
 <text class="t1" x="24" y="36" font-size="18" font-weight="600">How a preset spends the A100's 80 GB</text>
-<text class="t2" x="24" y="60" font-size="13">Approximate. vLLM loads the weights, then grabs the rest (up to --gpu-memory-utilization) as KV cache pool.</text>
+<text class="t2" x="24" y="60" font-size="13">Qwen3.8 measured from the vLLM log, the others approximate. The rest after the weights becomes KV cache.</text>
 <text class="t1" x="24" y="112" font-size="14" font-weight="600">Qwen3.8 27B FP8</text>
 <text class="t2" x="24" y="130" font-size="12">262K context</text>
-<rect class="s1" x="250.0" y="95" width="313.0" height="40" rx="0"/>
-<text x="258.0" y="120" font-size="13" fill="#ffffff" font-weight="600">weights ~45 GB</text>
-<rect class="s3" x="565.0" y="95" width="198.2" height="40" rx="0"/>
-<text x="573.0" y="120" font-size="13" fill="#ffffff" font-weight="600">KV cache pool ~29 GB</text>
-<rect class="s0" x="765.2" y="95" width="42.8" height="40" rx="4"/>
+<rect class="s1" x="250.0" y="95" width="201.0" height="40" rx="0"/>
+<text x="258.0" y="120" font-size="13" fill="#ffffff" font-weight="600">weights 28.9 GiB</text>
+<rect class="s3" x="453.0" y="95" width="285.0" height="40" rx="0"/>
+<text x="461.0" y="120" font-size="13" fill="#ffffff" font-weight="600">KV cache 40.9 GiB = 657K tokens</text>
+<rect class="s0" x="740.0" y="95" width="68.0" height="40" rx="4"/>
 <text class="t1" x="24" y="182" font-size="14" font-weight="600">Gemma 4 31B AWQ</text>
 <text class="t2" x="24" y="200" font-size="12">32K context</text>
 <rect class="s1" x="250.0" y="165" width="131.0" height="40" rx="0"/>
@@ -46,5 +46,5 @@
 <text class="mu" x="810.0" y="305" font-size="12" text-anchor="middle">80 GB</text>
 <rect class="s1" x="250" y="322" width="12" height="12" rx="2"/><text class="t2" x="268" y="333" font-size="12">weights (plus runtime overhead)</text>
 <rect class="s3" x="480" y="322" width="12" height="12" rx="2"/><text class="t2" x="498" y="333" font-size="12">KV cache pool</text>
-<rect class="s0" x="620" y="322" width="12" height="12" rx="2"/><text class="t2" x="638" y="333" font-size="12">headroom</text>
+<rect class="s0" x="620" y="322" width="12" height="12" rx="2"/><text class="t2" x="638" y="333" font-size="12">other + headroom</text>
 </svg>
