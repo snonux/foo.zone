@@ -578,12 +578,17 @@ Speculative decoding makes the tokens cheaper. In the same short-prompt benchmar
 
 Those runs had thinking off and included the wait for the first token, but no tool calls or idle gaps between coding turns. I haven't measured the savings over a full work session yet. The VM still costs $1.35/hour either way.
 
-=> ./running-my-own-llms-for-coding/cost-per-token.svg Output cost before and after MTP in the benchmark, plus the earlier work session
+=> ./running-my-own-llms-for-coding/cost-per-token.svg Output costs: GPU rental with and without MTP, the earlier work session, and OpenRouter examples
 
-I can't yet make a fair API comparison. My earlier estimate of 11M input tokens needs checking: current vLLM logs exclude cache hits from prompt throughput. Cache saves computation but still occupies memory, and the VM keeps billing. An API comparison needs verified token counts and a dated provider quote, including its cache rates.
+For an API comparison, OpenRouter lists these prices for Qwen3.8 27B on 30 September 2026, per million tokens:
 
+* Chutes: $2.20 output, $0.24 uncached input, $0.024 cached input.
+* Reka AI: $4.35 output, $0.0248 uncached input, $0.0155 cached input.
+
+The chart shows their output charges; input costs come on top. My GPU bars include the whole rental bill. I still can't price the full work session through an API: the earlier 11M input-token estimate needs checking because current vLLM logs exclude cache hits from prompt throughput.
+
+=> https://openrouter.ai/qwen/qwen3.8-27b OpenRouter's Qwen3.8 provider prices, checked 30 September 2026
 => https://raw.githubusercontent.com/vllm-project/vllm/main/vllm/v1/metrics/loggers.py vLLM's token accounting
-=> https://openrouter.ai/qwen/qwen3.8-27b OpenRouter's Qwen3.8 providers and pricing
 
 Buying still doesn't appeal to me:
 
