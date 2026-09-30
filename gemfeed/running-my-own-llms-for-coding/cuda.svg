@@ -22,8 +22,8 @@
 <rect class="s1" x="44" y="166" width="260" height="40" rx="4"/>
 <text x="174" y="191" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">PyTorch: the model as Python code</text>
 <rect class="s3" x="44" y="216" width="260" height="48" rx="4"/>
-<text x="174" y="236" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">kernels: FlashAttention, Marlin FP8,</text>
-<text x="174" y="254" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">cuBLAS, torch.compile (Triton)</text>
+<text x="174" y="236" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">kernels: FlashAttention 2, Marlin FP8,</text>
+<text x="174" y="254" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">FlashInfer sampling, Triton</text>
 <rect class="s0" x="44" y="274" width="260" height="40" rx="4"/>
 <text class="t1" x="174" y="299" font-size="12" text-anchor="middle" font-weight="600">CUDA runtime + driver 570</text>
 <rect class="s4" x="44" y="324" width="260" height="40" rx="4"/>
