@@ -604,6 +604,10 @@ The other side of the ledger isn't small, though. Only a box on my desk is reall
 
 So I'm waiting for one of two things: my ThinkPad dying and being replaced by something with real local-LLM power (the RTX Spark class of machine, if it ever gets proper Linux support), or the next superchip generation after Grace Blackwell (Vera Rubin, probably 2027 or 2028). Buying a $5,000 box right before its successor ships with more memory and bandwidth is exactly the trap renting keeps me out of. Especially since the models change every few months: the Qwen3.8 on VM1 this month isn't the model I was testing in May.
 
+One more thing, to be honest about where this stands. The frontier models, especially Opus 5.5, are so good now that this local setup can't really beat them. Whatever the benchmark table above says about Qwen3.8 vs Opus 4.6, in daily use the gap to the current frontier is obvious, especially for big, fuzzy tasks where the model has to plan and work on its own for a long time. So even with my own LLM hardware on the desk, I'd keep my cloud subscriptions for most of my LLM usage.
+
+That doesn't make this a wasted investigation, though. You can already do a lot with these local models. They're especially well suited for "in the loop" coding and for study projects, where I want to deep dive into a topic myself and the LLM only assists here and there: explaining a piece of code, writing a test, doing a small refactoring. For that, a 27B model on a rented A100 is more than good enough, and I learned a lot about how all of this works under the hood along the way.
+
 Until then, the setup is all in the repo: `git clone https://github.com/snonux/hypr` gets you the provisioner, the WireGuard script, the per-VM model presets and the pi extensions. If you don't want any Ruby, the manual path is short: rent a GPU VM with CUDA and Docker, run `vllm/vllm-openai` with `--enable-prefix-caching --gpu-memory-utilization 0.92 --max-model-len 262144`, tunnel in with WireGuard or a port forward, and point any OpenAI-compatible client at it.
 
 Other related posts:
