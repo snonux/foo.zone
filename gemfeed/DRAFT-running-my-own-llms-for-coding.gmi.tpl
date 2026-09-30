@@ -8,8 +8,7 @@ The main motivation was a question I wanted to answer before spending money: sho
 
 => https://www.hyperstack.cloud/ Hyperstack
 
-A few months in, the setup has grown into a small toolchain I call `hypr`. One Ruby script manages the whole lifecycle (create the VM, open a WireGuard tunnel, start vLLM with the model of choice), and I can run two VMs at the same time, each with its own model and its own pi coding agent in a tmux pane.
-
+A few months in, the setup has grown into a small toolchain I call `hypr`. One Ruby script manages the whole lifecycle (create the VM, open a WireGuard tunnel, start vLLM with the model of choice), and I can run two VMs at the same time, each with its own model and its own pi coding agent in a tmux pane. For example, Qwen3.8 27B works on one project in pane 0 while Gemma 4 31B works on another in pane 1, and when one of them gets stuck I hand the same problem to the other.
 In this post I go through the setup, how the inference works under the hood (prefill, decode, KV cache, prefix caching), the numbers I see in practice, and where I stand now on buying hardware.
 
 Birgitta Böckeler's memo in the Fowler "Exploring Gen AI" series is useful related reading: a factor checklist for whether local models are viable for agentic coding. Her stack is Apple Silicon + LM Studio; mine is rented A100 + vLLM. Same problem, different hardware, but her checklist applies here too.
@@ -18,17 +17,17 @@ Birgitta Böckeler's memo in the Fowler "Exploring Gen AI" series is useful rela
 => https://github.com/snonux/hypr hypr on GitHub
 => https://pi.dev Pi coding agent
 
-=> ./running-my-own-llms/logo.svg The hypr logo
+=> ./running-a short glossar/overview of the things to
 
 << template::inline::toc
 
 ## The setup at a glance
 
-Everything starts on my always-on home server, a Linux VM on a FreeBSD box that I use as an operator machine. The laptop just SSHes in. `ruby hyperstack.rb --vm 1 create` (or `--vm both` for two VMs in parallel) provisions a Hyperstack VM (Ubuntu 24.04 with CUDA and Docker preinstalled, one A100 80 GB PCIe GPU), sets up a WireGuard tunnel, and starts the model in a vLLM Docker container. Five to ten minutes later the model is serving on an OpenAI-compatible API, reachable over the tunnel.
+Everything starts on my Laptop: A `ruby hyperstack.rb --vm 1 create` (or `--vm both` for two VMs in parallel) provisions a Hyperstack VM (Ubuntu 24.04 with CUDA and Docker preinstalled, one A100 80 GB PCIe GPU), sets up a WireGuard tunnel (so I can connect securely to the inference server), and starts the model in a vLLM Docker container. Five to ten minutes later the model is serving on an OpenAI-compatible API, reachable over the secure tunnel.
 
 ```
                    ┌──────────────┐
-                   │ operator VM  │
+                   │ Laptop       │
                    │ tmux + pi    │
                    └───────┬──────┘
                            │
@@ -37,16 +36,16 @@ Everything starts on my always-on home server, a Linux VM on a FreeBSD box that 
              ┌─────────────┴─────────────┐
              ▼                           ▼
    ┌───────────────────┐       ┌───────────────────┐
-   │ VM1 · 192.168.3.1 │       │ VM2 · 192.168.3.3 │
+   │ VM1 · 192.168.3.1 │       │ VM2 to make it feel "fast".
    │ A100 80GB PCIe    │       │ A100 80GB PCIe    │
    │ vLLM :11434       │       │ vLLM :11434       │
    │ Qwen3.8 27B FP8   │       │ Gemma 4 31B AWQ   │
    └───────────────────┘       └───────────────────┘
 ```
 
-The WireGuard tunnel is the interesting bit. A single `wg1` interface on the operator machine carries traffic to both VMs at once, and each VM is just another `[Peer]` block in the same config. The vLLM port (11434) is firewalled to the tunnel subnet only, so the API is not exposed to the internet at all. There's no proxy, no load balancer and no API keys. The tunnel is the security boundary.
+The WireGuard tunnel is the interesting bit. A single `wg1` interface on Laptop (Fedora Linux in can have case, by the way!) routed traffic to both VMs through the tunnel. There's a firewall on the Hyperstack VMs to only allow direct SSH access and to the WireGuard VPN port. The vLLM port (11434) can only be accessed remotely through that tunnel. There is no other authorization or authentication. So the API is not exposed to the internet at all. There's no proxy, no load balancer and no API keys. The tunnel is the security boundary.
 
-`hypr` is a Ruby script with a small TOML config per VM. The commands that matter:
+`hypr` is a Ruby script with a small TOML config per VM(e.g. pi) . The commands that matter:
 
 * `create` / `delete` — provision or destroy a VM (WireGuard + vLLM included)
 * `status` — VM, tunnel and model state
@@ -56,23 +55,80 @@ The WireGuard tunnel is the interesting bit. A single `wg1` interface on the ope
 
 ## What decides if this works
 
-Before the walkthrough, the short version of what decides whether a rented (or owned) box is usable as a coding-agent backend. Not the marketing specs, but the stuff that bites you mid-session:
+Before the walkthrough, a short glossar/overview of the things to be considered when operating LLMs yourself:
 
-* VRAM — weights plus the KV cache pool. If the weights don't fit, you crash or crawl.
+* VRAM (video RAM; on Apple silicon or a DGX Spark it is unified memory shared with the CPU) — holds the model weights plus the KV cache pool.
+* KV cache — the attention keys and values the model has already computed for every token in the context (system prompt, conversation, tool output). It lives in VRAM next to the weights and grows linearly with context length, so it is what limits how long a context you can afford. It is not the context window itself: the window is the maximum length, the KV cache is the memory the tokens in it occupy.
 * Memory bandwidth — decode is bandwidth-bound. "Fits" and "feels fast" are different questions.
-* Parameter count vs quantization — bigger usually helps until the weights crowd out context and you start turning features off to load at all.
-* MoE vs dense — huge total params, small active set; better quality per GB when it works.
+* Token generation speed (decode tok/s) — how fast the answer is produced, one token at a time. This is the speed you feel while the agent "types".
+* Prefill speed (prompt tok/s) — how fast the prompt is read into the KV cache. The slower it is, the longer you wait for the first token after sending a prompt; with agents resending 100K+ tokens of context, this matters a lot to make it feel "fast".
+* Parameter count vs quantization — more parameters and less aggressive quantization usually means better quality, but it costs VRAM. Model generation matters as much as size, though: an older, larger model can be dumber than a newer, smaller one.
+* MoE vs dense — a dense model uses all of its parameters for every token. A mixture-of-experts (MoE) model can have a huge total parameter count, but a router picks only a few "experts" per token, so only a small active set does the work (e.g. 3B active of 35B total). That makes decode much faster than a dense model of the same total size and gives good quality per unit of compute. The catch: all experts still have to sit in VRAM, so you save compute, not memory.
 * Context vs weights — every token of context costs VRAM the weights already claimed.
 * Reasoning cost — thinking tokens burn latency and context; sometimes you want them off.
-* Tool-calling reliability — without working tools you are back to copy-paste chat.
-* Harness overhead — every extension and tool schema eats scarce context.
-* Runtime — plug-and-play vs knobs and throughput. hypr picks the second.
+* Tool-calling reliability — the model does not run anything itself. The harness (e.g. pi) sends it a list of tool schemas (name, description, JSON arguments) along with the prompt; when the model wants to act, it emits a structured call such as `read_file {"path": "main.go"}` instead of prose. The harness executes it, appends the result to the conversation, and asks the model again, looping until the task is done. That loop is what makes an agent an agent, and it falls apart if the model emits malformed JSON or picks the wrong tool. Without working tools you are back to copy-paste chat. The next sub-chapter shows what this looks like on the wire.
+* Harness overhead — every extension and tool schema eats scarce context. Examples: the bash, read, edit and `web_search` tool definitions, skill descriptions, and project instructions such as an `AGENTS.md` are all sent on every request. Dozens of tools can cost thousands of tokens before you have typed a word. The biggest fixed chunk is the system prompt: the hidden first message a harness puts in front of every conversation. It tells the model who it is (a coding agent), how to behave (be concise, ask before destroying things, edit files via the edit tool, not via `sed`), which tools it has, and which project rules apply. You never type it, but it is resent with every request and occupies KV cache like everything else, which is also why prefix caching works so well: the system prompt is the same on every turn, so it is the first thing served from cache.
+* Runtime — plug-and-play vs knobs and throughput. hypr picks the second. Examples: Ollama or LM Studio pull a model and serve it with one command, while vLLM makes you set `--max-model-len`, `--gpu-memory-utilization` and `--enable-prefix-caching` yourself in return for throughput, batching and block-level prefix caching.
 
-Some of these get real sections below. Others are asides where the tradeoff shows up. A couple are still stubs, because I have not run the bake-offs yet.
+### Tool calling on the wire
+
+Since vLLM speaks the OpenAI chat completions API, the whole agent loop is ordinary HTTP. Here is one turn, trimmed down. First, the harness (pi) sends the conversation plus the tool schemas:
+
+```
+POST http://hyperstack1.wg1:11434/v1/chat/completions
+{
+  "model": "Qwen/Qwen3.8-27B-FP8",
+  "messages": [
+    {"role": "system", "content": "You are a coding agent. Use the tools..."},
+    {"role": "user",   "content": "What does main.go do?"}
+  ],
+  "tools": [{
+    "type": "function",
+    "function": {
+      "name": "read_file",
+      "description": "Read a file from the project",
+      "parameters": {
+        "type": "object",
+        "properties": {"path": {"type": "string"}},
+        "required": ["path"]
+      }
+    }
+  }]
+}
+```
+
+The model does not answer the question yet. It answers with a tool call instead of text:
+
+```
+{
+  "role": "assistant",
+  "content": null,
+  "tool_calls": [{
+    "id": "call_1",
+    "type": "function",
+    "function": {"name": "read_file", "arguments": "{\"path\": \"main.go\"}"}
+  }]
+}
+```
+
+Note that `arguments` is a JSON string the model generated token by token. If it forgets a quote or a brace, the call is broken. That is the failure mode `nemotron-tool-repair` patches further down. The harness validates the arguments, runs the tool locally, and sends everything back with the result appended:
+
+```
+"messages": [
+  {"role": "system",    "content": "You are a coding agent. Use the tools..."},
+  {"role": "user",      "content": "What does main.go do?"},
+  {"role": "assistant", "tool_calls": [{"id": "call_1", ... "read_file" ...}]},
+  {"role": "tool",      "tool_call_id": "call_1", "content": "package main\n\nfunc main() {..."}
+]
+```
+
+Now the model has the file contents in its context and can answer in plain text (or request another tool call, and the loop goes on). Two things to notice. First, the model only ever sees text going in and text coming out; "calling a tool" is just a special output format it was trained to produce. Second, every round trip resends the whole history, including all tool results, so the context (and the KV cache) grows with every step. That is why agentic work is so prefix-cache-heavy.
+
+One server-side detail: the model emits its tool calls in its own raw format (Qwen uses XML-ish tags, others use JSON). vLLM only turns that into the structured `tool_calls` field if it runs with `--enable-auto-tool-choice --tool-call-parser <name>`, with the parser matching the model family. hypr sets these per preset; with the wrong parser you get the raw text back and the agent stalls.
 
 ## The VMs and the models
 
-Both VMs are `n3-A100x1` flavors: one A100 80 GB PCIe, 28 vCPUs, 120 GB RAM, in a Canadian region. When the A100 flavor is sold out, the config flips to `n3-H100x1` (80 GB as well), and everything else stays the same.
+Both VMs are `n3-A100x1` flavors: one A100 80 GB PCIe, 28 vCPUs, 120 GB RAM, in a Canadian region. When the A100 flavor is sold out, the config flips to `n3-H100x1` (80 GB as well, a bit faster but also it costs a bit more), and everything else stays the same.
 
 The default model on VM1 is `Qwen/Qwen3.8-27B-FP8`, a dense 27B model with a native 262K context window, FP8-quantized. As of writing, that is also my main model in this setup, and every number measured in this post is measured on it. VM2 runs `Gemma 4 31B` (AWQ 4-bit) by default, so I can work on two projects in parallel with two different models and compare how they behave.
 
@@ -119,11 +175,11 @@ HLE (multidisciplinary reasoning)             30.8        24.0         34.7     
 
 It beats its direct predecessor on every row, and the rows that match how I use it are the interesting ones: on SWE-bench Pro (agentic coding) the 27B dense model scores 61.7, ahead of Opus 4.6 Max's 53.4 and Muse Glimmer's 51.2; on terminal coding it runs 73.0 to Qwen3.6's 63.4; on competitive coding (90.3) it even edges Opus (88.8). That's a model I can run on a single rented A100 that beats models I can only rent per-token, on the benchmarks that resemble my actual workload.
 
-The fine print: these are vendor-reported numbers from the official model card, a couple of the benchmarks are Qwen's own, and the Opus 4.6 Max SWE-bench Pro figure is the officially reported one. I take the direction, not the exact decimals. Simon Willison ran the model on a DGX Spark and an M5 Max MacBook the week it shipped, and his verdict matches mine: an excellent model that defaults to wildly overthinking, because its reasoning effort defaults to `xhigh`:
+However, benchmarks are only one thing. Model performance can vastly differ if you use them for real workloads. So every benchmark is to be taken with a grain of salt.
+
+Furthermore, these are vendor-reported numbers from the official model card, a couple of the benchmarks are Qwen's own, and the Opus 4.6 Max SWE-bench Pro figure is the officially reported one. I take the direction, not the exact decimals. Simon Willison ran the model on a DGX Spark and an M5 Max MacBook the week it shipped, and his verdict matches mine: an excellent model that defaults to wildly overthinking, because its reasoning effort defaults to `xhigh`:
 
 => https://simonwillison.net/2026/Aug/16/qwen-38-27b/ Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things (Simon Willison)
-
-He even drove pi with it, the same agent this post is about, with the same model in a 4-bit quant on different hardware.
 
 ### Reasoning: leave it on or turn it off?
 
@@ -138,8 +194,6 @@ $ ssh ubuntu@192.168.3.1
 ubuntu@hyperstack1:~$ hostname
 hyperstack1
 ```
-
-The provisioner pins the VM's SSH host keys into a per-VM `known_hosts` file, so an unexpected key change fails closed instead of prompting me. The public IP works too, but the tunnel is the point.
 
 The entire "AI service" from the inside is one Docker container:
 
