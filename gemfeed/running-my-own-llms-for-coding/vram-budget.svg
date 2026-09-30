@@ -1,50 +1,46 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 357" width="860" height="357" role="img">
-<title>How a preset spends the A100's 80 GB</title>
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="423" viewBox="0 0 900 423" role="img">
+<title>Memory budget on the A100 80 GB</title>
 <style>
-  .bg{fill:#fcfcfb} .t1{fill:#0b0b0b} .t2{fill:#52514e} .mu{fill:#898781} .ln{stroke:#d9d8d4}
-  .s1{fill:#2a78d6} .s2{fill:#eb6834} .s3{fill:#1baf7a} .s0{fill:#e4e3df} .ar{stroke:#52514e;fill:none}
-  .ah{fill:#52514e} .box{fill:#f0efec;stroke:#c3c2b7}
-  text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
-  @media (prefers-color-scheme: dark){
-    .bg{fill:#1a1a19} .t1{fill:#ffffff} .t2{fill:#c3c2b7} .ln{stroke:#383835}
-    .s1{fill:#3987e5} .s2{fill:#d95926} .s3{fill:#199e70} .s0{fill:#383835} .ar{stroke:#c3c2b7} .ah{fill:#c3c2b7}
-    .box{fill:#262625;stroke:#52514e}
-  }
+.bg{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#b77900}.s0{fill:#e4e3df}.line{stroke:#52514e;fill:none}.box{fill:#f0efec;stroke:#c3c2b7}text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+@media(prefers-color-scheme:dark){.bg{fill:#1a1a19}.t1{fill:#fff}.t2{fill:#c3c2b7}.s1{fill:#286fc3}.s2{fill:#b84418}.s3{fill:#087d54}.s0{fill:#383835}.line{stroke:#c3c2b7}.box{fill:#262625;stroke:#52514e}}
 </style>
-<rect class="bg" width="860" height="357" rx="8"/>
-<line class="ln" x1="250.0" x2="250.0" y1="88" y2="285" stroke-width="1"/>
-<line class="ln" x1="390.0" x2="390.0" y1="88" y2="285" stroke-width="1"/>
-<line class="ln" x1="530.0" x2="530.0" y1="88" y2="285" stroke-width="1"/>
-<line class="ln" x1="670.0" x2="670.0" y1="88" y2="285" stroke-width="1"/>
-<line class="ln" x1="810.0" x2="810.0" y1="88" y2="285" stroke-width="1"/>
-<text class="t1" x="24" y="36" font-size="18" font-weight="600">How a preset spends the A100's 80 GB</text>
-<text class="t2" x="24" y="60" font-size="13">Qwen3.8 measured from the vLLM log, the others approximate. The rest after the weights becomes KV cache.</text>
-<text class="t1" x="24" y="112" font-size="14" font-weight="600">Qwen3.8 27B FP8</text>
-<text class="t2" x="24" y="130" font-size="12">262K context</text>
-<rect class="s1" x="250.0" y="95" width="201.0" height="40" rx="0"/>
-<text x="258.0" y="120" font-size="13" fill="#ffffff" font-weight="600">weights 28.9 GiB</text>
-<rect class="s3" x="453.0" y="95" width="285.0" height="40" rx="0"/>
-<text x="461.0" y="120" font-size="13" fill="#ffffff" font-weight="600">KV cache 40.9 GiB = 657K tokens</text>
-<rect class="s0" x="740.0" y="95" width="68.0" height="40" rx="4"/>
-<text class="t1" x="24" y="182" font-size="14" font-weight="600">Gemma 4 31B AWQ</text>
-<text class="t2" x="24" y="200" font-size="12">32K context</text>
-<rect class="s1" x="250.0" y="165" width="131.0" height="40" rx="0"/>
-<text x="258.0" y="190" font-size="13" fill="#ffffff" font-weight="600">weights ~19 GB</text>
-<rect class="s3" x="383.0" y="165" width="380.2" height="40" rx="0"/>
-<text x="391.0" y="190" font-size="13" fill="#ffffff" font-weight="600">KV cache pool ~55 GB</text>
-<rect class="s0" x="765.2" y="165" width="42.8" height="40" rx="4"/>
-<text class="t1" x="24" y="252" font-size="14" font-weight="600">Nemotron-3-Super 120B</text>
-<text class="t2" x="24" y="270" font-size="12">32K ctx, no prefix cache, util 0.98</text>
-<rect class="s1" x="250.0" y="235" width="516.0" height="40" rx="0"/>
-<text x="258.0" y="260" font-size="13" fill="#ffffff" font-weight="600">weights ~74 GiB</text>
-<rect class="s3" x="768.0" y="235" width="28.8" height="40" rx="0"/>
-<rect class="s0" x="798.8" y="235" width="9.2" height="40" rx="4"/>
-<text class="mu" x="250.0" y="305" font-size="12" text-anchor="middle">0 GB</text>
-<text class="mu" x="390.0" y="305" font-size="12" text-anchor="middle">20 GB</text>
-<text class="mu" x="530.0" y="305" font-size="12" text-anchor="middle">40 GB</text>
-<text class="mu" x="670.0" y="305" font-size="12" text-anchor="middle">60 GB</text>
-<text class="mu" x="810.0" y="305" font-size="12" text-anchor="middle">80 GB</text>
-<rect class="s1" x="250" y="322" width="12" height="12" rx="2"/><text class="t2" x="268" y="333" font-size="12">weights (plus runtime overhead)</text>
-<rect class="s3" x="480" y="322" width="12" height="12" rx="2"/><text class="t2" x="498" y="333" font-size="12">KV cache pool</text>
-<rect class="s0" x="620" y="322" width="12" height="12" rx="2"/><text class="t2" x="638" y="333" font-size="12">other + headroom</text>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+<path d="M0,0 L10,5 L0,10" fill="#777"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="900" height="423" rx="4" class="bg"/>
+<text x="24" y="36" font-size="18" text-anchor="start" class="t1">Memory budget on the A100 80 GB</text>
+<text x="24" y="62" font-size="12" text-anchor="start" class="t2">All bar values use GiB; total memory shown is approximately 79.25 GiB on this A100.</text>
+<text x="24" y="82" font-size="12" text-anchor="start" class="t2">Only Qwen’s cache pool is measured here. Other rows show weight estimates and the remaining budget.</text>
+<text x="24" y="140" font-size="14" text-anchor="start" class="t1">Qwen3.8 27B FP8</text>
+<text x="24" y="162" font-size="12" text-anchor="start" class="t2">262K configured context</text>
+<rect x="280" y="120" width="207.86119873817032" height="46" rx="4" class="s1"/>
+<text x="289" y="148" font-size="12" text-anchor="start" fill="#fff">weights ~28.9 GiB</text>
+<rect x="487.8611987381703" y="120" width="294.1703470031546" height="46" rx="4" class="s3"/>
+<text x="495.8611987381703" y="148" font-size="12" text-anchor="start" fill="#fff">cache 40.9 GiB (~657K tokens)</text>
+<rect x="782.0315457413249" y="120" width="67.96845425867514" height="46" rx="4" class="s0"/>
+<text x="24" y="225" font-size="14" text-anchor="start" class="t1">Gemma 4 31B AWQ</text>
+<text x="24" y="247" font-size="12" text-anchor="start" class="t2">32K configured context</text>
+<rect x="280" y="205" width="127.27095877710576" height="46" rx="4" class="s1"/>
+<text x="289" y="233" font-size="12" text-anchor="start" fill="#fff">weights ~17.7 GiB</text>
+<rect x="407.27095877710576" y="205" width="442.72904122289424" height="46" rx="4" class="s0"/>
+<text x="417.27095877710576" y="233" font-size="12" text-anchor="start" class="t2">cache + runtime + headroom (not split)</text>
+<text x="24" y="310" font-size="14" text-anchor="start" class="t1">Nemotron 120B AWQ</text>
+<text x="24" y="332" font-size="12" text-anchor="start" class="t2">32K; eager mode; util 0.98</text>
+<rect x="280" y="290" width="532.2397476340694" height="46" rx="4" class="s1"/>
+<text x="289" y="318" font-size="12" text-anchor="start" fill="#fff">weights ~74.0 GiB</text>
+<rect x="812.2397476340694" y="290" width="37.76025236593057" height="46" rx="4" class="s0"/>
+<text x="280.0" y="365" font-size="12" text-anchor="middle" class="t2">0</text>
+<text x="423.84858044164037" y="365" font-size="12" text-anchor="middle" class="t2">20</text>
+<text x="567.6971608832807" y="365" font-size="12" text-anchor="middle" class="t2">40</text>
+<text x="711.5457413249211" y="365" font-size="12" text-anchor="middle" class="t2">60</text>
+<text x="850.0" y="365" font-size="12" text-anchor="middle" class="t2">79.25</text>
+<text x="24" y="365" font-size="13" text-anchor="start" class="t2">GiB</text>
+<rect x="24" y="387" width="12" height="12" rx="4" class="s1"/>
+<text x="43" y="398" font-size="13" text-anchor="start" class="t2">weights</text>
+<rect x="170" y="387" width="12" height="12" rx="4" class="s3"/>
+<text x="189" y="398" font-size="13" text-anchor="start" class="t2">measured cache pool</text>
+<rect x="400" y="387" width="12" height="12" rx="4" class="s0"/>
+<text x="419" y="398" font-size="13" text-anchor="start" class="t2">remaining budget; includes runtime and headroom</text>
 </svg>

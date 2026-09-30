@@ -39,7 +39,7 @@
 <circle class="s1" cx="222" cy="365" r="11"/>
 <text x="222" y="369" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">4</text>
 <text class="t1" x="430.0" y="353" font-size="13" text-anchor="middle">whole history again + tool result</text>
-<text class="t2" x="430.0" y="385" font-size="12" text-anchor="middle">prefix cache: only the new part is prefilled</text>
+<text class="t2" x="430.0" y="385" font-size="12" text-anchor="middle">warm prefix cache: matching blocks can skip prefill</text>
 <line class="ar" x1="660" x2="200" y1="425" y2="425" stroke-width="2" marker-end="url(#a)"/>
 <circle class="s2" cx="638" cy="425" r="11"/>
 <text x="638" y="429" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">5</text>

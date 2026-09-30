@@ -48,8 +48,8 @@
 <text class="t2" x="40" y="90" font-size="12" text-anchor="start" font-weight="400">you hit enter</text>
 <text class="t2" x="194" y="90" font-size="12" text-anchor="start" font-weight="400">first token appears</text>
 <line class="ar" x1="192" y1="94" x2="192" y2="150" stroke-width="1.5" stroke-dasharray="3 3"/>
-<text class="t1" x="40" y="172" font-size="13" text-anchor="start" font-weight="600">whole prompt at once, in parallel</text>
-<text class="t2" x="40" y="192" font-size="12" text-anchor="start" font-weight="400">compute-bound: 1000s of tok/s</text>
-<text class="t1" x="340" y="172" font-size="13" text-anchor="start" font-weight="600">one token per step, each step re-reads all weights from VRAM</text>
-<text class="t2" x="340" y="192" font-size="12" text-anchor="start" font-weight="400">memory-bandwidth-bound: 10s of tok/s. This is the speed you "feel".</text>
+<text class="t1" x="40" y="172" font-size="13" text-anchor="start" font-weight="600">prompt tokens processed in chunks</text>
+<text class="t2" x="40" y="192" font-size="12" text-anchor="start" font-weight="400">long prompts can reach 1000s of tok/s</text>
+<text class="t1" x="340" y="172" font-size="13" text-anchor="start" font-weight="600">ordinary decode: one token per step; repeated weight and cache reads</text>
+<text class="t2" x="340" y="192" font-size="12" text-anchor="start" font-weight="400">small-batch decode often waits on memory: 10s of tok/s here.</text>
 </svg>

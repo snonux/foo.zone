@@ -13,7 +13,7 @@
 </style>
 <rect class="bg" width="860" height="306" rx="8"/>
 <text class="t1" x="24" y="36" font-size="18" text-anchor="start" font-weight="600">Where the startup time goes (A100, Qwen3.8 27B FP8)</text>
-<text class="t2" x="24" y="58" font-size="12" text-anchor="start" font-weight="400">Measured from the vLLM container log. Loading the weights into VRAM takes only ~5 s.</text>
+<text class="t2" x="24" y="58" font-size="12" text-anchor="start" font-weight="400">Approximate provisioning timings plus vLLM logs. Weight loading itself takes ~5 s.</text>
 <line class="ln" x1="150.0" x2="150.0" y1="82" y2="220" stroke-width="1"/>
 <text class="mu" x="150.0" y="238" font-size="11" text-anchor="middle" font-weight="400">0 min</text>
 <line class="ln" x1="283.6" x2="283.6" y1="82" y2="220" stroke-width="1"/>
@@ -48,9 +48,9 @@
 <rect class="s4" x="206.8" y="160" width="72.6" height="44" rx="4"/>
 <text x="243.1" y="187" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">graphs</text>
 <rect class="s1" x="24" y="255" width="12" height="12" rx="2"/>
-<text class="t2" x="42" y="266" font-size="12" text-anchor="start" font-weight="400">VM boot + bootstrap</text>
+<text class="t2" x="42" y="266" font-size="12" text-anchor="start" font-weight="400">VM boot</text>
 <rect class="s2" x="189.60000000000002" y="255" width="12" height="12" rx="2"/>
-<text class="t2" x="207.60000000000002" y="266" font-size="12" text-anchor="start" font-weight="400">downloads (image + weights)</text>
+<text class="t2" x="207.60000000000002" y="266" font-size="12" text-anchor="start" font-weight="400">bootstrap + downloads</text>
 <rect class="s0" x="483.20000000000005" y="255" width="12" height="12" rx="2"/>
 <text class="t2" x="501.20000000000005" y="266" font-size="12" text-anchor="start" font-weight="400">vLLM process start</text>
 <rect class="s3" x="642.4000000000001" y="255" width="12" height="12" rx="2"/>

@@ -1,6 +1,6 @@
 # Running my own LLMs for coding: Hyperstack, vLLM and the pi coding agent
 
-The `gt` calculator was built almost entirely with local LLMs running on rented Hyperstack VMs, and I ended that post with a promise: "I will write another blog post at some point about my setup and what I learned from self-hosting models on Hyperstack." This is that post.
+The `gt` calculator was built almost entirely with self-hosted LLMs running on rented Hyperstack VMs, and I ended that post with a promise: "I will write another blog post at some point about my setup and what I learned from self-hosting models on Hyperstack." This is that post.
 
 => ./2026-06-01-gt-calculator.gmi 2026-06-01 `gt` calculator - a calculator built with local LLMs
 
@@ -8,11 +8,13 @@ In this post I go through the setup, how the inference works under the hood (pre
 
 => ./running-my-own-llms-for-coding/logo.svg The hypr logo
 
+> Updated Wed 30 Sep: Corrected the technical explanations and cost comparison, and simplified the CUDA section.
+
 << template::inline::toc
 
 ## Why rent instead of buy
 
-The main motivation was a question I wanted to answer before spending money: should I buy hardware to run my own LLMs? A new RTX 5090 with 32 GB VRAM costs a few thousand dollars, and a 128 GB DGX Spark box starts at $3,999. Before putting either on my desk, I wanted to know what it feels like to have a 27B model (and the occasional 120B one) as a daily coding partner. So I rented instead: Hyperstack VMs with A100 80 GB GPUs, spun up when I need them, torn down when I don't.
+The main motivation was a question I wanted to answer before spending money: should I buy hardware to run my own LLMs? A new RTX 5090 with 32 GB VRAM costs a few thousand dollars, and a 128 GB DGX Spark Founders Edition now has a $4,699 MSRP. Before putting either on my desk, I wanted to know what it feels like to have a 27B model (and the occasional 120B one) as a daily coding partner. So I rented instead: Hyperstack VMs with A100 80 GB GPUs, spun up when I need them, torn down when I don't.
 
 => https://www.hyperstack.cloud/ Hyperstack
 
@@ -35,7 +37,7 @@ The WireGuard tunnel is the interesting bit. A single `wg1` interface on my lapt
 * `status` — VM, tunnel and model state
 * `test` — end-to-end inference check over the tunnel
 * `watch` — live dashboard: GPU, throughput, KV cache per VM
-* `model switch <preset>` — hot-swap the model on a running VM
+* `model switch <preset>` — replace the serving container with another model on the same VM
 
 ## What decides if this works
 
@@ -43,12 +45,12 @@ Before the walkthrough, a short glossary of the things that matter when you run 
 
 * VRAM — the GPU's memory (unified memory on Apple silicon or a DGX Spark). Holds the weights plus the KV cache.
 * KV cache — the model's working memory for everything in the context. Grows with context length and lives in VRAM.
-* Memory bandwidth — decode is bandwidth-bound. "Fits" and "feels fast" are different questions.
+* Memory bandwidth — small-batch decode is often limited by memory bandwidth. "Fits" and "feels fast" are different questions.
 * Token generation speed (decode tok/s) — the speed you feel while the agent "types".
 * Prefill speed (prompt tok/s) — how fast the prompt is read in. Decides how long you wait for the first token.
 * Parameter count vs quantization — bigger and less quantized is usually better, but costs VRAM. Newer small models can beat older big ones.
-* MoE vs dense — MoE models only use a small part of their parameters per token. Faster, but not smaller. Dense models usually are a bit "smarter" but also slower.
-* Context vs weights — every token of context costs VRAM the weights already claimed.
+* MoE vs dense — MoE models only use a small part of their parameters per token. Faster, but not smaller. Quality depends on the particular models, not just this architecture choice.
+* Context vs weights — weights and cached context share the same memory budget.
 * LLM reasoning level — Makes the LLM "think harder" in exchange for more tokens.
 * Tool-calling reliability — without working tool calls, you are back to copy-paste chat.
 * Harness overhead — the system prompt, tool schemas and extensions eat context before you type a word.
@@ -60,23 +62,17 @@ The next section explains how inference works: VRAM, the KV cache, prefill, deco
 
 This is the part I set out to learn, so here is the mental model that finally clicked.
 
-### CUDA: the layer under everything
+### CUDA: how vLLM uses the GPU
 
-CUDA is NVIDIA's platform for running general-purpose code on a GPU. It has three parts: the driver that talks to the chip, the runtime and libraries on top of it, and a toolchain that compiles code into kernels, the small programs that run on the GPU.
+CUDA is NVIDIA's software platform for running calculations on its GPUs. In my setup, the CPU runs vLLM's request handling and decides which work to send to the GPU. Through CUDA, it launches small GPU programs called kernels. The GPU does the model's heavy maths, using the weights and cached context in its own memory.
 
-=> ./running-my-own-llms-for-coding/cuda.svg How vLLM uses the GPU through CUDA: CPU launches kernels, the GPU's SMs stream weights from HBM
+=> ./running-my-own-llms-for-coding/cuda.svg CPU organises the work, CUDA launches it, GPU does the maths
 
-The split between CPU and GPU is the key to understanding it:
+I don't need to write CUDA code for this. vLLM and its libraries take care of it. The NVIDIA Container Toolkit lets the Docker container use the host's GPU and driver with `--gpus all`.
 
-* The CPU (the host) decides what to run. vLLM schedules and batches requests and tokenizes text. PyTorch describes the model as Python code (every vLLM model is a PyTorch module, and the log shows it: `torch.compile took 29.95 s`), and then launches kernels on the GPU through the CUDA runtime.
-* The GPU (the device) does the math. The A100 has 108 streaming multiprocessors (SMs). Each SM has CUDA cores, tensor cores for matrix math, and a bit of very fast on-chip memory. A kernel runs as thousands of threads spread over all SMs at once.
-* Memory sits in between. The 80 GB of HBM2e on the card hold the weights and the KV cache. The SMs can read it at ~1.9 TB/s, which is fast, but still much slower than the SMs can compute.
+One detail surprised me: my A100 can store FP8 weights, but can't calculate with FP8 natively. vLLM uses Marlin kernels to convert them as it works. I still get the smaller weight footprint, just not native FP8 arithmetic.
 
-Every prefill and decode step is a batch of kernels launched on the A100. The vLLM log on my VM shows which ones it picked: FlashAttention 2 for attention, Marlin for the FP8 weights, FlashInfer for sampling the next token, and Triton kernels generated by torch.compile for the rest. That one surprised me: the A100 has no native FP8 support, so vLLM logs "Your GPU does not have native support for FP8 computation" and uses Marlin to unpack the 8-bit weights on the fly. The model still gets the memory savings of FP8, just not FP8 math.
-
-The diagram also shows why decode is memory-bound. For every token, all 28.9 GiB of weights have to stream from HBM through the SMs once. At ~1.9 TB/s, that's about 16 ms per step, so a single conversation can't get more than ~60 tokens per second on this card, no matter how fast the SMs are. I measure ~40. When three conversations are batched, the same weight read produces three tokens, and that's why the total throughput goes up with more agents.
-
-You can see the software layers in the VM image name: `Ubuntu Server 24.04 LTS R570 CUDA 12.8 with Docker`. That's the OS, the GPU driver (570.195.03 on my VM), the CUDA 12.8 stack, and Docker. The vLLM container sees the GPU through `--gpus all`. Docker's NVIDIA toolkit injects the driver and the device into the container, and the model's math runs entirely on the GPU.
+=> https://docs.vllm.ai/en/v0.30.0/features/quantization/fp8/ vLLM: FP8 weights and the Marlin path on older GPUs
 
 ### What vLLM is
 
@@ -84,44 +80,48 @@ vLLM is an open-source inference engine: the program that takes a model's weight
 
 An LLM request has two phases:
 
-* Prefill — the model reads the entire prompt and computes attention over all of it in one shot. All prompt tokens can be processed in parallel, so it's compute-bound, and that's where big GPUs shine.
-* Decode — generating the answer, one token at a time. Every new token depends on the previous one, so this is sequential and memory-bandwidth-bound. This is the phase you are waiting for while the agent "types".
+* Prefill — the model processes the prompt, doing work on many tokens together. Long prompts can be split into chunks. This phase makes good use of the GPU's parallel computing power.
+* Decode — generating the answer, normally one token at a time. Every new token depends on the previous ones. For a few concurrent conversations, reading the model weights and cached context can be the bottleneck. This is the phase you watch while the agent "types".
 
 => ./running-my-own-llms-for-coding/prefill-decode.svg One request: prefill, then decode
 
-The two phases show up as very different numbers. Prefill runs at thousands of tokens per second, because the entire prompt is one big parallel job, and a datacenter GPU like the A100 is exactly the kind of hardware that eats that for breakfast. Decode runs at tens of tokens per second, because every output token is its own step: the model re-reads the weights from VRAM, produces one token, and starts over. That's roughly two orders of magnitude, and no setup can fix it: it's inherent to generating one token at a time. When you "feel" speed in an agent session, you are feeling decode tok/s. Prefill tok/s mostly decides how long the first token takes after you hit enter.
+The two phases show up as very different numbers. Prefill can process thousands of tokens per second; ordinary decode in my setup produces tens per conversation. During prefill, many tokens share the work of reading weights from GPU memory. During decode, that cost returns at each step. Batching conversations and speculative decoding (below) can get more tokens out of each pass. Prefill and any queueing affect the wait for the first token; decode affects how quickly the answer arrives after that.
 
-The key data structure is the KV cache. To generate the next token, the model has to attend to every previous token, and without a cache it would have to reprocess the whole context for every single new token. So the key and value tensors for all previous tokens are stored in GPU memory and reused. Note that the KV cache isn't the context window: the window is the maximum length, the KV cache is the memory the tokens in it take up. It grows linearly with context length, and it's the reason "how long a context can I have" is really a VRAM question:
+The key data structure is the KV cache. Full-attention layers reuse key and value tensors from earlier tokens instead of recomputing the whole history for each new token. Their cache grows with the context. My models also have layers that work differently: Qwen3.8-27B has 48 Gated DeltaNet layers with recurrent state and 16 full-attention layers; Gemma 4 mixes sliding-window and global attention. So the exact memory cost depends on the architecture.
+
+The context window is a length limit, while the cache is the memory used to serve requests within that limit. A request needs room for both its prompt and its generated answer, including thinking tokens. Spare cache memory does not raise the configured or supported context limit.
+
+=> https://huggingface.co/Qwen/Qwen3.8-27B Qwen3.8-27B architecture and model card
+=> https://docs.vllm.ai/en/latest/design/hybrid_kv_cache_manager/ vLLM: cache management for hybrid models
 
 ```
-VRAM = model weights + KV cache pool + headroom
+VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 
 --gpu-memory-utilization 0.92   → vLLM may use 92% of the 80 GB
 --max-model-len 262144          → max context: 262,144 tokens (the "262K")
 ```
 
-At startup, vLLM loads the weights, then allocates the rest of the allowed VRAM as a pool of KV cache blocks. That is why `nvidia-smi` shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.
+At startup, vLLM loads the weights, then budgets runtime memory and a pool of cache blocks within the allowed VRAM. That is why `nvidia-smi` shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.
 
 => ./running-my-own-llms-for-coding/vram-budget.svg How three presets split the A100's 80 GB between weights and KV cache
 
 ### Prefix caching: the big one for agentic coding
 
-`--enable-prefix-caching` keeps those KV blocks around between requests instead of freeing them. If a new request shares a prefix with a previous one (same system prompt, same conversation history), the shared part is not prefilled again. The tokens are served from cache.
+`--enable-prefix-caching` lets vLLM retain reusable cache blocks between requests until it needs to evict them. If a new request shares a prefix with a previous one (same system prompt, same conversation history), matching cached blocks can skip prefill. Evicted blocks and an incomplete final block may still need work.
 
 For a coding agent this is huge. Every turn of a coding agent session resends the system prompt plus the entire conversation. Without prefix caching, that whole context is re-prefilled on every single turn. With it, most of the prompt arrives already computed. My current sessions sit at an 80–97% hit rate (numbers below).
 
 => ./running-my-own-llms-for-coding/prefix-cache.svg Prefix caching over four agent turns
 
-This is also the main reason I moved from Ollama to vLLM:
+This is also the main reason I moved from Ollama to vLLM. Its block cache can retain prefixes from several conversations, chunked prefill lets a long prompt share GPU time with ongoing decode, and Marlin supports the AWQ presets I use.
 
-* Prefix caching: vLLM caches in blocks and keeps the blocks of many conversations around at once, so everything up to the first changed block is reused, even with several agents taking turns.
-* Prefill kernels: vLLM uses FlashAttention v2, ~1.5–2× faster on long prompts.
-* Chunked prefill: vLLM interleaves prefill chunks with decode, so a huge prompt doesn't stall the conversations that are already decoding.
-* Quant kernels: vLLM has Marlin kernels for AWQ 4-bit models, which several of my presets (more on those below) rely on.
+Ollama has prefix reuse too, and supports Flash Attention and configurable context lengths. The 32K limit in my old setup was my setting. My vLLM setup felt faster for this workload, but I didn't run a controlled comparison with identical models, quantization, context and cache state. I can't turn that experience into a general speed ratio between the two engines.
 
-Ollama is fine for quick experiments. But for an agent that sends 100K+ token contexts dozens of times a day, recomputing the whole prompt every turn is painful, while computing only the ~15% that changed is fine.
+=> https://raw.githubusercontent.com/ollama/ollama/v0.5.7/llama/runner/cache.go Ollama's prefix-matching cache implementation
+=> https://docs.ollama.com/faq Ollama: Flash Attention and parallel requests
+=> https://docs.ollama.com/context-length Ollama: configuring context length
 
-To be fair, Ollama is still nicer if you just want a model serving in two minutes. vLLM + hypr wins on throughput and knobs and loses on "download and go".
+Ollama is still nicer if I just want a model serving quickly. For several coding agents, I prefer vLLM's batching and cache controls.
 
 ### Speculative decoding (not set up yet)
 
@@ -129,47 +129,54 @@ There's one more decode trick I haven't set up yet, but it fits right here: spec
 
 => ./running-my-own-llms-for-coding/speculative.svg Speculative decoding: a cheap guess of 4 tokens, verified by the big model in one pass
 
-How it works:
+Here's a simplified example using greedy decoding, where the model always picks its highest-scoring token:
 
-* A cheap predictor guesses the next few tokens. That's either a small draft model of the same family, or extra prediction layers built into the big model itself (multi-token prediction, MTP).
-* The big model then runs one pass over all the guesses at once, like a tiny prefill. For every position, it computes the token it would have picked itself.
-* The guesses are kept up to the first wrong one. At that position, the big model's own token is used instead. So the output is the same as without the trick, it just arrives faster.
+* A cheap predictor drafts a few tokens. It might be a compatible smaller model or a built-in multi-token prediction (MTP) head.
+* The main model checks the draft positions together in one verification pass.
+* Matching guesses are accepted until the first mismatch, where the main model supplies the replacement. If every guess matches, it can also supply a bonus token.
 
-Why is that faster? Because decode is memory-bound (see the CUDA section above). One pass reads all 28.9 GiB of weights from VRAM, no matter if it checks one token or four, and the SMs are mostly idle while they wait for the memory anyway. So checking extra tokens is nearly free. If two or three guesses get accepted on average, one pass produces three or four tokens instead of one. Code is a good fit, because a lot of it is predictable: boilerplate, closing brackets, identifiers that were just used.
+With probabilistic sampling, the acceptance rule is different: rejection sampling preserves the target model's output distribution. That does not promise identical text from two separate runs, and numerical differences still matter.
 
-It helps less when several agents are already batched, since then the GPU already does more work per weight read. Wrong guesses waste a bit of compute, and the predictor needs some VRAM, which comes out of the KV cache pool.
+=> https://docs.vllm.ai/en/latest/features/speculative_decoding/ vLLM: speculative decoding and its guarantees
 
-Would it work in my setup? It's not enabled: the vLLM log on my VM says `speculative_config=None`. But Qwen3.8 ships with an MTP layer built in (`mtp_num_hidden_layers: 1` in its config, with the weights in `mtp.safetensors`), and vLLM supports MTP for this model architecture. So it should be one extra line in the hypr preset, something like `--speculative-config '{"method": "mtp", "num_speculative_tokens": 2}'`. I haven't tested it yet, so I don't know yet how it plays with the FP8 Marlin kernels on the A100, how much KV cache it costs, and whether it still helps with three agents in parallel. That's the next experiment.
+Why can this be faster? Several draft positions share a read of the main model's weights. At small batch sizes, checking those extra positions can be relatively cheap. Drafting and verification still cost time and memory, though, and rejected guesses waste work. The speedup depends on how often the guesses are accepted. Predictable bits of code, such as boilerplate and repeated identifiers, are a useful case to try.
+
+With several agents already batched, there may be less spare capacity for speculation. I need to measure both cases.
+
+It's not enabled in my recorded run: the log says `speculative_config=None`. Qwen3.8's config has `mtp_num_hidden_layers: 1`, and vLLM's recipe supports its built-in MTP head. A starting point is `--speculative-config '{"method": "mtp", "num_speculative_tokens": 2}'`. I haven't tested that combination with FP8 Marlin on the A100, so compatibility, memory use and speed are still open questions for my setup.
+
+=> https://huggingface.co/Qwen/Qwen3.8-27B-FP8/blob/main/config.json Qwen3.8 FP8 configuration
+=> https://recipes.vllm.ai/Qwen/Qwen3.8-27B vLLM's Qwen3.8 recipe, including MTP
 
 ## The VMs and the models
 
-Both VMs are `n3-A100x1` flavors: one A100 80 GB PCIe, 28 vCPUs, 120 GB RAM, in a Canadian region. When the A100 flavor is sold out, the config flips to `n3-H100x1` (80 GB as well, faster, but also pricier), and everything else stays the same.
+Both VMs are `n3-A100x1` flavors: one A100 80 GB PCIe, 28 vCPUs, 120 GB RAM, in a Canadian region. When the A100 flavor is sold out, I manually change the config to `n3-H100x1`. It also has 80 GB of GPU memory, but its hardware, price and performance differ; it is not the machine behind the A100 measurements below.
 
-The default model on VM1 is `Qwen/Qwen3.8-27B-FP8`, a dense 27B model with a native 262K context window, FP8-quantized. As of writing, that is also my main model in this setup, and every number measured in this post is measured on it. VM2 runs `Gemma 4 31B` (AWQ 4-bit) by default, so I can work on two projects in parallel with two different models and compare how they behave.
+The default model on VM1 is `Qwen/Qwen3.8-27B-FP8`, a dense 27B model with a native 262K context window, FP8-quantized. As of writing, that is also my main model in this setup, and the throughput and startup observations below are from that setup. VM2 runs `Gemma 4 31B` (AWQ 4-bit) by default, so I can work on two projects in parallel with two different models and compare how they behave.
 
-Each VM's TOML config defines named presets, so switching models does not mean reprovisioning:
+Each VM's TOML config defines named presets, so switching models does not mean reprovisioning. The memory figures below are approximate weight footprints, not total vLLM allocations. The context lengths are my configured limits, not necessarily the models' native limits:
 
 * `qwen38-27b` — Qwen3.8 27B FP8 (default), ~29 GiB weights, 262K context
 * `qwen36-27b` — Qwen3.6 27B FP8, ~29 GiB weights, 262K context
-* `gemma4-31b` — Gemma 4 31B IT (AWQ-4bit), ~19 GB VRAM, 32K context
-* `nemotron-super` — Nemotron-3-Super 120B (Mamba+MoE, 12B active), ~74 GiB VRAM, 32K context
-* `qwen36-35b-a3b` — Qwen3.6-35B-A3B MoE (AWQ, 3B active), ~18 GB VRAM, 65K context; runs with a quantized KV cache (`turboquant_k8v4`) and chunked prefill disabled
-* `qwen3-coder-30b` — Qwen3-Coder-30B-A3B (MoE, AWQ), ~18 GB VRAM, 65K context
-* `qwen25-coder-32b` — Qwen2.5-Coder-32B (AWQ), ~18 GB VRAM, 32K context
-* `deepseek-r1-32b` — DeepSeek-R1-Distill-Qwen-32B (AWQ), ~18 GB VRAM, 32K context
-* `qwen3-32b` — Qwen3-32B (AWQ), ~18 GB VRAM, 32K context
-* `devstral` — Devstral-Small-2507 (AWQ-4bit), ~15 GB VRAM, 32K context
+* `gemma4-31b` — Gemma 4 31B IT (AWQ-4bit), ~19 GB weights, 32K context
+* `nemotron-super` — Nemotron-3-Super 120B (AWQ 4-bit, Mamba+MoE, 12B active), ~74 GiB weights, 32K context
+* `qwen36-35b-a3b` — Qwen3.6-35B-A3B MoE (AWQ, 3B active), ~18 GB weights, 65K context; runs with a quantized KV cache (`turboquant_k8v4`) and chunked prefill disabled
+* `qwen3-coder-30b` — Qwen3-Coder-30B-A3B (MoE, AWQ), ~18 GB weights, 65K context
+* `qwen25-coder-32b` — Qwen2.5-Coder-32B (AWQ), ~18 GB weights, 32K context
+* `deepseek-r1-32b` — DeepSeek-R1-Distill-Qwen-32B (AWQ), ~18 GB weights, 32K context
+* `qwen3-32b` — Qwen3-32B (AWQ), ~18 GB weights, 32K context
+* `devstral` — Devstral-Small-2507 (AWQ-4bit), ~15 GB weights, 32K context
 
 `ruby hyperstack.rb --vm 1 model switch nemotron-super` stops the running container, starts a new one with the preset's flags, and waits for readiness. The weights are cached on the VM's ephemeral NVMe disk after the first download, but a switch still takes minutes (see below).
 
 Two details:
 
-* Qwen3.8 is brand new, so VM1 runs the `vllm/vllm-openai:nightly` image until stable vLLM ships support for the architecture.
-* The big 120B MoE (Nemotron-3-Super) has to have its context capped at 32K, prefix caching disabled and `--gpu-memory-utilization` raised to 0.98 to fit on a single A100, since the weights alone take most of the 80 GB. That tension between model size and context length is the core of VRAM budgeting (see the VRAM chart above).
+* These observations used `vllm/vllm-openai:nightly`. I haven't recorded the exact image digest here, so this is a snapshot of that run, not a reproducible benchmark of today's nightly. Use a pinned, compatible release or digest when reproducing it.
+* My Nemotron AWQ preset uses 32K context, disables prefix caching and CUDA graph capture (`--enforce-eager`), and raises `--gpu-memory-utilization` to 0.98. These are the settings I used to fit it on one A100, where weights take most of the memory. That tension between model size and context length is the core of VRAM budgeting (see the VRAM chart above).
 
 ### Why starting a model takes minutes
 
-Loading a model onto the GPU sounds like "copy 29 GiB from disk to VRAM". That part is actually fast. I restarted the vLLM container on a fresh VM and timed every phase from its log:
+Loading a model onto the GPU sounds like "copy 29 GiB from disk to VRAM". That part is actually fast. My provisioning timings and vLLM logs give this approximate breakdown:
 
 => ./running-my-own-llms-for-coding/startup-timeline.svg Where the startup time goes: fresh VM vs container restart
 
@@ -183,7 +190,7 @@ On a fresh VM, `hypr create` took about 10 minutes in total:
 * Profiling run — ~1 minute for a dummy pass at the maximum batch size.
 * CUDA graphs and KV cache — ~1.3 minutes to allocate the KV cache pool and capture CUDA graphs.
 
-The last three are what "loading everything into CUDA" really means. torch.compile turns the model's Python code into fused GPU kernels. The profiling run measures the peak memory the model needs, so vLLM knows how much VRAM is left for the KV cache (40.9 GiB here). And the CUDA graph capture records the exact sequence of GPU kernel launches for each batch size (86 graphs here), so that later every decode step can replay a graph instead of launching hundreds of small kernels from Python one by one. That's a big part of why decode is fast, but it costs time on every start.
+The last three steps prepare the GPU work. Compilation combines and optimises operations, profiling estimates the memory needed during inference, and CUDA graph capture records launch sequences that can be replayed with less CPU overhead. My log reported a 40.9 GiB cache pool and 86 captured graphs.
 
 A restart of the same container is faster: about 2 minutes. The weights are already on disk, and the compiled kernels come from vLLM's on-disk compile cache (0.55 seconds instead of 30). But the CUDA graphs are captured again on every start (~1 minute), and the Python and API startup doesn't get faster either.
 
@@ -193,23 +200,27 @@ That's why switching models ad hoc is painful. `model switch` takes at least 2 m
 
 A dense model uses all of its parameters for every token. A mixture-of-experts (MoE) model is split into many "experts", and a small router picks only a few of them per token. So only a small active set does the work, e.g. 3B active out of 35B total.
 
-=> ./running-my-own-llms-for-coding/moe-vs-dense.svg Dense vs mixture-of-experts: fewer weights read per token, same memory
+=> ./running-my-own-llms-for-coding/moe-vs-dense.svg Dense vs mixture-of-experts: active parameters versus total weight storage
 
-That makes decode much faster than on a dense model of the same total size, because far fewer weights are read per token. The catch: all experts still have to sit in VRAM, since the router can pick any of them for the next token. You save compute, not memory.
+That makes decode much faster than on a dense model of the same total size, because far fewer weights are read per token. In my fully GPU-resident setup, all experts stay in VRAM because the router can choose different ones for the next token. Offloading experts to CPU memory is possible in other setups, but changes the performance trade-off.
 
-Several presets are MoEs (Nemotron-3-Super, `qwen36-35b-a3b`, `qwen3-coder-30b`). Only the active parameters do the work per token, which is why Nemotron can be 120B total with 12B active and still decode at a usable speed. But remember, all 120B still have to fit into VRAM, and that's why it barely fits once the context is capped. The `qwen36-35b-a3b` preset only fits into ~18 GB because it's also 4-bit quantized.
+Several presets are MoEs (Nemotron-3-Super, `qwen36-35b-a3b`, `qwen3-coder-30b`). Only the active parameters do the work per token, which is why Nemotron can be 120B total with 12B active and still decode at a usable speed. But in this setup all 120B parameters still have to fit into VRAM, and that's why it barely fits once the context is capped. The `qwen36-35b-a3b` preset only fits into ~18 GB because it's also 4-bit quantized.
 
-Quantization is how the rest of the list fits. FP8 stores each weight in 8 bits (a 27B model is ~27 GB of weights, plus some overhead). AWQ-4bit stores each weight in 4 bits and trades some quality for footprint and speed. FP8 on the 27B is my daily driver: good quality, 28.9 GiB of weights, and 40.9 GiB left for the KV cache. vLLM reports that as 657,281 tokens, enough for about 2.5 full 262K contexts at the same time. I haven't tried QAT (quantization-aware training, where the model is trained to cope with the lower precision) yet.
+Quantization is how the rest of the list fits. FP8 stores the quantized weights in 8 bits (a 27B model is ~27 GB of weights, plus some overhead). AWQ uses 4-bit weights for the quantized layers, plus scales and any layers kept at higher precision. It reduces the footprint; the quality and speed trade-off depends on the model and kernels. FP8 on the 27B is my daily driver: good quality, 28.9 GiB of weights, and 40.9 GiB left for the KV cache. vLLM reports that as 657,281 tokens, enough for about 2.5 full 262K contexts at the same time. I haven't compared these presets against quantization-aware training (QAT) variants on my own tasks. QAT makes lower precision part of training rather than only applying it afterwards.
 
 ### Why this is the daily driver
 
-The official model card benchmarks Qwen3.8-27B against its predecessor, Qwen's own closed-weight Qwen3.7-Plus, a 30B-class competitor, and the frontier Opus 4.6 Max. Here are the coding-relevant rows as a chart:
+The official model card benchmarks Qwen3.8-27B against its predecessor, Qwen's own closed-weight Qwen3.7-Plus, a 30B-class competitor, and the frontier Opus 4.6 Max. Here are selected coding and general-reasoning rows as a chart:
 
 => ./running-my-own-llms-for-coding/benchmarks.svg Qwen3.8-27B vs Qwen3.6-27B, Qwen3.7-Plus, Muse Glimmer-30B and Opus 4.6 Max (vendor-reported)
 
-It beats its direct predecessor on every row, and the rows that match how I use it are the interesting ones: on SWE-bench Pro (agentic coding) the 27B dense model scores 61.7, ahead of Opus 4.6 Max's 53.4 and Muse Glimmer's 51.2; on terminal coding it runs 73.0 to Qwen3.6's 63.4; on competitive coding (90.3) it even edges Opus (88.8). That's a model I can run on a single rented A100 that beats models I can only rent per-token, on the benchmarks that resemble my actual workload.
+It beats its direct predecessor on every row, and the rows that match how I use it are the interesting ones: on SWE-bench Pro (agentic coding) the 27B dense model scores 61.7, ahead of Opus 4.6 Max's 53.4 and Muse Glimmer's 51.2; on terminal coding it runs 73.0 to Qwen3.6's 63.4; on competitive coding (90.3) it even edges Opus (88.8). Those results made it worth trying as a coding partner on one rented A100.
 
-But benchmarks are one thing, and real workloads are another. Take all of them with a grain of salt. These are vendor-reported numbers from the model card, a couple of the benchmarks are Qwen's own, and the Opus 4.6 Max SWE-bench Pro figure is the one Anthropic reported. I take the direction, not the exact decimals. Simon Willison ran the model on a DGX Spark and an M5 Max MacBook the week it shipped, and his verdict matches mine: an excellent model that defaults to wildly overthinking, because its reasoning effort defaults to `xhigh`:
+These are vendor-reported scores, and a couple of the benchmarks are Qwen's own. For SWE-bench Pro, Qwen corrected some tasks and re-evaluated the other models with Claude Code, but retained the previously reported Opus score. That makes 61.7 versus 53.4 an uneven comparison. The table also doesn't establish the score of my FP8 checkpoint running through pi.
+
+=> https://huggingface.co/Qwen/Qwen3.8-27B#benchmark-results Qwen's benchmark table and evaluation notes
+
+Simon Willison tried the model on a DGX Spark and an M5 Max MacBook the week it shipped. His experience of overthinking matches mine: the model defaults to `xhigh` reasoning effort.
 
 => https://simonwillison.net/2026/Aug/16/qwen-38-27b/ Qwen 3.8 27B is excellent, but it defaults to wildly overthinking things (Simon Willison)
 
@@ -229,11 +240,11 @@ Many models offer reasoning effort levels: off, low, medium, high, and sometimes
 
 And not every model supports it:
 
-* Non-reasoning models never think, and the level does nothing. On my preset list, that's Qwen2.5-Coder, Qwen3-Coder and Devstral.
-* Always-on models, like DeepSeek-R1-Distill, always think. You can't switch it off.
+* Models without a dedicated thinking mode do not expose this control. On my preset list, that's Qwen2.5-Coder, Qwen3-Coder and Devstral.
+* Reasoning models such as DeepSeek-R1-Distill do not offer the same supported thinking on/off switch as hybrid models.
 * Hybrid models, like Qwen3-32B, Qwen3.6 and Qwen3.8, can switch thinking on and off. Qwen3.8 also has effort levels and defaults to `xhigh`.
 
-Here's a catch I only found while writing this post. pi shows "medium" as the thinking level in its footer. But for Qwen models, pi only sends `enable_thinking: true` or `false` to vLLM. So low, medium and high all just mean "on", and Qwen3.8 then thinks at its own default, `xhigh`. That explains a lot of the overthinking Simon Willison describes. pi also asks the chat template to keep the thinking of earlier turns in the history (`preserve_thinking`), so the thinking keeps taking up context later, too. And for Gemma and Nemotron, my pi config marks the models as non-reasoning, so pi's level does nothing there at all. For Nemotron, that's a config gap on my side: hypr runs it with a reasoning parser, so it thinks anyway, pi just can't turn it off.
+Here's a catch I only found while writing this post. pi shows "medium" as the thinking level in its footer. But for Qwen models, pi only sends `enable_thinking: true` or `false` to vLLM. So low, medium and high all just mean "on", and Qwen3.8 then thinks at its own default, `xhigh`. That explains a lot of the overthinking Simon Willison describes. pi also asks the chat template to keep the thinking of earlier turns in the history (`preserve_thinking`), so the thinking keeps taking up context later, too. And for Gemma and Nemotron, my pi config marks the models as non-reasoning, so pi's level does nothing there at all. For Nemotron, that's a config gap on my side: its chat template can enable thinking independently of pi's setting. The reasoning parser only separates that output; it does not turn thinking on.
 
 I haven't done a clean on-vs-off comparison on my own tasks yet, so I won't pretend I have numbers. But the math is simple: at ~40 tokens per second, 2,000 thinking tokens are 50 seconds before the first word of the answer. For agent turns where I already know what the change should look like, that's mostly wasted time and context. Worth a dedicated experiment later. For now, I live with the default and interrupt the model when it spirals.
 
@@ -482,7 +493,7 @@ Pi ships deliberately minimal: no permission popups, no plan mode, no built-in s
 
 * `web-search` — `web_search` and `web_fetch` tools backed by DuckDuckGo (no API key), so the agent looks things up instead of guessing from training data.
 * `inline-bash` — `!{cmd}` in a prompt expands the command's output before it reaches the model; that is how `git status`, logs, and `nvidia-smi` output end up inside a question.
-* `ask-mode` — `/ask` flips the session into a read-only investigation mode: understand the codebase and read logs without the agent touching a single file. Before I let a model near code I don't fully know, this is the first call: `/ask why does the tunnel setup regenerate keys on the second run?`
+* `ask-mode` — `/ask` flips the session into a read-only investigation mode: understand the codebase and read logs with editing tools disabled and shell commands filtered. This is a convenience mode, not an enforced read-only filesystem; its command filter can still allow writes. Before I let a model near code I don't fully know, this is the first call: `/ask why does the tunnel setup regenerate keys on the second run?`
 * `loop-scheduler` — `/loop` re-sends a prompt on an interval and `/watch` fires when the agent goes idle or a response contains a substring. The two forms I actually use: `/loop 10m check the VM status and warn me if KV cache usage is above 80%` for the periodic check, and the reactive `/watch contains ERROR => summarize the latest error and propose a fix`. That is how I babysit long builds and flaky services.
 * `handoff` — `/handoff <goal>` compacts the session into a self-contained prompt for a fresh one, so a long-lived agent does not drown in its own history.
 * `fresh-subagent` — the `subagent` tool and `/subagent` command run a self-contained task in a clean `pi` process with its own log file, while the main session stays focused: `/subagent review the last commit and list the risks` gives me the verdict without the digging.
@@ -503,9 +514,9 @@ The same trade-off as with skills applies: every tool an extension adds lands in
 
 I haven't compared tool-call reliability systematically across the preset list, so no failure-rate table from me. What I know from daily use: the Nemotron models occasionally emit malformed tool calls, which is why `nemotron-tool-repair` exists. It patches the broken calls so the session continues instead of stalling.
 
-## The numbers: tokens per second and friends
+## The numbers
 
-All measured on VM1 (A100 80 GB PCIe, `Qwen3.8-27B-FP8`, 262K context) during a normal work morning:
+I kept 474 log samples from about 80 minutes of work on the A100, running Qwen3.8-27B-FP8 with a 262K context limit. Here's one:
 
 ```
 Engine 000: Avg prompt throughput: 253.8 tokens/s, Avg generation
@@ -513,38 +524,22 @@ throughput: 35.9 tokens/s, Running: 1 reqs, Waiting: 0 reqs,
 GPU KV cache usage: 5.0%, Prefix cache hit rate: 81.1%
 ```
 
-That is vLLM's engine log line, emitted every ten seconds. `ruby hyperstack.rb watch` parses it (plus `nvidia-smi`) into a live dashboard, refreshed every two seconds. It's a colored TUI, so here's a screenshot:
+`ruby hyperstack.rb watch` combines these ten-second log intervals with `nvidia-smi` in a dashboard that refreshes every two seconds:
 
 => ./running-my-own-llms-for-coding/watch-dashboard.png The hypr watch dashboard during a decode burst
 
-What the rows mean:
+* One conversation generated about 40 tok/s. Two or three together reached about 100–110 tok/s total.
+* The busiest ten-second prompt window averaged about 3,000 tok/s. That's an interval average, including gaps, not peak prefill speed.
+* Cache usage was around 16% for much of the morning and reached 40%. Prefix-cache hit rates ranged from 80% to 97%.
+* The GPU drew about 80 W idle and up to 299 W during a burst, with temperatures from 57°C to 66°C.
 
-* Title bar — current time, how to quit, and the refresh interval.
-* `hyperstack-vm1` line — the VM name, its WireGuard hostname, and the model that is loaded.
-* `GPU0` line — straight from `nvidia-smi`: the device, its temperature, and its power draw right now.
-* `util` — GPU compute utilization. 100% while a burst is being decoded, back to 0% between turns.
-* `VRAM` — memory used of the 80 GB. It sits at ~90% even when idle, because vLLM preallocates the entire KV cache pool at startup (`--gpu-memory-utilization 0.92`), so this bar shows the budget, not the load.
-* `throughput` — vLLM's rolling averages: prefill (prompt) tok/s and decode (generation) tok/s.
-* `requests` — how many conversations are being decoded right now (`running`) and how many are queued (`waiting`). A sustained `waiting > 0` means the model is overloaded.
-* `KV cache` — the share of the preallocated KV cache pool in use: your active context as a fraction of everything the GPU can hold.
-* `cache hits` — the prefix-cache hit rate: the percentage of prompt tokens served from cache instead of being prefilled.
+The surprise was running three agents in three tmux panes against one GPU. I didn't notice a slowdown. Batching shares weight reads across conversations, although each still adds compute and cache work.
 
-All of it is collected with a single SSH call per VM over the tunnel: `nvidia-smi` for the hardware rows, `docker logs --tail 200` filtered to vLLM's `Engine 0` line for the rest.
+A few dashboard details caught me out. VRAM stays near 90% even when idle because vLLM reserves the cache pool. The separate KV-cache bar shows how much of that pool is in use. Neither bar tells me how close one conversation is to its 262K limit. `running` includes prefill as well as decode, and 100% GPU utilisation means a kernel was running throughout the sample, not that every compute unit was fully used.
 
-The engine log kept all of it: 474 samples from a single ~80 minute work morning, with two or three agents active for most of it. What the numbers mean:
+=> https://docs.nvidia.com/deploy/nvidia-smi/index.html NVIDIA: GPU utilisation
 
-* Decode: ~40 tok/s for a single conversation, up to ~110 tok/s in total when two or three are decoding at once, because batching keeps the GPU saturated. Benchmark numbers for 27B FP8 on this GPU land at 40–99 tok/s. For a coding agent that's comfortable: you can read a generated line about as fast as it arrives.
-* Prefill: benchmarks for 27B FP8 on this GPU land at 5,000–11,000 tok/s at peak. The `Avg prompt throughput` in the log looks much lower (the best 10-second window of my morning was ~3,000 tok/s), because it's averaged over idle time too, and because most of the prompt never needs computing at all: 80–97% of it came from the prefix cache. The GPU only prefills the ~3–20% that is new.
-* KV cache usage: ~16% for most of the morning, up to 40% when two long conversations were in flight. The pool is everything left after the weights, and even at 40% vLLM was nowhere near running out of context.
-* GPU: ~80 W and 57°C idle; under a real burst it hits 100% utilization, 299 W, and 66°C. The A100 PCIe is a 300 W card, so a full burst runs it right at its power limit.
-
-One more thing I did not expect: three pi agents against the same VM at once. Three tmux panes, three conversations, all Qwen3.8 27B FP8 on one A100, and I noticed no slowdown on any of them. vLLM batches concurrent requests: every decode step produces the next token for all running conversations at once. Since decode is limited by reading the weights from VRAM, and the weights are read only once per step no matter how many conversations are in the batch, three conversations cost barely more than one. Each conversation keeps its own slice of the KV cache pool. The morning's log shows all three running at the same time around 07:30, with total decode throughput pushing ~100 tok/s and the KV cache at ~32% at that point. So three full agent conversations only filled the pool about a third of the way.
-
-One caveat on all of these numbers: prompt length, whether the prefix cache is warm, how many agents share the GPU, whether reasoning is chewing tokens and which extensions are loaded all play into it. Change any of those, and the same model on the same card looks different. It's one morning's snapshot, not a leaderboard.
-
-Per-turn latency for a full agent step (prompt in, answer out) is roughly 10–15 seconds with vLLM on this hardware, versus ~28 seconds I measured with Ollama at 32K context, and Ollama was truncating my context at 32K while vLLM runs the full 262K.
-
-Startup is the other number that matters for the "rent, don't buy" math: about 10 minutes from `create` to the first token on a fresh VM, and about 2 minutes for a container restart (see "Why starting a model takes minutes" above for the breakdown).
+Short turns sometimes finished in 10–15 seconds; long answers and thinking took longer. My old Ollama setup felt slower, but its settings differed, including a 32K context limit. I wouldn't call that a benchmark.
 
 ## What I trust it with (and what I don't)
 
@@ -552,51 +547,48 @@ The `gt` calculator was the proof case, a real project built almost entirely on 
 
 Vendor SWE-bench numbers are not my session success rate. Hit-and-miss still happens. When a turn starts looping or the model gets lost in its own plan, I bounce the hard bit to a hosted frontier model and bring the answer back.
 
-Bottom line: it's good enough that I built a real project on it and keep using it every day. But I still have to babysit it.
+It's good enough that I built a real project on it and keep using it every day. But I still have to babysit it.
 
 ## What it costs, and do I buy the hardware?
 
-Hyperstack bills per minute. The relevant prices (as of September 2026):
+The A100 costs $1.35/hour on demand, billed per minute. The H100 fallback is $2.50/hour. Reserved prices start at $0.95 and $1.75 respectively (September 2026). Leaving one A100 running for a 30-day month would cost $972, so I delete mine when I'm done.
 
-* A100 80 GB: $1.35/h on-demand, from $0.95/h reserved
-* H100 80 GB: $2.50/h on-demand, from $1.75/h reserved
+=> https://www.hyperstack.cloud/gpu-pricing Hyperstack pricing
 
-So one VM running 24/7 costs around $1,000/month, two VMs just under $2,000. That sounds expensive until you remember the alternative I was actually considering:
+That recorded morning cost about $1.78 for 79 minutes and produced roughly 250K output tokens. If I charge the whole bill to output, that's $7.12 per million tokens, including prompt processing and time spent waiting on tools. Continuous generation at 40 tok/s would work out to $9.38 per million; at 100 tok/s across several agents, $3.75. Those last two are estimates from throughput, not separate charges on my bill.
 
-* RTX 5090 32 GB — $1,999 MSRP, $3,000–5,000 in the real world of 2026. But 32 GB is a hard ceiling: the 27B FP8 model with its 262K context does not fit, and anything 70B+ is out of the question. I would be buying a card that cannot run the models I actually want to test. Even when a model does fit, consumer cards usually bring less memory bandwidth than a rented A100, so "it loads" is not the same as "it feels fast" while the agent is decoding. Same goes for a future ThinkPad with a laptop GPU: interesting for privacy and independence (more on that at the end), but bandwidth decides whether it feels like this A100 or merely loads the weights.
-* DGX Spark, 128 GB unified memory — $3,999 launch price (closer to $5,000 in 2026, memory shortages being what they are). It can run 200B-parameter models, but its memory bandwidth (273 GB/s, versus ~1,900 GB/s on the A100) is laptop-class. It's a fascinating machine for fitting big models, not for decoding them fast. Same bandwidth lesson as above, just louder.
+=> ./running-my-own-llms-for-coding/cost-per-token.svg Estimated throughput costs versus the recorded session
 
-If you do buy hardware instead, watch the stack too. A Mac or a DGX Spark box mostly lives in GGUF / MLX / LM Studio land. hypr is the NVIDIA / Hugging Face / vLLM path. The models overlap; the weight formats and runtimes don't. Mixing the two in your head is a good way to buy the wrong box.
+I can't yet make a fair API comparison. My earlier estimate of 11M input tokens needs checking: current vLLM logs exclude cache hits from prompt throughput. Cache saves computation but still occupies memory, and the VM keeps billing. An API comparison needs verified token counts and a dated provider quote, including its cache rates.
 
-The rented A100, meanwhile, runs everything on the preset list (including the 120B MoE) for $1.35 an hour, and costs me exactly zero when I am not using it. The `gt` project ran on exactly this setup, and its whole GPU bill is trivial next to what the hardware it needed would have cost.
+=> https://raw.githubusercontent.com/vllm-project/vllm/main/vllm/v1/metrics/loggers.py vLLM's token accounting
+=> https://openrouter.ai/qwen/qwen3.8-27b OpenRouter's Qwen3.8 providers and pricing
 
-Monthly cost is the wrong unit though. The real comparison is per token. The numbers from that morning's engine log: 1.3 hours of GPU time ($1.78), ~11M prompt tokens of which 90–95% came from the prefix cache, plus ~250K generated tokens.
+Buying still doesn't appeal to me:
 
-* New prompt tokens (prefill): roughly $0.05–0.15 per million on the A100, versus $0.21 on OpenRouter for the same model (`qwen/qwen3.8-27b`, live pricing, September 2026).
-* Cached prompt tokens: effectively free, since they are looked up in the KV cache, not computed. OpenRouter charges $0.15 per million for the same privilege.
-* Generated tokens (decode): the weak spot. About $9 per million with one agent (~40 tok/s), $3–5 with two or three agents sharing the GPU, versus $2.55 on OpenRouter.
+* An RTX 5090 has 32 GB. My FP8 model with a full 262K context won't fit. Its bandwidth is close to the A100 PCIe's (1,792 versus 1,935 GB/s); memory capacity is the problem here. Lower precision or CPU offloading would change what I could run.
+* A DGX Spark has 128 GB, but costs $4,699 at NVIDIA's revised MSRP. Its 273 GB/s bandwidth makes ordinary single-stream decode a concern. The advertised 200B model capacity assumes quantization and enough room left for runtime memory.
 
-=> ./running-my-own-llms-for-coding/cost-per-token.svg Cost per million tokens: rented A100 vs OpenRouter
+=> https://www.gainward.com/main/product/vga/pro/p01225/p01225_datasheet_129567a1dad803604.pdf RTX 5090 specifications
+=> https://www.nvidia.com/en-us/data-center/a100/ A100 specifications
+=> https://forums.developer.nvidia.com/t/2-23-2026-price-change-announcement/361713 DGX Spark price change
+=> https://www.nvidia.com/en-eu/products/workstations/dgx-spark/ DGX Spark specifications
 
-For that morning's exact workload the math lands at about $0.16 per million total tokens on the VM, versus about $0.20 on OpenRouter. An agentic session is mostly resending the same context, so with a 90%+ cache hit rate the local setup is at parity with the API for the same model, and it gets cheaper the more agents share the GPU, because the $1.35 hour is a fixed cost that three conversations split.
+Spark does run CUDA and vLLM, with a compatible ARM container. I could use the same Hugging Face serving approach there; it isn't limited to GGUF or LM Studio.
 
-Flip the workload and the API wins comfortably: a light session here and there costs almost nothing on OpenRouter, while the VM bills the full hour whether you send tokens or not, and local decode runs about 3–4× the API price per output token with a single agent. So: for a full day of heavy agentic work, renting an A100 costs roughly what the API charges per token for the same model, except nothing leaves my infrastructure and nobody rate-limits me. For occasional use, the API is simply cheaper.
+=> https://build.nvidia.com/spark/vllm Running vLLM on DGX Spark
 
-So where does that leave the question from the gt post: will I invest a couple of thousand dollars in hardware? Still no. At current prices, buying a consumer GPU that cannot run the models I want to experiment with, in order to save a $1.35/hour bill that I only run a few hours a day, does not compute. The 128 GB unified-memory boxes (DGX Spark, and the RTX Spark machines shipping later this year) are the first consumer hardware that could genuinely change the math, because they remove the VRAM ceiling. I will watch those closely.
+A $5,000 machine equals about 3,704 hours of A100 rental. At four hours every day, that's two and a half years, before electricity, resale value and performance differences. Buying could pay off. I'm just not ready to bet on which machine I'll still want by then.
 
 ## Wrapping up
 
-So no DGX Spark for me yet. The models it can run are good enough for real work, but for the few hours a day I use a local model, renting (or the API) is cheaper, and a $5,000 box only pays off if it runs around the clock.
+I'll keep renting for now. I still want a GPU on my desk, partly for privacy and partly because I like owning the tools I use. A rented VM is still somebody else's hardware. Perhaps replacing my ThinkPad will be the excuse; perhaps I'll wait for a faster unified-memory box.
 
-The other side of the ledger isn't small, though. Only a box on my desk is really local: a rented VM still puts my code on someone else's hardware, and an API sends it out of the house. Privacy is one reason. The bigger one is independence: I don't like depending on cloud providers for tools I use every day, with their price changes, rate limits and models that quietly disappear. And the tinkerer in me wants a GPU I can play with at 2 a.m. without a meter running.
+I'd keep my cloud subscriptions either way. In my daily work, Opus 5.5 handles the big, messy tasks better. The self-hosted models are useful when I'm closely involved: studying code, writing a test, making a small change. That's how I built `gt`, and it's how I enjoy using them.
 
-So I'm waiting for one of two things: my ThinkPad dying and being replaced by something with real local-LLM power (the RTX Spark class of machine, if it ever gets proper Linux support), or the next superchip generation after Grace Blackwell (Vera Rubin, probably 2027 or 2028). Buying a $5,000 box right before its successor ships with more memory and bandwidth is exactly the trap renting keeps me out of. Especially since the models change every few months: the Qwen3.8 on VM1 this month isn't the model I was testing in May.
+The provisioner, model presets and pi extensions are all here:
 
-One more thing, to be honest about where this stands. The frontier models, especially Opus 5.5, are so good now that this local setup can't really beat them. Whatever the benchmark table above says about Qwen3.8 vs Opus 4.6, in daily use the gap to the current frontier is obvious, especially for big, fuzzy tasks where the model has to plan and work on its own for a long time. So even with my own LLM hardware on the desk, I'd keep my cloud subscriptions for most of my LLM usage.
-
-That doesn't make this a wasted investigation, though. You can already do a lot with these local models. They're especially well suited for "in the loop" coding and for study projects, where I want to deep dive into a topic myself and the LLM only assists here and there: explaining a piece of code, writing a test, doing a small refactoring. For that, a 27B model on a rented A100 is more than good enough, and I learned a lot about how all of this works under the hood along the way.
-
-Until then, the setup is all in the repo: `git clone https://github.com/snonux/hypr` gets you the provisioner, the WireGuard script, the per-VM model presets and the pi extensions. If you don't want any Ruby, the manual path is short: rent a GPU VM with CUDA and Docker, run `vllm/vllm-openai` with `--enable-prefix-caching --gpu-memory-utilization 0.92 --max-model-len 262144`, tunnel in with WireGuard or a port forward, and point any OpenAI-compatible client at it.
+=> https://github.com/snonux/hypr hypr on GitHub
 
 Other related posts:
 

@@ -16,7 +16,7 @@
 <defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
 <rect class="bg" width="860" height="322" rx="8"/>
 <text class="t1" x="24" y="36" font-size="18" text-anchor="start" font-weight="600">Prefix caching over four agent turns</text>
-<text class="t2" x="24" y="58" font-size="12" text-anchor="start" font-weight="400">Every turn resends everything. Only the new tail has to be prefilled.</text>
+<text class="t2" x="24" y="58" font-size="12" text-anchor="start" font-weight="400">With a warm, matching cache, most of the repeated prefix skips prefill.</text>
 <text class="t2" x="24" y="104" font-size="13" text-anchor="start" font-weight="400">request 1</text>
 <rect class="s2" x="120" y="80" width="217" height="34" rx="3"/>
 <text x="130" y="102" font-size="12" fill="#fff" font-weight="600">system prompt + tools</text>
@@ -44,7 +44,7 @@
 <rect class="s2" x="570" y="230" width="67" height="34" rx="3"/>
 <text class="t2" x="650" y="252" font-size="12" text-anchor="start" font-weight="400">new: prefill</text>
 <rect class="s3" x="120" y="289" width="12" height="12" rx="2"/>
-<text class="t2" x="138" y="300" font-size="12" text-anchor="start" font-weight="400">served from the prefix cache</text>
+<text class="t2" x="138" y="300" font-size="12" text-anchor="start" font-weight="400">matching prefix still cached</text>
 <rect class="s2" x="340" y="289" width="12" height="12" rx="2"/>
 <text class="t2" x="358" y="300" font-size="12" text-anchor="start" font-weight="400">has to be prefilled on the GPU</text>
 </svg>
