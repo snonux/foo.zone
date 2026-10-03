@@ -14,6 +14,7 @@
 
 * [⇢ About](#about)
 * [⇢ ⇢ Now](#now)
+* [⇢ ⇢ Next](#next)
 * [⇢ ⇢ My sites](#my-sites)
 * [⇢ ⇢ Show me the code](#show-me-the-code)
 * [⇢ ⇢ Social Media and Communities](#social-media-and-communities)
@@ -33,6 +34,14 @@ Stuff I'm currently up to:
 * Being a father to my 3 year old daughter
 * Learning Bulgarian for the bulgarian citizenship
 * Digging into AI Engineering without taking the slop route
+* Reading Children of Time in german by Adrian Tchaikovsky and Birgit Herden
+
+## Next
+
+Stuff I'm planning to get to next:
+
+* Think about my own Jail or Container orchestrator for FreeBSD
+* Read the FreeBSD book Integrated by Design
 
 ## My sites
 

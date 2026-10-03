@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="330" viewBox="0 0 900 330" role="img">
+<title>Dense and MoE: active parameters versus total storage</title>
+<style>
+.bg{fill:#fcfcfb}.t1{fill:#0b0b0b}.t2{fill:#52514e}.s1{fill:#2a78d6}.s2{fill:#eb6834}.s3{fill:#1baf7a}.s4{fill:#b77900}.s0{fill:#e4e3df}.line{stroke:#52514e;fill:none}.box{fill:#f0efec;stroke:#c3c2b7}text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+@media(prefers-color-scheme:dark){.bg{fill:#1a1a19}.t1{fill:#fff}.t2{fill:#c3c2b7}.s1{fill:#286fc3}.s2{fill:#b84418}.s3{fill:#087d54}.s0{fill:#383835}.line{stroke:#c3c2b7}.box{fill:#262625;stroke:#52514e}}
+</style>
+<defs>
+<marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+<path d="M0,0 L10,5 L0,10" fill="#777"/>
+</marker>
+</defs>
+<rect x="0" y="0" width="900" height="330" rx="4" class="bg"/>
+<text x="24" y="36" font-size="18" text-anchor="start" class="t1">Dense and MoE: active parameters versus total storage</text>
+<text x="24" y="66" font-size="13" text-anchor="start" class="t2">Illustrative parameter counts; actual memory also depends on quantization and cache.</text>
+<rect x="24" y="96" width="400" height="120" rx="4" class="box"/>
+<text x="45" y="125" font-size="17" text-anchor="start" class="t1">Dense 27B</text>
+<text x="45" y="155" font-size="13" text-anchor="start" class="t2">Uses the dense language-model layers per token</text>
+<text x="45" y="184" font-size="13" text-anchor="start" class="t2">Weight storage: all 27B parameters</text>
+<rect x="452" y="96" width="424" height="120" rx="4" class="box"/>
+<text x="474" y="125" font-size="17" text-anchor="start" class="t1">MoE 35B-A3B</text>
+<text x="474" y="155" font-size="13" text-anchor="start" class="t2">Router selects experts; ~3B parameters active</text>
+<text x="474" y="184" font-size="13" text-anchor="start" class="t2">Weight storage: all 35B parameters</text>
+<text x="24" y="253" font-size="13" text-anchor="start" class="t2">Routing reduces work per token compared with a dense model of the same total size.</text>
+<text x="24" y="280" font-size="13" text-anchor="start" class="t2">In my fully GPU-resident setup, every expert stays in GPU memory.</text>
+<text x="24" y="307" font-size="13" text-anchor="start" class="t2">CPU offloading is possible with suitable software, but changes the speed and memory trade-off.</text>
+</svg>
