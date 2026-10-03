@@ -20,6 +20,13 @@ Stuff I'm currently up to:
 << # Append every not yet completed Taskwarrior task tagged +now as a bullet, oldest first, so the list stays current without editing this file. That is why the page is marked template::dynamic (always regenerated; task changes don't alter this file's mtime). Newlines in descriptions are collapsed to keep one bullet per task.
 << task rc.verbose=nothing +now -COMPLETED -DELETED export | jq -r 'sort_by(.entry)[] | "* " + (.description | gsub("\\s+"; " "))'
 
+## Next
+
+Stuff I'm planning to get to next:
+
+<< # Same as Now, but for Taskwarrior tasks tagged +next (oldest first; newlines collapsed to one bullet per task).
+<< task rc.verbose=nothing +next -COMPLETED -DELETED export | jq -r 'sort_by(.entry)[] | "* " + (.description | gsub("\\s+"; " "))'
+
 ## My sites
 
 => ../ My blog here at foo.zone
