@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 330" width="860" height="330" role="img">
+<title>Reasoning effort</title>
+<style>
+  .bg{fill:#fcfcfb} .t1{fill:#0b0b0b} .t2{fill:#52514e} .mu{fill:#898781} .ln{stroke:#d9d8d4}
+  .s1{fill:#2a78d6} .s2{fill:#eb6834} .s3{fill:#1baf7a} .s4{fill:#eda100} .s0{fill:#e4e3df} .ar{stroke:#52514e;fill:none}
+  .ah{fill:#52514e} .box{fill:#f0efec;stroke:#c3c2b7}
+  text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+  @media (prefers-color-scheme: dark){
+    .bg{fill:#1a1a19} .t1{fill:#ffffff} .t2{fill:#c3c2b7} .ln{stroke:#383835}
+    .s1{fill:#3987e5} .s2{fill:#d95926} .s3{fill:#199e70} .s4{fill:#c98500} .s0{fill:#383835} .ar{stroke:#c3c2b7} .ah{fill:#c3c2b7}
+    .box{fill:#262625;stroke:#52514e}
+  }
+</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bg" width="860" height="330" rx="8"/>
+<text class="t1" x="24" y="36" font-size="18" text-anchor="start" font-weight="600">Reasoning effort: how long the model thinks before it answers</text>
+<text class="t2" x="24" y="58" font-size="12" text-anchor="start" font-weight="400">Illustrative token counts. Thinking tokens are normal output tokens: decoded one by one, and they fill the KV cache.</text>
+<text class="t1" x="24" y="110" font-size="13" text-anchor="start" font-weight="600">off / none</text>
+<rect class="s3" x="150" y="86" width="64.0" height="36" rx="4"/>
+<text x="182.0" y="109" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">answer</text>
+<text class="t2" x="224.0" y="109" font-size="12" text-anchor="start" font-weight="400">≈ 10 s at 40 tok/s</text>
+<text class="t1" x="24" y="162" font-size="13" text-anchor="start" font-weight="600">low</text>
+<rect class="s1" x="150" y="138" width="94.0" height="36" rx="0"/>
+<text x="198.0" y="161" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">600</text>
+<rect class="s3" x="246.0" y="138" width="64.0" height="36" rx="4"/>
+<text x="278.0" y="161" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">answer</text>
+<text class="t2" x="320.0" y="161" font-size="12" text-anchor="start" font-weight="400">≈ 25 s at 40 tok/s</text>
+<text class="t1" x="24" y="214" font-size="13" text-anchor="start" font-weight="600">medium</text>
+<rect class="s1" x="150" y="190" width="238.0" height="36" rx="0"/>
+<text x="270.0" y="213" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">thinking: 1,500 tokens</text>
+<rect class="s3" x="390.0" y="190" width="64.0" height="36" rx="4"/>
+<text x="422.0" y="213" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">answer</text>
+<text class="t2" x="464.0" y="213" font-size="12" text-anchor="start" font-weight="400">≈ 48 s at 40 tok/s</text>
+<text class="t1" x="24" y="266" font-size="13" text-anchor="start" font-weight="600">high / xhigh</text>
+<rect class="s1" x="150" y="242" width="478.0" height="36" rx="0"/>
+<text x="390.0" y="265" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">thinking: 3,000 tokens</text>
+<rect class="s3" x="630.0" y="242" width="64.0" height="36" rx="4"/>
+<text x="662.0" y="265" font-size="12" text-anchor="middle" font-weight="600" fill="#ffffff">answer</text>
+<text class="t2" x="704.0" y="265" font-size="12" text-anchor="start" font-weight="400">≈ 85 s at 40 tok/s</text>
+<rect class="s1" x="150" y="297" width="12" height="12" rx="2"/>
+<text class="t2" x="168" y="308" font-size="12" text-anchor="start" font-weight="400">thinking (shown greyed out in pi)</text>
+<rect class="s3" x="410" y="297" width="12" height="12" rx="2"/>
+<text class="t2" x="428" y="308" font-size="12" text-anchor="start" font-weight="400">the actual answer or tool call</text>
+</svg>

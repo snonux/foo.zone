@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-09-21T16:35:56+03:00</updated>
+    <updated>2026-10-03T19:25:12+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -13578,7 +13578,7 @@ http://www.gnu.org/software/src-highlite -->
         <title>Local LLM for Coding with Ollama on macOS</title>
         <link href="https://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.html" />
         <id>https://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.html</id>
-        <updated>2025-08-04T16:43:39+03:00</updated>
+        <updated>2025-08-04T16:43:39+03:00, last updated Sat 03 Oct 18:26:24 EEST 2026</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
@@ -13588,7 +13588,11 @@ http://www.gnu.org/software/src-highlite -->
             <div xmlns="http://www.w3.org/1999/xhtml">
                 <h1 style='display: inline' id='local-llm-for-coding-with-ollama-on-macos'>Local LLM for Coding with Ollama on macOS</h1><br />
 <br />
-<span class='quote'>Published at 2025-08-04T16:43:39+03:00</span><br />
+<span class='quote'>Published at 2025-08-04T16:43:39+03:00, last updated Sat 03 Oct 18:26:24 EEST 2026</span><br />
+<br />
+<span class='quote'>Updated Sat 03 Oct: This post is obsolete. I still use Ollama to run models, but for local agentic coding I moved to the pi coding agent. Point it at Ollama (or another model server) and a newer Qwen. Qwen3.8 27B is very good when your VRAM or unified memory can hold it; otherwise pick a smaller Qwen that fits.</span><br />
+<br />
+<a class='textlink' href='https://pi.dev'>Pi coding agent</a><br />
 <br />
 <pre>
       [::]

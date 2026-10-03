@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 860 475" width="860" height="475" role="img">
+<title>The setup: harness on the laptop, models on rented GPUs</title>
+<style>
+  .bg{fill:#fcfcfb} .t1{fill:#0b0b0b} .t2{fill:#52514e} .mu{fill:#898781} .ln{stroke:#d9d8d4}
+  .s1{fill:#2a78d6} .s2{fill:#eb6834} .s3{fill:#1baf7a} .s4{fill:#eda100} .s5{fill:#e87ba4} .s0{fill:#e4e3df}
+  .ar{stroke:#52514e;fill:none} .ah{fill:#52514e} .box{fill:#f0efec;stroke:#c3c2b7} .wg{stroke:#1baf7a;fill:none}
+  .st1{stroke:#2a78d6} .st2{stroke:#eb6834} .st3{stroke:#1baf7a} .st4{stroke:#eda100} .st5{stroke:#e87ba4}
+  text{font-family:system-ui,-apple-system,"Segoe UI",sans-serif}
+  @media (prefers-color-scheme: dark){
+    .bg{fill:#1a1a19} .t1{fill:#ffffff} .t2{fill:#c3c2b7} .ln{stroke:#383835}
+    .s1{fill:#3987e5} .s2{fill:#d95926} .s3{fill:#199e70} .s4{fill:#c98500} .s5{fill:#d55181} .s0{fill:#383835}
+    .ar{stroke:#c3c2b7} .ah{fill:#c3c2b7} .box{fill:#262625;stroke:#52514e} .wg{stroke:#199e70}
+    .st1{stroke:#3987e5} .st2{stroke:#d95926} .st3{stroke:#199e70} .st4{stroke:#c98500} .st5{stroke:#d55181}
+  }
+</style>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path class="ah" d="M0,0 L10,5 L0,10 z"/></marker></defs>
+<rect class="bg" width="860" height="475" rx="8"/>
+<text class="t1" x="24" y="36" font-size="18" text-anchor="start" font-weight="600">The setup: harness on the laptop, models on rented GPUs</text>
+<rect class="box" x="300" y="60" width="260" height="120" rx="8"/>
+<text class="t1" x="430" y="86" font-size="15" text-anchor="middle" font-weight="600">Laptop (Fedora)</text>
+<text class="t2" x="430" y="110" font-size="13" text-anchor="middle" font-weight="400">tmux: one pi per pane</text>
+<text class="t2" x="430" y="130" font-size="12" text-anchor="middle" font-weight="400">pi = harness: conversation, tools,</text>
+<text class="t2" x="430" y="148" font-size="12" text-anchor="middle" font-weight="400">system prompt, file edits</text>
+<text class="mu" x="430" y="168" font-size="11" text-anchor="middle" font-weight="400">hyperstack.rb (hypr) provisions it all</text>
+<path class="wg" d="M430,180 L430,230 M430,230 L200,230 L200,275 M430,230 L660,230 L660,275" stroke-width="3" />
+<text class="t2" x="440" y="212" font-size="12" text-anchor="start" font-weight="400">WireGuard wg1 · UDP 56710 · 192.168.3.0/24</text>
+<text class="mu" x="440" y="252" font-size="11" text-anchor="start" font-weight="400">OpenAI API over HTTP, port 11434, only inside the tunnel</text>
+<rect class="box" x="70" y="275" width="260" height="150" rx="8"/>
+<text class="t1" x="200" y="300" font-size="15" text-anchor="middle" font-weight="600">VM1 · 192.168.3.1</text>
+<text class="t2" x="200" y="322" font-size="12" text-anchor="middle" font-weight="400">Hyperstack, Ubuntu 24.04, CUDA 12.8</text>
+<rect class="s1" x="90" y="336" width="220" height="30" rx="4"/>
+<text x="200" y="356" font-size="13" fill="#fff" text-anchor="middle" font-weight="600">vLLM (Docker) · Qwen3.8 27B FP8</text>
+<rect class="s3" x="90" y="374" width="220" height="30" rx="4"/>
+<text x="200" y="394" font-size="13" fill="#fff" text-anchor="middle" font-weight="600">A100 80 GB PCIe</text>
+<rect class="box" x="530" y="275" width="260" height="150" rx="8"/>
+<text class="t1" x="660" y="300" font-size="15" text-anchor="middle" font-weight="600">VM2 · 192.168.3.3</text>
+<text class="t2" x="660" y="322" font-size="12" text-anchor="middle" font-weight="400">Hyperstack, Ubuntu 24.04, CUDA 12.8</text>
+<rect class="s1" x="550" y="336" width="220" height="30" rx="4"/>
+<text x="660" y="356" font-size="13" fill="#fff" text-anchor="middle" font-weight="600">vLLM (Docker) · Gemma 4 31B AWQ</text>
+<rect class="s3" x="550" y="374" width="220" height="30" rx="4"/>
+<text x="660" y="394" font-size="13" fill="#fff" text-anchor="middle" font-weight="600">A100 80 GB PCIe</text>
+<text class="t2" x="430" y="455" font-size="12" text-anchor="middle" font-weight="400">Firewall on the VMs: only SSH and WireGuard are open to the internet.</text>
+</svg>
