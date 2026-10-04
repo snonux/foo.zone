@@ -42,6 +42,8 @@ Stuff I'm planning to get to next:
 * Creating my own configuration management systems called Gonf
 * Think about my own Jail or Container orchestrator for FreeBSD
 * Read the FreeBSD book Integrated by Design
+* Releasing GGaze, my own photo preview and optimizer tool for Linux.
+* Releasing Player, my own media server with web UI and Android client.
 
 ## My sites
 

@@ -27,7 +27,7 @@ not include harmful code (c.f. § 2 (1) 5).
 
 Two claims in that paragraph do not land for me.
 
-How does banning LLM-heavy projects ensure they do not include harmful code? Could Codeberg ensure that before LLMs existed? Of course not. Hand-written malware, supply-chain tricks, and "oops I pushed credentials" were already a there. LLM or not, the forge never had a magic filter for "harmful code".
+How does banning LLM-heavy projects ensure they do not include harmful code? Could Codeberg ensure that before LLMs existed? Of course not. Hand-written malware, supply-chain tricks, and "oops I pushed credentials" could already have been therej LLM or not, the forge never had a magic filter for "harmful code".
 
 And unclear copyright status: I don't think that is Codeberg's responsibility. It is the responsibility of the "author", or rather the orchestrator of the LLMs — the person who shipped the project. Same as with any other dependency soup or copied snippet. And if it really comes to a fight, Codeberg can still act and remove a repo when a governmental institution demands it. That was already true before LLMs. You do not need a forge-wide ban on generative AI to keep that door open. 
 
@@ -37,7 +37,7 @@ They say they will not mass-delete overnight and will not auto-scan every repo. 
 
 Honestly, this reads like typically German thinking to me. Careful, rule-heavy, a bit proud of doing things the old way. Software development from the stone age, without LLMs. And yes, Codeberg is located in Germany — the Verein, and the hosting too.
 
-Me, being german (but being an expart for over a decate now not living in Germany anymore) understands the fears. Slop PRs. Ghost projects that burn CI. Crawlers hammering the forge. Copyright fog. Those are real problems. Banning the modern way of writing software is not a serious answer to them, IMHO.
+Me, being german (but being an expat for over a decate now not living in Germany anymore) understands the fears. Slop PRs. Ghost projects that burn CI. Crawlers hammering the forge. Copyright fog. Those are real problems. Banning the modern way of writing software is not a serious answer to them, IMHO.
 
 ## Still coding by hand?
 
@@ -61,12 +61,12 @@ So I am getting off Codeberg for new work. Anything that treats "mostly written 
 
 Over time I may retire the existing Codeberg repos, or just archive them. Before archiving, I would point each README.md at the GitHub mirror so people still land somewhere useful.
 
-I stood up my own Forgejo instance on the home-lab k3s cluster. That is where the LLM coding happens day to day. From there I also merge the projects out to my public GitHub repos, so the code stays easy to find.
+I also created my own Forgejo instance on the home-lab k3s cluster now. That is where the LLM coding happens day to day. From there I also merge the projects out to my public GitHub repos, so the code stays easy to find.
 
 => https://github.com/snonux github.com/snonux
 => https://forgejo.org Forgejo
 
-Friends pointed me at Codefloe as a more LLM-friendly GitHub alternative. I have not switched yet, and I am not sure I will — maybe, maybe not.
+Friends pointed me at `codefloe.com` as a more LLM-friendly Codeberg alternative. I have not switched yet, and I am not sure I will — maybe, maybe not.
 
 => https://codefloe.com Codefloe
 
