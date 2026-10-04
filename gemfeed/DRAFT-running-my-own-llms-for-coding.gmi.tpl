@@ -4,11 +4,11 @@ The `gt` calculator was built almost entirely with self-hosted LLMs running on r
 
 => ./2026-06-01-gt-calculator.gmi 2026-06-01 `gt` calculator - a calculator built with local LLMs
 
-In this post I go through the setup, how the inference works under the hood (prefill, decode, KV cache, prefix caching), the numbers I see in practice, and where I stand now on buying hardware.
+Here's my setup, what I learned about inference, and the numbers from using it. I still haven't bought the hardware.
 
 => ./running-my-own-llms-for-coding/logo.svg The hypr logo
 
-> Updated Wed 30 Sep: Corrected the technical explanations, cost comparison and speculative-decoding benchmark claims, and simplified the CUDA section.
+> Updated Sun 4 Oct: Corrected the pi and tool-calling details, separated compute costs from the other charges, and removed the broken benchmark link.
 
 << template::inline::toc
 
@@ -61,7 +61,7 @@ The next section explains how inference works: VRAM, the KV cache, prefill, deco
 
 ## How the inference works
 
-This is the part I set out to learn, so here is the mental model that finally clicked.
+I wanted to understand where the time and memory go. This is what I learned.
 
 ### CUDA: how vLLM uses the GPU
 
@@ -156,9 +156,8 @@ I went with 3 drafted tokens for now. It had the best total throughput with thre
 
 The memory cost was about 10% of the KV cache pool: 657K down to 588K tokens, still enough for more than two full 262K contexts.
 
-These were short prompts with thinking off. I haven't measured the speedup in long coding sessions or with thinking on. Even the baseline was faster than the ~40 tokens per second from my recorded work morning (see "The numbers" below). The benchmark script and results are in the hypr repo.
+These were short prompts with thinking off. I haven't measured the speedup in long coding sessions or with thinking on. Even the baseline was faster than the ~40 tokens per second from my recorded work morning (see "The numbers" below). I still need to publish the benchmark script and raw results. For now, these are my recorded observations; the charts alone aren't enough to reproduce the run.
 
-=> https://github.com/snonux/hypr/blob/main/docs/speculative-decoding.md hypr: speculative decoding benchmark and config
 => https://huggingface.co/Qwen/Qwen3.8-27B-FP8/blob/main/config.json Qwen3.8 FP8 configuration
 => https://recipes.vllm.ai/Qwen/Qwen3.8-27B vLLM's Qwen3.8 recipe, including MTP
 
@@ -216,7 +215,7 @@ A dense model uses all of its parameters for every token. A mixture-of-experts (
 
 => ./running-my-own-llms-for-coding/moe-vs-dense.svg Dense vs mixture-of-experts: active parameters versus total weight storage
 
-That makes decode much faster than on a dense model of the same total size, because far fewer weights are read per token. In my fully GPU-resident setup, all experts stay in VRAM because the router can choose different ones for the next token. Offloading experts to CPU memory is possible in other setups, but changes the performance trade-off.
+Reading fewer weights per token can make small-batch decode faster than on a dense model of the same total size. How much faster depends on the routing, kernels and batching, too. In my fully GPU-resident setup, all experts stay in VRAM because the router can choose different ones for the next token. Offloading experts to CPU memory is possible in other setups, but changes the performance trade-off.
 
 Several presets are MoEs (Nemotron-3-Super, `qwen36-35b-a3b`, `qwen3-coder-30b`). Only the active parameters do the work per token, which is why Nemotron can be 120B total with 12B active and still decode at a usable speed. But in this setup all 120B parameters still have to fit into VRAM, and that's why it barely fits once the context is capped. The `qwen36-35b-a3b` preset only fits into ~18 GB because it's also 4-bit quantized.
 
@@ -256,11 +255,15 @@ And not every model supports it:
 
 * Models without a dedicated thinking mode do not expose this control. On my preset list, that's Qwen2.5-Coder, Qwen3-Coder and Devstral.
 * Reasoning models such as DeepSeek-R1-Distill do not offer the same supported thinking on/off switch as hybrid models.
-* Hybrid models, like Qwen3-32B, Qwen3.6 and Qwen3.8, can switch thinking on and off. Qwen3.8 also has effort levels and defaults to `xhigh`.
+* Hybrid models, like Qwen3-32B, Qwen3.6 and Qwen3.8, can switch thinking on and off. Qwen3.8 supports `low`, `medium` and `xhigh`, with `xhigh` as the default.
 
-Here's a catch I only found while writing this post. pi shows "medium" as the thinking level in its footer. But for Qwen models, pi only sends `enable_thinking: true` or `false` to vLLM. So low, medium and high all just mean "on", and Qwen3.8 then thinks at its own default, `xhigh`. That explains a lot of the overthinking Simon Willison describes. pi also asks the chat template to keep the thinking of earlier turns in the history (`preserve_thinking`), so the thinking keeps taking up context later, too. And for Gemma and Nemotron, my pi config marks the models as non-reasoning, so pi's level does nothing there at all. For Nemotron, that's a config gap on my side: its chat template can enable thinking independently of pi's setting. The reasoning parser only separates that output; it does not turn thinking on.
+Here's a catch I only found while writing this post. pi shows "medium" as the thinking level in its footer. But with the `qwen-chat-template` compatibility setting I use, pi sends `enable_thinking: true` or `false` to vLLM without a reasoning effort. So low, medium and high all just mean "on", and Qwen3.8 then thinks at its own default, `xhigh`. That fits the overthinking I've been seeing. pi also asks the chat template to keep the thinking of earlier turns in the history (`preserve_thinking`), so the thinking keeps taking up context later, too. And for Gemma and Nemotron, my pi config marks the models as non-reasoning, so pi's level does nothing there at all. For Nemotron, that's a config gap on my side: its chat template can enable thinking independently of pi's setting. The reasoning parser only separates that output; it does not turn thinking on.
 
-I haven't done a clean on-vs-off comparison on my own tasks yet, so I won't pretend I have numbers. But the math is simple: at ~40 tokens per second, 2,000 thinking tokens are 50 seconds before the first word of the answer. For agent turns where I already know what the change should look like, that's mostly wasted time and context. Worth a dedicated experiment later. For now, I live with the default and interrupt the model when it spirals.
+I haven't done a clean on-vs-off comparison on my own tasks yet. But the math is simple: at ~40 tokens per second, 2,000 thinking tokens are 50 seconds before the first word of the answer. For agent turns where I already know what the change should look like, that's mostly wasted time and context. Worth a dedicated experiment later. For now, I live with the default and interrupt the model when it spirals.
+
+Pi's separate `qwen` compatibility path can also send `reasoning_effort` when configured for it. The on/off behaviour above comes from my compatibility setting.
+
+=> https://github.com/earendil-works/pi/blob/main/packages/ai/src/api/openai-completions.ts Pi's thinking-parameter handling
 
 ## Inside the VM
 
@@ -340,9 +343,9 @@ And one from an earlier session: diff on top, the model's reasoning in the middl
 
 ### The system prompt and harness overhead
 
-Every harness puts a system prompt in front of every conversation: a hidden first message that tells the model who it is (a coding agent), how to behave (be concise, ask before destroying things, edit files with the edit tool and not with `sed`), which tools it has, and which project rules apply.
+Pi puts a system prompt in front of the conversation. It tells the model what it's there for, how to use the tools, and which project rules apply.
 
-Here's what that looks like in pi. This is the start of its built-in system prompt, trimmed a little:
+This is the start of the built-in system prompt from the pi version I used for these sessions, trimmed a little. Current upstream pi builds it in named sections, so the exact layout below is a snapshot of my setup:
 
 ```
 You are an expert coding assistant operating inside pi, a coding agent
@@ -364,7 +367,7 @@ Guidelines:
 - Show file paths clearly when working with files
 ```
 
-After that, pi appends the project context (the content of any `AGENTS.md` or `CLAUDE.md` in the project), then the list of skills, and at the very end the current date and working directory:
+In that version, the project context (`AGENTS.md` or `CLAUDE.md`) came next, followed by the skills, then the date and working directory:
 
 ```
 <project_context>
@@ -390,15 +393,17 @@ Current date: 2026-09-30
 Current working directory: /home/paul/git/hypr
 ```
 
-The order is not random. Everything that never changes comes first, and the parts that change (the date, the directory) come last. That way the prefix cache can reuse as much of the prompt as possible.
+Putting the stable instructions first gives prefix caching more to reuse. The layout has changed since these sessions; current upstream's system-prompt builder no longer adds the date shown here.
 
-You never type it, but it's resent with every request and takes up KV cache like everything else. So do all the tool definitions (bash, read, edit, `web_search`, ...), skill descriptions (more on skills below), and project instructions such as an `AGENTS.md`. With dozens of tools, that's thousands of tokens before you've typed a word. The good news: all of that is identical on every turn, so it's the first thing prefix caching serves from cache.
+=> https://github.com/earendil-works/pi/blob/main/packages/coding-agent/src/core/system-prompt.ts Pi's system-prompt builder
+
+You never type it, but it's resent with every request and takes up KV cache like everything else. So do all the tool definitions (bash, read, edit, `web_search`, ...), skill descriptions (more on skills below), and project instructions such as an `AGENTS.md`. With dozens of tools, that's thousands of tokens before you've typed a word. While those definitions stay the same and the cache blocks are still there, vLLM can reuse that prefix.
 
 ### How tool calling works
 
 The model doesn't run anything itself. The harness sends it a list of tool schemas (name, description, JSON arguments) along with the prompt. When the model wants to act, it outputs a structured call such as `read_file {"path": "main.go"}` instead of prose. The harness runs the tool, appends the result to the conversation, and asks the model again. That repeats until the task is done.
 
-That loop is what makes an agent an agent. It falls apart when the model emits broken JSON or picks the wrong tool.
+A malformed call or the wrong tool choice can stop that loop.
 
 => ./running-my-own-llms-for-coding/agent-loop.svg One agent turn: the tool-calling loop between pi and vLLM
 
@@ -443,7 +448,7 @@ The model doesn't answer the question yet. It answers with a tool call instead o
 }
 ```
 
-Note that `arguments` is a JSON string the model generated token by token. If it forgets a quote or a brace, the call is broken. That's exactly what the `nemotron-tool-repair` extension (further down) patches. The harness validates the arguments, runs the tool locally, and sends everything back with the result appended:
+The API returns `arguments` as a JSON string. With Qwen's `qwen3_xml` parser, the model generates tagged function and parameter text, and vLLM turns it into that JSON. A malformed call can still break parsing. The harness validates the arguments, runs the tool locally, and sends everything back with the result appended:
 
 ```
 "messages": [
@@ -456,38 +461,45 @@ Note that `arguments` is a JSON string the model generated token by token. If it
 
 By the way, vLLM reported 292 prompt tokens for that first request, with just one short system prompt and one tool. pi's real system prompt with all its tools is a lot bigger.
 
-Now the model has the file contents in its context and can answer in plain text (or request another tool call, and the loop goes on). Two things I found interesting here. The model only ever sees text going in and text coming out, so "calling a tool" is just a special output format it was trained to produce. And every round trip resends the whole history, including all tool results, so the context (and the KV cache) grows with every step. That is why agentic work is so prefix-cache-heavy.
+Now the model has the file contents in its context and can answer in plain text (or request another tool call, and the loop goes on). Two things I found interesting here. In this text-only workflow, the model sees text going in and text coming out, so "calling a tool" is just a special output format it was trained to produce. And every round trip resends the whole history, including all tool results, so the context (and the KV cache) grows with every step. That is why agentic work is so prefix-cache-heavy.
 
-One server-side detail: the model emits its tool calls in its own raw format (Qwen uses XML-ish tags, others use JSON). vLLM only turns that into the structured `tool_calls` field if it runs with `--enable-auto-tool-choice --tool-call-parser <name>`, with the parser matching the model family. hypr sets these per preset; with the wrong parser you get the raw text back and the agent stalls.
+For automatic tool selection in my setup, vLLM needs `--enable-auto-tool-choice` and a matching `--tool-call-parser`, here `qwen3_xml`. hypr sets these per preset. A wrong parser can leave raw text where the agent expects a tool call. Named and required tool calling also have structured-output paths that work without enabling automatic tool selection.
+
+=> https://docs.vllm.ai/en/latest/features/tool_calling/ vLLM tool calling
 
 ### Skills, commands and MCP servers
 
-Most harnesses (pi, Claude Code, Codex, OpenCode) know two kinds of reusable prompts, and it took me a while to get the difference:
+Pi has prompt templates and skills. I initially thought of them as manual versus automatic prompts, but there is some overlap:
 
-* Commands — prompt templates you trigger yourself, like `/handoff` or `/plan`. They cost nothing until you type them.
-* Skills — a folder with a `SKILL.md` (name, description, instructions, maybe scripts). The model triggers them itself.
+* Prompt templates expand text when I invoke them. Slash commands can also run extension code, as `/handoff` and `/plan` do in my setup.
+* Skills are folders with a `SKILL.md` and, sometimes, scripts or references. The model can choose one, or I can load it myself with `/skill:name`.
 
-For skills to work, the harness puts the name and description of every skill into the system prompt. So a command is "I decide", a skill is "the model decides". The harness never loads a whole skill up front. It works in levels, and each level is only loaded when it's needed:
+Pi lists the skills available for automatic selection in the system prompt. A skill with `disable-model-invocation: true` stays out of that list; I have to invoke it myself. For the advertised skills, loading works in three steps:
 
-* Level 1 — the name and description of every skill. Always in the system prompt.
-* Level 2 — the skill's `SKILL.md`. The model reads it with a normal file read once a task matches.
+* Level 1 — names, descriptions and paths of the advertised skills go into the system prompt.
+* Level 2 — the full `SKILL.md` enters the conversation when the model reads it or I invoke `/skill:name`.
 * Level 3 — files the `SKILL.md` points to, like reference docs or scripts. Only read if the instructions for the task at hand need them.
 
-=> ./running-my-own-llms-for-coding/skill-loading.svg Progressive skill loading: descriptions always, SKILL.md on a match, references only when needed
+=> ./running-my-own-llms-for-coding/skill-loading.svg Progressive skill loading for automatically available skills
+=> https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md Pi skills and explicit invocation
 
-And yes, that changes how much context gets used. Level 1 costs context on every single request, even for skills you never use. Levels 2 and 3 cost nothing until they're loaded. But once the model has read a `SKILL.md` or a reference file, it's a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a `/handoff` throws it out. My blog-writing-style skill is a good example: its `SKILL.md` is ~2.3K tokens, and the one reference file a style fix usually needs is another ~1.2K. The other three reference files (~11K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~14K tokens, which is almost half of a 32K preset.
+Those advertised descriptions cost context on every request, even for skills I never use. Levels 2 and 3 cost nothing until they're loaded. But once the model has read a `SKILL.md` or a reference file, it's a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a `/handoff` throws it out. My blog-writing-style skill is a good example: its `SKILL.md` is ~2.3K tokens, and the one reference file a style fix usually needs is another ~1.2K. The other three reference files (~11K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~14K tokens, which is almost half of a 32K preset.
 
 I have 47 skills and 21 commands in my pi setup. The skill descriptions alone are ~17 KB of text, roughly 4K tokens in every request. On the 262K daily driver, that's fine. On a 32K preset, it's an eighth of the context gone before I've typed a word.
 
 The bigger downside of too many skills isn't even the tokens, though. The model has to pick the right skill from the list, and with many similar descriptions, it picks the wrong one or none at all. Big frontier models handle that pretty well. Smaller self-hosted models get confused much more easily. So fewer, clearly distinct skills work better, especially with local models.
 
-MCP (Model Context Protocol) servers are a third way to extend a harness, and they build directly on the tool calling from above. An MCP server is a separate process that offers tools (and other things) to the harness over a standard protocol, e.g. for a database, a ticket system or a browser. The harness adds its tool schemas to the tool list, so for the model it's just more tools, with the same context cost. A single MCP server can bring dozens of tool schemas. pi deliberately ships without MCP support (its author suggests CLI tools plus skills instead), and I haven't added it, so MCP is out of scope for this post.
+MCP (Model Context Protocol) connects a harness to tools and resources from another process or service, say a database or a browser. Current upstream pi supports MCP over stdio and HTTP. It can expose tools directly, load their definitions through tool search, or let the model call them through code. Connecting a server with dozens of tools doesn't have to put all their schemas into every request.
+
+I don't use MCP in this setup. CLI tools and skills cover what I need so far. Mario Zechner's earlier post explains that approach, though its description of pi predates the current MCP support.
+
+=> https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/mcp.md Pi's current MCP support
 
 => https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/ What if you don't need MCP? (Mario Zechner)
 
 ### Why the harness makes the model look smart (or dumb)
 
-With the system prompt, tools and skills explained, it's easier to see why the harness matters so much. The model only knows what's in its context, and the harness decides what goes in there. Here is what makes the difference:
+Pi decides which project details the model gets to see and which tools it can use. A few things matter in practice:
 
 * Context selection — which files, logs and search results the harness feeds in. The model can't fix code it has never seen.
 * System prompt and tool descriptions — clear instructions and well-named tools mean fewer wrong tool calls.
@@ -503,7 +515,11 @@ This also matters for benchmarks. Scores like SWE-bench are measured with a spec
 
 ### The extensions
 
-Pi ships deliberately minimal: no permission popups, no plan mode, no built-in sub-agents. The `hypr` repo bundles a set of TypeScript extensions that fill in the gaps. The ones I use daily:
+Pi has no built-in plan mode or sub-agents, and it doesn't ask for approval before every tool call. Current upstream does have project-trust prompts before loading project extensions and other resources.
+
+=> https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/security.md Pi's project trust and tool permissions
+
+I use TypeScript extensions from the `hypr` repo for the rest. These are the ones I use daily:
 
 * `web-search` — `web_search` and `web_fetch` tools backed by DuckDuckGo (no API key), so the agent looks things up instead of guessing from training data.
 * `inline-bash` — `!{cmd}` in a prompt expands the command's output before it reaches the model; that is how `git status`, logs, and `nvidia-smi` output end up inside a question.
@@ -522,7 +538,7 @@ For the record: `handoff`, `inline-bash`, `session-name`, and `reload-runtime` a
 
 ### What the extensions cost
 
-The same trade-off as with skills applies: every tool an extension adds lands in the system prompt. I haven't measured the exact token bill of the full extension set, but it isn't free. On the 27B FP8 daily driver the full set is fine. On the smaller AWQ presets with 32K context, I'd start with fewer tools and add them when needed, since fewer tools also means fewer chances for a small model to pick the wrong one or mangle the arguments. That's a hypothesis, though. I haven't measured it.
+Tools exposed directly to the model add their definitions to its input, just as advertised skills add their descriptions. Deferred tools only add their full definitions when loaded. I haven't measured the exact token bill of the full extension set, but it isn't free. On the 27B FP8 daily driver the full set is fine. On the smaller AWQ presets with 32K context, I'd start with fewer tools and add them when needed, since fewer tools also means fewer chances for a small model to pick the wrong one or mangle the arguments. That's a hypothesis, though. I haven't measured it.
 
 ### Tool calling in practice
 
@@ -565,13 +581,15 @@ It's good enough that I built a real project on it and keep using it every day. 
 
 ## What it costs, and do I buy the hardware?
 
-The A100 costs $1.35/hour on demand, billed per minute. The H100 fallback is $2.50/hour. Reserved prices start at $0.95 and $1.75 respectively (September 2026). Leaving one A100 running for a 30-day month would cost $972, so I delete mine when I'm done.
+The A100 costs $1.35/hour on demand, billed per minute. The H100 fallback is $2.50/hour. Reserved prices start at $0.95 and $1.75 respectively (September 2026). The compute alone would cost $972 for a 30-day month. Hyperstack also lists a public-IP charge of $0.00672043/hour; with one billed IP, that comes to about $976.84. I delete mine when I'm done.
+
+The per-token calculations below use the $1.35/hour compute rate. They exclude the public IP and any additional storage.
 
 => https://www.hyperstack.cloud/gpu-pricing Hyperstack pricing
 
-That recorded morning, before speculative decoding, cost about $1.78 for 79 minutes and produced roughly 250K output tokens. If I charge the whole bill to output, that's $7.12 per million tokens, including prompt processing and time spent waiting on tools.
+That recorded morning, before speculative decoding, used about $1.78 of compute for 79 minutes and produced roughly 250K output tokens. Charging the rounded compute cost to output gives about $7.12 per million tokens, including prompt processing and time spent waiting on tools.
 
-Speculative decoding makes the tokens cheaper. In the same short-prompt benchmark, counting the whole run:
+Speculative decoding made the tokens cheaper in my short-prompt benchmark. Counting the compute time for the whole run:
 
 * One conversation went from 46.9 to 123 tok/s: $8.00 down to $3.05 per million output tokens, about 62% cheaper.
 * Three conversations went from 133.5 to 286.3 tok/s total: $2.81 down to $1.31 per million, about 53% cheaper.
@@ -585,7 +603,7 @@ For an API comparison, OpenRouter lists these prices for Qwen3.8 27B on 30 Septe
 * Chutes: $2.20 output, $0.24 uncached input, $0.024 cached input.
 * Reka AI: $4.35 output, $0.0248 uncached input, $0.0155 cached input.
 
-The chart shows their output charges; input costs come on top. My GPU bars include the whole rental bill. I still can't price the full work session through an API: the earlier 11M input-token estimate needs checking because current vLLM logs exclude cache hits from prompt throughput.
+The chart shows their output charges; input costs come on top. My GPU bars charge all the compute time to output, including prefill and waits, but exclude the IP and storage charges. I still can't price the full work session through an API: the earlier 11M input-token estimate needs checking because current vLLM logs exclude cache hits from prompt throughput.
 
 => https://openrouter.ai/qwen/qwen3.8-27b OpenRouter's Qwen3.8 provider prices, checked 30 September 2026
 => https://raw.githubusercontent.com/vllm-project/vllm/main/vllm/v1/metrics/loggers.py vLLM's token accounting
@@ -604,7 +622,7 @@ Spark does run CUDA and vLLM, with a compatible ARM container. I could use the s
 
 => https://build.nvidia.com/spark/vllm Running vLLM on DGX Spark
 
-A $5,000 machine equals about 3,704 hours of A100 rental. At four hours every day, that's two and a half years, before electricity, resale value and performance differences. Buying could pay off. I'm just not ready to bet on which machine I'll still want by then.
+A $5,000 machine equals about 3,704 hours at the A100 compute rate. At four hours every day, that's two and a half years, before electricity, resale value and performance differences. Buying could pay off. I'm just not ready to bet on which machine I'll still want by then.
 
 ## Wrapping up
 
