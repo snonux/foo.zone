@@ -37,12 +37,12 @@ Stuff I'm planning to get to next:
 
 => ./showcase.gmi Project showcase
 => https://github.com/snonux github.com/snonux - My GitHub page
-=> https://codeberg.org/snonux codeberg.org/snonux - My Codeberg page (Codeberg LLM policies apply)
 
 ## Social Media and Communities
 
 => https://fosstodon.org/@snonux @snonux@fosstodon.org - Me at Mastodon
 => https://www.linkedin.com/in/paul-buetow-b4857270/ My LinkedIn profile
+=> Leetcoders United Discord Server as Paul - Ask me for an invite if required
 
 ## Books I've read
 
