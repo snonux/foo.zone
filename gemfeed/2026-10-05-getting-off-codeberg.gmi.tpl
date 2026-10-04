@@ -49,7 +49,7 @@ Is there still a place for coding by hand? Sure. A few, even:
 
 But if you really want to get stuff done, all projects should be using LLMs now. I am not talking about vibe-coding everything — though vibe coding also has its place. I mean using models as part of the normal loop: design, write, review, refactor, ship. Pretending that is optional already feels like pretending compilers are optional.
 
-## Capacity is real
+## Capacity problems I understand
 
 I do understand that Codeberg may have capacity issues. Donation-funded hardware, crawlers chewing through pages, one-person repos with giant CI matrices — that costs money. Fair.
 
