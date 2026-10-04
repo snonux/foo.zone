@@ -2,6 +2,7 @@
 
 ## To be in the .zone!
 
+[2026-10-05 - Getting off Codeberg](./2026-10-05-getting-off-codeberg.md)  
 [2026-09-01 - f3s: Kubernetes with FreeBSD - Part 10: A New Home](./2026-09-01-f3s-kubernetes-with-freebsd-part-10.md)  
 [2026-08-07 - '97 Things Every SRE Should Know' book notes](./2026-08-07-97-things-every-sre-should-know-book-notes.md)  
 [2026-08-05 - 'Eat That Frog' book notes](./2026-08-05-eat-that-frog-book-notes.md)  

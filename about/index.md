@@ -28,18 +28,18 @@ Stuff I'm currently up to:
 * Listening to the Audiobook "The Courage to be Happy"
 * Reading the eBook "Designing Data Intensive Applications 2nd Edition"
 * Working on next ior aka I/O Riot NG release
-* Working on next DTail release
 * House refurbishment
-* Creating my own configuration management systems called Gonf
 * Being a father to my 3 year old daughter
 * Learning Bulgarian for the bulgarian citizenship
 * Digging into AI Engineering without taking the slop route
-* Reading Children of Time in german by Adrian Tchaikovsky and Birgit Herden
+* Reading "Children of Time" in german by Adrian Tchaikovsky and Birgit Herden
 
 ## Next
 
 Stuff I'm planning to get to next:
 
+* Working on next DTail release
+* Creating my own configuration management systems called Gonf
 * Think about my own Jail or Container orchestrator for FreeBSD
 * Read the FreeBSD book Integrated by Design
 
@@ -53,12 +53,12 @@ Stuff I'm planning to get to next:
 
 [Project showcase](./showcase.md)  
 [github.com/snonux - My GitHub page](https://github.com/snonux)  
-[codeberg.org/snonux - My Codeberg page (Codeberg LLM policies apply)](https://codeberg.org/snonux)  
 
 ## Social Media and Communities
 
 [@snonux@fosstodon.org - Me at Mastodon](https://fosstodon.org/@snonux)  
 [My LinkedIn profile](https://www.linkedin.com/in/paul-buetow-b4857270/)  
+[United Discord Server as Paul - Ask me for an invite if required](Leetcoders)  
 
 ## Books I've read
 
