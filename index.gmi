@@ -20,6 +20,7 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+=> ./gemfeed/2026-10-05-getting-off-codeberg.gmi 2026-10-05 - Getting off Codeberg
 => ./gemfeed/2026-09-01-f3s-kubernetes-with-freebsd-part-10.gmi 2026-09-01 - f3s: Kubernetes with FreeBSD - Part 10: A New Home
 => ./gemfeed/2026-08-07-97-things-every-sre-should-know-book-notes.gmi 2026-08-07 - '97 Things Every SRE Should Know' book notes
 => ./gemfeed/2026-08-05-eat-that-frog-book-notes.gmi 2026-08-05 - 'Eat That Frog' book notes
