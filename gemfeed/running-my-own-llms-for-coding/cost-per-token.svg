@@ -6,7 +6,7 @@
 </style>
 <rect width="900" height="620" rx="4" class="bg"/>
 <text x="24" y="34" font-size="18" class="t1">Qwen3.8 27B: cost per million output tokens</text>
-<text x="24" y="58" font-size="13" class="t2">GPU: $1.35/hour, whole rental bill charged to output. API: output charges only. Same bar scale.</text>
+<text x="24" y="58" font-size="13" class="t2">GPU: $1.35/hour compute charged to output; excludes IP/storage. API: output charges only.</text>
 <text x="24" y="90" font-size="13" class="t1">Short-prompt benchmark: includes first-token waits; thinking off, no tool calls or idle gaps</text>
 <text x="24" y="127" font-size="13" class="t2">One conversation, no MTP</text>
 <rect x="290" y="107" width="399.79" height="26" rx="4" class="s1"/>
