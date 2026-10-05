@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>I/O Riot NG 1.2.0: beyond file I/O</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-ior-ng-1.2.0.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-ior-ng-1.2.0.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
+</p>
+<h1 style='display: inline' id='io-riot-ng-120-beyond-file-io'>I/O Riot NG 1.2.0: beyond file I/O</h1><br />
+<br />
+<span>I&#39;ve released I/O Riot NG 1.2.0. The biggest change since 1.1.0 is the range of syscalls it can trace: networking, memory, scheduling and more now sit alongside filesystem calls. There are also new controls for busy traces, and a lot of fixes to how events are named, counted and recorded.</span><br />
+<br />
+<span>If you haven&#39;t seen it before, ior is my Linux syscall tracer with a terminal dashboard and live flamegraphs. It uses eBPF to collect events from the kernel. The earlier posts walk through the dashboard; this one covers what&#39;s changed since the May release.</span><br />
+<br />
+<a class='textlink' href='https://ebpf.io/'>What is eBPF?</a><br />
+<a class='textlink' href='https://github.com/snonux/ior/tree/v1.2.0'>I/O Riot NG v1.2.0 source</a><br />
+<br />
+<a href='./ior-ng-1.2.0/00-hero-flamegraph.png'><img alt='The live flamegraph dashboard' title='The live flamegraph dashboard' src='./ior-ng-1.2.0/00-hero-flamegraph.png' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#io-riot-ng-120-beyond-file-io'>I/O Riot NG 1.2.0: beyond file I/O</a></li>
+<li>⇢ <a href='#more-than-file-io'>More than file I/O</a></li>
+<li>⇢ <a href='#change-the-trace-while-it-runs'>Change the trace while it runs</a></li>
+<li>⇢ <a href='#when-every-event-is-too-much'>When every event is too much</a></li>
+<li>⇢ <a href='#getting-the-attribution-right'>Getting the attribution right</a></li>
+<li>⇢ <a href='#longer-sessions-and-safer-recordings'>Longer sessions and safer recordings</a></li>
+<li>⇢ <a href='#try-it'>Try it</a></li>
+</ul><br />
+<h2 style='display: inline' id='more-than-file-io'>More than file I/O</h2><br />
+<br />
+<span>Syscalls are now grouped into 12 families: FS, Network, Memory, Signals, Sched, IPC, Time, Process, Security, Polling, AIO and Misc. Filesystem tracing remains the default. You choose the others when you need them, rather than attaching everything at startup.</span><br />
+<br />
+<span>For example, this opens a trace with filesystem and network probes:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#dbd7ca">sudo </font><font color="#cb7676">.</font><font color="#dbd7ca">/ior -trace-families FS</font><font color="#cb7676">,</font><font color="#dbd7ca">Network</font>
+</pre>
+<br />
+<span>Or look at time and polling calls:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#dbd7ca">sudo </font><font color="#cb7676">.</font><font color="#dbd7ca">/ior -trace-families Time</font><font color="#cb7676">,</font><font color="#dbd7ca">Polling</font>
+</pre>
+<br />
+<span>You can also select individual syscalls or kinds of syscall, and exclude matches. That&#39;s useful when one noisy call is getting in the way of the question you&#39;re trying to answer.</span><br />
+<br />
+<a href='./ior-ng-1.2.0/15-cli-families.gif'><img alt='Choosing families, kinds and individual syscalls from the command line' title='Choosing families, kinds and individual syscalls from the command line' src='./ior-ng-1.2.0/15-cli-families.gif' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/ior/blob/v1.2.0/docs/syscalls.md'>Syscall families and selection flags</a><br />
+<br />
+<h2 style='display: inline' id='change-the-trace-while-it-runs'>Change the trace while it runs</h2><br />
+<br />
+<span>You don&#39;t have to settle on the right probes before opening the dashboard. Press <span class='inlinecode'>O</span> to open the probes dialog, then <span class='inlinecode'>Tab</span> for its Families view. Space attaches or detaches the selected family. The Syscalls view gives you the same control over individual calls.</span><br />
+<br />
+<span>Family changes run in the background with progress shown. If your kernel lacks a tracepoint, ior reports it and continues with the others. Your selection also survives a trace restart when you change the target or filters.</span><br />
+<br />
+<a href='./ior-ng-1.2.0/16-probes-families.gif'><img alt='Attaching and detaching Network probes from the dashboard' title='Attaching and detaching Network probes from the dashboard' src='./ior-ng-1.2.0/16-probes-families.gif' /></a><br />
+<br />
+<span>One distinction worth remembering: <span class='inlinecode'>[</span> and <span class='inlinecode'>]</span> change which family the dashboard displays. They don&#39;t attach additional probes. Use the probes dialog to change what gets collected.</span><br />
+<br />
+<h2 style='display: inline' id='when-every-event-is-too-much'>When every event is too much</h2><br />
+<br />
+<span>Sampling can now be configured by family or individual syscall. A rate of 1 keeps every call, while N means one in N. For example, this keeps one in ten filesystem calls in the event stream:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#dbd7ca">sudo </font><font color="#cb7676">.</font><font color="#dbd7ca">/ior -trace-families FS -syscall-sampling-families </font><font color="#bd976a">FS</font><font color="#cb7676">=</font><font color="#bd976a">10</font>
+</pre>
+<br />
+<span>The TUI also supports rate 0: count the calls without emitting individual rows. That&#39;s the default for <span class='inlinecode'>futex*</span> and <span class='inlinecode'>clock_gettime</span> once their probes are attached. These calls can be useful in aggregate without filling the stream with rows.</span><br />
+<br />
+<span>Sampling needs to be visible in the output. Recordings carry sampling metadata, and the end-of-run statistics include the calls the kernel counted without emitting. Those totals are exact only when the run supports that claim. Loss makes them lower bounds; filters the counters cannot apply make them unavailable. Gaps between sampled rows are gaps between emitted calls, not proof that nothing happened in between.</span><br />
+<br />
+<a href='./ior-ng-1.2.0/17-sampling.gif'><img alt='Sampling controls, syscall counts and the Latency + Gaps view' title='Sampling controls, syscall counts and the Latency + Gaps view' src='./ior-ng-1.2.0/17-sampling.gif' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/ior/blob/v1.2.0/docs/output.md'>Output formats and sampling details</a><br />
+<br />
+<h2 style='display: inline' id='getting-the-attribution-right'>Getting the attribution right</h2><br />
+<br />
+<span>A file descriptor number is reused. A process forks, closes a descriptor, opens another file, or replaces itself with a new executable. Keeping the correct filename attached to each event through all of that takes more care than simply remembering the last name seen for a number.</span><br />
+<br />
+<span>This release includes fixes around descriptor reuse, fork and exec, and relative paths. When the tracer cannot establish a name, it leaves that uncertainty visible.</span><br />
+<br />
+<span>Interrupted syscalls have had similar attention. ior can fold restarted calls together, but refuses the fold when missing records make the pairing uncertain. Kernel ring-buffer drops and skipped probe runs are reported too. Warnings are accessible from the Stream tab, so you can inspect them during a session.</span><br />
+<br />
+<a href='./ior-ng-1.2.0/18-stream-warnings.gif'><img alt='Opening a Stream warning to read its full message' title='Opening a Stream warning to read its full message' src='./ior-ng-1.2.0/18-stream-warnings.gif' /></a><br />
+<br />
+<h2 style='display: inline' id='longer-sessions-and-safer-recordings'>Longer sessions and safer recordings</h2><br />
+<br />
+<span>The live flamegraph now bounds its trie size. When it reaches the limit, it combines selected subtrees into an <span class='inlinecode'>[other;]</span> bucket, preserving totals while losing some detail about where those totals came from. Snapshot work is also reduced by pruning before traversing hidden subtrees. This makes large traces cheaper to refresh, although compaction still pauses ingestion briefly.</span><br />
+<br />
+<span>Recording and export paths have received plenty of attention as well. Automatically named exports avoid collisions, and native recording reads now reject truncated or corrupt compressed data and unexpected trailing payloads. A damaged file should produce an error rather than appear to load successfully.</span><br />
+<br />
+<span>Headless traces selected by PID or TID stop when their target exits. And the command-line parser now rejects stray positional arguments: a typo before <span class='inlinecode'>-pid</span> can no longer silently leave the following flag unused.</span><br />
+<br />
+<span>There are smaller terminal fixes throughout: resize handling, narrow layouts, Unicode input, search feedback and flamegraph refreshes when switching tabs. These don&#39;t make for exciting screenshots, but they matter while using the tool.</span><br />
+<br />
+<h2 style='display: inline' id='try-it'>Try it</h2><br />
+<br />
+<span>The source is tagged <span class='inlinecode'>v1.2.0</span> on both GitHub and Forgejo. The documented container build produces the binary:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><font color="#dbd7ca">git clone https</font><font color="#cb7676">:</font><font color="#dbd7ca">//github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/ior</font><font color="#cb7676">.</font><font color="#dbd7ca">git</font>
+<font color="#dbd7ca">cd ior</font>
+<font color="#dbd7ca">git checkout v1</font><font color="#cb7676">.</font><font color="#bd976a">2.0</font>
+<font color="#cb7676">.</font><font color="#dbd7ca">/scripts/build-with-docker</font><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
+<font color="#dbd7ca">sudo </font><font color="#cb7676">.</font><font color="#dbd7ca">/ior</font>
+</pre>
+<br />
+<span>You&#39;ll need Docker for that build, and a Linux/amd64 host with kernel BTF support to run the tracer. The README has the native build instructions too.</span><br />
+<br />
+<span>The tutorial now has 18 animated examples, including family selection, sampling and Stream warnings. That&#39;s probably the quickest way to see the new controls before tracing a process yourself.</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/ior/blob/v1.2.0/README.md'>Build and usage instructions</a><br />
+<a class='textlink' href='https://github.com/snonux/ior/blob/v1.2.0/docs/tutorial/tutorial.md'>Illustrated tutorial</a><br />
+<a class='textlink' href='https://github.com/snonux/ior/compare/v1.1.0...v1.2.0'>Full changes since v1.1.0</a><br />
+<a class='textlink' href='https://code.f3s.buetow.org/snonux/ior'>Forgejo mirror</a><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-05-17-unveiling-ior-ng-part-3.html'>2026-05-17 Unveiling I/O Riot NG — Part 3: under the hood</a><br />
+<a class='textlink' href='./2026-05-11-unveiling-ior-ng-part-2.html'>2026-05-11 Unveiling I/O Riot NG — Part 2: install and compile once, run everywhere</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>2026-05-08 Unveiling I/O Riot NG — Part 1: a guided tour</a><br />
+<a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
