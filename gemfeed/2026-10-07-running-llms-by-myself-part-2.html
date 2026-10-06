@@ -3,30 +3,30 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Running my own LLMs - Part 2: The pi coding agent</title>
+<title>Running LLMs by myself - Part 2: The pi coding agent</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-10-07-running-my-own-llms-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-10-07-running-my-own-llms-part-2.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-10-07-running-llms-by-myself-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-10-07-running-llms-by-myself-part-2.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a> | <a href="https://foo.zone/about/wishlist.html">Wishlist</a>
 </p>
-<h1 style='display: inline' id='running-my-own-llms---part-2-the-pi-coding-agent'>Running my own LLMs - Part 2: The pi coding agent</h1><br />
+<h1 style='display: inline' id='running-llms-by-myself---part-2-the-pi-coding-agent'>Running LLMs by myself - Part 2: The pi coding agent</h1><br />
 <br />
 <span class='quote'>Published at 2026-10-07T22:16:10+03:00</span><br />
 <br />
-<span>This is the second blog post about running my own LLMs. The first part was about the model side: renting Hyperstack VMs, vLLM, how the inference works and what it all costs. This part is about the other half, the pi coding agent I actually type into.</span><br />
+<span>This is the second blog post about running LLMs by myself. The first part was about the model side: renting Hyperstack VMs, vLLM, how the inference works and what it all costs. This part is about the other half, the pi coding agent I actually type into.</span><br />
 <br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM</a><br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>2026-10-07 Running my own LLMs - Part 2: The pi coding agent (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent (You are currently reading this)</a><br />
 <br />
-<a href='./running-my-own-llms/logo.svg'><img alt='The hypr logo' title='The hypr logo' src='./running-my-own-llms/logo.svg' /></a><br />
+<a href='./running-llms-by-myself/logo.svg'><img alt='The hypr logo' title='The hypr logo' src='./running-llms-by-myself/logo.svg' /></a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#running-my-own-llms---part-2-the-pi-coding-agent'>Running my own LLMs - Part 2: The pi coding agent</a></li>
+<li><a href='#running-llms-by-myself---part-2-the-pi-coding-agent'>Running LLMs by myself - Part 2: The pi coding agent</a></li>
 <li>⇢ <a href='#llm-vs-harness'>LLM vs harness</a></li>
 <li>⇢ <a href='#how-pi-talks-to-vllm'>How pi talks to vLLM</a></li>
 <li>⇢ <a href='#the-system-prompt-and-harness-overhead'>The system prompt and harness overhead</a></li>
@@ -76,11 +76,11 @@ abbr pi-hyperstack-gemma4 pi --model hyperstack2/cyankiwi/gemma-4-31B-it-AWQ-4bi
 <br />
 <span>Here is what a session looks like in practice. I asked Qwen3.8 on VM1 to add a <span class='inlinecode'>version</span> command to the REPL of <span class='inlinecode'>gt</span>, and then to include the Go runtime version in its output. The screenshot shows the Go diff for the tests, followed by the test run. The footer shows the model and how much of the 262K context the session has used so far:</span><br />
 <br />
-<a href='./running-my-own-llms/pi-go-edit.png'><img alt='pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run' title='pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run' src='./running-my-own-llms/pi-go-edit.png' /></a><br />
+<a href='./running-llms-by-myself/pi-go-edit.png'><img alt='pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run' title='pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run' src='./running-llms-by-myself/pi-go-edit.png' /></a><br />
 <br />
 <span>And one from an earlier session: diff on top, the model&#39;s reasoning in the middle, shell output at the bottom:</span><br />
 <br />
-<a href='./running-my-own-llms/pi-coding-agent.png'><img alt='pi coding agent mid-task: diff, reasoning, and shell in one TUI' title='pi coding agent mid-task: diff, reasoning, and shell in one TUI' src='./running-my-own-llms/pi-coding-agent.png' /></a><br />
+<a href='./running-llms-by-myself/pi-coding-agent.png'><img alt='pi coding agent mid-task: diff, reasoning, and shell in one TUI' title='pi coding agent mid-task: diff, reasoning, and shell in one TUI' src='./running-llms-by-myself/pi-coding-agent.png' /></a><br />
 <br />
 <h2 style='display: inline' id='the-system-prompt-and-harness-overhead'>The system prompt and harness overhead</h2><br />
 <br />
@@ -146,7 +146,7 @@ Current working directory: /home/paul/git/hypr
 <br />
 <span>A malformed call or the wrong tool choice can stop that loop.</span><br />
 <br />
-<a href='./running-my-own-llms/agent-loop.svg'><img alt='One agent turn: the tool-calling loop between pi and vLLM' title='One agent turn: the tool-calling loop between pi and vLLM' src='./running-my-own-llms/agent-loop.svg' /></a><br />
+<a href='./running-llms-by-myself/agent-loop.svg'><img alt='One agent turn: the tool-calling loop between pi and vLLM' title='One agent turn: the tool-calling loop between pi and vLLM' src='./running-llms-by-myself/agent-loop.svg' /></a><br />
 <br />
 <h2 style='display: inline' id='tool-calling-on-the-wire'>Tool calling on the wire</h2><br />
 <br />
@@ -223,7 +223,7 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <li>Level 2 — the full <span class='inlinecode'>SKILL.md</span> enters the conversation when the model reads it or I invoke <span class='inlinecode'>/skill:name</span>.</li>
 <li>Level 3 — files the <span class='inlinecode'>SKILL.md</span> points to, like reference docs or scripts. Only read if the instructions for the task at hand need them.</li>
 </ul><br />
-<a href='./running-my-own-llms/skill-loading.svg'><img alt='Progressive skill loading for automatically available skills' title='Progressive skill loading for automatically available skills' src='./running-my-own-llms/skill-loading.svg' /></a><br />
+<a href='./running-llms-by-myself/skill-loading.svg'><img alt='Progressive skill loading for automatically available skills' title='Progressive skill loading for automatically available skills' src='./running-llms-by-myself/skill-loading.svg' /></a><br />
 <a class='textlink' href='https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md'>Pi skills and explicit invocation</a><br />
 <br />
 <span>Those advertised descriptions cost context on every request, even for skills I never use. Levels 2 and 3 cost nothing until they&#39;re loaded. But once the model has read a <span class='inlinecode'>SKILL.md</span> or a reference file, it&#39;s a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a <span class='inlinecode'>/handoff</span> throws it out. My solid-principles skill is a good example: its <span class='inlinecode'>SKILL.md</span> is ~1.2K tokens, and the one reference file a single-principle check needs (say <span class='inlinecode'>srp.md</span>) is another ~1K. The other four reference files (~5K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~7K tokens, which is almost a quarter of a 32K preset.</span><br />
@@ -304,12 +304,12 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <br />
 <span>Read the previous post of this series:</span><br />
 <br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>Running my own LLMs - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
 <br />
 <span>Other related posts:</span><br />
 <br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>2026-10-07 Running my own LLMs - Part 2: The pi coding agent (You are currently reading this)</a><br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
 <a class='textlink' href='./2026-06-01-gt-calculator.html'>2026-06-01 <span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs</a><br />
 <a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS</a><br />
 <br />
