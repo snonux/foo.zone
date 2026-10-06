@@ -1,17 +1,17 @@
-# Running my own LLMs - Part 2: The pi coding agent
+# Running LLMs by myself - Part 2: The pi coding agent
 
 > Published at 2026-10-07T22:16:10+03:00
 
-This is the second blog post about running my own LLMs. The first part was about the model side: renting Hyperstack VMs, vLLM, how the inference works and what it all costs. This part is about the other half, the pi coding agent I actually type into.
+This is the second blog post about running LLMs by myself. The first part was about the model side: renting Hyperstack VMs, vLLM, how the inference works and what it all costs. This part is about the other half, the pi coding agent I actually type into.
 
-[2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM](./2026-10-06-running-my-own-llms-part-1.md)  
-[2026-10-07 Running my own LLMs - Part 2: The pi coding agent (You are currently reading this)](./2026-10-07-running-my-own-llms-part-2.md)  
+[2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM](./2026-10-06-running-llms-by-myself-part-1.md)  
+[2026-10-07 Running LLMs by myself - Part 2: The pi coding agent (You are currently reading this)](./2026-10-07-running-llms-by-myself-part-2.md)  
 
-[![The hypr logo](./running-my-own-llms/logo.svg "The hypr logo")](./running-my-own-llms/logo.svg)  
+[![The hypr logo](./running-llms-by-myself/logo.svg "The hypr logo")](./running-llms-by-myself/logo.svg)  
 
 ## Table of Contents
 
-* [⇢ Running my own LLMs - Part 2: The pi coding agent](#running-my-own-llms---part-2-the-pi-coding-agent)
+* [⇢ Running LLMs by myself - Part 2: The pi coding agent](#running-llms-by-myself---part-2-the-pi-coding-agent)
 * [⇢ ⇢ LLM vs harness](#llm-vs-harness)
 * [⇢ ⇢ How pi talks to vLLM](#how-pi-talks-to-vllm)
 * [⇢ ⇢ The system prompt and harness overhead](#the-system-prompt-and-harness-overhead)
@@ -59,11 +59,11 @@ My standard setup is a tmux session with one pi per pane: `pi-hyperstack-coder` 
 
 Here is what a session looks like in practice. I asked Qwen3.8 on VM1 to add a `version` command to the REPL of `gt`, and then to include the Go runtime version in its output. The screenshot shows the Go diff for the tests, followed by the test run. The footer shows the model and how much of the 262K context the session has used so far:
 
-[![pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run](./running-my-own-llms/pi-go-edit.png "pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run")](./running-my-own-llms/pi-go-edit.png)  
+[![pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run](./running-llms-by-myself/pi-go-edit.png "pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run")](./running-llms-by-myself/pi-go-edit.png)  
 
 And one from an earlier session: diff on top, the model's reasoning in the middle, shell output at the bottom:
 
-[![pi coding agent mid-task: diff, reasoning, and shell in one TUI](./running-my-own-llms/pi-coding-agent.png "pi coding agent mid-task: diff, reasoning, and shell in one TUI")](./running-my-own-llms/pi-coding-agent.png)  
+[![pi coding agent mid-task: diff, reasoning, and shell in one TUI](./running-llms-by-myself/pi-coding-agent.png "pi coding agent mid-task: diff, reasoning, and shell in one TUI")](./running-llms-by-myself/pi-coding-agent.png)  
 
 ## The system prompt and harness overhead
 
@@ -129,7 +129,7 @@ The model doesn't run anything itself. The harness sends it a list of tool schem
 
 A malformed call or the wrong tool choice can stop that loop.
 
-[![One agent turn: the tool-calling loop between pi and vLLM](./running-my-own-llms/agent-loop.svg "One agent turn: the tool-calling loop between pi and vLLM")](./running-my-own-llms/agent-loop.svg)  
+[![One agent turn: the tool-calling loop between pi and vLLM](./running-llms-by-myself/agent-loop.svg "One agent turn: the tool-calling loop between pi and vLLM")](./running-llms-by-myself/agent-loop.svg)  
 
 ## Tool calling on the wire
 
@@ -204,7 +204,7 @@ Pi lists the skills available for automatic selection in the system prompt. A sk
 * Level 2 — the full `SKILL.md` enters the conversation when the model reads it or I invoke `/skill:name`.
 * Level 3 — files the `SKILL.md` points to, like reference docs or scripts. Only read if the instructions for the task at hand need them.
 
-[![Progressive skill loading for automatically available skills](./running-my-own-llms/skill-loading.svg "Progressive skill loading for automatically available skills")](./running-my-own-llms/skill-loading.svg)  
+[![Progressive skill loading for automatically available skills](./running-llms-by-myself/skill-loading.svg "Progressive skill loading for automatically available skills")](./running-llms-by-myself/skill-loading.svg)  
 [Pi skills and explicit invocation](https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md)  
 
 Those advertised descriptions cost context on every request, even for skills I never use. Levels 2 and 3 cost nothing until they're loaded. But once the model has read a `SKILL.md` or a reference file, it's a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a `/handoff` throws it out. My solid-principles skill is a good example: its `SKILL.md` is ~1.2K tokens, and the one reference file a single-principle check needs (say `srp.md`) is another ~1K. The other four reference files (~5K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~7K tokens, which is almost a quarter of a 32K preset.
@@ -283,12 +283,12 @@ That was the harness side of my setup. The pi extensions, together with the prov
 
 Read the previous post of this series:
 
-[Running my own LLMs - Part 1: Hyperstack and vLLM](./2026-10-06-running-my-own-llms-part-1.md)  
+[Running LLMs by myself - Part 1: Hyperstack and vLLM](./2026-10-06-running-llms-by-myself-part-1.md)  
 
 Other related posts:
 
-[2026-10-07 Running my own LLMs - Part 2: The pi coding agent (You are currently reading this)](./2026-10-07-running-my-own-llms-part-2.md)  
-[2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM](./2026-10-06-running-my-own-llms-part-1.md)  
+[2026-10-07 Running LLMs by myself - Part 2: The pi coding agent (You are currently reading this)](./2026-10-07-running-llms-by-myself-part-2.md)  
+[2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM](./2026-10-06-running-llms-by-myself-part-1.md)  
 [2026-06-01 `gt` calculator - a calculator built with local LLMs](./2026-06-01-gt-calculator.md)  
 [2025-08-05 Local LLM for Coding with Ollama on macOS](./2025-08-05-local-coding-llm-with-ollama.md)  
 
