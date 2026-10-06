@@ -22,8 +22,8 @@
 <text class="t1" x="62" y="146" font-size="12" text-anchor="start" font-weight="400">solid-principles: Check SOLID violations ...</text>
 <text class="t1" x="62" y="168" font-size="12" text-anchor="start" font-weight="400">gemtexter: Manage the foo.zone site ...</text>
 <text class="t1" x="62" y="190" font-size="12" text-anchor="start" font-weight="400">f3s: Hub reference for the homelab ...</text>
-<text class="mu" x="62" y="212" font-size="12" text-anchor="start" font-weight="400">... 44 more</text>
-<text class="t2" x="644" y="155.0" font-size="12" text-anchor="start" font-weight="400">~4K tokens for 47 skills</text>
+<text class="mu" x="62" y="212" font-size="12" text-anchor="start" font-weight="400">... 42 more</text>
+<text class="t2" x="644" y="155.0" font-size="12" text-anchor="start" font-weight="400">~6K tokens for 45 skills</text>
 <line class="ar" x1="324" y1="224" x2="324" y2="246" stroke-width="2" marker-end="url(#a)"/>
 <text class="mu" x="336" y="240" font-size="11" text-anchor="start" font-weight="400">task: "check this package for SRP violations"</text>
 <rect class="box" x="24" y="250" width="600" height="76" rx="8"/>

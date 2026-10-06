@@ -44,7 +44,7 @@ The repo ships a `pi/` directory that I symlink to `~/.pi`. It defines providers
 
 * `hyperstack1` → `http://hyperstack1.wg1:11434/v1` — Qwen3.8 27B FP8
 * `hyperstack2` → `http://hyperstack2.wg1:11434/v1` — Gemma 4 31B AWQ
-* `hyperstack` → `http://hyperstack.wg1:11434/v1` — single-VM variant
+* `hyperstack` → `http://hyperstack1.wg1:11434/v1` — single-VM variant, same endpoint as VM1
 
 Every preset from the TOML configs is registered under its provider, so after a `model switch` I can just tell pi to use the new model ID, or hit `Ctrl+L` in the TUI to switch models mid-session without restarting.
 
@@ -55,7 +55,7 @@ abbr pi-hyperstack-coder  pi --model hyperstack1/Qwen/Qwen3.8-27B-FP8
 abbr pi-hyperstack-gemma4 pi --model hyperstack2/cyankiwi/gemma-4-31B-it-AWQ-4bit
 ```
 
-My standard setup is a tmux session with one pi per pane: `pi-coder` on Qwen3.8 in pane 0, `pi-gemma4` in pane 1, each working on a different project against its own VM. When one model gets stuck on a task, I hand the same problem to the other pane and compare.
+My standard setup is a tmux session with one pi per pane: `pi-hyperstack-coder` on Qwen3.8 in pane 0, `pi-hyperstack-gemma4` in pane 1, each working on a different project against its own VM. When one model gets stuck on a task, I hand the same problem to the other pane and compare.
 
 Here is what a session looks like in practice. I asked Qwen3.8 on VM1 to add a `version` command to the REPL of `gt`, and then to include the Go runtime version in its output. The screenshot shows the Go diff for the tests, followed by the test run. The footer shows the model and how much of the 262K context the session has used so far:
 
@@ -108,7 +108,7 @@ Use the read tool to load a skill's file when the task matches its description.
   <skill>
     <name>solid-principles</name>
     <description>This skill should be used when the user asks to "check SOLID violations", "audit class design", ...</description>
-    <location>/home/paul/.pi/skills/solid-principles/SKILL.md</location>
+    <location>/home/paul/.agents/skills/solid-principles/SKILL.md</location>
   </skill>
   ...
 </available_skills>
@@ -172,7 +172,7 @@ The model doesn't answer the question yet. It answers with a tool call instead o
 }
 ```
 
-The API returns `arguments` as a JSON string. With Qwen's `qwen3_xml` parser, the model generates tagged function and parameter text, and vLLM turns it into that JSON. A malformed call can still break parsing. The harness validates the arguments, runs the tool locally, and sends everything back with the result appended:
+The API returns `arguments` as a JSON string. With the `qwen3_coder` parser that hypr sets for Qwen, the model generates tagged function and parameter text, and vLLM turns it into that JSON. A malformed call can still break parsing. The harness validates the arguments, runs the tool locally, and sends everything back with the result appended:
 
 ```
 "messages": [
@@ -187,7 +187,7 @@ By the way, vLLM reported 292 prompt tokens for that first request, with just on
 
 Now the model has the file contents in its context and can answer in plain text (or request another tool call, and the loop goes on). Two things I found interesting here. In this text-only workflow, the model sees text going in and text coming out, so "calling a tool" is just a special output format it was trained to produce. And every round trip resends the whole history, including all tool results, so the context (and the KV cache) grows with every step. That is why agentic work is so prefix-cache-heavy.
 
-For automatic tool selection in my setup, vLLM needs `--enable-auto-tool-choice` and a matching `--tool-call-parser`, here `qwen3_xml`. hypr sets these per preset. A wrong parser can leave raw text where the agent expects a tool call. Named and required tool calling also have structured-output paths that work without enabling automatic tool selection.
+For automatic tool selection in my setup, vLLM needs `--enable-auto-tool-choice` and a matching `--tool-call-parser`, here `qwen3_coder`. hypr sets these per preset. A wrong parser can leave raw text where the agent expects a tool call. Named and required tool calling also have structured-output paths that work without enabling automatic tool selection.
 
 [vLLM tool calling](https://docs.vllm.ai/en/latest/features/tool_calling/)  
 
@@ -209,7 +209,7 @@ Pi lists the skills available for automatic selection in the system prompt. A sk
 
 Those advertised descriptions cost context on every request, even for skills I never use. Levels 2 and 3 cost nothing until they're loaded. But once the model has read a `SKILL.md` or a reference file, it's a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a `/handoff` throws it out. My solid-principles skill is a good example: its `SKILL.md` is ~1.2K tokens, and the one reference file a single-principle check needs (say `srp.md`) is another ~1K. The other four reference files (~5K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~7K tokens, which is almost a quarter of a 32K preset.
 
-I have 47 skills and 21 commands in my pi setup. The skill descriptions alone are ~17 KB of text, roughly 4K tokens in every request. On the 262K daily driver, that's fine. On a 32K preset, it's an eighth of the context gone before I've typed a word.
+I have 45 skills and 21 commands in my pi setup. The skill descriptions alone are ~17 KB of text. With names, paths and tags, the whole list is about 25 KB, roughly 6K tokens in every request. On the 262K daily driver, that's fine. On a 32K preset, it's almost a fifth of the context gone before I've typed a word.
 
 The bigger downside of too many skills isn't even the tokens, though. The model has to pick the right skill from the list, and with many similar descriptions, it picks the wrong one or none at all. Big frontier models handle that pretty well. Smaller self-hosted models get confused much more easily. So fewer, clearly distinct skills work better, especially with local models.
 
