@@ -496,6 +496,8 @@ I will write another blog post at some point about my setup and what I learned f
 
 Other related posts:
 
+[2026-10-07 Running my own LLMs - Part 2: The pi coding agent](./2026-10-07-running-my-own-llms-part-2.md)  
+[2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM](./2026-10-06-running-my-own-llms-part-1.md)  
 [2026-06-01 `gt` calculator - a calculator built with local LLMs (You are currently reading this)](./2026-06-01-gt-calculator.md)  
 [2025-08-05 Local LLM for Coding with Ollama on macOS](./2025-08-05-local-coding-llm-with-ollama.md)  
 

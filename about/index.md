@@ -39,7 +39,7 @@ Stuff I'm currently up to:
 Stuff I'm planning to get to next:
 
 * Working on next DTail release
-* Creating my own configuration management systems called Gonf
+* Releasing Gonf, my own configuration management system
 * Think about my own Jail or Container orchestrator for FreeBSD
 * Read the FreeBSD book Integrated by Design
 * Releasing GGaze, my own photo preview and optimizer tool for Linux.

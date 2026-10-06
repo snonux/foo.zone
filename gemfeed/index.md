@@ -2,6 +2,8 @@
 
 ## To be in the .zone!
 
+[2026-10-07 - Running my own LLMs - Part 2: The pi coding agent](./2026-10-07-running-my-own-llms-part-2.md)  
+[2026-10-06 - Running my own LLMs - Part 1: Hyperstack and vLLM](./2026-10-06-running-my-own-llms-part-1.md)  
 [2026-10-05 - Getting off Codeberg](./2026-10-05-getting-off-codeberg.md)  
 [2026-09-01 - f3s: Kubernetes with FreeBSD - Part 10: A New Home](./2026-09-01-f3s-kubernetes-with-freebsd-part-10.md)  
 [2026-08-07 - '97 Things Every SRE Should Know' book notes](./2026-08-07-97-things-every-sre-should-know-book-notes.md)  

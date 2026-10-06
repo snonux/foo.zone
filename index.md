@@ -1,6 +1,6 @@
 # Hello!
 
-> This site was generated at 2026-10-04T20:55:54+03:00 by `Gemtexter`
+> This site was generated at 2026-10-06T23:11:22+03:00 by `Gemtexter`
 
 Welcome to the foo.zone!
 
@@ -20,6 +20,8 @@ Everything you read on this site is my personal opinion and experience. You can 
 
 ### Posts
 
+[2026-10-07 - Running my own LLMs - Part 2: The pi coding agent](./gemfeed/2026-10-07-running-my-own-llms-part-2.md)  
+[2026-10-06 - Running my own LLMs - Part 1: Hyperstack and vLLM](./gemfeed/2026-10-06-running-my-own-llms-part-1.md)  
 [2026-10-05 - Getting off Codeberg](./gemfeed/2026-10-05-getting-off-codeberg.md)  
 [2026-09-01 - f3s: Kubernetes with FreeBSD - Part 10: A New Home](./gemfeed/2026-09-01-f3s-kubernetes-with-freebsd-part-10.md)  
 [2026-08-07 - '97 Things Every SRE Should Know' book notes](./gemfeed/2026-08-07-97-things-every-sre-should-know-book-notes.md)  

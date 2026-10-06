@@ -17,7 +17,6 @@ All sites listed below are reachable via IPv4 as well as via IPv6. Depending on 
 
 [https://foo.zone](https://foo.zone)  
 [https://standby.foo.zone](https://standby.foo.zone)  
-[https://www2.buetow.org - Codeberg page, somewhere in Germany](https://www2.buetow.org)  
 
 ## OpenBSD.Amsterdam
 

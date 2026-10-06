@@ -368,6 +368,8 @@ E-Mail your comments to `paul@nospam.buetow.org` :-)
 
 Other related posts are:
 
+[2026-10-07 Running my own LLMs - Part 2: The pi coding agent](./2026-10-07-running-my-own-llms-part-2.md)  
+[2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM](./2026-10-06-running-my-own-llms-part-1.md)  
 [2026-02-02 A tmux popup editor for Cursor Agent CLI prompts (You are currently reading this)](./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.md)  
 [2025-08-05 Local LLM for Coding with Ollama on macOS](./2025-08-05-local-coding-llm-with-ollama.md)  
 [2025-05-02 Terminal multiplexing with `tmux` - Fish edition](./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md)  
