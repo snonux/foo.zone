@@ -51,7 +51,7 @@ Before the walkthrough, a short glossary of the things that matter when you run 
 * Memory bandwidth — Speed is often limited by memory bandwidth. "Fits" (VRAM) and "feels fast" are different questions.
 * Token generation speed (decode tok/s) — the speed you feel while the agent "types".
 * Prefill speed (prompt tok/s) — how fast the prompt is read in. Decides how long you wait for the first token.
-* Parameter count vs quantization — bigger and less quantized is usually better, but costs VRAM. Newer small models can beat older big ones. It's highly dependant on the model, though.
+* Parameter count vs quantization — bigger and less quantized is usually better, but costs VRAM. Newer small models can beat older big ones. It's highly dependent on the model, though.
 * MoE vs dense — MoE models only use a small part of their parameters per token. Faster, but not smaller. Quality depends on the particular models, not just this architecture choice. But usually dense models are a bit "smarter" but "slower" (at least after my own experience).
 * Context vs weights — weights and cached context share the same memory budget.
 * LLM reasoning level — Makes the LLM "think harder" in exchange for more tokens.
@@ -102,7 +102,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 --max-model-len 262144          → max context: 262,144 tokens (the "262K")
 ```
 
-At startup, vLLM loads the weights, then budgets runtime memory and a pool of cache blocks within the allowed VRAM. That is why `nvidia-smi` (a CLI for NVidia cards) shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.
+At startup, vLLM loads the weights, then budgets runtime memory and a pool of cache blocks within the allowed VRAM. That is why `nvidia-smi` (a CLI for NVIDIA cards) shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.
 
 => ./running-my-own-llms/vram-budget.svg How three presets split the A100's 80 GB between weights and KV cache
 
@@ -114,7 +114,7 @@ For a coding agent this is important. Every turn of a coding agent session resen
 
 => ./running-my-own-llms/prefix-cache.svg Prefix caching over four agent turns
 
-VLLMs cache can retain prefixes from several conversations. Ollama has prefix reuse too.
+vLLM's cache can retain prefixes from several conversations. Ollama has prefix reuse too.
 
 => https://raw.githubusercontent.com/ollama/ollama/v0.5.7/llama/runner/cache.go Ollama's prefix-matching cache implementation
 => https://docs.ollama.com/faq Ollama: Flash Attention and parallel requests
@@ -167,19 +167,19 @@ Each VM's TOML config defines named presets, so switching models does not mean r
 
 * `qwen38-27b` — Qwen3.8 27B FP8 (default), ~29 GiB weights, 262K context
 * `qwen36-27b` — Qwen3.6 27B FP8, ~29 GiB weights, 262K context
-* `gemma4-31b` — Gemma 4 31B IT (AWQ-4bit), ~19 GB weights, 32K context
+* `gemma4-31b` — Gemma 4 31B IT (AWQ-4bit), ~19.5 GiB weights, 131K context on VM2 where it is the default (32K in VM1's preset)
 * `nemotron-super` — Nemotron-3-Super 120B (AWQ 4-bit, Mamba+MoE, 12B active), ~74 GiB weights, 32K context
-* `qwen36-35b-a3b` — Qwen3.6-35B-A3B MoE (AWQ, 3B active), ~18 GB weights, 65K context; runs with a quantized KV cache (`turboquant_k8v4`) and chunked prefill disabled
-* `qwen3-coder-30b` — Qwen3-Coder-30B-A3B (MoE, AWQ), ~18 GB weights, 65K context
+* `qwen36-35b-a3b` — Qwen3.6-35B-A3B MoE (AWQ 4-bit, 3B active), ~23 GiB weights, 65K context; runs with a quantized KV cache (`turboquant_k8v4`) and chunked prefill disabled
+* `qwen3-coder-30b` — Qwen3-Coder-30B-A3B (MoE, AWQ), ~17 GB weights, 65K context
 * `deepseek-r1-32b` — DeepSeek-R1-Distill-Qwen-32B (AWQ), ~18 GB weights, 32K context
-* `devstral` — Devstral-Small-2507 (AWQ-4bit), ~15 GB weights, 32K context
+* `devstral` — Devstral-Small-2507 (AWQ-4bit), ~14 GB weights, 32K context
 
 `ruby hyperstack.rb --vm 1 model switch nemotron-super` stops the running container, starts a new one with the preset's flags, and waits for readiness. The weights are cached on the VM's ephemeral NVMe disk after the first download, but a switch still takes minutes (see below).
 
 Two details:
 
 * These observations used `vllm/vllm-openai:nightly`. I haven't recorded the exact image digest here, so this is a snapshot of that run, not a reproducible benchmark of today's nightly. Use a pinned, compatible release or digest when reproducing it.
-* My Nemotron AWQ preset uses 32K (not 1mio) context, disables prefix caching and CUDA graph capture (`--enforce-eager`), and raises `--gpu-memory-utilization` to 0.98. These are the settings I used to fit it on one A100, where weights take most of the memory. That tension between model size and context length is the core of VRAM budgeting (see the VRAM chart above).
+* My Nemotron AWQ preset uses 32K (not 1M) context, disables prefix caching and CUDA graph capture (`--enforce-eager`), and raises `--gpu-memory-utilization` to 0.98. These are the settings I used to fit it on one A100, where weights take most of the memory. That tension between model size and context length is the core of VRAM budgeting (see the VRAM chart above).
 
 ### Why starting a model takes minutes
 
@@ -190,7 +190,7 @@ Loading a model onto the GPU sounds like "copy 29 GiB from disk to VRAM". That p
 On a fresh VM, `hypr create` took about 10 minutes in total:
 
 * VM boot — ~1.5 minutes until Hyperstack hands over a running VM.
-* Bootstrap — ~3.5 minutes for packages, WireGuard, the firewall and pulling the 32 GB vLLM Docker image.
+* Bootstrap — ~3.5 minutes for packages, WireGuard, the firewall and pulling the vLLM Docker image (about 9 GB compressed).
 * vLLM start — ~1 minute for Python, the API server and the engine to come up.
 * Weights — ~1 minute to download 29 GiB from Hugging Face, then 5 seconds to load them into VRAM.
 * torch.compile — ~40 seconds to compile the model's GPU kernels for this GPU.
@@ -199,7 +199,7 @@ On a fresh VM, `hypr create` took about 10 minutes in total:
 
 The last three steps prepare the GPU work. Compilation combines and optimises operations, profiling estimates the memory needed during inference, and CUDA graph capture records launch sequences that can be replayed with less CPU overhead. My log reported a 40.9 GiB cache pool and 86 captured graphs.
 
-A restart of the same container is faster: about 2 minutes. The weights are already on disk, and the compiled kernels come from vLLM's on-disk compile cache (0.55 seconds instead of 30). But the CUDA graphs are captured again on every start (~1 minute), and the Python and API startup doesn't get faster either.
+A restart of the same container is faster: about 2 minutes. The weights are already on disk, and the compiled kernels come from vLLM's on-disk compile cache (0.55 seconds instead of about 40). But the CUDA graphs are captured again on every start (~1 minute), and the Python and API startup doesn't get faster either.
 
 That's why switching models ad hoc is painful. `model switch` takes at least 2 minutes for a model that was already used on this VM, and more for a new one (download plus a cold compile). On top of that, every running agent session loses its prefix cache and has to prefill its whole context again. So instead of switching back and forth, I run two VMs with two different models loaded. Switching between them is then just picking the other provider in pi (`Ctrl+L`), and it's instant.
 
@@ -211,7 +211,7 @@ A dense model uses all of its parameters for every token. A mixture-of-experts (
 
 Reading fewer weights per token can make small-batch decode faster than on a dense model of the same total size. How much faster depends on the routing, kernels and batching, too. In my fully GPU-resident setup, all experts stay in VRAM because the router can choose different ones for the next token. Offloading experts to CPU memory is possible in other setups, but changes the performance trade-off.
 
-Several presets are MoEs (Nemotron-3-Super, `qwen36-35b-a3b`, `qwen3-coder-30b`). Only the active parameters do the work per token, which is why Nemotron can be 120B total with 12B active and still decode at a usable speed. But in this setup all 120B parameters still have to fit into VRAM, and that's why it barely fits once the context is capped. The `qwen36-35b-a3b` preset only fits into ~18 GB because it's also 4-bit quantized.
+Several presets are MoEs (Nemotron-3-Super, `qwen36-35b-a3b`, `qwen3-coder-30b`). Only the active parameters do the work per token, which is why Nemotron can be 120B total with 12B active and still decode at a usable speed. But in this setup all 120B parameters still have to fit into VRAM, and that's why it barely fits once the context is capped. The `qwen36-35b-a3b` preset only fits into ~23 GiB because it's also 4-bit quantized.
 
 Quantization is how the rest of the list fits. FP8 stores the quantized weights in 8 bits (a 27B model is ~27 GB of weights, plus some overhead). AWQ uses 4-bit weights for the quantized layers, plus scales and any layers kept at higher precision. It reduces the footprint; the quality and speed trade-off depends on the model and kernels. FP8 on the 27B is my daily driver: good quality, 28.9 GiB of weights, and 40.9 GiB left for the KV cache. vLLM reports that as 657,281 tokens, enough for about 2.5 full 262K contexts at the same time. I haven't compared these presets against quantization-aware training (QAT) variants on my own tasks. QAT makes lower precision part of training rather than only applying it afterwards.
 
