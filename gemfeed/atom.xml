@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-10-06T23:11:23+03:00</updated>
+    <updated>2026-10-06T23:36:17+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -67,7 +67,7 @@
 <ul>
 <li><span class='inlinecode'>hyperstack1</span> → <span class='inlinecode'>http://hyperstack1.wg1:11434/v1</span> — Qwen3.8 27B FP8</li>
 <li><span class='inlinecode'>hyperstack2</span> → <span class='inlinecode'>http://hyperstack2.wg1:11434/v1</span> — Gemma 4 31B AWQ</li>
-<li><span class='inlinecode'>hyperstack</span> → <span class='inlinecode'>http://hyperstack.wg1:11434/v1</span> — single-VM variant</li>
+<li><span class='inlinecode'>hyperstack</span> → <span class='inlinecode'>http://hyperstack1.wg1:11434/v1</span> — single-VM variant, same endpoint as VM1</li>
 </ul><br />
 <span>Every preset from the TOML configs is registered under its provider, so after a <span class='inlinecode'>model switch</span> I can just tell pi to use the new model ID, or hit <span class='inlinecode'>Ctrl+L</span> in the TUI to switch models mid-session without restarting.</span><br />
 <br />
@@ -78,7 +78,7 @@ abbr pi-hyperstack-coder  pi --model hyperstack1/Qwen/Qwen3.8-27B-FP8
 abbr pi-hyperstack-gemma4 pi --model hyperstack2/cyankiwi/gemma-4-31B-it-AWQ-4bit
 </pre>
 <br />
-<span>My standard setup is a tmux session with one pi per pane: <span class='inlinecode'>pi-coder</span> on Qwen3.8 in pane 0, <span class='inlinecode'>pi-gemma4</span> in pane 1, each working on a different project against its own VM. When one model gets stuck on a task, I hand the same problem to the other pane and compare.</span><br />
+<span>My standard setup is a tmux session with one pi per pane: <span class='inlinecode'>pi-hyperstack-coder</span> on Qwen3.8 in pane 0, <span class='inlinecode'>pi-hyperstack-gemma4</span> in pane 1, each working on a different project against its own VM. When one model gets stuck on a task, I hand the same problem to the other pane and compare.</span><br />
 <br />
 <span>Here is what a session looks like in practice. I asked Qwen3.8 on VM1 to add a <span class='inlinecode'>version</span> command to the REPL of <span class='inlinecode'>gt</span>, and then to include the Go runtime version in its output. The screenshot shows the Go diff for the tests, followed by the test run. The footer shows the model and how much of the 262K context the session has used so far:</span><br />
 <br />
@@ -131,7 +131,7 @@ Use the read tool to load a skill&#39;s file when the task matches its descripti
   &lt;skill&gt;
     &lt;name&gt;solid-principles&lt;/name&gt;
     &lt;description&gt;This skill should be used when the user asks to "check SOLID violations", "audit class design", ...&lt;/description&gt;
-    &lt;location&gt;/home/paul/.pi/skills/solid-principles/SKILL.md&lt;/location&gt;
+    &lt;location&gt;/home/paul/.agents/skills/solid-principles/SKILL.md&lt;/location&gt;
   &lt;/skill&gt;
   ...
 &lt;/available_skills&gt;
@@ -195,7 +195,7 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 }
 </pre>
 <br />
-<span>The API returns <span class='inlinecode'>arguments</span> as a JSON string. With Qwen&#39;s <span class='inlinecode'>qwen3_xml</span> parser, the model generates tagged function and parameter text, and vLLM turns it into that JSON. A malformed call can still break parsing. The harness validates the arguments, runs the tool locally, and sends everything back with the result appended:</span><br />
+<span>The API returns <span class='inlinecode'>arguments</span> as a JSON string. With the <span class='inlinecode'>qwen3_coder</span> parser that hypr sets for Qwen, the model generates tagged function and parameter text, and vLLM turns it into that JSON. A malformed call can still break parsing. The harness validates the arguments, runs the tool locally, and sends everything back with the result appended:</span><br />
 <br />
 <pre>
 "messages": [
@@ -210,7 +210,7 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <br />
 <span>Now the model has the file contents in its context and can answer in plain text (or request another tool call, and the loop goes on). Two things I found interesting here. In this text-only workflow, the model sees text going in and text coming out, so "calling a tool" is just a special output format it was trained to produce. And every round trip resends the whole history, including all tool results, so the context (and the KV cache) grows with every step. That is why agentic work is so prefix-cache-heavy.</span><br />
 <br />
-<span>For automatic tool selection in my setup, vLLM needs <span class='inlinecode'>--enable-auto-tool-choice</span> and a matching <span class='inlinecode'>--tool-call-parser</span>, here <span class='inlinecode'>qwen3_xml</span>. hypr sets these per preset. A wrong parser can leave raw text where the agent expects a tool call. Named and required tool calling also have structured-output paths that work without enabling automatic tool selection.</span><br />
+<span>For automatic tool selection in my setup, vLLM needs <span class='inlinecode'>--enable-auto-tool-choice</span> and a matching <span class='inlinecode'>--tool-call-parser</span>, here <span class='inlinecode'>qwen3_coder</span>. hypr sets these per preset. A wrong parser can leave raw text where the agent expects a tool call. Named and required tool calling also have structured-output paths that work without enabling automatic tool selection.</span><br />
 <br />
 <a class='textlink' href='https://docs.vllm.ai/en/latest/features/tool_calling/'>vLLM tool calling</a><br />
 <br />
@@ -234,7 +234,7 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <br />
 <span>Those advertised descriptions cost context on every request, even for skills I never use. Levels 2 and 3 cost nothing until they&#39;re loaded. But once the model has read a <span class='inlinecode'>SKILL.md</span> or a reference file, it&#39;s a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a <span class='inlinecode'>/handoff</span> throws it out. My solid-principles skill is a good example: its <span class='inlinecode'>SKILL.md</span> is ~1.2K tokens, and the one reference file a single-principle check needs (say <span class='inlinecode'>srp.md</span>) is another ~1K. The other four reference files (~5K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~7K tokens, which is almost a quarter of a 32K preset.</span><br />
 <br />
-<span>I have 47 skills and 21 commands in my pi setup. The skill descriptions alone are ~17 KB of text, roughly 4K tokens in every request. On the 262K daily driver, that&#39;s fine. On a 32K preset, it&#39;s an eighth of the context gone before I&#39;ve typed a word.</span><br />
+<span>I have 45 skills and 21 commands in my pi setup. The skill descriptions alone are ~17 KB of text. With names, paths and tags, the whole list is about 25 KB, roughly 6K tokens in every request. On the 262K daily driver, that&#39;s fine. On a 32K preset, it&#39;s almost a fifth of the context gone before I&#39;ve typed a word.</span><br />
 <br />
 <span>The bigger downside of too many skills isn&#39;t even the tokens, though. The model has to pick the right skill from the list, and with many similar descriptions, it picks the wrong one or none at all. Big frontier models handle that pretty well. Smaller self-hosted models get confused much more easily. So fewer, clearly distinct skills work better, especially with local models.</span><br />
 <br />
@@ -413,7 +413,7 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <li>Memory bandwidth — Speed is often limited by memory bandwidth. "Fits" (VRAM) and "feels fast" are different questions.</li>
 <li>Token generation speed (decode tok/s) — the speed you feel while the agent "types".</li>
 <li>Prefill speed (prompt tok/s) — how fast the prompt is read in. Decides how long you wait for the first token.</li>
-<li>Parameter count vs quantization — bigger and less quantized is usually better, but costs VRAM. Newer small models can beat older big ones. It&#39;s highly dependant on the model, though.</li>
+<li>Parameter count vs quantization — bigger and less quantized is usually better, but costs VRAM. Newer small models can beat older big ones. It&#39;s highly dependent on the model, though.</li>
 <li>MoE vs dense — MoE models only use a small part of their parameters per token. Faster, but not smaller. Quality depends on the particular models, not just this architecture choice. But usually dense models are a bit "smarter" but "slower" (at least after my own experience).</li>
 <li>Context vs weights — weights and cached context share the same memory budget.</li>
 <li>LLM reasoning level — Makes the LLM "think harder" in exchange for more tokens.</li>
@@ -465,7 +465,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 --max-model-len 262144          → max context: 262,144 tokens (the "262K")
 </pre>
 <br />
-<span>At startup, vLLM loads the weights, then budgets runtime memory and a pool of cache blocks within the allowed VRAM. That is why <span class='inlinecode'>nvidia-smi</span> (a CLI for NVidia cards) shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.</span><br />
+<span>At startup, vLLM loads the weights, then budgets runtime memory and a pool of cache blocks within the allowed VRAM. That is why <span class='inlinecode'>nvidia-smi</span> (a CLI for NVIDIA cards) shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.</span><br />
 <br />
 <a href='./running-my-own-llms/vram-budget.svg'><img alt='How three presets split the A100&#39;s 80 GB between weights and KV cache' title='How three presets split the A100&#39;s 80 GB between weights and KV cache' src='./running-my-own-llms/vram-budget.svg' /></a><br />
 <br />
@@ -477,7 +477,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <a href='./running-my-own-llms/prefix-cache.svg'><img alt='Prefix caching over four agent turns' title='Prefix caching over four agent turns' src='./running-my-own-llms/prefix-cache.svg' /></a><br />
 <br />
-<span>VLLMs cache can retain prefixes from several conversations. Ollama has prefix reuse too.</span><br />
+<span>vLLM&#39;s cache can retain prefixes from several conversations. Ollama has prefix reuse too.</span><br />
 <br />
 <a class='textlink' href='https://raw.githubusercontent.com/ollama/ollama/v0.5.7/llama/runner/cache.go'>Ollama&#39;s prefix-matching cache implementation</a><br />
 <a class='textlink' href='https://docs.ollama.com/faq'>Ollama: Flash Attention and parallel requests</a><br />
@@ -532,12 +532,12 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <ul>
 <li><span class='inlinecode'>qwen38-27b</span> — Qwen3.8 27B FP8 (default), ~29 GiB weights, 262K context</li>
 <li><span class='inlinecode'>qwen36-27b</span> — Qwen3.6 27B FP8, ~29 GiB weights, 262K context</li>
-<li><span class='inlinecode'>gemma4-31b</span> — Gemma 4 31B IT (AWQ-4bit), ~19 GB weights, 32K context</li>
+<li><span class='inlinecode'>gemma4-31b</span> — Gemma 4 31B IT (AWQ-4bit), ~19.5 GiB weights, 131K context on VM2 where it is the default (32K in VM1&#39;s preset)</li>
 <li><span class='inlinecode'>nemotron-super</span> — Nemotron-3-Super 120B (AWQ 4-bit, Mamba+MoE, 12B active), ~74 GiB weights, 32K context</li>
-<li><span class='inlinecode'>qwen36-35b-a3b</span> — Qwen3.6-35B-A3B MoE (AWQ, 3B active), ~18 GB weights, 65K context; runs with a quantized KV cache (<span class='inlinecode'>turboquant_k8v4</span>) and chunked prefill disabled</li>
-<li><span class='inlinecode'>qwen3-coder-30b</span> — Qwen3-Coder-30B-A3B (MoE, AWQ), ~18 GB weights, 65K context</li>
+<li><span class='inlinecode'>qwen36-35b-a3b</span> — Qwen3.6-35B-A3B MoE (AWQ 4-bit, 3B active), ~23 GiB weights, 65K context; runs with a quantized KV cache (<span class='inlinecode'>turboquant_k8v4</span>) and chunked prefill disabled</li>
+<li><span class='inlinecode'>qwen3-coder-30b</span> — Qwen3-Coder-30B-A3B (MoE, AWQ), ~17 GB weights, 65K context</li>
 <li><span class='inlinecode'>deepseek-r1-32b</span> — DeepSeek-R1-Distill-Qwen-32B (AWQ), ~18 GB weights, 32K context</li>
-<li><span class='inlinecode'>devstral</span> — Devstral-Small-2507 (AWQ-4bit), ~15 GB weights, 32K context</li>
+<li><span class='inlinecode'>devstral</span> — Devstral-Small-2507 (AWQ-4bit), ~14 GB weights, 32K context</li>
 </ul><br />
 <span><span class='inlinecode'>ruby hyperstack.rb --vm 1 model switch nemotron-super</span> stops the running container, starts a new one with the preset&#39;s flags, and waits for readiness. The weights are cached on the VM&#39;s ephemeral NVMe disk after the first download, but a switch still takes minutes (see below).</span><br />
 <br />
@@ -545,7 +545,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <ul>
 <li>These observations used <span class='inlinecode'>vllm/vllm-openai:nightly</span>. I haven&#39;t recorded the exact image digest here, so this is a snapshot of that run, not a reproducible benchmark of today&#39;s nightly. Use a pinned, compatible release or digest when reproducing it.</li>
-<li>My Nemotron AWQ preset uses 32K (not 1mio) context, disables prefix caching and CUDA graph capture (<span class='inlinecode'>--enforce-eager</span>), and raises <span class='inlinecode'>--gpu-memory-utilization</span> to 0.98. These are the settings I used to fit it on one A100, where weights take most of the memory. That tension between model size and context length is the core of VRAM budgeting (see the VRAM chart above).</li>
+<li>My Nemotron AWQ preset uses 32K (not 1M) context, disables prefix caching and CUDA graph capture (<span class='inlinecode'>--enforce-eager</span>), and raises <span class='inlinecode'>--gpu-memory-utilization</span> to 0.98. These are the settings I used to fit it on one A100, where weights take most of the memory. That tension between model size and context length is the core of VRAM budgeting (see the VRAM chart above).</li>
 </ul><br />
 <h3 style='display: inline' id='why-starting-a-model-takes-minutes'>Why starting a model takes minutes</h3><br />
 <br />
@@ -557,7 +557,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <ul>
 <li>VM boot — ~1.5 minutes until Hyperstack hands over a running VM.</li>
-<li>Bootstrap — ~3.5 minutes for packages, WireGuard, the firewall and pulling the 32 GB vLLM Docker image.</li>
+<li>Bootstrap — ~3.5 minutes for packages, WireGuard, the firewall and pulling the vLLM Docker image (about 9 GB compressed).</li>
 <li>vLLM start — ~1 minute for Python, the API server and the engine to come up.</li>
 <li>Weights — ~1 minute to download 29 GiB from Hugging Face, then 5 seconds to load them into VRAM.</li>
 <li>torch.compile — ~40 seconds to compile the model&#39;s GPU kernels for this GPU.</li>
@@ -566,7 +566,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 </ul><br />
 <span>The last three steps prepare the GPU work. Compilation combines and optimises operations, profiling estimates the memory needed during inference, and CUDA graph capture records launch sequences that can be replayed with less CPU overhead. My log reported a 40.9 GiB cache pool and 86 captured graphs.</span><br />
 <br />
-<span>A restart of the same container is faster: about 2 minutes. The weights are already on disk, and the compiled kernels come from vLLM&#39;s on-disk compile cache (0.55 seconds instead of 30). But the CUDA graphs are captured again on every start (~1 minute), and the Python and API startup doesn&#39;t get faster either.</span><br />
+<span>A restart of the same container is faster: about 2 minutes. The weights are already on disk, and the compiled kernels come from vLLM&#39;s on-disk compile cache (0.55 seconds instead of about 40). But the CUDA graphs are captured again on every start (~1 minute), and the Python and API startup doesn&#39;t get faster either.</span><br />
 <br />
 <span>That&#39;s why switching models ad hoc is painful. <span class='inlinecode'>model switch</span> takes at least 2 minutes for a model that was already used on this VM, and more for a new one (download plus a cold compile). On top of that, every running agent session loses its prefix cache and has to prefill its whole context again. So instead of switching back and forth, I run two VMs with two different models loaded. Switching between them is then just picking the other provider in pi (<span class='inlinecode'>Ctrl+L</span>), and it&#39;s instant.</span><br />
 <br />
@@ -578,7 +578,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <span>Reading fewer weights per token can make small-batch decode faster than on a dense model of the same total size. How much faster depends on the routing, kernels and batching, too. In my fully GPU-resident setup, all experts stay in VRAM because the router can choose different ones for the next token. Offloading experts to CPU memory is possible in other setups, but changes the performance trade-off.</span><br />
 <br />
-<span>Several presets are MoEs (Nemotron-3-Super, <span class='inlinecode'>qwen36-35b-a3b</span>, <span class='inlinecode'>qwen3-coder-30b</span>). Only the active parameters do the work per token, which is why Nemotron can be 120B total with 12B active and still decode at a usable speed. But in this setup all 120B parameters still have to fit into VRAM, and that&#39;s why it barely fits once the context is capped. The <span class='inlinecode'>qwen36-35b-a3b</span> preset only fits into ~18 GB because it&#39;s also 4-bit quantized.</span><br />
+<span>Several presets are MoEs (Nemotron-3-Super, <span class='inlinecode'>qwen36-35b-a3b</span>, <span class='inlinecode'>qwen3-coder-30b</span>). Only the active parameters do the work per token, which is why Nemotron can be 120B total with 12B active and still decode at a usable speed. But in this setup all 120B parameters still have to fit into VRAM, and that&#39;s why it barely fits once the context is capped. The <span class='inlinecode'>qwen36-35b-a3b</span> preset only fits into ~23 GiB because it&#39;s also 4-bit quantized.</span><br />
 <br />
 <span>Quantization is how the rest of the list fits. FP8 stores the quantized weights in 8 bits (a 27B model is ~27 GB of weights, plus some overhead). AWQ uses 4-bit weights for the quantized layers, plus scales and any layers kept at higher precision. It reduces the footprint; the quality and speed trade-off depends on the model and kernels. FP8 on the 27B is my daily driver: good quality, 28.9 GiB of weights, and 40.9 GiB left for the KV cache. vLLM reports that as 657,281 tokens, enough for about 2.5 full 262K contexts at the same time. I haven&#39;t compared these presets against quantization-aware training (QAT) variants on my own tasks. QAT makes lower precision part of training rather than only applying it afterwards.</span><br />
 <br />
