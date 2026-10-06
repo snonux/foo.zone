@@ -1,4 +1,4 @@
-# Running my own LLMs - Part 1: Hyperstack and vLLM
+# Running LLMs by myself - Part 1: Hyperstack and vLLM
 
 > Published at 2026-10-06T23:20:00+03:00
 
@@ -8,14 +8,14 @@ The `gt` calculator was built almost entirely with self-hosted LLMs running on r
 
 Here's my setup, what I learned about inference, and the numbers from using it. I still haven't bought the hardware. This is the first of two parts. The second one is about the pi coding agent, the harness I use with these models.
 
-=> ./2026-10-06-running-my-own-llms-part-1.gmi 2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM (You are currently reading this)
-=> ./2026-10-07-running-my-own-llms-part-2.gmi 2026-10-07 Running my own LLMs - Part 2: The pi coding agent
+=> ./2026-10-06-running-llms-by-myself-part-1.gmi 2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM (You are currently reading this)
+=> ./2026-10-07-running-llms-by-myself-part-2.gmi 2026-10-07 Running LLMs by myself - Part 2: The pi coding agent
 
-=> ./running-my-own-llms/logo.svg The hypr logo
+=> ./running-llms-by-myself/logo.svg The hypr logo
 
 ## Table of Contents
 
-* ⇢ Running my own LLMs - Part 1: Hyperstack and vLLM
+* ⇢ Running LLMs by myself - Part 1: Hyperstack and vLLM
 * ⇢ ⇢ Why rent instead of buy
 * ⇢ ⇢ The setup at a glance
 * ⇢ ⇢ What decides if this works
@@ -49,7 +49,7 @@ A few months in, the setup has grown into a small toolchain I call `hypr`. One R
 
 Everything starts on my laptop. `ruby hyperstack.rb --vm 1 create` (or `--vm both` for two VMs in parallel) provisions a Hyperstack VM (Ubuntu 24.04 with CUDA and Docker preinstalled, one A100 80 GB PCIe GPU), sets up a WireGuard tunnel to it, and starts the model in a vLLM Docker container. About ten minutes later the model is serving on an OpenAI-compatible API, reachable over the tunnel.
 
-=> ./running-my-own-llms/architecture.svg The setup: pi on the laptop, vLLM on two Hyperstack VMs, WireGuard in between
+=> ./running-llms-by-myself/architecture.svg The setup: pi on the laptop, vLLM on two Hyperstack VMs, WireGuard in between
 
 The WireGuard tunnel is the interesting bit. A single `wg1` interface on my laptop (Fedora Linux, by the way!) routes traffic to both VMs. The firewall on the Hyperstack VMs only lets in SSH and the WireGuard port, so the vLLM port (11434) is only reachable through the tunnel. There's no other authentication: no proxy, no load balancer, no API keys. The API isn't exposed to the internet at all, and the tunnel is the security boundary.
 
@@ -89,7 +89,7 @@ I wanted to understand where the time and memory go. This is what I learned.
 
 CUDA is NVIDIA's software platform for running calculations on its GPUs. In my setup, the CPU runs vLLM's request handling and decides which work to send to the GPU. Through CUDA, it launches small GPU programs called kernels. The GPU does the model's heavy maths, using the weights and cached context in its own memory. The Hyperstack VMs I'm renting use CUDA.
 
-=> ./running-my-own-llms/cuda.svg CPU organises the work, CUDA launches it, GPU does the maths
+=> ./running-llms-by-myself/cuda.svg CPU organises the work, CUDA launches it, GPU does the maths
 
 I don't need to write CUDA code for this. vLLM and its libraries take care of it. The NVIDIA Container Toolkit lets the Docker container use the host's GPU and driver with `--gpus all`.
 
@@ -102,7 +102,7 @@ An LLM request has two phases:
 * Prefill — the model processes the prompt, doing work on many tokens together. Long prompts can be split into chunks. This phase makes good use of the GPU's parallel computing power.
 * Decode — generating the answer, normally one token at a time. Every new token depends on the previous ones. For a few concurrent conversations, reading the model weights and cached context can be the bottleneck. This is the phase you watch while the agent "types".
 
-=> ./running-my-own-llms/prefill-decode.svg One request: prefill, then decode
+=> ./running-llms-by-myself/prefill-decode.svg One request: prefill, then decode
 
 The two phases show up as very different numbers. Prefill can process thousands of tokens per second; ordinary decode in my setup produces tens per conversation. During prefill, many tokens share the work of reading weights from GPU memory. During decode, that cost returns at each step. Batching conversations and speculative decoding (below) can get more tokens out of each pass. Prefill and any queueing affect the wait for the first token; decode affects how quickly the answer arrives after that.
 
@@ -124,7 +124,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 
 At startup, vLLM loads the weights, then budgets runtime memory and a pool of cache blocks within the allowed VRAM. That is why `nvidia-smi` (a CLI for NVIDIA cards) shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.
 
-=> ./running-my-own-llms/vram-budget.svg How three presets split the A100's 80 GB between weights and KV cache
+=> ./running-llms-by-myself/vram-budget.svg How three presets split the A100's 80 GB between weights and KV cache
 
 ### Prefix caching: the big one for agentic coding
 
@@ -132,7 +132,7 @@ At startup, vLLM loads the weights, then budgets runtime memory and a pool of ca
 
 For a coding agent this is important. Every turn of a coding agent session resends the system prompt plus the entire conversation. Without prefix caching, that whole context is re-prefilled on every single turn. With it, most of the prompt arrives already computed. My current sessions sit at an 80–97% hit rate (numbers below).
 
-=> ./running-my-own-llms/prefix-cache.svg Prefix caching over four agent turns
+=> ./running-llms-by-myself/prefix-cache.svg Prefix caching over four agent turns
 
 vLLM's cache can retain prefixes from several conversations. Ollama has prefix reuse too.
 
@@ -146,7 +146,7 @@ Ollama is still nicer if I just want a model serving quickly. For several coding
 
 There's one more decode trick, and it turned out to be the biggest speedup in this whole setup: speculative decoding. The idea is to guess the next few tokens cheaply and let the big model check all the guesses in one go.
 
-=> ./running-my-own-llms/speculative.svg Speculative decoding: a cheap guess of 4 tokens, verified by the big model in one pass
+=> ./running-llms-by-myself/speculative.svg Speculative decoding: a cheap guess of 4 tokens, verified by the big model in one pass
 
 Here's a simplified example using greedy decoding, where the model always picks its highest-scoring token:
 
@@ -164,7 +164,7 @@ Qwen3.8's config has `mtp_num_hidden_layers: 1`, so the model ships its own MTP 
 
 To see if it pays off, I benchmarked it on the A100: six Go coding prompts with up to 700 output tokens each, thinking off, first one conversation at a time and then three in parallel. I ran it without speculative decoding and with 2, 3 and 4 drafted tokens. The chart shows sampling at temperature 0.7 and `top_p=0.8`:
 
-=> ./running-my-own-llms/speculative-benchmark.svg Measured decode speed and aggregate throughput with and without MTP
+=> ./running-llms-by-myself/speculative-benchmark.svg Measured decode speed and aggregate throughput with and without MTP
 
 That's a lot more than I expected. Median decode speed for a single conversation went from 48 to 132 tokens per second with 3 drafted tokens, 2.7 times as fast. This excludes the wait for the first token. Three conversations together went from 134 to 286 tokens per second, counting all wall time including that wait. About 86% of the drafted tokens were accepted: roughly 2.6 accepted guesses plus one target-supplied token per verification step. The MTP head did well on these prompts.
 
@@ -205,7 +205,7 @@ Two details:
 
 Loading a model onto the GPU sounds like "copy 29 GiB from disk to VRAM". That part is actually fast. My provisioning timings and vLLM logs give this approximate breakdown:
 
-=> ./running-my-own-llms/startup-timeline.svg Where the startup time goes: fresh VM vs container restart
+=> ./running-llms-by-myself/startup-timeline.svg Where the startup time goes: fresh VM vs container restart
 
 On a fresh VM, `hypr create` took about 10 minutes in total:
 
@@ -227,7 +227,7 @@ That's why switching models ad hoc is painful. `model switch` takes at least 2 m
 
 A dense model uses all of its parameters for every token. A mixture-of-experts (MoE) model is split into many "experts", and a small router picks only a few of them per token. So only a small active set does the work, e.g. 3B active out of 35B total.
 
-=> ./running-my-own-llms/moe-vs-dense.svg Dense vs mixture-of-experts: active parameters versus total weight storage
+=> ./running-llms-by-myself/moe-vs-dense.svg Dense vs mixture-of-experts: active parameters versus total weight storage
 
 Reading fewer weights per token can make small-batch decode faster than on a dense model of the same total size. How much faster depends on the routing, kernels and batching, too. In my fully GPU-resident setup, all experts stay in VRAM because the router can choose different ones for the next token. Offloading experts to CPU memory is possible in other setups, but changes the performance trade-off.
 
@@ -239,7 +239,7 @@ Quantization is how the rest of the list fits. FP8 stores the quantized weights 
 
 The official model card benchmarks Qwen3.8-27B against its predecessor, Qwen's own closed-weight Qwen3.7-Plus, a 30B-class competitor, and the frontier Opus 4.6 Max. Here are selected coding and general-reasoning rows as a chart:
 
-=> ./running-my-own-llms/benchmarks.svg Qwen3.8-27B vs Qwen3.6-27B, Qwen3.7-Plus, Muse Glimmer-30B and Opus 4.6 Max (vendor-reported)
+=> ./running-llms-by-myself/benchmarks.svg Qwen3.8-27B vs Qwen3.6-27B, Qwen3.7-Plus, Muse Glimmer-30B and Opus 4.6 Max (vendor-reported)
 
 It beats its direct predecessor on every row, and the rows that match how I use it are the interesting ones: on SWE-bench Pro (agentic coding) the 27B dense model scores 61.7, ahead of Opus 4.6 Max's 53.4 and Muse Glimmer's 51.2; on terminal coding it runs 73.0 to Qwen3.6's 63.4; on competitive coding (90.3) it even edges Opus (88.8). Those results made it worth trying as a coding partner on one rented A100.
 
@@ -257,7 +257,7 @@ Reasoning models "think" before they answer. They write out their thoughts first
 
 For the inference engine, thinking tokens are completely normal output tokens. They're decoded one by one at decode speed, and they fill the KV cache like everything else. vLLM's reasoning parser (`--reasoning-parser qwen3` in my presets) only splits them from the answer, so pi can show them separately. They are the greyed-out text in the pi screenshots in part 2.
 
-=> ./running-my-own-llms/reasoning.svg Reasoning effort: more effort means more thinking tokens before the answer
+=> ./running-llms-by-myself/reasoning.svg Reasoning effort: more effort means more thinking tokens before the answer
 
 Many models offer reasoning effort levels: off, low, medium, high, and sometimes xhigh. The model was trained to think shorter or longer depending on the level. How the level reaches the model depends on the model and the API:
 
@@ -323,7 +323,7 @@ GPU KV cache usage: 5.0%, Prefix cache hit rate: 81.1%
 
 `ruby hyperstack.rb watch` combines these ten-second log intervals with `nvidia-smi` in a dashboard that refreshes every two seconds:
 
-=> ./running-my-own-llms/watch-dashboard.png The hypr watch dashboard during a decode burst
+=> ./running-llms-by-myself/watch-dashboard.png The hypr watch dashboard during a decode burst
 
 * One conversation generated about 40 tok/s. Two or three together reached about 100–110 tok/s total. That was before I turned on speculative decoding. A separate short-prompt benchmark showed 2.7× single-conversation decode speed and 2.1× aggregate throughput with three conversations.
 * The busiest ten-second prompt window averaged about 3,000 tok/s. That's an interval average, including gaps, not peak prefill speed.
@@ -355,7 +355,7 @@ Speculative decoding made the tokens cheaper in my short-prompt benchmark. Count
 
 Those runs had thinking off and included the wait for the first token, but no tool calls or idle gaps between coding turns. I haven't measured the savings over a full work session yet. The VM still costs $1.35/hour either way.
 
-=> ./running-my-own-llms/cost-per-token.svg Output costs: GPU rental with and without MTP, the earlier work session, and OpenRouter examples
+=> ./running-llms-by-myself/cost-per-token.svg Output costs: GPU rental with and without MTP, the earlier work session, and OpenRouter examples
 
 For an API comparison, OpenRouter lists these prices for Qwen3.8 27B on 30 September 2026, per million tokens:
 
@@ -396,12 +396,12 @@ The provisioner, model presets and pi extensions are all here:
 
 Read the next post of this series:
 
-=> ./2026-10-07-running-my-own-llms-part-2.gmi Running my own LLMs - Part 2: The pi coding agent
+=> ./2026-10-07-running-llms-by-myself-part-2.gmi Running LLMs by myself - Part 2: The pi coding agent
 
 Other related posts:
 
-=> ./2026-10-07-running-my-own-llms-part-2.gmi 2026-10-07 Running my own LLMs - Part 2: The pi coding agent
-=> ./2026-10-06-running-my-own-llms-part-1.gmi 2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM (You are currently reading this)
+=> ./2026-10-07-running-llms-by-myself-part-2.gmi 2026-10-07 Running LLMs by myself - Part 2: The pi coding agent
+=> ./2026-10-06-running-llms-by-myself-part-1.gmi 2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM (You are currently reading this)
 => ./2026-06-01-gt-calculator.gmi 2026-06-01 `gt` calculator - a calculator built with local LLMs
 => ./2025-08-05-local-coding-llm-with-ollama.gmi 2025-08-05 Local LLM for Coding with Ollama on macOS
 

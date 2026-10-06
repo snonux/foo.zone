@@ -1,38 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-10-06T23:36:17+03:00</updated>
+    <updated>2026-10-06T23:39:55+03:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
     <entry>
-        <title>Running my own LLMs - Part 2: The pi coding agent</title>
-        <link href="gemini://foo.zone/gemfeed/2026-10-07-running-my-own-llms-part-2.gmi" />
-        <id>gemini://foo.zone/gemfeed/2026-10-07-running-my-own-llms-part-2.gmi</id>
+        <title>Running LLMs by myself - Part 2: The pi coding agent</title>
+        <link href="gemini://foo.zone/gemfeed/2026-10-07-running-llms-by-myself-part-2.gmi" />
+        <id>gemini://foo.zone/gemfeed/2026-10-07-running-llms-by-myself-part-2.gmi</id>
         <updated>2026-10-07T22:16:10+03:00</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
             <email>paul@dev.buetow.org</email>
         </author>
-        <summary>This is the second blog post about running my own LLMs. The first part was about the model side: renting Hyperstack VMs, vLLM, how the inference works and what it all costs. This part is about the other half, the pi coding agent I actually type into.</summary>
+        <summary>This is the second blog post about running LLMs by myself. The first part was about the model side: renting Hyperstack VMs, vLLM, how the inference works and what it all costs. This part is about the other half, the pi coding agent I actually type into.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='running-my-own-llms---part-2-the-pi-coding-agent'>Running my own LLMs - Part 2: The pi coding agent</h1><br />
+                <h1 style='display: inline' id='running-llms-by-myself---part-2-the-pi-coding-agent'>Running LLMs by myself - Part 2: The pi coding agent</h1><br />
 <br />
 <span class='quote'>Published at 2026-10-07T22:16:10+03:00</span><br />
 <br />
-<span>This is the second blog post about running my own LLMs. The first part was about the model side: renting Hyperstack VMs, vLLM, how the inference works and what it all costs. This part is about the other half, the pi coding agent I actually type into.</span><br />
+<span>This is the second blog post about running LLMs by myself. The first part was about the model side: renting Hyperstack VMs, vLLM, how the inference works and what it all costs. This part is about the other half, the pi coding agent I actually type into.</span><br />
 <br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM</a><br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>2026-10-07 Running my own LLMs - Part 2: The pi coding agent (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent (You are currently reading this)</a><br />
 <br />
-<a href='./running-my-own-llms/logo.svg'><img alt='The hypr logo' title='The hypr logo' src='./running-my-own-llms/logo.svg' /></a><br />
+<a href='./running-llms-by-myself/logo.svg'><img alt='The hypr logo' title='The hypr logo' src='./running-llms-by-myself/logo.svg' /></a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#running-my-own-llms---part-2-the-pi-coding-agent'>Running my own LLMs - Part 2: The pi coding agent</a></li>
+<li><a href='#running-llms-by-myself---part-2-the-pi-coding-agent'>Running LLMs by myself - Part 2: The pi coding agent</a></li>
 <li>⇢ <a href='#llm-vs-harness'>LLM vs harness</a></li>
 <li>⇢ <a href='#how-pi-talks-to-vllm'>How pi talks to vLLM</a></li>
 <li>⇢ <a href='#the-system-prompt-and-harness-overhead'>The system prompt and harness overhead</a></li>
@@ -82,11 +82,11 @@ abbr pi-hyperstack-gemma4 pi --model hyperstack2/cyankiwi/gemma-4-31B-it-AWQ-4bi
 <br />
 <span>Here is what a session looks like in practice. I asked Qwen3.8 on VM1 to add a <span class='inlinecode'>version</span> command to the REPL of <span class='inlinecode'>gt</span>, and then to include the Go runtime version in its output. The screenshot shows the Go diff for the tests, followed by the test run. The footer shows the model and how much of the 262K context the session has used so far:</span><br />
 <br />
-<a href='./running-my-own-llms/pi-go-edit.png'><img alt='pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run' title='pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run' src='./running-my-own-llms/pi-go-edit.png' /></a><br />
+<a href='./running-llms-by-myself/pi-go-edit.png'><img alt='pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run' title='pi with Qwen3.8 27B editing Go code in the gt project, followed by the test run' src='./running-llms-by-myself/pi-go-edit.png' /></a><br />
 <br />
 <span>And one from an earlier session: diff on top, the model&#39;s reasoning in the middle, shell output at the bottom:</span><br />
 <br />
-<a href='./running-my-own-llms/pi-coding-agent.png'><img alt='pi coding agent mid-task: diff, reasoning, and shell in one TUI' title='pi coding agent mid-task: diff, reasoning, and shell in one TUI' src='./running-my-own-llms/pi-coding-agent.png' /></a><br />
+<a href='./running-llms-by-myself/pi-coding-agent.png'><img alt='pi coding agent mid-task: diff, reasoning, and shell in one TUI' title='pi coding agent mid-task: diff, reasoning, and shell in one TUI' src='./running-llms-by-myself/pi-coding-agent.png' /></a><br />
 <br />
 <h2 style='display: inline' id='the-system-prompt-and-harness-overhead'>The system prompt and harness overhead</h2><br />
 <br />
@@ -152,7 +152,7 @@ Current working directory: /home/paul/git/hypr
 <br />
 <span>A malformed call or the wrong tool choice can stop that loop.</span><br />
 <br />
-<a href='./running-my-own-llms/agent-loop.svg'><img alt='One agent turn: the tool-calling loop between pi and vLLM' title='One agent turn: the tool-calling loop between pi and vLLM' src='./running-my-own-llms/agent-loop.svg' /></a><br />
+<a href='./running-llms-by-myself/agent-loop.svg'><img alt='One agent turn: the tool-calling loop between pi and vLLM' title='One agent turn: the tool-calling loop between pi and vLLM' src='./running-llms-by-myself/agent-loop.svg' /></a><br />
 <br />
 <h2 style='display: inline' id='tool-calling-on-the-wire'>Tool calling on the wire</h2><br />
 <br />
@@ -229,7 +229,7 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <li>Level 2 — the full <span class='inlinecode'>SKILL.md</span> enters the conversation when the model reads it or I invoke <span class='inlinecode'>/skill:name</span>.</li>
 <li>Level 3 — files the <span class='inlinecode'>SKILL.md</span> points to, like reference docs or scripts. Only read if the instructions for the task at hand need them.</li>
 </ul><br />
-<a href='./running-my-own-llms/skill-loading.svg'><img alt='Progressive skill loading for automatically available skills' title='Progressive skill loading for automatically available skills' src='./running-my-own-llms/skill-loading.svg' /></a><br />
+<a href='./running-llms-by-myself/skill-loading.svg'><img alt='Progressive skill loading for automatically available skills' title='Progressive skill loading for automatically available skills' src='./running-llms-by-myself/skill-loading.svg' /></a><br />
 <a class='textlink' href='https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md'>Pi skills and explicit invocation</a><br />
 <br />
 <span>Those advertised descriptions cost context on every request, even for skills I never use. Levels 2 and 3 cost nothing until they&#39;re loaded. But once the model has read a <span class='inlinecode'>SKILL.md</span> or a reference file, it&#39;s a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a <span class='inlinecode'>/handoff</span> throws it out. My solid-principles skill is a good example: its <span class='inlinecode'>SKILL.md</span> is ~1.2K tokens, and the one reference file a single-principle check needs (say <span class='inlinecode'>srp.md</span>) is another ~1K. The other four reference files (~5K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~7K tokens, which is almost a quarter of a 32K preset.</span><br />
@@ -310,12 +310,12 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <br />
 <span>Read the previous post of this series:</span><br />
 <br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>Running my own LLMs - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
 <br />
 <span>Other related posts:</span><br />
 <br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>2026-10-07 Running my own LLMs - Part 2: The pi coding agent (You are currently reading this)</a><br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
 <a class='textlink' href='./2026-06-01-gt-calculator.html'>2026-06-01 <span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs</a><br />
 <a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS</a><br />
 <br />
@@ -326,9 +326,9 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
         </content>
     </entry>
     <entry>
-        <title>Running my own LLMs - Part 1: Hyperstack and vLLM</title>
-        <link href="gemini://foo.zone/gemfeed/2026-10-06-running-my-own-llms-part-1.gmi" />
-        <id>gemini://foo.zone/gemfeed/2026-10-06-running-my-own-llms-part-1.gmi</id>
+        <title>Running LLMs by myself - Part 1: Hyperstack and vLLM</title>
+        <link href="gemini://foo.zone/gemfeed/2026-10-06-running-llms-by-myself-part-1.gmi" />
+        <id>gemini://foo.zone/gemfeed/2026-10-06-running-llms-by-myself-part-1.gmi</id>
         <updated>2026-10-06T23:20:00+03:00</updated>
         <author>
             <name>Paul Buetow aka snonux</name>
@@ -337,7 +337,7 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
         <summary>The `gt` calculator was built almost entirely with self-hosted LLMs running on rented Hyperstack VMs, and I ended that post with a promise: 'I will write another blog post at some point about my setup and what I learned from self-hosting models on Hyperstack.' This is that post.</summary>
         <content type="xhtml">
             <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='running-my-own-llms---part-1-hyperstack-and-vllm'>Running my own LLMs - Part 1: Hyperstack and vLLM</h1><br />
+                <h1 style='display: inline' id='running-llms-by-myself---part-1-hyperstack-and-vllm'>Running LLMs by myself - Part 1: Hyperstack and vLLM</h1><br />
 <br />
 <span class='quote'>Published at 2026-10-06T23:20:00+03:00</span><br />
 <br />
@@ -347,15 +347,15 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <br />
 <span>Here&#39;s my setup, what I learned about inference, and the numbers from using it. I still haven&#39;t bought the hardware. This is the first of two parts. The second one is about the pi coding agent, the harness I use with these models.</span><br />
 <br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM (You are currently reading this)</a><br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>2026-10-07 Running my own LLMs - Part 2: The pi coding agent</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent</a><br />
 <br />
-<a href='./running-my-own-llms/logo.svg'><img alt='The hypr logo' title='The hypr logo' src='./running-my-own-llms/logo.svg' /></a><br />
+<a href='./running-llms-by-myself/logo.svg'><img alt='The hypr logo' title='The hypr logo' src='./running-llms-by-myself/logo.svg' /></a><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#running-my-own-llms---part-1-hyperstack-and-vllm'>Running my own LLMs - Part 1: Hyperstack and vLLM</a></li>
+<li><a href='#running-llms-by-myself---part-1-hyperstack-and-vllm'>Running LLMs by myself - Part 1: Hyperstack and vLLM</a></li>
 <li>⇢ <a href='#why-rent-instead-of-buy'>Why rent instead of buy</a></li>
 <li>⇢ <a href='#the-setup-at-a-glance'>The setup at a glance</a></li>
 <li>⇢ <a href='#what-decides-if-this-works'>What decides if this works</a></li>
@@ -389,7 +389,7 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <br />
 <span>Everything starts on my laptop. <span class='inlinecode'>ruby hyperstack.rb --vm 1 create</span> (or <span class='inlinecode'>--vm both</span> for two VMs in parallel) provisions a Hyperstack VM (Ubuntu 24.04 with CUDA and Docker preinstalled, one A100 80 GB PCIe GPU), sets up a WireGuard tunnel to it, and starts the model in a vLLM Docker container. About ten minutes later the model is serving on an OpenAI-compatible API, reachable over the tunnel.</span><br />
 <br />
-<a href='./running-my-own-llms/architecture.svg'><img alt='The setup: pi on the laptop, vLLM on two Hyperstack VMs, WireGuard in between' title='The setup: pi on the laptop, vLLM on two Hyperstack VMs, WireGuard in between' src='./running-my-own-llms/architecture.svg' /></a><br />
+<a href='./running-llms-by-myself/architecture.svg'><img alt='The setup: pi on the laptop, vLLM on two Hyperstack VMs, WireGuard in between' title='The setup: pi on the laptop, vLLM on two Hyperstack VMs, WireGuard in between' src='./running-llms-by-myself/architecture.svg' /></a><br />
 <br />
 <span>The WireGuard tunnel is the interesting bit. A single <span class='inlinecode'>wg1</span> interface on my laptop (Fedora Linux, by the way!) routes traffic to both VMs. The firewall on the Hyperstack VMs only lets in SSH and the WireGuard port, so the vLLM port (11434) is only reachable through the tunnel. There&#39;s no other authentication: no proxy, no load balancer, no API keys. The API isn&#39;t exposed to the internet at all, and the tunnel is the security boundary.</span><br />
 <br />
@@ -431,7 +431,7 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <br />
 <span>CUDA is NVIDIA&#39;s software platform for running calculations on its GPUs. In my setup, the CPU runs vLLM&#39;s request handling and decides which work to send to the GPU. Through CUDA, it launches small GPU programs called kernels. The GPU does the model&#39;s heavy maths, using the weights and cached context in its own memory. The Hyperstack VMs I&#39;m renting use CUDA.</span><br />
 <br />
-<a href='./running-my-own-llms/cuda.svg'><img alt='CPU organises the work, CUDA launches it, GPU does the maths' title='CPU organises the work, CUDA launches it, GPU does the maths' src='./running-my-own-llms/cuda.svg' /></a><br />
+<a href='./running-llms-by-myself/cuda.svg'><img alt='CPU organises the work, CUDA launches it, GPU does the maths' title='CPU organises the work, CUDA launches it, GPU does the maths' src='./running-llms-by-myself/cuda.svg' /></a><br />
 <br />
 <span>I don&#39;t need to write CUDA code for this. vLLM and its libraries take care of it. The NVIDIA Container Toolkit lets the Docker container use the host&#39;s GPU and driver with <span class='inlinecode'>--gpus all</span>.</span><br />
 <br />
@@ -445,7 +445,7 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <li>Prefill — the model processes the prompt, doing work on many tokens together. Long prompts can be split into chunks. This phase makes good use of the GPU&#39;s parallel computing power.</li>
 <li>Decode — generating the answer, normally one token at a time. Every new token depends on the previous ones. For a few concurrent conversations, reading the model weights and cached context can be the bottleneck. This is the phase you watch while the agent "types".</li>
 </ul><br />
-<a href='./running-my-own-llms/prefill-decode.svg'><img alt='One request: prefill, then decode' title='One request: prefill, then decode' src='./running-my-own-llms/prefill-decode.svg' /></a><br />
+<a href='./running-llms-by-myself/prefill-decode.svg'><img alt='One request: prefill, then decode' title='One request: prefill, then decode' src='./running-llms-by-myself/prefill-decode.svg' /></a><br />
 <br />
 <span>The two phases show up as very different numbers. Prefill can process thousands of tokens per second; ordinary decode in my setup produces tens per conversation. During prefill, many tokens share the work of reading weights from GPU memory. During decode, that cost returns at each step. Batching conversations and speculative decoding (below) can get more tokens out of each pass. Prefill and any queueing affect the wait for the first token; decode affects how quickly the answer arrives after that.</span><br />
 <br />
@@ -467,7 +467,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <span>At startup, vLLM loads the weights, then budgets runtime memory and a pool of cache blocks within the allowed VRAM. That is why <span class='inlinecode'>nvidia-smi</span> (a CLI for NVIDIA cards) shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.</span><br />
 <br />
-<a href='./running-my-own-llms/vram-budget.svg'><img alt='How three presets split the A100&#39;s 80 GB between weights and KV cache' title='How three presets split the A100&#39;s 80 GB between weights and KV cache' src='./running-my-own-llms/vram-budget.svg' /></a><br />
+<a href='./running-llms-by-myself/vram-budget.svg'><img alt='How three presets split the A100&#39;s 80 GB between weights and KV cache' title='How three presets split the A100&#39;s 80 GB between weights and KV cache' src='./running-llms-by-myself/vram-budget.svg' /></a><br />
 <br />
 <h3 style='display: inline' id='prefix-caching-the-big-one-for-agentic-coding'>Prefix caching: the big one for agentic coding</h3><br />
 <br />
@@ -475,7 +475,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <span>For a coding agent this is important. Every turn of a coding agent session resends the system prompt plus the entire conversation. Without prefix caching, that whole context is re-prefilled on every single turn. With it, most of the prompt arrives already computed. My current sessions sit at an 80–97% hit rate (numbers below).</span><br />
 <br />
-<a href='./running-my-own-llms/prefix-cache.svg'><img alt='Prefix caching over four agent turns' title='Prefix caching over four agent turns' src='./running-my-own-llms/prefix-cache.svg' /></a><br />
+<a href='./running-llms-by-myself/prefix-cache.svg'><img alt='Prefix caching over four agent turns' title='Prefix caching over four agent turns' src='./running-llms-by-myself/prefix-cache.svg' /></a><br />
 <br />
 <span>vLLM&#39;s cache can retain prefixes from several conversations. Ollama has prefix reuse too.</span><br />
 <br />
@@ -489,7 +489,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <span>There&#39;s one more decode trick, and it turned out to be the biggest speedup in this whole setup: speculative decoding. The idea is to guess the next few tokens cheaply and let the big model check all the guesses in one go.</span><br />
 <br />
-<a href='./running-my-own-llms/speculative.svg'><img alt='Speculative decoding: a cheap guess of 4 tokens, verified by the big model in one pass' title='Speculative decoding: a cheap guess of 4 tokens, verified by the big model in one pass' src='./running-my-own-llms/speculative.svg' /></a><br />
+<a href='./running-llms-by-myself/speculative.svg'><img alt='Speculative decoding: a cheap guess of 4 tokens, verified by the big model in one pass' title='Speculative decoding: a cheap guess of 4 tokens, verified by the big model in one pass' src='./running-llms-by-myself/speculative.svg' /></a><br />
 <br />
 <span>Here&#39;s a simplified example using greedy decoding, where the model always picks its highest-scoring token:</span><br />
 <br />
@@ -508,7 +508,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <span>To see if it pays off, I benchmarked it on the A100: six Go coding prompts with up to 700 output tokens each, thinking off, first one conversation at a time and then three in parallel. I ran it without speculative decoding and with 2, 3 and 4 drafted tokens. The chart shows sampling at temperature 0.7 and <span class='inlinecode'>top_p=0.8</span>:</span><br />
 <br />
-<a href='./running-my-own-llms/speculative-benchmark.svg'><img alt='Measured decode speed and aggregate throughput with and without MTP' title='Measured decode speed and aggregate throughput with and without MTP' src='./running-my-own-llms/speculative-benchmark.svg' /></a><br />
+<a href='./running-llms-by-myself/speculative-benchmark.svg'><img alt='Measured decode speed and aggregate throughput with and without MTP' title='Measured decode speed and aggregate throughput with and without MTP' src='./running-llms-by-myself/speculative-benchmark.svg' /></a><br />
 <br />
 <span>That&#39;s a lot more than I expected. Median decode speed for a single conversation went from 48 to 132 tokens per second with 3 drafted tokens, 2.7 times as fast. This excludes the wait for the first token. Three conversations together went from 134 to 286 tokens per second, counting all wall time including that wait. About 86% of the drafted tokens were accepted: roughly 2.6 accepted guesses plus one target-supplied token per verification step. The MTP head did well on these prompts.</span><br />
 <br />
@@ -551,7 +551,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <span>Loading a model onto the GPU sounds like "copy 29 GiB from disk to VRAM". That part is actually fast. My provisioning timings and vLLM logs give this approximate breakdown:</span><br />
 <br />
-<a href='./running-my-own-llms/startup-timeline.svg'><img alt='Where the startup time goes: fresh VM vs container restart' title='Where the startup time goes: fresh VM vs container restart' src='./running-my-own-llms/startup-timeline.svg' /></a><br />
+<a href='./running-llms-by-myself/startup-timeline.svg'><img alt='Where the startup time goes: fresh VM vs container restart' title='Where the startup time goes: fresh VM vs container restart' src='./running-llms-by-myself/startup-timeline.svg' /></a><br />
 <br />
 <span>On a fresh VM, <span class='inlinecode'>hypr create</span> took about 10 minutes in total:</span><br />
 <br />
@@ -574,7 +574,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <span>A dense model uses all of its parameters for every token. A mixture-of-experts (MoE) model is split into many "experts", and a small router picks only a few of them per token. So only a small active set does the work, e.g. 3B active out of 35B total.</span><br />
 <br />
-<a href='./running-my-own-llms/moe-vs-dense.svg'><img alt='Dense vs mixture-of-experts: active parameters versus total weight storage' title='Dense vs mixture-of-experts: active parameters versus total weight storage' src='./running-my-own-llms/moe-vs-dense.svg' /></a><br />
+<a href='./running-llms-by-myself/moe-vs-dense.svg'><img alt='Dense vs mixture-of-experts: active parameters versus total weight storage' title='Dense vs mixture-of-experts: active parameters versus total weight storage' src='./running-llms-by-myself/moe-vs-dense.svg' /></a><br />
 <br />
 <span>Reading fewer weights per token can make small-batch decode faster than on a dense model of the same total size. How much faster depends on the routing, kernels and batching, too. In my fully GPU-resident setup, all experts stay in VRAM because the router can choose different ones for the next token. Offloading experts to CPU memory is possible in other setups, but changes the performance trade-off.</span><br />
 <br />
@@ -586,7 +586,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <span>The official model card benchmarks Qwen3.8-27B against its predecessor, Qwen&#39;s own closed-weight Qwen3.7-Plus, a 30B-class competitor, and the frontier Opus 4.6 Max. Here are selected coding and general-reasoning rows as a chart:</span><br />
 <br />
-<a href='./running-my-own-llms/benchmarks.svg'><img alt='Qwen3.8-27B vs Qwen3.6-27B, Qwen3.7-Plus, Muse Glimmer-30B and Opus 4.6 Max (vendor-reported)' title='Qwen3.8-27B vs Qwen3.6-27B, Qwen3.7-Plus, Muse Glimmer-30B and Opus 4.6 Max (vendor-reported)' src='./running-my-own-llms/benchmarks.svg' /></a><br />
+<a href='./running-llms-by-myself/benchmarks.svg'><img alt='Qwen3.8-27B vs Qwen3.6-27B, Qwen3.7-Plus, Muse Glimmer-30B and Opus 4.6 Max (vendor-reported)' title='Qwen3.8-27B vs Qwen3.6-27B, Qwen3.7-Plus, Muse Glimmer-30B and Opus 4.6 Max (vendor-reported)' src='./running-llms-by-myself/benchmarks.svg' /></a><br />
 <br />
 <span>It beats its direct predecessor on every row, and the rows that match how I use it are the interesting ones: on SWE-bench Pro (agentic coding) the 27B dense model scores 61.7, ahead of Opus 4.6 Max&#39;s 53.4 and Muse Glimmer&#39;s 51.2; on terminal coding it runs 73.0 to Qwen3.6&#39;s 63.4; on competitive coding (90.3) it even edges Opus (88.8). Those results made it worth trying as a coding partner on one rented A100.</span><br />
 <br />
@@ -604,7 +604,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 <br />
 <span>For the inference engine, thinking tokens are completely normal output tokens. They&#39;re decoded one by one at decode speed, and they fill the KV cache like everything else. vLLM&#39;s reasoning parser (<span class='inlinecode'>--reasoning-parser qwen3</span> in my presets) only splits them from the answer, so pi can show them separately. They are the greyed-out text in the pi screenshots in part 2.</span><br />
 <br />
-<a href='./running-my-own-llms/reasoning.svg'><img alt='Reasoning effort: more effort means more thinking tokens before the answer' title='Reasoning effort: more effort means more thinking tokens before the answer' src='./running-my-own-llms/reasoning.svg' /></a><br />
+<a href='./running-llms-by-myself/reasoning.svg'><img alt='Reasoning effort: more effort means more thinking tokens before the answer' title='Reasoning effort: more effort means more thinking tokens before the answer' src='./running-llms-by-myself/reasoning.svg' /></a><br />
 <br />
 <span>Many models offer reasoning effort levels: off, low, medium, high, and sometimes xhigh. The model was trained to think shorter or longer depending on the level. How the level reaches the model depends on the model and the API:</span><br />
 <br />
@@ -672,7 +672,7 @@ GPU KV cache usage: 5.0%, Prefix cache hit rate: 81.1%
 <br />
 <span><span class='inlinecode'>ruby hyperstack.rb watch</span> combines these ten-second log intervals with <span class='inlinecode'>nvidia-smi</span> in a dashboard that refreshes every two seconds:</span><br />
 <br />
-<a href='./running-my-own-llms/watch-dashboard.png'><img alt='The hypr watch dashboard during a decode burst' title='The hypr watch dashboard during a decode burst' src='./running-my-own-llms/watch-dashboard.png' /></a><br />
+<a href='./running-llms-by-myself/watch-dashboard.png'><img alt='The hypr watch dashboard during a decode burst' title='The hypr watch dashboard during a decode burst' src='./running-llms-by-myself/watch-dashboard.png' /></a><br />
 <br />
 <ul>
 <li>One conversation generated about 40 tok/s. Two or three together reached about 100–110 tok/s total. That was before I turned on speculative decoding. A separate short-prompt benchmark showed 2.7× single-conversation decode speed and 2.1× aggregate throughput with three conversations.</li>
@@ -706,7 +706,7 @@ GPU KV cache usage: 5.0%, Prefix cache hit rate: 81.1%
 </ul><br />
 <span>Those runs had thinking off and included the wait for the first token, but no tool calls or idle gaps between coding turns. I haven&#39;t measured the savings over a full work session yet. The VM still costs $1.35/hour either way.</span><br />
 <br />
-<a href='./running-my-own-llms/cost-per-token.svg'><img alt='Output costs: GPU rental with and without MTP, the earlier work session, and OpenRouter examples' title='Output costs: GPU rental with and without MTP, the earlier work session, and OpenRouter examples' src='./running-my-own-llms/cost-per-token.svg' /></a><br />
+<a href='./running-llms-by-myself/cost-per-token.svg'><img alt='Output costs: GPU rental with and without MTP, the earlier work session, and OpenRouter examples' title='Output costs: GPU rental with and without MTP, the earlier work session, and OpenRouter examples' src='./running-llms-by-myself/cost-per-token.svg' /></a><br />
 <br />
 <span>For an API comparison, OpenRouter lists these prices for Qwen3.8 27B on 30 September 2026, per million tokens:</span><br />
 <br />
@@ -749,12 +749,12 @@ GPU KV cache usage: 5.0%, Prefix cache hit rate: 81.1%
 <br />
 <span>Read the next post of this series:</span><br />
 <br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>Running my own LLMs - Part 2: The pi coding agent</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>Running LLMs by myself - Part 2: The pi coding agent</a><br />
 <br />
 <span>Other related posts:</span><br />
 <br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>2026-10-07 Running my own LLMs - Part 2: The pi coding agent</a><br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM (You are currently reading this)</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM (You are currently reading this)</a><br />
 <a class='textlink' href='./2026-06-01-gt-calculator.html'>2026-06-01 <span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs</a><br />
 <a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS</a><br />
 <br />
@@ -3698,8 +3698,8 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts:</span><br />
 <br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>2026-10-07 Running my own LLMs - Part 2: The pi coding agent</a><br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
 <a class='textlink' href='./2026-06-01-gt-calculator.html'>2026-06-01 <span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS</a><br />
 <br />
@@ -7409,8 +7409,8 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>2026-10-07 Running my own LLMs - Part 2: The pi coding agent</a><br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
 <a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 A tmux popup editor for Cursor Agent CLI prompts (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS</a><br />
 <a class='textlink' href='./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.html'>2025-05-02 Terminal multiplexing with <span class='inlinecode'>tmux</span> - Fish edition</a><br />
@@ -14904,8 +14904,8 @@ content = "{CODE}"
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>2026-10-07 Running my own LLMs - Part 2: The pi coding agent</a><br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
 <a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS (You are currently reading this)</a><br />
 <a class='textlink' href='./2025-06-22-task-samurai.html'>2025-06-22 Task Samurai: An agentic coding learning experiment</a><br />
 <br />
@@ -17973,8 +17973,8 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Other related posts are:</span><br />
 <br />
-<a class='textlink' href='./2026-10-07-running-my-own-llms-part-2.html'>2026-10-07 Running my own LLMs - Part 2: The pi coding agent</a><br />
-<a class='textlink' href='./2026-10-06-running-my-own-llms-part-1.html'>2026-10-06 Running my own LLMs - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
 <a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS</a><br />
 <a class='textlink' href='./2025-06-22-task-samurai.html'>2025-06-22 Task Samurai: An agentic coding learning experiment (You are currently reading this)</a><br />
 <br />
