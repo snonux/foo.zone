@@ -87,11 +87,19 @@ I wanted to understand where the time and memory go. This is what I learned.
 
 ### CUDA: how vLLM uses the GPU
 
-CUDA is NVIDIA's software platform for running calculations on its GPUs. In my setup, the CPU runs vLLM's request handling and decides which work to send to the GPU. Through CUDA, it launches small GPU programs called kernels. The GPU does the model's heavy maths, using the weights and cached context in its own memory. The Hyperstack VMs I'm renting use CUDA.
+Running an LLM is mostly one kind of work: huge numbers of multiplications and additions on the model's weights. A CPU does these a few at a time. A GPU does thousands of them at once, which is why the model lives there.
+
+CUDA is NVIDIA's toolkit for making a GPU do that work. The division of labour in my setup is simple:
+
+* The CPU runs vLLM itself. It accepts requests, groups them into batches and decides what to compute next.
+* CUDA is the messenger. Through it, vLLM hands the GPU small programs called kernels (nothing to do with the Linux kernel). Each one does a single job, like multiplying two matrices.
+* The GPU runs those kernels on the weights and the cached context, which both sit in its own memory (the VRAM).
 
 => ./running-llms-by-myself/cuda.svg CPU organises the work, CUDA launches it, GPU does the maths
 
-I don't need to write CUDA code for this. vLLM and its libraries take care of it. The NVIDIA Container Toolkit lets the Docker container use the host's GPU and driver with `--gpus all`.
+I don't write any CUDA code for this. vLLM and the libraries under it (PyTorch, mostly) bring the kernels along. The only CUDA-related thing I touch is one Docker flag: `--gpus all` lets the vLLM container use the VM's GPU and its NVIDIA driver.
+
+The word kernel comes back later: when vLLM starts, it compiles kernels for this particular GPU, and that is one reason a model takes minutes to load.
 
 ### What vLLM is
 
