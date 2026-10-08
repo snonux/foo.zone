@@ -1,6 +1,6 @@
 # Getting off Codeberg
 
-> Published at 2026-10-04T14:01:34+03:00
+> Published at 2026-10-04T14:01:34+03:00, last updated Thu 08 Oct 10:40:05 EEST 2026
 
 Codeberg voted to restrict LLM-heavy projects on the forge. I was a supporting member. I had been somehow proud of that — supporting Codeberg, being on their platform, and what they stood for. Part of it was the mission. Part of it, if I am honest, was also that I like(d) being a bit different than the masses, not just parking everything on GitHub with everyone else. Is that still valuable? I think so, yes.
 
@@ -41,11 +41,14 @@ Me, being german (but being an expat for over a decate now not living in Germany
 
 ## Still coding by hand?
 
+> Updated Thu 08 Oct: Added government regulations and other high security requirements as one more reason to code by hand here.
+
 Is there still a place for coding by hand? Sure. A few, even:
 
 * To keep you sharp. I still do this occasionally for that reason alone.
 * For fun. For the flow state. Sometimes you just want to sit with the editor and write the thing yourself with headphones on.
 * LeetCoding. Same sharpness argument, and it still helps with interviews.
+* Sometimes it is not even your call. Government regulations or other high security requirements keep some code away from LLMs — critical infrastructure, defense, you name it.
 
 But if you really want to get stuff done, all projects should be using LLMs now. I am not talking about vibe-coding everything — though vibe coding also has its place. I mean using models as part of the normal loop: design, write, review, refactor, ship. Pretending that is optional already feels like pretending compilers are optional.
 
