@@ -2,7 +2,7 @@
 
 > Published at 2025-08-04T16:43:39+03:00, last updated Sat 03 Oct 18:26:24 EEST 2026
 
-> Updated Sat 03 Oct: This post is obsolete. I still use Ollama to run models, but for local agentic coding I moved to the pi coding agent. Point it at Ollama (or another model server) and a newer Qwen. Qwen3.8 27B is very good when your VRAM or unified memory can hold it; otherwise pick a smaller Qwen that fits.
+> Updated Sat 03 Oct 2026: This post is obsolete. I still use Ollama to run models, but for local agentic coding I moved to the pi coding agent. Point it at Ollama (or another model server) and a newer Qwen. Qwen3.8 27B is very good when your VRAM or unified memory can hold it; otherwise pick a smaller Qwen that fits.
 
 => https://pi.dev Pi coding agent
 
