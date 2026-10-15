@@ -8,7 +8,10 @@ Hexai is an AI add-on for Helix. It speaks LSP, so it also works with other edit
 
 Hexai has been an undercover pet project of mine since around mid-last year. As I write this it is at version `0.42.1`, so it has been quietly growing for a good while before this first proper write-up.
 
+> Update 2026-10-15: I've added a few animations from the Hexai guide below. They run the real tools, with canned LLM replies from a local fixture. The `demo-fast` model name in the recordings is just for the demos.
+
 [Hexai source code](https://github.com/snonux/hexai)  
+[Hexai guide with more examples and animations](https://github.com/snonux/hexai/blob/main/docs/guide/index.md)  
 [Helix editor](https://helix-editor.com)  
 
 [![Hexai logo](./unveiling-hexai/01-logo.png "Hexai logo")](./unveiling-hexai/01-logo.png)  
@@ -111,6 +114,8 @@ You can add `hexai` after `gopls` or any other LSP. It does not replace them; it
 
 Once the LSP is wired in, Hexai also offers inline auto-completions as you type. By default it fires after a short idle debounce (`completion_debounce_ms`, 800 ms) when you hit one of the trigger characters (`.` `:` `/` `_` space), and it waits for every configured backend before showing results (`completion_wait_all`). All of it is tunable in `config.toml`, and you can turn completions off for a session without restarting — see the slash commands below.
 
+[![Requesting and accepting a code completion in Helix](./unveiling-hexai/05-helix.gif "Requesting and accepting a code completion in Helix")](./unveiling-hexai/05-helix.gif)  
+
 For the popup action runner, bind a key in `~/.config/helix/config.toml`:
 
 ```toml
@@ -174,6 +179,8 @@ And how do I append to one?
 > when capacity is exhausted, returning a new slice.
 ```
 
+[![Asking follow-up questions, disabling completions, and applying an inline edit in Helix](./unveiling-hexai/06-chat-inline.gif "Asking follow-up questions, disabling completions, and applying an inline edit in Helix")](./unveiling-hexai/06-chat-inline.gif)  
+
 ## Code actions via the tmux popup
 
 `hexai-tmux-action` is my favorite part. Inside a tmux session, select code in Helix and press the bound key. A tmux popup opens with this menu:
@@ -224,6 +231,8 @@ Custom actions reference entries under `[[prompts.code_action.custom]]` in the s
 
 [![The hexai-tmux-action popup menu inside tmux](./unveiling-hexai/06-tmux-popup.jpg "The hexai-tmux-action popup menu inside tmux")](./unveiling-hexai/06-tmux-popup.jpg)  
 
+[![Proofreading text and documenting a function through tmux popups](./unveiling-hexai/07-actions.gif "Proofreading text and documenting a function through tmux popups")](./unveiling-hexai/07-actions.gif)  
+
 Optional but useful: have tmux show live Hexai stats (provider, model, rpm, bytes) in the status line. Add this to `~/.config/tmux/tmux.conf` (or `~/.tmux.conf`):
 
 ```
@@ -264,6 +273,8 @@ sudo dnf install ripgrep
 ```
 
 The provider label and the run summary (timing, token counts, rpm) go to stderr, so `stdout` stays clean for pipes — `hexai 'install ripgrep on fedora' | sh` just works.
+
+[![Piping code into Hexai, saving an answer, and simulating streaming without an API call](./unveiling-hexai/03-cli.gif "Piping code into Hexai, saving an answer, and simulating streaming without an API call")](./unveiling-hexai/03-cli.gif)  
 
 ## Managing agent tasks with ask
 
@@ -325,6 +336,8 @@ Priority:    H
 Urgency:     7.8
 Tags:        agent
 ```
+
+[![Creating, starting, inspecting, and completing a task, then trying Fish completion](./unveiling-hexai/10-tasks.gif "Creating, starting, inspecting, and completing a task, then trying Fish completion")](./unveiling-hexai/10-tasks.gif)  
 
 This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of `ask`: the `agent-task-management` skill knows how to read and update the `ask` task list, and the `/work-on-tasks` command uses that skill to work through a whole backlog on its own — pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run `/work-on-tasks`, and it chews through the queue one task at a time.
 
