@@ -32,6 +32,7 @@ Stuff I'm planning to get to next:
 => ../ My blog here at foo.zone
 => https://irregular.ninja irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)
 => https://snonux.foo snonux.foo - My microblog (may be sometimes offline since it runs on my home LAN on Raspberry Pi's)
+=> https://gunrunners.snonux.foo Gunrunners - My Shoot-Em-Up game mainly created with Opus 5.5
 
 ## Show me the code
 
