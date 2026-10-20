@@ -1,6 +1,6 @@
 # One month of Claude Max with Opus 5.5 later
 
-I value engineering. I like good quality code, I like reading code, and I like knowing why something works the way it does. So it feels a bit odd to write this post: over one month of Claude Max with Opus 5.5 I semi-vibe-coded, and partly fully vibe-coded, nine Android apps, a few Linux and server counterparts, a personal F-Droid repository to ship them all, and a whole video game. It showed me that the way software gets made has changed. For personal apps like these, it's absolutely worth it.
+I value engineering. I like good quality code, I like reading code, and I like knowing why something works the way it does. So it feels a bit odd to write this post: over one month of Claude Max with Opus 5.5 I mainly vibe coded nine Android apps, a few Linux and server counterparts, a personal F-Droid repository to ship them all, and a whole video game. It showed me that the way software gets made has changed. For personal apps like these, it's absolutely worth it.
 
 This post tells the story of that month: the F-Droid repository, every app in it, the servers behind them, and why I cancelled the subscription at the end.
 
@@ -29,7 +29,7 @@ This post tells the story of that month: the F-Droid repository, every app in it
 
 ## Vibe coding, but with QA
 
-All the Android apps in this post were vibe coded. I didn't write the Dart, Kotlin or C++ by hand. But that doesn't mean nobody looked at them. Every app has an automated test suite, every change went through a lot of QA, and I used each app on my own phones, rated what felt wrong and had it refined. Again and again. The tests caught the regressions; my thumbs caught everything else.
+All the Android apps in this post were mainly vibe coded. I wrote hardly any of the Dart, Kotlin or C++ by hand. But that doesn't mean nobody looked at them. Every app has an automated test suite, every change went through a lot of QA, and I used each app on my own phones, rated what felt wrong and had it refined. Again and again. The tests caught the regressions; my thumbs caught everything else.
 
 Honestly, I don't like the term "vibe coding" any more. It sounds like a party trick, and this is simply becoming the normal way to produce software. Saying you shouldn't use LLMs to write software is like saying you mustn't use a compiler to generate machine code. It's just another tool and a new level of abstraction. There are still cases today where you need to understand machine code at a low level, but the majority of programmers never have to. I think the same is now true one level up.
 
