@@ -177,6 +177,10 @@ It's written in C++ with SDL2 and Cairo, about 240,000 lines of it, and git log 
 => https://gunrunners.snonux.foo/play/ Play Gunrunners in your browser
 => https://github.com/snonux/gunrunners Gunrunners on GitHub
 
+A word of warning, though: I didn't have the time yet to play through all the levels myself. That's even though I spent a lot of tokens on quality. An agent played through every single level, and a bunch of scripts and tests check the rest, e.g. that every level can actually be walked from start to exit. Still, there will be bugs. If you find one, please report it:
+
+=> https://github.com/snonux/gunrunners/issues Report a Gunrunners bug on GitHub
+
 ## Why I cancelled the subscription
 
 After that month I cancelled my Claude subscription, for now. Not because I was disappointed. I simply ran out of ideas for what to use the tokens for. All the apps I wanted are on my phones now, and they get updates through F-Droid like everything else.
