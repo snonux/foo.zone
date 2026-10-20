@@ -55,9 +55,7 @@ Quicklog is the oldest one. It began as Quicklogger, a Go/Fyne app I blogged abo
 
 It's tiny on purpose, but the details are done right. If S3 fails, the note gets written locally on the spot, so it's never lost. You can share text from any app into Quicklog, browse, edit and delete old entries, and export all settings into one JSON file. The same code runs as a Linux desktop app, which is handy on Fedora.
 
-=> ./one-month-of-claude-max/quicklog-editor.png Quicklog: type and log
-=> ./one-month-of-claude-max/quicklog-entries.png Quicklog: the list of previous entries
-=> ./one-month-of-claude-max/quicklog-fedora.png Quicklog running as a Linux desktop app on Fedora
+=> ./one-month-of-claude-max/quicklog.jpg Quicklog: logging a note, the list of previous entries, and the Linux desktop app on Fedora
 
 => https://github.com/snonux/quicklog Quicklog on GitHub
 => ./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.gmi A fine Fyne Android app for quickly logging ideas programmed in Go
@@ -68,9 +66,7 @@ Quicklog jots down new notes, TurboNotes edits the ones I already have. You poin
 
 TurboNotes has replaced Markor on my phones. It also has a home-screen widget for quick capture, autosave that never silently overwrites a note changed on disk, and optional S3 sync that merges independent edits and keeps conflict copies. On the Linux desktop build there are vi keys, with real modal editing in the editor. And it can open text files from File Browser (more on that below) and save them back to the server.
 
-=> ./one-month-of-claude-max/turbonotes-tree.png TurboNotes: the file tree with pinned notes, recent notes and tags
-=> ./one-month-of-claude-max/turbonotes-wysiwyg.png TurboNotes: a note in the WYSIWYG editor
-=> ./one-month-of-claude-max/turbonotes-linux-vi.png TurboNotes on the Linux desktop, in vi visual mode
+=> ./one-month-of-claude-max/turbonotes.jpg TurboNotes: the file tree with pins and tags, a note in the WYSIWYG editor, and the Linux desktop build in vi visual mode
 
 => https://github.com/snonux/turbonotes TurboNotes on GitHub
 => https://github.com/gsantner/markor Markor
@@ -83,10 +79,7 @@ Player is my self-hosted media server. The Go server with SQLite and a vanilla J
 
 The Android app plays from the server and also from local files on the phone. Player has replaced Jellyfin, Navidrome and Audiobookshelf for my personal use. Three services with three apps went down to one I fully understand and can change whenever I want. The server runs in a container in my k3s cluster.
 
-=> ./one-month-of-claude-max/player-web-library.png Player: the web UI with its sets
-=> ./one-month-of-claude-max/player-web-audio.png Player: an audiobook chapter playing in the web UI
-=> ./one-month-of-claude-max/player-android-library.png Player on Android: recent media on the device
-=> ./one-month-of-claude-max/player-android-audio.png Player on Android: the audio player
+=> ./one-month-of-claude-max/player.jpg Player: the web UI with its sets and an audiobook playing (top), the Android app with its local library and audio player (bottom)
 
 => https://github.com/snonux/player Player on GitHub
 
@@ -96,9 +89,7 @@ File Browser is a create-your-own-cloud web UI: point it at a directory on a ser
 
 And as a bonus, the fork now has a native Android client. It talks to the server's existing REST API, so it works with an unmodified File Browser server too. It browses, previews images, PDFs, video and audio, edits text files, does resumable uploads, manages files, searches, creates share links and signs in with a fingerprint. Text files can also be opened in TurboNotes and saved back to the server.
 
-=> ./one-month-of-claude-max/filebrowser-web.png File Browser: the web interface
-=> ./one-month-of-claude-max/filebrowser-android.png File Browser on Android: browsing the server
-=> ./one-month-of-claude-max/filebrowser-android-settings.png File Browser on Android: settings in the dark theme
+=> ./one-month-of-claude-max/filebrowser.jpg File Browser: the web interface, and the Android app browsing the server and showing its dark theme settings
 
 => https://github.com/snonux/filebrowser My File Browser fork on GitHub
 => https://hacdias.com/2026/07/28/filebrowser/ Goodbye File Browser, for Real This Time (the upstream archive)
@@ -109,8 +100,7 @@ ComicRedr is a comic reader for a Linux laptop and an Android phone or tablet. I
 
 It reads CBZ, CBT, comic EPUB, PDF and folders of images, has a library with covers, series, collections and bookmarks, and is keyboard-first with a vi layer on Linux. It picks up where you left off, on the same page, panel and zoom, and carries that to the phone through my own S3 bucket.
 
-=> ./one-month-of-claude-max/comicredr-library.jpg ComicRedr on Linux: the library
-=> ./one-month-of-claude-max/comicredr-guided.jpg ComicRedr: guided view on panel 2 of 6, the rest of the page dimmed
+=> ./one-month-of-claude-max/comicredr.jpg ComicRedr: the library on Linux, and guided view on panel 2 of 6 with the rest of the page dimmed
 
 => https://github.com/snonux/comicredr ComicRedr on GitHub
 
@@ -122,8 +112,7 @@ TurboLaunch is a small, search-first home screen for Android, made for GrapheneO
 
 The home grid sorts itself by how often I launch things in the last 30 days, with the most-launched app at the bottom right, nearest the thumb. The launch counts add up across all my phones through S3, so the same apps get the same cells everywhere. There's also a quick launch bar, gestures, app pairs for split screen, work profile support and a stats screen.
 
-=> ./one-month-of-claude-max/turbolaunch-home.png TurboLaunch: the home screen
-=> ./one-month-of-claude-max/turbolaunch-search.png TurboLaunch: type a few letters and press Enter
+=> ./one-month-of-claude-max/turbolaunch.jpg TurboLaunch: the home screen, and typing a few letters to launch an app
 
 => https://github.com/snonux/turbolaunch TurboLaunch on GitHub
 => ./2023-01-23-why-grapheneos-rox.gmi Why GrapheneOS rox
@@ -134,8 +123,7 @@ TurboMon is the SRE in me on a phone: a `top`-style system monitor for Android. 
 
 The fun part is the snapshot. When something drains the battery, I take a snapshot and get a Markdown report that I can hand straight to an LLM to find the cause. TurboMon itself has no internet permission, so nothing leaves the phone unless I share it.
 
-=> ./one-month-of-claude-max/turbomon-system.png TurboMon: the System tab
-=> ./one-month-of-claude-max/turbomon-wifi.png TurboMon: the Wi-Fi channel graph
+=> ./one-month-of-claude-max/turbomon.jpg TurboMon: the System tab and the Wi-Fi channel graph
 
 => https://github.com/snonux/turbomon TurboMon on GitHub
 
@@ -147,8 +135,7 @@ RESTForge is a generic Siren hypermedia browser. Siren is a JSON format where th
 
 There are three independent implementations of it in one repo, sharing no code: a Pebble watchapp (C and ES5 JavaScript), the Android app (Flutter) and a terminal client (Go, with a Bubble Tea TUI). I use it with f3sctl, a small API of mine that powers the f3s rack on and off, shows the host status and switches the rack fans. So I can now boot my Kubernetes cluster from my watch.
 
-=> ./one-month-of-claude-max/restforge-document.png RESTForge on Android: a Siren document with its properties and links
-=> ./one-month-of-claude-max/restforge-pebble.png RESTForge on a Pebble Time 2: the f3s homelab
+=> ./one-month-of-claude-max/restforge.jpg RESTForge: a Siren document on Android, and the f3s homelab on a Pebble Time 2
 => ./one-month-of-claude-max/restforge-cli.gif RESTForge in the terminal
 
 => https://github.com/snonux/restforge RESTForge on GitHub
@@ -157,20 +144,17 @@ There are three independent implementations of it in one repo, sharing no code: 
 
 And then there's Gunrunners. A lot of tokens went into this one, and I'm not sorry about any of them. It's a jump-n-shoot platformer that plays like Duke Nukem II. The movement is a frame-accurate port of Duke II's, via RigelEngine: the same jump arc, ladders, hang bars, the flamethrower jetpack, the colour-coded item boxes and the letters G-U-N. But it's drawn in smooth HD vector art with glowing neon and parallax backdrops instead of chunky pixels.
 
-=> ./one-month-of-claude-max/gunrunners-cover.jpg The Gunrunners box art
+=> ./one-month-of-claude-max/gunrunners-cover-title.jpg Gunrunners: the box art and the title screen with the touch controls
 => https://gunrunners.snonux.foo The Gunrunners website (gameplay videos, the story, the runners)
 => https://github.com/lethal-guitar/RigelEngine RigelEngine
 
 You pick one of six runners (Dash, Rocco, Nova, Jade, Skye or the robot Bolt) or build your own in the runner editor, and you can swap runners mid-level. The campaign has 42 levels in six episodes, plus a seventh episode on the alien hive planet Vurr. Every level has its own twist, its own prototype weapon, its own soundtrack, a hidden bonus level behind a flickering TV, secrets and a briefing cutscene. Neon signs that are only solid on the beat. A fight along a moving maglev train. Mirror statues that bend sunbeams onto doors. A gravity lab that flips the room.
 
-=> ./one-month-of-claude-max/gunrunners-title.jpg Gunrunners: the title screen with the touch controls
 => ./one-month-of-claude-max/gunrunners-rooftop-run.gif Level 1, Rooftop Run: neon signs that are only solid on the beat
 
 On top of that come six vehicles (tank, helicopter, hoverbike, submarine, space ship and mech), a double jump, carrying up to three guns, a map that fills in as you explore, a hard mode with about 200 extra enemies, assists that aren't cheats, runners who talk, and five save slots plus a quick save. The cloud saves go to an S3 bucket, of course. Every sound and every note of music is generated by the game itself. And there's a cheat code, but I won't tell you which one (OK, it's in the README).
 
-=> ./one-month-of-claude-max/gunrunners-level44.jpg Level 44, Crash Garden: goo walls on the planet Vurr
-=> ./one-month-of-claude-max/gunrunners-level49.jpg Level 49, The Hive Mother: the final boss
-=> ./one-month-of-claude-max/gunrunners-motor_pool.jpg Motor Pool: a level built around the vehicles
+=> ./one-month-of-claude-max/gunrunners-levels.jpg Gunrunners: Crash Garden on the planet Vurr, The Hive Mother boss fight, and Motor Pool with the vehicles
 
 It's written in C++ with SDL2 and Cairo, about 240,000 lines of it, and git log shows 329 commits between 8 and 17 October. There's no way I'd have written that by hand in my spare time. The same source builds for Linux (a tarball or `make install` on Fedora), for Android (via my F-Droid repo, with touch controls or a gamepad) and for the browser via Emscripten. So you can play it right now without installing anything:
 
