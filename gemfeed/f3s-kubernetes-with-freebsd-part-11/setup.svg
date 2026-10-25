@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1080" viewBox="0 0 1200 1080" role="img" aria-labelledby="title desc">
+<title id="title">Remote control of f3s</title><desc id="desc">Earth, Android and Pebble via its phone companion reach relayd on fishfinger or blowfish over HTTPS. Both OpenBSD gateways forward over WireGuard to pi0 and pi1, always-on NetBSD control hosts. The Pis wake and shut down FreeBSD hosts, control Shelly plugs and mute monitoring on the gateways.</desc>
+<style>text{font-family:DejaVu Sans,sans-serif;fill:#172c40;font-size:18px}.heading{font-size:28px;font-weight:bold}.name{font-size:21px;font-weight:bold}.small{font-size:16px}.box{fill:#eef5fc;stroke:#417498;stroke-width:2}.pi{fill:#e4f3e9;stroke:#397951;stroke-width:2}.host{fill:#fff0db;stroke:#98713d;stroke-width:2}.wire{fill:none;stroke:#44647c;stroke-width:2.5;marker-end:url(#arrow)}.bg{fill:#fff}.label{fill:#fff}.note{fill:#41576a}@media(prefers-color-scheme:dark){.bg,.label{fill:#14212d}text{fill:#edf3f8}.box{fill:#233a50;stroke:#91b9dc}.pi{fill:#213e32;stroke:#8bc7a3}.host{fill:#493b28;stroke:#e0b579}.wire{stroke:#b4cadc}.note{fill:#b4cadc}}</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" fill="#64869e"/></marker></defs>
+<rect class="bg" width="1200" height="1080"/>
+<text x="40" y="48" class="heading">f3s: control stays on when compute goes off</text>
+<rect x="40" y="85" width="350" height="112" rx="12" class="box"/>
+<text x="58" y="116" class="name">earth · Fedora laptop</text>
+<text x="58" y="146" class="small">f3sctl CLI (--remote)</text>
+<text x="58" y="171" class="small">RESTForge CLI / TUI</text>
+<rect x="420" y="85" width="300" height="112" rx="12" class="box"/>
+<text x="438" y="116" class="name">Android phone</text>
+<text x="438" y="146" class="small">RESTForge Android app</text>
+<text x="438" y="171" class="small">HTTPS + API key</text>
+<rect x="750" y="85" width="410" height="112" rx="12" class="box"/>
+<text x="768" y="116" class="name">Pebble OS watch → phone</text>
+<text x="768" y="146" class="small">Time 2 / Round 2 → PebbleKit JS</text>
+<text x="768" y="171" class="small">Phone holds key and makes HTTP calls</text>
+<path d="M215 197 V235" class="wire"/>
+<path d="M570 197 V235" class="wire"/>
+<path d="M955 197 V235" class="wire"/>
+<path d="M215 235 H955" fill="none" stroke="#64869e" stroke-width="2.5"/>
+<text x="600" y="266" text-anchor="middle" class="small note">HTTPS · f3s.buetow.org/cgi-bin/f3sctl/ · X-API-Key</text>
+<path d="M320 235 V295" class="wire"/>
+<path d="M880 235 V295" class="wire"/>
+<rect x="100" y="295" width="440" height="110" rx="12" class="box"/>
+<text x="118" y="326" class="name">fishfinger · OpenBSD</text>
+<text x="118" y="356" class="small">relayd: HTTPS termination and proxy</text>
+<text x="118" y="381" class="small">Gogios mute script (restricted SSH)</text>
+<rect x="660" y="295" width="440" height="110" rx="12" class="box"/>
+<text x="678" y="326" class="name">blowfish · OpenBSD</text>
+<text x="678" y="356" class="small">relayd: HTTPS termination and proxy</text>
+<text x="678" y="381" class="small">Gogios mute script (restricted SSH)</text>
+<path d="M320 405 V500" class="wire"/>
+<path d="M880 405 V500" class="wire"/>
+<path d="M390 405 L810 500" class="wire"/>
+<path d="M810 405 L390 500" class="wire"/>
+<text x="180" y="455" text-anchor="middle" class="small note">HTTP over WireGuard</text>
+<text x="1020" y="455" text-anchor="middle" class="small note">HTTP over WireGuard</text>
+<rect x="100" y="500" width="440" height="135" rx="12" class="pi"/>
+<text x="118" y="531" class="name">pi0 · NetBSD · always on</text>
+<text x="118" y="561" class="small">bozohttpd → f3sctl CGI → detached job</text>
+<text x="118" y="586" class="small">Local job lock, state and log</text>
+<text x="118" y="611" class="small">LAN Wake-on-LAN / SSH / plug control</text>
+<rect x="660" y="500" width="440" height="135" rx="12" class="pi"/>
+<text x="678" y="531" class="name">pi1 · NetBSD · always on</text>
+<text x="678" y="561" class="small">bozohttpd → f3sctl CGI → detached job</text>
+<text x="678" y="586" class="small">Local job lock, state and log</text>
+<text x="678" y="611" class="small">LAN Wake-on-LAN / SSH / plug control</text>
+<path d="M540 570 H660" marker-start="url(#arrow)" class="wire"/>
+<text x="600" y="550" text-anchor="middle" class="small note">peer check</text>
+<text x="600" y="1050" text-anchor="middle" class="small note">Either Pi can control the hosts and plugs; SSH back to gateways changes the Gogios mute.</text>
+<path d="M320 635 V705 H225 V765" class="wire"/>
+<path d="M880 635 V705 H600 V765" class="wire"/>
+<path d="M880 705 H1000 V765" class="wire"/>
+<path d="M320 705 H880" fill="none" stroke="#64869e" stroke-width="2.5"/>
+<rect class="label" x="80" y="726" width="290" height="23"/><text x="225" y="744" text-anchor="middle" class="small note">Wake-on-LAN · restricted SSH</text>
+<rect class="label" x="490" y="726" width="220" height="23"/><text x="600" y="744" text-anchor="middle" class="small note">Wake-on-LAN · SSH</text>
+<rect class="label" x="945" y="726" width="110" height="23"/><text x="1000" y="744" text-anchor="middle" class="small note">HTTP RPC</text>
+<rect x="40" y="765" width="370" height="175" rx="12" class="host"/>
+<text x="58" y="796" class="name">f0 / f1 / f2 · FreeBSD</text>
+<text x="58" y="826" class="small">f3sctl agent + bhyve</text>
+<text x="58" y="851" class="small">r0 / r1 / r2 · Rocky Linux</text>
+<text x="58" y="876" class="small">Three-node k3s cluster</text>
+<text x="58" y="901" class="small">f0 / f1: shared NFS storage</text>
+<rect x="440" y="765" width="310" height="175" rx="12" class="host"/>
+<text x="458" y="796" class="name">f3 · FreeBSD</text>
+<text x="458" y="826" class="small">f3sctl agent + bhyve</text>
+<text x="458" y="851" class="small">rocky · Rocky Linux</text>
+<text x="458" y="876" class="small">Standalone VM host</text>
+<text x="458" y="901" class="small">Included by power all</text>
+<rect x="780" y="765" width="380" height="175" rx="12" class="host"/>
+<text x="798" y="796" class="name">Shelly power plugs</text>
+<text x="798" y="826" class="small">Fans: cooling for f0 / f1 / f2</text>
+<text x="798" y="851" class="small">Mains AC: f0–f3 + JetKVMs</text>
+<text x="798" y="876" class="small">Pis have separate power</text>
+<text x="798" y="901" class="small">f3sctl never powers off the Pis</text>
+<text x="600" y="990" text-anchor="middle" class="small note">Remote path shown. On the home LAN, the CLI can also wake, probe and control plugs locally.</text>
+<text x="600" y="1020" text-anchor="middle" class="small note">A job ID identifies the operation even when successive requests reach different Pis.</text>
+</svg>
