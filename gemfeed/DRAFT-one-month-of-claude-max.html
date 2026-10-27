@@ -1,0 +1,237 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>One month of Claude Max with Opus 5.5 later</title>
+<link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
+<link rel="stylesheet" href="../style.css" />
+<link rel="stylesheet" href="style-override.css" />
+</head>
+<body>
+<p class="header">
+<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-one-month-of-claude-max.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-one-month-of-claude-max.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+</p>
+<h1 style='display: inline' id='one-month-of-claude-max-with-opus-55-later'>One month of Claude Max with Opus 5.5 later</h1><br />
+<br />
+<span>I value engineering. I like good quality code, I like reading code, and I like knowing why something works the way it does. So it feels a bit odd to write this post: over one month of Claude Max with Opus 5.5 I mainly vibe coded nine Android apps, a few Linux and server counterparts, a personal F-Droid repository to ship them all, and a whole video game. It showed me that the way software gets made has changed. For personal apps like these, it&#39;s absolutely worth it.</span><br />
+<br />
+<span>This post tells the story of that month: the F-Droid repository, every app in it, the servers behind them, and why I cancelled the subscription at the end.</span><br />
+<br />
+<a href='./one-month-of-claude-max/hero.jpg'><img alt='Some of the apps: TurboNotes, Player, TurboMon, TurboLaunch, File Browser and RESTForge' title='Some of the apps: TurboNotes, Player, TurboMon, TurboLaunch, File Browser and RESTForge' src='./one-month-of-claude-max/hero.jpg' /></a><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#one-month-of-claude-max-with-opus-55-later'>One month of Claude Max with Opus 5.5 later</a></li>
+<li>⇢ <a href='#vibe-coding-but-with-qa'>Vibe coding, but with QA</a></li>
+<li>⇢ <a href='#sideloading-got-old-my-own-f-droid-repo'>Sideloading got old: my own F-Droid repo</a></li>
+<li>⇢ <a href='#the-servers-live-in-my-home-lab'>The servers live in my home lab</a></li>
+<li>⇢ <a href='#notes-quicklog-and-turbonotes'>Notes: Quicklog and TurboNotes</a></li>
+<li>⇢ ⇢ <a href='#quicklog'>Quicklog</a></li>
+<li>⇢ ⇢ <a href='#turbonotes'>TurboNotes</a></li>
+<li>⇢ <a href='#media-player-file-browser-and-comicredr'>Media: Player, File Browser and ComicRedr</a></li>
+<li>⇢ ⇢ <a href='#player'>Player</a></li>
+<li>⇢ ⇢ <a href='#file-browser'>File Browser</a></li>
+<li>⇢ ⇢ <a href='#comicredr'>ComicRedr</a></li>
+<li>⇢ <a href='#phone-tools-turbolaunch-and-turbomon'>Phone tools: TurboLaunch and TurboMon</a></li>
+<li>⇢ ⇢ <a href='#turbolaunch'>TurboLaunch</a></li>
+<li>⇢ ⇢ <a href='#turbomon'>TurboMon</a></li>
+<li>⇢ <a href='#restforge-the-home-lab-on-my-wrist'>RESTForge: the home lab on my wrist</a></li>
+<li>⇢ <a href='#gunrunners-where-most-of-the-tokens-went'>Gunrunners: where most of the tokens went</a></li>
+<li>⇢ <a href='#why-i-cancelled-the-subscription'>Why I cancelled the subscription</a></li>
+<li>⇢ <a href='#what-s-not-in-this-post'>What&#39;s not in this post</a></li>
+</ul><br />
+<h2 style='display: inline' id='vibe-coding-but-with-qa'>Vibe coding, but with QA</h2><br />
+<br />
+<span>All the Android apps in this post were mainly vibe coded. I wrote hardly any of the Dart, Kotlin or C++ by hand. But that doesn&#39;t mean nobody looked at them. Every app has an automated test suite, every change went through a lot of QA, and I used each app on my own phones, rated what felt wrong and had it refined. Again and again. The tests caught the regressions; my thumbs caught everything else.</span><br />
+<br />
+<span>Honestly, I don&#39;t like the term "vibe coding" any more. It sounds like a party trick, and this is simply becoming the normal way to produce software. Saying you shouldn&#39;t use LLMs to write software is like saying you mustn&#39;t use a compiler to generate machine code. It&#39;s just another tool and a new level of abstraction. There are still cases today where you need to understand machine code at a low level, but the majority of programmers never have to. I think the same is now true one level up.</span><br />
+<br />
+<a class='textlink' href='./2026-10-05-getting-off-codeberg.html'>Getting off Codeberg (where I ranted about this too)</a><br />
+<br />
+<h2 style='display: inline' id='sideloading-got-old-my-own-f-droid-repo'>Sideloading got old: my own F-Droid repo</h2><br />
+<br />
+<span>It started with Quicklog. I had rewritten my old idea-logging app in Flutter and was copying APKs to two phones by hand after every change. That got old fast. F-Droid lets you add extra repositories next to the official one, so I set up my own. Now I tap "update" in F-Droid like for any other app.</span><br />
+<br />
+<a class='textlink' href='https://f-droid.org'>F-Droid</a><br />
+<a class='textlink' href='https://github.com/snonux/fdroid'>snonux/fdroid on GitHub</a><br />
+<br />
+<span>Nothing gets built in the repository itself. Each app repo has its own release workflow: I start it with a version tag, it builds and signs the APKs with that app&#39;s own key and attaches them to a GitHub release. Every six hours (or on demand) a workflow in the F-Droid repo downloads the two newest releases of every app, plus the store text and screenshots, runs <span class='inlinecode'>fdroid update</span> to build and sign the index, and deploys the result to GitHub Pages. That&#39;s all. The APKs keep their developer signature, so an app installed from my repo can also be updated from any other source that ships the same signed APKs.</span><br />
+<br />
+<a href='./one-month-of-claude-max/fdroid-logo.png'><img alt='The logo of my F-Droid repository' title='The logo of my F-Droid repository' src='./one-month-of-claude-max/fdroid-logo.png' /></a><br />
+<br />
+<span>If you want to try any of the apps, add the repository to F-Droid. Scan this with your phone or add it by hand:</span><br />
+<br />
+<pre>
+Address:     https://snonux.github.io/fdroid/repo
+Fingerprint: 04B05FB0565543E058372B867B3D3A699D9D668388CE670478EDD4116D736DF7
+</pre>
+<br />
+<a href='./one-month-of-claude-max/fdroid-add-repo-qr.png'><img alt='QR code to add the repository to F-Droid' title='QR code to add the repository to F-Droid' src='./one-month-of-claude-max/fdroid-add-repo-qr.png' /></a><br />
+<br />
+<span>Onboarding a new app is documented in the repo, so the next coding agent (or me) can follow it. In the end, nine apps landed there.</span><br />
+<br />
+<h2 style='display: inline' id='the-servers-live-in-my-home-lab'>The servers live in my home lab</h2><br />
+<br />
+<span>Several of the apps are only half of the story. Player and File Browser have a server, and Quicklog, TurboNotes, ComicRedr, TurboLaunch and Gunrunners can sync through an S3 bucket of my own (Garage, not AWS). I host all the server parts in my home k3s cluster, the one I&#39;ve been building in the f3s series. No cloud service involved.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='https://garagehq.deuxfleurs.fr/'>Garage S3</a><br />
+<br />
+<span>Several apps also have a Linux counterpart. I mention them with each app below.</span><br />
+<br />
+<h2 style='display: inline' id='notes-quicklog-and-turbonotes'>Notes: Quicklog and TurboNotes</h2><br />
+<br />
+<h3 style='display: inline' id='quicklog'>Quicklog</h3><br />
+<br />
+<span>Quicklog is the oldest one. It began as Quicklogger, a Go/Fyne app I blogged about in 2024: I&#39;m an ideas person and want to jot down a thought on the street before it&#39;s gone. This year it got rewritten in Flutter and renamed. You type a note, hit "Log text", and it writes a timestamped Markdown file. Syncthing copies it to my laptop, or Quicklog writes it straight to my S3 bucket (or both).</span><br />
+<br />
+<span>It&#39;s tiny on purpose, but the details are done right. If S3 fails, the note gets written locally on the spot, so it&#39;s never lost. You can share text from any app into Quicklog, browse, edit and delete old entries, and export all settings into one JSON file. The same code runs as a Linux desktop app, which is handy on Fedora.</span><br />
+<br />
+<a href='./one-month-of-claude-max/quicklog.jpg'><img alt='Quicklog: logging a note, the list of previous entries, and the Linux desktop app on Fedora' title='Quicklog: logging a note, the list of previous entries, and the Linux desktop app on Fedora' src='./one-month-of-claude-max/quicklog.jpg' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/quicklog'>Quicklog on GitHub</a><br />
+<a class='textlink' href='./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.html'>A fine Fyne Android app for quickly logging ideas programmed in Go</a><br />
+<br />
+<h3 style='display: inline' id='turbonotes'>TurboNotes</h3><br />
+<br />
+<span>Quicklog jots down new notes, TurboNotes edits the ones I already have. You point it at a folder of Markdown files, for example one that Syncthing keeps in sync with the laptop, and get a file tree with pinned and recent notes, a tag tree, a fuzzy finder and full-text search that forgives typos. There&#39;s a raw editor and a WYSIWYG editor on the same Markdown text, and WYSIWYG never rewrites the note behind your back. Images go inline, from the gallery, the camera or the clipboard.</span><br />
+<br />
+<span>TurboNotes has replaced Markor on my phones. It also has a home-screen widget for quick capture, autosave that never silently overwrites a note changed on disk, and optional S3 sync that merges independent edits and keeps conflict copies. On the Linux desktop build there are vi keys, with real modal editing in the editor. And it can open text files from File Browser (more on that below) and save them back to the server.</span><br />
+<br />
+<a href='./one-month-of-claude-max/turbonotes.jpg'><img alt='TurboNotes: the file tree with pins and tags, a note in the WYSIWYG editor, and the Linux desktop build in vi visual mode' title='TurboNotes: the file tree with pins and tags, a note in the WYSIWYG editor, and the Linux desktop build in vi visual mode' src='./one-month-of-claude-max/turbonotes.jpg' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/turbonotes'>TurboNotes on GitHub</a><br />
+<a class='textlink' href='https://github.com/gsantner/markor'>Markor</a><br />
+<br />
+<h2 style='display: inline' id='media-player-file-browser-and-comicredr'>Media: Player, File Browser and ComicRedr</h2><br />
+<br />
+<h3 style='display: inline' id='player'>Player</h3><br />
+<br />
+<span>Player is my self-hosted media server. The Go server with SQLite and a vanilla JavaScript web UI (no frontend framework, no build step) plays videos, music, audiobooks and podcasts, shows images, remembers where I stopped in each audiobook, and has tags, favourites, notes, position bookmarks, a search syntax (<span class='inlinecode'>type:video tag:a min:30</span>), time-limited share links, user accounts and Chromecast support. It&#39;s keyboard-first with vim keys. There are sound-reactive visuals and timed lyrics too, because why not.</span><br />
+<br />
+<span>The Android app plays from the server and also from local files on the phone. Player has replaced Jellyfin, Navidrome and Audiobookshelf for my personal use. Three services with three apps went down to one I fully understand and can change whenever I want. The server runs in a container in my k3s cluster.</span><br />
+<br />
+<a href='./one-month-of-claude-max/player.jpg'><img alt='Player: the web UI with its sets and an audiobook playing (top), the Android app with its local library and audio player (bottom)' title='Player: the web UI with its sets and an audiobook playing (top), the Android app with its local library and audio player (bottom)' src='./one-month-of-claude-max/player.jpg' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/player'>Player on GitHub</a><br />
+<br />
+<h3 style='display: inline' id='file-browser'>File Browser</h3><br />
+<br />
+<span>File Browser is a create-your-own-cloud web UI: point it at a directory on a server and you can upload, preview, edit and share files from the browser. The upstream project was archived on 2026-09-01 and won&#39;t get any more releases or fixes, so I forked it. My fork carries security fixes made after the archive, and I keep it running for my own use.</span><br />
+<br />
+<span>And as a bonus, the fork now has a native Android client. It talks to the server&#39;s existing REST API, so it works with an unmodified File Browser server too. It browses, previews images, PDFs, video and audio, edits text files, does resumable uploads, manages files, searches, creates share links and signs in with a fingerprint. Text files can also be opened in TurboNotes and saved back to the server.</span><br />
+<br />
+<a href='./one-month-of-claude-max/filebrowser.jpg'><img alt='File Browser: the web interface, and the Android app browsing the server and showing its dark theme settings' title='File Browser: the web interface, and the Android app browsing the server and showing its dark theme settings' src='./one-month-of-claude-max/filebrowser.jpg' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/filebrowser'>My File Browser fork on GitHub</a><br />
+<a class='textlink' href='https://hacdias.com/2026/07/28/filebrowser/'>Goodbye File Browser, for Real This Time (the upstream archive)</a><br />
+<br />
+<h3 style='display: inline' id='comicredr'>ComicRedr</h3><br />
+<br />
+<span>ComicRedr is a comic reader for a Linux laptop and an Android phone or tablet. Its guided view glides from one panel to the next, and in balloon mode from one speech balloon to the next, like Comixology did. The panels get found by a small detector built into the app that runs on your own CPU. For comics where it struggles, you can also ask a coding agent to draw the panels: the repo&#39;s AGENTS.md tells it how.</span><br />
+<br />
+<span>It reads CBZ, CBT, comic EPUB, PDF and folders of images, has a library with covers, series, collections and bookmarks, and is keyboard-first with a vi layer on Linux. It picks up where you left off, on the same page, panel and zoom, and carries that to the phone through my own S3 bucket.</span><br />
+<br />
+<a href='./one-month-of-claude-max/comicredr.jpg'><img alt='ComicRedr: the library on Linux, and guided view on panel 2 of 6 with the rest of the page dimmed' title='ComicRedr: the library on Linux, and guided view on panel 2 of 6 with the rest of the page dimmed' src='./one-month-of-claude-max/comicredr.jpg' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/comicredr'>ComicRedr on GitHub</a><br />
+<br />
+<h2 style='display: inline' id='phone-tools-turbolaunch-and-turbomon'>Phone tools: TurboLaunch and TurboMon</h2><br />
+<br />
+<h3 style='display: inline' id='turbolaunch'>TurboLaunch</h3><br />
+<br />
+<span>TurboLaunch is a small, search-first home screen for Android, made for GrapheneOS. Press Home, type two or three letters, press Enter, and the app opens. The search is fzf-style, so "orgm" finds Organic Maps. No tracking, no Google Play Services.</span><br />
+<br />
+<span>The home grid sorts itself by how often I launch things in the last 30 days, with the most-launched app at the bottom right, nearest the thumb. The launch counts add up across all my phones through S3, so the same apps get the same cells everywhere. There&#39;s also a quick launch bar, gestures, app pairs for split screen, work profile support and a stats screen.</span><br />
+<br />
+<a href='./one-month-of-claude-max/turbolaunch.jpg'><img alt='TurboLaunch: the home screen, and typing a few letters to launch an app' title='TurboLaunch: the home screen, and typing a few letters to launch an app' src='./one-month-of-claude-max/turbolaunch.jpg' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/turbolaunch'>TurboLaunch on GitHub</a><br />
+<a class='textlink' href='./2023-01-23-why-grapheneos-rox.html'>Why GrapheneOS rox</a><br />
+<br />
+<h3 style='display: inline' id='turbomon'>TurboMon</h3><br />
+<br />
+<span>TurboMon is the SRE in me on a phone: a <span class='inlinecode'>top</span>-style system monitor for Android. It shows CPU, RAM and GPU, live graphs, battery, temperatures, storage, disk I/O and network speed, and it has a Wi-Fi channel analyser and a Bluetooth scanner. Shizuku or root are optional and unlock real CPU percentages, the process list and all the thermal sensors.</span><br />
+<br />
+<span>The fun part is the snapshot. When something drains the battery, I take a snapshot and get a Markdown report that I can hand straight to an LLM to find the cause. TurboMon itself has no internet permission, so nothing leaves the phone unless I share it.</span><br />
+<br />
+<a href='./one-month-of-claude-max/turbomon.jpg'><img alt='TurboMon: the System tab and the Wi-Fi channel graph' title='TurboMon: the System tab and the Wi-Fi channel graph' src='./one-month-of-claude-max/turbomon.jpg' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/turbomon'>TurboMon on GitHub</a><br />
+<br />
+<h2 style='display: inline' id='restforge-the-home-lab-on-my-wrist'>RESTForge: the home lab on my wrist</h2><br />
+<br />
+<span>RESTForge is a generic Siren hypermedia browser. Siren is a JSON format where the server tells the client which links and actions exist. RESTForge renders whatever the API offers: properties, links and actions. Follow a link and it fetches it, press an action and it asks for confirmation, runs it and keeps watching until the server says it&#39;s done. The rule is "never build a URL", so the client has no server-specific code at all.</span><br />
+<br />
+<a class='textlink' href='https://github.com/kevinswiber/siren'>Siren</a><br />
+<br />
+<span>There are three independent implementations of it in one repo, sharing no code: a Pebble watchapp (C and ES5 JavaScript), the Android app (Flutter) and a terminal client (Go, with a Bubble Tea TUI). I use it with f3sctl, a small API of mine that powers the f3s rack on and off, shows the host status and switches the rack fans. So I can now boot my Kubernetes cluster from my watch.</span><br />
+<br />
+<a href='./one-month-of-claude-max/restforge.jpg'><img alt='RESTForge: a Siren document on Android, and the f3s homelab on a Pebble Time 2' title='RESTForge: a Siren document on Android, and the f3s homelab on a Pebble Time 2' src='./one-month-of-claude-max/restforge.jpg' /></a><br />
+<a href='./one-month-of-claude-max/restforge-cli.gif'><img alt='RESTForge in the terminal' title='RESTForge in the terminal' src='./one-month-of-claude-max/restforge-cli.gif' /></a><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/restforge'>RESTForge on GitHub</a><br />
+<br />
+<h2 style='display: inline' id='gunrunners-where-most-of-the-tokens-went'>Gunrunners: where most of the tokens went</h2><br />
+<br />
+<span>And then there&#39;s Gunrunners. A lot of tokens went into this one, and I&#39;m not sorry about any of them. It&#39;s a jump-n-shoot platformer that plays like Duke Nukem II. The movement is a frame-accurate port of Duke II&#39;s, via RigelEngine: the same jump arc, ladders, hang bars, the flamethrower jetpack, the colour-coded item boxes and the letters G-U-N. But it&#39;s drawn in smooth HD vector art with glowing neon and parallax backdrops instead of chunky pixels.</span><br />
+<br />
+<a href='./one-month-of-claude-max/gunrunners-cover-title.jpg'><img alt='Gunrunners: the box art and the title screen with the touch controls' title='Gunrunners: the box art and the title screen with the touch controls' src='./one-month-of-claude-max/gunrunners-cover-title.jpg' /></a><br />
+<a class='textlink' href='https://gunrunners.snonux.foo'>The Gunrunners website (gameplay videos, the story, the runners)</a><br />
+<a class='textlink' href='https://github.com/lethal-guitar/RigelEngine'>RigelEngine</a><br />
+<br />
+<span>You pick one of six runners (Dash, Rocco, Nova, Jade, Skye or the robot Bolt) or build your own in the runner editor, and you can swap runners mid-level. The campaign has 42 levels in six episodes, plus a seventh episode on the alien hive planet Vurr. Every level has its own twist, its own prototype weapon, its own soundtrack, a hidden bonus level behind a flickering TV, secrets and a briefing cutscene. Neon signs that are only solid on the beat. A fight along a moving maglev train. Mirror statues that bend sunbeams onto doors. A gravity lab that flips the room.</span><br />
+<br />
+<a href='./one-month-of-claude-max/gunrunners-rooftop-run.gif'><img alt='Level 1, Rooftop Run: neon signs that are only solid on the beat' title='Level 1, Rooftop Run: neon signs that are only solid on the beat' src='./one-month-of-claude-max/gunrunners-rooftop-run.gif' /></a><br />
+<br />
+<span>On top of that come six vehicles (tank, helicopter, hoverbike, submarine, space ship and mech), a double jump, carrying up to three guns, a map that fills in as you explore, a hard mode with about 200 extra enemies, assists that aren&#39;t cheats, runners who talk, and five save slots plus a quick save. The cloud saves go to an S3 bucket, of course. Every sound and every note of music is generated by the game itself. And there&#39;s a cheat code, but I won&#39;t tell you which one (OK, it&#39;s in the README).</span><br />
+<br />
+<a href='./one-month-of-claude-max/gunrunners-levels.jpg'><img alt='Gunrunners: Crash Garden on the planet Vurr, The Hive Mother boss fight, and Motor Pool with the vehicles' title='Gunrunners: Crash Garden on the planet Vurr, The Hive Mother boss fight, and Motor Pool with the vehicles' src='./one-month-of-claude-max/gunrunners-levels.jpg' /></a><br />
+<br />
+<span>It&#39;s written in C++ with SDL2 and Cairo, about 240,000 lines of it, and git log shows 329 commits between 8 and 17 October. There&#39;s no way I&#39;d have written that by hand in my spare time. The same source builds for Linux (a tarball or <span class='inlinecode'>make install</span> on Fedora), for Android (via my F-Droid repo, with touch controls or a gamepad) and for the browser via Emscripten. So you can play it right now without installing anything:</span><br />
+<br />
+<a class='textlink' href='https://gunrunners.snonux.foo/play/'>Play Gunrunners in your browser</a><br />
+<a class='textlink' href='https://github.com/snonux/gunrunners'>Gunrunners on GitHub</a><br />
+<br />
+<span>A word of warning, though: I didn&#39;t have the time yet to play through all the levels myself. That&#39;s even though I spent a lot of tokens on quality. An agent played through every single level, and a bunch of scripts and tests check the rest, e.g. that every level can actually be walked from start to exit. Still, there will be bugs. If you find one, please report it:</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/gunrunners/issues'>Report a Gunrunners bug on GitHub</a><br />
+<br />
+<h2 style='display: inline' id='why-i-cancelled-the-subscription'>Why I cancelled the subscription</h2><br />
+<br />
+<span>After that month I cancelled my Claude subscription, for now. Not because I was disappointed. I simply ran out of ideas for what to use the tokens for. All the apps I wanted are on my phones now, and they get updates through F-Droid like everything else.</span><br />
+<br />
+<span>I&#39;ll keep creating apps like these. But I&#39;ll split it up. In my own field of expertise (SRE, deep knowledge of operating systems and the like) I want to keep deep-diving and learning new stuff, just AI-assisted, with me in the loop and reading the code. For apps I just want to use and where I don&#39;t much care about the tech stack, I won&#39;t. I don&#39;t need to learn Flutter in depth to have a good notes app. There&#39;s a balance here, and everyone has to find it out for themselves.</span><br />
+<br />
+<h2 style='display: inline' id='what-s-not-in-this-post'>What&#39;s not in this post</h2><br />
+<br />
+<span>I worked on more things during that month of Claude Max than I&#39;ve listed here. Among them are Gonf, my own KISS configuration management system in plain Go, a future new release of ior, and a future new release of DTail. They deserve their own blog posts with a bit more of a technical deep dive once they&#39;re ready.</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/gonf'>Gonf on GitHub</a><br />
+<a class='textlink' href='./2026-05-08-unveiling-ior-ng-part-1.html'>Unveiling I/O Riot NG</a><br />
+<a class='textlink' href='./2021-04-22-dtail-the-distributed-log-tail-program.html'>DTail - The distributed log tail program</a><br />
+<br />
+<span>Other related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-10-07-running-llms-by-myself-part-2.html'>2026-10-07 Running LLMs by myself - Part 2: The pi coding agent</a><br />
+<a class='textlink' href='./2026-10-06-running-llms-by-myself-part-1.html'>2026-10-06 Running LLMs by myself - Part 1: Hyperstack and vLLM</a><br />
+<a class='textlink' href='./2026-10-05-getting-off-codeberg.html'>2026-10-05 Getting off Codeberg</a><br />
+<a class='textlink' href='./2026-06-01-gt-calculator.html'>2026-06-01 <span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs</a><br />
+<a class='textlink' href='./2025-08-05-local-coding-llm-with-ollama.html'>2025-08-05 Local LLM for Coding with Ollama on macOS</a><br />
+<a class='textlink' href='./2024-03-03-a-fine-fyne-android-app-for-quickly-logging-ideas-programmed-in-golang.html'>2024-03-03 A fine Fyne Android app for quickly logging ideas programmed in Go</a><br />
+<a class='textlink' href='./2023-01-23-why-grapheneos-rox.html'>2023-01-23 Why GrapheneOS rox</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+<p class="footer">
+	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
+	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
+	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+	<br />
+	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+</p>
+</body>
+</html>
