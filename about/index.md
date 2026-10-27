@@ -31,7 +31,7 @@ Stuff I'm currently up to:
 * House refurbishment
 * Being a father to my 3 year old daughter
 * Learning Bulgarian for the bulgarian citizenship
-* Digging into AI Engineering without taking the slop route
+* Learning how to use AI for engineering
 * Reading "Children of Time" in german by Adrian Tchaikovsky and Birgit Herden
 
 ## Next
@@ -50,6 +50,7 @@ Stuff I'm planning to get to next:
 [My blog here at foo.zone](../)  
 [irregular.ninja - My street photography site (warn: multiple MBs, it's photos after all)](https://irregular.ninja)  
 [snonux.foo - My microblog (may be sometimes offline since it runs on my home LAN on Raspberry Pi's)](https://snonux.foo)  
+[Gunrunners - My Shoot-Em-Up game mainly created with Opus 5.5](https://gunrunners.snonux.foo)  
 
 ## Show me the code
 
