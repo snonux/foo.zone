@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-10-19
+Generated on: 2026-10-27
 
 => showcase-rank-history.svg Interactive Project Rank History Graph (SVG)
 
@@ -11,286 +11,336 @@ This page showcases my side projects, providing an overview of what each project
 ## Overall Statistics
 
 * 📦 Total Projects: 88
-* 📊 Total Commits: 18,564
-* 📈 Total Lines of Code: 1,821,333
-* 📄 Total Lines of Documentation: 154,567
-* 💻 Languages: Go (43.9%), C++ (15.8%), Dart (11.4%), C (6.9%), Shell (4.6%), Java (3.3%), JavaScript (3.0%), YAML (1.6%), Python (1.5%), XML (1.3%), JSON (1.3%), C/C++ (1.2%), Perl (0.9%), TypeScript (0.8%), CSS (0.5%), HTML (0.5%), Kotlin (0.4%), Ruby (0.4%), Config (0.3%), TOML (0.2%), HCL (0.2%), Make (0.1%)
-* 📚 Documentation: Markdown (82.1%), Text (15.7%), LaTeX (2.2%)
-* 🚀 Release Status: 57 released, 31 experimental (64.8% with releases, 35.2% experimental)
+* 📊 Total Commits: 18,799
+* 📈 Total Lines of Code: 1,873,412
+* 📄 Total Lines of Documentation: 158,038
+* 💻 Languages: Go (42.5%), C++ (15.5%), Dart (11.5%), C (6.8%), Shell (4.6%), JavaScript (3.7%), Java (3.2%), JSON (1.9%), Python (1.8%), YAML (1.7%), XML (1.2%), C/C++ (1.2%), Perl (0.9%), TypeScript (0.7%), CSS (0.5%), HTML (0.5%), Kotlin (0.4%), Ruby (0.4%), Config (0.3%), TOML (0.2%), HCL (0.1%), Make (0.1%)
+* 📚 Documentation: Markdown (80.7%), Text (17.2%), LaTeX (2.2%)
+* 🚀 Release Status: 56 released, 32 experimental (63.6% with releases, 36.4% experimental)
 
 ## Projects
 
-### 1. gunrunners
+### 1. conf
 
-* 💻 Languages: C++ (92.3%), Python (4.3%), C (1.9%), Shell (0.4%), HTML (0.3%), CMake (0.2%), CSS (0.2%), JavaScript (0.2%)
-* 📚 Documentation: Text (85.2%), Markdown (14.8%)
-* 📊 Commits: 329
-* 📈 Lines of Code: 286751
-* 📄 Lines of Documentation: 13722
-* 🏷️ Tags: 18
-* 📅 Development Period: 2026-10-08 to 2026-10-17
-* 🏆 Score: 179.9 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: GPL-2.0
-* 🏷️ Latest Release: v0.10.3 (2026-10-17)
-
-
-=> showcase/gunrunners/image-1.gif gunrunners screenshot
-
-Gunrunners is a free, open-source (GPLv2+) jump-and-shoot platformer that plays like Duke Nukem II, offering a 49-level campaign across six episodes plus a standalone seventh episode ("Deep Space"). Every level has its own gameplay twist (rhythm-synced neon platforms, rising sludge tides, gravity flips, a fight along a moving train), its own prototype weapon, its own soundtrack, and a hidden bonus level behind a patch of TV static. Players choose from six built-in runners or create their own in a full runner editor, and can swap runners mid-level, carry up to three guns, and pilot six vehicles from tank to mech. The game works both as a complete modern title and as a faithful tribute: movement is a frame-accurate port of Duke Nukem II's physics (via RigelEngine), expanded with modern features like double jumps, an auto-drawing exploration map, a cheat menu, and accessibility options such as a guide arrow, adjustable game speed, and fully rebindable controls.
-
-=> showcase/gunrunners/image-2.jpg gunrunners screenshot
-
-The game is implemented in C++ and built with CMake, with smooth HD vector graphics rendered via Cairo, and all sound effects and music synthesized in real time by the game itself—no audio samples at all. SDL2 handles windowing and input (including keyboard, gamepad, and touch), and libcurl supports optional S3-compatible cloud saves. A single codebase targets three platforms: native Linux, Android (distributed via F-Droid, with intelligent thumb-zone touch controls that yield to connected gamepads), and the browser through an Emscripten build (~20 MB). The project also includes five save slots plus quick save/load, per-runner voices, a comprehensive test suite, and gameplay recording.
-
-=> https://github.com/snonux/gunrunners View on GitHub
-
----
-
-### 2. player
-
-* 💻 Languages: Dart (44.1%), Go (39.7%), JavaScript (7.2%), TypeScript (5.5%), CSS (1.3%), Python (0.6%), HTML (0.5%), Kotlin (0.4%), YAML (0.2%), Shell (0.2%), JSON (0.2%)
-* 📚 Documentation: Markdown (99.9%), Text (0.1%)
-* 📊 Commits: 497
-* 📈 Lines of Code: 148408
-* 📄 Lines of Documentation: 9415
-* 🏷️ Tags: 21
-* 📅 Development Period: 2026-04-28 to 2026-10-19
-* 🏆 Score: 155.5 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: MIT
-* 🏷️ Latest Release: v0.8.2 (2026-10-19)
-
-
-=> showcase/player/image-1.png player screenshot
-
-**Player** is a self-hosted media player built as a monorepo containing a Go server (`player-server`) and a Flutter Android client (`player-android`). The server is the core of the system: it hosts the web UI for browsing a media library, serves playback APIs, and manages user accounts and media storage. It supports multiple content types—including images (with a mini viewer) and audio playback such as audiobooks, with chapter navigation. The Android client is a lightweight Flutter app that acts as a mobile front end, talking to the server through the same documented REST API, allowing users to access their library on the go.
-
-=> showcase/player/image-2.png player screenshot
-
-Architecturally, the repo is organized into two self-contained component directories, each with its own README, build process (Mage for the server, standard Flutter tooling for Android), and documentation. The server is a single binary with an embedded web UI, relies on ffmpeg/ffprobe for media processing, and ships deployment files for Docker and Kubernetes. Releases are tightly coordinated: a single shared version and tag covers both components, and a GitHub Actions workflow validates version parity, publishes signed Android APKs (also distributed via F-Droid), and produces a Linux server bundle containing the binary and web assets. This shared release process, along with API documentation that both clients must stay aligned with, keeps the server and mobile client in sync as a unified product.
-
-=> https://github.com/snonux/player View on GitHub
-
----
-
-### 3. conf
-
-* 💻 Languages: YAML (57.8%), Shell (17.1%), Go (16.5%), Perl (4.1%), Python (2.1%), Make (0.8%), Config (0.7%), JSON (0.6%), Docker (0.2%)
-* 📚 Documentation: Markdown (97.7%), Text (2.3%)
-* 📊 Commits: 1519
-* 📈 Lines of Code: 46671
-* 📄 Lines of Documentation: 9920
+* 💻 Languages: YAML (51.3%), Shell (17.3%), Go (15.0%), Python (10.8%), Perl (3.3%), Make (0.7%), JSON (0.6%), Config (0.6%), Docker (0.2%)
+* 📚 Documentation: Markdown (98.7%), Text (1.3%)
+* 📊 Commits: 1636
+* 📈 Lines of Code: 57051
+* 📄 Lines of Documentation: 17459
 * 🏷️ Tags: 2
-* 📅 Development Period: 2021-12-28 to 2026-10-17
-* 🏆 Score: 110.9 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2021-12-28 to 2026-10-26
+* 🏆 Score: 149.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
 
-This repository (`conf`) is configuration-as-code for a personal homelab spanning a heterogeneous fleet: OpenBSD frontends (blowfish, fishfinger), NetBSD and Rocky Linux Raspberry Pis, Rocky Linux k3s nodes (r0–r2), and FreeBSD storage hosts (f0–f3), organized into named clusters. Its value is reproducible, idempotent management of the whole environment from one checkout — unattended upgrades and vulnerability audits on every OS, OpenBSD web/mail/DNS services (httpd, NSD, OpenSMTPD, relayd, PF, WireGuard), monitoring (Gogios, DTail, Foostats), certificate handling, and a full GitOps-driven k3s platform ("f3s") with ArgoCD apps, Helm charts, cert-manager, Prometheus/Loki/Tempo, Pi-hole, a private registry, media workloads (Immich, Navidrome), and Garage object storage.
+`conf` is snonux's personal homelab and server configuration repository — a single source of truth that replaces ad-hoc server administration with declarative, repeatable automation across a deliberately heterogeneous fleet: two OpenBSD frontends, NetBSD and Rocky Linux Raspberry Pis, Rocky Linux k3s nodes, FreeBSD hosts, and Garage object-storage nodes. Its value is that everything from unattended upgrades on each OS, ACME certificate renewal, authoritative NSD DNS zones, OpenSMTPD/relayd/httpd, the PF firewall, WireGuard host entries, Gogios/DTail/foostats monitoring, Pi-hole, NFS mount repair, and Garage config is expressed as 61 idempotent tasks pushed over SSH with per-cluster parallelism, a `-n` dry-run preview mode, and recorded plans (plan.jsonl) you can review before anything touches a host.
 
-Architecturally it has two halves. The first is **gonf recipes** — Go code against the external `snonux/gonf` library (pinned at v0.25.0), run via `./gonf.sh`, with 61 tasks grouped per host cluster. Tasks declare dependencies (`Needs`), aggregate via prefix-matching, bind to clusters (`OnCluster`), and consume typed per-host inventory data; a plan mode records `plan.jsonl` for dry-run previews, and secrets resolve through logical paths mapped to a KeePass/foostore vault (failing hard, never falling back). The second is the **f3s directory** of k3s manifests, Helm charts, and ArgoCD applications, each app exposing a uniform `Justfile` (`status`, `logs`, `port-forward`, `sync`, `restart`). Supporting pieces include a `packages/` build system publishing custom RPM/pkg packages to a private repo, OpenBSD frontend assets, and archived operational docs.
+It's implemented on top of gonf, a Go configuration-management library (pinned in `go.mod`), with this repo holding only the recipes: a typed central inventory (`gonf/cluster/cluster.go`) maps each host to a cluster with per-host data like SSH target, privilege method, and schedules; tasks are registered per host group with prefixes and dependencies (`Needs`), so an aggregate like `./gonf.sh cluster frontends frontends` runs the whole group in dependency order. DRY helpers (`RegisterGroup`, `WithShellVars`, `EachHost`) keep recipes small, services restart via `OnChange` hooks when configs converge, and secrets resolve from a KeePass/foostore vault with local-file fallback. Beyond OS config, `f3s/` covers the Kubernetes side — k3s apps managed GitOps-style through ArgoCD with Helm charts for the Prometheus/Loki/Tempo monitoring stack, Forgejo, cert-manager, a private registry, Pi-hole, and media workloads like Immich and Navidrome — while `packages/` builds and uploads custom signed packages (gogios, f3sctl, DTail) to a private package repo, and most app directories share a common Justfile for ops shortcuts (status, logs, port-forward, ArgoCD sync/restart).
 
 => https://github.com/snonux/conf View on GitHub
 
 ---
 
-### 4. comicredr
+### 2. homelabfs
 
-* 💻 Languages: Dart (74.8%), Shell (13.8%), Python (5.0%), TOML (2.5%), JSON (1.7%), YAML (0.6%), C++ (0.4%), Make (0.4%), Kotlin (0.3%), CMake (0.3%), XML (0.2%), C (0.1%)
-* 📚 Documentation: Markdown (97.2%), Text (2.8%)
-* 📊 Commits: 540
-* 📈 Lines of Code: 90730
-* 📄 Lines of Documentation: 7371
-* 🏷️ Tags: 22
-* 📅 Development Period: 2026-09-24 to 2026-10-19
-* 🏆 Score: 92.2 (combines recent activity, code size, tags, and release status)
+* 💻 Languages: JSON (93.1%), Shell (4.2%), Python (1.8%), Go (0.9%)
+* 📚 Documentation: Text (51.3%), Markdown (48.7%)
+* 📊 Commits: 14
+* 📈 Lines of Code: 11258
+* 📄 Lines of Documentation: 4257
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-10-24 to 2026-10-25
+* 🏆 Score: 111.2 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: BSD-3-Clause
+* 🧪 Status: Experimental (no releases yet)
+
+
+=> showcase/homelabfs/image-1.svg homelabfs screenshot
+
+HomelabFS is a planned distributed filesystem for a personal homelab ("f3s"), designed to replace NFS with highly available, POSIX-style file storage that Kubernetes workloads require. It is currently in the concept phase—containing architecture notes, design documents, and experimental compatibility probes rather than a working distributed implementation—but the core design is well developed: each workload owns an independent persistent volume, with reads and writes served by a primary node while other nodes hold replicas (different nodes can be primary for different workloads simultaneously). Writes are acknowledged after local journal durability plus an in-memory receipt from a synchronous partner, with a third asynchronous replica receiving operations via replayable backlog—a deliberate durability tradeoff the design documents openly acknowledge.
+
+=> showcase/homelabfs/image-2.png homelabfs screenshot
+
+Implementation is built around a Go core running on FreeBSD hosts with local ZFS storage, coordinating ownership via etcd (kept outside the per-operation I/O path) and replicating over an existing WireGuard mesh. Kubernetes pods running in Rocky Linux bhyve VMs access volumes through a 9p path: guest kernel 9p client → virtio-9p → a HomelabFS FUSE mount on the FreeBSD host → local ZFS plus peer replication. Failover promotes a replica when a pod moves, but blocks I/O until fencing, authoritative recovery, and synchronous-partner readiness complete, with an explicit emergency mode for single-node operation. The access-path components (native FUSE/ZFS on FreeBSD guests and the Rocky 9p/FUSE stack) have passed proof-of-concept validation, but the distributed protocol, failover, and fault-injection testing remain to be built.
+
+=> https://github.com/snonux/homelabfs View on GitHub
+
+---
+
+### 3. comicredr
+
+* 💻 Languages: Dart (74.8%), Shell (14.2%), Python (4.8%), TOML (2.4%), JSON (1.6%), YAML (0.5%), C++ (0.4%), Make (0.4%), Kotlin (0.3%), CMake (0.3%), XML (0.1%), C (0.1%)
+* 📚 Documentation: Markdown (96.6%), Text (3.4%)
+* 📊 Commits: 574
+* 📈 Lines of Code: 94034
+* 📄 Lines of Documentation: 7718
+* 🏷️ Tags: 29
+* 📅 Development Period: 2026-09-24 to 2026-10-26
+* 🏆 Score: 108.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Apache-2.0
-* 🏷️ Latest Release: v0.9.3 (2026-10-19)
+* 🏷️ Latest Release: v0.9.10 (2026-10-26)
 
 
 => showcase/comicredr/image-1.gif comicredr screenshot
 
-**ComicRedr** is a free, open-source comic reader for Linux laptops and Android phones/tablets that recreates the Comixology-style "guided view" reading experience: pages can be stepped through panel by panel, and even speech balloon by speech balloon, with an animation gliding between each. It's designed around local ownership of your data — it reads comics you already have (CBZ, CBT, comic EPUB, PDF, and image folders/files), runs entirely on your own machine with no account or cloud service, and only offers optional cross-device sync through an S3 bucket you control (such as a self-hosted Garage instance). Privacy and offline usability are central to the design.
+ComicRedr is a free, open-source comic reader for Linux laptops and Android phones/tablets, designed for reading comics panel by panel on small screens—reviving the "guided view" experience once offered by Comixology. Unlike cloud-backed readers, it runs entirely on your own machine with no account required, reading the comics you already own in CBZ, CBT, comic EPUB, PDF, and plain image formats. Its two standout modes are guided view, which steps through a page one panel at a time, and balloon mode, which zooms through speech balloons individually. Beyond that, it offers a full library experience (covers, series, collections, search, bookmarks with notes, and reading history), single-page and spread viewing, a night filter, margin trimming, and cleanup for yellowed old scans.
 
 => showcase/comicredr/image-2.svg comicredr screenshot
 
-Implementation-wise, panel and balloon detection is handled by a small model built into the app that runs locally on CPU. Alternatively, users can have a coding agent (Claude Code or Codex) pre-draw panel boundaries next to their comics. Beyond guided viewing, the app includes a full library manager (covers, series, search, collections, bookmarks with notes, reading history), resumes exactly where you left off — down to the page, panel, and zoom level — and syncs that position across devices. Reading tools include two-page spreads, zoom, a night filter, margin trimming, and clean-up for yellowed scans. The interface is keyboard-first with an optional vi layer, fully configurable keybindings and tap zones, and complete touch support, with Linux installations built from source and Android available via a custom F-Droid repository.
+The implementation centers on a small built-in detector model that runs locally on your CPU to identify panels and balloons—no cloud AI involved. For comics where automated detection struggles (slanted or borderless frames), it can alternatively delegate to your coding agent: Claude Code or Codex follow an `AGENTS.md` file to pre-compute panel data saved alongside each comic. Your exact reading position (page, panel, and zoom) syncs across devices either bundled with the file or through your own S3-compatible server such as a self-hosted Garage instance. The app is keyboard-first with an optional vi layer, fully remappable keys and touch zones, and is distributed as a build-from-source Linux app plus an Android APK via a custom F-Droid repository.
 
 => https://github.com/snonux/comicredr View on GitHub
 
 ---
 
-### 5. snonux.foo
+### 4. snonux.foo
 
-* 💻 Languages: JavaScript (65.9%), JSON (16.4%), Go (11.5%), CSS (6.2%)
-* 📚 Documentation: Text (53.3%), Markdown (46.7%)
-* 📊 Commits: 288
-* 📈 Lines of Code: 53019
-* 📄 Lines of Documentation: 1803
-* 🏷️ Tags: 41
-* 📅 Development Period: 2026-04-06 to 2026-10-13
-* 🏆 Score: 77.5 (combines recent activity, code size, tags, and release status)
+* 💻 Languages: JavaScript (67.7%), JSON (15.6%), Go (8.4%), CSS (6.5%), Python (1.8%)
+* 📚 Documentation: Markdown (51.2%), Text (48.8%)
+* 📊 Commits: 350
+* 📈 Lines of Code: 73445
+* 📄 Lines of Documentation: 2862
+* 🏷️ Tags: 42
+* 📅 Development Period: 2026-04-06 to 2026-10-21
+* 🏆 Score: 95.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
-* 🏷️ Latest Release: v0.20.4 (2026-10-13)
+* 🏷️ Latest Release: v0.21.0 (2026-10-21)
 
 
-**snonux** is a Go-based static site generator purpose-built for microblogging, powering [snonux.foo](https://snonux.foo). Its publishing workflow is file-drop simple: you place source files into an input directory (`./inbox` by default) — plain text, Markdown (GFM with raw HTML pass-through and automatic embedding of locally referenced images), standalone images (auto-downscaled past 1024px and re-encoded as JPEG), or MP3 audio (rendered with an HTML5 player) — and each becomes a post rendered into a self-contained static site with paginated HTML pages, an Atom feed (last 42 entries), and a favicon. Because output is entirely static and fonts are bundled rather than fetched from CDNs, it needs no database, no runtime web service, and makes no external requests — making it useful for low-maintenance, privacy-respecting personal publishing, especially paired with its `--sync` flag that rsyncs output to remote hosts over LAN with WireGuard fallback.
+snonux is a Go-based static microblog engine that powers snonux.foo, built around a simple "drop-box" publishing workflow: you place files into an input directory and the tool consumes them into a fully static site. It supports multiple post formats out of the box — plain text, GitHub Flavored Markdown (with local images automatically copied and their paths rewritten), standalone images (downscaled beyond 1024px and re-encoded as JPEG at 80% quality), and MP3 audio rendered with an embedded HTML5 player. Each run produces paginated HTML pages, an Atom feed of the latest 42 entries, per-post directories containing metadata JSON and assets, and processed source files are removed from the inbox afterward.
 
-Architecturally, it's a single Go binary (`cmd/snonux`) whose generator lives in `internal/generator/templates`. Each post becomes a `posts/<timestamp>/` directory containing a `post.json` (metadata plus rendered HTML) and its assets, and source files are consumed from the inbox once processed. The theme system is the standout feature: roughly twenty visual themes (e.g., dos, matrix, synthwave, noir, tropicale), each with its own stylesheet, distinct bundled web fonts, and a themed WebGL background. An embed pipeline (`embed.go`) automatically discovers `*.woff`/`*.woff2` font files and license files within any theme directory and copies them to the distribution folder, so adding fonts or themes requires no Go code changes. Every theme also ships its own arcade game — ten levels, sound, cookie-saved progress, and mobile-friendly fullscreen touch controls — built on a shared JavaScript engine (`shared/games.js`) with per-theme game logic in separate `game.js` files, tested via headless-Chrome e2e suites and benchmarked for frame rate and CPU cost.
+The implementation is a single Go binary with all templates, themes, fonts, and games embedded at build time via Go's embed mechanism. It ships with 20+ visual themes featuring WebGL backgrounds, each bundling self-hosted fonts (making zero runtime requests to font CDNs) and its own three-level arcade game built on a shared JavaScript engine with sound, touch controls, and cookie-based progress saving. Deployment is a single flag away via rsync (LAN with WireGuard fallback), and quality is enforced through mage-driven testing: headless Chrome E2E smoke tests for desktop and emulated phones, bot-driven campaign playthroughs, and CPU/frame-rate profiling for the games.
 
 => https://github.com/snonux/snonux.foo View on GitHub
 
 ---
 
-### 6. turbolaunch
+### 5. gunrunners
 
-* 💻 Languages: Dart (73.9%), Shell (12.9%), Kotlin (9.8%), YAML (1.8%), XML (1.6%)
-* 📚 Documentation: Markdown (93.4%), Text (6.6%)
-* 📊 Commits: 122
-* 📈 Lines of Code: 11962
-* 📄 Lines of Documentation: 971
-* 🏷️ Tags: 13
-* 📅 Development Period: 2026-10-08 to 2026-10-16
-* 🏆 Score: 76.8 (combines recent activity, code size, tags, and release status)
+* 💻 Languages: C++ (92.3%), Python (4.3%), C (1.9%), Shell (0.4%), HTML (0.3%), CMake (0.2%), CSS (0.2%), JavaScript (0.2%)
+* 📚 Documentation: Text (84.9%), Markdown (15.1%)
+* 📊 Commits: 355
+* 📈 Lines of Code: 290244
+* 📄 Lines of Documentation: 13954
+* 🏷️ Tags: 26
+* 📅 Development Period: 2026-10-08 to 2026-10-23
+* 🏆 Score: 84.6 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: GPL-2.0
+* 🏷️ Latest Release: v0.11.7 (2026-10-23)
+
+
+=> showcase/gunrunners/image-1.gif gunrunners screenshot
+
+**Gunrunners** is a free, open-source (GPLv2+) jump-and-shoot platformer that plays like Duke Nukem II, playable in the browser, on Linux, and on Android. It offers a substantial campaign of 49 levels across seven episodes (plus two vehicle-focused EXTRAS levels), where every level has its own unique mechanic twist, a collectible prototype weapon, its own synthesized soundtrack, a bonus level hidden behind TV static, and a briefing cutscene. Players choose from six distinct runners (or build their own with a full in-game runner editor), can swap runners mid-level, drive six vehicles (tank, helicopter, hoverbike, submarine, spaceship, mech), and hunt secrets on top of the core G-U-N letters and gem-collecting goals. Accessibility is well covered with configurable controls, touch schemes, gamepad support, difficulty modes, and optional assists.
+
+=> showcase/gunrunners/image-2.jpg gunrunners screenshot
+
+Architecturally, the game is a single C++ codebase (built with CMake) that compiles to three targets from one source tree: a native Linux build using SDL2, Cairo, and libcurl; an Android APK distributed via F-Droid; and a WebAssembly browser build via Emscripten, which is always kept in sync with the latest release. Rendering uses HD vector graphics drawn with Cairo — smooth neon art with parallax rather than pixel sprites — while the movement physics are a frame-accurate port of Duke Nukem II's engine (via RigelEngine), preserving the original jump arcs, ladders, and hang bars. Notably, all audio is generated at runtime by the game itself: every sound effect and every note of music is synthesized, with no sample files. Features like exploration maps, save slots, cloud saves (S3-compatible), cheats with consequences, and a secret playable author character round out a self-contained, dependency-light package.
+
+=> https://github.com/snonux/gunrunners View on GitHub
+
+---
+
+### 6. dotfiles
+
+* 💻 Languages: Shell (80.4%), Python (6.5%), Go (6.0%), Config (2.0%), TOML (1.6%), CSS (1.4%), Ruby (0.8%), JSON (0.7%), YAML (0.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 1552
+* 📈 Lines of Code: 22883
+* 📄 Lines of Documentation: 13741
+* 🏷️ Tags: 2
+* 📅 Development Period: 2023-07-30 to 2026-10-26
+* 🏆 Score: 80.9 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+This is a personal dotfiles repository for a multi-machine Linux/macOS/FreeBSD fleet, covering shell configurations (bash, fish, zsh), editor and terminal tooling (helix, tmux, ghostty), a Wayland desktop (sway, waybar), git and task management configs, plus a collection of ~30 utility scripts (AI editor integration, backups, video stabilization, Immich sync, etc.). It also holds reusable agent prompts and skills that get symlinked into various AI coding tools (Cursor, Claude Code, Codex, OpenCode). Deployment is handled by gonf, a companion tool invoked via `./gonf.sh`, which can apply tasks locally or stream a plan over SSH to remote hosts, with dry-run and profile-override support.
+
+The architecture is task-based: each `home_*`, `pkg_*`, and `system_*` task is a gonf recipe guarded by OS profile and hostname checks (e.g., `pkg_fedora` runs only on Fedora, `system_wireguard` only on specific hosts). Guards are serializable and evaluated on the destination, so pushed plans adapt to the target machine automatically. Unprivileged tasks mostly symlink or copy files into `$HOME`, while privileged tasks handle system-level state like package installation, WireGuard units, `/etc/hosts` blocks, and login shells — all idempotently and without touching unrelated host configuration. Layout is one directory per tool, with dated notes and runbooks kept alongside the configs.
+
+=> https://github.com/snonux/dotfiles View on GitHub
+
+---
+
+### 7. player
+
+* 💻 Languages: Dart (44.1%), Go (39.5%), JavaScript (7.5%), TypeScript (5.4%), CSS (1.3%), Python (0.5%), HTML (0.5%), Kotlin (0.4%), YAML (0.2%), Shell (0.2%), JSON (0.2%)
+* 📚 Documentation: Markdown (99.9%), Text (0.1%)
+* 📊 Commits: 506
+* 📈 Lines of Code: 156193
+* 📄 Lines of Documentation: 9659
+* 🏷️ Tags: 24
+* 📅 Development Period: 2026-04-28 to 2026-10-21
+* 🏆 Score: 64.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
-* 🏷️ Latest Release: v0.3.10 (2026-10-16)
+* 🏷️ Latest Release: v0.10.1 (2026-10-21)
+
+
+=> showcase/player/image-1.png player screenshot
+
+Player is a self-hosted media server for organizing and enjoying personal media collections—such as image sets and audiobooks—through either a browser-based web UI or a companion Android app. Because it's self-hosted, users keep full control over their media files, accounts, and playback on their own infrastructure instead of depending on a third-party cloud service. The server exposes a REST API for library browsing and playback, supports user accounts, and uses ffmpeg/ffprobe on the host for media processing, with deployment options including Docker and Kubernetes.
+
+=> showcase/player/image-2.png player screenshot
+
+The project is structured as a monorepo with two components: a Go server (`player-server/`) that owns the web UI, media library, playback APIs, accounts, and storage, and a Flutter Android client (`player-android/`) that consumes the same REST API documented in the server's docs. Builds use Mage on the server side and standard Flutter tooling for Android. Releases are tightly coupled across platforms—server and Android share a single version tag, with a GitHub Actions workflow that verifies version parity and publishes signed APKs (targeting F-Droid) alongside a Linux server bundle containing the binary and web UI.
+
+=> https://github.com/snonux/player View on GitHub
+
+---
+
+### 8. turbolaunch
+
+* 💻 Languages: Dart (74.6%), Shell (12.7%), Kotlin (9.6%), YAML (1.7%), XML (1.5%)
+* 📚 Documentation: Markdown (93.0%), Text (7.0%)
+* 📊 Commits: 128
+* 📈 Lines of Code: 12430
+* 📄 Lines of Documentation: 1005
+* 🏷️ Tags: 15
+* 📅 Development Period: 2026-10-08 to 2026-10-21
+* 🏆 Score: 43.6 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.3.12 (2026-10-20)
 
 
 => showcase/turbolaunch/image-1.png turbolaunch screenshot
 
-TurboLaunch is a minimalist, search-first home screen replacement for Android, built specifically for GrapheneOS and privacy-conscious users. Its core interaction model is simple: press Home, type two or three letters, and hit Enter to launch an app. The search uses fzf-style fuzzy matching—letters in order with gaps allowed (e.g., "orgm" finds Organic Maps), with matched letters highlighted and the top match launched on Enter. Beyond search, it offers an always-visible search box, a quick launch bar for rarely-used-but-frequently-wanted apps like the camera, app shortcuts as search results, searchable split-screen app pairs, customizable gestures and swipes (including flashlight and quick settings), work profile support with badges, and a stats screen showing launch counts.
+TurboLaunch is a small, privacy-focused home screen launcher for Android, built with GrapheneOS users in mind. Its core interaction is search-first: press Home, type two or three letters, hit Enter, and the app opens. Search uses fzf-style fuzzy matching—letters in order with gaps allowed, so "orgm" finds Organic Maps—with matched letters highlighted, and app shortcuts like "New note" appear as results too. Beyond search, the grid adapts to behavior: launch counts are tracked over a configurable window (30 days by default), and the most-used apps are sorted toward the bottom near the thumb, though icons can optionally be pinned in place. It also includes a quick launch bar for essentials like the camera, app pairs for split-screen use, and a stats screen that surfaces rarely launched apps as uninstall candidates.
 
 => showcase/turbolaunch/image-2.png turbolaunch screenshot
 
-The key architectural idea is a usage-aware, optionally synced home grid: apps are arranged by launch frequency over a configurable window (default: last 30 days), placing the most-used apps nearest the thumb, with an option to keep icons static instead. Launch counts aggregate across devices by syncing through the user's own S3-compatible bucket (Garage, MinIO, AWS), where apps missing on a given phone keep their grid cell as a faded ghost. The app contains no tracking and no Google Play Services—optional S3 sync is its only network use—and everything can be exported and imported as a single JSON file for migrating phones. It's MIT-licensed and distributed via a F-Droid repository or direct APK downloads.
+Privacy and multi-device consistency drive the design: there's no tracking and no Google Play Services, and the only network use is optional sync of launch data to the user's own S3-compatible bucket (AWS, MinIO, or Garage), so the same grid follows you across phones—with apps missing from a device shown as faded "ghost" cells. Additional features include customizable swipes and drawn gestures for actions like locking the phone, toggling the flashlight, or opening apps, plus work profile support, wallpaper/grid/font settings, and full JSON export/import for migrating to a new device. Architecturally, it's a native Android launcher that replaces the home screen, handling launch-count tracking, fuzzy search, and client-side S3 sync entirely on-device so all data stays under the user's control. It's MIT-licensed and distributed via a personal F-Droid repository or direct APKs.
 
 => https://github.com/snonux/turbolaunch View on GitHub
 
 ---
 
-### 7. turbomon
+### 9. turbomon
 
 * 💻 Languages: Dart (82.8%), Kotlin (13.1%), XML (2.9%), YAML (0.7%), Python (0.4%), JavaScript (0.1%)
 * 📚 Documentation: Markdown (87.6%), Text (12.4%)
-* 📊 Commits: 26
+* 📊 Commits: 27
 * 📈 Lines of Code: 13184
 * 📄 Lines of Documentation: 1376
 * 🏷️ Tags: 3
-* 📅 Development Period: 2026-10-10 to 2026-10-15
-* 🏆 Score: 70.5 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2026-10-10 to 2026-10-21
+* 🏆 Score: 36.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.2.1 (2026-10-15)
 
 
 => showcase/turbomon/image-1.png turbomon screenshot
 
-TurboMon is a comprehensive system monitor for Android that provides a `top`-style view of CPU, RAM, and GPU usage, along with live graphs that change colour to reflect load levels. Beyond core metrics, it covers battery status, temperatures, storage, disk I/O, network speed, plus a Wi-Fi channel analyser and Bluetooth scanner in dedicated tabs. Its standout feature is the **snapshot**: a one-tap Markdown report capturing the device's current state, designed to be handed directly to an LLM so it can diagnose what's draining the phone and suggest a fix—bridging the gap between raw telemetry and actionable answers.
+**TurboMon** is a privacy-first system monitor for Android that provides a `top`-style view of CPU, RAM, and GPU alongside live, colour-coded graphs of battery status, temperatures, storage, disk I/O, and network speeds. It also includes a Wi-Fi channel analyser and a Bluetooth scanner for diagnosing radio-related issues. Its standout feature is the **snapshot**: a Markdown-formatted report capturing the phone's current state, designed to be handed directly to an LLM to identify what's draining the battery or causing slowdowns and to suggest fixes. Notably, the app has no internet permission at all—all data stays on the device, with the user explicitly choosing when to share a snapshot.
 
 => showcase/turbomon/image-2.png turbomon screenshot
 
-The project is built with a strong privacy-first architecture: TurboMon has **no internet permission at all**, so every reading stays on the device. It runs with standard Android permissions out of the box, but optionally integrates with Shizuku or root to unlock deeper data—true CPU percentages, the process list, and every thermal sensor. The UI is organized into focused tabs (System, Power, I/O, etc.), with background scanning for continuous monitoring and both a home-screen widget and a floating overlay for at-a-glance stats. Distributed via F-Droid under the MIT license, it's aimed at users who want deep visibility into their phone without giving up data privacy.
+The project follows a layered architecture. Core functionality works out of the box using standard Android APIs, while optional Shizuku or root integration unlocks deeper instrumentation such as accurate per-process CPU percentages, the full process list, and every thermal sensor. The UI is organised into tabs (System, Power, I/O, Wi-Fi channels) with graphs that shift colour as load increases, supplemented by a home-screen widget and a floating overlay for glanceable monitoring. A configurable background scanning system handles periodic data collection with documented behaviour around frequency and lifecycle. Well-organised documentation covers features, permission rationale, the snapshot schema, and build/testing workflows, and the app is distributed through F-Droid under an MIT license.
 
 => https://github.com/snonux/turbomon View on GitHub
 
 ---
 
-### 8. dotfiles
+### 10. turbonotes
 
-* 💻 Languages: Shell (79.8%), Python (7.0%), Go (6.0%), Config (2.0%), TOML (1.6%), CSS (1.4%), Ruby (0.8%), JSON (0.7%), YAML (0.5%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 1514
-* 📈 Lines of Code: 22711
-* 📄 Lines of Documentation: 23154
-* 🏷️ Tags: 2
-* 📅 Development Period: 2023-07-30 to 2026-10-18
-* 🏆 Score: 57.0 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-This repository is a collection of personal dotfiles and system configuration for a small fleet of machines (Fedora, Rocky Linux, FreeBSD, and macOS hosts), managing everything from shell configs (bash, fish, zsh), editors (helix), terminal multiplexer (tmux), and the sway/waybar desktop environment, to systemd user services, privileged system state (WireGuard, `/etc/hosts`, uptimed, login shells), and a set of utility scripts in `~/scripts` (backups, media encoding, AI editor prompts, Immich sync, etc.). Its usefulness lies in making the whole environment reproducible: a single tool declaratively installs both user-level configs and Fedora packages, handles host-specific overrides (e.g., the high-res PipeWire setup or Proton Bridge tunnel only on "earth"), and even links agent workflows from `prompts/` into a dozen AI coding tools.
-
-Implementation-wise, everything is deployed via [gonf](https://github.com/snonux/gonf), a task-based deployment tool invoked through `./gonf.sh`. Tasks are modular (one per app or concern), written as gonf recipes under `gonf/`, and guarded by conditions evaluated on the destination machine — so the same command works locally or via `gonf.sh push user@host <task>`, which streams a plan over SSH after installing gonf there. Guards are serializable and profile-aware (detected from `/etc/os-release`, overridable), tasks declare whether they need sudo, and the tool supports dry-runs (`-n`), task listing with guard status, and Git worktree awareness. Deployment uses a mix of symlinks (configs that stay live against the checkout) and synced copies (scripts, systemd units), with per-host tmux theming handled by a single shared config using conditional `%if` blocks.
-
-=> https://github.com/snonux/dotfiles View on GitHub
-
----
-
-### 9. turbonotes
-
-* 💻 Languages: Dart (85.1%), Kotlin (9.1%), XML (1.9%), CMake (1.4%), C++ (1.3%), Python (0.5%), YAML (0.4%), C/C++ (0.3%)
+* 💻 Languages: Dart (84.4%), Kotlin (10.0%), XML (1.9%), CMake (1.3%), C++ (1.2%), Python (0.5%), YAML (0.4%), C/C++ (0.3%)
 * 📚 Documentation: Markdown (95.8%), Text (4.2%)
-* 📊 Commits: 20
-* 📈 Lines of Code: 17376
-* 📄 Lines of Documentation: 991
-* 🏷️ Tags: 7
-* 📅 Development Period: 2026-10-07 to 2026-10-16
-* 🏆 Score: 53.8 (combines recent activity, code size, tags, and release status)
+* 📊 Commits: 23
+* 📈 Lines of Code: 18367
+* 📄 Lines of Documentation: 1061
+* 🏷️ Tags: 8
+* 📅 Development Period: 2026-10-07 to 2026-10-21
+* 🏆 Score: 35.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
-* 🏷️ Latest Release: v0.3.1 (2026-10-16)
+* 🏷️ Latest Release: v0.4.0 (2026-10-21)
 
 
 => showcase/turbonotes/image-1.png turbonotes screenshot
 
-TurboNotes is a free, open-source Android app (with a Linux desktop build) for browsing and editing a folder of plain Markdown notes. You point it at any directory—say, one that Syncthing keeps in sync with your laptop—and every `.md` file becomes one tap away. It complements its sibling app Quicklog, which jots down new notes while TurboNotes handles browsing and editing the ones you already have. Because notes are just plain files in a standard format rather than entries in a proprietary database, the app stays flexible and interoperable with whatever other tools you use, and distribution is handled through its own F-Droid repository.
+TurboNotes is a lightweight app for browsing and editing a folder of Markdown notes on Android, with an additional Linux desktop build. Each `.md` file in a pointed-at directory—say, one kept in sync with your laptop via Syncthing—is a note one tap away. As the sibling of Quicklog (which captures new notes), TurboNotes focuses on the notes you already have. Because it works on plain files rather than a proprietary store, it avoids lock-in, slots naturally into file-sync workflows, and keeps a privacy-first posture with no telemetry.
 
 => showcase/turbonotes/image-2.png turbonotes screenshot
 
-The feature set centers on navigating, editing, and protecting your notes: a file tree with pinned and recent notes and a tag-based filter, fuzzy finding plus typo-tolerant full-text search, and two editing modes over the same Markdown text—a raw editor and a WYSIWYG view that never rewrites the underlying file and renders images inline (from camera, gallery, or clipboard). Notes can be shared out as text, PDF, or image, edited in place from other apps such as a File Browser server (with saves routed back to the source), and captured quickly via a home-screen widget or the Android share sheet. Robustness and privacy are priorities throughout: autosave never silently overwrites changes made on disk elsewhere, and the optional S3 sync (off by default, no telemetry) merges independent edits while preserving conflict copies.
+The app is built around fast navigation and non-destructive editing. A sidebar file tree provides pinned and recent notes plus a tag tree for filtering, backed by a fuzzy finder and typo-tolerant full-text search. The same Markdown text can be edited in a raw editor or a WYSIWYG view that never rewrites the note and renders inline images added from the gallery, camera, or clipboard. Implementation-wise, it leans heavily on platform integration: files opened from other apps (such as a File Browser server) save back to where they came from, notes can be shared out as text, PDF, or image, and quick capture works from the home-screen widget or share sheet without opening the app. Autosave never silently overwrites changes made on disk while you edit, and an optional, off-by-default S3 sync merges independent edits while keeping conflict copies.
 
 => https://github.com/snonux/turbonotes View on GitHub
 
 ---
 
-### 10. quicklog
+### 11. quicklog
 
 * 💻 Languages: Dart (89.7%), Kotlin (7.3%), CMake (0.9%), YAML (0.8%), C++ (0.6%), XML (0.6%), C/C++ (0.1%)
 * 📚 Documentation: Markdown (81.0%), Text (19.0%)
-* 📊 Commits: 177
+* 📊 Commits: 178
 * 📈 Lines of Code: 26865
 * 📄 Lines of Documentation: 1381
 * 🏷️ Tags: 26
-* 📅 Development Period: 2024-01-20 to 2026-10-16
-* 🏆 Score: 45.2 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2024-01-20 to 2026-10-21
+* 🏆 Score: 30.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.5.4 (2026-10-16)
 
 
 => showcase/quicklog/image-1.png quicklog screenshot
 
-Quicklog is a lightweight note-capture app for Android (primary) and Linux desktop, rewritten in Flutter from an earlier Go/Fyne app. Its purpose is minimal-friction journaling: you type a thought, tap **Log text**, and the note is written as a timestamped Markdown file (`ql-YYMMDD-HHMMSS.md`) to a configurable directory — by default the app-specific Android folder, which Syncthing can sync to a home computer without any storage permissions. Beyond the single-screen editor (with character counter and a 5,000-character warning), it offers an entry browser with in-place editing and delete-with-confirmation, Android share-target integration (shared text either prefills the editor or logs immediately), and JSON-based settings export/import for backups and device migration. There is no telemetry, and local-only is the default.
+Quicklog is a lightweight Flutter app for capturing thoughts as timestamped Markdown notes, primarily on Android with Linux desktop support for development. It's a rewrite of an earlier Go/Fyne app called Quicklogger, with the same core workflow: type a quick note, hit **Log text**, and it's saved as `ql-YYMMDD-HHMMSS.md` in a configured directory — typically one synced to your computer via Syncthing. The app emphasizes privacy and reliability: it collects no telemetry, defaults to local-only storage, keeps S3 credentials on-device, and guarantees notes are never lost (if an S3 write fails, the note is immediately saved locally and S3 is skipped for an hour with a manual retry option). Beyond the single-screen editor, it includes an entry browser with edit and delete support, Android share-intent integration ("Share to Quicklog"), and JSON-based settings backup/restore for surviving uninstalls or migrating devices.
 
 => showcase/quicklog/image-2.png quicklog screenshot
 
-Architecturally, the app supports three storage modes: local only, S3 only, or dual write (local + S3) against any path-style S3-compatible endpoint, with defaults aimed at Garage. Outage resilience is a key design point: if an S3 write fails, the note is saved locally immediately and never lost, S3 is skipped for an hour with a retry control, and S3-only mode automatically moves local notes into the bucket once connectivity returns — with optional scheduled retries, including opt-in Android background jobs. A companion Dart CLI (`bin/quicklog_drain.dart`) drains bucket notes onto a laptop using an ack-based streaming protocol that deletes each remote object only after a successful import (e.g., into taskwarrior via the consumer's wrapper scripts). Building on Flutter's stable channel requires no NDK or container tooling for Android cross-compilation; releases are versioned from `pubspec.yaml`, packaged for F-Droid (built from source), and covered by a `flutter test`/`flutter analyze` suite, including an optional live S3 smoke test.
+Architecturally, Quicklog supports three storage modes — **Local only** (default), **S3 only**, and **Local + S3** dual write — targeting path-style S3-compatible endpoints like Garage. The S3-only mode includes elaborate recovery logic: automatic outage recovery that moves local notes into the bucket, on-device upload receipts to avoid redundant transfers, conflict handling that preserves both versions when texts differ, and optional scheduled background retries on Android. A companion Dart CLI (`bin/quicklog_drain.dart`) runs laptop-side, streaming notes from the bucket into taskwarrior via a JSON-lines protocol with ack-based deletion, so failed imports are retried rather than lost. The project is built with Flutter's standard toolchain (no NDK or containerized cross-compilation needed, since Dart AOT emits ARM code directly from x86_64), versions everything through `pubspec.yaml`, and is distributed via F-Droid, which builds reproducibly from source using a pinned Flutter SDK version.
 
 => https://github.com/snonux/quicklog View on GitHub
 
 ---
 
-### 11. s3tools
+### 12. s3tools
 
 * 💻 Languages: Go (99.5%), Docker (0.5%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 24
+* 📊 Commits: 26
 * 📈 Lines of Code: 6074
 * 📄 Lines of Documentation: 232
 * 🏷️ Tags: 5
-* 📅 Development Period: 2026-10-07 to 2026-10-17
-* 🏆 Score: 43.7 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2026-10-07 to 2026-10-21
+* 🏆 Score: 28.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.1.4 (2026-10-17)
 
 
-`s3rm` is a Go-based CLI tool for safely deleting selected top-level prefixes from S3-compatible buckets, supporting AWS S3, Ceph RADOS Gateway, and Garage. It's designed for both interactive terminal use and non-interactive automation in containers and CI pipelines. Because bulk deletion is inherently risky, the tool builds in multiple safeguards: protected prefixes that can never be removed, exact bucket-name confirmation with `--confirm-bucket`, a `--dry-run` mode that previews eligible object counts and bytes without deleting anything, and a final verification pass after deletion completes.
+`s3rm` is a command-line tool, written in Go, for safely deleting selected top-level prefixes (i.e., "folders") from S3-compatible object storage, supporting AWS S3, Ceph RADOS Gateway, and Garage. Its core value is making bulk deletion safe: rather than exposing a bare destructive command, it layers multiple safeguards, including protected prefixes that can't be deleted, exact bucket-name confirmation, a `--dry-run` mode that previews eligible object counts and total bytes without touching data, progress reporting, and post-deletion verification. Because these checks can run non-interactively (e.g., `s3rm --prefix=old-exports/ --confirm-bucket=photos`), the tool works equally well in a terminal or embedded in containers and automated pipelines.
 
-The tool is implemented in Go with flexible configuration: a bucket can be configured in a TOML file (`~/.config/s3rm/config.toml`) or via environment variables (`S3RM_BUCKET`, `S3RM_REGION`, credentials), with command-line flags providing explicit overrides for automation scenarios—such as requiring a target prefix and matching bucket confirmation before a destructive operation. Development and quality control are managed through Mage task targets, with the `mage check` gate running `go vet`, tests with the race detector enabled, `gofmt` formatting verification, and `errcheck` to catch unhandled errors. Docker support and additional usage documentation are provided in a separate usage guide.
+Architecturally, the project follows a conventional Go CLI layout with configuration resolved from a TOML file (`~/.config/s3rm/config.toml`) or environment variables (`S3RM_BUCKET`, `S3RM_REGION`, and standard credentials). Development is driven by Mage task targets—`mage build`, `mage test`, and `mage check`—where the check target enforces code quality via `go vet`, race-detector-enabled tests, `gofmt` formatting compliance, and static error-handling analysis with `errcheck`. The documentation also references Docker support for containerized usage, consistent with its dual interactive/automation design.
 
 => https://github.com/snonux/s3tools View on GitHub
 
 ---
 
-### 12. ior
+### 13. gonf
+
+* 💻 Languages: Go (99.6%), Config (0.3%)
+* 📚 Documentation: Markdown (99.9%)
+* 📊 Commits: 673
+* 📈 Lines of Code: 153774
+* 📄 Lines of Documentation: 17209
+* 🏷️ Tags: 64
+* 📅 Development Period: 2026-07-04 to 2026-10-21
+* 🏆 Score: 28.6 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.25.2 (2026-10-12)
+
+
+=> showcase/gonf/image-1.svg gonf screenshot
+
+gonf is a lightweight, "keep it simple" configuration management tool for personal use, targeting Linux, OpenBSD, FreeBSD, and NetBSD hosts. Rather than YAML or a custom DSL, recipes are written in plain Go: your own program embeds the gonf API, registers named tasks, and each task declaratively states its desired resources—files (with content, mode), packages, services, users, cron jobs, and so on. When run, gonf "converges" hosts toward that declared state, changing only what has drifted since the last run—echoing its beaver mascot Gonfy rebuilding a lodge to plan. This makes it useful for managing a homelab or small fleet with idempotent, compile-time-checked, reviewable configuration, without heavyweight orchestration tools.
+
+Architecturally, execution is plan-based: registered tasks are recorded into a versioned plan (JSONL, optionally sealed with age encryption for secure transport), which can be previewed with a dry run (`-n`) and applied later on any host that has gonf installed. Remote deployment works over SSH—gonf cross-compiles itself for the target OS/architecture and installs it there—supporting strict cluster previews and parallel fleet pushes. Privilege escalation (sudo/doas) is configured via flags or explicit per-host policies. Notably, the project was built with AI assistance but designed, reviewed, and tested by a human, which the docs emphasize as a trust signal.
+
+=> https://github.com/snonux/gonf View on GitHub
+
+---
+
+### 14. ior
 
 * 💻 Languages: Go (90.0%), C (9.3%), C/C++ (0.4%), Shell (0.2%)
 * 📚 Documentation: Markdown (63.4%), Text (36.6%)
@@ -299,118 +349,94 @@ The tool is implemented in Go with flexible configuration: a bucket can be confi
 * 📄 Lines of Documentation: 10100
 * 🏷️ Tags: 11
 * 📅 Development Period: 2024-01-18 to 2026-10-05
-* 🏆 Score: 41.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 28.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.2.0 (2026-10-05)
 
 
 => showcase/ior/image-1.gif ior screenshot
 
-I/O Riot NG (`ior`) is a syscall observability tool for Linux that uses eBPF to trace what processes actually do — timings, call counts, file paths, and I/O activity — and visualizes it in an interactive terminal dashboard with a live flamegraph. It's the Go/C/eBPF rewrite of the original SystemTap-based I/O Riot, trading legacy kernel instrumentation for low-overhead, modern tracing. It's useful for performance analysis and debugging: you pick a process (or all of them) and watch its syscall behavior live across tabbed views, with a probes dialog that attaches or detaches trace families and individual syscalls while it runs. The tool also supports headless operation and exports results to Parquet, CSV, or its compressed `.ior.zst` format, which can be converted to SVG flamegraphs using standard FlameGraph tooling.
+`ior` (I/O Riot NG) is a Linux syscall tracing and observability tool that uses eBPF to capture what processes are actually doing — syscall timings, invocation counts, and file paths — and presents the results in an interactive terminal dashboard with a live flamegraph. It's the Go/C/eBPF successor to the original SystemTap-based I/O Riot, and it's useful both for diagnosing filesystem and syscall behavior in real time and for recording activity for later analysis. After launching, you pick a process (or trace all of them) from a PID picker and explore the data across tabbed views, adjusting what's traced on the fly.
 
 => showcase/ior/image-2.png ior screenshot
 
-Architecturally, `ior` embeds a CO-RE BPF object in a statically linked binary, built via Docker (or natively per its Rocky Linux 9 guide), so it can be copied to any Linux/amd64 host with kernel BTF support; tracepoints missing on the target are simply skipped. Tracing is selective and composable — filesystem syscalls by default, with time, polling, and other families, plus trace "kinds" or specific syscalls, selectable via flags or at runtime. Beyond the TUI, it offers headless recording modes (including `-pid`/`-tid` runs that stop when the traced process exits), sampling, and byte counting, documented across a tutorial and per-topic guides.
+Implementation-wise, it targets Linux/amd64 on kernels with BTF and follows an eBPF tracing architecture: a CO-RE (compile-once, run-everywhere) BPF object is embedded into a statically linked binary, so it can be built once (via Docker or Mage) and copied to other BTF-capable hosts, where missing tracepoints are simply skipped. Tracing is organized into "families" — filesystem syscalls by default, with optional groups like Time and Polling — plus per-syscall allow/block lists, sampling, and runtime attach/detach through a probes dialog. Beyond the TUI, it records snapshots and sessions to CSV or Parquet, or to a compressed `.ior.zst` flamegraph format that interoperates with standard FlameGraph tooling (`ior collapsed` pipes into `flamegraph.pl`). Headless modes support non-interactive collection and stop automatically when the traced process exits.
 
 => https://github.com/snonux/ior View on GitHub
 
 ---
 
-### 13. gonf
+### 15. bgtutor-mcp
 
-* 💻 Languages: Go (99.6%), Config (0.3%)
-* 📚 Documentation: Markdown (99.9%)
-* 📊 Commits: 672
-* 📈 Lines of Code: 153774
-* 📄 Lines of Documentation: 17209
-* 🏷️ Tags: 64
-* 📅 Development Period: 2026-07-04 to 2026-10-12
-* 🏆 Score: 39.3 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.25.2 (2026-10-12)
-
-
-=> showcase/gonf/image-1.svg gonf screenshot
-
-**Gonf** is a lightweight configuration management tool written entirely in Go, designed for personal use with a simple, converge-style model. Instead of YAML manifests or a custom DSL, configurations ("recipes") are ordinary Go programs: you write code that registers tasks, and each task declaratively resources—files, packages, services, cron jobs, users, and so on. You then build your own `gonf` binary that embeds your configuration. When run, gonf records the declared resources into a versioned plan and applies it, changing only what has drifted since the last run (convergence, in the spirit of CFEngine or Puppet). This makes it useful for keeping local machines or fleets of hosts reproducibly configured with the safety of Go's type checking and toolchain, and the simplicity of a single self-contained binary.
-
-Architecturally, recipes import the gonf API package, register tasks in `main()`, and let `cli.Main()` handle the command line. The tool can apply plans locally or push them over SSH to Linux, OpenBSD, FreeBSD, and NetBSD hosts—cross-compiling and installing itself on targets so only the controller needs Go. Key features include dry-run previews, parallel fleet/cluster execution, privilege escalation via sudo/doas, and plan serialization to JSONL (optionally sealed with age encryption) so a plan can be generated once and applied on any host that has gonf installed.
-
-=> https://github.com/snonux/gonf View on GitHub
-
----
-
-### 14. comicredr-training-assets
-
-* 💻 Languages: Python (52.1%), JSON (47.9%)
-* 📚 Documentation: Markdown (100.0%)
+* 💻 Languages: Go (89.6%), JSON (9.0%), Docker (0.7%), YAML (0.7%)
+* 📚 Documentation: Markdown (98.5%), Text (1.5%)
 * 📊 Commits: 5
-* 📈 Lines of Code: 2345
-* 📄 Lines of Documentation: 682
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-10-10 to 2026-10-10
-* 🏆 Score: 34.4 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
+* 📈 Lines of Code: 3655
+* 📄 Lines of Documentation: 616
+* 🏷️ Tags: 1
+* 📅 Development Period: 2026-09-30 to 2026-10-21
+* 🏆 Score: 27.2 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.30.0 (2026-10-03)
 
 
-This repository is a companion to [ComicRedr](https://github.com/snonux/comicredr) that provides supplementary training data and generation scripts for its comic panel detector. It contains 1,123 synthetic comic pages (in 141 fake books) derived from a private collection of 180 books (13,239 pages): each page preserves a real page's *layout*—gutter and frame-border pixels are kept from the original—while all art inside frames is replaced with procedurally generated artwork (flat k-means color regions, ink lines, hatching, halftone dots, speed lines), so no original drawing, lettering, or balloons survive. Layouts that can't be read unambiguously (full-bleed art, inseparable touching panels, non-flat gutters) are skipped rather than guessed at, yielding exact axis-aligned labels across six frame shapes and deliberately oversampling the hard cases. This targets a diagnosed weakness: the shipped model handles plain grids well (~97% of frames at IoU 0.5) but struggles with slanted, touching, notched, and polygon frames, where its boxes also loosen.
+bgtutor-mcp is a standalone MCP server, written in Go, that turns English podcasts into voice-guided Bulgarian listening lessons. Instead of building a custom voice app, it lets an off-the-shelf voice AI (Claude or ChatGPT voice mode) act as the tutor: the AI pulls prepared episode content paragraph by paragraph over MCP, translates it into Bulgarian live, reads it aloud, and teaches grammar and vocabulary along the way. Learners benefit from a persistent vocabulary notebook (saving words, phrases, and grammar rules across sessions) and an alternative citizenship mode that repurposes the same infrastructure for Bulgarian citizenship exam prep, with 36 grammar chapters, interview rehearsal, and mock exams with grading.
 
-The pipeline consists of four scripts: `border_pages.py` (a scan/stats/make CLI over PDFs, CBZ, and image folders, seeded for reproducibility), `borders.py` (gutter detection, segmentation of art into solid frame pieces, splitting of touching panels, shape classification), `fake_art.py` (synthetic panel filler), and `real_art.py` (a variant that fills the same layouts with real art from ComicRedr's clean training pages). Output pages (1,600 px long side, with labelkit-format JSON labels in reading order) plug directly into ComicRedr's `spike/train.py` via `make train-model` targets, with a 10% validation holdout and automatic scoring against ComicRedr's three test sets. Notably, the project's own experiments showed that fake art alone hurt performance on real modern pages—the detector latched onto synthetic color boundaries—so the real-art variant is recommended, though no retrained model has yet beaten the shipped one; due to licensing constraints (layouts come from books outside ComicRedr's publishable list), models trained on these pages are kept private.
+The architecture separates offline preparation from runtime serving. During preparation, a coding agent (Claude Code, Codex, etc.) follows PREPARE.md to split a transcript into paragraphs, translate them, and write teaching notes into per-episode folders, which the CLI then validates and publishes. At runtime, `bgtutor serve` exposes a stateless Streamable HTTP MCP endpoint with tools like `list_episodes`, `get_paragraph` (English text, reference Bulgarian, grammar/vocab notes), and vocabulary management; errors return human-readable messages the AI can speak, and session instructions are sent on initialize. Bearer-token auth secures non-localhost deployments, learner data persists as JSON files, and the static binary ships as a distroless Docker container, with an HTTPS tunnel planned for connecting public voice-AI clients.
 
-=> https://github.com/snonux/comicredr-training-assets View on GitHub
+=> https://github.com/snonux/bgtutor-mcp View on GitHub
 
 ---
 
-### 15. hexai
+### 16. hexai
 
 * 💻 Languages: Go (99.3%), Python (0.7%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 611
-* 📈 Lines of Code: 52943
-* 📄 Lines of Documentation: 2775
-* 🏷️ Tags: 123
-* 📅 Development Period: 2025-08-01 to 2026-10-15
-* 🏆 Score: 28.6 (combines recent activity, code size, tags, and release status)
+* 📊 Commits: 613
+* 📈 Lines of Code: 53278
+* 📄 Lines of Documentation: 2790
+* 🏷️ Tags: 125
+* 📅 Development Period: 2025-08-01 to 2026-10-24
+* 🏆 Score: 23.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
-* 🏷️ Latest Release: v0.44.2 (2026-10-13)
+* 🏷️ Latest Release: v0.44.4 (2026-10-24)
 
 
 => showcase/hexai/image-1.png hexai screenshot
 
-Hexai brings AI-assisted development to the Helix editor by implementing AI features as an LSP server—the integration point Helix supports since it lacks a plugin system. This gives Helix users code completions (from one model or comparable suggestions from several), inline chat for asking questions within a file, inline edits driven by natural-language instructions, and code actions like rewriting, documenting, fixing diagnostics, and generating Go tests from a selection. It supports Ollama (local or cloud, the built-in default), OpenAI, OpenRouter, and Anthropic, making it useful both for privacy-conscious developers running local models and those preferring commercial APIs.
+**Hexai** brings AI-assisted coding to the Helix editor, which lacks built-in AI features. Through an LSP integration, it provides AI code completions, code actions (rewriting, documenting, fixing diagnostics, generating Go tests), and inline chat directly in the editor—letting you complete code with one model or compare suggestions from several, ask questions about the current file, and apply code changes from natural-language instructions. The project also ships companion tools: `hexai`, a command-line LLM client with response caching, `hexai-tmux-action`, a tmux popup for running custom AI actions outside the editor, and `ask`, a Taskwarrior-based CLI for managing project tasks with stable task aliases.
 
 => showcase/hexai/image-2.gif hexai screenshot
 
-The project is written in Go and ships as four separate binaries reflecting a modular architecture: `hexai-lsp-server` handles the editor integration, `hexai` is a standalone CLI LLM client with response caching and multi-model comparison, `hexai-tmux-action` exposes actions through a tmux popup menu, and `ask` is a project task manager built on Taskwarrior with stable task aliases, dependencies, and Fish shell completion. Users can define their own custom actions and invoke them from either Helix or tmux, and the companion guide walks through setup and all features with animated terminal demos.
+The project is written in Go and distributed as multiple binaries—most notably `hexai-lsp-server`, which implements the Language Server Protocol so that any LSP-capable editor can theoretically integrate with it, though Helix is the tested and documented integration. AI provider access is abstracted behind a common interface supporting Ollama (local or cloud, the default), OpenAI, OpenRouter, and Anthropic, so users can mix local and hosted models or compare outputs across providers. The guide in `docs/` walks through Helix setup, provider configuration, and each feature with animated terminal demos.
 
 => https://github.com/snonux/hexai View on GitHub
 
 ---
 
-### 16. f3sctl
+### 17. f3sctl
 
 * 💻 Languages: Go (98.9%), JavaScript (1.0%), YAML (0.2%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 223
+* 📊 Commits: 224
 * 📈 Lines of Code: 37770
 * 📄 Lines of Documentation: 1662
 * 🏷️ Tags: 29
-* 📅 Development Period: 2026-08-08 to 2026-09-29
-* 🏆 Score: 28.5 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2026-08-08 to 2026-10-23
+* 🏆 Score: 22.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.11.3 (2026-09-29)
 
 
-**f3sctl** is a power-management control tool for the f3s homelab: it wakes, shuts down, and reports on a rack of FreeBSD bhyve hosts (f0–f3), switches the rack-fan and f-host mains-AC smart plugs, mutes/unmutes Gogios monitoring around planned work, and can cold-cycle the entire rack. It replaces an ad-hoc bash script, and its value lies in encoding operational lessons as safe, ordered procedures — a shutdown unmounts NFS and exports the backup ZFS pool before cutting power, stops CARP failover daemons that previously wedged a host, stops guests in parallel with a kill deadline below the shutdown watchdog, confirms hosts are genuinely down via ICMP, and only then turns the fans off. Guards refuse destructive switches (`fans off`/`ac off`) while any host they serve may still be up or while a job is running — checking job state both locally and on peer API nodes, so relayd load-balancing can't hide a running job — with `--force` and the always-permitted "on" commands as the escape hatch.
+f3sctl replaces a bare Wake-on-LAN script with a coordinated power manager for a rack of FreeBSD bhyve hosts (f0–f3): it powers hosts on and off, reports status, drives the rack-fan plug and f-host mains AC independently, cold-cycles the whole rack (all hosts off, AC cut and restored to drain supplies), and mutes the Gogios monitor around deliberate downtime. Its value lies in the ordering and guards: a shutdown unmounts NFS and cleanly exports the removable zusb backup pool before anything irreversible happens, stops CARP failover daemons so a host can't be wedged seconds before power-off, stops guests in parallel with a bounded timeout, confirms each host actually went dark via ICMP (a host left powered-on-but-off-network can't be woken again remotely), and only then turns the fans off — while fan/AC switches refuse to act while any power job is running locally or on a peer node, magic packets are re-sent to hosts that ignore them, and monitoring un-mutes even when a wake fails, so real outages page instead of hiding behind the mute.
 
-It is a single Go binary with three runtime-selected modes: a CLI, a CGI program served by bozohttpd on two Raspberry Pis (pi0/pi1) behind relayd, and an agent invoked on the hosts themselves via SSH `ForceCommand`. The CGI exposes a self-describing Siren hypermedia API with constant-time API-key authentication that advertises only currently possible actions (nothing while a job runs, a confirmation field on `fans-off` while hosts draw power), and every mutation simply runs the same `f3sctl power ...` CLI child — so CLI and API can never disagree about what an operation means. The security model uses an unprivileged SSH user with root-owned `authorized_keys`, source-pinned keys, a five-verb argument-free allowlist, and exact-argv `doas` rules, with nothing running as root on the API nodes. Host inventory, SSH identities, plug credentials, and peer nodes come from compiled-in defaults overlaid by an optional JSON config file, and the project builds, tests, and cross-compiles via mage.
+It's a single Go binary with three runtime modes: a CLI, a CGI handler under bozohttpd on two Raspberry Pi nodes behind relayd load balancing, and an SSH-invoked agent on the hosts themselves, gated by a ForceCommand-pinned key, a five-verb allowlist, and exact-argv doas rules. All rack-wide jobs route through the API because only the Pis hold SSH credentials that can reach the hosts — that's what makes the identical command work from a laptop — and the Pis themselves are never powered off, since they're the way back on. The API is self-describing hypermedia (Siren) with constant-time, multi-key authentication re-read per request, and it advertises actions only when they're currently possible, so clients encode no rules of their own. A peer job-state check keeps the load-balanced pair from starting conflicting jobs (responses carry an `X-F3sctl-Node` header naming the serving node), and configuration is compiled-in defaults overlaid by a JSON file covering path lists, the overridable host inventory, and peer addresses, making re-topology an edit rather than a rebuild. Because CLI verbs and HTTP routes come from one shared registry, any new subsystem gains both at once and the API can never disagree with the CLI about what an action means.
 
 => https://github.com/snonux/f3sctl View on GitHub
 
 ---
 
-### 17. ggaze
+### 18. ggaze
 
 * 💻 Languages: C (89.9%), C/C++ (8.7%), Python (0.9%), Shell (0.3%), XML (0.2%)
 * 📚 Documentation: Markdown (97.3%), Text (2.7%)
@@ -419,68 +445,68 @@ It is a single Go binary with three runtime-selected modes: a CLI, a CGI program
 * 📄 Lines of Documentation: 5096
 * 🏷️ Tags: 5
 * 📅 Development Period: 2026-07-12 to 2026-10-15
-* 🏆 Score: 28.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 20.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: v0.2.1 (2026-10-15)
 
 
 => showcase/ggaze/image-1.png ggaze screenshot
 
-**ggaze** is a lightweight, keyboard-first image viewer for Fedora Linux written in C with GTK4. Its purpose is narrow and deliberate: quickly previewing a folder of photos downloaded from a camera and culling the rejects — in the spirit of minimal viewers like `feh`, `nsxiv`, and `qiv`, but with a GNOME-native presentation (header bar, thumbnail grid, full-window viewer) and explicitly no photo library, database, or sidecar files. The workflow is grid → large view → flip through the shoot, with vi-style and traditional keybindings for navigation, multi-select/marking, trashing (into a per-folder `.Trash` with batch undo), moving images to destinations, opening them externally, running shell scripts, and copying to the clipboard. Additional touches include an info overlay with EXIF metadata and RGB/luminance histograms, zoom/pan/fullscreen/slideshow, animated GIF/WebP playback, and touchscreen gestures (pinch-zoom, swipe).
+ggaze is a small, fast, keyboard-first image viewer for Fedora Linux aimed at one specific job: quickly previewing a folder of photos downloaded from a camera, culling the rejects, and moving on. It follows the KISS philosophy of tools like feh, nsxiv, and qiv — no photo library, database, or sidecar files — while offering a GNOME-native interface (header bar, thumbnail grid, full-window viewer) reminiscent of gthumb. A folder opens as a thumbnail grid; Enter drops into the large view for flipping through the shoot. Culling is the centerpiece: multi-select and mark/range-mark, trash-to-`.Trash` with batch undo, permanent delete, move-to-destination popups, handoff to external programs, shell script execution, and clipboard copy. Everyday viewing is also covered — zoom, pan, fullscreen, slideshow, an EXIF + RGB histogram info overlay, animated GIF/WebP playback, and touchscreen gestures (pinch to zoom, swipe to navigate). Every action has both a vi-style key and a traditional one, with `?` showing a live shortcut table.
 
 => showcase/ggaze/image-2.png ggaze screenshot
 
-The implementation emphasizes modularity and testability. It builds with Meson/Ninja and treats decode backends as optional features that activate when present: GEGL enables a non-destructive edit panel (layered presets with adjustable strength, crop, straighten, 90° rotation — originals are never modified; edits save as copies), while JPEG XL, AVIF, HEIF, and libjpeg add format support, with a minimal GdkPixbuf-only build remaining fully valid and covered by a dedicated CI lane. Quality is reinforced through Meson unit/integration test suites, an ≥80% coverage target for plain-C modules, clang-format enforcement, and procedurally regenerated screenshots under Xvfb. Installation targets `~/.local` by default (via `make install` or a Fedora helper script) and registers the app with GNOME through a desktop entry, icon, man page, and GSettings schema. The project is well-documented (living plan tracker, architecture, UI specs, coding conventions) and licensed GPL-3.0-or-later.
+It's written in plain C on GTK4 and libadwaita, built with Meson/ninja, and organized into documented modules. Decoding is GdkPixbuf-based, with optional backends compiled in when their development libraries are present: GEGL powers a non-destructive edit panel (layered strength-adjustable presets, crop, straighten, 90° rotations — the original file is never modified; edits compose into a saved copy), while JPEG XL, AVIF, HEIF, and libjpeg extend format support. A minimal pixbuf-only build is explicitly supported and has its own CI lane. Engineering rigor is evident in the unit/integration test suites with an ≥80% coverage target on plain-C modules, clang-format enforcement, automated Xvfb-based screenshots, GSettings-backed preferences, and an install script that places the binary, desktop entry, and icon under `~/.local`.
 
 => https://github.com/snonux/ggaze View on GitHub
 
 ---
 
-### 18. bgtutor-mcp
+### 19. comicredr-training-assets
 
-* 💻 Languages: Go (89.6%), JSON (9.0%), Docker (0.7%), YAML (0.7%)
-* 📚 Documentation: Markdown (98.5%), Text (1.5%)
-* 📊 Commits: 3
-* 📈 Lines of Code: 3655
-* 📄 Lines of Documentation: 616
-* 🏷️ Tags: 1
-* 📅 Development Period: 2026-09-30 to 2026-10-03
-* 🏆 Score: 27.5 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: MIT
-* 🏷️ Latest Release: v0.30.0 (2026-10-03)
-
-
-**bgtutor-mcp** is a standalone MCP (Model Context Protocol) server that turns English podcast transcripts into voice-guided Bulgarian listening lessons. A voice AI — such as Claude or ChatGPT voice mode — connects to the server and pulls prepared episode content paragraph by paragraph: it translates each paragraph into Bulgarian live, reads it aloud, and teaches the accompanying grammar, vocabulary, and background notes along the way. This makes it useful for learners who want structured listening practice built from real-world content, with personal learner state (a vocabulary notebook of saved terms and grammar rules) persisted across sessions. A second "citizenship" mode repurposes the same machinery for Bulgarian citizenship exam preparation, providing live-lesson workflows, drills, interview rehearsal, and mock exams with grading.
-
-The implementation is a single Go binary with a clean split between content preparation and serving. Episodes are prepared offline by a coding agent (e.g. Claude Code, Codex) that follows `PREPARE.md` to segment a transcript, translate it, and write teaching notes into an episode folder; the CLI then validates and publishes the draft so it can be served (real episodes live in a separate assets repo, since podcast transcripts are third-party content). The server exposes MCP over Streamable HTTP in stateless mode — the AI passes the content id and paragraph index on every call — with tools for listing episodes, fetching individual paragraphs with their translations and teach notes, and managing the vocabulary notebook, returning errors phrased so the AI can read them aloud. It binds to localhost by default with optional bearer-token auth for remote access, and ships as a distroless Docker image (with a k3s deployment) so it can be hosted behind HTTPS for voice AI connectors that require a public URL.
-
-=> https://github.com/snonux/bgtutor-mcp View on GitHub
-
----
-
-### 19. foo.zone
-
-* 💻 Languages: XML (98.3%), Shell (1.4%), Go (0.3%)
-* 📚 Documentation: Text (86.5%), Markdown (13.5%)
-* 📊 Commits: 1953
-* 📈 Lines of Code: 20579
-* 📄 Lines of Documentation: 178
+* 💻 Languages: Python (52.1%), JSON (47.9%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 5
+* 📈 Lines of Code: 2345
+* 📄 Lines of Documentation: 682
 * 🏷️ Tags: 0
-* 📅 Development Period: 2021-04-29 to 2026-10-17
-* 🏆 Score: 21.0 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2026-10-10 to 2026-10-10
+* 🏆 Score: 19.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
 
-This repository contains the static files powering foo.zone, a personal internet site published simultaneously over two protocols: the classic web (https://foo.zone) and the Gemini protocol (gemini://foo.zone), a lightweight, privacy-focused alternative to HTTP. Rather than maintaining separate copies of content for each format, the project organizes output by medium into dedicated Git branches—`content-gemtext` for Gemini's native Gemtext format, `content-html` for the web, and `content-md` for Markdown—allowing each representation to be versioned and served independently while originating from the same source material.
+This repository provides supplementary training data and tooling for the panel detector of ComicRedr (a comic reader), complementing — not replacing — that project's own training recipe. Its centerpiece is `moredata/`: 1,123 synthetic comic pages (organized as 141 "books") derived from a private collection of 180 books and 13,239 pages. Each fake page preserves a real page's exact layout — the original gutter color and frame-border pixels are kept — while the art inside every frame is replaced with procedurally generated stand-ins: flat color regions derived by k-means from the original panel in the same proportions, plus ink lines, pen strokes, hatching, halftone dots and speed lines. No balloon-like shapes are drawn, deliberately, so the detector won't learn to treat balloons as background. Every page ships with exact axis-aligned frame labels (the box of the painted frame, not a detection) in ComicRedr's labelkit JSON format, and `index.tsv` records each page's layout, frame shapes, slant, gutter type and how the shipped model fared. The dataset is deliberately skewed toward the model's weak spots: the README's benchmark tables show the shipped model is strong on plain grids (~97% recall at IoU 0.5) but weak on polygons, touching panels, slanted frames and single-frame pages, so `moredata/` includes every readable page with a non-rectangular frame plus only a small per-book sample of plain ones.
 
-The site is generated rather than hand-maintained, using the author's own static site generator, gemtexter (available at codeberg.org/snonux/gemtexter), which handles converting content into the various output formats. This architecture is useful because it decouples content authoring from presentation: a single edit can be propagated across the web and Gemini spaces without duplication, and the branch-per-format structure keeps each deployment target clean and self-contained. It's a practical example of multi-protocol publishing that embraces the growing Gemini ecosystem without abandoning the traditional web.
+Implementation-wise, `border_pages.py` scans PDFs, CBZ/ZIP files and image folders page by page (cross-checked against the shipped ONNX model), while `borders.py` extracts frames via gutter-color segmentation, morphological opening to drop lettering and bleed-out art, and rule-based splitting of touching panels; frames are classified as rect, slanted, polygon, rounded, round or notched, and ambiguous pages are skipped rather than guessed. Generation is seeded and reproducible, and the output plugs directly into ComicRedr's existing `spike/train.py` / `make train-model` pipeline with a tenth held out for validation. Notably, the README is candid about results: training on the fake-art pages actually hurt performance on modern pages (the model learned panel boundaries from the fake colors, joining real panels across thin gutters), so a companion script, `real_art.py`, re-renders the same layouts with real art from ComicRedr's clean training pages — that variant (`moredata-art/`) is the recommended one — though no run so far beat the shipped model, making the data as much a diagnostic asset as a training boost. A licensing caveat applies: because the layouts come from books outside ComicRedr's public-domain/CC-licensed list, models trained on this data are for private use only.
+
+=> https://github.com/snonux/comicredr-training-assets View on GitHub
+
+---
+
+### 20. foo.zone
+
+* 💻 Languages: XML (98.3%), Shell (1.4%), Go (0.3%)
+* 📚 Documentation: Text (86.5%), Markdown (13.5%)
+* 📊 Commits: 1955
+* 📈 Lines of Code: 20579
+* 📄 Lines of Documentation: 178
+* 🏷️ Tags: 0
+* 📅 Development Period: 2021-04-29 to 2026-10-20
+* 🏆 Score: 15.7 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+This repository hosts the static content for **foo.zone**, a personal site published in parallel on two protocols: the Gemini protocol (`gemini://foo.zone`) and the regular web (`https://foo.zone`). Gemini is a lightweight, privacy-focused alternative to HTTP/HTML, so maintaining both formats lets the author's writing reach readers across both ecosystems without duplicating effort. The key organizational feature is that each output format lives in its own dedicated Git branch — `content-gemtext` for Gemtext, `content-html` for HTML, `content-md` for Markdown, and so on — rather than being mixed into a single directory tree.
+
+In terms of architecture, the site is built with [gemtexter](https://codeberg.org/snonux/gemtexter), a static content generator written by the same author (also hosted on Codeberg). Gemtexter treats Gemtext — the plain-text markup format used by Gemini capsules — as the canonical source, from which it derives the other formats like HTML and Markdown. This branch-per-format approach keeps the generated artifacts cleanly separated while making it easy to publish identical content as both a Gemini capsule and a conventional website.
 
 => https://github.com/snonux/foo.zone View on GitHub
 
 ---
 
-### 20. bgtutor-assets
+### 21. bgtutor-assets
 
 * 💻 Languages: JSON (80.3%), Python (19.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -489,46 +515,46 @@ The site is generated rather than hand-maintained, using the author's own static
 * 📄 Lines of Documentation: 4038
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-09-25 to 2026-10-03
-* 🏆 Score: 20.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 14.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
 
-**bgtutor-assets** is a content repository for the Bulgarian Podcast Tutor (bgtutor), an MCP server for language learners. It hosts carefully prepared podcast episodes adapted for Bulgarian learners at defined proficiency levels — for example, a Cal Newport podcast segment at B1 level with ads removed, and a Fallthrough episode at A2 level with Bulgarian notes, the latter transcribed from audio using Whisper with speakers inferred. Beyond podcast episodes, it also includes a citizenship-test guide covering the Bulgarian language exam required for naturalisation, complete with study lists and three original practice tests. The project is useful because it turns authentic English-language podcasts into structured, level-appropriate study material while also providing practical exam preparation resources — all intended for personal study, with the underlying English content belonging to its original creators.
+**bgtutor-assets** is a content repository for the Bulgarian Podcast Tutor, an MCP server (living in the separate `snonux/totalrecall` project) that helps learners study Bulgarian through real podcast material. The repo holds prepared learning episodes — each a folder containing `meta.json` and `paragraphs.json` following a documented format — sourced from English-language podcasts but annotated with Bulgarian notes pitched at specific CEFR levels (e.g., A2 for beginners, B1 for intermediate). Because the tutoring logic lives in the MCP server while the episodes live here, content and application are cleanly separated, making it easy to add new material without touching code. The repo also includes a `citizenship-test/` guide with study lists and practice tests for the Bulgarian language exam required for naturalisation, addressing a more specialized learning need.
 
-Architecturally, each episode lives in its own folder under `episodes/` following a strict format of two files: `meta.json` and `paragraphs.json`, as defined in the companion `totalrecall` repository's docs. The workflow is decoupled from serving: episodes are prepared in a totalrecall checkout, validated and published with Go CLI commands (`validate` and `publish`), then copied here and committed for version control. Deployment to the hosting environment (f3s) is handled separately via a `just` recipe that uploads an episode folder. This design keeps content curation, validation, and serving as distinct, repeatable steps anchored around a simple, well-defined episode format.
+Episodes follow a defined production workflow: they are prepared in a `totalrecall` checkout (per its `PREPARE.md` guide), validated and published using the Go CLI (`go run ./cmd/bgtutor validate/publish <id>`), then copied into this repo's `episodes/` directory and committed. Serving is handled separately — a `just upload-episode` recipe in an infrastructure config repo deploys episodes to a host. This pipeline ensures every episode conforms to the format the MCP server expects before it reaches learners, while the separation of assets from the server code keeps the tutoring engine and its curriculum independently versioned.
 
 => https://github.com/snonux/bgtutor-assets View on GitHub
 
 ---
 
-### 21. fdroid
+### 22. fdroid
 
 * 💻 Languages: YAML (70.2%), Python (28.8%), HTML (1.0%)
 * 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 29
+* 📊 Commits: 30
 * 📈 Lines of Code: 496
 * 📄 Lines of Documentation: 815
 * 🏷️ Tags: 0
-* 📅 Development Period: 2026-09-26 to 2026-10-16
-* 🏆 Score: 19.8 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2026-09-26 to 2026-10-21
+* 🏆 Score: 13.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
 
 => showcase/fdroid/image-1.svg fdroid screenshot
 
-This project is a personal F-Droid repository that distributes the author's own Android apps—nine in total, spanning productivity tools (Quicklog for timestamped notes, TurboNotes for markdown editing, TurboLaunch for search-based app launching), a REST API browser, a guided-view comic reader, a media player, a system monitor, a file browser client, and a platformer game—so they install and update automatically through the F-Droid app rather than requiring manual sideloading. Users add the repository once via a QR code or link (verified by a fingerprint), after which the apps appear alongside any other F-Droid apps with automatic update notifications. Because APKs are served unchanged and keep their original developer signatures, apps installed from this repo remain interoperable with other sources that ship the same binaries, such as the official F-Droid repository.
+This project is a personal F-Droid repository that distributes the author's Android apps—utilities like TurboNotes (markdown editing), TurboLaunch (search-first launcher), TurboMon (system monitor), RESTForge (hypermedia API browser), and a game—so they can be installed and updated through the F-Droid client instead of sideloading APKs manually. Users add the repo via a one-tap link, QR code, or by entering the GitHub Pages URL and signing fingerprint, after which apps appear and update like any other F-Droid package. Because APKs are served unchanged and keep their original developer signature, an app installed from this repo can also be updated from any other compatible source.
 
 => showcase/fdroid/image-2.png fdroid screenshot
 
-Architecturally, nothing is built in this repository itself. Each app's own repo builds, signs, and attaches APKs to GitHub releases for each `vX.Y.Z` tag. A publish workflow here—triggered on pushes to main, every six hours, on demand, or by a `repository_dispatch` event fired from an app's release process—runs `scripts/sync_apps.py` to download the two most recent releases of every app listed in `apps.yml`, along with their fastlane store text and screenshots. It then runs `fdroid update` to generate and cryptographically sign the repository index using a signing key stored in GitHub Actions secrets (`FDROID_KEYSTORE`/`FDROID_KEYSTORE_PASS`), deploying the result to GitHub Pages. This decentralized design means a new app release propagates to users' phones within six hours with no action taken in this repo, and onboarding a new app requires only adding it to `apps.yml`, a metadata file, and the README.
+The implementation is deliberately build-free: each app's own repository builds and signs its APKs and attaches them to GitHub releases on version tags. Here, a GitHub Actions publish workflow (triggered by pushes, a six-hour schedule, on-demand runs, or `repository_dispatch` events from app repos) uses `scripts/sync_apps.py` to fetch the two newest releases of every app listed in `apps.yml`, along with their fastlane metadata and screenshots. It then runs `fdroid update` to generate and sign the repository index with a signing key stored in Actions secrets, and deploys the result to GitHub Pages—so a new app release reaches phones within six hours with no manual work in this repo.
 
 => https://github.com/snonux/fdroid View on GitHub
 
 ---
 
-### 22. timesamurai
+### 23. timesamurai
 
 * 💻 Languages: Go (98.5%), Shell (1.1%), JSON (0.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -537,22 +563,22 @@ Architecturally, nothing is built in this repository itself. Each app's own repo
 * 📄 Lines of Documentation: 210
 * 🏷️ Tags: 17
 * 📅 Development Period: 2025-06-25 to 2026-10-10
-* 🏆 Score: 14.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 12.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.10.3 (2026-10-10)
 
 
 => showcase/timesamurai/image-1.png timesamurai screenshot
 
-`timesamurai` is a command-line worktime tracker that records work sessions, breaks, and time off as an append-only JSONL log stored per host. It supports the full lifecycle of time accounting: opening and closing work sessions (`work start/stop/status`), crediting or debiting durations (`add/sub`, `day-off`, `usebuffer` for moving self-development buffer hours into work), and reporting/inspecting data (`report`, `list`, `search`). Entries can be corrected after the fact via `modify`, `delete`, `undo`, and block editing in `$EDITOR`, and the tool provides one-shot `migrate`, `export`, and `import` commands for interoperability with its legacy `db.<host>.json` and `report.txt` formats. This makes it a robust, auditable solution for developers tracking their hours across multiple machines, with a full undo trail rather than fragile in-place edits.
+**timesamurai** is a command-line worktime tracker written in Go that records work sessions, breaks, and time off as an append-only JSONL log, with a separate log file per host. It supports the full lifecycle of time accounting: opening and closing work sessions (`work start/stop`), crediting or debiting durations (`add/sub`), logging full days off, and converting accumulated "self-development" buffer hours into work time (`usebuffer`). Entries can be listed, searched, modified, deleted, undone, or bulk-edited in `$EDITOR`, and an accounting report summarizes balances over a date range. The tool also handles data portability with one-shot migration from legacy `db.<host>.json` files, export back to that format, and import of legacy `report.txt` lines, plus generated shell completions.
 
-The project is implemented in Go as a single CLI binary (built via `mage` or `go build`), currently at v0.10.3 in a mature maintenance phase. Its architecture emphasizes a clean separation between human- and machine-facing output: all text output is terminal-colored with themable roles and styles configured via a `[colors]` section in `config.toml`, while `--format json`, version output, and completion scripts are never colored — and colors never leak into pipes or files. Color can be disabled through `report.color = false`, the `--no-color` flag, or `NO_COLOR`. Additional polish includes a legacy flag shim for backward compatibility and generated shell completion scripts, all covered by tests.
+Architecturally, storage is a simple, durable append-only JSONL store, which keeps the data format transparent and easy to inspect or back up. Presentation is separated from data: all human-facing output is colorized on terminals (with themable roles via the `[colors]` section of `config.toml`), while machine-readable output (`--format json`, `--version`, completions) is never colored, and colors are disabled through `--no-color`, `NO_COLOR`, or non-TTY pipes. At v0.10.3, the project is feature-complete and in maintenance mode—all major subsystems (tracking, reporting, modifications, migration, completions) are implemented and tested, with ongoing work focused on small fixes rather than new features.
 
 => https://github.com/snonux/timesamurai View on GitHub
 
 ---
 
-### 23. tasksamurai
+### 24. tasksamurai
 
 * 💻 Languages: Go (99.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -561,42 +587,20 @@ The project is implemented in Go as a single CLI binary (built via `mage` or `go
 * 📄 Lines of Documentation: 743
 * 🏷️ Tags: 43
 * 📅 Development Period: 2025-06-19 to 2026-10-11
-* 🏆 Score: 14.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 12.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.24.2 (2026-10-11)
 
 
 => showcase/tasksamurai/image-1.png tasksamurai screenshot
 
-Task Samurai is a fast, fully keyboard-driven terminal interface for Taskwarrior, written in Go with the Bubble Tea framework. It was created as a quicker, snappier alternative to existing Taskwarrior frontends like the Python-based vit, and it presents your tasks in a table where every operation—from adding a task (press `+`) to starting, completing, or annotating one—happens via a single hotkey. Beyond basic task management, it offers filter toggling on configurable number keys (e.g., `+agent`/`-agent`, `+track`/`-track`), recurring task editing, a recent completions window, a detail view with search, auto-refresh cycling, compact/ultra display modes, and even a "disco mode" that randomizes the theme on each task change.
+Task Samurai is a fast, keyboard-driven terminal interface for Taskwarrior, written in Go using the Charmbracelet Bubble Tea framework. It exists to provide a snappier alternative to existing Taskwarrior UIs like the Python-based vit: tasks are displayed in a table, and every operation—adding tasks, completing, annotating, filtering, editing recurrence, browsing details—happens through hotkeys so you never leave the keyboard. For example, pressing `+` prompts for a description and creates a task instantly, while number keys toggle tag filters, and `H` shows the full hotkey reference.
 
 => showcase/tasksamurai/image-2.png tasksamurai screenshot
 
-Architecturally, Task Samurai doesn't touch Taskwarrior's data directly; instead it invokes the `task` CLI to read and modify tasks, rendering the results as Bubble Tea table rows and refreshing automatically after every action so the view stays current. It also includes a `:` command prompt that passes arbitrary arguments through to Taskwarrior—with tab completion, UUID prefilling for the selected task, and the ability to pop the command out into `$EDITOR`—and every screen supports scrolling, paging, and jump-to-top/bottom navigation. Configurable via CLI flags (custom hotkeys, browser commands for opening URLs, debug logging), it ships with diagnostic hooks (built with `-tags debugsignals`, sending SIGUSR1/SIGUSR2 captures goroutine stacks and profiles) for troubleshooting hangs. It can be installed with a simple `go install` or built from source using mage.
+Architecturally, it acts as a rich wrapper around the `task` CLI rather than reimplementing Taskwarrior's logic: hotkeys are translated into Taskwarrior commands, and the Bubble Tea table refreshes automatically after each action to stay current. Notable features include an inline command prompt (`:` and `;`) supporting tab completion and popping out into `$EDITOR`, fully configurable hotkey bindings via command-line flags, compact and "ultra" views, configurable auto-refresh intervals, a dimmed completed-tasks window, theming (including a "disco mode" that randomizes themes), smooth scrolling on every screen, and a debugging mode that captures goroutine stacks and profiles via Unix signals to diagnose hangs. It installs with a simple `go install` or via Mage.
 
 => https://github.com/snonux/tasksamurai View on GitHub
-
----
-
-### 24. ebpf-for-sres
-
-* 💻 Languages: HTML (65.0%), Shell (19.2%), C (11.1%), Make (2.5%), JSON (2.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 1
-* 📈 Lines of Code: 811
-* 📄 Lines of Documentation: 160
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-09-26 to 2026-09-26
-* 🏆 Score: 13.3 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-This project is an educational resource introducing eBPF to site reliability engineers through a combination of a slide deck and hands-on, runnable code. The 23-slide presentation covers what BPF is, why it is valuable during on-call work, and how [ior](https://github.com/snonux/ior) (I/O Riot NG) uses it to trace I/O syscalls. Its main value is pairing conceptual material with working examples, so SREs can move beyond theory and actually observe kernel-level I/O tracing on a real system.
-
-The project is organized into two components: a `presentation/` directory containing one HTML file per slide (1920×1080, in the Claude Slides artifact format) along with a `deck.json` for slide order, sections, and fonts, and a `speaker-notes.md` file with per-slide notes; and an `examples/` directory where every example from the slides is packaged as a standalone script with a test runner. The examples target Rocky Linux 9 and are executed via a setup script followed by `run-all.sh`, which runs each example for a few seconds under a small file I/O workload and reports PASS/FAIL. Verification results are included: on a 6.18 kernel with bpftrace 0.20.2, 7 of 9 examples passed, with the kprobe variant and BCC tools unavailable due to the sandbox kernel lacking kprobe support and kernel headers (these remain unverified on Rocky 9).
-
-=> https://github.com/snonux/ebpf-for-sres View on GitHub
 
 ---
 
@@ -604,21 +608,21 @@ The project is organized into two components: a `presentation/` directory contai
 
 * 💻 Languages: Go (48.0%), Dart (31.5%), JavaScript (14.0%), C (3.1%), C/C++ (1.0%), Python (0.5%), Shell (0.5%), CMake (0.5%), C++ (0.3%), XML (0.3%), Kotlin (0.2%), YAML (0.2%)
 * 📚 Documentation: Markdown (99.6%), Text (0.4%)
-* 📊 Commits: 123
+* 📊 Commits: 124
 * 📈 Lines of Code: 52847
 * 📄 Lines of Documentation: 3303
 * 🏷️ Tags: 9
-* 📅 Development Period: 2026-08-08 to 2026-10-10
-* 🏆 Score: 13.1 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2026-08-08 to 2026-10-21
+* 🏆 Score: 11.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.7.0 (2026-09-26)
 
 
 => showcase/restforge/image-1.svg restforge screenshot
 
-RESTForge is a generic hypermedia browser for APIs that use the [Siren](https://github.com/kevinswiber/siren) format. Pointed at any endpoint, it renders whatever that API offers — properties, sub-entities, links, and actions — letting users navigate by following links, execute actions (after a confirmation step), and re-read the resulting document to observe changes, including polling until long-running operations complete. Its value lies in a strict design constraint: the client never constructs URLs and contains no server-specific code, so a single browser works with any Siren-compliant API without modification. This invariant is enforced systematically — the codebase even includes checks in `just check` that scan for leaked API keys and any server vocabulary sneaking into the generic client.
+**RESTForge** is a generic client for [Siren](https://github.com/kevinswiber/siren) hypermedia APIs: you point it at a server and it renders whatever that API exposes — properties, sub-entities, links, and actions. From there you can follow links (it fetches them), trigger actions (after a confirmation prompt, then it re-reads the document to show what changed), and it will keep polling until the server reports that long-running work is finished. Its usefulness hinges on one strict rule: the client never constructs a URL and contains no server-specific code, so a single binary or app works unchanged against any Siren-conformant API. That generality is deliberately enforced — `just check` even greps the source for server vocabulary and leaked secrets, treating "a generic client that accidentally knows about one server" as a build-breaking bug.
 
-Architecturally, the repository contains three fully independent implementations sharing no code, bound only by a common behavioral contract documented once in `docs/DESIGN.md`: a **Pebble watchapp** (C plus ES5 JavaScript on the Rebble SDK) split across the watch (renders frames, reports button presses) and the phone (PebbleKit JS handles everything else); a **Flutter Android app** (Dart) that also runs on Linux desktop for development; and a **Go CLI** offering both an interactive Bubble Tea TUI and scriptable one-shot subcommands (`restforge get`, `restforge act`). Each app has its own `Justfile`, with a root Justfile forwarding commands and running cross-cutting checks — `just test` executes all three test suites without needing emulators, and `just check` must pass cleanly.
+The repository implements the same browser three times, as sibling projects that intentionally share **no code**: a Pebble watchapp in C plus ES5 JavaScript (architecturally split, with the watch rendering frames and reporting button presses while PebbleKit JS on the phone does networking and orchestration), a Flutter/Dart Android app (which also runs on Linux desktop for development), and a Go CLI (an interactive Bubble Tea TUI plus scriptable `restforge get` / `restforge act` subcommands in one binary). What unifies them is not implementation but contract: all behavioural requirements and invariants are written down once in `docs/DESIGN.md`, which governs all three apps. Each app has its own `Justfile` for development, while a root `Justfile` forwards to them and owns the cross-cutting checks — `just test` runs all three test suites without emulators, and `just check` must print nothing to pass.
 
 => https://github.com/snonux/restforge View on GitHub
 
@@ -633,20 +637,42 @@ Architecturally, the repository contains three fully independent implementations
 * 📄 Lines of Documentation: 2500
 * 🏷️ Tags: 59
 * 📅 Development Period: 2025-06-23 to 2026-10-13
-* 🏆 Score: 13.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 11.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.21.5 (2026-10-13)
 
 
-GitSyncer is a Go-based command-line tool that synchronizes git repositories across multiple hosting organizations—primarily GitHub and Forgejo—plus optional one-way SSH backup locations such as a home NAS. It's useful for developers who want to maintain mirrors of their projects on several platforms without manual effort: it can discover and sync public GitHub repositories, automatically create missing repositories and branches on remote hosts, and safely merge divergent changes across all destinations. Safety is a core design principle—GitSyncer never deletes branches or tags, aborts clearly on merge conflicts, and only pushes (never pulls) from backup locations. Beyond core syncing, it offers AI-generated release notes and releases via the Forgejo API, an AI-powered project showcase generator that produces portfolio documentation in Gemini Gemtext format, per-repo sync throttling and daily rate limits, and a `manage batch-run` mode designed for cron-driven weekly automation.
+GitSyncer is a command-line tool written in Go that keeps git repositories synchronized across multiple hosting organizations—primarily GitHub and Forgejo (via its Gitea-compatible API), plus optional one-way SSH backup targets such as a home NAS. It's useful for developers who want redundancy and vendor independence: it automatically creates missing repositories and branches, syncs a configurable set of branches (with global and per-repo overrides and regex-based exclusions), and never deletes branches or tags, making it safe to run unattended. It also detects merge conflicts with clear errors, rate-limits itself by default (once daily, with activity-based `--throttle` and `--force` overrides), and provides release management and repository cleanup.
 
-The implementation is configuration-driven: a JSON file defines organizations (each designated as a sync peer, a `pushOnly` one-way mirror, an `optional` peer that can be skipped when offline, or a `backupLocation`) along with repository lists, branch inclusion/exclusion regexes, and showcase settings. Architecturally, GitSyncer clones a repository from the first configured organization, adds the others as git remotes, and then for each selected branch fetches from all remotes, merges, and pushes everywhere—moving git data over SSH while using Forgejo's Gitea-compatible REST API for metadata operations like repository creation, descriptions, and releases (with tokens supplied via environment variable or a `0600`-mode file). The CLI is organized into commands (`sync`, `release`, `showcase`, `manage`, `list`, `test`, `version`), persistent sync state is tracked in `.gitsyncer-state.json`, and AI features shell out to external tools—defaulting to ollama with fallbacks to `hexai`, `claude`, and `amp`—while gracefully degrading when destinations like Forgejo or backup servers are unreachable.
+Architecturally, GitSyncer clones a repository from the first configured organization, adds the others as git remotes, then fetches, merges, and pushes across all of them so every platform converges. Git data travels over SSH while Forgejo metadata (repo/releasing/descriptions) uses its REST API; backup locations are push-only, automatically initialize bare repos over SSH, and fail fast per-destination without aborting the run. Configuration lives in a single JSON file, and the CLI is organized into nested commands (`sync`, `manage`, `release`, `test`, `list`, `showcase`). Beyond syncing, it integrates local AI tools (ollama, claude, amp, hexai, with a fallback chain) to generate AI release notes and a Gemtext-format project showcase with cached summaries and weekly rank history, and a `manage batch-run` mode designed for cron-driven weekly automation, with state tracked in `.gitsyncer-state.json`.
 
 => https://github.com/snonux/gitsyncer View on GitHub
 
 ---
 
-### 27. syncmaster
+### 27. ebpf-for-sres
+
+* 💻 Languages: HTML (65.0%), Shell (19.2%), C (11.1%), Make (2.5%), JSON (2.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 1
+* 📈 Lines of Code: 811
+* 📄 Lines of Documentation: 160
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-09-26 to 2026-09-26
+* 🏆 Score: 10.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+**eBPF for SREs** is an educational project that introduces site reliability engineers to eBPF, covering what BPF is, why it's valuable during on-call incident response, and how it's applied in practice through [ior](https://github.com/snonux/ior) (I/O Riot NG), a tool that uses eBPF to trace I/O syscalls. The project pairs theory with hands-on learning: alongside the presentation, it ships every example from the slides as runnable scripts with a test harness, so learners can verify the concepts work on their own systems rather than just reading about them. This makes it useful both as conference/training material and as a self-serve lab for engineers wanting to build practical eBPF observability skills.
+
+Architecturally, the project is split into two main components. The `presentation/` directory holds a 23-slide deck implemented as individual HTML files (1920×1080, in the Claude Slides artifact format), with a `deck.json` defining slide order, sections, and fonts, plus speaker notes in markdown. The `examples/` directory contains the executable scripts and a test runner (`run-all.sh`) that runs each example for a few seconds under a synthetic file I/O workload and reports PASS/FAIL, targeting Rocky Linux 9 via a setup script. In verification on a 6.18 kernel with bpftrace 0.20.2, 7 of 9 examples passed; the kprobe-based variant and bcc tools could not run there due to the kernel lacking kprobe support and headers, and remain unverified on Rocky 9.
+
+=> https://github.com/snonux/ebpf-for-sres View on GitHub
+
+---
+
+### 28. syncmaster
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -655,44 +681,66 @@ The implementation is configuration-driven: a JSON file defines organizations (e
 * 📄 Lines of Documentation: 675
 * 🏷️ Tags: 9
 * 📅 Development Period: 2026-08-24 to 2026-09-13
-* 🏆 Score: 10.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 9.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.6.1 (2026-09-13)
 
 
-syncmaster is a Go command-line tool that imports files from USB devices mounted via GVFS — currently Fujifilm and RICOH GR cameras and the Supernote Nomad — serving as a robust port of an original bash script. It unifies several workflows behind one interface: camera photos are imported flat into destination "inbox" folders (JPEG/video kept separate from RAW files) and geotagged from GPX track files using exiftool, while Supernote content is backed up with rsync (never deleting local files) and `.note` files are converted to PDFs via supernote-tool. Usability and safety features include automatic device detection, explicit device selection when multiple are connected, environment-variable configuration, clear exit codes, and — critically — a dry-run-by-default mode that only executes when `--run` or `SYNCMASTER_RUN=1` is passed, making it safe for both interactive and scripted use.
+**syncmaster** is a Go CLI tool that automates importing files from USB devices mounted through GVFS on Linux — currently Fujifilm cameras, RICOH GR cameras, and the Supernote Nomad. It's a polished port of an original bash script. Camera sync copies photos flat into inbox-style destinations (separating JPEG/video from RAW files), geotags imported images by matching them against GPX tracks via `exiftool`, and safely skips duplicates. Supernote sync uses `rsync` to back up the device's `Note` and `Document` folders (never pushing changes back to the device) and converts `.note` files to PDF with `supernote-tool`. Safety is a first-class concern: the tool runs in **dry-run mode by default**, printing the plan without touching anything — you must explicitly pass `--run` or set `SYNCMASTER_RUN=1` to execute. It also supports auto-detection of connected devices, explicit driver selection, configurable destinations via environment variables, and clear exit codes for scripting.
 
-The architecture centers on a pluggable driver design: the orchestrator knows only a `Driver` interface and a registry, with each device implemented as a small package composing a generic recursive copier with optional transforms (GPX geotagging, note conversion). Adding a new sync source requires only implementing one `Driver` and registering it in a single `wire.go` file, with no changes to the orchestrator or existing drivers. Cross-cutting concerns such as shell execution, filesystem access, the clock, and GVFS mounting are isolated behind injected interfaces with in-memory fakes, so every package is unit-testable without hardware or external tools — with most packages reportedly at 80–100% coverage. The build uses mage with targets for testing (with race detection and coverage), linting, and installation.
+The implementation centers on a **pluggable driver architecture**: the orchestrator knows only a `Driver` interface and a registry, with zero knowledge of any specific device. Each sync source is its own package that composes a generic recursive copier with reusable transforms (GPX geotagging, note→PDF conversion), so adding a new sync feature means writing one package and registering it with a single line — no orchestrator changes. Testability is baked in: all side effects (shell commands, filesystem, time, device mounts) go through small injected interfaces (`shell.Runner`, `fs.FS`, `clock.Clock`, `copier.Source`, etc.) with in-memory fakes, letting every package achieve 80–100% coverage with no hardware or external tools required. The project uses Mage for build, test (`-race -cover`), and lint workflows, and targets Go 1.26+ with `gio`/GVFS for mount discovery.
 
 => https://github.com/snonux/syncmaster View on GitHub
 
 ---
 
-### 28. comicforge
+### 29. comicforge
 
 * 💻 Languages: Go (99.4%), YAML (0.6%)
 * 📚 Documentation: Markdown (96.7%), Text (3.3%)
-* 📊 Commits: 82
-* 📈 Lines of Code: 14689
+* 📊 Commits: 84
+* 📈 Lines of Code: 14705
 * 📄 Lines of Documentation: 1239
 * 🏷️ Tags: 3
-* 📅 Development Period: 2026-04-19 to 2026-10-15
-* 🏆 Score: 8.7 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2026-04-19 to 2026-10-21
+* 🏆 Score: 8.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.1.1 (2026-08-22)
 
 
 => showcase/comicforge/image-1.png comicforge screenshot
 
-ComicForge is a Go command-line tool that transforms a simple vocabulary list into an illustrated comic book, designed primarily for language learners and educators. Given a word list, it uses Google's Gemini API to generate a story that incorporates the vocabulary, produces comic artwork for each page, and exports the results as story files, PNG pages, PDF documents (via ImageMagick), and optional MP3 narration (via ffmpeg). The tool is configurable through a YAML file, letting users control the story language and script, page count, and artistic style or genre. It also supports generating a single standalone image from a direct prompt, and includes a `stylegrid` utility for previewing all available styles and genres before committing to a set.
+ComicForge is a Go-based command-line tool that transforms a plain list of vocabulary words into a fully illustrated comic book using Google's Gemini AI. Aimed primarily at language learners, it generates original stories that weave the target vocabulary into context, produces matching artwork for each page, and packages the results as story text files, page PNGs, a browsable gallery, and print-ready PDF exports (A4 and book layouts via ImageMagick). It can also add MP3 narration to the comic using ffmpeg, and supports one-off image generation from a direct prompt.
 
-Architecturally, ComicForge is organized as modular Go packages with a provider abstraction layer for generative backends, built and orchestrated through Mage tasks. Users interact via CLI flags (specifying vocabulary, config, output directory, and narration), while a generation pipeline handles the story-to-comic flow and writes structured output: per-comic assets under a slug-based directory, gallery copies, and print-ready PDFs with flexible page shapes including A4 print and book layouts with compression. The project also emphasizes reproducibility and agent-friendly workflows, with documented verification steps, rerun support, and manual prompt options, making it usable both interactively and in automated pipelines.
+The implementation follows a configurable, pipeline-based architecture: users supply a vocabulary file and a YAML config specifying the story language, script, page count, and artistic styles, then the tool orchestrates Gemini calls for story writing and page illustration, assembles PDFs when ImageMagick is available, and writes structured output to organized directories (assets, gallery, PDF). The codebase is modular, with pluggable providers and a documented generation pipeline, plus supporting tooling such as a `stylegrid` command for previewing all configured art styles and genres. Notably, it is designed for both humans and automated agents, with verification and rerun workflows documented to support reproducible generation.
 
 => https://github.com/snonux/comicforge View on GitHub
 
 ---
 
-### 29. shuriken.sh
+### 30. foostore
+
+* 💻 Languages: Go (100.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 155
+* 📈 Lines of Code: 15637
+* 📄 Lines of Documentation: 390
+* 🏷️ Tags: 16
+* 📅 Development Period: 2018-05-26 to 2026-10-21
+* 🏆 Score: 6.3 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.9.2 (2026-09-24)
+
+
+**foostore** is a Go-based tool for encrypting and storing text and binary documents— passwords, API tokens, PDFs, and other small files—in a KeePass database (`.kdbx`, secured by a password plus an optional key file). It's designed as a personal, cross-platform secret store (macOS, Linux, Android via Termux) built around Git: documents and their encrypted filename indices live in a Git repository that can synchronize with multiple remotes for geo-redundancy. The interactive experience emphasizes terminal workflows—fzf-based fuzzy search, an interactive shell with a customizable picker (with shortcuts for cat/paste/open/edit), editing via Helix or `$EDITOR`, clipboard support on macOS and GNOME, masked PIN entry, batch import/export with shredding, and fish shell tab completion with a `ge` shortcut wrapper.
+
+Architecturally, the project has two backends: the original `geheim` backend (AES-256-CBC encrypted `.index`/`.data` pairs in Git, with a static IV and no authentication tag) is deprecated and read-only—existing stores can be converted with `migrate-kdbx`—while the KeePass backend handles all writes. For automation, a dedicated `foostore read` command offers exact, non-interactive, byte-for-byte retrieval with a strict contract: well-defined exit codes for every failure mode, a configurable timeout, no secret leakage into environment variables (credentials resolve via an inherited file descriptor or a permission-checked config-specified pass file), and refusal to guess at ambiguous references. Configuration lives in `~/.config/foostore.json`. Note that this is pre-alpha, single-maintainer software intended for personal use.
+
+=> https://github.com/snonux/foostore View on GitHub
+
+---
+
+### 31. shuriken.sh
 
 * 💻 Languages: Shell (99.0%), Config (0.4%), Perl (0.4%), Docker (0.1%), XML (0.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -701,22 +749,22 @@ Architecturally, ComicForge is organized as modular Go packages with a provider 
 * 📄 Lines of Documentation: 951
 * 🏷️ Tags: 36
 * 📅 Development Period: 2011-11-19 to 2026-08-04
-* 🏆 Score: 6.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 6.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.14.1 (2026-08-04)
 
 
 => showcase/shuriken.sh/image-1.svg shuriken.sh screenshot
 
-shuriken is a Bash script for Linux, macOS, and FreeBSD that turns a directory of photos into a static web photo album composed of pure HTML+CSS — no JavaScript — making the resulting site fast, simple, and dependency-free to view. Generation is driven by a single `shuriken.conf` file (bootstrapped with `--init`) plus customizable HTML templates, and key features include a splash page featuring a random album photo, per-photo details pages with EXIF summaries, chronological ordering by EXIF capture date or seeded shuffle, and reproducible builds via `RANDOM_SEED`. It also offers an optional no-JavaScript EXIF stats site (camera leaderboard, shooting dates, and megapixel/aspect/orientation breakdowns, where each bucket doubles as a clickable filter mini-album), a `--dry-run` preview mode, and one-command publishing of the output directory to configured remote hosts via rsync.
+shuriken is a Bash script for Unix-like systems that turns a directory of photos into a self-contained, static web photo album built entirely from HTML+CSS—no JavaScript. This makes the results fast, lightweight, and easy to host anywhere. Key features include a randomized splash page using a random album photo, per-photo EXIF details pages, an optional no-JavaScript EXIF stats site (camera leaderboard, shooting dates, and aspect-ration breakdowns as clickable filter mini-albums), thumbnail generation, chronological or shuffled ordering, and reproducible builds via a configurable random seed. Once generated, the album is published to remote hosts with rsync via a built-in sync command.
 
-The project is implemented as a single Bash script (built from `src/` with `just`) requiring Bash 5.1+, ImageMagick, and GNU coreutils/findutils. For portability across platforms, it relies on GNU-only tool extensions (`find -printf`, `stat -c`, `cp -a`, `sort -R`) and at startup resolves each tool to its actual GNU binary, preferring `g`-prefixed siblings like `gfind` on macOS/FreeBSD; if a genuine GNU tool can't be found, it aborts with a clear error naming the missing tool. Generation is efficiently incremental: existing image artifacts and cached EXIF tags are reused on rebuilds (with `--force` to fully regenerate), image processing runs in configurable parallel jobs with timeouts, and the final album lands in `dist/` ready to sync. A live example built with shuriken, including its config and templates as a reference, is available at irregular.ninja.
+The project is implemented in Bash (5.1+) with ImageMagick handling image processing (previews, thumbnails, backgrounds) and GNU findutils/coreutils supplying filesystem and EXIF metadata operations. For portability, shuriken automatically resolves each required tool to its GNU variant—preferring `g`-prefixed binaries like `gfind` and `gstat`—so it runs on Linux, macOS, and FreeBSD, exiting with a clear error if genuine GNU tools aren't found. Generation is configurable through a `shuriken.conf` file plus extensive CLI overrides, with a dry-run mode for safe previews, parallel image jobs with timeouts, EXIF caching and artifact reuse for incremental builds (`--force` for full rebuilds), and customizable HTML templates. The script is built from `src/` using `just`, and a live example site (irregular.ninja) serves as ready-to-read sample configuration.
 
 => https://github.com/snonux/shuriken.sh View on GitHub
 
 ---
 
-### 30. ychat
+### 32. ychat
 
 * 💻 Languages: C++ (49.9%), Shell (21.3%), C/C++ (19.6%), Perl (2.7%), Config (2.1%), HTML (2.1%), Make (1.0%), CSS (0.9%), Docker (0.4%)
 * 📚 Documentation: Markdown (95.2%), Text (4.8%)
@@ -725,42 +773,20 @@ The project is implemented as a single Bash script (built from `src/` with `just
 * 📄 Lines of Documentation: 568
 * 🏷️ Tags: 11
 * 📅 Development Period: 2008-05-15 to 2026-10-04
-* 🏆 Score: 6.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 6.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.9.5 (2026-08-14)
 
 
-This repository revives three small, legacy C++ projects by Paul C. Buetow (~2003–2007) that share a common socket/event/template engine: **ychat**, an HTTP-based web chat server where browsers act as clients using only CSS/HTML/JS; **yhttpd**, a tiny standalone HTTP server derived from ychat's socket/threading engine; and **ycurses**, a curses front-end demo. ychat is the flagship—it has been substantially fixed and modernized during the revival, with legacy build repairs, a from-scratch streaming-chat layer, and a security/bug sweep—while yhttpd builds reliably under load and ycurses remains a demonstration-only component. The project is useful both as a working, lightweight web chat and as a piece of maintained historical C++ code, all released under GPL-2.0.
+This repository revives three legacy C++ projects by Paul C. Buetow (originally ~2003–2007) that share a common socket/event/template engine: **ychat**, a browser-based web chat server; **yhttpd**, a tiny standalone HTTP server derived from ychat's socket/threading code; and **ycurses**, a curses terminal front-end demo. The centerpiece is ychat, which serves a complete chat application over plain HTTP using only HTML/CSS/JS in the browser — users register persistent nick/password accounts or join as guests, then chat in rooms through a frameset UI with a streaming message view, an online-user list, and an input box. The revival modernized the aging codebase with legacy build fixes, a from-scratch streaming chat layer, and a security sweep that removed the `/exec` command module (a shell-injection RCE risk) and now restricts operator privileges to database-authenticated registered accounts.
 
-Implementation-wise, ychat is built via a multi-stage Dockerfile (Rocky Linux 9 builder plus a slim runtime image) that compiles everything inside the container, requiring no host toolchain. Chat runs on a configurable port (default 2000) with settings baked into the image via `ychat.conf` and overridable at runtime with `-o key value`. A mandatory embedded-SQLite backend persistently stores registered nick/password accounts across restarts, while sessions, rooms, and online state remain in memory (guest sessions are wiped on restart). The UI is a browser frameset with a streaming message view, online-user list, and input box, styled with the vendored MIT-licensed Pico CSS. Security hardening includes complete removal of the `/exec` command module (which had a shell-injection RCE) and requiring database-authenticated registered accounts for operator status, so unregistered guests can never gain privileges.
+Architecturally, ychat is a single C++ server built entirely inside a multi-stage Docker image (Rocky Linux 9 builder plus slim runtime), requiring no host toolchain, and listening on port 2000 by default. It mandatorily embeds SQLite, persisting registered accounts in a bind-mounted file (`/app/data/ychat.db`) across container restarts, while sessions, rooms, and online state remain in-memory (guests are wiped on restart). Behavior is governed by a config file baked into the image, with per-key runtime overrides via `-o key value`. The project's value is twofold: it's a lightweight, self-contained chat server deployable with a single `podman`/`docker` build-and-run, and it preserves working, buildable historical C++ code (GPL-2.0, with MIT-licensed Pico CSS vendored for styling).
 
 => https://github.com/snonux/ychat View on GitHub
 
 ---
 
-### 31. foostore
-
-* 💻 Languages: Go (100.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 154
-* 📈 Lines of Code: 15384
-* 📄 Lines of Documentation: 384
-* 🏷️ Tags: 16
-* 📅 Development Period: 2018-05-26 to 2026-10-15
-* 🏆 Score: 6.5 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.9.2 (2026-09-24)
-
-
-**foostore** is a Go tool for encrypting and storing text and binary documents (meant for smaller files like notes, credentials, and PDFs), targeting macOS, Linux, and Android via Termux. All documents live in a Git repository — giving you version history and sync with multiple remote repositories for geo-redundancy — while file names themselves are kept encrypted in encrypted indices. The default backend is a KeePass database (`.kdbx`, password plus optional key file); a legacy `geheim` backend stores AES-256-CBC encrypted `.index`/`.data` pairs in Git with an IV derived from a user PIN, though it lacks an authentication tag and isn't recommended for new secrets.
-
-Interactive use centers on a built-in shell: indices are searchable via `fzf`, text entries are edited in Helix or any `$EDITOR`, clipboard paste works on macOS and GNOME, and there's a themed picker with keybindings, batch import/export with shredding, and fish shell tab-completion with a `ge` wrapper. For automation, a strict non-interactive `read` command (KeePass backend only) emits exactly the requested field or attachment bytes, never prompting, with deterministic exit codes (not-found, ambiguous, corrupt, etc.), a whole-read timeout, and passphrase resolution via an inherited file descriptor or a permission-checked pass file rather than environment variables or prompts. The project is explicitly pre-alpha personal software, so formats and behavior are unstable and upgrades aren't guaranteed.
-
-=> https://github.com/snonux/foostore View on GitHub
-
----
-
-### 32. totalrecall
+### 33. totalrecall
 
 * 💻 Languages: Go (98.8%), HTML (0.4%), CSS (0.3%), Shell (0.3%), YAML (0.2%)
 * 📚 Documentation: Markdown (96.0%), Text (4.0%)
@@ -769,24 +795,24 @@ Interactive use centers on a built-in shell: indices are searchable via `fzf`, t
 * 📄 Lines of Documentation: 400
 * 🏷️ Tags: 45
 * 📅 Development Period: 2025-07-14 to 2026-09-30
-* 🏆 Score: 5.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.29.6 (2026-09-30)
 
 
 => showcase/totalrecall/image-1.png totalrecall screenshot
 
-**TotalRecall** is a Go-based tool that automates the creation of rich Anki flashcard materials for Bulgarian vocabulary learners. For each word, it generates an audio pronunciation file, an English translation, an IPA phonetic transcription, and one or more AI-generated images depicting a memorable scene for the word. It supports both a keyboard-driven GUI (the default launch mode) and a CLI, along with batch processing from text files. The batch format is flexible: words alone (auto-translated), Bulgarian=English pairs, English-only entries (auto-translated to Bulgarian), or monolingual Bulgarian definitions using `==`—all of which can be mixed in a single file. Provided translations skip the translation API entirely, saving time and quota, and results export directly as Anki APKG packages with media embedded.
+**totalrecall** is a Go-based tool that automates the creation of Anki flashcard materials for Bulgarian vocabulary learners. Given a word (or a batch of words from a file), it generates everything needed for a rich flashcard: audio pronunciation (MP3 via Google Gemini TTS, with random or all-voice variants and configurable speech speed), IPA phonetic transcription, automatic Bulgarian-to-English translation, and AI-generated illustrative images. It offers both a CLI and a keyboard-driven GUI (the GUI is the default mode), supports batch processing from flexible text files, and exports directly to Anki-compatible formats—either a self-contained `.apkg` package with embedded media or a legacy CSV. Output files are organized under `~/.local/state/totalrecall/`, and a YAML config file allows customization of providers and directories.
 
 => showcase/totalrecall/image-2.png totalrecall screenshot
 
-Architecturally, the project defaults entirely to Google Gemini APIs: Gemini TTS for audio (using a random voice, all voices, or a specific one, with ffmpeg conversion to space-saving mp3), the "Nano Banana" model for image generation, and Gemini for translation and phonetic lookups. An optional OpenAI DALL-E path remains available for image generation, selectable via CLI flags or a `config.yaml` provider setting. Generated assets are stored under `~/.local/state/totalrecall/`, with configurable output directories and deck names. Notably, the tool was largely "vibe coded" using Claude Code CLI, making it an example of AI-assisted development producing a practical, installer-ready application (including GNOME desktop integration on Fedora).
+Architecturally, the tool is built around pluggable AI backends selected via configuration: Google Gemini is the default for all tasks (text-to-speech, translation, phonetic lookup, and image generation via the "Nano Banana" model), while OpenAI endpoints (including DALL-E) remain available as an explicitly selected alternative. Audio from Gemini is automatically converted to space-efficient MP3 using `ffmpeg`. The batch file format is notably flexible, supporting five card types that can be mixed freely: Bulgarian-only words (auto-translated), Bulgarian=English pairs, English-only entries (auto-translated to Bulgarian), and monolingual Bulgarian==Bulgarian definition cards. Provided translations are used directly without API calls, saving quota. Interestingly, the project is largely "vibe coded" using Claude Code, making it a notable example of AI-assisted application development.
 
 => https://github.com/snonux/totalrecall View on GitHub
 
 ---
 
-### 33. fastforge
+### 34. fastforge
 
 * 💻 Languages: C (93.2%), C/C++ (5.4%), JavaScript (0.7%), Make (0.7%)
 * 📚 Documentation: Markdown (100.0%)
@@ -795,24 +821,70 @@ Architecturally, the project defaults entirely to Google Gemini APIs: Gemini TTS
 * 📄 Lines of Documentation: 278
 * 🏷️ Tags: 9
 * 📅 Development Period: 2026-04-06 to 2026-09-10
-* 🏆 Score: 5.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v1.6.0 (2026-09-10)
 
 
 => showcase/fastforge/image-1.png fastforge screenshot
 
-FastForge is a watchapp for the Pebble smartwatch platform that helps users track intermittent fasting. It offers a menu for managing fasts, a live countdown screen showing fasting progress at a glance, and a history view for reviewing past sessions. Putting the tracker on the wrist makes the running fast continuously visible without needing a phone, and the app is published on the Rebble-run Pebble Appstore. It supports multiple device form factors, with screenshots confirming compatibility with both the round Pebble Round 2 and the rectangular Pebble Time 2.
+**FastForge** is a Pebble smartwatch app for intermittent fasting tracking, published on the Rebble Appstore and built with the Rebble SDK. It lets users manage fasting sessions entirely from their wrist: a main menu for controlling fasts, a live countdown screen showing progress toward a fasting goal, and a history screen logging past sessions. This makes it easy to stay on target without pulling out a phone or tracking times mentally. The app is designed for both of Rebble's modern form factors — the round Pebble Round 2 ("gabbro") and the rectangular Pebble Time 2 ("emery") — with screens adapted to each display, as shown in its screenshots.
 
 => showcase/fastforge/image-2.png fastforge screenshot
 
-The project is built with the Rebble SDK (4.9+) and follows the standard native Pebble development pipeline: code is compiled into a Pebble package and tested against SDK emulators rather than requiring physical hardware. The documented environment targets Fedora Linux, using `uv`-managed `pebble-tool` for SDK installation and builds, with `just` serving as a task runner that wraps the whole workflow—`just dev` builds and installs to the gabbro (Pebble Round 2) emulator, `just dev-emery` targets the emery (Pebble Time 2) emulator, and companion commands cover live log streaming, screenshots, emulator shutdown, and build cleanup. This gives developers a tight build-install-debug loop for iterating on the UI across both display shapes.
+On the implementation side, the project targets Rebble SDK 4.9+ and uses the modern community Pebble toolchain: the `pebble` CLI installed via `uv`, SDL libraries for the emulator, and supporting tools like a device-tree compiler. Development is streamlined through a `just` command runner (justfile) that wraps the whole workflow — `just dev` builds and installs to the gabbro emulator, `just dev-emery` targets emery, while companion commands handle live log streaming, screenshots, emulator shutdown, and build cleanup. This gives contributors a reproducible, emulator-driven development loop on Fedora (and similar Linux systems) without requiring physical watch hardware.
 
 => https://github.com/snonux/fastforge View on GitHub
 
 ---
 
-### 34. gt
+### 35. goprecords
+
+* 💻 Languages: Go (97.9%), Shell (1.9%), Docker (0.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 180
+* 📈 Lines of Code: 8838
+* 📄 Lines of Documentation: 1075
+* 🏷️ Tags: 20
+* 📅 Development Period: 2013-03-22 to 2026-10-24
+* 🏆 Score: 4.2 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.6.2 (2026-10-24)
+
+
+`goprecords` is a Go command-line tool that generates global uptime leaderboards — "uprecords"-style reports aggregated across many machines rather than a single host. It consumes the raw record files produced by `uptimed` on individual hosts, collected into a central stats directory or git repository, and ranks them by metrics such as Boots, Uptime, Downtime, Lifespan, and a combined Score across categories including Host, Kernel, KernelMajor, and KernelName. This makes it useful for tracking fleet-wide availability across heterogeneous systems (Linux, the BSDs, macOS), with hosts optionally classified as server, workstation, hybrid, or unknown (shown as a letter in report tables), stale hosts flagged with `*`/`+` markers, and output rendered as Plaintext, Markdown, Gemtext, or HTML.
+
+The implementation is architected around three interchangeable modes: direct reporting from a stats directory with no database, an `import`/`query` pair backed by SQLite for repeatable aggregation, and an HTTP daemon mode (plain HTTP, with TLS terminated externally by a reverse proxy or ingress). The daemon exposes liveness/readiness probes, a `GET /report` endpoint mirroring the CLI's report options, and authenticated `PUT /upload/{HOSTNAME}/{kind}` endpoints so hosts can push their uptimed files directly — secured by per-client bearer tokens (hashed in a separate SQLite auth DB, scoped to one hostname each) with an optional anonymous mode for local testing. Operational conveniences round it out: a cross-platform upload client script for cron/systemd automation, CLI subcommands for classifying and listing hosts, and Prometheus `/metrics` integration where decommissioned hosts can be excluded from alerting and automatically re-included once they resume uploading.
+
+=> https://github.com/snonux/goprecords View on GitHub
+
+---
+
+### 36. hypr
+
+* 💻 Languages: TypeScript (49.4%), Ruby (32.3%), JSON (9.3%), Shell (4.2%), TOML (4.0%), Python (0.8%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 165
+* 📈 Lines of Code: 11368
+* 📄 Lines of Documentation: 3142
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-03-21 to 2026-10-26
+* 🏆 Score: 4.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+=> showcase/hypr/image-1.svg hypr screenshot
+
+**hypr** is a Ruby-based automation tool that manages the full lifecycle of GPU cloud VMs on Hyperstack—from creation and provisioning through teardown—so you can run your own self-hosted LLM inference for coding agents. It provisions two concurrent A100 80GB VMs, each serving a different model via vLLM (e.g., Qwen3.8 27B FP8 on one and Qwen3.8 Flash Next AWQ-INT4 on the other), and connects Pi coding agents (running inside a tmux session on a Linux bhyve VM on a FreeBSD host) to each endpoint. The setup is useful for anyone who wants the speed and capability of a local-feeling LLM for coding—full 262K context, no per-token API costs, and control over model choice—without exposing inference endpoints to the public internet: vLLM listens only on a WireGuard overlay network (192.168.3.0/24), firewalled so just your machine's tunnel interface can reach it.
+
+Implementation-wise, a single CLI (`ruby hyperstack.rb --vm 1|2|both <command>`) drives everything via per-VM TOML configs: `create` boots the VM, runs `wg1-setup.sh` to wire up a single WireGuard interface with one peer block per VM, deploys vLLM as a Docker container on port 11434, and verifies with end-to-end inference tests. Named model presets in the TOML allow hot-switching models (including speculative decoding via Qwen's MTP head) without reprovisioning, and a `watch` command renders a live dashboard of GPU utilization, VRAM, throughput, and KV-cache stats. On the client side, Pi is configured through a symlinked `~/.pi` directory containing `models.json` (OpenAI-compatible providers pointing at each VM's tunnel IP), fish shell abbreviations for quick launches, and TypeScript extensions adding tools like web search, ask-mode, and loop scheduling. The project chooses vLLM over Ollama for its FlashAttention v2 prefill, block-level prefix caching, and better VRAM efficiency.
+
+=> https://github.com/snonux/hypr View on GitHub
+
+---
+
+### 37. gt
 
 * 💻 Languages: Go (98.0%), Shell (2.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -821,46 +893,22 @@ The project is built with the Rebble SDK (4.9+) and follows the standard native 
 * 📄 Lines of Documentation: 4351
 * 🏷️ Tags: 8
 * 📅 Development Period: 2025-11-25 to 2026-09-06
-* 🏆 Score: 4.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.5.2 (2026-08-22)
 
 
 => showcase/gt/image-1.svg gt screenshot
 
-**gt** is a command-line calculator written in Go that combines two paradigms: natural-language-style percentage queries (e.g., `gt '20% of 150'` → 30) and RPN (Reverse Polish Notation) stack arithmetic (e.g., `gt '3 4 +'` → 7). Beyond these core modes, it supports a rich feature set including built-in constants (like `pi`), unit-aware calculations (`100Mbps 1hr *`), variables and assignment, symbols, stack manipulation, fast integer exponentiation, logarithm and n-ary "hyper" operators, comparisons/booleans, and a rational number mode. It can be used for one-off evaluations, in shell pipelines, or as an interactive REPL, with Fish shell completions for convenient tab-completion.
+`gt` is a command-line calculator written in Go that combines two calculation styles: natural-language percentage expressions (e.g., `gt '20% of 150'` → 30) and RPN (Reverse Polish Notation) stack arithmetic (e.g., `gt '3 4 +'` → 7). It's designed for quick math directly in the shell—expressions run as one-off commands, can be piped into workflows, or explored interactively in a REPL. Beyond basic arithmetic, it supports variables and assignment, symbols (`:x` syntax), built-in constants like `pi`, stack manipulation, comparisons and booleans, logarithm operators, hyper (n-ary) operators, fast integer exponentiation (`**`), and a rational-number mode. A standout capability is unit-aware computation, where expressions like `100Mbps 1hr *` multiply rates by time, backed by a metrics system with unit conversion, custom metrics, and metric commands.
 
-Architecturally, the project is organized into focused modules matching its feature areas — an expression evaluator with an RPN stack, a metrics/units subsystem supporting conversions and user-defined custom metrics, and a CLI layer handling piping and REPL sessions. Build and test workflows are automated with [mage](https://github.com/magefile/mage), and installation is a simple `go install`. Notably, gt also serves a secondary purpose: it's a deliberate experiment in using local LLMs (Qwen, Gemma, Nemotron, GPT OSS) as pair programmers, making it as much a case study in AI-assisted development as a calculator. Detailed documentation for every feature lives in the `docs/` directory.
+Architecturally, `gt` is a single Go binary with its entry point in `cmd/gt`, installable via `go install` or `mage install`, with the Mage build tool handling build and test automation. Documentation is cleanly organized into per-topic guides under `docs/`, and Fish shell completions ship with the repo. The project also has a meta-purpose: it serves as an experiment in using local LLMs (Qwen, Gemma, Nemotron, GPT OSS) as pair programmers for developing the tool itself.
 
 => https://github.com/snonux/gt View on GitHub
 
 ---
 
-### 35. hypr
-
-* 💻 Languages: TypeScript (49.7%), Ruby (32.6%), JSON (9.0%), Shell (4.2%), TOML (3.7%), Python (0.8%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 162
-* 📈 Lines of Code: 11285
-* 📄 Lines of Documentation: 3105
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-03-21 to 2026-10-12
-* 🏆 Score: 3.9 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-=> showcase/hypr/image-1.svg hypr screenshot
-
-`hypr` is a Ruby-based automation tool that manages the entire lifecycle of rented GPU cloud VMs on Hyperstack—provisioning, secure networking, and LLM serving—so you can run coding agents against self-hosted open models instead of third-party APIs. It deploys two A100 80GB VMs concurrently, each running a different model (e.g., Qwen3.8 27B FP8 and Gemma 4 31B) via vLLM with tuned flags like prefix caching, speculative decoding, and 262K context. This gives you full control over model choice, quantization, and performance—vLLM's FlashAttention, chunked prefill, and block-level KV cache reuse substantially outperform Ollama on both throughput and latency.
-
-Architecturally, the Ruby orchestrator `hyperstack.rb` (configured via per-VM TOML files defining VM specs, network rules, and named model presets) drives commands for `create`, `delete`, `status`, `test`, `watch`, and `model switch`. A single `create` command spins up VMs via the Hyperstack API, runs `wg1-setup.sh` to establish a WireGuard tunnel (one interface on the local host with a peer block per VM), and provisions vLLM in a Docker container exposing an OpenAI-compatible API on port 11434, firewalled to the tunnel subnet. Pi coding agents connect directly over the tunnel using custom providers declared in `models.json` (symlinked as `~/.pi`), with fish shell abbreviations routing each session to a specific VM and TypeScript extensions adding tools like web search. Supporting features include hot model switching without reprovisioning, live GPU/engine monitoring via a `watch` dashboard, and host key pinning for safe SSH.
-
-=> https://github.com/snonux/hypr View on GitHub
-
----
-
-### 36. gogios
+### 38. gogios
 
 * 💻 Languages: Go (99.7%), JSON (0.3%)
 * 📚 Documentation: Markdown (96.9%), Text (3.1%)
@@ -869,64 +917,18 @@ Architecturally, the Ruby orchestrator `hyperstack.rb` (configured via per-VM TO
 * 📄 Lines of Documentation: 641
 * 🏷️ Tags: 19
 * 📅 Development Period: 2023-04-17 to 2026-09-26
-* 🏆 Score: 3.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.7.1 (2026-09-26)
 
 
 => showcase/gogios/image-1.png gogios screenshot
 
-Gogios is a lightweight, minimalistic monitoring tool written in Go, designed for small-scale self-hosted infrastructure—typically just a handful of servers or VMs—where full-featured systems like Nagios, Icinga, or Prometheus add unnecessary complexity (databases, web UIs, clustering, contact groups). Designed to be driven by CRON rather than running as a daemon, it executes standard Nagios/Icinga check plugins such as `check_ping` and `check_http`, persists check results in a `state.json` file between runs, and—via the local MTA—emails a report only when check statuses change, summarizing critical, warning, unknown, stale, and OK counts. This keeps setup and maintenance trivial while still reliably catching outages.
+Gogios is a lightweight, minimalistic server monitoring tool written in Go, designed for small-scale personal infrastructure (a handful of servers or VMs) rather than enterprise environments. It was created as a reaction to feature-heavy solutions like Nagios, Icinga, and Prometheus, which the author found bloated for personal use—requiring databases, web UIs, contact groups, and clustering that he didn't need. Instead, Gogios offers a no-frills approach: it periodically executes standard Nagios/Icinga check plugins and emails a single recipient a status report whenever a check's state changes, summarizing critical, warning, unknown, stale, and OK statuses. Setup is intentionally simple—a single binary, a JSON config file, a local mail transfer agent, and a CRON job.
 
-Architecturally, it's a single binary configured through a JSON file defining each check's plugin path and arguments, with features like per-check retries, random spread to avoid simultaneous check storms, run intervals, and dependencies (`DependsOn` skips and reports UNKNOWN for checks whose prerequisite failed, e.g., HTTP checks when ping fails). It also integrates with Prometheus Alertmanager (with special Watchdog handling to detect a broken Alertmanager), supports file-based alert suppression for maintenance windows, and serializes runs via a lock file with atomic, fsynced state writes and timeouts to prevent stuck executions. For high availability, two instances can monitor each other over NRPE on staggered cron schedules, or use peer failover where a DNS-based standby election keeps one active checker that mirrors its peer's state while the passive node runs only its own local checks.
+Architecturally, Gogios is invoked by CRON rather than running as a daemon, and it shells out to external plugins (e.g., check_ping, check_http, or check_nrpe for remote checks) with configurable concurrency, timeouts, retries, and check dependencies (so an HTTP check is skipped as UNKNOWN if the host isn't pingable). Persistent state is kept in a state.json file so notifications fire only on status changes, and runs are serialized through an exclusive lock file with atomic, fsynced state writes and input sanitization for plugin output. Beyond plain runs, it supports a daily `-renotify` mode to remind about unhandled alerts and a weekly `-force` run to confirm mail delivery still works. Notable features include Prometheus Alertmanager integration (federating alerts and watching the watchdog alert to detect a broken Alertmanager), file-based alert suppression for maintenance windows, and high-availability setups where two instances monitor each other via NRPE on staggered intervals—or elect a single active checker via peer failover, with the passive node mirroring the active peer's state for a consistent view.
 
 => https://github.com/snonux/gogios View on GitHub
-
----
-
-### 37. goprecords
-
-* 💻 Languages: Go (97.8%), Shell (2.0%), Docker (0.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 174
-* 📈 Lines of Code: 8303
-* 📄 Lines of Documentation: 1075
-* 🏷️ Tags: 19
-* 📅 Development Period: 2013-03-22 to 2026-08-22
-* 🏆 Score: 3.7 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.6.1 (2026-08-22)
-
-
-**goprecords** is a Go command-line tool that transforms the raw uptime statistics collected by `uptimed` on individual machines into global "Top N" leaderboards across an entire fleet. While the stock `uprecords` utility only reports a single host's boot history, goprecords aggregates the per-host `*.records` files from many machines and ranks them in categories such as Host, Kernel, KernelMajor, and KernelName, using metrics like Boots (total boot count), Uptime, Downtime, Lifespan (uptime + downtime), and Score (a combined meta-metric). Reports can be rendered in plaintext, Markdown, Gemtext, or HTML, and include niceties like a host classification column (server, workstation, hybrid, or unknown) and recency markers showing whether a host has reported recently.
-
-Architecturally, the tool supports three interchangeable workflows: (1) an `import`/`query` mode that loads records into a SQLite database for repeat reporting; (2) a no-subcommand mode that generates reports directly from a stats directory with no database; and (3) a daemon mode — a plain HTTP server built on Go's `net/http` (TLS terminated externally via a reverse proxy or ingress) — which serves the same reports via `GET /report`, exposes Kubernetes-style liveness/readiness probes, and accepts `PUT /upload/{HOSTNAME}/{kind}` uploads from client machines. Uploads are authenticated with per-client bearer tokens stored in a separate SQLite auth database, and the accompanying upload-client script (for Linux, BSD, and macOS) can automate hourly pushes via cron or systemd timers. Further operational features include marking decommissioned hosts as excluded for Prometheus alert filtering (with auto-unexclude when a host resumes uploading) and a `/metrics` endpoint, making the tool suitable both as a personal CLI utility and as a centrally deployed uptime collection service.
-
-=> https://github.com/snonux/goprecords View on GitHub
-
----
-
-### 38. loadbars
-
-* 💻 Languages: Go (85.8%), Python (7.8%), Shell (6.4%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 548
-* 📈 Lines of Code: 7440
-* 📄 Lines of Documentation: 591
-* 🏷️ Tags: 39
-* 📅 Development Period: 2010-11-05 to 2026-09-30
-* 🏆 Score: 3.4 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: Custom License
-* 🏷️ Latest Release: v0.13.2 (2026-08-22)
-
-
-=> showcase/loadbars/image-1.gif loadbars screenshot
-
-**Loadbars** is a real-time system monitoring tool for Linux servers that displays CPU, memory, network traffic, load average, and disk I/O as colored bars side by side in a compact window. Like `top` or `vmstat`, it focuses on showing what is happening right now rather than recording data or drawing graphs for later analysis. It scales from monitoring a single local machine to observing large fleets — hosts can be listed individually (with brace expansion like `server{01..20}.example.com`), pulled from cluster definitions in `/etc/clusters`, and wrapped into rows for many servers. CPU can be shown summarized or core by core, and the view is controlled through hotkeys, command-line options, and a persistent config file (`~/.loadbarsrc`).
-
-The tool is written in Go and uses SDL2 (via the go-sdl2 bindings) for rendering the display. Architecturally, it monitors the local machine by reading directly from the `/proc` filesystem, while remote servers are observed over SSH using public key authentication — loadbars streams a small collector script to each host, so remote machines require nothing beyond Linux and bash. Metrics from all hosts are collected concurrently and rendered as live, colored bars in a single window. The build is managed with Mage task definitions or a plain `go build`, and while local monitoring is Linux-only, macOS can serve as a client for watching remote Linux servers.
-
-=> https://github.com/snonux/loadbars View on GitHub
 
 ---
 
@@ -934,21 +936,21 @@ The tool is written in Go and uses SDL2 (via the go-sdl2 bindings) for rendering
 
 * 💻 Languages: Java (98.6%), Shell (0.9%), CSS (0.4%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
-* 📊 Commits: 474
+* 📊 Commits: 476
 * 📈 Lines of Code: 28576
 * 📄 Lines of Documentation: 3103
 * 🏷️ Tags: 2
-* 📅 Development Period: 2008-05-15 to 2026-03-30
-* 🏆 Score: 2.3 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2008-05-15 to 2026-10-21
+* 🏆 Score: 2.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: 1.1.0 (2026-03-27)
 
 
 => showcase/ds-sim/image-1.png ds-sim screenshot
 
-DS-Sim is an open-source distributed systems simulator written in Java, designed as a learning and experimentation environment for distributed systems concepts. Through an interactive Swing-based GUI, users can simulate and observe the behavior of distributed algorithms, with built-in support for protocol simulation (including PingPong, Two-Phase Commit, and Berkeley time synchronization), event handling, and logical clock implementations using both Lamport and Vector time. This makes it a practical tool for students and developers who want to explore how distributed algorithms behave in practice—covering things like message passing, event ordering, and failure scenarios—without needing to deploy real distributed infrastructure. The project also features comprehensive logging, timestamp-triggered events, and saved simulation files for reproducibility.
+DS-Sim is an open-source distributed systems simulator written in Java, developed from the original VS-Sim project. It provides an interactive environment for modeling, running, and learning about distributed systems concepts, making it valuable as both an educational tool and an experimentation platform. The simulator supports protocol simulation with event handling, implements both Lamport and Vector logical clocks, and includes several classic distributed algorithms out of the box—such as PingPong, Two-Phase Commit, and Berkeley time synchronization. Users can build and save simulations, schedule timestamp-triggered events, and observe process behavior through an interactive GUI backed by comprehensive logging.
 
-Architecturally, DS-Sim follows a modular design organized into distinct packages: `core` for process and message handling, `events` for the event system, `protocols` for distributed algorithms, `simulator` for the main simulation engine, and `utils` for shared helpers. It targets Java 21 and is built with Maven, producing a self-contained executable JAR with all dependencies bundled. Extensibility is a key focus—the developer guide explains how to create new protocols and events—while quality is ensured by 141 headless-compatible unit tests covering core components, the event system, and protocol implementations. The project is a modernized evolution of the original VS-Sim simulator, combining a modern Java-based architecture with strong documentation (architecture, developer, and testing guides) to support both users and contributors.
+The project is built on Java 21 and Maven, with a clean modular architecture: a `core` package handles processes and message passing (via `VSTask` and `VSMessage`), an `events` package manages the event system, `protocols` contains the distributed algorithm implementations, and a `simulator` package drives the main engine. The UI is built with Swing, and the build produces a self-contained executable JAR for easy deployment. Reliability and extensibility are emphasized throughout: the project ships with 141 headless-compatible unit tests, a testing framework for protocol simulations, and developer documentation explaining how to create new protocols and events, making it straightforward to extend with custom distributed algorithms.
 
 => https://github.com/snonux/ds-sim View on GitHub
 
@@ -963,14 +965,14 @@ Architecturally, DS-Sim follows a modular design organized into distinct package
 * 📄 Lines of Documentation: 48
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-06-15 to 2026-07-18
-* 🏆 Score: 2.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
 
-This repository generates the two static photo sites served at irregular.ninja and alt.irregular.ninja by using [shuriken.sh](https://codeberg.org/snonux/shuriken.sh), a lightweight, shell-based photo album generator. Its purpose is simple and focused: turn directories of source photos into static web albums with minimal tooling, while supporting two separate publications — the main site for the author's preferred photos, and the alternate site for "second-order" selections the author likes less. Because everything is static, the resulting sites are fast and easy to host, and the workflow stays reproducible: photos go in, a build command runs, and finished albums come out.
+This repository contains the working directories and build automation for generating two static photo album websites: **irregular.ninja**, the author's primary photo gallery, and **alt.irregular.ninja**, an alternative gallery featuring "second-order" photos the author considers less compelling. Album generation is powered by [shuriken.sh](https://codeberg.org/snonux/shuriken.sh), a lightweight shell-based photo album generator, so the sites are built as fully static content without any dynamic backend or CMS. The setup is useful because it turns photo publishing into a simple, reproducible build process.
 
-Architecturally, the project is organized around the `just` command runner with a two-level build system. A top-level `Justfile` delegates to per-album `Justfiles` inside `irregular.ninja/` and `alt.irregular.ninja/`, so each album is self-contained: a `shuriken.conf` defines album settings (title, geometry, templates), an `incoming/` symlink points at the source photo directory, and the main album additionally has an `incoming-invalid/` staging area for rejected or invalid files. Available recipes include `generate` for a single album, `all` for both, and `dry-run-all` to preview changes without writing, giving a clean, config-driven pipeline where each site's content and build are isolated but can be rebuilt together with one command.
+Architecturally, each album lives in its own directory containing a `shuriken.conf` for per-album configuration (title, geometry, templates), an `incoming/` symlink pointing at the source photo collection, and its own `Justfile` with build recipes. A top-level `Justfile` delegates to both sub-albums, enabling commands like `just all` to regenerate both sites at once or `just dry-run-all` to preview changes without writing anything. There's also an `incoming-invalid/` directory in the main album reserved for rejected or invalid photos, keeping the source collection tidy.
 
 => https://github.com/snonux/irregular.ninja View on GitHub
 
@@ -985,14 +987,14 @@ Architecturally, the project is organized around the `just` command runner with 
 * 📄 Lines of Documentation: 1195
 * 🏷️ Tags: 6
 * 📅 Development Period: 2021-05-21 to 2026-10-12
-* 🏆 Score: 2.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: 3.0.0 (2024-10-01)
 
 
-Gemtexter is a blog engine and static site generator written entirely in GNU Bash. Authors write content once in the Gemini protocol's Gemtext markup format (`.gmi` files), and the tool converts it into multiple static output formats with zero JavaScript: XHTML for the regular web, Markdown for GitHub/Codeberg Pages, and Atom feeds—all alongside the original Gemtext for native Gemini capsules. Publishing a post is as simple as creating a dated Gemtext file (e.g., `2023-02-26-my-post.gmi`); running the generator then automatically links it from the site indexes, updates the Atom feed, and converts it to all formats. This "write once, publish everywhere" approach makes the tool useful for anyone wanting to maintain a presence across both the Gemini protocol and the conventional web from a single source of truth.
+Gemtexter is a blog engine and static site generator written almost entirely in GNU Bash. Its core idea is "write once, publish everywhere": all content is authored in Gemini's Gemtext format (`.gmi` files), and a single `./gemtexter --generate` run converts it into multiple JavaScript-free output formats — a Gemini protocol capsule, XHTML for the regular web, and Markdown for Git-hosting pages like Codeberg or GitHub. Blogging is deliberately simple: dropping a date-prefixed file (e.g. `2023-02-26-title.gmi`) into the gemfeed directory is enough for the script to auto-link it from the site indexes and add it to the generated Atom feed. This makes it useful for anyone wanting to maintain a presence on both the Gemini protocol and the conventional web from one source of truth.
 
-The implementation is a deliberate experiment in Bash scalability, relying on standard Unix tools (GNU Sed, Date, Grep) rather than a traditional programming language. Content lives in a configured content directory with one subdirectory per output format, where `gemtext/` serves as the editable source and the others are generated. Notable architectural features include: a template system (`.gmi.tpl` files) that evaluates inline and multiline Bash code to generate Gemtext, supporting dynamic pages, auto-generated tables of contents, and "related posts" index links; syntax highlighting of code blocks via GNU Source Highlight; themable HTML output; and optional Git integration, where each format can live in its own repository, with commands like `--git-add`, `--git-sync`, and `--publish` handling commits and remote synchronization. The tool also respects hosting-specific files (Codeberg's `.domains`, GitHub Pages' `_config.yml` and `CNAME`), supports Mastodon verification markup, and offers a regex-based content filter for fast single-file previews.
+Architecturally, the project is a single large Bash script (chosen as an experiment in keeping a complex shell script maintainable) built on standard GNU tools — sed, grep, date — with optional GNU Source Highlight for HTML syntax highlighting. Content lives in a configurable base directory with one subdirectory per output format (`gemtext`, `html`, `md`), each designed to be its own Git repository; the script detects Git repos and offers `--git-add`, `--git-sync`, and a one-step `--publish` workflow. Key features include a templating system (`.gmi.tpl` files that execute embedded Bash code via `<<` and `<<<`/`>>>` blocks), inline directives for related-post indexes (`template::inline::index`) and tables of contents, regex-based content filtering for fast partial regeneration, themable HTML output with customizable CSS, Mastodon `rel='me'` verification, and careful preservation of hosting-specific files like Codeberg's `.domains` or GitHub Pages' `CNAME` and `_config.yml`.
 
 => https://github.com/snonux/gemtexter View on GitHub
 
@@ -1014,11 +1016,11 @@ The implementation is a deliberate experiment in Bash scalability, relying on st
 
 => showcase/gos/image-1.png gos screenshot
 
-**Gos** is a free, open-source command-line alternative to Buffer.com, written in Go (1.24+), for scheduling and publishing social media posts to Mastodon and LinkedIn—plus a "Noop" pseudo-platform that tracks posts without publishing them. It was built out of frustration with Buffer's slow UI, restrictive free tier (10 scheduled posts), and intrusive AI features. Gos is designed for automation: it can run from shell startup or on an interval, making it easy to maintain a steady posting cadence hands-off, with features like a dry-run mode for safe testing, configurable pause periods (e.g., vacations), and OAuth2 authentication for LinkedIn with automatic token refresh.
+[Gos](https://github.com/snonux/gos) is a command-line tool written in Go that serves as a free, privacy-friendly replacement for Buffer.com. It lets you schedule and publish social media posts to **Mastodon** and **LinkedIn** from plain text files — without the slow web UI, ads, or the 10-post limit of Buffer's free tier. A pseudo-platform called **Noop** tracks posts without publishing anywhere, which is useful for generating summaries separately.
 
 => showcase/gos/image-2.png gos screenshot
 
-Architecturally, posts are plain `.txt` files placed in a queue directory (`~/.gosdir`), with behavior controlled by tags embedded in filenames or file content—such as `share:` to target/exclude platforms, `prio`/`soon` for priority, `ask` for confirmation, and `now` for immediate posting. On each run, files move through a lifecycle within `db/platforms/PLATFORM`: from `.txt` → `.queued` (with a timestamp) → `.posted` after successful publishing. Message selection respects a weekly posting target, a lookback window for post history, minimum pause days between posts, and a run interval to prevent back-to-back posting. Platform credentials and settings live in a JSON config file, a companion binary `gosc` opens `$EDITOR` for quick composing, and extras include platform size limits, Syncthing-friendly replication, and generation of Gemini Gemtext summaries of past posts for blogs. Build, test, and lint automation is handled via Mage.
+Posts are started via `gosc` (or `gos --compose`) which opens `$EDITOR` on a `.txt` file in `~/.gosdir`. On the next run, Gos parses embedded `share:` tags, validates per-platform size limits (prompts to edit if exceeded), and moves the file into a per-platform queue (`db/platforms/PLATFORM/...queued`). Based on your weekly target, lookback window, priority tags, and pause days, it then selects and publishes messages, renaming files to `.posted` to record the outcome. A run interval prevents back-to-back shell invocations from posting too often, and a dynamic catch-up mechanism increases the effective rate when the queue gets too deep.
 
 => https://github.com/snonux/gos View on GitHub
 
@@ -1040,9 +1042,9 @@ Architecturally, posts are plain `.txt` files placed in a queue directory (`~/.g
 
 => showcase/yoga/image-1.png yoga screenshot
 
-Yoga is a terminal-based (TUI) application for browsing and playing local yoga video collections, designed as a fast, keyboard-driven alternative to GUI media managers. It scans a configurable directory (defaulting to `~/Yoga`, which it creates on first launch) for common video formats (.mp4, .mkv, .mov, etc.), following symlinks during the scan. Users can navigate the video list with arrow keys, play any video in VLC with a single keypress, and refine the list through a filter dialog supporting name matching, min/max duration bounds, and tag matching. Additional features include sorting by name, length, or age; editing tags; toggling VLC crop (useful for aspect-ratio adjustment); selecting a random video from filtered results; and toggling the help footer. Durations are probed once and cached per directory in a JSON file, so subsequent launches are fast.
+Yoga is a Go-based terminal user interface (TUI) for browsing and playing a local collection of yoga videos. It scans a chosen directory (defaulting to `~/Yoga`, which it creates on first launch) for common video formats—`.mp4`, `.mkv`, `.mov`, `.avi`, `.wmv`, `.m4v`—following symlinks and caching probed duration metadata per directory in a JSON file to avoid repeated probing on later launches. Its main value is fast, keyboard-driven curation: videos appear in a navigable table that can be sorted by name, length, or age, and filtered via a dialog by name, duration range, or tags, with a single keypress launching playback in VLC. Extra conveniences include a random-video picker for when you can't decide, runtime-toggleable VLC crop strings for aspect-ratio adjustment, and per-video tag editing.
 
-The project is implemented in Go and ships as a single binary with three CLI flags (`--root`, `--crop`, `--version`). Its architecture separates concerns into a directory scanner with metadata caching, a TUI layer with modal dialogs (filter/tag), and playback integration that shells out to VLC. Development workflow is managed through Mage build targets (build, test, install, coverage), with code formatted via gofumpt and a CI-style gate requiring test coverage above 85%. Note that the project is deprecated and no longer maintained, so it should be used at one's own risk.
+Architecturally, it's a single Go CLI application combining a filesystem scanner, a duration-probing and caching layer, and a dialog-driven TUI, delegating playback entirely to an external VLC process rather than embedding a media player. Development is managed with the Mage task runner (targets for build, test, install, and coverage), enforces gofumpt formatting, and gates contributions on a test suite with at least 85% coverage. Note that despite its polish, the project is officially deprecated and no longer maintained, so it should be treated as an archived utility rather than an actively supported tool.
 
 => https://github.com/snonux/yoga View on GitHub
 
@@ -1057,16 +1059,16 @@ The project is implemented in Go and ships as a single binary with three CLI fla
 * 📄 Lines of Documentation: 778
 * 🏷️ Tags: 3
 * 📅 Development Period: 2024-12-05 to 2026-03-02
-* 🏆 Score: 1.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.1.1 (2026-03-01)
 
 
 => showcase/rcm/image-1.png rcm screenshot
 
-RCM (Ruby Configuration Management) is a lightweight, "KISS" configuration management system written in Ruby for personal use, conceived primarily as a deep-dive into Ruby metaprogramming (90% human-written). It enables declarative, idempotent management of system state—files, directories, symlinks, touch markers, line entries, notifications, and (experimentally) packages—through a readable DSL instead of scripts or ad-hoc shell commands. Its usefulness lies in automating repetitive setup tasks (like provisioning configs across hosts) with sensible safety defaults, notably automatic backups before any modification or deletion: content is stored in a `.rcmbackup/` directory using SHA-256-hash naming so identical content is never backed up twice.
+RCM is a lightweight, declarative configuration management system written in Ruby — essentially a minimalist alternative to tools like Ansible for personal infrastructure. Users describe desired system state via an expressive DSL: creating or deleting files, symlinks, and directories (including recursive copies and purges), managing line-level file edits, setting permissions and ownership, rendering ERB templates, and managing packages (currently Fedora/DNF only). Key features include conditional execution scoped to hostnames (`given { hostname is :earth }`, with optional `--hosts` filtering), resource dependencies evaluated in order with cycle detection, automatic backups before modifications (SHA-256 content-deduplicated, stored in `.rcmbackup/`), and dry-run and debug modes. It can be invoked as a Rake task, a plain Ruby script, a bundled gem, or a standalone CLI.
 
-Architecturally, everything centers on a `configure` block DSL in which resources—`file`, `directory`, `symlink`, `touch`, `given`, `notify`, `package`—are registered and accumulated across calls (`configure_from_scratch` clears the registry, useful for tests). Metaprogramming is the backbone: undefined methods are "absorbed" via chained calls, enabling natural-language syntax where modifier keywords (`is absent`, `from template`, `requires `**X**` and requires `**Y**`, `manage directory`, `without backup`, `path`) act as fluent declarators rather than rigid keyword arguments. Key capabilities include ERB templating, state modifiers (present/absent/purged/updated), permissions/ownership, hostname-conditional execution (`given { hostname is ... }` plus a `--hosts` CLI flag), inter-resource dependency resolution with loop detection, TOML-based configuration, and dry-run/debug modes. It can run as a Rake task, a Bundler-installed gem, a standalone script, or via the `rcm` CLI.
+Architecturally, the project's centerpiece is Ruby metaprogramming: undefined method calls are silently absorbed and chained into resource identifiers, enabling natural-language-like syntax such as `file create config do ... end` or `notify hello dear world`. Configuration blocks (`configure` / `configure_from_scratch`) accumulate typed resources — file, touch, symlink, directory, package, notify — each customized through shared modifiers (`is present/absent/purged`, `mode`, `from template`, `manage directory`, `without backup`, etc.). Additional niceties include a TOML-based `config.toml` for host groups, path overrides to decouple resource names from filesystem paths, and multiple usage modes (Rake, gem, plain script, CLI) for flexible integration. Beyond its practical purpose, the project was built largely by hand as a vehicle for learning Ruby metaprogramming.
 
 => https://github.com/snonux/rcm View on GitHub
 
@@ -1086,15 +1088,37 @@ Architecturally, everything centers on a `configure` block DSL in which resource
 * 🧪 Status: Experimental (no releases yet)
 
 
-**Sci-Fi Books Showcase** is a fully self-contained static website that presents a personal science fiction book collection. It renders the books as a responsive grid with locally stored cover images, supports filtering by author or format (Paperback, eBook, Audiobook) plus free-text search, and opens a detail view with a plot summary when a book is clicked. Because all assets—HTML, CSS, JavaScript, JSON, and images—are hosted locally with zero external dependencies after build, the site works completely offline, loads fast, and passes W3C HTML validation. This makes it useful as a robust, low-maintenance showcase that can be served from any static web host without runtime dependencies.
+This project is a lightweight, fully self-contained static website that showcases a personal collection of science fiction books. Visitors can browse a responsive grid of cover images, filter the collection by author or format (Paperback, eBook, Audiobook), search by keywords, and click any book to open a detail view with a plot summary. Because everything—styling, scripts, data, and images—is stored locally with no external dependencies, the site works offline and passes W3C HTML validation, making it fast, portable, and easy to host anywhere.
 
-Architecturally, content is cleanly separated from presentation: book metadata lives in a single `data/books.json`, while plot summaries are maintained as individual Markdown files in `summaries/` keyed by book ID. A Node-based build script (`build.js`) embeds those Markdown summaries into the JSON and produces a deployable `dist/` directory, with a Justfile wrapping the build, deploy, and local-dev-server commands. Client-side behavior—grid rendering, filtering, and the detail modal—is handled by plain JavaScript in `js/app.js`, with no frameworks or libraries. Adding a book is a simple three-step process: append an entry to `books.json`, drop in a cover image, write a Markdown summary, and re-run the build.
+Architecturally, the site uses vanilla HTML, CSS, and JavaScript with a clean separation between content and code. Book metadata lives in `data/books.json`, while plot summaries are maintained as individual Markdown files in `summaries/` and covers as local images. A Node build script (`build.js`) embeds the Markdown summaries into `books.json` and generates a `dist/` directory for deployment, with a Justfile providing simple task commands (`just build`, `just dist`, `just open`). Adding a new book requires only three steps—adding a JSON entry, dropping in a cover image, and creating a summary file—followed by a rebuild, making the project easy to maintain and extend.
 
 => https://github.com/snonux/scifi View on GitHub
 
 ---
 
-### 46. timr
+### 46. log4jbench
+
+* 💻 Languages: Java (78.9%), XML (21.1%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 5
+* 📈 Lines of Code: 774
+* 📄 Lines of Documentation: 119
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-01-09 to 2026-10-21
+* 🏆 Score: 1.4 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🧪 Status: Experimental (no releases yet)
+
+
+This project is a command-line benchmarking tool that measures Log4j2 logging throughput in Java, helping developers make data-driven decisions about logging configuration. Since logging setup can dramatically affect application performance, the tool makes it easy to quantify real-world trade-offs—such as whether asynchronous logging is worth the added complexity, or how much throughput buffering provides at the cost of data durability. It compares five built-in configurations: two synchronous variants (with immediate flush vs. an 8KB buffer) and three asynchronous loggers backed by LMAX Disruptor ring buffers of 1,024, 4,096, and 10,240 entries, reporting results in both events/sec and MB/sec.
+
+The tool is implemented in Java 17 with Maven and packages as a self-contained executable fat JAR. At runtime, it spawns a configurable number of concurrent logging threads (100 by default) that emit messages of a configurable size under each selected configuration, operating in either a fixed-duration mode or an event-count mode, with an optional warmup period to reduce measurement noise. Command-line options cover thread count, message size, configuration selection, and CSV export for further analysis, and the tool attempts to drop the Linux filesystem cache before each test to ensure disk I/O measurements reflect actual writes rather than cached performance.
+
+=> https://github.com/snonux/log4jbench View on GitHub
+
+---
+
+### 47. timr
 
 * 💻 Languages: Go (96.0%), Shell (4.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1108,15 +1132,15 @@ Architecturally, content is cleanly separated from presentation: book metadata l
 * 🏷️ Latest Release: v0.3.0 (2026-01-02)
 
 
-**timr** is a minimalist command-line time tracking tool, written in Go, that functions as a stopwatch-style timer for your terminal. Its core value lies in workflow-friendly time tracking: commands like `start`, `stop`/`pause`, `cont`, `reset`, and `track` let you begin, interrupt, and log work sessions with optional descriptions, while `status` reports the running state and accumulated elapsed time (with raw output modes for scripting). Because timer state is persisted to the system between invocations, you can pause work one day and seamlessly resume tracking later. It also offers a `prompt` command that outputs a compact status string, designed for integration into shell prompts—demonstrated with Fish shell via an included installation script.
+**timr** is a minimalist stopwatch-style time tracker for the terminal, written in Go. It lets you start, stop, resume, and reset a timer that persists its state to disk, so you can pause work and pick up tracking later across terminal sessions. Beyond the basics (`start`, `stop`, `cont`, `status`, `reset`), it offers a `track <description>` command that logs the elapsed time with a note and resets the clock, machine-readable status output in raw seconds or minutes for scripting, and a compact `prompt` command designed for shell integration—a fish shell integration script ships with the project to display live timer status in your prompt.
 
-Architecturally, the project follows a standard Go layout with a `cmd/timr` entry point and uses [Mage](https://magefile.org/) as its build system (with a plain `go build` fallback). Beyond basic CLI commands, the most notable feature is `timr live`, an interactive full-screen mode that renders the timer in large ASCII-art fonts (doom, mono12, rebel, ansi, ansiShadow—some adapted from the pomo project) with real-time keyboard controls (`s` to start/stop, `r` to reset, `f` to cycle fonts, `q` to quit) and randomized or explicitly selected fonts. Notably, the codebase was largely developed via AI-assisted "vibe coding" using Gemini CLI and Claude Code CLI, keeping the project intentionally lightweight and focused.
+Implementation-wise, the project follows a standard Go layout with the binary entry point in `cmd/timr` and uses Mage as its build tool. Its most feature-rich component is the interactive `live` mode, a full-screen timer display with real-time keyboard controls (start/stop, reset, quit) and cycling between multiple ASCII-art fonts such as `doom`, `mono12`, `rebel`, and `ansiShadow`—adapting fonts from the open-source pomo project. Notably, the tool was primarily developed using AI coding assistants (Google Gemini CLI and Claude Code CLI), which helps explain its focused scope and clean, single-purpose design.
 
 => https://github.com/snonux/timr View on GitHub
 
 ---
 
-### 47. foostats
+### 48. foostats
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (54.6%), Text (45.4%)
@@ -1125,38 +1149,16 @@ Architecturally, the project follows a standard Go layout with a `cmd/timr` entr
 * 📄 Lines of Documentation: 423
 * 🏷️ Tags: 2
 * 📅 Development Period: 2023-01-02 to 2025-11-01
-* 🏆 Score: 1.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.2.0 (2025-10-21)
 
 
-**Summary:** foostats is a privacy-respecting analytics tool for OpenBSD that parses HTTP/HTTPS server logs (from `httpd`) alongside Gemini protocol logs (from `vger` and `relayd`) to produce anonymous site statistics, originally built for the foo.zone ecosystem. Its main value lies in its privacy-first design: visitor IP addresses are immediately hashed with SHA3-512, no cookies or tracking scripts are used, only aggregated data is stored, and unusually high-frequency requests (>1/second) are filtered out. Beyond basic traffic metrics like unique visitors and top URLs, it tracks Atom/RSS and Gemfeed subscriber counts, filters suspicious requests (e.g., WordPress/phpMyAdmin probing) via configurable URI patterns, supports both IPv4 and IPv6, and can replicate statistics between partner nodes for a distributed view of traffic.
+**foostats** is a privacy-respecting analytics tool for OpenBSD that parses HTTP/HTTPS server logs (httpd) and Gemini protocol logs (vger/relayd) to generate anonymous site statistics, originally built for the foo.zone ecosystem. Its core value is providing comprehensive traffic insights—unique visitors, request counts, top URLs, and Atom/RSS/Gemfeed subscriber tracking—without compromising visitor privacy: IP addresses are immediately hashed with SHA3-512, no cookies or tracking scripts are used, only aggregated data is stored, and high-frequency requesters are excluded. It also doubles as a security aid by filtering and logging suspicious requests (e.g., `.php` or `/wp-admin` probes) based on configurable URI patterns.
 
-**Implementation:** The tool is written in Perl (5.38+) and organized into a modular pipeline: `Logreader` parses both log types, `Filter` drops requests matching suspicious patterns and logs them, `Aggregator` computes per-day statistics, `FileOutputter` persists them as gzip-compressed JSON (`YYYY-MM-DD-hostname.json.gz`), and `Replicator`/`Merger` combine stats across nodes. The `Reporter` module then renders human-readable daily reports and rolling 30-day summaries in both Gemtext (`.gmi`) and HTML. Operation is CLI-driven (`--parse-logs`, `--replicate`, `--report`, or `--all`), with paths for stats storage, report output, and partner nodes configurable via flags. Development is supported by a `Justfile` (formatting with `perltidy`, tests via `prove`, syntax checks, local report generation from sample data) and a unit-test suite under `t/` that works because the script defers CLI execution when loaded as a module.
+The tool is written in Perl 5.38+ and organized as a modular pipeline: `Logreader` parses logs, `Filter` drops suspect URIs, `Aggregator` compiles statistics, and `FileOutputter` persists them as compressed per-day/per-host JSON files. A `Replicator`/`Merger` pair enables distributed deployments by syncing and combining statistics across partner nodes for site-wide totals. Finally, the `Reporter` produces daily, monthly, and 30-day summary reports in both Gemtext and HTML formats, ready to serve directly from Gemini or web servers. Operations are orchestrated via CLI flags (`--parse-logs`, `--replicate`, `--report`, or `--all`), with a test suite and a Justfile supporting development workflows.
 
 => https://github.com/snonux/foostats View on GitHub
-
----
-
-### 48. log4jbench
-
-* 💻 Languages: Java (78.9%), XML (21.1%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 4
-* 📈 Lines of Code: 774
-* 📄 Lines of Documentation: 119
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-01-09 to 2026-01-09
-* 🏆 Score: 1.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: MIT
-* 🧪 Status: Experimental (no releases yet)
-
-
-**Log4j2 Benchmark Tool Summary**
-
-This project is a Java 17 benchmarking utility that measures logging throughput across different Log4j2 configurations, reporting results in events/sec and MB/sec. Its value lies in quantifying the real-world performance trade-offs between logging strategies—for example, synchronous file appenders that flush to disk on every event versus asynchronous loggers that queue events in a ring buffer for background I/O. Developers can use it to tune production logging setups, validate that buffering or async logging delivers the expected gains, and compare durability (flush-on-write) against raw speed with consistent, reproducible numbers.
-
-=> https://github.com/snonux/log4jbench View on GitHub
 
 ---
 
@@ -1174,9 +1176,9 @@ This project is a Java 17 benchmarking utility that measures logging throughput 
 * 🏷️ Latest Release: v1.0.0 (2025-05-11)
 
 
-The WireGuard Mesh Generator is a Ruby/Rake-based tool that automates the creation and deployment of WireGuard VPN configurations for a mesh network, where every node can reach every other peer directly. Building such a setup by hand is tedious and error-prone, since each host needs its own config listing all peers with the correct keys, endpoints, and routing rules. This project centralizes that in a single YAML file (`wireguardmeshgenerator.yaml`) and exposes three Rake tasks: `rake generate` produces the config files from the declared topology, `rake install` deploys them to the remote machines, and `rake clean` removes generated files. It's aimed at self-hosted infrastructure—such as the FreeBSD-based Kubernetes cluster described in the author's linked blog post—where a hand-maintained VPN fabric would quickly become unmanageable.
+The WireGuard Mesh Generator is a Ruby-based automation tool that creates WireGuard configuration files for an entire mesh network from a single YAML file (`wireguardmeshgenerator.yaml`). Building such a mesh by hand is tedious and error-prone, since every node needs its own keypair, address, and peer entries pointing to all others; this tool handles that generation automatically. It's driven by Rake tasks: `rake generate` produces the `.conf` files, `rake install` deploys them to remote machines (for example over SSH), and `rake clean` removes generated output. The project appears designed to support a home lab environment, as referenced by the linked blog post on running Kubernetes on FreeBSD.
 
-Architecturally, the tool builds on `wireguard-tools` and Bundler, and manages identity centrally by generating per-host keypairs stored under `keys/<host>/`, so keys remain stable across re-generations rather than living only on each device. It also handles Android-specific quirks: hosts declared under `android_gateways` receive one full-tunnel configuration per gateway, with tunnel names limited to 15 characters (e.g., `p7p-blowfish.conf`) to satisfy the WireGuard Android app. Crucially, all variants for a device reuse the same host keypair—users import each config and switch gateways manually instead of generating separate keys in the app.
+Architecturally, the tool separates configuration (YAML), orchestration (Rake), and output (per-host config files), and manages keypairs deterministically by storing them under `keys/<host>/` so configs can be regenerated without invalidating existing keys. It also includes mobile-friendly features: for Android hosts, it can emit multiple full-tunnel configurations—one per listed gateway—with Android-compatible 15-character names (e.g., `p7p-blowfish.conf`, `p7p-fishfinger.conf`). Users import these variants into the WireGuard app and switch gateways manually, while reusing the same host keypair rather than generating new keys on-device.
 
 => https://github.com/snonux/wireguardmeshgenerator View on GitHub
 
@@ -1198,41 +1200,15 @@ Architecturally, the tool builds on `wireguard-tools` and Bundler, and manages i
 
 => showcase/ioriot/image-1.png ioriot screenshot
 
-I/O Riot is a Linux file-I/O benchmarking tool that captures real production workloads on one host and replays them identically on another, letting operators test how new hardware, file systems, or kernel tuning would affect an existing application's I/O performance. Unlike traditional benchmarking tools that rely on artificial or pre-defined I/O patterns, I/O Riot reproduces actual production behavior, and its workflow requires only two machines (one for capture, one for replay) instead of a complex distributed load-testing environment. Its five-step workflow—capture, generate, initialize, replay, and analyze—also enables "what-if" experimentation: replay logs can be modified (e.g., removing reads, changing replay speed) or even synthesized from scratch to evaluate hypothetical applications before any code exists, and the captured traces can expose I/O inefficiencies in applications for developers to fix.
+I/O Riot is a Linux I/O benchmarking tool that captures real file-I/O operations from a production system and replays the identical workload on another host or test environment. Its key advantage over traditional benchmarking tools is that it relies on actual production I/O patterns rather than artificial or pre-defined operation sets, making it useful for validating whether new hardware suits an existing application, isolating I/O bottlenecks without the complexity of a distributed load-testing setup, and safely comparing OS/file-system/hardware configurations. It also enables "what-if" experiments—such as removing reads from the replay journal or synthesizing workloads for applications that don't exist yet—all without touching application code, and it can even expose I/O inefficiencies in applications to report back to developers.
 
-Architecturally, the tool splits into a capture layer and a replay engine. Capture happens in Linux kernel space via SystemTap (with a kernel module for targeted per-PID capture), keeping overhead minimal even under heavy I/O load, while the replay engine is a lightweight C program supporting configurable worker/thread parallelism and optional cache dropping. The generator transforms the raw `.capture` log into a `.replay` file that rewrites production paths to replay-local ones, safely relocating symlink targets and rejecting links that would escape the replay tree. It supports a broad syscall surface—including open/read/write, stat, rename, unlink, mkdir, fsync, chmod, and chown variants plus legacy 32-bit ABI names—across ext2/ext4, XFS, ZFS, and Btrfs, initially built at Mimecast for their specific use case.
+The implementation follows a five-step workflow driven by a single `ioriot` CLI: **capture**, **generate**, **initialize**, **replay**, and **analyze**. Capture is performed in Linux kernel space via SystemTap (with an optional targeted kernel module for a specific PID), which is highly efficient and avoids system slowdowns even under heavy load. The generator transforms the `.capture` log into a `.replay` file, rewriting paths to replay-local equivalents (including symlink targets, with safety checks preventing links that escape the replay tree); initialization builds the required directory/file/symlink skeleton; and the replay engine—written in C for minimal overhead—replays the workload with configurable worker/thread parallelism, optional cache dropping, and adjustable speed. The tool supports a broad set of syscalls (open, read/write, rename, stat, fsync, etc.) and recognizes ext2, ext4, xfs, zfs, and btrfs mount points.
 
 => https://github.com/snonux/ioriot View on GitHub
 
 ---
 
-### 51. quicklogger
-
-* 💻 Languages: Go (84.1%), Shell (11.4%), Java (4.0%), TOML (0.4%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 47
-* 📈 Lines of Code: 1808
-* 📄 Lines of Documentation: 472
-* 🏷️ Tags: 7
-* 📅 Development Period: 2024-01-20 to 2026-08-08
-* 🏆 Score: 0.8 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: MIT
-* 🏷️ Latest Release: v0.2.0 (2026-08-08)
-
-
-=> showcase/quicklogger/image-1.png quicklogger screenshot
-
-**Quick Logger** is a small, cross-platform GUI application written in Go using the Fyne framework, designed for capturing ideas and notes with minimal friction. Its core purpose is speed and simplicity: users type a message into a plain text editor, tap "Log text," and the note is saved as a plain text file in a log directory. On Android, this makes it easy to jot down ideas anywhere, which are then automatically synchronized to other machines (e.g., a home computer) via Syncthing. A notable feature is Android share-intent support—text shared from any app can be routed directly into Quick Logger, either through the editor or straight to a file if "Auto-log shared text" is enabled.
-
-=> showcase/quicklogger/image-2.png quicklogger screenshot
-
-Architecturally, the project uses **Mage** (a Go-based build tool) to manage builds across platforms: desktop binaries compile directly, while Android APKs are built either locally with the Fyne CLI and Android NDK or via containerized cross-compilation using fyne-cross with Docker/Podman. Because Fyne's Android builds don't support custom Java code or `ACTION_SEND` intents, share functionality is implemented through clever APK post-processing: a script patches the compiled APK to inject a `ShareActivity`, add the necessary intent filter to the manifest, and re-sign it, passing shared text to the Go app via a cache file. Similar workarounds address keyboard/IME suggestion limitations. Notably, the project is now **deprecated** in favor of its successor, [Quicklog](https://github.com/snonux/quicklog), precisely because these Fyne-on-Android constraints proved too fragile to maintain.
-
-=> https://github.com/snonux/quicklogger View on GitHub
-
----
-
-### 52. sillybench
+### 51. sillybench
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1246,15 +1222,15 @@ Architecturally, the project uses **Mage** (a Go-based build tool) to manage bui
 * 🧪 Status: Experimental (no releases yet)
 
 
-I'd be glad to write that summary, but the content you've pasted is only the project title—"Silly Benchmark"—and a single tagline stating its purpose: comparing performance on FreeBSD versus a Linux guest running under Bhyve (FreeBSD's native hypervisor). There isn't enough information here for me to describe the implementation, key features, or architecture without simply inventing details, which wouldn't give you an accurate summary.
+The material you've shared is minimal — just the title "Silly Benchmark" and a single line: "To compare how fast this runs on FreeBSD vs a Linux Bhyve VM." That's not enough to write a meaningful summary of the project's key features or architecture, and I don't want to invent details about how it's implemented.
 
-Based on what's provided, all I can honestly say is that it appears to be a small, lightheartedly named benchmarking project meant to answer a practical question: does running workloads natively on FreeBSD outperform running them in a virtualized Linux guest under Bhyve? That's a question many systems administrators care about when deciding whether to run services directly on the host or inside VMs.
+From what's provided, the only things I can confidently say are:
 
 => https://github.com/snonux/sillybench View on GitHub
 
 ---
 
-### 53. terraform
+### 52. terraform
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1269,15 +1245,15 @@ Based on what's provided, all I can honestly say is that it appears to be a smal
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-This project is a Terraform-based personal cloud infrastructure that self-hosts open-source services on AWS, giving the owner full control of their data instead of relying on third-party SaaS providers. The services deployed include popular self-hostable applications such as Nextcloud (file sync/sharing), Vaultwarden (password manager), Wallabag (read-it-later), Anki sync server, and Audiobookshelf, all accessible under a personal wildcard domain (e.g., `cool.buetow.org`) with TLS encryption.
+This project defines the Terraform configuration for a personal self-hosting platform on AWS, provisioning the infrastructure needed to run containerized personal services—such as Nextcloud, Vaultwarden, Wallabag, an Anki sync server, and Audiobookshelf—on ECS Fargate. Rather than relying on third-party SaaS offerings, it gives the owner private, self-hosted alternatives running in their own AWS account, with persistent data stored on EFS (with daily backups) and traffic secured via TLS certificates from AWS Certificate Manager.
 
-The implementation follows a modular architecture split across several Terraform repositories: `org-buetow-base` provisions the foundational networking (VPC, subnets) and shared persistent storage via EFS; `org-buetow-bastion` provides an EC2 jump box used to prepare EFS subdirectories for each service's data; `org-buetow-elb` sets up an Application Load Balancer for routing traffic; and `org-buetow-ecs` runs the services as containers on ECS/Fargate. Some steps remain manual — creating secrets (e.g., database passwords) in AWS Secrets Manager, setting up the DNS zone with a wildcard TLS certificate (whose ARN is referenced by the base module), creating EFS directories, and enabling daily EFS backups. Planned improvements include input variables to select which ECS services to deploy and CloudWatch monitoring with email alerts.
+The implementation is organized as a set of layered Terraform modules across separate configurations: `org-buetow-base` creates the foundational networking and storage (VPC, subnets, EFS), `org-buetow-bastion` provides an EC2 jump host used to prepare EFS subdirectories for each service, `org-buetow-elb` sets up the Application Load Balancer that terminates TLS and routes traffic, and `org-buetow-ecs` deploys the Fargate services themselves. A few steps are intentionally handled manually outside Terraform, such as creating the DNS zone and TLS certificate, storing the InfluxDB password in AWS Secrets Manager, and enabling EFS backups via the console. Planned improvements include making the set of ECS services configurable via input variables and adding CloudWatch monitoring with email-based alerting.
 
 => https://github.com/snonux/terraform View on GitHub
 
 ---
 
-### 54. photoalbum
+### 53. photoalbum
 
 * 💻 Languages: Shell (92.5%), Make (4.6%), Config (2.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1292,15 +1268,15 @@ The implementation follows a modular architecture split across several Terraform
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-photoalbum is a minimal Bash script for Unix-like systems (such as Linux) that generates static web photo albums from a directory of images. The output is pure HTML and CSS with no JavaScript, which makes the resulting albums fast-loading and easy to deploy — the generated `dist` directory can simply be copied to any static web server. The project is considered complete, with development continuing in its successor, shuriken.sh.
+**photoalbum** is a minimal Bash script for Unix-like systems that converts a directory of photos into a static web photo album. Its output is pure HTML+CSS with zero JavaScript, making the resulting gallery lightweight, fast, private, and hostable on any static web server. The workflow is intentionally simple: point the `incoming` setting at a photo directory, run `photoalbum generate`, then copy the generated `./dist` directory to a server. Helper subcommands round out the tool—`clean` tidies the workspace, `version` prints the release, and `makemake` bootstraps a `photoalbumrc` config file plus a Makefile in the current directory for a make-driven workflow.
 
-Implementation-wise, the tool is driven by subcommands (`generate`, `clean`, `version`) and relies on ImageMagick for image processing, preferring the modern `magick` command and falling back to `convert` when needed. Its architecture centers on customizable Bash-HTML template files that users can tweak to control the album's appearance, along with a configuration system that defaults to `/etc/default/photoalbum` or a locally generated `photoalbumrc`. The `makemake` command bootstraps a project setup by creating both a Makefile and a config file in the current directory, supporting a simple workflow: configure, run `make` (or `photoalbum generate`) to build the album, publish the `dist` folder, then clean up with `make clean`.
+Architecturally, the project is a single Bash script that delegates image processing to ImageMagick, preferring the modern `magick` command with a fallback to the older `convert`. Configuration is handled through rc files—the system-wide `/etc/default/photoalbum` or a local `photoalbumrc`—while the album's appearance is defined by customizable Bash-HTML template files that users can tweak to restyle their galleries. This simple shell-script-plus-templates design keeps dependencies minimal (just Bash and ImageMagick) while remaining flexible. Note that the project is considered done; its successor is [shuriken.sh](https://codeberg.org/snonux/shuriken.sh).
 
 => https://github.com/snonux/photoalbum View on GitHub
 
 ---
 
-### 55. guprecords
+### 54. guprecords
 
 * 💻 Languages: Raku (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1315,15 +1291,15 @@ Implementation-wise, the tool is driven by subcommands (`generate`, `clean`, `ve
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**guprecords – Global Uptime Records** is a command-line tool, written in Raku, that generates "global" uptime leaderboards from the record files produced by `uptimed`, a daemon available for Linux, the *BSDs, and macOS. While `uptimed` only tracks a single machine, guprecords pools record files from many hosts—typically collected into a central git repository—and ranks them together. Reports can be generated across four categories (per-`Host`, per-`Kernel`, grouped by `KernelMajor` such as "Linux 6...", and by `KernelName` such as Linux/FreeBSD) and five metrics: `Boots`, total `Uptime`, a combined `Score`, `Downtime`, and `Lifespan` (uptime plus downtime). This makes it useful for sysadmins and hobbyists who want to see at a glance which of their machines has been running longest, which reboots most often, or which kernel family dominates their fleet. Output can be rendered as Plaintext tables, Markdown, or Gemtext, with configurable entry limits and an `--all` mode that produces every report at once.
+**guprecords** is a command-line tool written in Raku that generates global uptime "leaderboards" from the record files produced by [uptimed](https://github.com/rpodgorny/uptimed), a daemon that tracks system boots and uptime on Unix-like machines. While uptimed only reports statistics for a single host, guprecords aggregates record files collected from many machines—typically gathered into a central location like a git repository—into cross-fleet rankings. Reports can be generated for different categories (`Host`, `Kernel`, `KernelMajor`, `KernelName`) and ranked by different metrics: `Boots` (total boot count), `Uptime`, `Downtime`, `Lifespan` (uptime + downtime), and `Score` (a combined meta-metric). Users can limit results to the top N entries and choose from three output formats: `Plaintext` (ASCII tables), `Markdown`, and `Gemtext`. A `--all` mode generates every report at once, with optional custom section ordering.
 
-Architecturally, the project is a single Raku script built around a small class hierarchy: an `Aggregator` parses the raw records (lines of `total_uptime:boot_time:kernel_string`) into `Aggregate` objects (with a `HostAggregate` subclass for host-specific data, plus an `Epoch` value class), while `Reporter`/`HostReporter` classes—assisted by the `OutputHelper` role—render the aggregated data into formatted output. Behavior is controlled entirely through CLI flags (`--stats-dir`, `--category`, `--metric`, `--limit`, `--output-format`, `--include-kernel`, and `--stats-order` for custom section ordering), and a built-in test runner is invoked with `./guprecords.raku test`. Note that the project is deprecated and has been rewritten in Go as **goprecords**, which is the recommended successor.
+The implementation follows a clean class-based architecture in Raku: an `Aggregator` parses the raw record files (lines of `uptime-seconds:boot-timestamp:kernel-name`) and builds `Aggregate`/`HostAggregate` objects holding the per-category data, while `Reporter`/`HostReporter` classes produce the actual reports given a category, metric, limit, and format, with an `OutputHelper` role providing formatting support. The tool includes built-in tests (run via `guprecords.raku test`). Note that the project is now deprecated and has been rewritten in Go as [goprecords](https://codeberg.org/snonux/goprecords), which is the recommended successor.
 
 => https://github.com/snonux/guprecords View on GitHub
 
 ---
 
-### 56. geheim
+### 55. geheim
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1338,15 +1314,15 @@ Architecturally, the project is a single Raku script built around a small class 
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-Geheim.rb is a lightweight, personal-use Ruby script that serves as an encrypted document vault. It encrypts text and binary files (such as PDFs and other small documents) using AES-256-CBC, with the initialization vector derived from a user-supplied PIN. Its value lies in combining strong encryption with everyday convenience: sensitive documents can be stored, searched, edited, and backed up securely, all from a single script that runs on macOS, Linux, and even Android via Termux. Note that the project is now deprecated and unmaintained, as the author has moved to another solution.
+**geheim.rb** is a personal document encryption vault implemented as a single Ruby script. It encrypts any type of file—text, PDFs, binaries, though it's intended for smaller documents—using AES-256-CBC, with the initialization vector derived from a user-supplied PIN. Its core architectural choice is using a Git repository as the storage backend: all encrypted documents are stored there, along with encrypted indices that also hide the file names. The Git repository serves double duty as both version history and a synchronization mechanism, as it can push to multiple remote repositories (e.g., two separate VMs) for geo-redundant backups.
 
-Architecturally, everything revolves around a Git repository as the storage backend. File contents are encrypted before being committed, and file names are encrypted too, kept in encrypted indices that are searchable through the `fzf` fuzzy finder. The Git foundation also enables synchronization with multiple remote repositories (e.g., several VMs) for geo-redundant backups. The script integrates with NeoVim for text editing (with file caching and swapping disabled for security), offers clipboard support on macOS and GNOME, and includes an interactive shell, batch import/export of documents, and the ability to securely shred previously exported data.
+The tool is built for command-line use across macOS, Linux, and Android (via Termux), and prioritizes a smooth secure workflow: encrypted indices are searchable through the fuzzy finder `fzf`, text entries are edited directly in NeoVim (with file caching and swapping disabled to avoid leaving plaintext traces), and clipboard support is provided for macOS and GNOME. It also offers an interactive shell, batch import and export of documents, and the ability to securely shred previously exported data. Note that the project is deprecated and no longer maintained.
 
 => https://github.com/snonux/geheim View on GitHub
 
 ---
 
-### 57. gorum
+### 56. gorum
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1361,15 +1337,15 @@ Architecturally, everything revolves around a Git repository as the storage back
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-Gorum (also referred to as "Gogios" in the README) is a minimalistic quorum manager — a lightweight tool for coordinating distributed health checks. Based on the roadmap's mention of controlling "remote Gorum check execution," it appears designed to orchestrate checks running across multiple nodes, likely aggregating their results with quorum-based logic so that a service is only considered healthy when a sufficient majority of nodes agree. This approach is useful in distributed environments where a single node's check result can be misleading due to local network faults, providing a consensus-driven view of system health rather than a single point of observation.
+Gorum (referred to as "Gogios" in the README's description — the naming is inconsistent in the current draft) is a minimalistic quorum manager: a lightweight tool for tracking whether enough nodes in a distributed setup agree on a given state, rather than requiring a heavyweight monitoring or consensus framework. Based on the TODO item about controlling "remote Gorum check execution," it appears intended to orchestrate health or status checks across remote hosts and make quorum-based decisions from their results — useful when you want simple, decentralized checking without the overhead of larger systems like Sensu or Nagios.
 
-The project is explicitly pre-alpha software and still under active development, so technical documentation is sparse — the README does not yet describe storage, communication protocols, or configuration details, and the language is only suggested by the naming (the "Go" prefix implies it's written in Go). Remaining roadmap items include finishing remote check execution, completing the TODO/documentation, making an initial release, and writing a blog post introducing the project.
+Beyond that, the README provides almost no detail on implementation or architecture. The name suggests Go, and the design seems to center on remotely executed checks feeding quorum logic, but there are no documented features, configuration, APIs, or internals to draw on. The project is explicitly pre-alpha ("use at your own risk"), and the TODO items — which include finishing the TODO itself, releasing the software, and writing a blog post — confirm that documentation doesn't exist yet. Any deeper summary at this point would be speculation. If you can share the source code or additional docs, I'd be happy to write a more substantive description of the actual architecture.
 
 => https://github.com/snonux/gorum View on GitHub
 
 ---
 
-### 58. docker-radicale-server
+### 57. docker-radicale-server
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1384,15 +1360,15 @@ The project is explicitly pre-alpha software and still under active development,
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-Note: only the title came through, not the README body, so this summary is based on what's publicly known about that project — paste the full text if you'd like it tailored exactly.
+It looks like only the title and the one-line tagline of the README came through ("# Radicale Docker image / For the Radicale server https://radicale.org") — the rest of the project description, features, and architecture details didn't make it into your message.
 
-This project is a Docker image that packages Radicale, a lightweight open-source CalDAV/CardDAV server written in Python. Radicale lets you sync calendars, contacts, and to-do lists across devices and clients (e.g., Thunderbird, Apple Calendar, DAVx5) from your own hardware, and containerizing it turns deployment into a single `docker run` or Compose command. That makes it easy to self-host on a home server, NAS, or Raspberry Pi while keeping your data private, persistent in a volume, and portable — no third-party cloud sync service required.
+If you paste the full README or documentation, I'd be happy to write the 1-2 paragraph summary you're looking for. In the meantime, based on what's actually present, the only thing I can accurately say is that this project is a Docker image for running the Radicale server — but I can't describe its specific features, configuration options, or implementation without the body of the document, and I don't want to guess or invent details.
 
 => https://github.com/snonux/docker-radicale-server View on GitHub
 
 ---
 
-### 59. randomjournalpage
+### 58. randomjournalpage
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1407,15 +1383,15 @@ This project is a Docker image that packages Radicale, a lightweight open-source
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-This project is a simple personal utility—a shell script called `randomjournalpage.sh`—that opens a random selection of pages from the author's archive of scanned PDFs, which primarily consists of digitized bullet journals along with book notes and miscellaneous ideas. The purpose is serendipitous reflection: rather than browsing sequentially, the user gets a random glimpse into past entries, which can resurface old thoughts, remind them of books they've read, or surface ideas worth reconsidering.
+This project is a small personal shell script (`randomjournalpage.sh`) that serves as a "digital serendipity" tool for revisiting scanned bullet journals. The script randomly selects a PDF from a configured directory, extracts a random set of pages from it, and opens them in a PDF viewer. The idea is that surfacing random pages from the past helps the author rediscover old journal entries, book notes, and half-forgotten ideas worth reconsidering—something that's otherwise difficult to do with digitized handwritten journals, which lack searchable text or easy browsing.
 
-Implementation-wise, it's a lightweight Bash script that leverages two command-line tools: `pdfinfo` (from `poppler-utils`) presumably to determine PDF metadata such as page counts, and `qpdf` to extract the randomly chosen pages into a viewable file. Configuration is done by directly editing variables in the script itself (the journal directory path and preferred PDF viewer), after which running the script handles the entire workflow of selection, extraction, and display. There's no formal test suite, which the author acknowledges is appropriate given the script's simplicity, but the code is linted with ShellCheck to ensure basic quality. The tool is Fedora-oriented (installation instructions use `dnf`) and illustrates a pragmatic, minimal approach: gluing together standard Linux utilities rather than building anything more elaborate.
+Implementation-wise, the script is intentionally minimal and leans on two standard Linux command-line utilities: `pdfinfo` (from `poppler-utils`) to determine the total page count of a PDF, and `qpdf` to extract the randomly chosen pages. Configuration is done directly in the script, where users set the path to their journal PDFs and their preferred PDF viewer. It was written for Fedora Linux (with `dnf` installation instructions provided), and despite its simplicity it follows reasonable shell scripting practices by passing ShellCheck static analysis, with a single rule exclusion noted in the README.
 
 => https://github.com/snonux/randomjournalpage View on GitHub
 
 ---
 
-### 60. algorithms
+### 59. algorithms
 
 * 💻 Languages: Go (96.5%), Make (2.0%), Config (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1430,15 +1406,15 @@ Implementation-wise, it's a lightweight Bash script that leverages two command-l
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-This project is a collection of exercises drawn from an Algorithms lecture, intended as a refresher on core algorithmic concepts. Its value is primarily educational: rather than treating algorithms as purely theoretical, it provides hands-on practice implementing them as working code, with built-in tooling to verify both correctness and performance. This makes it a practical study resource for students revisiting lecture material or developers wanting to sharpen their algorithm fundamentals.
+This project is a small collection of algorithm exercises based on material from an algorithms lecture, intended primarily as a refresher to revisit and reinforce core algorithmic concepts. Its usefulness comes from a hands-on approach: rather than passively reviewing lecture notes, the user works through actual implementations, validating correctness with automated tests and gaining insight into runtime behavior through benchmarking.
 
-The implementation follows a conventional, tool-driven structure centered on a Makefile with two main entry points. `make test` runs a unit test suite that validates the correctness of each algorithm implementation, while `make bench` executes benchmarks to measure their runtime performance. This separation between testing and benchmarking suggests an architecture where algorithm code, test harnesses, and performance-measurement code are kept distinct, allowing correctness and efficiency to be evaluated independently. Note that the README is quite minimal—it doesn't specify the programming language or enumerate which algorithms are covered—so those details would need to come from the source code itself.
+Implementation-wise, the project is driven by a Makefile with two main targets: `make test` runs the unit test suite to verify that each algorithm behaves correctly, and `make bench` executes benchmarks to measure performance. This suggests a codebase organized around three distinct concerns — algorithm implementations, unit tests, and a benchmark harness — a common structure for educational algorithm repositories. The presence of a dedicated benchmarking workflow implies the implementations are performance-conscious, possibly in a compiled language. That said, the README is fairly minimal and doesn't specify which particular algorithms are covered or the source language used.
 
 => https://github.com/snonux/algorithms View on GitHub
 
 ---
 
-### 61. staticfarm-apache-handlers
+### 60. staticfarm-apache-handlers
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1453,15 +1429,15 @@ The implementation follows a conventional, tool-driven structure centered on a M
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**staticfarm-apache-handlers** is a small collection of custom handlers written for mod_perl 2, designed to be integrated directly into an Apache 2 web server. Based on its name, the project appears to focus on serving static content — a "static farm" being a common architecture pattern where static assets (images, CSS, JavaScript, etc.) are handled separately and efficiently from dynamic application traffic. By implementing mod_perl 2 handlers, the project allows Apache's request-processing pipeline to be extended or customized at the web server level using Perl, rather than relying on application-layer logic, which can improve performance and simplify static asset delivery.
+**staticfarm-apache-handlers** is a small collection of mod_perl2 handlers intended to be loaded into an Apache 2.x web server. mod_perl2 embeds a Perl interpreter directly into Apache's process, letting Perl code intercept requests at any stage of the request-handling lifecycle (authentication, response generation, logging, etc.) with far better performance than CGI. Based on the name, the project appears oriented around serving static content—perhaps "farming out" or offloading static file delivery within Apache—but it's worth noting the bundled documentation is extremely sparse (a single line stating only that it "just includes a few mod_perl2 handlers to include into an Apache2"), so the specific handlers and their features would need to be determined from the source code itself.
 
-Implementation-wise, the handlers are Perl modules loaded into Apache via the embedded mod_perl 2 interpreter, giving them direct access to Apache's request lifecycle. **Important caveat:** the project is explicitly deprecated — the maintainers have stated that no further updates, bug fixes, or feature additions will be made, and it should be used at your own risk. Given its abandoned status, anyone considering it should be cautious about compatibility with modern versions of Apache and mod_perl, and may want to look for actively maintained alternatives instead.
+The most important takeaway is the project's status: it is **deprecated** and receives no further updates, bug fixes, or feature additions, so use is explicitly at your own risk. In its prime, this type of codebase would have been a lightweight way to add custom, high-performance behavior to Apache with deep integration into server internals; mod_perl2 handlers were a standard Perl idiom for this. However, for modern deployments this approach has largely been superseded by patterns like reverse proxies (nginx or Apache mod_proxy) in front of application servers (e.g., PSGI/Plack), and static content is now typically handled by dedicated web servers or CDNs. As such, this project is best treated as legacy code—useful for understanding or maintaining an existing system that depends on it, but inadvisable for new projects.
 
 => https://github.com/snonux/staticfarm-apache-handlers View on GitHub
 
 ---
 
-### 62. ipv6test
+### 61. ipv6test
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1476,15 +1452,15 @@ Implementation-wise, the handlers are Perl modules loaded into Apache via the em
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-This project is a lightweight, Perl-based web service for testing IPv6 connectivity. It operates across three hostnames with deliberately different DNS configurations: a dual-stack main domain (reachable over both IPv4 and IPv6), an IPv4-only subdomain, and an IPv6-only subdomain. This setup lets visitors determine which protocol their client actually used to connect when visiting the main site, while the protocol-specific subdomains allow each address family to be tested in isolation. The tool is useful for diagnosing a network's IPv6 readiness, verifying that DNS AAAA records and routing are configured correctly, and troubleshooting dual-stack connectivity issues—similar in spirit to dedicated IPv6 test portals. It is deployed publicly at `ipv6test.f3s.buetow.org` and its two protocol-specific subdomains.
+This project is a lightweight, Perl-based website for testing a visitor's IPv6 and IPv4 connectivity. It works by exposing a main hostname (`ipv6test.f3s.buetow.org`) over both protocols (dual-stack/IPv4+IPv6), plus two dedicated subdomains: `ipv4.ipv6test...` reachable only via IPv4 and `ipv6.ipv6test...` reachable only via IPv6. By having a client probe these endpoints, the site can determine whether the visitor has working IPv6, IPv4-only access, or full dual-stack connectivity. This is useful for diagnosing broken or misconfigured IPv6 setups (e.g., AAAA records resolve but connections fail), verifying that a browser or network can reach IPv6-only resources, and validating an ISP's or server operator's IPv6 deployment.
 
-In terms of implementation, the site is written in Perl and packaged as a Docker image (found in the `docker-image` directory), making it easy to spin up on any host. Deployment relies on proper DNS configuration—A records for the IPv4-reachable names and AAAA records for the IPv6-reachable names—so the server can infer the visitor's connectivity based on which hostname and protocol the connection arrives over. The service is served over HTTPS, implying TLS termination as part of the deployment setup.
+Architecturally, the project leans heavily on DNS to make the protocol testing possible: the main host carries both A and AAAA record types, while the `ipv4.` subdomain publishes only an A record and the `ipv6.` subdomain publishes only an AAAA record. This means each protocol path can be tested in isolation—successfully loading the IPv6-only subdomain proves genuine end-to-end IPv6 connectivity rather than just protocol preference. On the implementation side, the site itself is written in Perl (the README describes it as a "quick and dirty" tool) and is packaged for deployment as a Docker image found in the `docker-image` directory, making it easy to self-host for private testing. A live instance is publicly available at the three URLs listed in the README.
 
 => https://github.com/snonux/ipv6test View on GitHub
 
 ---
 
-### 63. sway-autorotate
+### 62. sway-autorotate
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1499,15 +1475,15 @@ In terms of implementation, the site is written in Perl and packaged as a Docker
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**sway-autorotate** is a lightweight bash script that adds automatic screen rotation to the Sway Wayland compositor, bringing smartphone-style behavior to 2-in-1 devices. It is a fork of tedk0n's `autorotate_sway_script`, adapted by the author for a Microsoft Surface Go 2 running Fedora Linux, and is also known to work on a Lenovo Thinkpad Helix. Its main value is that it makes a desktop-oriented window manager usable in tablet form: flipping the device from landscape to portrait (or any orientation in between) rotates the display and touch inputs automatically, with no manual commands required.
+**sway-autorotate** is a small bash script that adds automatic screen rotation to the Sway Wayland compositor on accelerometer-equipped devices. It's a fork of tedk0n's autorotate_sway_script, adapted specifically for a Microsoft Surface Go 2 running Fedora Linux, with the original having been developed and tested on a Lenovo Thinkpad Helix. The project is useful because Sway, unlike full desktop environments such as GNOME or KDE, has no built-in orientation handling—so on tablets and 2-in-1 convertibles, a helper script is needed both to rotate the display when the device is tilted and to keep touchscreen/stylus input correctly mapped afterward.
 
-Architecturally, the script is driven by the output of `monitor-sensor`, a command from the `iio-sensor-proxy` package that reports orientation changes detected by the device's accelerometer. The script consumes that stream and, on each orientation event, uses `swaymsg` to set the display output's rotation accordingly. Critically, it also rotates the input devices listed in the `WAYLANDINPUT` array (touchscreens, styluses, etc.), so that touch coordinates remain correctly mapped after the screen turns—rotating the display alone would otherwise leave inputs misaligned. Usable input devices can be enumerated via `swaymsg -t get_inputs` to configure the array. The intended deployment runs the sensor stream piped into the script in the background (e.g., `echo 'monitor-sensor | bash autorotate.sh &> autorotate.log' | at now`), with all activity logged to a file.
+Architecturally, the script works by consuming the event stream from `monitor-sensor` (part of the `iio-sensor-proxy` package), which reports orientation changes from the device's accelerometer. Each incoming orientation event triggers a corresponding rotation of the Sway output. A key configuration element is the `WAYLANDINPUT` array, which lists the input devices (discoverable via `swaymsg -t get_inputs`) that should be rotated in sync with the screen—typically the touchscreen and pen—so touch coordinates stay aligned with the new orientation. The script is intended to run as a background process; the documented invocation pipes `monitor-sensor` into the script and launches it via `at now` with output redirected to a log file (e.g., `echo 'monitor-sensor | bash autorotate.sh &> autorotate.log' | at now`), making it a lightweight, self-contained solution requiring no daemons or desktop environment dependencies.
 
 => https://github.com/snonux/sway-autorotate View on GitHub
 
 ---
 
-### 64. mon
+### 63. mon
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -1522,15 +1498,15 @@ Architecturally, the script is driven by the output of `monitor-sensor`, a comma
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**mon** (also invoked as the shorter `m`) is a Perl-based command-line client for the RESTlos monitoring API, giving administrators a scriptable, operator-friendly way to query and manage monitoring objects such as hosts and contacts directly from the shell. It exposes SQL-like commands (`get`, `insert`, `update`, `delete`, `post`, `put`, plus `edit` and `view` workflows that open results in `$EDITOR`/`$PAGER`) with `where` clauses and a range of operators—`like` pushes filtering to the API as a query string, while `matches`, `eq`, `ne`, `lt`/`le`/`gt`/`ge` pre-fetch results and filter client-side. Key conveniences include an interactive mode, shorthand command aliases, zsh auto-completion, format-string templating that substitutes values from the current object (e.g., `set name = @host_name`), and `verify`/`restart`/`reload` operations for validating and applying configuration changes with automatic rollback on failure. The tool is useful because it turns a REST API into something suitable for bulk edits, shell pipelines, and automation—for example, it can write an error status file that Puppet checks to retry failed operations on its next run.
+**mon** (also callable as `m` for brevity) is a Perl-based command-line tool for managing monitoring configurations through the RESTlos REST API (github.com/Crapworks/RESTlos). It lets administrators query, create, modify, and delete monitoring objects (hosts, contacts, etc.) using SQL-like syntax such as `m get host where host_name like server01`, with operators ranging from fast API-side `like` queries to client-side filtering via Perl regex (`matches`), equality, and numeric comparisons. Full CRUD is covered through `get`, `insert`, `update`, `delete`, `post`, and `put` commands, plus `edit` (opens results in `$EDITOR` and commits changes back), `view` (read-only pager), and administrative actions like `verify` and `restart`. It also supports variable interpolation in updates—pulling values from the object being modified or the shell environment—making bulk transformations straightforward.
 
-Architecturally, mon is a layered Perl script that merges configuration from `/etc/mon.conf`, `/etc/mon.d/*.conf`, and user-level `~/.mon(.d)` files (with per-key command-line overrides like `--restlos.api.port=10043`), then communicates with the RESTlos API over HTTPS with configurable CA certificates. It enforces a clean I/O separation—JSON on STDOUT for easy redirection, diagnostics on STDERR—and builds in safety and observability features: automatic JSON backups before every modification (pruned by age), a read-only dry-run mode, syslog logging, base64-encoded password support, and well-defined exit codes. It also accepts flexible JSON input, including a compact list-style format that it converts to proper objects. Note that the project is deprecated and no longer maintained.
+The tool is designed with automation and safety in mind: it's useful both for interactive administration (interactive mode, ZSH auto-completion, shell-like shortcuts such as `:` for `where`, `==` for equality) and for scripted workflows, since all JSON goes to STDOUT while diagnostics go to STDERR, enabling clean piping and redirection. Architecturally, it wraps the RESTlos API behind a configurable layer—settings load from `/etc/mon.conf`, `/etc/mon.d/`, and user home equivalents (later files override earlier ones), with support for Base64-encoded passwords, CA certificate handling for HTTPS, and per-option command-line overrides in dot-notation (e.g., `--restlos.api.port=10043`). Safety features include a `--dry` read-only mode, automatic JSON backups before any mutation (with time-based retention and easy restoration via `post`), an error-file mechanism allowing Puppet to detect failures and retry, and structured exit codes for error handling. Note that per the documentation, this project is deprecated and no longer maintained.
 
 => https://github.com/snonux/mon View on GitHub
 
 ---
 
-### 65. fapi
+### 64. fapi
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -1545,15 +1521,15 @@ Architecturally, mon is a layered Perl script that merges configuration from `/e
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-fapi is a command-line tool for managing F5 BIG-IP load balancers via the iControl API. It wraps common administrative tasks—managing monitors, nodes, pools, and virtual servers, plus extended operations like folders, self IPs, traffic groups, and VLANs—into simple CLI commands. This makes it useful for quickly provisioning standard load balancer setups: creating nodes from hostnames with automatic IP resolution, assembling pools with members and health monitors, and configuring virtual servers for nPath, HTTP NAT, and SNAT services, including SSL offloading by creating and attaching client-SSL profiles. It also offers conveniences such as flexible naming (FQDN, hostname, or IP, with optional ports and automatic port suffixes) and the ability to list all objects in a partition.
+**fapi** is a command-line tool for managing F5 BigIP load balancers, providing a scriptable alternative to the BigIP web GUI. It covers the core objects of load balancer configuration—monitors, nodes, pools, and virtual servers—plus extended operations for folders, self IPs, traffic groups, and VLANs. Its main value is speed and automation: administrators can build complete service definitions in a few short commands, such as creating nodes with automatic FQDN-to-IP resolution, assembling pools with members and health monitors, and deploying virtual servers for nPath, HTTP NAT, SNAT, or SSL-offloading scenarios. Flexible naming conventions accept hostnames, FQDNs, IPs, and optional port specification (e.g., `foo:1.2.3.4:80`), with automatic port-suffix naming and even an "aliasable" short command design (`alias f=fapi`).
 
-Implementation-wise, fapi is a Python tool built on the bigsuds library, F5's Python iControl client, which exposes the full iControl API surface. It's configured via a `~/.fapi.conf` file (copied from a bundled sample) and can be installed either from a personal apt repository or from source with `make install`. Written as a spare-time personal project by Paul C. Buetow and hosted privately on Codeberg, it was only tested on Debian Wheezy and is now formally deprecated, with no further updates, bug fixes, or features planned.
+Architecturally, fapi is a Python application that delegates all BigIP communication to F5's **bigsuds** library, which wraps the iControl API and exposes its full surface. It uses a simple `object action` CLI grammar (e.g., `fapi pool foopool add member fooserver1.example.com:80`), reads connection settings from `~/.fapi.conf`, and can be installed from a personal Debian APT repository or built from source with `make install`. Note that the project is explicitly deprecated—tested only on Debian Wheezy and no longer maintained—so it's best viewed today as a lightweight reference implementation or example of wrapping the iControl/bigsuds API in a convenience CLI rather than production tooling.
 
 => https://github.com/snonux/fapi View on GitHub
 
 ---
 
-### 66. pingdomfetch
+### 65. pingdomfetch
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1568,15 +1544,15 @@ Implementation-wise, fapi is a Python tool built on the bigsuds library, F5's Py
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-pingdomfetch is a Perl-based command-line tool that retrieves availability (uptime) statistics from the Pingdom website monitoring service and reports the results via email or stdout. Its main value over Pingdom's built-in notifications is the concept of "top level services" (TLS): since Pingdom only knows about individual checks, pingdomfetch lets you group related checks—such as the `http://` and `https://` variants of the same site—into a logical unit and calculates an aggregate (optionally weighted) average availability for the group. Users can query all services, all top-level services, or specific ones, filter by Pingdom check ID, and specify flexible time ranges using natural-language dates (e.g., `yesterday`, `last week`) with a `--flatten` option to normalize intervals to full days.
+**pingdomfetch** is a Perl-based command-line tool that fetches availability (uptime) statistics from the Pingdom website monitoring service and reports the results either to stdout or via email. It goes beyond Pingdom's built-in notifications in two key ways: first, it introduces the concept of "top-level services," which group multiple individual Pingdom checks together and calculate an aggregated (potentially weighted) average availability — something Pingdom itself doesn't support, since it only tracks checks independently; and second, it offers flexible alerting, sending emails only when a service or top-level service drops below configurable warning/critical thresholds, with per-service overrides (e.g., raising the threshold for one check without triggering alerts for the whole group). Time windows for stat retrieval are highly flexible, accepting natural-language dates like "yesterday" or "last week," along with a `--flatten` option to normalize intervals to whole-day boundaries.
 
-The tool is configuration-driven, reading layered config files (`/etc/pingdomfetch.conf`, `/etc/pingdomfetch.d/*.conf`, and `~/.pingdomfetch*` equivalents), with later files overriding earlier ones—enabling a global config plus per-top-level-service drop-ins. Config sections define TLS groupings as lists of URLs like `PROTOCOL://FQDN`, and individual services support per-service overrides such as `weight` (for traffic-proportional averaging) and `warning` thresholds. Notifications are threshold-based (warning/critical levels configured globally and per-service), with additional modes for unconditional informational emails and a `--notify-dummy` dry-run that prints emails to stdout instead of sending them. Date handling relies on the CPAN module `Time::ParseDate`. Note that the project is deprecated and no longer maintained.
+Architecturally, the tool is configured through layered INI-style config files — a global `/etc/pingdomfetch.conf` plus drop-in files under `/etc/pingdomfetch.d/` and user-level equivalents in `$HOME` — where later files override earlier ones. Top-level services are defined by listing member checks (named by the `protocol://FQDN` convention) with optional per-service options like `weight` (for weighted averages) and `warning` (for custom thresholds). Behavior is driven entirely through CLI flags: `--all-services`/`--all-tls` to fetch everything, `--service`/`--tls`/`--checkid` for specific targets, `--notify` for threshold-based alerts versus `--notify-info` for unconditional summary emails, and `--notify-dummy` for dry-run output instead of actual mail delivery. Date parsing is handled via Perl's Time::ParseDate module. Note that the project is deprecated and no longer maintained.
 
 => https://github.com/snonux/pingdomfetch View on GitHub
 
 ---
 
-### 67. fype
+### 66. fype
 
 * 💻 Languages: C (77.3%), C/C++ (13.1%), HTML (7.5%), Make (2.1%)
 * 📚 Documentation: Text (65.8%), LaTeX (20.5%), Markdown (13.7%)
@@ -1591,11 +1567,34 @@ The tool is configuration-driven, reading layered config files (`/etc/pingdomfet
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**Fype** ("For Your Program Execution") is a lightweight, BSD-licensed scripting language by Paul C. Buetow that can execute script files or inline code (`fype -e "say 1 + 2;"`). Despite its small footprint, it offers a fairly complete language: dynamic typing with automatic (and explicit) conversion between integers, doubles, and strings; arithmetic, comparison, and bitwise operators; flexible control flow (`if`/`ifnot`, `while`/`until`, `do-while`, `do-until`, `break`/`next`); procedures that share the caller's scope versus functions with their own scope, parameters, and multiple return values; arrays with indexing and half-open slice ranges; lexical block scoping; and "synonyms"—aliases created with `\foo` that share the underlying value. Built-ins round out the toolset with I/O (`say`, `put`), introspection (`defined`, `syms`, `scope`), process forking, and manual garbage collection.
+Fype ("For Your Program Execution") is a lightweight scripting language built around a distinctive single-pass architecture: there is no abstract syntax tree, and instead the scanner produces a flat token list that the interpreter consumes directly as it parses, keeping the implementation compact and fast to build with a simple `make`. Despite its minimalism, it offers a practical feature set including three data types (integers, doubles, strings) with automatic and explicit conversion, conventional control flow (`if`/`ifnot`, `while`/`until`, `do` loops, `break`/`next`), and a dual model for reusable code — procedures that share the caller's scope versus functions that get local scope, accept parameters, and can return multiple values. It also includes arrays with half-open slice syntax (`nums[1:4]`, `nums[:]`), anonymous blocks for lexical scoping, and a built-in introspection/garbage-collection surface (`scope`, `syms`, `defined`, `undef`, `gc`), plus lower-level capabilities like `fork` and `assert`.
 
-Architecturally, Fype's defining trait is its single-pass design: there is no abstract syntax tree. The scanner produces a flat token list that the interpreter consumes and executes directly as it parses, keeping the implementation simple and fast to build (`make` yields a binary installable to `/usr/local/bin`). Memory and symbol management rely on a garbage collector, which also lets aliases outlive the original symbol they point to—undefining `foo` leaves `bar` valid if it was assigned as `\foo`. With canonical examples for every language feature in `examples/` (culminating in `uber.fy`), Fype doubles as a compact, practical case study in interpreter construction.
+A notable architectural feature is its "synonym" system, where `\foo` creates an alias to a variable so that mutations through one name are visible through the other, and referencing via an alias keeps the underlying value alive even after the original symbol is undefined — suggesting reference-counted memory management. The language also avoids C-style operator ambiguity with distinct bitwise operators (`and`, `or`, `xor`, and `:<`/`:>` for shifts). Written in C and released under the BSD license by Paul C. Buetow, Fype is hosted on Codeberg and ships with an `examples/` directory covering every language feature from basic variables to a comprehensive `uber.fy` demonstration, making it easy to learn by example.
 
 => https://github.com/snonux/fype View on GitHub
+
+---
+
+### 67. loadbars
+
+* 💻 Languages: Perl (97.4%), Make (2.6%)
+* 📚 Documentation: Text (93.5%), Markdown (6.5%)
+* 📊 Commits: 492
+* 📈 Lines of Code: 1828
+* 📄 Lines of Documentation: 107
+* 🏷️ Tags: 24
+* 📅 Development Period: 2010-11-05 to 2015-05-23
+* 🏆 Score: 0.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: 0.7.5 (2014-06-22)
+
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
+
+**loadbars** is a lightweight script that visualizes CPU load in real time by rendering it as bars on screen. Rather than parsing numeric readings from tools like `top` or `uptime`, users get an immediate, at-a-glance visual indication of how heavily their processor is working. This makes it useful for quick performance checks during development, system administration, or troubleshooting—especially in situations where spinning up a heavier monitoring tool would be overkill.
+
+The project is implemented as a simple script rather than a daemon or GUI application, which keeps it easy to install and run anywhere a terminal is available, with negligible resource overhead of its own. Its minimal architecture means there's essentially nothing to configure or maintain just to get live load feedback. Note that the README itself is quite sparse—and offers only a brief description of the tool—so specifics such as supported platforms, implementation language, and usage options aren't detailed here; further documentation is available on the project's homepage at loadbars.buetow.org.
+
+=> https://github.com/snonux/loadbars View on GitHub
 
 ---
 
@@ -1614,9 +1613,9 @@ Architecturally, Fype's defining trait is its single-pass design: there is no ab
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-pwgrep is a minimalist, command-line password manager for Unix-like systems. It stores passwords as GPG-encrypted files within a directory tree, and its name reflects its core interface: grep-style, regular-expression-powered search across the password store. Its main appeal is simplicity and transparency — rather than a proprietary database or dedicated GUI application, it's a small set of plain-text shell scripts built on ubiquitous Unix tools (Bash, GNU AWK, GnuPG, GNU find), so it has minimal dependencies, works nearly anywhere, and the entire implementation can be audited just by reading the code.
+**pwgrep** is a minimal, command-line password manager that treats your credential store as a directory of GPG-encrypted plain-text files—one entry per file, typically with the password on the first line and supplementary details (username, URL, comments) beneath it. Because everything under the hood is ordinary text, the store is transparent, scriptable, and easy to back up, and it integrates naturally with a revision control system such as Git, giving you change tracking, versioned history, and straightforward synchronization across machines. This Unix-philosophy approach makes it appealing for users who prefer security built from trusted, auditable primitives—GPG for encryption and a VCS for history—rather than a proprietary database or GUI application.
 
-Architecturally, it delegates the hard problems to proven tools. GPG handles confidentiality: each entry is individually encrypted with the user's key(s), so nothing sensitive sits in plaintext on disk. A revision control system such as Git is layered on top to track every change to the store, providing a full audit history and the ability to recover earlier versions of an entry if a password is accidentally overwritten. GNU AWK supplies the text-processing and pattern-matching logic for searching entries, with Bash gluing the components into a simple command-line tool. Note that the project is now deprecated and unmaintained, so it should not be relied upon for new security-critical uses.
+The implementation is deliberately lean: a compact set of Bash scripts and GNU AWK programs rather than a large application. Bash drives the command-line interface and orchestrates operations (adding, editing, looking up, and searching entries), invoking GPG to decrypt files on demand, while AWK handles parsing the decrypted content and extracting specific fields—fitting the tool's "password + grep" name by letting you search the whole store by name or by content within entries. The architecture—a flat tree of encrypted files, a shell-based CLI, and optional hooks into a VCS—keeps the codebase small enough to audit and easy to extend. Worth noting, however, is that the project is deprecated and no longer maintained, so anyone adopting it should expect to self-maintain any bug fixes or compatibility updates.
 
 => https://github.com/snonux/pwgrep View on GitHub
 
@@ -1635,9 +1634,9 @@ Architecturally, it delegates the hard problems to proven tools. GPG handles con
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**Xerl** (a Perl-based web framework, as indicated by its `Xerl::Page::Base` namespace) is a deprecated project for building web pages in Perl. Its README now warns that the software is no longer maintained—no further updates, bug fixes, or features will be released—and anyone using it does so at their own risk. While the documentation provided focuses more on conventions than features, the module structure suggests a page-oriented web application architecture built from reusable Perl packages.
+**Summary**
 
-The implementation is pure Perl, targeting version 5.14 and up, with `strict` and `warnings` pragmas mandatory in every package. It follows a strictly object-oriented design: methods use prototypes and explicit object typing (e.g., `my Package::Name $self`), subs with no meaningful return value explicitly `return undef`, private methods are prefixed with an underscore and callable only within their package, and static (non-OOP) subs are written in ALL CAPS—with static privates combining both conventions. Code formatting is automatically enforced via `perltidy` (`make perltidy`), and unfinished work is tagged with `TODO:` comments that can be located project-wide using `make todo`.
+Xerl was a Perl-based web framework (now deprecated and unmaintained) built around an object-oriented, page-centric architecture. Packages are organized hierarchically under a `Xerl::Page::*` namespace, with `Xerl::Page::Base` serving as the foundational base class that pages inherit from — indicating the framework treated each web page as an object with encapsulated behavior. Its usefulness lay in providing a structured, modular approach to building dynamic sites in Perl, though the deprecation notice means it receives no further bug fixes or features and should be used at one's own risk. (Note: the provided text is primarily a styleguide rather than a feature list, so the functional description is inferred from its naming and structure.)
 
 => https://github.com/snonux/xerl View on GitHub
 
@@ -1656,9 +1655,9 @@ The implementation is pure Perl, targeting version 5.14 and up, with `strict` an
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-I don't see a project attached to your message — no code, files, or documentation were included. Could you share the project you'd like summarized? For example, you could paste:
+It looks like no project was included in your message—I don't see any code, files, or descriptions attached. I'd be happy to write the summary once you share the project details!
 
-Once you provide the material, I'll write a concise 1-2 paragraph summary covering what the project does, its usefulness, and its implementation approach.
+You can paste in things like:
 
 => https://github.com/snonux/playground View on GitHub
 
@@ -1679,9 +1678,9 @@ Once you provide the material, I'll write a concise 1-2 paragraph summary coveri
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**japi** is a small, simple Perl command-line tool that fetches the newest unresolved and unclosed tickets from a Jira project, intended to give developers an at-a-glance terminal view of outstanding work without opening a browser. It's designed to be run manually or scheduled via cron—e.g., writing results to a local file once an hour and displaying them with `cat ~/.issues` whenever you open a new shell. Note that the project is now deprecated and no longer maintained, so it should be used at your own risk.
+japi is a small Perl command-line tool that queries a Jira instance and lists the newest unresolved, unclosed tickets from a project, using Jira's REST API (v2 by default). It's designed to be run manually or via cron—for example, the docs suggest writing the output to a local file each hour and displaying it whenever you open a new shell, giving you an always-visible, lightweight snapshot of outstanding work without launching a browser or Jira client. It's useful for developers who want ambient visibility into project status, particularly with its ability to filter down to just unassigned issues.
 
-The tool is implemented in Perl and depends on the `JIRA::REST` module from CPAN, which it uses to query the Jira REST API (defaulting to `rest/api/2`). Configuration is handled almost entirely through command-line flags, including the Jira base URI, username, and a customizable JQL search query (by default `project=MT and status not in (Resolved,Closed)`), along with options like `--unassigned` to filter for unassigned issues only, and `--nocolor`/`--debug` for output control. Results are displayed with colored text by default. Authentication credentials are managed through an optional file (`~/.japipass`) containing the Base64-encoded Jira password—recommended to be secured with `chmod 0600`—with a fallback to an interactive password prompt if the file is missing.
+The tool is built on the `JIRA::REST` CPAN module (which must be installed manually on some systems, as noted in the docs) and retrieves issues using a customizable JQL search string (`--jira_query`). Configuration is kept deliberately minimal: nearly all settings—Jira URI base, username, API version, and query—are passed as command-line flags, making it well suited to scripted and scheduled use. Authentication relies on your current Linux/UNIX username with a password supplied either interactively or via a Base64-encoded password file (`~/.japipass`, recommended to be `chmod 0600` for security). Other niceties include colorized terminal output (disable with `--nocolor`) and a debug mode. The project is configured entirely through CLI options rather than a config file, keeping it simple and portable.
 
 => https://github.com/snonux/japi View on GitHub
 
@@ -1702,9 +1701,9 @@ The tool is implemented in Perl and depends on the `JIRA::REST` module from CPAN
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**gotop** is a terminal-based I/O monitor for Linux that serves as an alternative to iotop, the standard utility for watching disk activity on a per-process basis. Its core job is the same as iotop's: show which processes are performing reads and writes, how much data they're moving, and at what rates, making it useful for diagnosing disk bottlenecks and identifying runaway I/O consumers. The main argument for a replacement comes from its implementation: it's written entirely in Go, so it compiles to a single static binary with no Python interpreter or external dependencies to install — handy for minimal systems, containers, and quick deployment, and typically faster to start than an interpreted equivalent.
+gotop is a terminal-based utility for Linux that monitors disk I/O on a per-process basis, positioned as a drop-in replacement for the classic iotop tool. Its core purpose is the same: giving users a live view of which processes are reading from and writing to storage, which is invaluable for diagnosing disk bottlenecks, tracking down I/O-heavy applications, and general system monitoring. Its main appeal lies in the language choice—the original iotop is a Python script, whereas gotop is written in Go, allowing it to be distributed as a single, self-contained binary with no runtime dependencies. This makes it quicker to deploy on servers and minimal or containerized environments where installing Python just for a monitoring tool is undesirable.
 
-Implementation details beyond the language choice are sparse — the README is essentially just a title and a one-line description — but a tool of this type on Linux generally works by reading per-process I/O accounting exposed by the kernel (e.g., `/proc/<pid>/io` or the taskstats interface) and rendering it as a live, sortable terminal display. Notably, the project is officially deprecated: no further updates, bug fixes, or feature additions will be made. It remains usable as-is, but anyone depending on it should be aware they'll get no maintenance, and may prefer actively maintained alternatives such as iotop itself or the C rewrite iotop-c.
+On the implementation side, the README itself is sparse, but based on the description, the project follows the standard design for tools of this kind: gathering per-process I/O accounting data exposed by the Linux kernel (via the /proc filesystem or the same taskstats netlink interface iotop uses) and presenting it as a continuously updating, top-style view in the terminal—a job well suited to Go's fast startup and concurrency features. It's worth noting that the project is deprecated: the maintainer has discontinued it entirely, with no further updates, bug fixes, or features planned, so anyone relying on it should treat it as unmaintained software to be used at their own risk, or maintain their own fork.
 
 => https://github.com/snonux/gotop View on GitHub
 
@@ -1725,9 +1724,9 @@ Implementation details beyond the language choice are sparse — the README is e
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**Awksite** is a small, now-deprecated CGI application for generating dynamic HTML websites using only GNU AWK. Its main appeal is its extreme minimalism and portability: since GNU awk comes preinstalled on virtually all *NIX systems, awksite requires no additional runtime—no PHP, Python, Perl interpreters, or database server—to serve dynamically generated pages. This made it useful for lightweight dynamic hosting on minimal or legacy systems, and it serves as a neat demonstration of how far AWK can be pushed beyond its usual text-processing duties. However, given that the project is unmaintained and receives no bug fixes or updates, it's best treated today as an educational example or curiosity rather than a production-ready tool.
+Awksite is a lightweight CGI application for generating dynamic HTML websites, designed to run on any system with GNU AWK installed—which covers most *NIX environments. Its implementation relies on AWK, a standard Unix text-processing language, invoked via the Common Gateway Interface (CGI) so that a web server can call it to produce HTML pages on the fly. This approach gives it a minimal footprint: rather than depending on heavy web frameworks, runtime environments, or databases, it leverages a tool already present on virtually all Unix and Linux systems, making deployment simple and broadly portable.
 
-Architecturally, awksite follows the classic CGI model: the web server invokes the AWK-based application for each HTTP request, and the script assembles and emits HTML (to standard output) which the server passes back as the response body. AWK's natural strengths—pattern matching, text manipulation, and its ubiquity across Unix systems—make it a surprisingly workable choice for this kind of page generation. The overall design is deliberately simple, with the entire "stack" consisting of just the operating system, GNU awk, and any web server with CGI support, keeping the dependency footprint and complexity to a bare minimum.
+The project's usefulness lies in this simplicity and portability: anyone with a *NIX box and GNU AWK can host a dynamically generated site without installing additional software. However, an important caveat is that Awksite has been officially deprecated—the project is no longer maintained, and no further updates, bug fixes, or features will be released. As a result, it should be considered legacy software, and anyone building on it is advised to proceed at their own risk or evaluate actively maintained alternatives for dynamic site generation.
 
 => https://github.com/snonux/awksite View on GitHub
 
@@ -1746,9 +1745,9 @@ Architecturally, awksite follows the classic CGI model: the web server invokes t
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-PerlDaemon is a lightweight, extensible daemon framework for Linux and other UNIX-like systems, written in Perl. Its purpose is to handle all the boilerplate plumbing of running a background service—automatic daemonizing, logging with logrotate support (SIGHUP), clean shutdown on SIGTERM, and pidfile management with startup conflict checks—so that developers only need to write the actual task logic. Custom functionality is added by dropping Perl modules into the `PerlDaemonModules::` namespace (essentially by copying and modifying an example module), where they're automatically discovered and run by the daemon. Configuration is intentionally simple: settings live in a single conf file, can be overridden temporarily via command line (e.g., `./control start daemon.interval=10`), and a wrapper script provides start/stop/restart/foreground-mode commands. The project is, however, deprecated and no longer maintained.
+**PerlDaemon** is a minimal, extensible daemon framework written in Perl for Linux and other UNIX-like systems. Its purpose is to handle all the boilerplate involved in building a background service—automatic daemonizing, logging with logrotate support (SIGHUP), clean shutdown (SIGTERM), pidfile creation with startup checks, and an "alive" file touched each cycle for external monitoring—so developers can focus purely on their task logic. Configuration lives in a simple key-value file (`conf/perldaemon.conf`) and can be overridden per-run on the command line, with a `./control` script serving as a convenient wrapper for start, stop, restart, and foreground-mode operation (useful for debugging).
 
-Architecturally, the daemon runs an event loop that triggers registered modules in sequential order at a configurable interval. It uses `Time::HiRes` for high-resolution timing and tracks a "carry" value each cycle—accumulating any lost execution time and adding it to the next loop run—to keep module invocations on schedule despite processing delays. For operational monitoring, the daemon touches an "alive file" every interval, which external health checks can compare against to detect a hung or dead process. Modules currently execute sequentially rather than in parallel, a noted limitation for future threading/process-based enhancement.
+Architecturally, the daemon runs an event loop with a configurable interval (e.g., `daemon.interval=10`), using `Time::HiRes` for high-resolution timing. It tracks a carry value each loop so tasks can catch up on lost time and stay on their intended schedules. Functionality is added by writing custom Perl modules in the `PerlDaemonModules::` namespace—typically by copying and modifying the bundled `ExampleModule.pm`—and any number of modules can be installed in parallel, though they execute sequentially within each loop cycle (with parallel execution via threads/processes noted as a future possibility). Note that the project is deprecated and no longer maintained, so it should be used with caution.
 
 => https://github.com/snonux/perldaemon View on GitHub
 
@@ -1769,9 +1768,9 @@ Architecturally, the daemon runs an event loop that triggers registered modules 
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**Rubyfy** is a lightweight, self-contained Ruby script that automates running shell commands on remote servers over SSH—the author describes it simply as "a fancy SSH loop." It targets the gap between manually SSH-ing into individual machines and heavyweight configuration management tools like Ansible or Puppet: sysadmins can feed a list of hostnames via stdin and execute a command across them all with a single invocation. Note that the project is deprecated and no longer maintained, so while it may still function, it will receive no updates, bug fixes, or security patches.
+Rubyfy is a lightweight command-line tool for executing commands on multiple remote servers over SSH—essentially, as its README puts it, "a fancy SSH loop." It's designed for sysadmins and operations teams who need to run ad-hoc commands or scripts across many machines quickly, without the overhead of deploying a full configuration management system like Ansible or Puppet. Server hostnames are read from standard input (one per line), so you can pipe in lists from files or shell expansions. Key features include configurable parallelism (e.g., running commands on 10–50 servers concurrently), execution as root via sudo, running scripts in the background on remote hosts, saving command output to local files, and precondition checks—for example, only rebooting a server if a maintenance lock file does *not* exist, providing a safety guard for potentially disruptive operations.
 
-As for implementation, `rubyfy.rb` reads hostnames from stdin and establishes SSH connections to each target server to run a given command (`-c`). Its key features, drawn from the configuration options, include parallel execution across a configurable number of simultaneous servers (`--parallel N`), running commands as root via sudo (`--root`), backgrounding long-running scripts (`-b`), redirecting output to named files under `./out/` (`-n`), and a precondition mechanism that gates execution on remote file checks—illustrated by the example of rebooting a server only if `/var/run/maintenance.lock` is absent. The tool was tested against Ruby 2.2.x on Fedora 22 and Mac OS X.
+Implementation-wise, it's a single self-contained Ruby script (`rubyfy.rb`) with no apparent external dependencies, originally tested on Fedora and Mac OS X. The tool's value lies in its simplicity: it wraps SSH in a convenient loop with parallel execution and safety features, making it handy for quick operational tasks like gathering diagnostics (`pgrep -lf httpd`), running maintenance scripts, or coordinating reboots across a server fleet. Note that the project is now deprecated and no longer maintained, so it should be used at your own risk—alternatives like Ansible's `ad-hoc` commands offer similar functionality with ongoing support.
 
 => https://github.com/snonux/rubyfy View on GitHub
 
@@ -1792,9 +1791,9 @@ As for implementation, `rubyfy.rb` reads hostnames from stdin and establishes SS
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-Deprecation note aside, **netdiff** is a lightweight utility for comparing a file or directory on two different hosts over the network. Its workflow is peer-to-peer by design: you run the exact same command on both hosts simultaneously (typically via Cluster-SSH), passing the hostname of one of the two machines and a fully qualified path. This makes it especially handy for system administrators who need to spot configuration drift between similar systems—for example, verifying that PAM configurations match across a fleet, where settings are scattered across many small files in `/etc/pam.d` and tedious to compare manually. It also supports an optional custom port (with a default defined in `/etc/default/netdiff`) and pass-through of additional `diff` options.
+netdiff is a network utility for comparing the contents of a file or directory across two hosts, making it easy to spot differences between systems—for example, identifying configuration drift in setup files like the PAM configuration in `/etc/pam.d`, which is typically spread across many small files that are tedious to compare by hand. It is designed to be run simultaneously on both machines (e.g., via Cluster-SSH) with an identical command, where each invocation specifies the hostname of *the other* host along with a fully qualified path to the file or directory being compared.
 
-Architecturally, the script uses automatic role detection: whichever hostname you pass as the argument determines which host acts as the client and which acts as the server, so no separate setup is needed on either side. The client recursively transfers the contents of the specified path to the peer over the network, with encryption handled via OpenSSL/AES, and the comparison is then performed using the standard `diff` tool. The project was authored by Paul Buetow and is documented at netdiff.buetow.org, though it is no longer maintained and carries an explicit "use at your own risk" warning.
+Architecturally, the script uses a peer-to-peer client/server model: based on the supplied hostname, each instance determines whether it should play the client or server role. The client then recursively transfers everything under the given path to the peer host—encrypted via OpenSSL/AES—and the comparison is computed using the standard `diff` tool, with support for passing additional diff options and a configurable port (defaulting to the value in `/etc/default/netdiff`). Note that the project is deprecated and is no longer maintained, so it should be used at your own risk.
 
 => https://github.com/snonux/netdiff View on GitHub
 
@@ -1815,9 +1814,9 @@ Architecturally, the script uses automatic role detection: whichever hostname yo
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-I don't see a project included in our conversation yet — there's no code, documentation, or description for me to summarize. Could you share it? You can paste the source code, a README, or even just a description of what the project does and how it's built. If it's a large codebase, the README plus the main entry point or a few core modules is usually enough to capture the key features and architecture.
+I don't see any project content in our conversation—no code, files, or description was included. Could you paste the project materials you'd like summarized? For example, you could share:
 
-Once you share it, I'll put together a concise 1-2 paragraph summary covering what it does, why it's useful, and how it's implemented.
+Once you provide that, I'll give you a concise 1-2 paragraph summary covering what the project does, its usefulness, key features, and architecture.
 
 => https://github.com/snonux/perl-c-fibonacci View on GitHub
 
@@ -1838,9 +1837,9 @@ Once you share it, I'll put together a concise 1-2 paragraph summary covering wh
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-muttdelay is a bash script that lets users of the mutt terminal email client schedule messages to be sent automatically at a specific future time, rather than immediately. Unlike mutt's built-in "postpone" feature—which merely saves a draft for later editing—muttdelay actually queues the mail for unprompted delivery, making it useful for scenarios like writing a reply late at night that should arrive in the morning, or composing a message now and timing its delivery for later. Note that the project is deprecated and no longer maintained.
+Muttdelay is a lightweight bash-based utility that adds scheduled email sending to the mutt mail client, allowing users to compose a message and defer its delivery to a specific future time. Unlike mutt's built-in "postpone" feature—which merely saves a draft for later editing—muttdelay actually queues the message for automatic dispatch at a chosen timestamp. This is useful for timing communications appropriately (e.g., reminders or time-sensitive announcements) without needing to be present at send time, and author Paul C. Buetow notes the project is now deprecated and unmaintained.
 
-The implementation combines three lightweight components. First, a Vim plugin (installed into `~/.vim/plugin/` and mapped to the `,L` keystroke) lets the user schedule a mail while still composing it: pressing `,L` saves the message to `~/.muttdelay/` under a filename that encodes both the desired send timestamp and the compose timestamp. Second, an hourly cron job invokes `muttdelay cron`, which scans that directory and sends any files whose send timestamp is in the past, using mutt's command-line mode. Finally, the core bash script ties these pieces together, so the whole system relies on simple timestamp-encoded files, Vim integration, and standard cron—no daemons or complex state management required.
+The implementation relies on three coordinated components: a Vim plugin, a cron job, and mutt itself. While composing a message in mutt, the user triggers the plugin via the `,L` keybinding in Vim, which saves the mail to `~/.muttdelay/` using a filename format that encodes both the intended send timestamp and the compose timestamp. An hourly cron job running `muttdelay cron` then scans this directory and compares the stored timestamps against the current Unix time; any messages whose send time has passed are dispatched mutt-style through the command line (`mutt -s subject recipient < mail.txt`). This simple file-based architecture—timestamps encoded in filenames, with cron as the scheduler—makes the tool easy to understand and audit, with no database or daemon requirements beyond cron.
 
 => https://github.com/snonux/muttdelay View on GitHub
 
@@ -1861,9 +1860,9 @@ The implementation combines three lightweight components. First, a Vim plugin (i
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**cpuinfo** is a small command-line utility by Paul Buetow that displays CPU information in a human-readable format. The Linux kernel exposes detailed processor data through the `/proc/cpuinfo` file, but its raw output is verbose, repetitive, and low-level—one block of technical fields per logical CPU. This tool addresses that by distilling the relevant information into a concise summary, so users can quickly get an overview of their system's processor without manually parsing kernel output or remembering which fields matter.
+**cpuinfo** is a minimalist command-line utility for Linux that displays CPU information in a human-readable format. While the Linux kernel already exposes detailed processor data through the `/proc/cpuinfo` file, that output is dense, technical, and difficult to scan quickly. This tool addresses that pain point by parsing the file and presenting only the relevant details in a cleaner, more digestible form—making it handy for system administrators, developers inspecting unfamiliar machines, or anyone who wants a quick overview of their CPU without wading through raw kernel output.
 
-In terms of implementation, cpuinfo takes a deliberately minimal approach: it is essentially a wrapper that invokes AWK to parse `/proc/cpuinfo` and print a formatted, human-friendly version of the data. Rather than being a compiled program with complex dependencies, it leverages AWK—a text-processing tool present on virtually every Unix-like system—which keeps the utility lightweight and portable across Linux distributions. The synopsis shows it takes no arguments (`cpuinfo` alone), so the interface is simply running the command. This "glue script" architecture is characteristic of classic Unix philosophy: instead of reimplementing parsing logic, the tool composes existing standard tools to accomplish its task. More details are available at the project website, cpuinfo.buetow.org.
+The implementation is strikingly simple and embodies the Unix philosophy of doing one thing well: rather than being a compiled binary, cpuinfo essentially wraps AWK, invoking it to parse `/proc/cpuinfo` and format the results. Because AWK is universally available on Unix-like systems, the tool carries virtually no dependencies and is highly portable. This lightweight architecture—no build step, no libraries, just a small script leveraging a standard text-processing tool—keeps the project small and maintainable. Written by Paul Buetow, it is available at http://cpuinfo.buetow.org.
 
 => https://github.com/snonux/cpuinfo View on GitHub
 
@@ -1884,9 +1883,9 @@ In terms of implementation, cpuinfo takes a deliberately minimal approach: it is
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-This project is a lightweight dynamic DNS (DynDNS) updater built around standard Unix tools, designed for scenarios where a machine's IP address changes frequently (e.g., a PPP dial-up or home broadband connection) but its DNS records need to stay current. It allows a client behind a changing IP to keep its hostname's A record in sync with its actual address by remotely invoking an update script on a BIND DNS server. While the project is officially deprecated and no longer maintained, it demonstrates a simple, dependency-light approach to self-hosted dynamic DNS without relying on third-party services.
+This project is a self-hosted dynamic DNS (DynDNS) updater built around a BIND DNS server, allowing a client machine with a frequently changing IP address (such as one connected via PPP/dial-up or other dynamic assignments) to keep its hostname's DNS record up to date. Rather than relying on a commercial dynamic DNS provider, the client machine simply runs the updater script remotely over SSH, passing the hostname, record type (typically an A record), the new IP address, and a short TTL (e.g., 30 seconds, appropriate for fast-changing dynamic hosts). The provided example shows ppp.linkup integration, so the update fires automatically whenever a new IP is assigned.
 
-Architecturally, it uses a client-server split: the DNS server runs BIND with a dedicated zone and a restricted `dyndns` user account, which holds per-host `nsupdate` TSIG keys and a log file for update tracking. The client triggers updates by running an SSH command (`ssh dyndns@dyndnsserver dyndns-update host TYPE new-entry TIMEOUT`), using RSA key-based authentication so no interactive password is needed. The server-side script then performs the DNS record update via `nsupdate`. Notably, it supports full automation through PPP integration—when a connection comes up, the `ppp.linkup` file fires a background SSH command that substitutes the dynamic address via the `MYADDR` variable. A very low TTL (e.g., 30 seconds) ensures DNS changes propagate quickly, and tools like `nslookup` and `dig` can be used for verification.
+Architecturally, the system consists of a server-side component and a client-side component. On the DNS server, you create a dedicated zone and a restricted "dyndns" user account that owns an nsupdate key (for authenticated RFC 2136 dynamic updates to BIND) and SSH RSA keys for passwordless remote invocation, with update logging to a file like /var/log/lastnsupdate.log. The client triggers updates via `ssh dyndns@server /path/to/dyndns-update your.host.name. A <new-ip> 30`. Tools like dig and nslookup can verify updates propagated correctly. Note that the project is explicitly deprecated and unmaintained, so it should not be relied upon for new deployments.
 
 => https://github.com/snonux/dyndns View on GitHub
 
@@ -1909,9 +1908,9 @@ Architecturally, it uses a client-server split: the DNS server runs BIND with a 
 
 => showcase/debroid/image-1.png debroid screenshot
 
-**Debroid** is a set of scripts and instructions for installing a full Debian GNU/Linux environment as a chroot on a rooted LG G3 D855 running CyanogenMod 13 (Android 6), effectively turning the phone into a portable Debian machine. This lets users run native ARM Debian packages, standard command-line tools, and background services (the README demonstrates with `uptimed`) alongside the normal Android system. Note that the project is deprecated and no longer maintained.
+**Debroid** is a set of scripts and instructions for installing a full Debian GNU/Linux (Jessie) environment as a chroot on a rooted LG G3 (D855) running CyanogenMod 13 (Android 6). Because it uses a chroot rather than a virtual machine or dual-boot setup, Debian runs directly on Android's existing Linux kernel, giving the phone a complete Linux userland—apt package management, standard CLI tools, and background services—without disrupting the Android OS. The chroot is integrated with the host system via bind mounts: kernel pseudo-filesystems (`/proc`, `/dev`, `/sys`) are shared with Android, and both the internal emulated storage and external SD card are mounted inside the chroot so either environment can access the same files and storage. (Note: the project is deprecated and no longer maintained.)
 
-The implementation uses a two-stage debootstrap process split across two machines. Stage one runs on a separate Linux host (e.g., Fedora), where a 5 GB disk image is created, formatted as ext4, and populated with a minimal Debian Jessie base for ARM (armel). That image is gzipped and pushed to the phone's external SD card via ADB. On the device itself, the image is loop-mounted and Android's `/proc`, `/dev`, `/sys`, and shared storage are bind-mounted into the chroot so the guest system can interoperate with the host. The second debootstrap stage then completes inside the chroot on the phone. Ongoing access is handled by a `jessie.sh` helper script, while service startup is managed through a custom `/etc/rc.debroid` script — deliberately bypassing Debian's standard runlevels — which is hooked into the Android boot process via a `userinit.sh` script installed in `/data/local`, so Debian services launch automatically at phone boot.
+Implementation proceeds in two debootstrap stages. On a desktop Linux host, a 5GB disk image is created, formatted as ext4, loop-mounted, and populated via `debootstrap --foreign` for the ARM (armel) architecture. The image is gzipped (to work around Android's sparse-image copying issues) and pushed over ADB to the phone's external SD card, where it is loop- and bind-mounted before the second debootstrap stage completes installation natively on-device. A helper script (`jessie.sh`) manages entering the chroot, services are launched through a custom `/etc/rc.debroid` script (bypassing Debian's standard runlevels), and an Android-side hook (`userinit.sh` installed to `/data/local/`) starts the environment automatically at boot.
 
 => https://github.com/snonux/debroid View on GitHub
 
@@ -1934,11 +1933,11 @@ The implementation uses a two-stage debootstrap process split across two machine
 
 => showcase/netcalendar/image-1.png netcalendar screenshot
 
-**NetCalendar** is a lightweight, Java-based calendar application (requiring JRE 6+) built around a client-server architecture that communicates over TCP/IP. It supports three deployment modes: fully stand-alone (client and server running as two threads in the same process), distributed with plain communication (server launched with `--server-only`, clients connecting via a specified server address), or distributed with SSL encryption, configured through Java key stores and trust stores. The project is now deprecated and no longer maintained.
+NetCalendar is a Java-based, network-enabled calendar application built around a client-server architecture. It supports three deployment modes: standalone (client and server running as two threads within a single JVM process, communicating over local TCP/IP), distributed without encryption (server on one host, clients connecting via a server address), and distributed with SSL/TLS for secure communication. The distributed mode allows multiple users to share a common calendar over a network, with the server shut down remotely through the client GUI. The project is deprecated and no longer maintained.
 
 => showcase/netcalendar/image-2.png netcalendar screenshot
 
-Its usefulness lies in enabling shared, network-accessible calendars that remain simple to deploy—everything ships in a single executable JAR, and the server can even be shut down remotely from the client GUI. Key features include a color-coded event display that conveys urgency at a glance (red for events within 24 hours, orange within a week, yellow within 28 days, and so on), visual distinction between yearly recurring events (blue) and one-time events (green), configuration via a flat `netcalendar.conf` file or through GUI preferences, and interoperability with the traditional UNIX `calendar` tool, allowing `~/.calendar` to serve directly as the database directory.
+The implementation requires only a JRE 6+ and ships as a single executable JAR, with behavior controlled via command-line flags and either a `netcalendar.conf` file or the client's GUI preferences. Notable features include color-coded event display that communicates urgency at a glance (red for events within 24 hours, orange within a week, yellow within 28 days, plus distinct colors distinguishing yearly from one-time events), and compatibility with the traditional Unix `calendar` database (`~/.calendar`), letting users of that tool adopt NetCalendar without migrating their data. Secure deployments use standard Java keystore/truststore mechanisms configured through JVM system properties.
 
 => https://github.com/snonux/netcalendar View on GitHub
 
@@ -1961,9 +1960,9 @@ Its usefulness lies in enabling shared, network-accessible calendars that remain
 
 => showcase/jsmstrade/image-1.png jsmstrade screenshot
 
-**jsmstrade** is a minimal, JavaScript-based (as its name suggests) GUI application for sending SMS messages through the smstrade.de SMS gateway. Rather than requiring users to interact with the gateway's simple HTTP API directly—via scripts, curl calls, or custom code—it provides a lightweight graphical front end where the user can enter a recipient number, compose message text, supply their smstrade account credentials (typically an API key), and dispatch the message with a click. Its value lies in convenience: smstrade.de was a pay-per-message SMS relay service, and jsmstrade gives its customers a quick, no-programming-required way to send one-off text messages from a desktop.
+JSMSTrade is a small, lightweight desktop application that provides a graphical interface for sending SMS messages through smstrade.de, a German SMS gateway service. Gateways like smstrade.de typically expose an HTTP API intended to be called from code, which makes sending a text via the service inconvenient for non-programmers or anyone who just wants to fire off a quick message. JSMSTrade addresses this by wrapping the gateway in a minimal GUI, so users can simply enter a recipient and message and send it directly from their computer—convenient for one-off texts, desktop-to-phone messaging, or low-volume SMS sending without needing a mobile device at hand. Its deliberately "minimal" scope keeps the tool focused on this single task without extra complexity.
 
-In terms of architecture, the README offers little beyond the one-line description, so specifics such as the UI framework, packaging (browser-based vs. desktop shell), and configuration handling cannot be stated definitively—though the "js" prefix and "minimal" designation point to a small, dependency-light JavaScript codebase. Notably, the project carries a prominent deprecation warning: its maintainers have stated that no further updates, bug fixes, or features will be made, and the software should be used "at your own risk." Since its entire functionality depends on the third-party smstrade.de gateway remaining available, the project is best regarded today as unmaintained legacy code rather than a dependable messaging tool.
+Architecturally, the tool acts as a thin front-end over the smstrade.de API: based on the available README, it presumably gathers the recipient, message content, and sender options from the user, authenticates with the configured account credentials, and dispatches the request to the gateway for delivery. The "js" in the name suggests it may be implemented with JavaScript or web technologies, though the sparse documentation doesn't confirm the exact framework. It's worth noting that the project is deprecated—no further updates, bug fixes, or feature additions are planned—so anyone relying on it today does so at their own risk.
 
 => https://github.com/snonux/jsmstrade View on GitHub
 
@@ -1984,9 +1983,9 @@ In terms of architecture, the README offers little beyond the one-line descripti
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-This project is a template for creating Debian packages, providing a pre-configured skeleton so developers can package their own software without building Debian packaging infrastructure from scratch. (Note: the project is deprecated and unmaintained, and was tested against older Debian releases, Squeeze and Wheezy, so it should be treated as a reference rather than a production dependency.) Its usefulness lies in handling the boilerplate: the included example is a simple script in `bin/template` that prints a version number, but the entire packaging workflow around it is already working out of the box. Users clone the template, rename everything from "template" to their project name using provided `git mv` and `sed` one-liners, customize the files, and get a distributable `.deb`.
+**Summary**
 
-The implementation is centered on a top-level `Makefile` that orchestrates both compilation and packaging: `make` builds the project, while `make deb` produces a full set of package artifacts (`.deb`, `.dsc`, `.changes`, and source `.tar.gz`) in the parent directory. Documentation uses POD format—editing `docs/template.pod` and running `make documentation` generates a man page that is automatically included in the package. Package metadata follows the standard Debian layout in a `debian/` directory (`control`, `copyright`, `README`), with release versioning handled via `dch -i` to update the changelog. Required tooling includes standard Debian packaging utilities (`dpkg-dev`, `devscripts`, `lintian`, `make`, and `perl`), and packages can be validated with `lintian --pedantic` and installed with `dpkg -i`. The template is deliberately minimal and extensible—users can swap POD for LaTeX, compile C instead of scripts, or add library directories by extending the Makefile's install rules.
+This project is a template (now deprecated and unmaintained) that provides a ready-made skeleton for packaging software as Debian packages (.deb files). It was tested with Debian Squeeze and Wheezy, and its purpose is to spare developers the boilerplate work of setting up Debian packaging from scratch—package metadata, build rules, changelog, and documentation—so they can clone it, rename everything to their project's name, and start shipping .deb packages. After installation, the packaged program is available as `/usr/bin/template` with a corresponding man page.
 
 => https://github.com/snonux/template View on GitHub
 
@@ -2009,9 +2008,9 @@ The implementation is centered on a top-level `Makefile` that orchestrates both 
 
 => showcase/vs-sim/image-1.jpg vs-sim screenshot
 
-VS-Sim ("Verteilte Systeme Simulator," German for "Distributed Systems Simulator") is an open-source simulator for distributed systems, written in Java. Developed as a diploma thesis at Aachen University of Applied Sciences, it was designed to help users model and experiment with distributed systems concepts—such as communication between networked nodes—without requiring actual physical hardware. Its academic origins suggest it serves primarily as an educational tool, allowing students and researchers to visualize and study how distributed algorithms and interactions behave in a controlled environment. The project features a graphical interface, as evidenced by its included screenshots, making it accessible for hands-on experimentation.
+VS-Sim (short for "Verteilte Systeme Simulator," German for "Distributed Systems Simulator") is an open-source simulator for distributed systems, implemented in Java. The project originated as a diploma thesis at Aachen University of Applied Sciences, which gives it a distinctly academic character—such simulators are typically valuable for students and educators who want to model, visualize, and experiment with distributed system behavior without needing real networked infrastructure. By simulating distributed systems in a controlled environment, the tool enables users to explore how nodes interact, communicate, and behave under varying conditions in a repeatable way.
 
-The project was written entirely in Java, a natural choice for a distributed systems simulator given Java's built-in networking capabilities and platform independence. However, VS-Sim is now deprecated and no longer maintained. Users interested in this type of tool are directed to its successor, [ds-sim](https://codeberg.org/snonux/ds-sim), which is a modernized and English-translated version of the project hosted on Codeberg. Note that the README provides limited detail about the internal architecture and specific feature set, so deeper technical specifics would need to come from the source code itself.
+On the implementation side, VS-Sim is written entirely in Java, making it cross-platform, and screenshots in the repository suggest it provides a graphical interface for working with simulations. Notably, however, the project is now deprecated: the author has discontinued maintenance, and users are pointed toward its successor, ds-sim, hosted on Codeberg. The successor is described as a modernized and English-translated version of the project, so new users should start there rather than with VS-Sim itself.
 
 => https://github.com/snonux/vs-sim View on GitHub
 
@@ -2032,9 +2031,9 @@ The project was written entirely in Java, a natural choice for a distributed sys
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-**perl-poetry** is a collection of poems written in the Perl programming language. Each piece is a valid Perl script that compiles under the specified Perl version, but it is deliberately crafted to be read rather than to compute anything — the aesthetic lies in making source code that doubles as verse. Its usefulness is artistic and cultural rather than practical: it entertains programmers, exemplifies the long tradition of "code poetry," and showcases Perl's famously permissive grammar, which (as in much Perl poetry) allows English-like phrases to function as syntactically valid statements.
+**perl-poetry** is a collection of Perl programs written as poetry. Each piece consists of valid Perl source code that compiles successfully with the specified Perl version, but the code intentionally has no functional purpose—its entire value is aesthetic. The project sits at the intersection of programming and creative writing, showcasing how Perl's famously flexible and expressive syntax can be arranged so that source code reads like verse while still being syntactically correct. Its usefulness lies in entertainment and artistic expression, and in demonstrating the unusual degree of freedom Perl affords in how code can be structured and worded—making it a fun contribution to the tradition of code-as-art alongside things like obfuscated code contests.
 
-Architecturally, the project is intentionally minimal. It consists of standalone Perl source files — one per poem — with no application logic, module structure, or dependencies to speak of. The defining constraint is that every file must remain compilable Perl, while the README makes clear that the code "is not supposed to do something useful except looking nice." In other words, correctness here is measured by whether the poem compiles and how it reads, not by what it produces.
+In terms of implementation, the project is deliberately minimal: there is no framework, dependency management, or runtime architecture to speak of. It's simply a set of standalone Perl scripts, each crafted to satisfy two constraints simultaneously—the code must pass a compile/syntax check with the indicated Perl compiler, and it should "look nice" as poetry. The creative challenge underlying each piece is working within Perl's grammar rules (keywords, operators, punctuation, and variables) while shaping them into something that reads with poetic rhythm or imagery, rather than solving any computational problem.
 
 => https://github.com/snonux/perl-poetry View on GitHub
 
@@ -2053,9 +2052,9 @@ Architecturally, the project is intentionally minimal. It consists of standalone
 
 ⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
 
-This project is a deprecated (no longer maintained) Haskell application built against the GHC 6 toolchain, as indicated by its `libghc6-*` package requirements. Based on its dependencies, it combines two core capabilities: network communication and persistent relational data storage. The `libghc6-network-dev` dependency points to the standard Haskell `network` library, suggesting the project implements some form of networked service—such as a server daemon, client, or message-passing component—while `libghc6-hsql-mysql-dev` provides MySQL database access. A database-backed network application of this kind is typically useful for coordinating state across multiple connected hosts, persisting user or transaction data, or serving as a data-driven service backend.
+Unfortunately, this README doesn't contain enough information to write a meaningful summary of the project's purpose, features, or architecture. Beyond the deprecation notice, it only lists two dependency requirements:
 
-Architecturally, the project sits between two layers: the Haskell `network` package handles socket creation, connection management, and TCP/IP data transfer, while the HSQL library's MySQL driver exposes SQL queries to the Haskell code through a database abstraction interface. Application logic would dispatch between incoming network events and database reads/writes. However, it's worth noting that the available information—a deprecation notice and a requirements list—does not reveal the project's specific purpose, features, or domain. A truly complete summary of its functionality and value would require the project description or source code; from the given excerpt alone, only the implementation language and architectural building blocks can be reliably inferred.
+From these dependencies alone, I can only infer a few things:
 
 => https://github.com/snonux/hsbot View on GitHub
 
@@ -2072,8 +2071,8 @@ Architecturally, the project sits between two layers: the Haskell `network` pack
 * 🧪 Status: Experimental (no releases yet)
 
 
-I don't see any project materials in our conversation—no code, files, or descriptions have been shared yet. To write the summary you're asking for, I'll need you to provide the project details.
+I don't see a project shared in our conversation—there's no code, files, repository, or description included in your message.
 
-You could share any of the following:
+To write the summary you're looking for, please share the project with me. You could paste:
 
 => https://github.com/snonux/jailman View on GitHub
