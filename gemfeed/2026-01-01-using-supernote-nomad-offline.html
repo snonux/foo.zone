@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-01-01-using-supernote-nomad-offline.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-01-01-using-supernote-nomad-offline.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2026-01-01-using-supernote-nomad-offline.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='using-supernote-nomad-offline'>Using Supernote Nomad offline</h1><br />
 <br />
 <span class='quote'>Published at 2025-12-31T16:25:30+02:00</span><br />
@@ -80,32 +90,32 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<font color="#5da994">convert ()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  find </font><font color="#cb7676">.</font><font color="#dbd7ca"> -name </font><font color="#cb7676">\*.</font><font color="#dbd7ca">note </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">    </font><font color="#cb7676">|</font><font color="#dbd7ca"> </font><b><font color="#4d9375">while</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">read</font></b><font color="#dbd7ca"> -r note</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b>
-<font color="#dbd7ca">        echo supernote-tool convert -a -t pdf </font><font color="#bd976a">"$note"</font><font color="#dbd7ca"> </font><font color="#bd976a">"${note/.note/.pdf}"</font>
-<font color="#dbd7ca">        supernote-tool convert -a -t pdf </font><font color="#bd976a">"$note"</font><font color="#dbd7ca"> </font><font color="#bd976a">"${note/.note/.pdf}.tmp"</font>
-<font color="#dbd7ca">        mv </font><font color="#bd976a">"${note/.note/.pdf}.tmp"</font><font color="#dbd7ca"> </font><font color="#bd976a">"${note/.note/.pdf}"</font>
-<font color="#dbd7ca">        du -hs </font><font color="#bd976a">"$note"</font><font color="#dbd7ca"> </font><font color="#bd976a">"${note/.note/.pdf}"</font>
-<font color="#dbd7ca">        echo</font>
-<font color="#dbd7ca">      </font><b><font color="#4d9375">done</font></b>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">convert ()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  find </span><span style="color: #765924">.</span><span style="color: #25231f"> -name </span><span style="color: #765924">\*.</span><span style="color: #25231f">note </span><span style="color: #765924">\</span>
+<span style="color: #25231f">    </span><span style="color: #765924">|</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">while</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">read</span></span><span style="color: #25231f"> -r note</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span>
+<span style="color: #25231f">        echo supernote-tool convert -a -t pdf </span><span style="color: #3e5d36">"$note"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"${note/.note/.pdf}"</span>
+<span style="color: #25231f">        supernote-tool convert -a -t pdf </span><span style="color: #3e5d36">"$note"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"${note/.note/.pdf}.tmp"</span>
+<span style="color: #25231f">        mv </span><span style="color: #3e5d36">"${note/.note/.pdf}.tmp"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"${note/.note/.pdf}"</span>
+<span style="color: #25231f">        du -hs </span><span style="color: #3e5d36">"$note"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"${note/.note/.pdf}"</span>
+<span style="color: #25231f">        echo</span>
+<span style="color: #25231f">      </span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span>
+<span style="color: #25231f">}</span>
 
-<i><font color="#666666"># Make the PDFs available on my Phone as well</font></i>
-<font color="#5da994">copy ()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> </font><font color="#cb7676">!</font><font color="#dbd7ca"> -d </font><font color="#cb7676">~</font><font color="#dbd7ca">/Documents/Supernote </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
-<font color="#dbd7ca">    echo </font><font color="#bd976a">"Directory ~/Documents/Supernote does not exist, skipping"</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">exit</font></b><font color="#dbd7ca"> </font><font color="#bd976a">1</font>
-<font color="#dbd7ca">  </font><b><font color="#4d9375">fi</font></b>
+<span style="font-style: italic"><span style="color: #685f50"># Make the PDFs available on my Phone as well</span></span>
+<span style="color: #265a79">copy ()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> </span><span style="color: #765924">!</span><span style="color: #25231f"> -d </span><span style="color: #765924">~</span><span style="color: #25231f">/Documents/Supernote </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
+<span style="color: #25231f">    echo </span><span style="color: #3e5d36">"Directory ~/Documents/Supernote does not exist, skipping"</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
 
-<font color="#dbd7ca">  rsync -delete -av --include</font><font color="#cb7676">=</font><font color="#bd976a">'*/'</font><font color="#dbd7ca"> --include</font><font color="#cb7676">=</font><font color="#bd976a">'*.pdf'</font><font color="#dbd7ca"> --exclude</font><font color="#cb7676">=</font><font color="#bd976a">'*'</font><font color="#dbd7ca"> </font><font color="#cb7676">.</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca">/Documents/Supernote</font><font color="#cb7676">/</font>
-<font color="#dbd7ca">  echo This was copied from </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca"> so dont edit manually </font><font color="#cb7676">&gt;~</font><font color="#dbd7ca">/Documents/Supernote/README</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">  rsync -delete -av --include</span><span style="color: #765924">=</span><span style="color: #3e5d36">'*/'</span><span style="color: #25231f"> --include</span><span style="color: #765924">=</span><span style="color: #3e5d36">'*.pdf'</span><span style="color: #25231f"> --exclude</span><span style="color: #765924">=</span><span style="color: #3e5d36">'*'</span><span style="color: #25231f"> </span><span style="color: #765924">.</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f">/Documents/Supernote</span><span style="color: #765924">/</span>
+<span style="color: #25231f">  echo This was copied from </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f"> so dont edit manually </span><span style="color: #765924">&gt;~</span><span style="color: #25231f">/Documents/Supernote/README</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">convert</font>
-<font color="#dbd7ca">copy</font>
+<span style="color: #25231f">convert</span>
+<span style="color: #25231f">copy</span>
 </pre>
 <br />
 <span>This script does two things:</span><br />
@@ -149,12 +159,13 @@ http://www.gnu.org/software/src-highlite -->
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

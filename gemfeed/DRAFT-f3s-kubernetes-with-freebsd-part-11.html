@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-11.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-11.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-11.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-11.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-11-remote-control-with-f3sctl'>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl</h1><br />
 <br />
 <span>Turning the cluster off is easy. Getting it back on while I&#39;m away from home needs a little more thought. This part of my f3s series is about <span class='inlinecode'>f3sctl</span>, the tool I wrote to control the hosts, their power plugs and monitoring from my laptop, phone, and even a Pebble watch.</span><br />
@@ -89,9 +99,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">f3sctl --remote power status</font>
-<font color="#dbd7ca">f3sctl --remote power on</font>
-<font color="#dbd7ca">f3sctl --remote power off</font>
+<pre><span style="color: #25231f">f3sctl --remote power status</span>
+<span style="color: #25231f">f3sctl --remote power on</span>
+<span style="color: #25231f">f3sctl --remote power off</span>
 </pre>
 <br />
 <span><span class='inlinecode'>--remote</span> matters when I&#39;m away from home. A Wake-on-LAN magic packet is a local broadcast; it doesn&#39;t magically cross the internet just because I have a WireGuard tunnel. With remote mode, a Pi sends it on the home LAN instead.</span><br />
@@ -104,10 +114,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#cb7676">{</font>
-<font color="#dbd7ca">  </font><font color="#dbd7ca">"</font><font color="#dbd7ca">api_url</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">https://f3s.buetow.org/cgi-bin/f3sctl/</font><font color="#dbd7ca">"</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">  </font><font color="#dbd7ca">"</font><font color="#dbd7ca">api_key_file</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">/home/paul/.config/f3sctl/apikey</font><font color="#dbd7ca">"</font>
-<font color="#cb7676">}</font>
+<pre><span style="color: #765924">{</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">api_url</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">https://f3s.buetow.org/cgi-bin/f3sctl/</span><span style="color: #25231f">"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">api_key_file</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">/home/paul/.config/f3sctl/apikey</span><span style="color: #25231f">"</span>
+<span style="color: #765924">}</span>
 </pre>
 <br />
 <span>The API key travels in the <span class='inlinecode'>X-API-Key</span> header. Putting it in the URL would also put it in access logs, so the API doesn&#39;t accept that. Each client can have its own key; both Pis must accept the same set because either one may receive a request.</span><br />
@@ -153,9 +163,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">f3sctl --remote gogios critical</font>
-<font color="#dbd7ca">f3sctl --remote gogios detail </font><font color="#bd976a">'name of a check from the report'</font>
-<font color="#dbd7ca">f3sctl --remote gogios cache clear</font>
+<pre><span style="color: #25231f">f3sctl --remote gogios critical</span>
+<span style="color: #25231f">f3sctl --remote gogios detail </span><span style="color: #3e5d36">'name of a check from the report'</span>
+<span style="color: #25231f">f3sctl --remote gogios cache clear</span>
 </pre>
 <br />
 <span>The last command clears the report cache so the next read fetches it again. These reports and the mute controls are also browsable through the API.</span><br />
@@ -231,9 +241,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">restforge --backend f3s get</font>
-<font color="#dbd7ca">restforge --backend f3s get --rel power</font>
-<font color="#dbd7ca">restforge --backend f3s get --output json</font>
+<pre><span style="color: #25231f">restforge --backend f3s get</span>
+<span style="color: #25231f">restforge --backend f3s get --rel power</span>
+<span style="color: #25231f">restforge --backend f3s get --output json</span>
 </pre>
 <br />
 <span><span class='inlinecode'>restforge act</span> invokes a server-advertised action, with <span class='inlinecode'>--yes</span> providing confirmation for a state-changing request. For scripting a known homelab operation I can keep using f3sctl; for exploring what an API currently offers, RESTForge gives me a menu.</span><br />
@@ -297,12 +307,13 @@ http://www.gnu.org/software/src-highlite -->
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

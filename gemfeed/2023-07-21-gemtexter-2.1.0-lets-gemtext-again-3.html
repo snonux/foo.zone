@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='gemtexter-210---let-s-gemtext-again'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</h1><br />
 <br />
 <span class='quote'>Published at 2023-07-21T10:19:31+03:00</span><br />
@@ -73,9 +83,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> -n </font><font color="#bd976a">"$foo"</font><font color="#dbd7ca"> </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
-<font color="#dbd7ca">  echo </font><font color="#bd976a">"$foo"</font>
-<b><font color="#4d9375">fi</font></b>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> -n </span><span style="color: #3e5d36">"$foo"</span><span style="color: #25231f"> </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
+<span style="color: #25231f">  echo </span><span style="color: #3e5d36">"$foo"</span>
+<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
 </pre>
 <br />
 <span>Please run <span class='inlinecode'>source-highlight --lang-list</span> for a list of all supported languages.</span><br />
@@ -100,7 +110,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">declare</font></b><font color="#dbd7ca"> -xr </font><font color="#bd976a">MASTODON_URI</font><font color="#cb7676">=</font><font color="#bd976a">'https://fosstodon.org/@snonux'</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">declare</span></span><span style="color: #25231f"> -xr </span><span style="color: #6d3c6d">MASTODON_URI</span><span style="color: #765924">=</span><span style="color: #3e5d36">'https://fosstodon.org/@snonux'</span>
 </pre>
 <br />
 <span>and add the following into your <span class='inlinecode'>index.gmi</span>:</span><br />
@@ -115,7 +125,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">&lt;a</font></b><font color="#dbd7ca"> </font><b><font color="#5da994">href</font></b><font color="#cb7676">=</font><font color="#bd976a">'https://fosstodon.org/@snonux'</font><font color="#dbd7ca"> </font><b><font color="#5da994">rel</font></b><font color="#cb7676">=</font><font color="#bd976a">'me'</font><b><font color="#4d9375">&gt;</font></b><font color="#dbd7ca">Me at Mastodon</font><b><font color="#4d9375">&lt;/a&gt;</font></b>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">&lt;a</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #235f72">href</span></span><span style="color: #765924">=</span><span style="color: #3e5d36">'https://fosstodon.org/@snonux'</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #235f72">rel</span></span><span style="color: #765924">=</span><span style="color: #3e5d36">'me'</span><span style="font-weight: bold"><span style="color: #7b2934">&gt;</span></span><span style="color: #25231f">Me at Mastodon</span><span style="font-weight: bold"><span style="color: #7b2934">&lt;/a&gt;</span></span>
 </pre>
 <br />
 <h2 style='display: inline' id='more'>More</h2><br />
@@ -134,12 +144,13 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2021-04-24-welcome-to-the-geminispace.html'>2021-04-24 Welcome to the Geminispace</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

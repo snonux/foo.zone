@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-05-17-unveiling-ior-ng-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-05-17-unveiling-ior-ng-part-3.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-05-17-unveiling-ior-ng-part-3.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2026-05-17-unveiling-ior-ng-part-3.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='unveiling-io-riot-ng--part-3-under-the-hood'>Unveiling I/O Riot NG — Part 3: under the hood</h1><br />
 <br />
 <span class='quote'>Published at 2026-05-16T18:00:00+03:00</span><br />
@@ -100,14 +110,14 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">clickhouse </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> --query </font><font color="#bd976a">"</font>
-<font color="#bd976a">  SELECT comm, syscall, count() AS n,</font>
-<font color="#bd976a">         formatReadableSize(sum(bytes)) AS total</font>
-<font color="#bd976a">  FROM file('trace.parquet', Parquet)</font>
-<font color="#bd976a">  GROUP BY comm, syscall</font>
-<font color="#bd976a">  ORDER BY n DESC</font>
-<font color="#bd976a">  LIMIT 10</font>
-<font color="#bd976a">"</font><font color="#dbd7ca"> --format PrettyCompactNoEscapes</font>
+<pre><span style="color: #25231f">clickhouse </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> --query </span><span style="color: #3e5d36">"</span>
+<span style="color: #3e5d36">  SELECT comm, syscall, count() AS n,</span>
+<span style="color: #3e5d36">         formatReadableSize(sum(bytes)) AS total</span>
+<span style="color: #3e5d36">  FROM file('trace.parquet', Parquet)</span>
+<span style="color: #3e5d36">  GROUP BY comm, syscall</span>
+<span style="color: #3e5d36">  ORDER BY n DESC</span>
+<span style="color: #3e5d36">  LIMIT 10</span>
+<span style="color: #3e5d36">"</span><span style="color: #25231f"> --format PrettyCompactNoEscapes</span>
 </pre>
 <br />
 <pre>
@@ -131,15 +141,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">clickhouse </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> --query </font><font color="#bd976a">"</font>
-<font color="#bd976a">  SELECT syscall, count() AS n,</font>
-<font color="#bd976a">         round(quantile(0.5)(latency_ns)/1000,  1) AS p50_us,</font>
-<font color="#bd976a">         round(quantile(0.99)(latency_ns)/1000, 1) AS p99_us</font>
-<font color="#bd976a">  FROM file('trace.parquet', Parquet)</font>
-<font color="#bd976a">  WHERE is_error = 1</font>
-<font color="#bd976a">  GROUP BY syscall</font>
-<font color="#bd976a">  ORDER BY p99_us DESC</font>
-<font color="#bd976a">"</font><font color="#dbd7ca"> --format PrettyCompactNoEscapes</font>
+<pre><span style="color: #25231f">clickhouse </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> --query </span><span style="color: #3e5d36">"</span>
+<span style="color: #3e5d36">  SELECT syscall, count() AS n,</span>
+<span style="color: #3e5d36">         round(quantile(0.5)(latency_ns)/1000,  1) AS p50_us,</span>
+<span style="color: #3e5d36">         round(quantile(0.99)(latency_ns)/1000, 1) AS p99_us</span>
+<span style="color: #3e5d36">  FROM file('trace.parquet', Parquet)</span>
+<span style="color: #3e5d36">  WHERE is_error = 1</span>
+<span style="color: #3e5d36">  GROUP BY syscall</span>
+<span style="color: #3e5d36">  ORDER BY p99_us DESC</span>
+<span style="color: #3e5d36">"</span><span style="color: #25231f"> --format PrettyCompactNoEscapes</span>
 </pre>
 <br />
 <pre>
@@ -173,7 +183,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">sudo ior -plain -duration </font><font color="#bd976a">15</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> iotrace</font><font color="#cb7676">.</font><font color="#dbd7ca">csv</font>
+<pre><span style="color: #25231f">sudo ior -plain -duration </span><span style="color: #8a450c">15</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> iotrace</span><span style="color: #765924">.</span><span style="color: #25231f">csv</span>
 </pre>
 <br />
 <span>The CSV has a one-line ASCII banner at the top followed by the column header <span class='inlinecode'>durationToPrevNs,durationNs,comm,pid.tid,name,ret,notice,file</span> and one row per syscall. (Inside the row the <span class='inlinecode'>comm@pid.tid</span>, <span class='inlinecode'>name=&gt;ret</span> and <span class='inlinecode'>file%(fd,flags)</span> sub-encodings keep the column count low; any half-decent assistant will figure those out unprompted.)</span><br />
@@ -255,12 +265,13 @@ NOTHING SUSPICIOUS — no unexpected processes, no surprise paths outside /proc,
 <a class='textlink' href='./2018-06-01-realistic-load-testing-with-ioriot-for-linux.html'>2018-06-01 Realistic load testing with I/O Riot for Linux</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

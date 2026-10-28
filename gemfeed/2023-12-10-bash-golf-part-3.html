@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-12-10-bash-golf-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2023-12-10-bash-golf-part-3.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-12-10-bash-golf-part-3.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2023-12-10-bash-golf-part-3.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='bash-golf-part-3'>Bash Golf Part 3</h1><br />
 <br />
 <span class='quote'>Published at 2023-12-10T11:35:54+02:00</span><br />
@@ -39,7 +49,7 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <ul>
 <li><a href='#bash-golf-part-3'>Bash Golf Part 3</a></li>
 <li>⇢ <a href='#funcname'><span class='inlinecode'>FUNCNAME</span></a></li>
-<li>⇢ <a href='#--'><span class='inlinecode'>:(){ :|:&amp; };:</span></a></li>
+<li>⇢ <a href='#heading---'><span class='inlinecode'>:(){ :|:&amp; };:</span></a></li>
 <li>⇢ <a href='#inner-functions'>Inner functions</a></li>
 <li>⇢ <a href='#exporting-functions'>Exporting functions</a></li>
 <li>⇢ <a href='#dynamic-variables-with-local'>Dynamic variables with <span class='inlinecode'>local</span></a></li>
@@ -57,24 +67,24 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<font color="#5da994">log ()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">level</font><font color="#cb7676">=</font><font color="#bd976a">"$1"</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">shift</font></b>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">message</font><font color="#cb7676">=</font><font color="#bd976a">"$1"</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">shift</font></b>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -i </font><font color="#bd976a">pid</font><font color="#cb7676">=</font><font color="#bd976a">"$$"</font>
+<span style="color: #265a79">log ()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">level</span><span style="color: #765924">=</span><span style="color: #3e5d36">"$1"</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">shift</span></span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">message</span><span style="color: #765924">=</span><span style="color: #3e5d36">"$1"</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">shift</span></span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -i </span><span style="color: #6d3c6d">pid</span><span style="color: #765924">=</span><span style="color: #3e5d36">"$$"</span>
 
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">callee</font><font color="#cb7676">=</font><font color="#bd976a">${FUNCNAME[1]}</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">stamp</font><font color="#cb7676">=</font><font color="#bd976a">$(</font><font color="#dbd7ca">date </font><font color="#cb7676">+%</font><font color="#dbd7ca">Y</font><font color="#cb7676">%</font><font color="#dbd7ca">m</font><font color="#cb7676">%</font><font color="#dbd7ca">d-</font><font color="#cb7676">%</font><font color="#dbd7ca">H</font><font color="#cb7676">%</font><font color="#dbd7ca">M</font><font color="#cb7676">%</font><font color="#dbd7ca">S</font><font color="#cb7676">)</font>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">callee</span><span style="color: #765924">=</span><span style="color: #6d3c6d">${FUNCNAME[1]}</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">stamp</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$(</span><span style="color: #25231f">date </span><span style="color: #765924">+%</span><span style="color: #25231f">Y</span><span style="color: #765924">%</span><span style="color: #25231f">m</span><span style="color: #765924">%</span><span style="color: #25231f">d-</span><span style="color: #765924">%</span><span style="color: #25231f">H</span><span style="color: #765924">%</span><span style="color: #25231f">M</span><span style="color: #765924">%</span><span style="color: #25231f">S</span><span style="color: #765924">)</span>
 
-<font color="#dbd7ca">    echo </font><font color="#bd976a">"$level|$stamp|$pid|$callee|$message"</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;&amp;</font><font color="#bd976a">2</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">    echo </span><span style="color: #3e5d36">"$level|$stamp|$pid|$callee|$message"</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;&amp;</span><span style="color: #8a450c">2</span>
+<span style="color: #25231f">}</span>
 
-<font color="#5da994">at_home_friday_evening ()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">    log INFO </font><font color="#bd976a">'One Peperoni Pizza, please'</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">at_home_friday_evening ()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">    log INFO </span><span style="color: #3e5d36">'One Peperoni Pizza, please'</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">at_home_friday_evening</font>
+<span style="color: #25231f">at_home_friday_evening</span>
 </pre>
 <br />
 <span>The output is as follows:</span><br />
@@ -83,11 +93,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">❯ </font><font color="#cb7676">.</font><font color="#dbd7ca">/logexample</font><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
-<font color="#dbd7ca">INFO</font><font color="#cb7676">|</font><font color="#bd976a">20231210</font><font color="#dbd7ca">-</font><font color="#bd976a">082732</font><font color="#cb7676">|</font><font color="#bd976a">123002</font><font color="#cb7676">|</font><font color="#dbd7ca">at_home_friday_evening</font><font color="#cb7676">|</font><font color="#dbd7ca">One Peperoni Pizza</font><font color="#cb7676">,</font><font color="#dbd7ca"> please</font>
+<pre><span style="color: #25231f">❯ </span><span style="color: #765924">.</span><span style="color: #25231f">/logexample</span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
+<span style="color: #25231f">INFO</span><span style="color: #765924">|</span><span style="color: #8a450c">20231210</span><span style="color: #25231f">-</span><span style="color: #8a450c">082732</span><span style="color: #765924">|</span><span style="color: #8a450c">123002</span><span style="color: #765924">|</span><span style="color: #25231f">at_home_friday_evening</span><span style="color: #765924">|</span><span style="color: #25231f">One Peperoni Pizza</span><span style="color: #765924">,</span><span style="color: #25231f"> please</span>
 </pre>
 <br />
-<h2 style='display: inline' id='--'><span class='inlinecode'>:(){ :|:&amp; };:</span></h2><br />
+<h2 style='display: inline' id='heading---'><span class='inlinecode'>:(){ :|:&amp; };:</span></h2><br />
 <br />
 <span>This one may be widely known already, but I am including it here as I found a cute image illustrating it. But to break <span class='inlinecode'>:(){ :|:&amp; };:</span> down:</span><br />
 <br />
@@ -118,18 +128,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<font color="#5da994">outer()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  </font><font color="#5da994">inner()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">    echo </font><font color="#bd976a">'Intel inside!'</font>
-<font color="#dbd7ca">  }</font>
-<font color="#dbd7ca">  inner</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">outer()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  </span><span style="color: #265a79">inner()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">    echo </span><span style="color: #3e5d36">'Intel inside!'</span>
+<span style="color: #25231f">  }</span>
+<span style="color: #25231f">  inner</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">inner</font>
-<font color="#dbd7ca">outer</font>
-<font color="#dbd7ca">inner</font>
+<span style="color: #25231f">inner</span>
+<span style="color: #25231f">outer</span>
+<span style="color: #25231f">inner</span>
 </pre>
 <br />
 <span>And let&#39;s execute it:</span><br />
@@ -147,26 +157,26 @@ Intel inside!
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<font color="#5da994">outer1()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  </font><font color="#5da994">inner()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">    echo </font><font color="#bd976a">'Intel inside!'</font>
-<font color="#dbd7ca">  }</font>
-<font color="#dbd7ca">  inner</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">outer1()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  </span><span style="color: #265a79">inner()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">    echo </span><span style="color: #3e5d36">'Intel inside!'</span>
+<span style="color: #25231f">  }</span>
+<span style="color: #25231f">  inner</span>
+<span style="color: #25231f">}</span>
 
-<font color="#5da994">outer2()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  </font><font color="#5da994">inner()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">    echo </font><font color="#bd976a">'Wintel inside!'</font>
-<font color="#dbd7ca">  }</font>
-<font color="#dbd7ca">  inner</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">outer2()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  </span><span style="color: #265a79">inner()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">    echo </span><span style="color: #3e5d36">'Wintel inside!'</span>
+<span style="color: #25231f">  }</span>
+<span style="color: #25231f">  inner</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">outer1</font>
-<font color="#dbd7ca">inner</font>
-<font color="#dbd7ca">outer2</font>
-<font color="#dbd7ca">inner</font>
+<span style="color: #25231f">outer1</span>
+<span style="color: #25231f">inner</span>
+<span style="color: #25231f">outer2</span>
+<span style="color: #25231f">inner</span>
 </pre>
 <br />
 <span>And let&#39;s run it:</span><br />
@@ -187,14 +197,14 @@ Wintel inside!
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<font color="#5da994">some_expensive_operations()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  echo </font><font color="#bd976a">"Doing expensive operations with '$1' from pid $$"</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">some_expensive_operations()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  echo </span><span style="color: #3e5d36">"Doing expensive operations with '$1' from pid $$"</span>
+<span style="color: #25231f">}</span>
 
-<b><font color="#4d9375">for</font></b><font color="#dbd7ca"> i </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> {</font><font color="#bd976a">0</font><font color="#cb7676">..</font><font color="#bd976a">9</font><font color="#dbd7ca">}</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b><font color="#dbd7ca"> echo </font><font color="#bd976a">$i</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">done</font></b><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">  </font><font color="#cb7676">|</font><font color="#dbd7ca"> xargs -P</font><font color="#bd976a">10</font><font color="#dbd7ca"> -I{} bash -c </font><font color="#bd976a">'some_expensive_operations "{}"'</font>
+<span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> i </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> {</span><span style="color: #8a450c">0</span><span style="color: #765924">..</span><span style="color: #8a450c">9</span><span style="color: #25231f">}</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span><span style="color: #25231f"> echo </span><span style="color: #6d3c6d">$i</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
+<span style="color: #25231f">  </span><span style="color: #765924">|</span><span style="color: #25231f"> xargs -P</span><span style="color: #8a450c">10</span><span style="color: #25231f"> -I{} bash -c </span><span style="color: #3e5d36">'some_expensive_operations "{}"'</span>
 </pre>
 <br />
 <span>We try here to run ten parallel processes; each of them should run the <span class='inlinecode'>some_expensive_operations</span> function with a different argument. The arguments are provided to <span class='inlinecode'>xargs</span> through <span class='inlinecode'>STDIN</span> one per line. When executed, we get this:</span><br />
@@ -219,15 +229,15 @@ bash: line 1: some_expensive_operations: command not found
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<font color="#5da994">some_expensive_operations()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  echo </font><font color="#bd976a">"Doing expensive operations with '$1' from pid $$"</font>
-<font color="#dbd7ca">}</font>
-<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> -f some_expensive_operations</font>
+<span style="color: #265a79">some_expensive_operations()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  echo </span><span style="color: #3e5d36">"Doing expensive operations with '$1' from pid $$"</span>
+<span style="color: #25231f">}</span>
+<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> -f some_expensive_operations</span>
 
-<b><font color="#4d9375">for</font></b><font color="#dbd7ca"> i </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> {</font><font color="#bd976a">0</font><font color="#cb7676">..</font><font color="#bd976a">9</font><font color="#dbd7ca">}</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b><font color="#dbd7ca"> echo </font><font color="#bd976a">$i</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">done</font></b><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">  </font><font color="#cb7676">|</font><font color="#dbd7ca"> xargs -P</font><font color="#bd976a">10</font><font color="#dbd7ca"> -I{} bash -c </font><font color="#bd976a">'some_expensive_operations "{}"'</font>
+<span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> i </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> {</span><span style="color: #8a450c">0</span><span style="color: #765924">..</span><span style="color: #8a450c">9</span><span style="color: #25231f">}</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span><span style="color: #25231f"> echo </span><span style="color: #6d3c6d">$i</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
+<span style="color: #25231f">  </span><span style="color: #765924">|</span><span style="color: #25231f"> xargs -P</span><span style="color: #8a450c">10</span><span style="color: #25231f"> -I{} bash -c </span><span style="color: #3e5d36">'some_expensive_operations "{}"'</span>
 </pre>
 <br />
 <span>When we run this now, we get:</span><br />
@@ -252,19 +262,19 @@ Doing expensive operations with &#39;9&#39; from pid 132840
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<font color="#5da994">some_other_function()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  echo </font><font color="#bd976a">"$1"</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">some_other_function()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  echo </span><span style="color: #3e5d36">"$1"</span>
+<span style="color: #25231f">}</span>
 
-<font color="#5da994">some_expensive_operations()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  some_other_function </font><font color="#bd976a">"Doing expensive operations with '$1' from pid $$"</font>
-<font color="#dbd7ca">}</font>
-<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> -f some_expensive_operations</font>
+<span style="color: #265a79">some_expensive_operations()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  some_other_function </span><span style="color: #3e5d36">"Doing expensive operations with '$1' from pid $$"</span>
+<span style="color: #25231f">}</span>
+<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> -f some_expensive_operations</span>
 
-<b><font color="#4d9375">for</font></b><font color="#dbd7ca"> i </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> {</font><font color="#bd976a">0</font><font color="#cb7676">..</font><font color="#bd976a">9</font><font color="#dbd7ca">}</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b><font color="#dbd7ca"> echo </font><font color="#bd976a">$i</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">done</font></b><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">  </font><font color="#cb7676">|</font><font color="#dbd7ca"> xargs -P</font><font color="#bd976a">10</font><font color="#dbd7ca"> -I{} bash -c </font><font color="#bd976a">'some_expensive_operations "{}"'</font>
+<span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> i </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> {</span><span style="color: #8a450c">0</span><span style="color: #765924">..</span><span style="color: #8a450c">9</span><span style="color: #25231f">}</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span><span style="color: #25231f"> echo </span><span style="color: #6d3c6d">$i</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
+<span style="color: #25231f">  </span><span style="color: #765924">|</span><span style="color: #25231f"> xargs -P</span><span style="color: #8a450c">10</span><span style="color: #25231f"> -I{} bash -c </span><span style="color: #3e5d36">'some_expensive_operations "{}"'</span>
 </pre>
 <br />
 <span>... because <span class='inlinecode'>some_other_function</span> isn&#39;t exported! You will also need to add an <span class='inlinecode'>export -f some_other_function</span>!</span><br />
@@ -277,22 +287,22 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<font color="#5da994">foo()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> </font><font color="#bd976a">foo</font><font color="#cb7676">=</font><font color="#dbd7ca">bar </font><i><font color="#666666"># Declare local/dynamic variable</font></i>
-<font color="#dbd7ca">  bar</font>
-<font color="#dbd7ca">  echo </font><font color="#bd976a">"$foo"</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">foo()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">foo</span><span style="color: #765924">=</span><span style="color: #25231f">bar </span><span style="font-style: italic"><span style="color: #685f50"># Declare local/dynamic variable</span></span>
+<span style="color: #25231f">  bar</span>
+<span style="color: #25231f">  echo </span><span style="color: #3e5d36">"$foo"</span>
+<span style="color: #25231f">}</span>
 
-<font color="#5da994">bar()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  echo </font><font color="#bd976a">"$foo"</font>
-<font color="#dbd7ca">  </font><font color="#bd976a">foo</font><font color="#cb7676">=</font><font color="#dbd7ca">baz</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">bar()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  echo </span><span style="color: #3e5d36">"$foo"</span>
+<span style="color: #25231f">  </span><span style="color: #6d3c6d">foo</span><span style="color: #765924">=</span><span style="color: #25231f">baz</span>
+<span style="color: #25231f">}</span>
 
-<font color="#bd976a">foo</font><font color="#cb7676">=</font><font color="#dbd7ca">foo </font><i><font color="#666666"># Declare global variable</font></i>
-<font color="#dbd7ca">foo </font><i><font color="#666666"># Call function foo</font></i>
-<font color="#dbd7ca">echo </font><font color="#bd976a">"$foo"</font>
+<span style="color: #6d3c6d">foo</span><span style="color: #765924">=</span><span style="color: #25231f">foo </span><span style="font-style: italic"><span style="color: #685f50"># Declare global variable</span></span>
+<span style="color: #25231f">foo </span><span style="font-style: italic"><span style="color: #685f50"># Call function foo</span></span>
+<span style="color: #25231f">echo </span><span style="color: #3e5d36">"$foo"</span>
 </pre>
 <br />
 <span>Let&#39;s pause a minute. What do you think the output would be?</span><br />
@@ -317,34 +327,34 @@ foo
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<b><font color="#4d9375">declare</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">foo</font><font color="#cb7676">=</font><font color="#dbd7ca">foo</font>
-<b><font color="#4d9375">declare</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">bar</font><font color="#cb7676">=</font><font color="#dbd7ca">bar</font>
+<span style="font-weight: bold"><span style="color: #7b2934">declare</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">foo</span><span style="color: #765924">=</span><span style="color: #25231f">foo</span>
+<span style="font-weight: bold"><span style="color: #7b2934">declare</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">bar</span><span style="color: #765924">=</span><span style="color: #25231f">bar</span>
 
-<b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> </font><font color="#bd976a">"$foo"</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> foo </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
-<font color="#dbd7ca">  </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> </font><font color="#bd976a">"$bar"</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> bar </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
-<font color="#dbd7ca">    echo ok1</font>
-<font color="#dbd7ca">  </font><b><font color="#4d9375">fi</font></b>
-<b><font color="#4d9375">fi</font></b>
+<span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$foo"</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> foo </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$bar"</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> bar </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
+<span style="color: #25231f">    echo ok1</span>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
+<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
 
-<b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> </font><font color="#bd976a">"$foo"</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> foo </font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> </font><font color="#bd976a">"$bar"</font><font color="#dbd7ca"> </font><font color="#cb7676">==</font><font color="#dbd7ca"> bar </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
-<font color="#dbd7ca">  echo ok2a</font>
-<b><font color="#4d9375">fi</font></b>
+<span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$foo"</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> foo </span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$bar"</span><span style="color: #25231f"> </span><span style="color: #765924">==</span><span style="color: #25231f"> bar </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
+<span style="color: #25231f">  echo ok2a</span>
+<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
 
-<font color="#cb7676">[</font><font color="#dbd7ca"> </font><font color="#bd976a">"$foo"</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> foo </font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> </font><font color="#bd976a">"$bar"</font><font color="#dbd7ca"> </font><font color="#cb7676">==</font><font color="#dbd7ca"> bar </font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> echo ok2b</font>
+<span style="color: #765924">[</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$foo"</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> foo </span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$bar"</span><span style="color: #25231f"> </span><span style="color: #765924">==</span><span style="color: #25231f"> bar </span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> echo ok2b</span>
 
-<b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[[</font><font color="#dbd7ca"> </font><font color="#bd976a">"$foo"</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> foo </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> </font><font color="#bd976a">"$bar"</font><font color="#dbd7ca"> </font><font color="#cb7676">==</font><font color="#dbd7ca"> bar </font><font color="#cb7676">]];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
-<font color="#dbd7ca">  echo ok3a</font>
-<b><font color="#4d9375">fi</font></b>
+<span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[[</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$foo"</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> foo </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$bar"</span><span style="color: #25231f"> </span><span style="color: #765924">==</span><span style="color: #25231f"> bar </span><span style="color: #765924">]];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
+<span style="color: #25231f">  echo ok3a</span>
+<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
 
-<font color="#dbd7ca"> </font><font color="#cb7676">[[</font><font color="#dbd7ca"> </font><font color="#bd976a">"$foo"</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> foo </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> </font><font color="#bd976a">"$bar"</font><font color="#dbd7ca"> </font><font color="#cb7676">==</font><font color="#dbd7ca"> bar </font><font color="#cb7676">]]</font><font color="#dbd7ca"> </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> echo ok3b</font>
+<span style="color: #25231f"> </span><span style="color: #765924">[[</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$foo"</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> foo </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$bar"</span><span style="color: #25231f"> </span><span style="color: #765924">==</span><span style="color: #25231f"> bar </span><span style="color: #765924">]]</span><span style="color: #25231f"> </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> echo ok3b</span>
 
-<b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">test</font></b><font color="#dbd7ca"> </font><font color="#bd976a">"$foo"</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> foo </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">test</font></b><font color="#dbd7ca"> </font><font color="#bd976a">"$bar"</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> bar</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
-<font color="#dbd7ca">  echo ok4a</font>
-<b><font color="#4d9375">fi</font></b>
+<span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">test</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$foo"</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> foo </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">test</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$bar"</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> bar</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
+<span style="color: #25231f">  echo ok4a</span>
+<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
 
-<b><font color="#4d9375">test</font></b><font color="#dbd7ca"> </font><font color="#bd976a">"$foo"</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> foo </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">test</font></b><font color="#dbd7ca"> </font><font color="#bd976a">"$bar"</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> bar </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> echo ok4b</font>
+<span style="font-weight: bold"><span style="color: #7b2934">test</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$foo"</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> foo </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">test</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$bar"</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> bar </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> echo ok4b</span>
 </pre>
 <br />
 <span>The output we get is:</span><br />
@@ -368,18 +378,18 @@ ok4b
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<i><font color="#666666"># Single line comment</font></i>
+<span style="font-style: italic"><span style="color: #685f50"># Single line comment</span></span>
 
-<i><font color="#666666"># These are two single line</font></i>
-<i><font color="#666666"># comments one after another</font></i>
+<span style="font-style: italic"><span style="color: #685f50"># These are two single line</span></span>
+<span style="font-style: italic"><span style="color: #685f50"># comments one after another</span></span>
 
-<font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">&lt;&lt;</font><font color="#dbd7ca">COMMENT</font>
-<font color="#dbd7ca">This is another way a</font>
-<font color="#dbd7ca">multi line comment</font>
-<font color="#dbd7ca">could be written</font><font color="#cb7676">!</font>
-<font color="#dbd7ca">COMMENT</font>
+<span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">&lt;&lt;</span><span style="color: #25231f">COMMENT</span>
+<span style="color: #25231f">This is another way a</span>
+<span style="color: #25231f">multi line comment</span>
+<span style="color: #25231f">could be written</span><span style="color: #765924">!</span>
+<span style="color: #25231f">COMMENT</span>
 </pre>
 <br />
 <span>I will not demonstrate the execution of this script, as it won&#39;t print anything! It&#39;s obviously not the most pretty way of commenting on your code, but it could sometimes be handy!</span><br />
@@ -392,11 +402,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
 
-<font color="#dbd7ca">echo foo</font>
-<font color="#dbd7ca">echo echo baz </font><font color="#cb7676">&gt;&gt;</font><font color="#dbd7ca"> </font><font color="#bd976a">$0</font>
-<font color="#dbd7ca">echo bar</font>
+<span style="color: #25231f">echo foo</span>
+<span style="color: #25231f">echo echo baz </span><span style="color: #765924">&gt;&gt;</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$0</span>
+<span style="color: #25231f">echo bar</span>
 </pre>
 <br />
 <span>When it is run, it will do:</span><br />
@@ -429,12 +439,13 @@ echo baz
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

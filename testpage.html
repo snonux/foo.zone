@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/testpage.md">Markdown</a> | <a href="gemini://foo.zone/testpage.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/testpage.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/testpage.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='this-is-a-test-page'>This is a <span class='inlinecode'>test</span> page!</h1><br />
 <br />
 <span class='quote'>A <span class='inlinecode'>test</span> page this is!</span><br />
@@ -50,31 +60,31 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca"> -f </font><font color="#bd976a">"foo"</font><font color="#dbd7ca"> </font><font color="#cb7676">];</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
-<font color="#dbd7ca">    echo foo</font>
-<b><font color="#4d9375">else</font></b>
-<font color="#dbd7ca">    echo bar</font>
-<b><font color="#4d9375">fi</font></b>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> -f </span><span style="color: #3e5d36">"foo"</span><span style="color: #25231f"> </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
+<span style="color: #25231f">    echo foo</span>
+<span style="font-weight: bold"><span style="color: #7b2934">else</span></span>
+<span style="color: #25231f">    echo bar</span>
+<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666"># Jo</font></i>
-<font color="#dbd7ca">❯ </font><b><font color="#4d9375">exec</font></b><font color="#dbd7ca"> </font><font color="#bd976a">5</font><font color="#cb7676">&lt;&gt;</font><font color="#dbd7ca">/dev/tcp/google</font><font color="#cb7676">.</font><font color="#dbd7ca">de</font><font color="#cb7676">/</font><font color="#bd976a">80</font>
-<font color="#dbd7ca">❯ echo -e </font><font color="#bd976a">"GET / HTTP/1.1</font><font color="#cb7676">\n</font><font color="#bd976a">host: google.de</font><font color="#cb7676">\n\n</font><font color="#bd976a">"</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;&amp;</font><font color="#bd976a">5</font>
-<font color="#dbd7ca">❯ cat </font><font color="#cb7676">&lt;&amp;</font><font color="#bd976a">5</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> head</font>
-<font color="#dbd7ca">HTTP</font><font color="#cb7676">/</font><font color="#bd976a">1.1</font><font color="#dbd7ca"> </font><font color="#bd976a">301</font><font color="#dbd7ca"> Moved Permanently</font>
-<font color="#dbd7ca">Location</font><font color="#cb7676">:</font><font color="#dbd7ca"> http</font><font color="#cb7676">:</font><font color="#dbd7ca">//www</font><font color="#cb7676">.</font><font color="#dbd7ca">google</font><font color="#cb7676">.</font><font color="#dbd7ca">de</font><font color="#cb7676">/</font>
-<font color="#dbd7ca">Content-Type</font><font color="#cb7676">:</font><font color="#dbd7ca"> text/html</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><font color="#bd976a">charset</font><font color="#cb7676">=</font><font color="#dbd7ca">UTF-</font><font color="#bd976a">8</font>
-<font color="#dbd7ca">Date</font><font color="#cb7676">:</font><font color="#dbd7ca"> Thu</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">18</font><font color="#dbd7ca"> Nov </font><font color="#bd976a">2021</font><font color="#dbd7ca"> </font><font color="#bd976a">08</font><font color="#cb7676">:</font><font color="#bd976a">27</font><font color="#cb7676">:</font><font color="#bd976a">18</font><font color="#dbd7ca"> GMT</font>
-<font color="#dbd7ca">Expires</font><font color="#cb7676">:</font><font color="#dbd7ca"> Sat</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">18</font><font color="#dbd7ca"> Dec </font><font color="#bd976a">2021</font><font color="#dbd7ca"> </font><font color="#bd976a">08</font><font color="#cb7676">:</font><font color="#bd976a">27</font><font color="#cb7676">:</font><font color="#bd976a">18</font><font color="#dbd7ca"> GMT</font>
-<font color="#dbd7ca">Cache-Control</font><font color="#cb7676">:</font><font color="#dbd7ca"> public</font><font color="#cb7676">,</font><font color="#dbd7ca"> max-age</font><font color="#cb7676">=</font><font color="#bd976a">2592000</font>
-<font color="#dbd7ca">Server</font><font color="#cb7676">:</font><font color="#dbd7ca"> gws</font>
-<font color="#dbd7ca">Content-Length</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">218</font>
-<font color="#dbd7ca">X-XSS-Protection</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font>
-<font color="#dbd7ca">X-Frame-Options</font><font color="#cb7676">:</font><font color="#dbd7ca"> SAMEORIGIN</font>
+<pre><span style="font-style: italic"><span style="color: #685f50"># Jo</span></span>
+<span style="color: #25231f">❯ </span><span style="font-weight: bold"><span style="color: #7b2934">exec</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">5</span><span style="color: #765924">&lt;&gt;</span><span style="color: #25231f">/dev/tcp/google</span><span style="color: #765924">.</span><span style="color: #25231f">de</span><span style="color: #765924">/</span><span style="color: #8a450c">80</span>
+<span style="color: #25231f">❯ echo -e </span><span style="color: #3e5d36">"GET / HTTP/1.1</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">host: google.de</span><span style="color: #7f3b73">\n\n</span><span style="color: #3e5d36">"</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;&amp;</span><span style="color: #8a450c">5</span>
+<span style="color: #25231f">❯ cat </span><span style="color: #765924">&lt;&amp;</span><span style="color: #8a450c">5</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> head</span>
+<span style="color: #25231f">HTTP</span><span style="color: #765924">/</span><span style="color: #8a450c">1.1</span><span style="color: #25231f"> </span><span style="color: #8a450c">301</span><span style="color: #25231f"> Moved Permanently</span>
+<span style="color: #25231f">Location</span><span style="color: #765924">:</span><span style="color: #25231f"> http</span><span style="color: #765924">:</span><span style="color: #25231f">//www</span><span style="color: #765924">.</span><span style="color: #25231f">google</span><span style="color: #765924">.</span><span style="color: #25231f">de</span><span style="color: #765924">/</span>
+<span style="color: #25231f">Content-Type</span><span style="color: #765924">:</span><span style="color: #25231f"> text/html</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">charset</span><span style="color: #765924">=</span><span style="color: #25231f">UTF-</span><span style="color: #8a450c">8</span>
+<span style="color: #25231f">Date</span><span style="color: #765924">:</span><span style="color: #25231f"> Thu</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">18</span><span style="color: #25231f"> Nov </span><span style="color: #8a450c">2021</span><span style="color: #25231f"> </span><span style="color: #8a450c">08</span><span style="color: #765924">:</span><span style="color: #8a450c">27</span><span style="color: #765924">:</span><span style="color: #8a450c">18</span><span style="color: #25231f"> GMT</span>
+<span style="color: #25231f">Expires</span><span style="color: #765924">:</span><span style="color: #25231f"> Sat</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">18</span><span style="color: #25231f"> Dec </span><span style="color: #8a450c">2021</span><span style="color: #25231f"> </span><span style="color: #8a450c">08</span><span style="color: #765924">:</span><span style="color: #8a450c">27</span><span style="color: #765924">:</span><span style="color: #8a450c">18</span><span style="color: #25231f"> GMT</span>
+<span style="color: #25231f">Cache-Control</span><span style="color: #765924">:</span><span style="color: #25231f"> public</span><span style="color: #765924">,</span><span style="color: #25231f"> max-age</span><span style="color: #765924">=</span><span style="color: #8a450c">2592000</span>
+<span style="color: #25231f">Server</span><span style="color: #765924">:</span><span style="color: #25231f"> gws</span>
+<span style="color: #25231f">Content-Length</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">218</span>
+<span style="color: #25231f">X-XSS-Protection</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span>
+<span style="color: #25231f">X-Frame-Options</span><span style="color: #765924">:</span><span style="color: #25231f"> SAMEORIGIN</span>
 </pre>
 <br />
 <pre>
@@ -102,12 +112,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor i
 <span> * Again Entry 3 jo <span class='inlinecode'>yay</span> jo</span><br />
 <a class='textlink' href='https://foo.zone'>https://foo.zone</a><br />
 <a class='textlink' href='https://foo.zone'>link</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

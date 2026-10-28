@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2011-05-07-perl-daemon-service-framework.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2011-05-07-perl-daemon-service-framework.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2011-05-07-perl-daemon-service-framework.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='perl-daemon-service-framework'>Perl Daemon (Service Framework)</h1><br />
 <br />
 <span class='quote'>Published at 2011-05-07T22:26:02+01:00; Updated at 2021-05-07</span><br />
@@ -59,14 +69,14 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666"># Starting</font></i>
-<font color="#dbd7ca"> </font><font color="#cb7676">.</font><font color="#dbd7ca">/bin/perldaemon start </font><font color="#cb7676">(</font><font color="#dbd7ca">or shortcut </font><font color="#cb7676">.</font><font color="#dbd7ca">/control start</font><font color="#cb7676">)</font>
+<pre><span style="font-style: italic"><span style="color: #685f50"># Starting</span></span>
+<span style="color: #25231f"> </span><span style="color: #765924">.</span><span style="color: #25231f">/bin/perldaemon start </span><span style="color: #765924">(</span><span style="color: #25231f">or shortcut </span><span style="color: #765924">.</span><span style="color: #25231f">/control start</span><span style="color: #765924">)</span>
 
-<i><font color="#666666"># Stopping</font></i>
-<font color="#dbd7ca"> </font><font color="#cb7676">.</font><font color="#dbd7ca">/bin/perldaemon stop </font><font color="#cb7676">(</font><font color="#dbd7ca">or shortcut </font><font color="#cb7676">.</font><font color="#dbd7ca">/control stop</font><font color="#cb7676">)</font>
+<span style="font-style: italic"><span style="color: #685f50"># Stopping</span></span>
+<span style="color: #25231f"> </span><span style="color: #765924">.</span><span style="color: #25231f">/bin/perldaemon stop </span><span style="color: #765924">(</span><span style="color: #25231f">or shortcut </span><span style="color: #765924">.</span><span style="color: #25231f">/control stop</span><span style="color: #765924">)</span>
 
-<i><font color="#666666"># Alternatively: Starting in foreground </font></i>
-<font color="#cb7676">.</font><font color="#dbd7ca">/bin/perldaemon start daemon</font><font color="#cb7676">.</font><font color="#bd976a">daemonize</font><font color="#cb7676">=</font><font color="#dbd7ca">no </font><font color="#cb7676">(</font><font color="#dbd7ca">or shortcut </font><font color="#cb7676">.</font><font color="#dbd7ca">/control foreground</font><font color="#cb7676">)</font>
+<span style="font-style: italic"><span style="color: #685f50"># Alternatively: Starting in foreground </span></span>
+<span style="color: #765924">.</span><span style="color: #25231f">/bin/perldaemon start daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">daemonize</span><span style="color: #765924">=</span><span style="color: #25231f">no </span><span style="color: #765924">(</span><span style="color: #25231f">or shortcut </span><span style="color: #765924">.</span><span style="color: #25231f">/control foreground</span><span style="color: #765924">)</span>
 </pre>
 <br />
 <span>To stop a daemon from running in foreground mode, "Ctrl+C" must be hit. To see more available startup options run "./control" without any argument.</span><br />
@@ -79,30 +89,30 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">pb@titania</font><font color="#cb7676">:~</font><font color="#dbd7ca">/svn/utils/perldaemon/trunk$ </font><font color="#cb7676">.</font><font color="#dbd7ca">/control keys</font>
-<i><font color="#666666"># Path to the logfile</font></i>
-<font color="#dbd7ca">daemon</font><font color="#cb7676">.</font><font color="#bd976a">logfile</font><font color="#cb7676">=.</font><font color="#dbd7ca">/log/perldaemon</font><font color="#cb7676">.</font><font color="#dbd7ca">log</font>
+<pre><span style="color: #25231f">pb@titania</span><span style="color: #765924">:~</span><span style="color: #25231f">/svn/utils/perldaemon/trunk$ </span><span style="color: #765924">.</span><span style="color: #25231f">/control keys</span>
+<span style="font-style: italic"><span style="color: #685f50"># Path to the logfile</span></span>
+<span style="color: #25231f">daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">logfile</span><span style="color: #765924">=.</span><span style="color: #25231f">/log/perldaemon</span><span style="color: #765924">.</span><span style="color: #25231f">log</span>
 
-<i><font color="#666666"># The amount of seconds until the next event look takes place</font></i>
-<font color="#dbd7ca">daemon</font><font color="#cb7676">.</font><font color="#bd976a">loopinterval</font><font color="#cb7676">=</font><font color="#bd976a">1</font>
+<span style="font-style: italic"><span style="color: #685f50"># The amount of seconds until the next event look takes place</span></span>
+<span style="color: #25231f">daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">loopinterval</span><span style="color: #765924">=</span><span style="color: #8a450c">1</span>
 
-<i><font color="#666666"># Path to the modules dir</font></i>
-<font color="#dbd7ca">daemon</font><font color="#cb7676">.</font><font color="#dbd7ca">modules</font><font color="#cb7676">.</font><font color="#bd976a">dir</font><font color="#cb7676">=.</font><font color="#dbd7ca">/lib/PerlDaemonModules</font>
+<span style="font-style: italic"><span style="color: #685f50"># Path to the modules dir</span></span>
+<span style="color: #25231f">daemon</span><span style="color: #765924">.</span><span style="color: #25231f">modules</span><span style="color: #765924">.</span><span style="color: #6d3c6d">dir</span><span style="color: #765924">=.</span><span style="color: #25231f">/lib/PerlDaemonModules</span>
 
-<i><font color="#666666"># Specifies either the daemon should run in daemon or foreground mode</font></i>
-<font color="#dbd7ca">daemon</font><font color="#cb7676">.</font><font color="#bd976a">daemonize</font><font color="#cb7676">=</font><font color="#dbd7ca">yes</font>
+<span style="font-style: italic"><span style="color: #685f50"># Specifies either the daemon should run in daemon or foreground mode</span></span>
+<span style="color: #25231f">daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">daemonize</span><span style="color: #765924">=</span><span style="color: #25231f">yes</span>
 
-<i><font color="#666666"># Path to the pidfile</font></i>
-<font color="#dbd7ca">daemon</font><font color="#cb7676">.</font><font color="#bd976a">pidfile</font><font color="#cb7676">=.</font><font color="#dbd7ca">/run/perldaemon</font><font color="#cb7676">.</font><font color="#dbd7ca">pid</font>
+<span style="font-style: italic"><span style="color: #685f50"># Path to the pidfile</span></span>
+<span style="color: #25231f">daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">pidfile</span><span style="color: #765924">=.</span><span style="color: #25231f">/run/perldaemon</span><span style="color: #765924">.</span><span style="color: #25231f">pid</span>
 
-<i><font color="#666666"># Each module should run every run interval seconds</font></i>
-<font color="#dbd7ca">daemon</font><font color="#cb7676">.</font><font color="#dbd7ca">modules</font><font color="#cb7676">.</font><font color="#bd976a">runinterval</font><font color="#cb7676">=</font><font color="#bd976a">3</font>
+<span style="font-style: italic"><span style="color: #685f50"># Each module should run every run interval seconds</span></span>
+<span style="color: #25231f">daemon</span><span style="color: #765924">.</span><span style="color: #25231f">modules</span><span style="color: #765924">.</span><span style="color: #6d3c6d">runinterval</span><span style="color: #765924">=</span><span style="color: #8a450c">3</span>
 
-<i><font color="#666666"># Path to the alive file (is touched every loop interval seconds, usable for monitoring)</font></i>
-<font color="#dbd7ca">daemon</font><font color="#cb7676">.</font><font color="#bd976a">alivefile</font><font color="#cb7676">=.</font><font color="#dbd7ca">/run/perldaemon</font><font color="#cb7676">.</font><font color="#dbd7ca">alive</font>
+<span style="font-style: italic"><span style="color: #685f50"># Path to the alive file (is touched every loop interval seconds, usable for monitoring)</span></span>
+<span style="color: #25231f">daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">alivefile</span><span style="color: #765924">=.</span><span style="color: #25231f">/run/perldaemon</span><span style="color: #765924">.</span><span style="color: #25231f">alive</span>
 
-<i><font color="#666666"># Specifies the working directory</font></i>
-<font color="#dbd7ca">daemon</font><font color="#cb7676">.</font><font color="#bd976a">wd</font><font color="#cb7676">=./</font>
+<span style="font-style: italic"><span style="color: #685f50"># Specifies the working directory</span></span>
+<span style="color: #25231f">daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">wd</span><span style="color: #765924">=./</span>
 </pre>
 <br />
 <h2 style='display: inline' id='example-'>Example </h2><br />
@@ -113,17 +123,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ </font><font color="#cb7676">.</font><font color="#dbd7ca">/control keys </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep daemon</font><font color="#cb7676">.</font><font color="#dbd7ca">loopinterval</font>
-<font color="#dbd7ca">daemon</font><font color="#cb7676">.</font><font color="#bd976a">loopinterval</font><font color="#cb7676">=</font><font color="#bd976a">1</font>
-<font color="#dbd7ca">$ </font><font color="#cb7676">.</font><font color="#dbd7ca">/control keys daemon</font><font color="#cb7676">.</font><font color="#bd976a">loopinterval</font><font color="#cb7676">=</font><font color="#bd976a">10</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep daemon</font><font color="#cb7676">.</font><font color="#dbd7ca">loopinterval</font>
-<font color="#dbd7ca">daemon</font><font color="#cb7676">.</font><font color="#bd976a">loopinterval</font><font color="#cb7676">=</font><font color="#bd976a">10</font>
-<font color="#dbd7ca">$ </font><font color="#cb7676">.</font><font color="#dbd7ca">/control start daemon</font><font color="#cb7676">.</font><font color="#bd976a">loopinterval</font><font color="#cb7676">=</font><font color="#bd976a">10</font><font color="#cb7676">;</font><font color="#dbd7ca"> sleep </font><font color="#bd976a">10</font><font color="#cb7676">;</font><font color="#dbd7ca"> tail -n </font><font color="#bd976a">2</font><font color="#dbd7ca"> log/perldaemon</font><font color="#cb7676">.</font><font color="#dbd7ca">log</font>
-<font color="#dbd7ca">Starting daemon now</font><font color="#cb7676">...</font>
-<font color="#dbd7ca">Mon Jun </font><font color="#bd976a">13</font><font color="#dbd7ca"> </font><font color="#bd976a">11</font><font color="#cb7676">:</font><font color="#bd976a">29</font><font color="#cb7676">:</font><font color="#bd976a">27</font><font color="#dbd7ca"> </font><font color="#bd976a">2011</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">PID </font><font color="#bd976a">2838</font><font color="#cb7676">):</font><font color="#dbd7ca"> Triggering PerlDaemonModules</font><font color="#cb7676">::</font><font color="#dbd7ca">ExampleModule </font>
-<font color="#cb7676">(</font><font color="#dbd7ca">last triggered before </font><font color="#bd976a">10</font><font color="#cb7676">.</font><font color="#dbd7ca">002106s</font><font color="#cb7676">;</font><font color="#dbd7ca"> carry</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">7</font><font color="#cb7676">.</font><font color="#dbd7ca">002106s</font><font color="#cb7676">;</font><font color="#dbd7ca"> wanted interval</font><font color="#cb7676">:</font><font color="#dbd7ca"> 3s</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">Mon Jun </font><font color="#bd976a">13</font><font color="#dbd7ca"> </font><font color="#bd976a">11</font><font color="#cb7676">:</font><font color="#bd976a">29</font><font color="#cb7676">:</font><font color="#bd976a">27</font><font color="#dbd7ca"> </font><font color="#bd976a">2011</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">PID </font><font color="#bd976a">2838</font><font color="#cb7676">):</font><font color="#dbd7ca"> ExampleModule Test </font><font color="#bd976a">2</font>
-<font color="#dbd7ca">$ </font><font color="#cb7676">.</font><font color="#dbd7ca">/control stop</font>
-<font color="#dbd7ca">Stopping daemon now</font><font color="#cb7676">...</font>
+<pre><span style="color: #25231f">$ </span><span style="color: #765924">.</span><span style="color: #25231f">/control keys </span><span style="color: #765924">|</span><span style="color: #25231f"> grep daemon</span><span style="color: #765924">.</span><span style="color: #25231f">loopinterval</span>
+<span style="color: #25231f">daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">loopinterval</span><span style="color: #765924">=</span><span style="color: #8a450c">1</span>
+<span style="color: #25231f">$ </span><span style="color: #765924">.</span><span style="color: #25231f">/control keys daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">loopinterval</span><span style="color: #765924">=</span><span style="color: #8a450c">10</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> grep daemon</span><span style="color: #765924">.</span><span style="color: #25231f">loopinterval</span>
+<span style="color: #25231f">daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">loopinterval</span><span style="color: #765924">=</span><span style="color: #8a450c">10</span>
+<span style="color: #25231f">$ </span><span style="color: #765924">.</span><span style="color: #25231f">/control start daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">loopinterval</span><span style="color: #765924">=</span><span style="color: #8a450c">10</span><span style="color: #765924">;</span><span style="color: #25231f"> sleep </span><span style="color: #8a450c">10</span><span style="color: #765924">;</span><span style="color: #25231f"> tail -n </span><span style="color: #8a450c">2</span><span style="color: #25231f"> log/perldaemon</span><span style="color: #765924">.</span><span style="color: #25231f">log</span>
+<span style="color: #25231f">Starting daemon now</span><span style="color: #765924">...</span>
+<span style="color: #25231f">Mon Jun </span><span style="color: #8a450c">13</span><span style="color: #25231f"> </span><span style="color: #8a450c">11</span><span style="color: #765924">:</span><span style="color: #8a450c">29</span><span style="color: #765924">:</span><span style="color: #8a450c">27</span><span style="color: #25231f"> </span><span style="color: #8a450c">2011</span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #25231f">PID </span><span style="color: #8a450c">2838</span><span style="color: #765924">):</span><span style="color: #25231f"> Triggering PerlDaemonModules</span><span style="color: #765924">::</span><span style="color: #25231f">ExampleModule </span>
+<span style="color: #765924">(</span><span style="color: #25231f">last triggered before </span><span style="color: #8a450c">10</span><span style="color: #765924">.</span><span style="color: #25231f">002106s</span><span style="color: #765924">;</span><span style="color: #25231f"> carry</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">7</span><span style="color: #765924">.</span><span style="color: #25231f">002106s</span><span style="color: #765924">;</span><span style="color: #25231f"> wanted interval</span><span style="color: #765924">:</span><span style="color: #25231f"> 3s</span><span style="color: #765924">)</span>
+<span style="color: #25231f">Mon Jun </span><span style="color: #8a450c">13</span><span style="color: #25231f"> </span><span style="color: #8a450c">11</span><span style="color: #765924">:</span><span style="color: #8a450c">29</span><span style="color: #765924">:</span><span style="color: #8a450c">27</span><span style="color: #25231f"> </span><span style="color: #8a450c">2011</span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #25231f">PID </span><span style="color: #8a450c">2838</span><span style="color: #765924">):</span><span style="color: #25231f"> ExampleModule Test </span><span style="color: #8a450c">2</span>
+<span style="color: #25231f">$ </span><span style="color: #765924">.</span><span style="color: #25231f">/control stop</span>
+<span style="color: #25231f">Stopping daemon now</span><span style="color: #765924">...</span>
 </pre>
 <br />
 <span>If you want to change that property forever, either edit perldaemon.conf or do this:</span><br />
@@ -132,7 +142,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ </font><font color="#cb7676">.</font><font color="#dbd7ca">/control keys daemon</font><font color="#cb7676">.</font><font color="#bd976a">loopinterval</font><font color="#cb7676">=</font><font color="#bd976a">10</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> new</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font><font color="#cb7676">;</font><font color="#dbd7ca"> mv new</font><font color="#cb7676">.</font><font color="#dbd7ca">conf conf/perldaemon</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font>
+<pre><span style="color: #25231f">$ </span><span style="color: #765924">.</span><span style="color: #25231f">/control keys daemon</span><span style="color: #765924">.</span><span style="color: #6d3c6d">loopinterval</span><span style="color: #765924">=</span><span style="color: #8a450c">10</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> new</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span><span style="color: #765924">;</span><span style="color: #25231f"> mv new</span><span style="color: #765924">.</span><span style="color: #25231f">conf conf/perldaemon</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span>
 </pre>
 <br />
 <h2 style='display: inline' id='hires-event-loop'>HiRes event loop</h2><br />
@@ -149,35 +159,35 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">package</font></b><font color="#dbd7ca"> PerlDaemonModules</font><font color="#cb7676">::</font><font color="#dbd7ca">ExampleModule</font><font color="#cb7676">;</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">package</span></span><span style="color: #25231f"> PerlDaemonModules</span><span style="color: #765924">::</span><span style="color: #25231f">ExampleModule</span><span style="color: #765924">;</span>
 
-<b><font color="#4d9375">use</font></b><font color="#dbd7ca"> strict</font><font color="#cb7676">;</font>
-<b><font color="#4d9375">use</font></b><font color="#dbd7ca"> warnings</font><font color="#cb7676">;</font>
+<span style="font-weight: bold"><span style="color: #7b2934">use</span></span><span style="color: #25231f"> strict</span><span style="color: #765924">;</span>
+<span style="font-weight: bold"><span style="color: #7b2934">use</span></span><span style="color: #25231f"> warnings</span><span style="color: #765924">;</span>
 
-<b><font color="#4d9375">sub</font></b><font color="#dbd7ca"> </font><font color="#5da994">new</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">$$$</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">  </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#bd976a">$class</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">$conf</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">@_</font><font color="#cb7676">;</font>
+<span style="font-weight: bold"><span style="color: #7b2934">sub</span></span><span style="color: #25231f"> </span><span style="color: #265a79">new</span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #25231f">$$$</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">my</span></span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #6d3c6d">$class</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$conf</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">@_</span><span style="color: #765924">;</span>
 
-<font color="#dbd7ca">  </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$self</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">bless</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font><font color="#dbd7ca"> conf </font><font color="#cb7676">=&gt;</font><font color="#dbd7ca"> </font><font color="#bd976a">$conf</font><font color="#dbd7ca"> </font><font color="#dbd7ca">}</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">$class</font><font color="#cb7676">;</font>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">my</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$self</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">bless</span></span><span style="color: #25231f"> </span><span style="color: #765924">{</span><span style="color: #25231f"> conf </span><span style="color: #765924">=&gt;</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$conf</span><span style="color: #25231f"> </span><span style="color: #765924">}</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$class</span><span style="color: #765924">;</span>
 
-<font color="#dbd7ca">  </font><i><font color="#666666"># Store some private module stuff</font></i>
-<font color="#dbd7ca">  </font><font color="#bd976a">$self</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">{</font><font color="#dbd7ca">counter</font><font color="#dbd7ca">}</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#cb7676">;</font>
+<span style="color: #25231f">  </span><span style="font-style: italic"><span style="color: #685f50"># Store some private module stuff</span></span>
+<span style="color: #25231f">  </span><span style="color: #6d3c6d">$self</span><span style="color: #765924">-&gt;</span><span style="color: #765924">{</span><span style="color: #25231f">counter</span><span style="color: #765924">}</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span><span style="color: #765924">;</span>
 
-<font color="#dbd7ca">  </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$self</font><font color="#cb7676">;</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$self</span><span style="color: #765924">;</span>
+<span style="color: #765924">}</span>
 
-<i><font color="#666666"># Runs periodically in a loop (set interval in perldaemon.conf)</font></i>
-<b><font color="#4d9375">sub</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">$</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">  </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$self</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">shift</font></b><font color="#cb7676">;</font>
-<font color="#dbd7ca">  </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$conf</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">$self</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">{</font><font color="#dbd7ca">conf</font><font color="#dbd7ca">}</font><font color="#cb7676">;</font>
-<font color="#dbd7ca">  </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$logger</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">$conf</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">{</font><font color="#dbd7ca">logger</font><font color="#dbd7ca">}</font><font color="#cb7676">;</font>
+<span style="font-style: italic"><span style="color: #685f50"># Runs periodically in a loop (set interval in perldaemon.conf)</span></span>
+<span style="font-weight: bold"><span style="color: #7b2934">sub</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #25231f">$</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">my</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$self</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">shift</span></span><span style="color: #765924">;</span>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">my</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$conf</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$self</span><span style="color: #765924">-&gt;</span><span style="color: #765924">{</span><span style="color: #25231f">conf</span><span style="color: #765924">}</span><span style="color: #765924">;</span>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">my</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$logger</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$conf</span><span style="color: #765924">-&gt;</span><span style="color: #765924">{</span><span style="color: #25231f">logger</span><span style="color: #765924">}</span><span style="color: #765924">;</span>
 
-<font color="#dbd7ca">  </font><i><font color="#666666"># Calculate some private module stuff</font></i>
-<font color="#dbd7ca">  </font><b><font color="#4d9375">my</font></b><font color="#dbd7ca"> </font><font color="#bd976a">$count</font><font color="#dbd7ca"> </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#cb7676">++</font><font color="#bd976a">$self</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">{</font><font color="#dbd7ca">counter</font><font color="#dbd7ca">}</font><font color="#cb7676">;</font>
+<span style="color: #25231f">  </span><span style="font-style: italic"><span style="color: #685f50"># Calculate some private module stuff</span></span>
+<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">my</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$count</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #765924">++</span><span style="color: #6d3c6d">$self</span><span style="color: #765924">-&gt;</span><span style="color: #765924">{</span><span style="color: #25231f">counter</span><span style="color: #765924">}</span><span style="color: #765924">;</span>
 
-<font color="#dbd7ca">  </font><font color="#bd976a">$logger</font><font color="#cb7676">-&gt;</font><font color="#5da994">logmsg</font><font color="#cb7676">(</font><font color="#bd976a">"ExampleModule Test $count"</font><font color="#cb7676">);</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">  </span><span style="color: #6d3c6d">$logger</span><span style="color: #765924">-&gt;</span><span style="color: #265a79">logmsg</span><span style="color: #765924">(</span><span style="color: #3e5d36">"ExampleModule Test $count"</span><span style="color: #765924">);</span>
+<span style="color: #765924">}</span>
 
-<font color="#bd976a">1</font><font color="#cb7676">;</font>
+<span style="color: #8a450c">1</span><span style="color: #765924">;</span>
 </pre>
 <br />
 <h3 style='display: inline' id='your-own-module'>Your own module</h3><br />
@@ -188,11 +198,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca"> cd </font><font color="#cb7676">.</font><font color="#dbd7ca">/lib/PerlDaemonModules</font><font color="#cb7676">/</font>
-<font color="#dbd7ca"> cp ExampleModule</font><font color="#cb7676">.</font><font color="#dbd7ca">pm YourModule</font><font color="#cb7676">.</font><font color="#dbd7ca">pm</font>
-<font color="#dbd7ca"> vi YourModule</font><font color="#cb7676">.</font><font color="#dbd7ca">pm</font>
-<font color="#dbd7ca"> cd -</font>
-<font color="#dbd7ca"> </font><font color="#cb7676">.</font><font color="#dbd7ca">/bin/perldaemon restart </font><font color="#cb7676">(</font><font color="#dbd7ca">or shortcurt </font><font color="#cb7676">.</font><font color="#dbd7ca">/control restart</font><font color="#cb7676">)</font>
+<pre><span style="color: #25231f"> cd </span><span style="color: #765924">.</span><span style="color: #25231f">/lib/PerlDaemonModules</span><span style="color: #765924">/</span>
+<span style="color: #25231f"> cp ExampleModule</span><span style="color: #765924">.</span><span style="color: #25231f">pm YourModule</span><span style="color: #765924">.</span><span style="color: #25231f">pm</span>
+<span style="color: #25231f"> vi YourModule</span><span style="color: #765924">.</span><span style="color: #25231f">pm</span>
+<span style="color: #25231f"> cd -</span>
+<span style="color: #25231f"> </span><span style="color: #765924">.</span><span style="color: #25231f">/bin/perldaemon restart </span><span style="color: #765924">(</span><span style="color: #25231f">or shortcurt </span><span style="color: #765924">.</span><span style="color: #25231f">/control restart</span><span style="color: #765924">)</span>
 </pre>
 <br />
 <span>Now watch <span class='inlinecode'>./log/perldaemon.log</span> closely. It is a good practice to test your modules in &#39;foreground mode&#39; (see above how to do that).</span><br />
@@ -215,12 +225,13 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

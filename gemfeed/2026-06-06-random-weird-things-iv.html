@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-06-06-random-weird-things-iv.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-06-06-random-weird-things-iv.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅳ</h1><br />
 <br />
 <span class='quote'>Published at 2026-06-06T08:54:00+03:00</span><br />
@@ -37,31 +47,31 @@
 <br />
 <ul>
 <li><a href='#random-weird-things---part-'>Random Weird Things - Part Ⅳ</a></li>
-<li>⇢ <a href='#31-gui-apps-in-your-terminal'>31. GUI Apps in Your Terminal</a></li>
-<li>⇢ <a href='#32-templeos'>32. TempleOS</a></li>
-<li>⇢ <a href='#33-llm-via-dns'>33. LLM via DNS</a></li>
-<li>⇢ <a href='#34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</a></li>
-<li>⇢ <a href='#35-loss32-win32-on-linux'>35. loss32: Win32 on Linux</a></li>
-<li>⇢ <a href='#36-llm-rescuer'>36. LLM Rescuer</a></li>
-<li>⇢ <a href='#37-filesystem-backed-by-an-llm'>37. Filesystem Backed by an LLM</a></li>
-<li>⇢ <a href='#38-qr-code-with-pure-sql-in-postgres'>38. QR Code with Pure SQL in Postgres</a></li>
-<li>⇢ <a href='#39-the-sl-train-in-your-terminal'>39. The SL Train in Your Terminal</a></li>
-<li>⇢ <a href='#40-url-in-c-code-puzzle'>40. URL in C Code Puzzle</a></li>
+<li>⇢ <a href='#heading-31-gui-apps-in-your-terminal'>31. GUI Apps in Your Terminal</a></li>
+<li>⇢ <a href='#heading-32-templeos'>32. TempleOS</a></li>
+<li>⇢ <a href='#heading-33-llm-via-dns'>33. LLM via DNS</a></li>
+<li>⇢ <a href='#heading-34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</a></li>
+<li>⇢ <a href='#heading-35-loss32-win32-on-linux'>35. loss32: Win32 on Linux</a></li>
+<li>⇢ <a href='#heading-36-llm-rescuer'>36. LLM Rescuer</a></li>
+<li>⇢ <a href='#heading-37-filesystem-backed-by-an-llm'>37. Filesystem Backed by an LLM</a></li>
+<li>⇢ <a href='#heading-38-qr-code-with-pure-sql-in-postgres'>38. QR Code with Pure SQL in Postgres</a></li>
+<li>⇢ <a href='#heading-39-the-sl-train-in-your-terminal'>39. The SL Train in Your Terminal</a></li>
+<li>⇢ <a href='#heading-40-url-in-c-code-puzzle'>40. URL in C Code Puzzle</a></li>
 </ul><br />
-<h2 style='display: inline' id='31-gui-apps-in-your-terminal'>31. GUI Apps in Your Terminal</h2><br />
+<h2 style='display: inline' id='heading-31-gui-apps-in-your-terminal'>31. GUI Apps in Your Terminal</h2><br />
 <br />
 <span>term.everything is a from-scratch Wayland compositor that renders GUI apps inside your terminal. GTK, Qt, whatever — it just grabs it and draws it right there. You can run Firefox or GIMP over SSH and interact with it using your mouse. No X forwarding needed. It actually works.</span><br />
 <br />
 <a href='./random-weird-things-iv/term-everything.jpg'><img alt='term.everything demo' title='term.everything demo' src='./random-weird-things-iv/term-everything.jpg' /></a><br />
 <a class='textlink' href='https://github.com/mmulet/term.everything'>term.everything</a><br />
 <br />
-<h2 style='display: inline' id='32-templeos'>32. TempleOS</h2><br />
+<h2 style='display: inline' id='heading-32-templeos'>32. TempleOS</h2><br />
 <br />
 <span>Terry A. Davis spent years single-handedly building a complete 64-bit operating system from scratch because God told him to. It runs at 640×480, uses a custom language called HolyC, has its own compiler, and is designed as a temple. Boot it up and you get scripture, a talking parrot, and probably the weirdest OS you&#39;ll ever see.</span><br />
 <a href='./random-weird-things-iv/templeos.png'><img alt='TempleOS screenshot' title='TempleOS screenshot' src='./random-weird-things-iv/templeos.png' /></a><br />
 <a class='textlink' href='https://templeos.org'>TempleOS</a><br />
 <br />
-<h2 style='display: inline' id='33-llm-via-dns'>33. LLM via DNS</h2><br />
+<h2 style='display: inline' id='heading-33-llm-via-dns'>33. LLM via DNS</h2><br />
 <br />
 <span>You can query an LLM using nothing but DNS. Just run <span class='inlinecode'>dig @ch.at "what is golang" TXT +short</span> and you get back an answer in the TXT records. No browser, no API key. It even works over SSH tunnels.</span><br />
 <br />
@@ -69,30 +79,30 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ dig @ch</font><font color="#cb7676">.</font><font color="#dbd7ca">at </font><font color="#bd976a">"what is golang"</font><font color="#dbd7ca"> TXT </font><font color="#cb7676">+</font><font color="#dbd7ca">short</font>
-<font color="#bd976a">"Golang, or Go, is an open-source programming language developed by Google.</font>
-<font color="#bd976a">It was created to simplify the development of reliable and efficient software.</font>
-<font color="#bd976a">Go is known for its simplicity, strong concurrency support, and performance</font>
-<font color="#bd976a">comparable to C or C++. I"</font><font color="#dbd7ca"> </font><font color="#bd976a">"t features garbage collection, type safety, and</font>
-<font color="#bd976a">built-in support for concurrent programming through goroutines and channels.</font>
-<font color="#bd976a">Go is widely used for web servers, cloud services, and distributed systems due</font>
-<font color="#bd976a">to its efficiency and ease of deployme..."</font>
+<pre><span style="color: #25231f">$ dig @ch</span><span style="color: #765924">.</span><span style="color: #25231f">at </span><span style="color: #3e5d36">"what is golang"</span><span style="color: #25231f"> TXT </span><span style="color: #765924">+</span><span style="color: #25231f">short</span>
+<span style="color: #3e5d36">"Golang, or Go, is an open-source programming language developed by Google.</span>
+<span style="color: #3e5d36">It was created to simplify the development of reliable and efficient software.</span>
+<span style="color: #3e5d36">Go is known for its simplicity, strong concurrency support, and performance</span>
+<span style="color: #3e5d36">comparable to C or C++. I"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"t features garbage collection, type safety, and</span>
+<span style="color: #3e5d36">built-in support for concurrent programming through goroutines and channels.</span>
+<span style="color: #3e5d36">Go is widely used for web servers, cloud services, and distributed systems due</span>
+<span style="color: #3e5d36">to its efficiency and ease of deployme..."</span>
 </pre>
 <br />
-<h2 style='display: inline' id='34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</h2><br />
+<h2 style='display: inline' id='heading-34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</h2><br />
 <br />
 <span>Thi                                                                    le in your browser tab. No frameworks, no libraries, just code-golf magic. I stared at it way longer than I care to admit.</span><br />
 <br />
 <a class='textlink' href='https://aem1k.com/blackhole/'>Black Hole</a><br />
 <br />
-<h2 style='display: inline' id='35-loss32-win32-on-linux'>35. loss32: Win32 on Linux</h2><br />
+<h2 style='display: inline' id='heading-35-loss32-win32-on-linux'>35. loss32: Win32 on Linux</h2><br />
 <br />
 <span>loss32 is a Linux distro where the entire desktop is classic Win32 apps running natively. ReactOS + WINE on steroids. You get the Windows 98/2000 vibe on a modern Linux kernel. It&#39;s pure nostalgia for people who miss the old Windows desktop but don&#39;t want the actual Windows.</span><br />
 <br />
 <a href='./random-weird-things-iv/loss32.png'><img alt='loss32 desktop screenshot' title='loss32 desktop screenshot' src='./random-weird-things-iv/loss32.png' /></a><br />
 <a class='textlink' href='https://loss32.org/'>loss32</a><br />
 <br />
-<h2 style='display: inline' id='36-llm-rescuer'>36. LLM Rescuer</h2><br />
+<h2 style='display: inline' id='heading-36-llm-rescuer'>36. LLM Rescuer</h2><br />
 <br />
 <span>LLM Rescuer is a tiny Ruby gem that hooks into Ruby&#39;s method dispatch so that calling a method on <span class='inlinecode'>nil</span> doesn&#39;t crash — it asks an LLM what the return value should be instead. When a <span class='inlinecode'>NoMethodError</span> would normally explode, the gem catches it, packages up the context (what method was called, what the variable name suggests, maybe the surrounding code), fires that off to an actual LLM API, and returns whatever the model hallucinates as sensible.</span><br />
 <br />
@@ -108,27 +118,27 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666"># Classic nil safety</font></i>
-<font color="#dbd7ca">user </font><font color="#cb7676">=</font><font color="#dbd7ca"> find_user</font><font color="#cb7676">(</font><font color="#dbd7ca">id</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">"nonexistent"</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><i><font color="#666666"># returns nil</font></i>
-<font color="#dbd7ca">puts user</font><font color="#cb7676">.</font><font color="#dbd7ca">email</font>
-<i><font color="#666666"># AI: "Analyzing context... user seems to need an email...</font></i>
-<i><font color="#666666">#      returning 'no-reply@example.com'"</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50"># Classic nil safety</span></span>
+<span style="color: #25231f">user </span><span style="color: #765924">=</span><span style="color: #25231f"> find_user</span><span style="color: #765924">(</span><span style="color: #25231f">id</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"nonexistent"</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># returns nil</span></span>
+<span style="color: #25231f">puts user</span><span style="color: #765924">.</span><span style="color: #25231f">email</span>
+<span style="font-style: italic"><span style="color: #685f50"># AI: "Analyzing context... user seems to need an email...</span></span>
+<span style="font-style: italic"><span style="color: #685f50">#      returning 'no-reply@example.com'"</span></span>
 
-<i><font color="#666666"># Shopping cart magic</font></i>
-<font color="#dbd7ca">cart </font><font color="#cb7676">=</font><font color="#dbd7ca"> session</font><font color="#cb7676">[:</font><font color="#dbd7ca">cart</font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><i><font color="#666666"># nil because session expired</font></i>
-<font color="#dbd7ca">total </font><font color="#cb7676">=</font><font color="#dbd7ca"> cart</font><font color="#cb7676">.</font><font color="#dbd7ca">total_price</font>
-<i><font color="#666666"># AI: "This looks like e-commerce. Based on similar patterns,</font></i>
-<i><font color="#666666">#      I'll return 0.0 to avoid charging $nil"</font></i>
+<span style="font-style: italic"><span style="color: #685f50"># Shopping cart magic</span></span>
+<span style="color: #25231f">cart </span><span style="color: #765924">=</span><span style="color: #25231f"> session</span><span style="color: #765924">[:</span><span style="color: #25231f">cart</span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># nil because session expired</span></span>
+<span style="color: #25231f">total </span><span style="color: #765924">=</span><span style="color: #25231f"> cart</span><span style="color: #765924">.</span><span style="color: #25231f">total_price</span>
+<span style="font-style: italic"><span style="color: #685f50"># AI: "This looks like e-commerce. Based on similar patterns,</span></span>
+<span style="font-style: italic"><span style="color: #685f50">#      I'll return 0.0 to avoid charging $nil"</span></span>
 
-<i><font color="#666666"># The existential crisis</font></i>
-<font color="#dbd7ca">meaning_of_life </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">nil</font></b>
-<font color="#dbd7ca">answer </font><font color="#cb7676">=</font><font color="#dbd7ca"> meaning_of_life</font><font color="#cb7676">.</font><font color="#dbd7ca">to_i</font>
-<i><font color="#666666"># AI: "Clearly this should be 42. I've read Douglas Adams."</font></i>
+<span style="font-style: italic"><span style="color: #685f50"># The existential crisis</span></span>
+<span style="color: #25231f">meaning_of_life </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">nil</span></span>
+<span style="color: #25231f">answer </span><span style="color: #765924">=</span><span style="color: #25231f"> meaning_of_life</span><span style="color: #765924">.</span><span style="color: #25231f">to_i</span>
+<span style="font-style: italic"><span style="color: #685f50"># AI: "Clearly this should be 42. I've read Douglas Adams."</span></span>
 </pre>
 <br />
 <a class='textlink' href='https://github.com/barodeur/llm_rescuer'>LLM Rescuer</a><br />
 <br />
-<h2 style='display: inline' id='37-filesystem-backed-by-an-llm'>37. Filesystem Backed by an LLM</h2><br />
+<h2 style='display: inline' id='heading-37-filesystem-backed-by-an-llm'>37. Filesystem Backed by an LLM</h2><br />
 <br />
 <span>Mount a folder via FUSE, and every time you read or write a file, an LLM decides what the contents should be. There&#39;s a real working implementation. You literally <span class='inlinecode'>cat</span> a file and the LLM generates the output on the fly.</span><br />
 <br />
@@ -138,45 +148,45 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ echo </font><font color="#bd976a">"a nginx config for a reverse proxy to localhost:8080"</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /mnt/llmfs/nginx</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font>
-<font color="#dbd7ca">$ cat /mnt/llmfs/nginx</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font>
-<font color="#dbd7ca">server {</font>
-<font color="#dbd7ca">    listen </font><font color="#bd976a">80</font><font color="#cb7676">;</font>
-<font color="#dbd7ca">    location </font><font color="#cb7676">/</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">        proxy_pass http</font><font color="#cb7676">:</font><font color="#dbd7ca">//localhost</font><font color="#cb7676">:</font><font color="#bd976a">8080</font><font color="#cb7676">;</font>
-<font color="#dbd7ca">    }</font>
-<font color="#dbd7ca">}</font>
+<pre><span style="color: #25231f">$ echo </span><span style="color: #3e5d36">"a nginx config for a reverse proxy to localhost:8080"</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /mnt/llmfs/nginx</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span>
+<span style="color: #25231f">$ cat /mnt/llmfs/nginx</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span>
+<span style="color: #25231f">server {</span>
+<span style="color: #25231f">    listen </span><span style="color: #8a450c">80</span><span style="color: #765924">;</span>
+<span style="color: #25231f">    location </span><span style="color: #765924">/</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">        proxy_pass http</span><span style="color: #765924">:</span><span style="color: #25231f">//localhost</span><span style="color: #765924">:</span><span style="color: #8a450c">8080</span><span style="color: #765924">;</span>
+<span style="color: #25231f">    }</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">$ echo </font><font color="#bd976a">"my todo list for today"</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /mnt/llmfs/todo</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
-<font color="#dbd7ca">$ cat /mnt/llmfs/todo</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
-<font color="#dbd7ca">- Write blog post</font>
-<font color="#dbd7ca">- Fix that bug </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> prod</font>
-<font color="#dbd7ca">- Drink coffee</font>
+<span style="color: #25231f">$ echo </span><span style="color: #3e5d36">"my todo list for today"</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /mnt/llmfs/todo</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
+<span style="color: #25231f">$ cat /mnt/llmfs/todo</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
+<span style="color: #25231f">- Write blog post</span>
+<span style="color: #25231f">- Fix that bug </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> prod</span>
+<span style="color: #25231f">- Drink coffee</span>
 
-<font color="#dbd7ca">$ cat /mnt/llmfs/todo</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
-<font color="#dbd7ca">- Write blog post </font><font color="#cb7676">(</font><b><font color="#4d9375">done</font></b><font color="#cb7676">?)</font>
-<font color="#dbd7ca">- Fix that bug </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> prod</font>
-<font color="#dbd7ca">- Drink more coffee</font>
+<span style="color: #25231f">$ cat /mnt/llmfs/todo</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
+<span style="color: #25231f">- Write blog post </span><span style="color: #765924">(</span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span><span style="color: #765924">?)</span>
+<span style="color: #25231f">- Fix that bug </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> prod</span>
+<span style="color: #25231f">- Drink more coffee</span>
 </pre>
 <br />
 <span>The LLM hallucinates the file contents every single read. Your todo list literally mutates when you look at it. Want a config file? Just describe it in the filename or write a prompt into it.</span><br />
 <a class='textlink' href='https://healeycodes.com/filesystem-backed-by-an-llm'>Filesystem Backed by an LLM</a><br />
 <br />
-<h2 style='display: inline' id='38-qr-code-with-pure-sql-in-postgres'>38. QR Code with Pure SQL in Postgres</h2><br />
+<h2 style='display: inline' id='heading-38-qr-code-with-pure-sql-in-postgres'>38. QR Code with Pure SQL in Postgres</h2><br />
 <br />
 <span>Someone generated a full QR code using nothing but SQL queries inside PostgreSQL. No extensions, just raw Postgres doing things it was never meant to do. I ran the example and watched a QR code materialize in the query result. Mad stuff.</span><br />
 <br />
 <a href='./random-weird-things-iv/pqr.webp'><img alt='QR code generated with pure SQL' title='QR code generated with pure SQL' src='./random-weird-things-iv/pqr.webp' /></a><br />
 <a class='textlink' href='https://tanelpoder.com/posts/generate-qr-code-with-pure-sql-in-postgres/'>Pure SQL QR Code</a><br />
 <br />
-<h2 style='display: inline' id='39-the-sl-train-in-your-terminal'>39. The SL Train in Your Terminal</h2><br />
+<h2 style='display: inline' id='heading-39-the-sl-train-in-your-terminal'>39. The SL Train in Your Terminal</h2><br />
 <br />
 <span>You mistype <span class='inlinecode'>ls</span> as <span class='inlinecode'>sl</span> and a steam locomotive comes chugging across your terminal. The SL program has been around for decades and it still cracks me up. There&#39;s even a flying train variant.</span><br />
 <br />
 <a href='./random-weird-things-iv/sl-train.gif'><img alt='SL train in action' title='SL train in action' src='./random-weird-things-iv/sl-train.gif' /></a><br />
 <a class='textlink' href='https://github.com/mtoyoda/sl'>sl</a><br />
 <br />
-<h2 style='display: inline' id='40-url-in-c-code-puzzle'>40. URL in C Code Puzzle</h2><br />
+<h2 style='display: inline' id='heading-40-url-in-c-code-puzzle'>40. URL in C Code Puzzle</h2><br />
 <br />
 <span>The following C program compiles and runs perfectly:</span><br />
 <br />
@@ -197,12 +207,13 @@ int main(void) {
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

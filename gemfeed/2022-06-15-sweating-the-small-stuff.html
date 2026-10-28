@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2022-06-15-sweating-the-small-stuff.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2022-06-15-sweating-the-small-stuff.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2022-06-15-sweating-the-small-stuff.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2022-06-15-sweating-the-small-stuff.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='sweating-the-small-stuff---tiny-projects-of-mine'>Sweating the small stuff - Tiny projects of mine</h1><br />
 <br />
 <span class='quote'>Published at 2022-06-15T08:47:44+01:00; Updated at 2022-06-18</span><br />
@@ -37,7 +47,7 @@
 <br />
 <ul>
 <li><a href='#sweating-the-small-stuff---tiny-projects-of-mine'>Sweating the small stuff - Tiny projects of mine</a></li>
-<li>⇢ <a href='#1y-anniversary'><span class='inlinecode'>1y</span> anniversary</a></li>
+<li>⇢ <a href='#heading-1y-anniversary'><span class='inlinecode'>1y</span> anniversary</a></li>
 <li>⇢ <a href='#static-photo-album-generator'>Static photo album generator</a></li>
 <li>⇢ ⇢ <a href='#the-irregular-ninja'>The Irregular Ninja</a></li>
 <li>⇢ <a href='#random-journal-page-extractor'>Random journal page extractor</a></li>
@@ -59,7 +69,7 @@
 <li>⇢ ⇢ <a href='#backup-procedure'>Backup procedure</a></li>
 <li>⇢ <a href='#konpeitomedia'>konpeito.media</a></li>
 </ul><br />
-<h2 style='display: inline' id='1y-anniversary'><span class='inlinecode'>1y</span> anniversary</h2><br />
+<h2 style='display: inline' id='heading-1y-anniversary'><span class='inlinecode'>1y</span> anniversary</h2><br />
 <br />
 <span>It has been one year since I started posting regularly (at least once monthly) on this blog again. It has been a lot of fun (and work) doing so for various reasons:</span><br />
 <br />
@@ -88,7 +98,7 @@
 <br />
 <span>Photography is one of my casual hobbies. I love to capture interesting perspectives and motifs. I love to walk new streets and neighbourhoods I never walked before so I can capture those unexpected motifs, colours and moments. Unfortunately, because of time constraints (and sometime weather constraints), I do that on a pretty infrequent basis.</span><br />
 <br />
-<a href='./sweating-the-small-stuff/ninja.jpg'><img src='./sweating-the-small-stuff/ninja.jpg' /></a><br />
+<a href='./sweating-the-small-stuff/ninja.jpg'><img alt='' src='./sweating-the-small-stuff/ninja.jpg' /></a><br />
 <br />
 <span>More than 10 years ago I wrote the bespoke small static photo album generator in Bash <span class='inlinecode'>photoalbum.sh</span> which I recently refactored to a modern Bash coding style and also freshened up the Cascading Style Sheets. Last but not least, the new domain name <span class='inlinecode'>irregular.ninja</span> has been registered.</span><br />
 <br />
@@ -270,7 +280,7 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <br />
 <span><span class='inlinecode'>jsmstrade</span> is a minimalistic graphical Java swing client for sending SMS messages over the SMStrade service.</span><br />
 <br />
-<a href='./sweating-the-small-stuff/jsmstrade.png'><img src='./sweating-the-small-stuff/jsmstrade.png' /></a><br />
+<a href='./sweating-the-small-stuff/jsmstrade.png'><img alt='' src='./sweating-the-small-stuff/jsmstrade.png' /></a><br />
 <br />
 <a class='textlink' href='https://github.com/snonux/jsmstrade'>https://github.com/snonux/jsmstrade</a><br />
 <a class='textlink' href='https://smstrade.de'>https://smstrade.de</a><br />
@@ -367,12 +377,13 @@ v = 008 [v = p*c*(s != c ? 2 : 1)] Total logical CPUs
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

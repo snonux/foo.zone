@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-09-14-bash-golf-part-4.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-09-14-bash-golf-part-4.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-09-14-bash-golf-part-4.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2025-09-14-bash-golf-part-4.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='bash-golf-part-4'>Bash Golf Part 4</h1><br />
 <br />
 <span class='quote'>Published at 2025-09-13T12:04:03+03:00</span><br />
@@ -71,9 +81,9 @@ somecommand \
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'a</font><font color="#cb7676">\n</font><font color="#bd976a">b</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">    </font><font color="#cb7676">|</font><font color="#dbd7ca"> tee </font><font color="#cb7676">&gt;(</font><font color="#dbd7ca">sed </font><font color="#bd976a">'s/.*/X:&amp;/; s/$/ :c1/'</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;(</font><font color="#dbd7ca">tr a-z A-Z </font><font color="#cb7676">|</font><font color="#dbd7ca"> sed </font><font color="#bd976a">'s/$/ :c2/'</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">    </font><font color="#cb7676">|</font><font color="#dbd7ca"> sed </font><font color="#bd976a">'s/$/ :c3/'</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'a</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">b</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
+<span style="color: #25231f">    </span><span style="color: #765924">|</span><span style="color: #25231f"> tee </span><span style="color: #765924">&gt;(</span><span style="color: #25231f">sed </span><span style="color: #3e5d36">'s/.*/X:&amp;/; s/$/ :c1/'</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;(</span><span style="color: #25231f">tr a-z A-Z </span><span style="color: #765924">|</span><span style="color: #25231f"> sed </span><span style="color: #3e5d36">'s/$/ :c2/'</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
+<span style="color: #25231f">    </span><span style="color: #765924">|</span><span style="color: #25231f"> sed </span><span style="color: #3e5d36">'s/$/ :c3/'</span>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -95,8 +105,8 @@ X:b :c1 :c3
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">/bin/sh -c </font><font color="#bd976a">'echo hi | tee &gt;(cat)'</font>
-<i><font color="#666666"># /bin/sh: 1: Syntax error: "(" unexpected</font></i>
+<pre><span style="color: #25231f">/bin/sh -c </span><span style="color: #3e5d36">'echo hi | tee &gt;(cat)'</span>
+<span style="font-style: italic"><span style="color: #685f50"># /bin/sh: 1: Syntax error: "(" unexpected</span></span>
 </pre>
 <br />
 <span>Combine with <span class='inlinecode'>set -o pipefail</span> if failures in side branches should fail the whole pipeline.</span><br />
@@ -107,9 +117,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">set</font></b><font color="#dbd7ca"> -o pipefail</font>
-<b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'ok</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> tee </font><font color="#cb7676">&gt;(</font><b><font color="#4d9375">false</font></b><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> cat </font><font color="#cb7676">&gt;</font><font color="#dbd7ca">/dev/null</font>
-<font color="#dbd7ca">echo </font><font color="#bd976a">$?</font><font color="#dbd7ca">   </font><i><font color="#666666"># 1 because a side branch failed</font></i>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">set</span></span><span style="color: #25231f"> -o pipefail</span>
+<span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'ok</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> tee </span><span style="color: #765924">&gt;(</span><span style="font-weight: bold"><span style="color: #7b2934">false</span></span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> cat </span><span style="color: #765924">&gt;</span><span style="color: #25231f">/dev/null</span>
+<span style="color: #25231f">echo </span><span style="color: #6d3c6d">$?</span><span style="color: #25231f">   </span><span style="font-style: italic"><span style="color: #685f50"># 1 because a side branch failed</span></span>
 </pre>
 <br />
 <span>Further reading:</span><br />
@@ -124,19 +134,19 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">ssh </font><font color="#bd976a">"$SSH_USER@$SSH_HOST"</font><font color="#dbd7ca"> </font><font color="#cb7676">&lt;&lt;</font><font color="#dbd7ca">EOF</font>
-<font color="#dbd7ca">    </font><i><font color="#666666"># Go to the work directory</font></i>
-<font color="#dbd7ca">    cd </font><font color="#bd976a">"$WORK_DIR"</font>
-<font color="#dbd7ca">  </font>
-<font color="#dbd7ca">    </font><i><font color="#666666"># Make a git pull</font></i>
-<font color="#dbd7ca">    git pull</font>
-<font color="#dbd7ca">  </font>
-<font color="#dbd7ca">    </font><i><font color="#666666"># Export environment variables required for the service to run</font></i>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">AUTH_TOKEN</font><font color="#cb7676">=</font><font color="#bd976a">"$APP_AUTH_TOKEN"</font>
-<font color="#dbd7ca">  </font>
-<font color="#dbd7ca">    </font><i><font color="#666666"># Start the service</font></i>
-<font color="#dbd7ca">    docker compose up -d --build</font>
-<font color="#dbd7ca">EOF</font>
+<pre><span style="color: #25231f">ssh </span><span style="color: #3e5d36">"$SSH_USER@$SSH_HOST"</span><span style="color: #25231f"> </span><span style="color: #765924">&lt;&lt;</span><span style="color: #25231f">EOF</span>
+<span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># Go to the work directory</span></span>
+<span style="color: #25231f">    cd </span><span style="color: #3e5d36">"$WORK_DIR"</span>
+<span style="color: #25231f">  </span>
+<span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># Make a git pull</span></span>
+<span style="color: #25231f">    git pull</span>
+<span style="color: #25231f">  </span>
+<span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># Export environment variables required for the service to run</span></span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">AUTH_TOKEN</span><span style="color: #765924">=</span><span style="color: #3e5d36">"$APP_AUTH_TOKEN"</span>
+<span style="color: #25231f">  </span>
+<span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># Start the service</span></span>
+<span style="color: #25231f">    docker compose up -d --build</span>
+<span style="color: #25231f">EOF</span>
 </pre>
 <br />
 <span>Tips:</span><br />
@@ -149,10 +159,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#bd976a">FOO</font><font color="#cb7676">=</font><font color="#dbd7ca">bar</font>
-<font color="#dbd7ca">cat </font><font color="#cb7676">&lt;&lt;</font><font color="#bd976a">'EOF'</font>
-<font color="#bd976a">$FOO</font><font color="#dbd7ca"> is not expanded here</font>
-<font color="#dbd7ca">EOF</font>
+<pre><span style="color: #6d3c6d">FOO</span><span style="color: #765924">=</span><span style="color: #25231f">bar</span>
+<span style="color: #25231f">cat </span><span style="color: #765924">&lt;&lt;</span><span style="color: #3e5d36">'EOF'</span>
+<span style="color: #6d3c6d">$FOO</span><span style="color: #25231f"> is not expanded here</span>
+<span style="color: #25231f">EOF</span>
 </pre>
 <br />
 <span>Prefer explicit quoting for variables (as above) to avoid surprises. Example (spaces preserved only when quoted):</span><br />
@@ -161,11 +171,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#bd976a">WORK_DIR</font><font color="#cb7676">=</font><font color="#bd976a">"/tmp/my work"</font>
-<font color="#dbd7ca">ssh host </font><font color="#cb7676">&lt;&lt;</font><font color="#dbd7ca">EOF</font>
-<font color="#dbd7ca">    cd </font><font color="#bd976a">$WORK_DIR</font><font color="#dbd7ca">      </font><i><font color="#666666"># may break if unquoted</font></i>
-<font color="#dbd7ca">    cd </font><font color="#bd976a">"$WORK_DIR"</font><font color="#dbd7ca">   </font><i><font color="#666666"># safe</font></i>
-<font color="#dbd7ca">EOF</font>
+<pre><span style="color: #6d3c6d">WORK_DIR</span><span style="color: #765924">=</span><span style="color: #3e5d36">"/tmp/my work"</span>
+<span style="color: #25231f">ssh host </span><span style="color: #765924">&lt;&lt;</span><span style="color: #25231f">EOF</span>
+<span style="color: #25231f">    cd </span><span style="color: #6d3c6d">$WORK_DIR</span><span style="color: #25231f">      </span><span style="font-style: italic"><span style="color: #685f50"># may break if unquoted</span></span>
+<span style="color: #25231f">    cd </span><span style="color: #3e5d36">"$WORK_DIR"</span><span style="color: #25231f">   </span><span style="font-style: italic"><span style="color: #685f50"># safe</span></span>
+<span style="color: #25231f">EOF</span>
 </pre>
 <br />
 <span>Consider <span class='inlinecode'>set -euo pipefail</span> at the top of the remote block for stricter error handling. Example:</span><br />
@@ -174,11 +184,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">ssh host </font><font color="#cb7676">&lt;&lt;</font><font color="#bd976a">'EOF'</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">set</font></b><font color="#dbd7ca"> -euo pipefail</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">false</font></b><font color="#dbd7ca">   </font><i><font color="#666666"># causes immediate failure</font></i>
-<font color="#dbd7ca">    echo never</font>
-<font color="#dbd7ca">EOF</font>
+<pre><span style="color: #25231f">ssh host </span><span style="color: #765924">&lt;&lt;</span><span style="color: #3e5d36">'EOF'</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">set</span></span><span style="color: #25231f"> -euo pipefail</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">false</span></span><span style="color: #25231f">   </span><span style="font-style: italic"><span style="color: #685f50"># causes immediate failure</span></span>
+<span style="color: #25231f">    echo never</span>
+<span style="color: #25231f">EOF</span>
 </pre>
 <br />
 <span>Indent-friendly variant: use a dash to strip leading tabs in the body:</span><br />
@@ -187,10 +197,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">cat </font><font color="#cb7676">&lt;&lt;</font><font color="#dbd7ca">-EOF </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> script</font><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
-<font color="#dbd7ca">	</font><i><font color="#666666">#!/usr/bin/env bash</font></i>
-<font color="#dbd7ca">	echo </font><font color="#bd976a">"tab-indented content is dedented"</font>
-<font color="#dbd7ca">EOF</font>
+<pre><span style="color: #25231f">cat </span><span style="color: #765924">&lt;&lt;</span><span style="color: #25231f">-EOF </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> script</span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
+<span style="color: #25231f">	</span><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
+<span style="color: #25231f">	echo </span><span style="color: #3e5d36">"tab-indented content is dedented"</span>
+<span style="color: #25231f">EOF</span>
 </pre>
 <br />
 <span>Further reading:</span><br />
@@ -205,23 +215,23 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">#!/usr/bin/env bash</font></i>
-<b><font color="#4d9375">set</font></b><font color="#dbd7ca"> -euo pipefail</font>
+<pre><span style="font-style: italic"><span style="color: #685f50">#!/usr/bin/env bash</span></span>
+<span style="font-weight: bold"><span style="color: #7b2934">set</span></span><span style="color: #25231f"> -euo pipefail</span>
 
-<font color="#5da994">super()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -r </font><font color="#bd976a">fn</font><font color="#cb7676">=</font><font color="#bd976a">${FUNCNAME[1]}</font>
-<font color="#dbd7ca">    </font><i><font color="#666666"># Split name on :: and dispatch to base implementation</font></i>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -a </font><font color="#bd976a">parts</font><font color="#cb7676">=(</font><font color="#dbd7ca"> </font><font color="#bd976a">${</font><font color="#dbd7ca">fn</font><font color="#cb7676">//::/</font><font color="#dbd7ca"> } </font><font color="#cb7676">)</font>
-<font color="#dbd7ca">    </font><font color="#bd976a">"${parts[0]}::base::${parts[2]}"</font><font color="#dbd7ca"> </font><font color="#bd976a">"$@"</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">super()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">fn</span><span style="color: #765924">=</span><span style="color: #6d3c6d">${FUNCNAME[1]}</span>
+<span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># Split name on :: and dispatch to base implementation</span></span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -a </span><span style="color: #6d3c6d">parts</span><span style="color: #765924">=(</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">${</span><span style="color: #25231f">fn</span><span style="color: #765924">//::/</span><span style="color: #25231f"> } </span><span style="color: #765924">)</span>
+<span style="color: #25231f">    </span><span style="color: #3e5d36">"${parts[0]}::base::${parts[2]}"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$@"</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">foo</font><font color="#cb7676">::</font><font color="#dbd7ca">base</font><font color="#cb7676">::</font><font color="#5da994">greet()</font><font color="#dbd7ca"> { echo </font><font color="#bd976a">"base: $@"</font><font color="#cb7676">;</font><font color="#dbd7ca"> }</font>
-<font color="#dbd7ca">foo</font><font color="#cb7676">::</font><font color="#dbd7ca">german</font><font color="#cb7676">::</font><font color="#5da994">greet()</font><font color="#dbd7ca">  { super </font><font color="#bd976a">"Guten Tag, $@!"</font><font color="#cb7676">;</font><font color="#dbd7ca"> }</font>
-<font color="#dbd7ca">foo</font><font color="#cb7676">::</font><font color="#dbd7ca">english</font><font color="#cb7676">::</font><font color="#5da994">greet()</font><font color="#dbd7ca"> { super </font><font color="#bd976a">"Good day,  $@!"</font><font color="#cb7676">;</font><font color="#dbd7ca"> }</font>
+<span style="color: #25231f">foo</span><span style="color: #765924">::</span><span style="color: #25231f">base</span><span style="color: #765924">::</span><span style="color: #265a79">greet()</span><span style="color: #25231f"> { echo </span><span style="color: #3e5d36">"base: $@"</span><span style="color: #765924">;</span><span style="color: #25231f"> }</span>
+<span style="color: #25231f">foo</span><span style="color: #765924">::</span><span style="color: #25231f">german</span><span style="color: #765924">::</span><span style="color: #265a79">greet()</span><span style="color: #25231f">  { super </span><span style="color: #3e5d36">"Guten Tag, $@!"</span><span style="color: #765924">;</span><span style="color: #25231f"> }</span>
+<span style="color: #25231f">foo</span><span style="color: #765924">::</span><span style="color: #25231f">english</span><span style="color: #765924">::</span><span style="color: #265a79">greet()</span><span style="color: #25231f"> { super </span><span style="color: #3e5d36">"Good day,  $@!"</span><span style="color: #765924">;</span><span style="color: #25231f"> }</span>
 
-<b><font color="#4d9375">for</font></b><font color="#dbd7ca"> lang </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> german english</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">do</font></b>
-<font color="#dbd7ca">    foo</font><font color="#cb7676">::</font><font color="#bd976a">$lang</font><font color="#cb7676">::</font><font color="#dbd7ca">greet Paul</font>
-<b><font color="#4d9375">done</font></b>
+<span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> lang </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> german english</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span>
+<span style="color: #25231f">    foo</span><span style="color: #765924">::</span><span style="color: #6d3c6d">$lang</span><span style="color: #765924">::</span><span style="color: #25231f">greet Paul</span>
+<span style="font-weight: bold"><span style="color: #7b2934">done</span></span>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -239,11 +249,11 @@ base: Good day,  Paul!
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#bd976a">user_name</font><font color="#cb7676">=</font><font color="#dbd7ca">paul</font>
-<b><font color="#4d9375">declare</font></b><font color="#dbd7ca"> -n </font><font color="#bd976a">ref</font><font color="#cb7676">=</font><font color="#dbd7ca">user_name</font>
-<font color="#dbd7ca">echo </font><font color="#bd976a">"$ref"</font><font color="#dbd7ca">       </font><i><font color="#666666"># paul</font></i>
-<font color="#bd976a">ref</font><font color="#cb7676">=</font><font color="#dbd7ca">julia</font>
-<font color="#dbd7ca">echo </font><font color="#bd976a">"$user_name"</font><font color="#dbd7ca"> </font><i><font color="#666666"># julia</font></i>
+<pre><span style="color: #6d3c6d">user_name</span><span style="color: #765924">=</span><span style="color: #25231f">paul</span>
+<span style="font-weight: bold"><span style="color: #7b2934">declare</span></span><span style="color: #25231f"> -n </span><span style="color: #6d3c6d">ref</span><span style="color: #765924">=</span><span style="color: #25231f">user_name</span>
+<span style="color: #25231f">echo </span><span style="color: #3e5d36">"$ref"</span><span style="color: #25231f">       </span><span style="font-style: italic"><span style="color: #685f50"># paul</span></span>
+<span style="color: #6d3c6d">ref</span><span style="color: #765924">=</span><span style="color: #25231f">julia</span>
+<span style="color: #25231f">echo </span><span style="color: #3e5d36">"$user_name"</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># julia</span></span>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -261,20 +271,20 @@ julia
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#5da994">make_var()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> </font><font color="#bd976a">idx</font><font color="#cb7676">=</font><font color="#bd976a">$1</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">shift</font></b>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> </font><font color="#bd976a">name</font><font color="#cb7676">=</font><font color="#bd976a">"slot_$idx"</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> -v </font><font color="#bd976a">"$name"</font><font color="#dbd7ca"> </font><font color="#bd976a">'%s'</font><font color="#dbd7ca"> </font><font color="#bd976a">"$*"</font><font color="#dbd7ca">   </font><i><font color="#666666"># create variable slot_$idx</font></i>
-<font color="#dbd7ca">}</font>
+<pre><span style="color: #265a79">make_var()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">idx</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$1</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">shift</span></span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">name</span><span style="color: #765924">=</span><span style="color: #3e5d36">"slot_$idx"</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> -v </span><span style="color: #3e5d36">"$name"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">'%s'</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$*"</span><span style="color: #25231f">   </span><span style="font-style: italic"><span style="color: #685f50"># create variable slot_$idx</span></span>
+<span style="color: #25231f">}</span>
 
-<font color="#5da994">get_var()</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> </font><font color="#bd976a">idx</font><font color="#cb7676">=</font><font color="#bd976a">$1</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">local</font></b><font color="#dbd7ca"> -n </font><font color="#bd976a">ref</font><font color="#cb7676">=</font><font color="#bd976a">"slot_$idx"</font><font color="#dbd7ca">      </font><i><font color="#666666"># bind ref to slot_$idx</font></i>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'%s</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#bd976a">"$ref"</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #265a79">get_var()</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">idx</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$1</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -n </span><span style="color: #6d3c6d">ref</span><span style="color: #765924">=</span><span style="color: #3e5d36">"slot_$idx"</span><span style="color: #25231f">      </span><span style="font-style: italic"><span style="color: #685f50"># bind ref to slot_$idx</span></span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'%s</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$ref"</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">make_var </font><font color="#bd976a">7</font><font color="#dbd7ca"> </font><font color="#bd976a">"seven"</font>
-<font color="#dbd7ca">get_var </font><font color="#bd976a">7</font>
+<span style="color: #25231f">make_var </span><span style="color: #8a450c">7</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"seven"</span>
+<span style="color: #25231f">get_var </span><span style="color: #8a450c">7</span>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -291,9 +301,9 @@ seven
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#5da994">foo()</font><font color="#dbd7ca"> { echo foo</font><font color="#cb7676">;</font><font color="#dbd7ca"> }</font>
-<font color="#5da994">function foo </font><font color="#dbd7ca">{ echo foo</font><font color="#cb7676">;</font><font color="#dbd7ca"> }</font>
-<font color="#5da994">function foo()</font><font color="#dbd7ca"> { echo foo</font><font color="#cb7676">;</font><font color="#dbd7ca"> }</font>
+<pre><span style="color: #265a79">foo()</span><span style="color: #25231f"> { echo foo</span><span style="color: #765924">;</span><span style="color: #25231f"> }</span>
+<span style="color: #265a79">function foo </span><span style="color: #25231f">{ echo foo</span><span style="color: #765924">;</span><span style="color: #25231f"> }</span>
+<span style="color: #265a79">function foo()</span><span style="color: #25231f"> { echo foo</span><span style="color: #765924">;</span><span style="color: #25231f"> }</span>
 </pre>
 <br />
 <span>Recommendation: prefer <span class='inlinecode'>name() { ... }</span> for portability and consistency.</span><br />
@@ -306,14 +316,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#5da994">deploy_check()</font><font color="#dbd7ca"> { </font><b><font color="#4d9375">test</font></b><font color="#dbd7ca"> -f deploy</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font><font color="#cb7676">;</font><font color="#dbd7ca"> }</font>
-<font color="#5da994">smoke_test()</font><font color="#dbd7ca">   { curl -fsS http</font><font color="#cb7676">:</font><font color="#dbd7ca">//localhost/healthz </font><font color="#cb7676">&gt;</font><font color="#dbd7ca">/dev/null</font><font color="#cb7676">;</font><font color="#dbd7ca"> }</font>
+<pre><span style="color: #265a79">deploy_check()</span><span style="color: #25231f"> { </span><span style="font-weight: bold"><span style="color: #7b2934">test</span></span><span style="color: #25231f"> -f deploy</span><span style="color: #765924">.</span><span style="color: #25231f">yaml</span><span style="color: #765924">;</span><span style="color: #25231f"> }</span>
+<span style="color: #265a79">smoke_test()</span><span style="color: #25231f">   { curl -fsS http</span><span style="color: #765924">:</span><span style="color: #25231f">//localhost/healthz </span><span style="color: #765924">&gt;</span><span style="color: #25231f">/dev/null</span><span style="color: #765924">;</span><span style="color: #25231f"> }</span>
 
-<b><font color="#4d9375">if</font></b><font color="#dbd7ca"> deploy_check </font><font color="#cb7676">||</font><font color="#dbd7ca"> smoke_test</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
-<font color="#dbd7ca">    echo </font><font color="#bd976a">"All good."</font>
-<b><font color="#4d9375">else</font></b>
-<font color="#dbd7ca">    echo </font><font color="#bd976a">"Something failed."</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;&amp;</font><font color="#bd976a">2</font>
-<b><font color="#4d9375">fi</font></b>
+<span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> deploy_check </span><span style="color: #765924">||</span><span style="color: #25231f"> smoke_test</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
+<span style="color: #25231f">    echo </span><span style="color: #3e5d36">"All good."</span>
+<span style="font-weight: bold"><span style="color: #7b2934">else</span></span>
+<span style="color: #25231f">    echo </span><span style="color: #3e5d36">"Something failed."</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;&amp;</span><span style="color: #8a450c">2</span>
+<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
 </pre>
 <br />
 <span>You can also compress it golf-style:</span><br />
@@ -322,7 +332,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">deploy_check </font><font color="#cb7676">||</font><font color="#dbd7ca"> smoke_test </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> echo ok </font><font color="#cb7676">||</font><font color="#dbd7ca"> echo fail </font><font color="#cb7676">&gt;&amp;</font><font color="#bd976a">2</font>
+<pre><span style="color: #25231f">deploy_check </span><span style="color: #765924">||</span><span style="color: #25231f"> smoke_test </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> echo ok </span><span style="color: #765924">||</span><span style="color: #25231f"> echo fail </span><span style="color: #765924">&gt;&amp;</span><span style="color: #8a450c">2</span>
 </pre>
 <br />
 <h2 style='display: inline' id='grep-sed-awk-quickies'>Grep, sed, awk quickies</h2><br />
@@ -333,14 +343,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">cat </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /tmp/ctx</font><font color="#cb7676">.</font><font color="#dbd7ca">txt </font><font color="#cb7676">&lt;&lt;</font><font color="#dbd7ca">EOF</font>
-<font color="#dbd7ca">one</font>
-<font color="#dbd7ca">foo</font>
-<font color="#dbd7ca">two</font>
-<font color="#dbd7ca">three</font>
-<font color="#dbd7ca">bar</font>
-<font color="#dbd7ca">EOF</font>
-<font color="#dbd7ca">grep -C</font><font color="#bd976a">1</font><font color="#dbd7ca"> foo /tmp/ctx</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
+<pre><span style="color: #25231f">cat </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /tmp/ctx</span><span style="color: #765924">.</span><span style="color: #25231f">txt </span><span style="color: #765924">&lt;&lt;</span><span style="color: #25231f">EOF</span>
+<span style="color: #25231f">one</span>
+<span style="color: #25231f">foo</span>
+<span style="color: #25231f">two</span>
+<span style="color: #25231f">three</span>
+<span style="color: #25231f">bar</span>
+<span style="color: #25231f">EOF</span>
+<span style="color: #25231f">grep -C</span><span style="color: #8a450c">1</span><span style="color: #25231f"> foo /tmp/ctx</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -357,10 +367,10 @@ two
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">mkdir -p /tmp/golf/foo /tmp/golf/src</font>
-<b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'bar</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /tmp/golf/src/a</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
-<b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'bar</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /tmp/golf/foo/skip</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
-<font color="#dbd7ca">grep -R --exclude-dir</font><font color="#cb7676">=</font><font color="#dbd7ca">foo </font><font color="#bd976a">'bar'</font><font color="#dbd7ca"> /tmp/golf</font>
+<pre><span style="color: #25231f">mkdir -p /tmp/golf/foo /tmp/golf/src</span>
+<span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'bar</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /tmp/golf/src/a</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
+<span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'bar</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /tmp/golf/foo/skip</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
+<span style="color: #25231f">grep -R --exclude-dir</span><span style="color: #765924">=</span><span style="color: #25231f">foo </span><span style="color: #3e5d36">'bar'</span><span style="color: #25231f"> /tmp/golf</span>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -375,8 +385,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'A</font><font color="#cb7676">\n</font><font color="#bd976a">B</font><font color="#cb7676">\n</font><font color="#bd976a">C</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /tmp/s</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
-<font color="#dbd7ca">sed -e </font><font color="#bd976a">'1iHEAD'</font><font color="#dbd7ca"> -e </font><font color="#bd976a">'3iMID'</font><font color="#dbd7ca"> /tmp/s</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'A</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">B</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">C</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /tmp/s</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
+<span style="color: #25231f">sed -e </span><span style="color: #3e5d36">'1iHEAD'</span><span style="color: #25231f"> -e </span><span style="color: #3e5d36">'3iMID'</span><span style="color: #25231f"> /tmp/s</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -395,10 +405,10 @@ C
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'a b c</font><font color="#cb7676">\n</font><font color="#bd976a">x y z</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /tmp/t</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
-<font color="#dbd7ca">cat /tmp/t</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
-<font color="#dbd7ca">echo</font>
-<font color="#dbd7ca">awk </font><font color="#bd976a">'NF{NF-=1};1'</font><font color="#dbd7ca"> /tmp/t</font><font color="#cb7676">.</font><font color="#dbd7ca">txt</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'a b c</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">x y z</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /tmp/t</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
+<span style="color: #25231f">cat /tmp/t</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
+<span style="color: #25231f">echo</span>
+<span style="color: #25231f">awk </span><span style="color: #3e5d36">'NF{NF-=1};1'</span><span style="color: #25231f"> /tmp/t</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -419,7 +429,7 @@ x y
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">find </font><font color="#cb7676">.</font><font color="#dbd7ca"> -type f -name </font><font color="#bd976a">'*.log'</font><font color="#dbd7ca"> -print</font><font color="#bd976a">0</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> xargs -</font><font color="#bd976a">0</font><font color="#dbd7ca"> rm -f</font>
+<pre><span style="color: #25231f">find </span><span style="color: #765924">.</span><span style="color: #25231f"> -type f -name </span><span style="color: #3e5d36">'*.log'</span><span style="color: #25231f"> -print</span><span style="color: #8a450c">0</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> xargs -</span><span style="color: #8a450c">0</span><span style="color: #25231f"> rm -f</span>
 </pre>
 <br />
 <span>Example with spaces and NULs only:</span><br />
@@ -428,7 +438,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'a</font><font color="#cb7676">\0</font><font color="#bd976a">b c</font><font color="#cb7676">\0</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> xargs -</font><font color="#bd976a">0</font><font color="#dbd7ca"> -I{} </font><b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'&lt;%s&gt;</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> {}</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'a</span><span style="color: #7f3b73">\0</span><span style="color: #3e5d36">b c</span><span style="color: #7f3b73">\0</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> xargs -</span><span style="color: #8a450c">0</span><span style="color: #25231f"> -I{} </span><span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'&lt;%s&gt;</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> {}</span>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -446,7 +456,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#bd976a">cfg</font><font color="#cb7676">=</font><font color="#bd976a">$(&lt;config.ini)</font>
+<pre><span style="color: #6d3c6d">cfg</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$(&lt;config.ini)</span>
 </pre>
 <br />
 <span>Read lines into an array safely with <span class='inlinecode'>mapfile</span> (aka <span class='inlinecode'>readarray</span>):</span><br />
@@ -455,8 +465,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">mapfile -t lines </font><font color="#cb7676">&lt;</font><font color="#dbd7ca"> </font><font color="#cb7676">&lt;(</font><font color="#dbd7ca">grep -v </font><font color="#bd976a">'^#'</font><font color="#dbd7ca"> config</font><font color="#cb7676">.</font><font color="#dbd7ca">ini</font><font color="#cb7676">)</font>
-<b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'%s</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#bd976a">"${lines[@]}"</font>
+<pre><span style="color: #25231f">mapfile -t lines </span><span style="color: #765924">&lt;</span><span style="color: #25231f"> </span><span style="color: #765924">&lt;(</span><span style="color: #25231f">grep -v </span><span style="color: #3e5d36">'^#'</span><span style="color: #25231f"> config</span><span style="color: #765924">.</span><span style="color: #25231f">ini</span><span style="color: #765924">)</span>
+<span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'%s</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"${lines[@]}"</span>
 </pre>
 <br />
 <span>Assign formatted strings without a subshell using <span class='inlinecode'>printf -v</span>:</span><br />
@@ -465,8 +475,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> -v msg </font><font color="#bd976a">'Hello %s, id=%04d'</font><font color="#dbd7ca"> </font><font color="#bd976a">"$USER"</font><font color="#dbd7ca"> </font><font color="#bd976a">42</font>
-<font color="#dbd7ca">echo </font><font color="#bd976a">"$msg"</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> -v msg </span><span style="color: #3e5d36">'Hello %s, id=%04d'</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$USER"</span><span style="color: #25231f"> </span><span style="color: #8a450c">42</span>
+<span style="color: #25231f">echo </span><span style="color: #3e5d36">"$msg"</span>
 </pre>
 <br />
 <span>Output:</span><br />
@@ -481,8 +491,8 @@ Hello paul, id=0042
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">mapfile -d </font><font color="#bd976a">''</font><font color="#dbd7ca"> -t files </font><font color="#cb7676">&lt;</font><font color="#dbd7ca"> </font><font color="#cb7676">&lt;(</font><font color="#dbd7ca">find </font><font color="#cb7676">.</font><font color="#dbd7ca"> -type f -print</font><font color="#bd976a">0</font><font color="#cb7676">)</font>
-<b><font color="#4d9375">printf</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'%s</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#bd976a">"${files[@]}"</font>
+<pre><span style="color: #25231f">mapfile -d </span><span style="color: #3e5d36">''</span><span style="color: #25231f"> -t files </span><span style="color: #765924">&lt;</span><span style="color: #25231f"> </span><span style="color: #765924">&lt;(</span><span style="color: #25231f">find </span><span style="color: #765924">.</span><span style="color: #25231f"> -type f -print</span><span style="color: #8a450c">0</span><span style="color: #765924">)</span>
+<span style="font-weight: bold"><span style="color: #7b2934">printf</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'%s</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"${files[@]}"</span>
 </pre>
 <br />
 <h2 style='display: inline' id='quick-password-generator'>Quick password generator</h2><br />
@@ -493,7 +503,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#bd976a">LC_ALL</font><font color="#cb7676">=</font><font color="#dbd7ca">C tr -dc </font><font color="#bd976a">'A-Za-z0-9_'</font><font color="#dbd7ca"> </font><font color="#cb7676">&lt;</font><font color="#dbd7ca">/dev/urandom </font><font color="#cb7676">|</font><font color="#dbd7ca"> head -c </font><font color="#bd976a">16</font><font color="#cb7676">;</font><font color="#dbd7ca"> echo</font>
+<pre><span style="color: #6d3c6d">LC_ALL</span><span style="color: #765924">=</span><span style="color: #25231f">C tr -dc </span><span style="color: #3e5d36">'A-Za-z0-9_'</span><span style="color: #25231f"> </span><span style="color: #765924">&lt;</span><span style="color: #25231f">/dev/urandom </span><span style="color: #765924">|</span><span style="color: #25231f"> head -c </span><span style="color: #8a450c">16</span><span style="color: #765924">;</span><span style="color: #25231f"> echo</span>
 </pre>
 <br />
 <span>Alternative using <span class='inlinecode'>openssl</span>:</span><br />
@@ -502,7 +512,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">openssl rand -base</font><font color="#bd976a">64</font><font color="#dbd7ca"> </font><font color="#bd976a">16</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> tr -d </font><font color="#bd976a">'</font><font color="#cb7676">\n</font><font color="#bd976a">'</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> cut -c</font><font color="#bd976a">1</font><font color="#dbd7ca">-</font><font color="#bd976a">22</font>
+<pre><span style="color: #25231f">openssl rand -base</span><span style="color: #8a450c">64</span><span style="color: #25231f"> </span><span style="color: #8a450c">16</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> tr -d </span><span style="color: #3e5d36">'</span><span style="color: #7f3b73">\n</span><span style="color: #3e5d36">'</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> cut -c</span><span style="color: #8a450c">1</span><span style="color: #25231f">-</span><span style="color: #8a450c">22</span>
 </pre>
 <br />
 <h2 style='display: inline' id='yes-for-automation'><span class='inlinecode'>yes</span> for automation</h2><br />
@@ -513,9 +523,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">yes </font><font color="#cb7676">|</font><font color="#dbd7ca"> rm -r large_directory        </font><i><font color="#666666"># auto-confirm</font></i>
-<font color="#dbd7ca">yes n </font><font color="#cb7676">|</font><font color="#dbd7ca"> dangerous-command          </font><i><font color="#666666"># auto-decline</font></i>
-<font color="#dbd7ca">yes anything </font><font color="#cb7676">|</font><font color="#dbd7ca"> head -n</font><font color="#bd976a">1</font><font color="#dbd7ca">            </font><i><font color="#666666"># prints one line: anything</font></i>
+<pre><span style="color: #25231f">yes </span><span style="color: #765924">|</span><span style="color: #25231f"> rm -r large_directory        </span><span style="font-style: italic"><span style="color: #685f50"># auto-confirm</span></span>
+<span style="color: #25231f">yes n </span><span style="color: #765924">|</span><span style="color: #25231f"> dangerous-command          </span><span style="font-style: italic"><span style="color: #685f50"># auto-decline</span></span>
+<span style="color: #25231f">yes anything </span><span style="color: #765924">|</span><span style="color: #25231f"> head -n</span><span style="color: #8a450c">1</span><span style="color: #25231f">            </span><span style="font-style: italic"><span style="color: #685f50"># prints one line: anything</span></span>
 </pre>
 <br />
 <h2 style='display: inline' id='forcing-true-to-fail-and-vice-versa'>Forcing <span class='inlinecode'>true</span> to fail (and vice versa)</h2><br />
@@ -526,15 +536,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#5da994">true()</font><font color="#dbd7ca">  { </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#bd976a">1</font><font color="#cb7676">;</font><font color="#dbd7ca"> }</font>
-<font color="#5da994">false()</font><font color="#dbd7ca"> { </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#cb7676">;</font><font color="#dbd7ca"> }</font>
+<pre><span style="color: #265a79">true()</span><span style="color: #25231f">  { </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span><span style="color: #765924">;</span><span style="color: #25231f"> }</span>
+<span style="color: #265a79">false()</span><span style="color: #25231f"> { </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span><span style="color: #765924">;</span><span style="color: #25231f"> }</span>
 
-<b><font color="#4d9375">true</font></b><font color="#dbd7ca">  </font><font color="#cb7676">||</font><font color="#dbd7ca"> echo </font><font color="#bd976a">'true failed'</font>
-<b><font color="#4d9375">false</font></b><font color="#dbd7ca"> </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> echo </font><font color="#bd976a">'false succeeded'</font>
+<span style="font-weight: bold"><span style="color: #7b2934">true</span></span><span style="color: #25231f">  </span><span style="color: #765924">||</span><span style="color: #25231f"> echo </span><span style="color: #3e5d36">'true failed'</span>
+<span style="font-weight: bold"><span style="color: #7b2934">false</span></span><span style="color: #25231f"> </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> echo </span><span style="color: #3e5d36">'false succeeded'</span>
 
-<i><font color="#666666"># Bypass function with builtin/command</font></i>
-<b><font color="#4d9375">builtin</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">true</font></b><font color="#dbd7ca"> </font><i><font color="#666666"># returns 0</font></i>
-<b><font color="#4d9375">command</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">true</font></b><font color="#dbd7ca"> </font><i><font color="#666666"># returns 0</font></i>
+<span style="font-style: italic"><span style="color: #685f50"># Bypass function with builtin/command</span></span>
+<span style="font-weight: bold"><span style="color: #7b2934">builtin</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">true</span></span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># returns 0</span></span>
+<span style="font-weight: bold"><span style="color: #7b2934">command</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">true</span></span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># returns 0</span></span>
 </pre>
 <br />
 <span>To disable a builtin entirely: <span class='inlinecode'>enable -n true</span> (re-enable with <span class='inlinecode'>enable true</span>).</span><br />
@@ -562,11 +572,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">rbash -c </font><font color="#bd976a">'cd /'</font><font color="#dbd7ca">            </font><i><font color="#666666"># cd: restricted</font></i>
-<font color="#dbd7ca">rbash -c </font><font color="#bd976a">'PATH=/tmp'</font><font color="#dbd7ca">       </font><i><font color="#666666"># PATH: restricted</font></i>
-<font color="#dbd7ca">rbash -c </font><font color="#bd976a">'echo hi &gt; out'</font><font color="#dbd7ca">   </font><i><font color="#666666"># redirection: restricted</font></i>
-<font color="#dbd7ca">rbash -c </font><font color="#bd976a">'/bin/echo hi'</font><font color="#dbd7ca">    </font><i><font color="#666666"># commands with /: restricted</font></i>
-<font color="#dbd7ca">rbash -c </font><font color="#bd976a">'exec ls'</font><font color="#dbd7ca">         </font><i><font color="#666666"># exec: restricted</font></i>
+<pre><span style="color: #25231f">rbash -c </span><span style="color: #3e5d36">'cd /'</span><span style="color: #25231f">            </span><span style="font-style: italic"><span style="color: #685f50"># cd: restricted</span></span>
+<span style="color: #25231f">rbash -c </span><span style="color: #3e5d36">'PATH=/tmp'</span><span style="color: #25231f">       </span><span style="font-style: italic"><span style="color: #685f50"># PATH: restricted</span></span>
+<span style="color: #25231f">rbash -c </span><span style="color: #3e5d36">'echo hi &gt; out'</span><span style="color: #25231f">   </span><span style="font-style: italic"><span style="color: #685f50"># redirection: restricted</span></span>
+<span style="color: #25231f">rbash -c </span><span style="color: #3e5d36">'/bin/echo hi'</span><span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># commands with /: restricted</span></span>
+<span style="color: #25231f">rbash -c </span><span style="color: #3e5d36">'exec ls'</span><span style="color: #25231f">         </span><span style="font-style: italic"><span style="color: #685f50"># exec: restricted</span></span>
 </pre>
 <br />
 <h2 style='display: inline' id='useless-use-of-cat-and-when-it-s-ok'>Useless use of cat (and when it&#39;s ok)</h2><br />
@@ -577,12 +587,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666"># Prefer</font></i>
-<font color="#dbd7ca">grep -i foo file</font>
-<font color="#cb7676">&lt;</font><font color="#dbd7ca">file grep -i foo        </font><i><font color="#666666"># or feed via redirection</font></i>
+<pre><span style="font-style: italic"><span style="color: #685f50"># Prefer</span></span>
+<span style="color: #25231f">grep -i foo file</span>
+<span style="color: #765924">&lt;</span><span style="color: #25231f">file grep -i foo        </span><span style="font-style: italic"><span style="color: #685f50"># or feed via redirection</span></span>
 
-<i><font color="#666666"># Over</font></i>
-<font color="#dbd7ca">cat file </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep -i foo</font>
+<span style="font-style: italic"><span style="color: #685f50"># Over</span></span>
+<span style="color: #25231f">cat file </span><span style="color: #765924">|</span><span style="color: #25231f"> grep -i foo</span>
 </pre>
 <br />
 <span>But for interactive composition, or when you truly need to concatenate multiple sources into a single stream, <span class='inlinecode'>cat</span> is fine, as you may think, "First I need the content, then I do X." Changing the "useless use of cat" in retrospect is really a waste of time for one-time interactive use:</span><br />
@@ -591,7 +601,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">cat file1 file2 </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep -i foo</font>
+<pre><span style="color: #25231f">cat file1 file2 </span><span style="color: #765924">|</span><span style="color: #25231f"> grep -i foo</span>
 </pre>
 <br />
 <h2 style='display: inline' id='atomic-locking-with-mkdir'>Atomic locking with <span class='inlinecode'>mkdir</span></h2><br />
@@ -602,15 +612,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#bd976a">lockdir</font><font color="#cb7676">=</font><font color="#dbd7ca">/tmp/myjob</font><font color="#cb7676">.</font><font color="#dbd7ca">lock</font>
-<b><font color="#4d9375">if</font></b><font color="#dbd7ca"> mkdir </font><font color="#bd976a">"$lockdir"</font><font color="#dbd7ca"> </font><font color="#bd976a">2</font><font color="#cb7676">&gt;</font><font color="#dbd7ca">/dev/null</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><b><font color="#4d9375">then</font></b>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">trap</font></b><font color="#dbd7ca"> </font><font color="#bd976a">'rmdir "$lockdir"'</font><font color="#dbd7ca"> EXIT INT TERM</font>
-<font color="#dbd7ca">    </font><i><font color="#666666"># critical section</font></i>
-<font color="#dbd7ca">    do_work</font>
-<b><font color="#4d9375">else</font></b>
-<font color="#dbd7ca">    echo </font><font color="#bd976a">"Another instance is running"</font><font color="#dbd7ca"> </font><font color="#cb7676">&gt;&amp;</font><font color="#bd976a">2</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">exit</font></b><font color="#dbd7ca"> </font><font color="#bd976a">1</font>
-<b><font color="#4d9375">fi</font></b>
+<pre><span style="color: #6d3c6d">lockdir</span><span style="color: #765924">=</span><span style="color: #25231f">/tmp/myjob</span><span style="color: #765924">.</span><span style="color: #25231f">lock</span>
+<span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> mkdir </span><span style="color: #3e5d36">"$lockdir"</span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span><span style="color: #765924">&gt;</span><span style="color: #25231f">/dev/null</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">trap</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">'rmdir "$lockdir"'</span><span style="color: #25231f"> EXIT INT TERM</span>
+<span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># critical section</span></span>
+<span style="color: #25231f">    do_work</span>
+<span style="font-weight: bold"><span style="color: #7b2934">else</span></span>
+<span style="color: #25231f">    echo </span><span style="color: #3e5d36">"Another instance is running"</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;&amp;</span><span style="color: #8a450c">2</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span>
+<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
 </pre>
 <br />
 <span>This works well on Linux. Remove the lock in <span class='inlinecode'>trap</span> so crashes don&#39;t leave stale locks.</span><br />
@@ -625,7 +635,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">find </font><font color="#cb7676">.</font><font color="#dbd7ca"> -name </font><font color="#bd976a">'*.log'</font><font color="#dbd7ca"> -exec gzip -</font><font color="#bd976a">9</font><font color="#dbd7ca"> {} </font><font color="#cb7676">+</font>
+<pre><span style="color: #25231f">find </span><span style="color: #765924">.</span><span style="color: #25231f"> -name </span><span style="color: #3e5d36">'*.log'</span><span style="color: #25231f"> -exec gzip -</span><span style="color: #8a450c">9</span><span style="color: #25231f"> {} </span><span style="color: #765924">+</span>
 </pre>
 <br />
 <span>Example for extglob (exclude two dirs from listing):</span><br />
@@ -634,8 +644,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">shopt</font></b><font color="#dbd7ca"> -s extglob</font>
-<font color="#dbd7ca">ls -d -- </font><font color="#cb7676">!(.</font><font color="#dbd7ca">git</font><font color="#cb7676">|</font><font color="#dbd7ca">node_modules</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#bd976a">2</font><font color="#cb7676">&gt;</font><font color="#dbd7ca">/dev/null</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">shopt</span></span><span style="color: #25231f"> -s extglob</span>
+<span style="color: #25231f">ls -d -- </span><span style="color: #765924">!(.</span><span style="color: #25231f">git</span><span style="color: #765924">|</span><span style="color: #25231f">node_modules</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span><span style="color: #765924">&gt;</span><span style="color: #25231f">/dev/null</span>
 </pre>
 <br />
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
@@ -650,12 +660,13 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

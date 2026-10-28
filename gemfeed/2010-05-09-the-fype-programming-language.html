@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2010-05-09-the-fype-programming-language.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2010-05-09-the-fype-programming-language.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2010-05-09-the-fype-programming-language.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2010-05-09-the-fype-programming-language.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='the-fype-programming-language'>The Fype Programming Language</h1><br />
 <br />
 <span class='quote'>Published at 2010-05-09T12:48:29+01:00; Updated at 2021-05-05</span><br />
@@ -70,12 +80,12 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">typedef</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">struct</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">   </font><font color="#dbd7ca">Tupel</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">p_tupel_argv</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><i><font color="#666666">// Contains command line options</font></i>
-<font color="#dbd7ca">   </font><font color="#dbd7ca">List</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">p_list_token</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><i><font color="#666666">// Initial list of token</font></i>
-<font color="#dbd7ca">   </font><font color="#dbd7ca">Hash</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">p_hash_syms</font><font color="#cb7676">;</font><font color="#dbd7ca"> </font><i><font color="#666666">// Symbol table</font></i>
-<font color="#dbd7ca">   </font><b><font color="#5da994">char</font></b><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">c_basename</font><font color="#cb7676">;</font>
-<font color="#dbd7ca">}</font><font color="#dbd7ca"> Fype</font><font color="#cb7676">;</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">typedef</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">struct</span></span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">   </span><span style="color: #25231f">Tupel</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">p_tupel_argv</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">// Contains command line options</span></span>
+<span style="color: #25231f">   </span><span style="color: #25231f">List</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">p_list_token</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">// Initial list of token</span></span>
+<span style="color: #25231f">   </span><span style="color: #25231f">Hash</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">p_hash_syms</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">// Symbol table</span></span>
+<span style="color: #25231f">   </span><span style="font-weight: bold"><span style="color: #235f72">char</span></span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">c_basename</span><span style="color: #765924">;</span>
+<span style="color: #765924">}</span><span style="color: #25231f"> Fype</span><span style="color: #765924">;</span>
 </pre>
 <br />
 <span>And here is a snippet from the primary Fype "class implementation":</span><br />
@@ -84,53 +94,53 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">Fype</font><font color="#cb7676">*</font>
-<font color="#5da994">fype_new</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">   </font><font color="#dbd7ca">Fype</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">p_fype </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#5da994">malloc</font><font color="#cb7676">(</font><b><font color="#4d9375">sizeof</font></b><font color="#cb7676">(</font><font color="#dbd7ca">Fype</font><font color="#cb7676">));</font>
+<pre><span style="color: #25231f">Fype</span><span style="color: #765924">*</span>
+<span style="color: #265a79">fype_new</span><span style="color: #765924">()</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">   </span><span style="color: #25231f">Fype</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">p_fype </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">malloc</span><span style="color: #765924">(</span><span style="font-weight: bold"><span style="color: #7b2934">sizeof</span></span><span style="color: #765924">(</span><span style="color: #25231f">Fype</span><span style="color: #765924">));</span>
 
-<font color="#dbd7ca">   p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">p_hash_syms </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#5da994">hash_new</font><font color="#cb7676">(</font><font color="#bd976a">512</font><font color="#cb7676">);</font>
-<font color="#dbd7ca">   p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">p_list_token </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#5da994">list_new</font><font color="#cb7676">();</font>
-<font color="#dbd7ca">   p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">p_tupel_argv </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#5da994">tupel_new</font><font color="#cb7676">();</font>
-<font color="#dbd7ca">   p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">c_basename </font><font color="#cb7676">=</font><font color="#dbd7ca"> NULL</font><font color="#cb7676">;</font>
+<span style="color: #25231f">   p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">p_hash_syms </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">hash_new</span><span style="color: #765924">(</span><span style="color: #8a450c">512</span><span style="color: #765924">);</span>
+<span style="color: #25231f">   p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">p_list_token </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">list_new</span><span style="color: #765924">();</span>
+<span style="color: #25231f">   p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">p_tupel_argv </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">tupel_new</span><span style="color: #765924">();</span>
+<span style="color: #25231f">   p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">c_basename </span><span style="color: #765924">=</span><span style="color: #25231f"> NULL</span><span style="color: #765924">;</span>
 
-<font color="#dbd7ca">   </font><font color="#5da994">garbage_init</font><font color="#cb7676">();</font>
+<span style="color: #25231f">   </span><span style="color: #265a79">garbage_init</span><span style="color: #765924">();</span>
 
-<font color="#dbd7ca">   </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">);</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">   </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">);</span>
+<span style="color: #765924">}</span>
 
-<b><font color="#5da994">void</font></b>
-<font color="#5da994">fype_delete</font><font color="#cb7676">(</font><font color="#dbd7ca">Fype</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">   </font><font color="#5da994">argv_tupel_delete</font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">p_tupel_argv</font><font color="#cb7676">);</font>
+<span style="font-weight: bold"><span style="color: #235f72">void</span></span>
+<span style="color: #265a79">fype_delete</span><span style="color: #765924">(</span><span style="color: #25231f">Fype</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">p_fype</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">   </span><span style="color: #265a79">argv_tupel_delete</span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">p_tupel_argv</span><span style="color: #765924">);</span>
 
-<font color="#dbd7ca">   </font><font color="#5da994">hash_iterate</font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">p_hash_syms</font><font color="#cb7676">,</font><font color="#dbd7ca"> symbol_cleanup_hash_syms_cb</font><font color="#cb7676">);</font>
-<font color="#dbd7ca">   </font><font color="#5da994">hash_delete</font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">p_hash_syms</font><font color="#cb7676">);</font>
+<span style="color: #25231f">   </span><span style="color: #265a79">hash_iterate</span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">p_hash_syms</span><span style="color: #765924">,</span><span style="color: #25231f"> symbol_cleanup_hash_syms_cb</span><span style="color: #765924">);</span>
+<span style="color: #25231f">   </span><span style="color: #265a79">hash_delete</span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">p_hash_syms</span><span style="color: #765924">);</span>
 
-<font color="#dbd7ca">   </font><font color="#5da994">list_iterate</font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">p_list_token</font><font color="#cb7676">,</font><font color="#dbd7ca"> token_ref_down_cb</font><font color="#cb7676">);</font>
-<font color="#dbd7ca">   </font><font color="#5da994">list_delete</font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">p_list_token</font><font color="#cb7676">);</font>
+<span style="color: #25231f">   </span><span style="color: #265a79">list_iterate</span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">p_list_token</span><span style="color: #765924">,</span><span style="color: #25231f"> token_ref_down_cb</span><span style="color: #765924">);</span>
+<span style="color: #25231f">   </span><span style="color: #265a79">list_delete</span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">p_list_token</span><span style="color: #765924">);</span>
 
-<font color="#dbd7ca">   </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">c_basename</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">      </font><font color="#5da994">free</font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">-&gt;</font><font color="#dbd7ca">c_basename</font><font color="#cb7676">);</font>
+<span style="color: #25231f">   </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">c_basename</span><span style="color: #765924">)</span>
+<span style="color: #25231f">      </span><span style="color: #265a79">free</span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">-&gt;</span><span style="color: #25231f">c_basename</span><span style="color: #765924">);</span>
 
-<font color="#dbd7ca">   </font><font color="#5da994">garbage_destroy</font><font color="#cb7676">();</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">   </span><span style="color: #265a79">garbage_destroy</span><span style="color: #765924">();</span>
+<span style="color: #765924">}</span>
 
-<b><font color="#5da994">int</font></b>
-<font color="#5da994">fype_run</font><font color="#cb7676">(</font><b><font color="#5da994">int</font></b><font color="#dbd7ca"> i_argc</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><b><font color="#5da994">char</font></b><font color="#dbd7ca"> </font><font color="#cb7676">**</font><font color="#dbd7ca">pc_argv</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">   </font><font color="#dbd7ca">Fype</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">p_fype </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#5da994">fype_new</font><font color="#cb7676">();</font>
+<span style="font-weight: bold"><span style="color: #235f72">int</span></span>
+<span style="color: #265a79">fype_run</span><span style="color: #765924">(</span><span style="font-weight: bold"><span style="color: #235f72">int</span></span><span style="color: #25231f"> i_argc</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #235f72">char</span></span><span style="color: #25231f"> </span><span style="color: #765924">**</span><span style="color: #25231f">pc_argv</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">   </span><span style="color: #25231f">Fype</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">p_fype </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">fype_new</span><span style="color: #765924">();</span>
 
-<font color="#dbd7ca">   </font><i><font color="#666666">// argv: Maintains command line options</font></i>
-<font color="#dbd7ca">   </font><font color="#5da994">argv_run</font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">,</font><font color="#dbd7ca"> i_argc</font><font color="#cb7676">,</font><font color="#dbd7ca"> pc_argv</font><font color="#cb7676">);</font>
+<span style="color: #25231f">   </span><span style="font-style: italic"><span style="color: #685f50">// argv: Maintains command line options</span></span>
+<span style="color: #25231f">   </span><span style="color: #265a79">argv_run</span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">,</span><span style="color: #25231f"> i_argc</span><span style="color: #765924">,</span><span style="color: #25231f"> pc_argv</span><span style="color: #765924">);</span>
 
-<font color="#dbd7ca">   </font><i><font color="#666666">// scanner: Creates a list of token</font></i>
-<font color="#dbd7ca">   </font><font color="#5da994">scanner_run</font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">);</font>
+<span style="color: #25231f">   </span><span style="font-style: italic"><span style="color: #685f50">// scanner: Creates a list of token</span></span>
+<span style="color: #25231f">   </span><span style="color: #265a79">scanner_run</span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">);</span>
 
-<font color="#dbd7ca">   </font><i><font color="#666666">// interpret: Interpret the list of token</font></i>
-<font color="#dbd7ca">   </font><font color="#5da994">interpret_run</font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">);</font>
+<span style="color: #25231f">   </span><span style="font-style: italic"><span style="color: #685f50">// interpret: Interpret the list of token</span></span>
+<span style="color: #25231f">   </span><span style="color: #265a79">interpret_run</span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">);</span>
 
-<font color="#dbd7ca">   </font><font color="#5da994">fype_delete</font><font color="#cb7676">(</font><font color="#dbd7ca">p_fype</font><font color="#cb7676">);</font>
+<span style="color: #25231f">   </span><span style="color: #265a79">fype_delete</span><span style="color: #765924">(</span><span style="color: #25231f">p_fype</span><span style="color: #765924">);</span>
 
-<font color="#dbd7ca">   </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#bd976a">0</font><font color="#cb7676">);</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">   </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #8a450c">0</span><span style="color: #765924">);</span>
+<span style="color: #765924">}</span>
 </pre>
 <br />
 <h2 style='display: inline' id='data-types'>Data types</h2><br />
@@ -558,12 +568,13 @@ BB
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

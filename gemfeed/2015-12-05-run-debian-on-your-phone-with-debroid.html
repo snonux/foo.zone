@@ -9,16 +9,26 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2015-12-05-run-debian-on-your-phone-with-debroid.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='run-debian-on-your-phone-with-debroid'>Run Debian on your phone with Debroid</h1><br />
 <br />
 <span class='quote'>Published at 2015-12-05T16:12:57+00:00; Updated at 2021-05-16</span><br />
 <br />
 <span>You can use the following tutorial to install a full-blown Debian GNU/Linux Chroot on an LG G3 D855 CyanogenMod 13 (Android 6). First of all, you need to have root permissions on your phone, and you also need to have the developer mode activated. The following steps have been tested on Linux (Fedora 23).</span><br />
 <br />
-<a href='./run-debian-on-your-phone-with-debroid/Deboroid.png'><img src='./run-debian-on-your-phone-with-debroid/Deboroid.png' /></a><br />
+<a href='./run-debian-on-your-phone-with-debroid/Deboroid.png'><img alt='' src='./run-debian-on-your-phone-with-debroid/Deboroid.png' /></a><br />
 <br />
 <span>A couple of years have passed since I last worked on Debroid. Currently, I am using the Termux app on Android, which is less sophisticated than a fully blown Debian installation but sufficient for my current requirements. The content of this site may be still relevant, and it would also work with more recent versions of Debian and Android. I would expect that some minor modifications need to be made, though. </span><br />
 <br />
@@ -57,24 +67,24 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">sudo dnf install debootstrap</font>
-<i><font color="#666666"># 5g</font></i>
-<font color="#dbd7ca">dd </font><b><font color="#4d9375">if</font></b><font color="#cb7676">=</font><font color="#dbd7ca">/dev/zero </font><font color="#bd976a">of</font><font color="#cb7676">=</font><font color="#dbd7ca">jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">img </font><font color="#bd976a">bs</font><font color="#cb7676">=</font><font color="#bd976a">$[</font><font color="#dbd7ca"> </font><font color="#bd976a">1024</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca"> </font><font color="#bd976a">1024</font><font color="#dbd7ca"> </font><font color="#cb7676">]</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">  </font><font color="#bd976a">count</font><font color="#cb7676">=</font><font color="#bd976a">$[</font><font color="#dbd7ca"> </font><font color="#bd976a">1024</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca"> </font><font color="#bd976a">5</font><font color="#dbd7ca"> </font><font color="#cb7676">]</font>
+<pre><span style="color: #25231f">sudo dnf install debootstrap</span>
+<span style="font-style: italic"><span style="color: #685f50"># 5g</span></span>
+<span style="color: #25231f">dd </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #765924">=</span><span style="color: #25231f">/dev/zero </span><span style="color: #6d3c6d">of</span><span style="color: #765924">=</span><span style="color: #25231f">jessie</span><span style="color: #765924">.</span><span style="color: #25231f">img </span><span style="color: #6d3c6d">bs</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$[</span><span style="color: #25231f"> </span><span style="color: #8a450c">1024</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f"> </span><span style="color: #8a450c">1024</span><span style="color: #25231f"> </span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
+<span style="color: #25231f">  </span><span style="color: #6d3c6d">count</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$[</span><span style="color: #25231f"> </span><span style="color: #8a450c">1024</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f"> </span><span style="color: #8a450c">5</span><span style="color: #25231f"> </span><span style="color: #765924">]</span>
 
-<i><font color="#666666"># Show used loop devices</font></i>
-<font color="#dbd7ca">sudo losetup -f</font>
-<i><font color="#666666"># Store the next free one to $loop</font></i>
-<font color="#bd976a">loop</font><font color="#cb7676">=</font><font color="#dbd7ca">loopN</font>
-<font color="#dbd7ca">sudo losetup /dev</font><font color="#cb7676">/</font><font color="#bd976a">$loop</font><font color="#dbd7ca"> jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">img</font>
+<span style="font-style: italic"><span style="color: #685f50"># Show used loop devices</span></span>
+<span style="color: #25231f">sudo losetup -f</span>
+<span style="font-style: italic"><span style="color: #685f50"># Store the next free one to $loop</span></span>
+<span style="color: #6d3c6d">loop</span><span style="color: #765924">=</span><span style="color: #25231f">loopN</span>
+<span style="color: #25231f">sudo losetup /dev</span><span style="color: #765924">/</span><span style="color: #6d3c6d">$loop</span><span style="color: #25231f"> jessie</span><span style="color: #765924">.</span><span style="color: #25231f">img</span>
 
-<font color="#dbd7ca">mkdir jessie</font>
-<font color="#dbd7ca">sudo mkfs</font><font color="#cb7676">.</font><font color="#dbd7ca">ext4 /dev</font><font color="#cb7676">/</font><font color="#bd976a">$loop</font>
-<font color="#dbd7ca">sudo mount /dev</font><font color="#cb7676">/</font><font color="#bd976a">$loop</font><font color="#dbd7ca"> jessie</font>
-<font color="#dbd7ca">sudo debootstrap --foreign --variant</font><font color="#cb7676">=</font><font color="#dbd7ca">minbase </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">  --arch armel jessie jessie</font><font color="#cb7676">/</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">  http</font><font color="#cb7676">:</font><font color="#dbd7ca">//http</font><font color="#cb7676">.</font><font color="#dbd7ca">debian</font><font color="#cb7676">.</font><font color="#dbd7ca">net/debian</font>
-<font color="#dbd7ca">sudo umount jessie</font>
+<span style="color: #25231f">mkdir jessie</span>
+<span style="color: #25231f">sudo mkfs</span><span style="color: #765924">.</span><span style="color: #25231f">ext4 /dev</span><span style="color: #765924">/</span><span style="color: #6d3c6d">$loop</span>
+<span style="color: #25231f">sudo mount /dev</span><span style="color: #765924">/</span><span style="color: #6d3c6d">$loop</span><span style="color: #25231f"> jessie</span>
+<span style="color: #25231f">sudo debootstrap --foreign --variant</span><span style="color: #765924">=</span><span style="color: #25231f">minbase </span><span style="color: #765924">\</span>
+<span style="color: #25231f">  --arch armel jessie jessie</span><span style="color: #765924">/</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
+<span style="color: #25231f">  http</span><span style="color: #765924">:</span><span style="color: #25231f">//http</span><span style="color: #765924">.</span><span style="color: #25231f">debian</span><span style="color: #765924">.</span><span style="color: #25231f">net/debian</span>
+<span style="color: #25231f">sudo umount jessie</span>
 </pre>
 <br />
 <h3 style='display: inline' id='copy-debian-image-to-the-phone'>Copy Debian image to the phone</h3><br />
@@ -85,42 +95,42 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">adb root </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> adb wait-for-device </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> adb shell</font>
-<font color="#dbd7ca">mkdir -p /storage/sdcard</font><font color="#bd976a">1</font><font color="#dbd7ca">/Linux/jessie</font>
-<b><font color="#4d9375">exit</font></b>
+<pre><span style="color: #25231f">adb root </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> adb wait-for-device </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> adb shell</span>
+<span style="color: #25231f">mkdir -p /storage/sdcard</span><span style="color: #8a450c">1</span><span style="color: #25231f">/Linux/jessie</span>
+<span style="font-weight: bold"><span style="color: #7b2934">exit</span></span>
 
-<i><font color="#666666"># Sparse image problem, may be too big for copying otherwise</font></i>
-<font color="#dbd7ca">gzip jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">img</font>
-<i><font color="#666666"># Copy over</font></i>
-<font color="#dbd7ca">adb push jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">img</font><font color="#cb7676">.</font><font color="#dbd7ca">gz /storage/sdcard</font><font color="#bd976a">1</font><font color="#dbd7ca">/Linux/jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">img</font><font color="#cb7676">.</font><font color="#dbd7ca">gz</font>
-<font color="#dbd7ca">adb shell</font>
-<font color="#dbd7ca">cd /storage/sdcard</font><font color="#bd976a">1</font><font color="#dbd7ca">/Linux</font>
-<font color="#dbd7ca">gunzip jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">img</font><font color="#cb7676">.</font><font color="#dbd7ca">gz</font>
+<span style="font-style: italic"><span style="color: #685f50"># Sparse image problem, may be too big for copying otherwise</span></span>
+<span style="color: #25231f">gzip jessie</span><span style="color: #765924">.</span><span style="color: #25231f">img</span>
+<span style="font-style: italic"><span style="color: #685f50"># Copy over</span></span>
+<span style="color: #25231f">adb push jessie</span><span style="color: #765924">.</span><span style="color: #25231f">img</span><span style="color: #765924">.</span><span style="color: #25231f">gz /storage/sdcard</span><span style="color: #8a450c">1</span><span style="color: #25231f">/Linux/jessie</span><span style="color: #765924">.</span><span style="color: #25231f">img</span><span style="color: #765924">.</span><span style="color: #25231f">gz</span>
+<span style="color: #25231f">adb shell</span>
+<span style="color: #25231f">cd /storage/sdcard</span><span style="color: #8a450c">1</span><span style="color: #25231f">/Linux</span>
+<span style="color: #25231f">gunzip jessie</span><span style="color: #765924">.</span><span style="color: #25231f">img</span><span style="color: #765924">.</span><span style="color: #25231f">gz</span>
 
-<i><font color="#666666"># Show used loop devices</font></i>
-<font color="#dbd7ca">losetup -f</font>
-<i><font color="#666666"># Store the next free one to $loop</font></i>
-<font color="#bd976a">loop</font><font color="#cb7676">=</font><font color="#dbd7ca">loopN</font>
+<span style="font-style: italic"><span style="color: #685f50"># Show used loop devices</span></span>
+<span style="color: #25231f">losetup -f</span>
+<span style="font-style: italic"><span style="color: #685f50"># Store the next free one to $loop</span></span>
+<span style="color: #6d3c6d">loop</span><span style="color: #765924">=</span><span style="color: #25231f">loopN</span>
 
-<i><font color="#666666"># Use the next free one (replace the loop number)</font></i>
-<font color="#dbd7ca">losetup /dev/block</font><font color="#cb7676">/</font><font color="#bd976a">$loop</font><font color="#dbd7ca"> </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca">/jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">img</font>
-<font color="#dbd7ca">mount -t ext4 /dev/block</font><font color="#cb7676">/</font><font color="#bd976a">$loop</font><font color="#dbd7ca"> </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca">/jessie</font>
+<span style="font-style: italic"><span style="color: #685f50"># Use the next free one (replace the loop number)</span></span>
+<span style="color: #25231f">losetup /dev/block</span><span style="color: #765924">/</span><span style="color: #6d3c6d">$loop</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/jessie</span><span style="color: #765924">.</span><span style="color: #25231f">img</span>
+<span style="color: #25231f">mount -t ext4 /dev/block</span><span style="color: #765924">/</span><span style="color: #6d3c6d">$loop</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/jessie</span>
 
-<i><font color="#666666"># Bind-Mound proc, dev, sys`</font></i>
-<font color="#dbd7ca">busybox mount --bind /proc </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca">/jessie/proc</font>
-<font color="#dbd7ca">busybox mount --bind /dev </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca">/jessie/dev</font>
-<font color="#dbd7ca">busybox mount --bind /dev/pts </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca">/jessie/dev/pts</font>
-<font color="#dbd7ca">busybox mount --bind /sys </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca">/jessie/sys</font>
+<span style="font-style: italic"><span style="color: #685f50"># Bind-Mound proc, dev, sys`</span></span>
+<span style="color: #25231f">busybox mount --bind /proc </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/jessie/proc</span>
+<span style="color: #25231f">busybox mount --bind /dev </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/jessie/dev</span>
+<span style="color: #25231f">busybox mount --bind /dev/pts </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/jessie/dev/pts</span>
+<span style="color: #25231f">busybox mount --bind /sys </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/jessie/sys</span>
 
-<i><font color="#666666"># Bind-Mound the rest of Android</font></i>
-<font color="#dbd7ca">mkdir -p </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca">/jessie/storage/sdcard{</font><font color="#bd976a">0</font><font color="#cb7676">,</font><font color="#bd976a">1</font><font color="#dbd7ca">}</font>
-<font color="#dbd7ca">busybox mount --bind /storage/emulated </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">  </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca">/jessie/storage/sdcard</font><font color="#bd976a">0</font>
-<font color="#dbd7ca">busybox mount --bind /storage/sdcard</font><font color="#bd976a">1</font><font color="#dbd7ca"> </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">  </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca">/jessie/storage/sdcard</font><font color="#bd976a">1</font>
+<span style="font-style: italic"><span style="color: #685f50"># Bind-Mound the rest of Android</span></span>
+<span style="color: #25231f">mkdir -p </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/jessie/storage/sdcard{</span><span style="color: #8a450c">0</span><span style="color: #765924">,</span><span style="color: #8a450c">1</span><span style="color: #25231f">}</span>
+<span style="color: #25231f">busybox mount --bind /storage/emulated </span><span style="color: #765924">\</span>
+<span style="color: #25231f">  </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/jessie/storage/sdcard</span><span style="color: #8a450c">0</span>
+<span style="color: #25231f">busybox mount --bind /storage/sdcard</span><span style="color: #8a450c">1</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
+<span style="color: #25231f">  </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/jessie/storage/sdcard</span><span style="color: #8a450c">1</span>
 
-<i><font color="#666666"># Check mounts</font></i>
-<font color="#dbd7ca">mount </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep jessie</font>
+<span style="font-style: italic"><span style="color: #685f50"># Check mounts</span></span>
+<span style="color: #25231f">mount </span><span style="color: #765924">|</span><span style="color: #25231f"> grep jessie</span>
 </pre>
 <br />
 <h3 style='display: inline' id='second-debootstrap-stage'>Second debootstrap stage</h3><br />
@@ -131,11 +141,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">chroot </font><font color="#bd976a">$(pwd)</font><font color="#dbd7ca">/jessie /bin/bash -l</font>
-<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">PATH</font><font color="#cb7676">=</font><font color="#dbd7ca">/bin</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/bin</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/bin</font><font color="#cb7676">:</font><font color="#dbd7ca">/sbin</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/sbin</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/sbin</font>
-<font color="#dbd7ca">/debootstrap/debootstrap --second-stage</font>
-<b><font color="#4d9375">exit</font></b><font color="#dbd7ca"> </font><i><font color="#666666"># Leave chroot</font></i>
-<b><font color="#4d9375">exit</font></b><font color="#dbd7ca"> </font><i><font color="#666666"># Leave adb shell</font></i>
+<pre><span style="color: #25231f">chroot </span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/jessie /bin/bash -l</span>
+<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">PATH</span><span style="color: #765924">=</span><span style="color: #25231f">/bin</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/bin</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/bin</span><span style="color: #765924">:</span><span style="color: #25231f">/sbin</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/sbin</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/sbin</span>
+<span style="color: #25231f">/debootstrap/debootstrap --second-stage</span>
+<span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># Leave chroot</span></span>
+<span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># Leave adb shell</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='setup-of-various-scripts'>Setup of various scripts</h3><br />
@@ -146,36 +156,36 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666"># Install script jessie.sh</font></i>
-<font color="#dbd7ca">adb push storage/sdcard</font><font color="#bd976a">1</font><font color="#dbd7ca">/Linux/jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">sh /storage/sdcard/Linux/jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
-<font color="#dbd7ca">adb shell</font>
-<font color="#dbd7ca">cd /storage/sdcard</font><font color="#bd976a">1</font><font color="#dbd7ca">/Linux</font>
-<font color="#dbd7ca">sh jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">sh enter</font>
+<pre><span style="font-style: italic"><span style="color: #685f50"># Install script jessie.sh</span></span>
+<span style="color: #25231f">adb push storage/sdcard</span><span style="color: #8a450c">1</span><span style="color: #25231f">/Linux/jessie</span><span style="color: #765924">.</span><span style="color: #25231f">sh /storage/sdcard/Linux/jessie</span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
+<span style="color: #25231f">adb shell</span>
+<span style="color: #25231f">cd /storage/sdcard</span><span style="color: #8a450c">1</span><span style="color: #25231f">/Linux</span>
+<span style="color: #25231f">sh jessie</span><span style="color: #765924">.</span><span style="color: #25231f">sh enter</span>
 
-<i><font color="#666666"># Bashrc</font></i>
-<font color="#dbd7ca">cat </font><font color="#cb7676">&lt;&lt;</font><font color="#dbd7ca">END </font><font color="#cb7676">&gt;~/.</font><font color="#dbd7ca">bashrc</font>
-<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">PATH</font><font color="#cb7676">=</font><font color="#dbd7ca">/usr/local/sbin</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/bin</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/sbin</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/bin</font><font color="#cb7676">:</font><font color="#dbd7ca">/sbin</font><font color="#cb7676">:</font><font color="#dbd7ca">/bin</font><font color="#cb7676">:</font><font color="#bd976a">$PATH</font>
-<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">EDITOR</font><font color="#cb7676">=</font><font color="#dbd7ca">vim</font>
-<font color="#dbd7ca">hostname </font><font color="#bd976a">$(</font><font color="#dbd7ca">cat /etc/hostname</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">END</font>
+<span style="font-style: italic"><span style="color: #685f50"># Bashrc</span></span>
+<span style="color: #25231f">cat </span><span style="color: #765924">&lt;&lt;</span><span style="color: #25231f">END </span><span style="color: #765924">&gt;~/.</span><span style="color: #25231f">bashrc</span>
+<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">PATH</span><span style="color: #765924">=</span><span style="color: #25231f">/usr/local/sbin</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/bin</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/sbin</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/bin</span><span style="color: #765924">:</span><span style="color: #25231f">/sbin</span><span style="color: #765924">:</span><span style="color: #25231f">/bin</span><span style="color: #765924">:</span><span style="color: #6d3c6d">$PATH</span>
+<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">EDITOR</span><span style="color: #765924">=</span><span style="color: #25231f">vim</span>
+<span style="color: #25231f">hostname </span><span style="color: #6d3c6d">$(</span><span style="color: #25231f">cat /etc/hostname</span><span style="color: #765924">)</span>
+<span style="color: #25231f">END</span>
 
-<i><font color="#666666"># Fixing an error message while loading the profile</font></i>
-<font color="#dbd7ca">sed -i s</font><i><font color="#666666">#id#/usr/bin/id# /etc/profile</font></i>
+<span style="font-style: italic"><span style="color: #685f50"># Fixing an error message while loading the profile</span></span>
+<span style="color: #25231f">sed -i s</span><span style="font-style: italic"><span style="color: #685f50">#id#/usr/bin/id# /etc/profile</span></span>
 
-<i><font color="#666666"># Setting the hostname</font></i>
-<font color="#dbd7ca">echo phobos </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /etc/hostname</font>
-<font color="#dbd7ca">echo </font><font color="#bd976a">127.0</font><font color="#cb7676">.</font><font color="#bd976a">0.1</font><font color="#dbd7ca"> phobos </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /etc/hosts</font>
-<font color="#dbd7ca">hostname phobos</font>
+<span style="font-style: italic"><span style="color: #685f50"># Setting the hostname</span></span>
+<span style="color: #25231f">echo phobos </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /etc/hostname</span>
+<span style="color: #25231f">echo </span><span style="color: #8a450c">127.0</span><span style="color: #765924">.</span><span style="color: #8a450c">0.1</span><span style="color: #25231f"> phobos </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /etc/hosts</span>
+<span style="color: #25231f">hostname phobos</span>
 
-<i><font color="#666666"># Apt-sources</font></i>
-<font color="#dbd7ca">cat </font><font color="#cb7676">&lt;&lt;</font><font color="#dbd7ca">END </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> sources</font><font color="#cb7676">.</font><font color="#dbd7ca">list</font>
-<font color="#dbd7ca">deb http</font><font color="#cb7676">:</font><font color="#dbd7ca">//ftp</font><font color="#cb7676">.</font><font color="#dbd7ca">uk</font><font color="#cb7676">.</font><font color="#dbd7ca">debian</font><font color="#cb7676">.</font><font color="#dbd7ca">org/debian</font><font color="#cb7676">/</font><font color="#dbd7ca"> jessie main contrib non-free</font>
-<font color="#dbd7ca">deb-src http</font><font color="#cb7676">:</font><font color="#dbd7ca">//ftp</font><font color="#cb7676">.</font><font color="#dbd7ca">uk</font><font color="#cb7676">.</font><font color="#dbd7ca">debian</font><font color="#cb7676">.</font><font color="#dbd7ca">org/debian</font><font color="#cb7676">/</font><font color="#dbd7ca"> jessie main contrib non-free</font>
-<font color="#dbd7ca">END</font>
-<font color="#dbd7ca">apt-get update</font>
-<font color="#dbd7ca">apt-get upgrade</font>
-<font color="#dbd7ca">apt-get dist-upgrade</font>
-<b><font color="#4d9375">exit</font></b><font color="#dbd7ca"> </font><i><font color="#666666"># Exit chroot</font></i>
+<span style="font-style: italic"><span style="color: #685f50"># Apt-sources</span></span>
+<span style="color: #25231f">cat </span><span style="color: #765924">&lt;&lt;</span><span style="color: #25231f">END </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> sources</span><span style="color: #765924">.</span><span style="color: #25231f">list</span>
+<span style="color: #25231f">deb http</span><span style="color: #765924">:</span><span style="color: #25231f">//ftp</span><span style="color: #765924">.</span><span style="color: #25231f">uk</span><span style="color: #765924">.</span><span style="color: #25231f">debian</span><span style="color: #765924">.</span><span style="color: #25231f">org/debian</span><span style="color: #765924">/</span><span style="color: #25231f"> jessie main contrib non-free</span>
+<span style="color: #25231f">deb-src http</span><span style="color: #765924">:</span><span style="color: #25231f">//ftp</span><span style="color: #765924">.</span><span style="color: #25231f">uk</span><span style="color: #765924">.</span><span style="color: #25231f">debian</span><span style="color: #765924">.</span><span style="color: #25231f">org/debian</span><span style="color: #765924">/</span><span style="color: #25231f"> jessie main contrib non-free</span>
+<span style="color: #25231f">END</span>
+<span style="color: #25231f">apt-get update</span>
+<span style="color: #25231f">apt-get upgrade</span>
+<span style="color: #25231f">apt-get dist-upgrade</span>
+<span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># Exit chroot</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='entering-debroid-and-enable-a-service'>Entering Debroid and enable a service</h3><br />
@@ -186,19 +196,19 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">sh jessie</font><font color="#cb7676">.</font><font color="#dbd7ca">sh enter</font>
+<pre><span style="color: #25231f">sh jessie</span><span style="color: #765924">.</span><span style="color: #25231f">sh enter</span>
 
-<i><font color="#666666"># Setup example serice uptimed</font></i>
-<font color="#dbd7ca">apt-get install uptimed</font>
-<font color="#dbd7ca">cat </font><font color="#cb7676">&lt;&lt;</font><font color="#dbd7ca">END </font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> /etc/rc</font><font color="#cb7676">.</font><font color="#dbd7ca">debroid</font>
-<b><font color="#4d9375">export</font></b><font color="#dbd7ca"> </font><font color="#bd976a">PATH</font><font color="#cb7676">=</font><font color="#dbd7ca">/usr/local/sbin</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/bin</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/sbin</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/bin</font><font color="#cb7676">:</font><font color="#dbd7ca">/sbin</font><font color="#cb7676">:</font><font color="#dbd7ca">/bin</font><font color="#cb7676">:</font><font color="#bd976a">$PATH</font>
-<font color="#dbd7ca">service uptimed status </font><font color="#cb7676">&amp;&gt;</font><font color="#dbd7ca">/dev/null </font><font color="#cb7676">||</font><font color="#dbd7ca"> service uptimed start</font>
-<b><font color="#4d9375">exit</font></b><font color="#dbd7ca"> </font><font color="#bd976a">0</font>
-<font color="#dbd7ca">END</font>
+<span style="font-style: italic"><span style="color: #685f50"># Setup example serice uptimed</span></span>
+<span style="color: #25231f">apt-get install uptimed</span>
+<span style="color: #25231f">cat </span><span style="color: #765924">&lt;&lt;</span><span style="color: #25231f">END </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /etc/rc</span><span style="color: #765924">.</span><span style="color: #25231f">debroid</span>
+<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">PATH</span><span style="color: #765924">=</span><span style="color: #25231f">/usr/local/sbin</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/bin</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/sbin</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/bin</span><span style="color: #765924">:</span><span style="color: #25231f">/sbin</span><span style="color: #765924">:</span><span style="color: #25231f">/bin</span><span style="color: #765924">:</span><span style="color: #6d3c6d">$PATH</span>
+<span style="color: #25231f">service uptimed status </span><span style="color: #765924">&amp;&gt;</span><span style="color: #25231f">/dev/null </span><span style="color: #765924">||</span><span style="color: #25231f"> service uptimed start</span>
+<span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span>
+<span style="color: #25231f">END</span>
 
-<font color="#dbd7ca">chmod </font><font color="#bd976a">0755</font><font color="#dbd7ca"> /etc/rc</font><font color="#cb7676">.</font><font color="#dbd7ca">debroid</font>
-<b><font color="#4d9375">exit</font></b><font color="#dbd7ca"> </font><i><font color="#666666"># Exit chroot</font></i>
-<b><font color="#4d9375">exit</font></b><font color="#dbd7ca"> </font><i><font color="#666666"># Exit adb shell</font></i>
+<span style="color: #25231f">chmod </span><span style="color: #8a450c">0755</span><span style="color: #25231f"> /etc/rc</span><span style="color: #765924">.</span><span style="color: #25231f">debroid</span>
+<span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># Exit chroot</span></span>
+<span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># Exit adb shell</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='include-to-android-startup'>Include to Android startup:</h3><br />
@@ -209,10 +219,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">adb push data/local/userinit</font><font color="#cb7676">.</font><font color="#dbd7ca">sh /data/local/userinit</font><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
-<font color="#dbd7ca">adb shell</font>
-<font color="#dbd7ca">chmod </font><font color="#cb7676">+</font><font color="#dbd7ca">x /data/local/userinit</font><font color="#cb7676">.</font><font color="#dbd7ca">sh</font>
-<b><font color="#4d9375">exit</font></b>
+<pre><span style="color: #25231f">adb push data/local/userinit</span><span style="color: #765924">.</span><span style="color: #25231f">sh /data/local/userinit</span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
+<span style="color: #25231f">adb shell</span>
+<span style="color: #25231f">chmod </span><span style="color: #765924">+</span><span style="color: #25231f">x /data/local/userinit</span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
+<span style="font-weight: bold"><span style="color: #7b2934">exit</span></span>
 </pre>
 <br />
 <span>Reboot &amp; test! Enjoy!</span><br />
@@ -220,12 +230,13 @@ http://www.gnu.org/software/src-highlite -->
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

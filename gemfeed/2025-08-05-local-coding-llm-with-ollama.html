@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-08-05-local-coding-llm-with-ollama.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-08-05-local-coding-llm-with-ollama.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='local-llm-for-coding-with-ollama-on-macos'>Local LLM for Coding with Ollama on macOS</h1><br />
 <br />
 <span class='quote'>Published at 2025-08-04T16:43:39+03:00, last updated Sat 03 Oct 18:26:24 EEST 2026</span><br />
@@ -104,9 +114,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">brew install ollama</font>
-<font color="#dbd7ca">rehash</font>
-<font color="#dbd7ca">ollama serve</font>
+<pre><span style="color: #25231f">brew install ollama</span>
+<span style="color: #25231f">rehash</span>
+<span style="color: #25231f">ollama serve</span>
 </pre>
 <br />
 <span>Which started up the Ollama server with something like this (the screenshots shows already some requests made):</span><br />
@@ -119,7 +129,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">ollama pull qwen2</font><font color="#cb7676">.</font><font color="#bd976a">5</font><font color="#dbd7ca">-coder</font><font color="#cb7676">:</font><font color="#dbd7ca">14b-instruct</font>
+<pre><span style="color: #25231f">ollama pull qwen2</span><span style="color: #765924">.</span><span style="color: #8a450c">5</span><span style="color: #25231f">-coder</span><span style="color: #765924">:</span><span style="color: #25231f">14b-instruct</span>
 </pre>
 <br />
 <span>Now, I was ready to go! It wasn&#39;t so difficult. Now, let&#39;s see how I used this model for coding tasks.</span><br />
@@ -132,27 +142,27 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">time echo </font><font color="#bd976a">"Write a function in golang to print out the Nth fibonacci number, \</font>
-<font color="#bd976a">  only the function without the boilerplate"</font><font color="#dbd7ca"> </font><font color="#cb7676">|</font><font color="#dbd7ca"> ollama run qwen2</font><font color="#cb7676">.</font><font color="#bd976a">5</font><font color="#dbd7ca">-coder</font><font color="#cb7676">:</font><font color="#dbd7ca">14b-instruct</font>
+<pre><span style="color: #25231f">time echo </span><span style="color: #3e5d36">"Write a function in golang to print out the Nth fibonacci number, \</span>
+<span style="color: #3e5d36">  only the function without the boilerplate"</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> ollama run qwen2</span><span style="color: #765924">.</span><span style="color: #8a450c">5</span><span style="color: #25231f">-coder</span><span style="color: #765924">:</span><span style="color: #25231f">14b-instruct</span>
 
-<font color="#dbd7ca">Output</font><font color="#cb7676">:</font>
+<span style="color: #25231f">Output</span><span style="color: #765924">:</span>
 
-<font color="#dbd7ca">func fibonacci</font><font color="#cb7676">(</font><font color="#dbd7ca">n int</font><font color="#cb7676">)</font><font color="#dbd7ca"> int {</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> n </font><font color="#cb7676">&lt;=</font><font color="#dbd7ca"> </font><font color="#bd976a">1</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">        </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> n</font>
-<font color="#dbd7ca">    }</font>
-<font color="#dbd7ca">    a</font><font color="#cb7676">,</font><font color="#dbd7ca"> b </font><font color="#cb7676">:=</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">1</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> i </font><font color="#cb7676">:=</font><font color="#dbd7ca"> </font><font color="#bd976a">2</font><font color="#cb7676">;</font><font color="#dbd7ca"> i </font><font color="#cb7676">&lt;=</font><font color="#dbd7ca"> n</font><font color="#cb7676">;</font><font color="#dbd7ca"> i</font><font color="#cb7676">++</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">        a</font><font color="#cb7676">,</font><font color="#dbd7ca"> b </font><font color="#cb7676">=</font><font color="#dbd7ca"> b</font><font color="#cb7676">,</font><font color="#dbd7ca"> a</font><font color="#cb7676">+</font><font color="#dbd7ca">b</font>
-<font color="#dbd7ca">    }</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> b</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">func fibonacci</span><span style="color: #765924">(</span><span style="color: #25231f">n int</span><span style="color: #765924">)</span><span style="color: #25231f"> int {</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> n </span><span style="color: #765924">&lt;=</span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> n</span>
+<span style="color: #25231f">    }</span>
+<span style="color: #25231f">    a</span><span style="color: #765924">,</span><span style="color: #25231f"> b </span><span style="color: #765924">:=</span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> i </span><span style="color: #765924">:=</span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span><span style="color: #765924">;</span><span style="color: #25231f"> i </span><span style="color: #765924">&lt;=</span><span style="color: #25231f"> n</span><span style="color: #765924">;</span><span style="color: #25231f"> i</span><span style="color: #765924">++</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">        a</span><span style="color: #765924">,</span><span style="color: #25231f"> b </span><span style="color: #765924">=</span><span style="color: #25231f"> b</span><span style="color: #765924">,</span><span style="color: #25231f"> a</span><span style="color: #765924">+</span><span style="color: #25231f">b</span>
+<span style="color: #25231f">    }</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> b</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">Execution Metrics</font><font color="#cb7676">:</font>
+<span style="color: #25231f">Execution Metrics</span><span style="color: #765924">:</span>
 
-<font color="#dbd7ca">Executed </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca">    </font><font color="#bd976a">4.90</font><font color="#dbd7ca"> secs      fish           external</font>
-<font color="#dbd7ca">   usr time   </font><font color="#bd976a">15.54</font><font color="#dbd7ca"> millis    </font><font color="#bd976a">0.31</font><font color="#dbd7ca"> millis   </font><font color="#bd976a">15.24</font><font color="#dbd7ca"> millis</font>
-<font color="#dbd7ca">   sys time   </font><font color="#bd976a">19.68</font><font color="#dbd7ca"> millis    </font><font color="#bd976a">1.02</font><font color="#dbd7ca"> millis   </font><font color="#bd976a">18.66</font><font color="#dbd7ca"> millis</font>
+<span style="color: #25231f">Executed </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f">    </span><span style="color: #8a450c">4.90</span><span style="color: #25231f"> secs      fish           external</span>
+<span style="color: #25231f">   usr time   </span><span style="color: #8a450c">15.54</span><span style="color: #25231f"> millis    </span><span style="color: #8a450c">0.31</span><span style="color: #25231f"> millis   </span><span style="color: #8a450c">15.24</span><span style="color: #25231f"> millis</span>
+<span style="color: #25231f">   sys time   </span><span style="color: #8a450c">19.68</span><span style="color: #25231f"> millis    </span><span style="color: #8a450c">1.02</span><span style="color: #25231f"> millis   </span><span style="color: #8a450c">18.66</span><span style="color: #25231f"> millis</span>
 </pre>
 <br />
 <span class='quote'>Note, after having written this blog post, I tried the same with the newer model <span class='inlinecode'>qwen3-coder:30b-a3b-q4_K_M</span> (which "just" came out, and it&#39;s a quantised 30B model), and it was much faster:</span><br />
@@ -177,9 +187,9 @@ Executed in    1.83 secs      fish           external
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">brew install aider</font>
-<font color="#dbd7ca">mkdir -p </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/aitest </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> cd </font><font color="#cb7676">~</font><font color="#dbd7ca">/git/aitest </font><font color="#cb7676">&amp;&amp;</font><font color="#dbd7ca"> git init</font>
-<font color="#dbd7ca">aider --model ollama_chat/qwen</font><font color="#bd976a">2.5</font><font color="#dbd7ca">-coder</font><font color="#cb7676">:</font><font color="#dbd7ca">14b-instruct</font>
+<pre><span style="color: #25231f">brew install aider</span>
+<span style="color: #25231f">mkdir -p </span><span style="color: #765924">~</span><span style="color: #25231f">/git/aitest </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> cd </span><span style="color: #765924">~</span><span style="color: #25231f">/git/aitest </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> git init</span>
+<span style="color: #25231f">aider --model ollama_chat/qwen</span><span style="color: #8a450c">2.5</span><span style="color: #25231f">-coder</span><span style="color: #765924">:</span><span style="color: #25231f">14b-instruct</span>
 </pre>
 <br />
 <a class='textlink' href='https://aider.chat'>https://aider.chat</a><br />
@@ -222,11 +232,11 @@ Create a Go project with these files:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">go build cmd/aitest/main</font><font color="#cb7676">.</font><font color="#dbd7ca">go</font>
-<font color="#cb7676">.</font><font color="#dbd7ca">/main -v</font>
-<font color="#bd976a">0.0</font><font color="#cb7676">.</font><font color="#bd976a">0</font>
-<font color="#cb7676">.</font><font color="#dbd7ca">/main -dir </font><font color="#cb7676">.</font>
-<font color="#dbd7ca">Number of files </font><b><font color="#4d9375">in</font></b><font color="#dbd7ca"> directory </font><font color="#cb7676">.:</font><font color="#dbd7ca"> </font><font color="#bd976a">4</font>
+<pre><span style="color: #25231f">go build cmd/aitest/main</span><span style="color: #765924">.</span><span style="color: #25231f">go</span>
+<span style="color: #765924">.</span><span style="color: #25231f">/main -v</span>
+<span style="color: #8a450c">0.0</span><span style="color: #765924">.</span><span style="color: #8a450c">0</span>
+<span style="color: #765924">.</span><span style="color: #25231f">/main -dir </span><span style="color: #765924">.</span>
+<span style="color: #25231f">Number of files </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> directory </span><span style="color: #765924">.:</span><span style="color: #25231f"> </span><span style="color: #8a450c">4</span>
 </pre>
 <br />
 <h3 style='display: inline' id='the-code'>The code</h3><br />
@@ -237,38 +247,38 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">package</font></b><font color="#dbd7ca"> main</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">package</span></span><span style="color: #25231f"> main</span>
 
-<b><font color="#4d9375">import</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font>
-<font color="#dbd7ca">	</font><font color="#bd976a">"flag"</font>
-<font color="#dbd7ca">	</font><font color="#bd976a">"fmt"</font>
-<font color="#dbd7ca">	</font><font color="#bd976a">"os"</font>
+<span style="font-weight: bold"><span style="color: #7b2934">import</span></span><span style="color: #25231f"> </span><span style="color: #765924">(</span>
+<span style="color: #25231f">	</span><span style="color: #3e5d36">"flag"</span>
+<span style="color: #25231f">	</span><span style="color: #3e5d36">"fmt"</span>
+<span style="color: #25231f">	</span><span style="color: #3e5d36">"os"</span>
 
-<font color="#dbd7ca">	</font><font color="#bd976a">"aitest/internal"</font>
-<font color="#cb7676">)</font>
+<span style="color: #25231f">	</span><span style="color: #3e5d36">"aitest/internal"</span>
+<span style="color: #765924">)</span>
 
-<b><font color="#4d9375">func</font></b><font color="#dbd7ca"> </font><font color="#5da994">main</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">	</font><b><font color="#4d9375">var</font></b><font color="#dbd7ca"> versionFlag </font><b><font color="#5da994">bool</font></b>
-<font color="#dbd7ca">	flag</font><font color="#cb7676">.</font><font color="#5da994">BoolVar</font><font color="#cb7676">(&amp;</font><font color="#dbd7ca">versionFlag</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"v"</font><font color="#cb7676">,</font><font color="#dbd7ca"> false</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"print version"</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">	dir </font><font color="#cb7676">:=</font><font color="#dbd7ca"> flag</font><font color="#cb7676">.</font><font color="#5da994">String</font><font color="#cb7676">(</font><font color="#bd976a">"dir"</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">""</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"directory to count files in"</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">	flag</font><font color="#cb7676">.</font><font color="#5da994">Parse</font><font color="#cb7676">()</font>
+<span style="font-weight: bold"><span style="color: #7b2934">func</span></span><span style="color: #25231f"> </span><span style="color: #265a79">main</span><span style="color: #765924">()</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">var</span></span><span style="color: #25231f"> versionFlag </span><span style="font-weight: bold"><span style="color: #235f72">bool</span></span>
+<span style="color: #25231f">	flag</span><span style="color: #765924">.</span><span style="color: #265a79">BoolVar</span><span style="color: #765924">(&amp;</span><span style="color: #25231f">versionFlag</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"v"</span><span style="color: #765924">,</span><span style="color: #25231f"> false</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"print version"</span><span style="color: #765924">)</span>
+<span style="color: #25231f">	dir </span><span style="color: #765924">:=</span><span style="color: #25231f"> flag</span><span style="color: #765924">.</span><span style="color: #265a79">String</span><span style="color: #765924">(</span><span style="color: #3e5d36">"dir"</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">""</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"directory to count files in"</span><span style="color: #765924">)</span>
+<span style="color: #25231f">	flag</span><span style="color: #765924">.</span><span style="color: #265a79">Parse</span><span style="color: #765924">()</span>
 
-<font color="#dbd7ca">	</font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> versionFlag </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">		fmt</font><font color="#cb7676">.</font><font color="#5da994">Println</font><font color="#cb7676">(</font><font color="#dbd7ca">internal</font><font color="#cb7676">.</font><font color="#5da994">GetVersion</font><font color="#cb7676">())</font>
-<font color="#dbd7ca">		</font><b><font color="#4d9375">return</font></b>
-<font color="#dbd7ca">	</font><font color="#dbd7ca">}</font>
+<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> versionFlag </span><span style="color: #765924">{</span>
+<span style="color: #25231f">		fmt</span><span style="color: #765924">.</span><span style="color: #265a79">Println</span><span style="color: #765924">(</span><span style="color: #25231f">internal</span><span style="color: #765924">.</span><span style="color: #265a79">GetVersion</span><span style="color: #765924">())</span>
+<span style="color: #25231f">		</span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span>
+<span style="color: #25231f">	</span><span style="color: #765924">}</span>
 
-<font color="#dbd7ca">	</font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">dir </font><font color="#cb7676">!=</font><font color="#dbd7ca"> </font><font color="#bd976a">""</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">		fileCount</font><font color="#cb7676">,</font><font color="#dbd7ca"> err </font><font color="#cb7676">:=</font><font color="#dbd7ca"> internal</font><font color="#cb7676">.</font><font color="#5da994">CountFiles</font><font color="#cb7676">(*</font><font color="#dbd7ca">dir</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">		</font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> err </font><font color="#cb7676">!=</font><font color="#dbd7ca"> nil </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">			fmt</font><font color="#cb7676">.</font><font color="#5da994">Fprintf</font><font color="#cb7676">(</font><font color="#dbd7ca">os</font><font color="#cb7676">.</font><font color="#dbd7ca">Stderr</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#bd976a">"Error counting files: %v\n"</font><font color="#cb7676">,</font><font color="#dbd7ca"> err</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">			os</font><font color="#cb7676">.</font><font color="#5da994">Exit</font><font color="#cb7676">(</font><font color="#bd976a">1</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">		</font><font color="#dbd7ca">}</font>
-<font color="#dbd7ca">		fmt</font><font color="#cb7676">.</font><font color="#5da994">Printf</font><font color="#cb7676">(</font><font color="#bd976a">"Number of files in directory %s: %d\n"</font><font color="#cb7676">,</font><font color="#dbd7ca"> </font><font color="#cb7676">*</font><font color="#dbd7ca">dir</font><font color="#cb7676">,</font><font color="#dbd7ca"> fileCount</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">	</font><font color="#dbd7ca">}</font><font color="#dbd7ca"> </font><b><font color="#4d9375">else</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">		fmt</font><font color="#cb7676">.</font><font color="#5da994">Println</font><font color="#cb7676">(</font><font color="#bd976a">"No directory specified. No count given."</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">	</font><font color="#dbd7ca">}</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">dir </span><span style="color: #765924">!=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">""</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">		fileCount</span><span style="color: #765924">,</span><span style="color: #25231f"> err </span><span style="color: #765924">:=</span><span style="color: #25231f"> internal</span><span style="color: #765924">.</span><span style="color: #265a79">CountFiles</span><span style="color: #765924">(*</span><span style="color: #25231f">dir</span><span style="color: #765924">)</span>
+<span style="color: #25231f">		</span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> err </span><span style="color: #765924">!=</span><span style="color: #25231f"> nil </span><span style="color: #765924">{</span>
+<span style="color: #25231f">			fmt</span><span style="color: #765924">.</span><span style="color: #265a79">Fprintf</span><span style="color: #765924">(</span><span style="color: #25231f">os</span><span style="color: #765924">.</span><span style="color: #25231f">Stderr</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"Error counting files: %v\n"</span><span style="color: #765924">,</span><span style="color: #25231f"> err</span><span style="color: #765924">)</span>
+<span style="color: #25231f">			os</span><span style="color: #765924">.</span><span style="color: #265a79">Exit</span><span style="color: #765924">(</span><span style="color: #8a450c">1</span><span style="color: #765924">)</span>
+<span style="color: #25231f">		</span><span style="color: #765924">}</span>
+<span style="color: #25231f">		fmt</span><span style="color: #765924">.</span><span style="color: #265a79">Printf</span><span style="color: #765924">(</span><span style="color: #3e5d36">"Number of files in directory %s: %d\n"</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">dir</span><span style="color: #765924">,</span><span style="color: #25231f"> fileCount</span><span style="color: #765924">)</span>
+<span style="color: #25231f">	</span><span style="color: #765924">}</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">else</span></span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">		fmt</span><span style="color: #765924">.</span><span style="color: #265a79">Println</span><span style="color: #765924">(</span><span style="color: #3e5d36">"No directory specified. No count given."</span><span style="color: #765924">)</span>
+<span style="color: #25231f">	</span><span style="color: #765924">}</span>
+<span style="color: #765924">}</span>
 </pre>
 <br />
 <span>The <span class='inlinecode'>./internal/version.go</span> file:</span><br />
@@ -277,13 +287,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">package</font></b><font color="#dbd7ca"> internal</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">package</span></span><span style="color: #25231f"> internal</span>
 
-<b><font color="#4d9375">var</font></b><font color="#dbd7ca"> Version </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"0.0.0"</font>
+<span style="font-weight: bold"><span style="color: #7b2934">var</span></span><span style="color: #25231f"> Version </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"0.0.0"</span>
 
-<b><font color="#4d9375">func</font></b><font color="#dbd7ca"> </font><font color="#5da994">GetVersion</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><b><font color="#5da994">string</font></b><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">	</font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> Version</font>
-<font color="#dbd7ca">}</font>
+<span style="font-weight: bold"><span style="color: #7b2934">func</span></span><span style="color: #25231f"> </span><span style="color: #265a79">GetVersion</span><span style="color: #765924">()</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #235f72">string</span></span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> Version</span>
+<span style="color: #765924">}</span>
 </pre>
 <br />
 <span>The <span class='inlinecode'>./internal/count.go</span> file:</span><br />
@@ -292,27 +302,27 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><b><font color="#4d9375">package</font></b><font color="#dbd7ca"> internal</font>
+<pre><span style="font-weight: bold"><span style="color: #7b2934">package</span></span><span style="color: #25231f"> internal</span>
 
-<b><font color="#4d9375">import</font></b><font color="#dbd7ca"> </font><font color="#cb7676">(</font>
-<font color="#dbd7ca">	</font><font color="#bd976a">"os"</font>
-<font color="#cb7676">)</font>
+<span style="font-weight: bold"><span style="color: #7b2934">import</span></span><span style="color: #25231f"> </span><span style="color: #765924">(</span>
+<span style="color: #25231f">	</span><span style="color: #3e5d36">"os"</span>
+<span style="color: #765924">)</span>
 
-<b><font color="#4d9375">func</font></b><font color="#dbd7ca"> </font><font color="#5da994">CountFiles</font><font color="#cb7676">(</font><font color="#dbd7ca">dir </font><b><font color="#5da994">string</font></b><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#dbd7ca">int</font><font color="#cb7676">,</font><font color="#dbd7ca"> error</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">	files</font><font color="#cb7676">,</font><font color="#dbd7ca"> err </font><font color="#cb7676">:=</font><font color="#dbd7ca"> os</font><font color="#cb7676">.</font><font color="#5da994">ReadDir</font><font color="#cb7676">(</font><font color="#dbd7ca">dir</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">	</font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> err </font><font color="#cb7676">!=</font><font color="#dbd7ca"> nil </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">		</font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#cb7676">,</font><font color="#dbd7ca"> err</font>
-<font color="#dbd7ca">	</font><font color="#dbd7ca">}</font>
+<span style="font-weight: bold"><span style="color: #7b2934">func</span></span><span style="color: #25231f"> </span><span style="color: #265a79">CountFiles</span><span style="color: #765924">(</span><span style="color: #25231f">dir </span><span style="font-weight: bold"><span style="color: #235f72">string</span></span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #25231f">int</span><span style="color: #765924">,</span><span style="color: #25231f"> error</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">	files</span><span style="color: #765924">,</span><span style="color: #25231f"> err </span><span style="color: #765924">:=</span><span style="color: #25231f"> os</span><span style="color: #765924">.</span><span style="color: #265a79">ReadDir</span><span style="color: #765924">(</span><span style="color: #25231f">dir</span><span style="color: #765924">)</span>
+<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> err </span><span style="color: #765924">!=</span><span style="color: #25231f"> nil </span><span style="color: #765924">{</span>
+<span style="color: #25231f">		</span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span><span style="color: #765924">,</span><span style="color: #25231f"> err</span>
+<span style="color: #25231f">	</span><span style="color: #765924">}</span>
 
-<font color="#dbd7ca">	count </font><font color="#cb7676">:=</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font>
-<font color="#dbd7ca">	</font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> _</font><font color="#cb7676">,</font><font color="#dbd7ca"> file </font><font color="#cb7676">:=</font><font color="#dbd7ca"> </font><b><font color="#4d9375">range</font></b><font color="#dbd7ca"> files </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">		</font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><font color="#cb7676">!</font><font color="#dbd7ca">file</font><font color="#cb7676">.</font><font color="#5da994">IsDir</font><font color="#cb7676">()</font><font color="#dbd7ca"> </font><font color="#dbd7ca">{</font>
-<font color="#dbd7ca">			count</font><font color="#cb7676">++</font>
-<font color="#dbd7ca">		</font><font color="#dbd7ca">}</font>
-<font color="#dbd7ca">	</font><font color="#dbd7ca">}</font>
+<span style="color: #25231f">	count </span><span style="color: #765924">:=</span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span>
+<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> _</span><span style="color: #765924">,</span><span style="color: #25231f"> file </span><span style="color: #765924">:=</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">range</span></span><span style="color: #25231f"> files </span><span style="color: #765924">{</span>
+<span style="color: #25231f">		</span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">!</span><span style="color: #25231f">file</span><span style="color: #765924">.</span><span style="color: #265a79">IsDir</span><span style="color: #765924">()</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
+<span style="color: #25231f">			count</span><span style="color: #765924">++</span>
+<span style="color: #25231f">		</span><span style="color: #765924">}</span>
+<span style="color: #25231f">	</span><span style="color: #765924">}</span>
 
-<font color="#dbd7ca">	</font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> count</font><font color="#cb7676">,</font><font color="#dbd7ca"> nil</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> count</span><span style="color: #765924">,</span><span style="color: #25231f"> nil</span>
+<span style="color: #765924">}</span>
 </pre>
 <br />
 <span>The code is quite straightforward, especially for generating boilerplate code this will be useful for many use cases!</span><br />
@@ -332,7 +342,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">cargo install lsp-ai</font>
+<pre><span style="color: #25231f">cargo install lsp-ai</span>
 </pre>
 <br />
 <h3 style='display: inline' id='helix-configuration'>Helix Configuration</h3><br />
@@ -471,12 +481,13 @@ content = "{CODE}"
 <a class='textlink' href='./2025-06-22-task-samurai.html'>2025-06-22 Task Samurai: An agentic coding learning experiment</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2025-02-01-f3s-kubernetes-with-freebsd-part-3.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-3-protecting-from-power-cuts'>f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</h1><br />
 <br />
 <span class='quote'>Published at 2025-01-30T09:22:06+02:00</span><br />
@@ -66,11 +76,11 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas freebsd-update fetch</font>
-<font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas freebsd-update install</font>
-<font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas freebsd-update -r </font><font color="#bd976a">14.2</font><font color="#dbd7ca">-RELEASE upgrade</font>
-<font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas freebsd-update install</font>
-<font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas shutdown -r now</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas freebsd-update fetch</span>
+<span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas freebsd-update install</span>
+<span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas freebsd-update -r </span><span style="color: #8a450c">14.2</span><span style="color: #25231f">-RELEASE upgrade</span>
+<span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas freebsd-update install</span>
+<span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas shutdown -r now</span>
 </pre>
 <br />
 <span>And after rebooting, I ran:</span><br />
@@ -79,10 +89,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas freebsd-update install</font>
-<font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas pkg update</font>
-<font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas pkg upgrade</font>
-<font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas shutdown -r now</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas freebsd-update install</span>
+<span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas pkg update</span>
+<span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas pkg upgrade</span>
+<span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas shutdown -r now</span>
 </pre>
 <br />
 <span>And after another reboot, I was on 14.2:</span><br />
@@ -91,9 +101,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> uname -a</font>
-<font color="#dbd7ca">FreeBSD f0</font><font color="#cb7676">.</font><font color="#dbd7ca">lan</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org </font><font color="#bd976a">14.2</font><font color="#dbd7ca">-RELEASE FreeBSD </font><font color="#bd976a">14.2</font><font color="#dbd7ca">-RELEASE </font>
-<font color="#dbd7ca"> releng</font><font color="#cb7676">/</font><font color="#bd976a">14.2</font><font color="#dbd7ca">-n</font><font color="#bd976a">269506</font><font color="#dbd7ca">-c8918d6c7412 GENERIC amd64</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> uname -a</span>
+<span style="color: #25231f">FreeBSD f0</span><span style="color: #765924">.</span><span style="color: #25231f">lan</span><span style="color: #765924">.</span><span style="color: #25231f">buetow</span><span style="color: #765924">.</span><span style="color: #25231f">org </span><span style="color: #8a450c">14.2</span><span style="color: #25231f">-RELEASE FreeBSD </span><span style="color: #8a450c">14.2</span><span style="color: #25231f">-RELEASE </span>
+<span style="color: #25231f"> releng</span><span style="color: #765924">/</span><span style="color: #8a450c">14.2</span><span style="color: #25231f">-n</span><span style="color: #8a450c">269506</span><span style="color: #25231f">-c8918d6c7412 GENERIC amd64</span>
 </pre>
 <br />
 <span>And, of course, I ran this on all 3 nodes!</span><br />
@@ -139,8 +149,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas dmesg </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep UPS</font>
-<font color="#dbd7ca">ugen0</font><font color="#cb7676">.</font><font color="#bd976a">2</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">&lt;</font><font color="#dbd7ca">American Power Conversion Back-UPS BX750MI</font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> at usbus0</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas dmesg </span><span style="color: #765924">|</span><span style="color: #25231f"> grep UPS</span>
+<span style="color: #25231f">ugen0</span><span style="color: #765924">.</span><span style="color: #8a450c">2</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">&lt;</span><span style="color: #25231f">American Power Conversion Back-UPS BX750MI</span><span style="color: #765924">&gt;</span><span style="color: #25231f"> at usbus0</span>
 </pre>
 <br />
 <h3 style='display: inline' id='apcupsd-installation'><span class='inlinecode'>apcupsd</span> Installation</h3><br />
@@ -151,7 +161,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas install apcupsd</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas install apcupsd</span>
 </pre>
 <br />
 <span>I have made the following modifications to the configuration file so that the UPS can be used via the USB interface:</span><br />
@@ -160,29 +170,29 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/etc/apcupsd </font><font color="#cb7676">%</font><font color="#dbd7ca"> diff -u apcupsd</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font><font color="#cb7676">.</font><font color="#dbd7ca">sample  apcupsd</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font>
-<font color="#dbd7ca">--- apcupsd</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font><font color="#cb7676">.</font><font color="#dbd7ca">sample </font><font color="#bd976a">2024</font><font color="#dbd7ca">-</font><font color="#bd976a">11</font><font color="#dbd7ca">-</font><font color="#bd976a">01</font><font color="#dbd7ca"> </font><font color="#bd976a">16</font><font color="#cb7676">:</font><font color="#bd976a">40</font><font color="#cb7676">:</font><font color="#bd976a">42.000000000</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">0200</font>
-<font color="#cb7676">+++</font><font color="#dbd7ca"> apcupsd</font><font color="#cb7676">.</font><font color="#dbd7ca">conf        </font><font color="#bd976a">2024</font><font color="#dbd7ca">-</font><font color="#bd976a">12</font><font color="#dbd7ca">-</font><font color="#bd976a">03</font><font color="#dbd7ca"> </font><font color="#bd976a">10</font><font color="#cb7676">:</font><font color="#bd976a">58</font><font color="#cb7676">:</font><font color="#bd976a">24.009501000</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">0200</font>
-<font color="#dbd7ca">@@ -</font><font color="#bd976a">31</font><font color="#cb7676">,</font><font color="#bd976a">7</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">31</font><font color="#cb7676">,</font><font color="#bd976a">7</font><font color="#dbd7ca"> @@</font>
-<font color="#dbd7ca"> </font><i><font color="#666666">#     940-1524C, 940-0024G, 940-0095A, 940-0095B,</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#     940-0095C, 940-0625A, M-04-02-2000</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#</font></i>
-<font color="#dbd7ca">-UPSCABLE smart</font>
-<font color="#cb7676">+</font><font color="#dbd7ca">UPSCABLE usb</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/etc/apcupsd </span><span style="color: #765924">%</span><span style="color: #25231f"> diff -u apcupsd</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span><span style="color: #765924">.</span><span style="color: #25231f">sample  apcupsd</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span>
+<span style="color: #25231f">--- apcupsd</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span><span style="color: #765924">.</span><span style="color: #25231f">sample </span><span style="color: #8a450c">2024</span><span style="color: #25231f">-</span><span style="color: #8a450c">11</span><span style="color: #25231f">-</span><span style="color: #8a450c">01</span><span style="color: #25231f"> </span><span style="color: #8a450c">16</span><span style="color: #765924">:</span><span style="color: #8a450c">40</span><span style="color: #765924">:</span><span style="color: #8a450c">42.000000000</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">0200</span>
+<span style="color: #765924">+++</span><span style="color: #25231f"> apcupsd</span><span style="color: #765924">.</span><span style="color: #25231f">conf        </span><span style="color: #8a450c">2024</span><span style="color: #25231f">-</span><span style="color: #8a450c">12</span><span style="color: #25231f">-</span><span style="color: #8a450c">03</span><span style="color: #25231f"> </span><span style="color: #8a450c">10</span><span style="color: #765924">:</span><span style="color: #8a450c">58</span><span style="color: #765924">:</span><span style="color: #8a450c">24.009501000</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">0200</span>
+<span style="color: #25231f">@@ -</span><span style="color: #8a450c">31</span><span style="color: #765924">,</span><span style="color: #8a450c">7</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">31</span><span style="color: #765924">,</span><span style="color: #8a450c">7</span><span style="color: #25231f"> @@</span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#     940-1524C, 940-0024G, 940-0095A, 940-0095B,</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#     940-0095C, 940-0625A, M-04-02-2000</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#</span></span>
+<span style="color: #25231f">-UPSCABLE smart</span>
+<span style="color: #765924">+</span><span style="color: #25231f">UPSCABLE usb</span>
 
-<font color="#dbd7ca"> </font><i><font color="#666666"># To get apcupsd to work, in addition to defining the cable</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666"># above, you must also define a UPSTYPE, which corresponds to</font></i>
-<font color="#dbd7ca">@@ -</font><font color="#bd976a">88</font><font color="#cb7676">,</font><font color="#bd976a">8</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">88</font><font color="#cb7676">,</font><font color="#bd976a">10</font><font color="#dbd7ca"> @@</font>
-<font color="#dbd7ca"> </font><i><font color="#666666">#                            that apcupsd binds to that particular unit</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#                            (helpful if you have more than one USB UPS).</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#</font></i>
-<font color="#dbd7ca">-UPSTYPE apcsmart</font>
-<font color="#dbd7ca">-DEVICE /dev/usv</font>
-<font color="#cb7676">+</font><font color="#dbd7ca">UPSTYPE usb</font>
-<font color="#cb7676">+</font><font color="#dbd7ca">DEVICE</font>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># To get apcupsd to work, in addition to defining the cable</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># above, you must also define a UPSTYPE, which corresponds to</span></span>
+<span style="color: #25231f">@@ -</span><span style="color: #8a450c">88</span><span style="color: #765924">,</span><span style="color: #8a450c">8</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">88</span><span style="color: #765924">,</span><span style="color: #8a450c">10</span><span style="color: #25231f"> @@</span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#                            that apcupsd binds to that particular unit</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#                            (helpful if you have more than one USB UPS).</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#</span></span>
+<span style="color: #25231f">-UPSTYPE apcsmart</span>
+<span style="color: #25231f">-DEVICE /dev/usv</span>
+<span style="color: #765924">+</span><span style="color: #25231f">UPSTYPE usb</span>
+<span style="color: #765924">+</span><span style="color: #25231f">DEVICE</span>
 
-<font color="#dbd7ca"> </font><i><font color="#666666"># POLLTIME &lt;int&gt;</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#   Interval (in seconds) at which apcupsd polls the UPS for status. This</font></i>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># POLLTIME &lt;int&gt;</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#   Interval (in seconds) at which apcupsd polls the UPS for status. This</span></span>
 </pre>
 <br />
 <span>I left the remaining settings as the default ones; for example, the following are of main interest:</span><br />
@@ -205,10 +215,10 @@ MINUTES 3
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/etc/apcupsd </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas sysrc </font><font color="#bd976a">apcupsd_enable</font><font color="#cb7676">=</font><font color="#dbd7ca">YES</font>
-<font color="#dbd7ca">apcupsd_enable</font><font color="#cb7676">:</font><font color="#dbd7ca">  -</font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> YES</font>
-<font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/etc/apcupsd </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas service apcupsd start</font>
-<font color="#dbd7ca">Starting apcupsd</font><font color="#cb7676">.</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/etc/apcupsd </span><span style="color: #765924">%</span><span style="color: #25231f"> doas sysrc </span><span style="color: #6d3c6d">apcupsd_enable</span><span style="color: #765924">=</span><span style="color: #25231f">YES</span>
+<span style="color: #25231f">apcupsd_enable</span><span style="color: #765924">:</span><span style="color: #25231f">  -</span><span style="color: #765924">&gt;</span><span style="color: #25231f"> YES</span>
+<span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/etc/apcupsd </span><span style="color: #765924">%</span><span style="color: #25231f"> doas service apcupsd start</span>
+<span style="color: #25231f">Starting apcupsd</span><span style="color: #765924">.</span>
 </pre>
 <br />
 <h3 style='display: inline' id='ups-connectivity-test'>UPS Connectivity Test</h3><br />
@@ -219,43 +229,43 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> apcaccess</font>
-<font color="#dbd7ca">APC      </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">001</font><font color="#cb7676">,</font><font color="#bd976a">035</font><font color="#cb7676">,</font><font color="#bd976a">0857</font>
-<font color="#dbd7ca">DATE     </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">2025</font><font color="#dbd7ca">-</font><font color="#bd976a">01</font><font color="#dbd7ca">-</font><font color="#bd976a">26</font><font color="#dbd7ca"> </font><font color="#bd976a">14</font><font color="#cb7676">:</font><font color="#bd976a">43</font><font color="#cb7676">:</font><font color="#bd976a">27</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">0200</font>
-<font color="#dbd7ca">HOSTNAME </font><font color="#cb7676">:</font><font color="#dbd7ca"> f0</font><font color="#cb7676">.</font><font color="#dbd7ca">lan</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org</font>
-<font color="#dbd7ca">VERSION  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">3.14</font><font color="#cb7676">.</font><font color="#bd976a">14</font><font color="#dbd7ca"> </font><font color="#cb7676">(</font><font color="#bd976a">31</font><font color="#dbd7ca"> May </font><font color="#bd976a">2016</font><font color="#cb7676">)</font><font color="#dbd7ca"> freebsd</font>
-<font color="#dbd7ca">UPSNAME  </font><font color="#cb7676">:</font><font color="#dbd7ca"> f0</font><font color="#cb7676">.</font><font color="#dbd7ca">lan</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org</font>
-<font color="#dbd7ca">CABLE    </font><font color="#cb7676">:</font><font color="#dbd7ca"> USB Cable</font>
-<font color="#dbd7ca">DRIVER   </font><font color="#cb7676">:</font><font color="#dbd7ca"> USB UPS Driver</font>
-<font color="#dbd7ca">UPSMODE  </font><font color="#cb7676">:</font><font color="#dbd7ca"> Stand Alone</font>
-<font color="#dbd7ca">STARTTIME</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">2025</font><font color="#dbd7ca">-</font><font color="#bd976a">01</font><font color="#dbd7ca">-</font><font color="#bd976a">26</font><font color="#dbd7ca"> </font><font color="#bd976a">14</font><font color="#cb7676">:</font><font color="#bd976a">43</font><font color="#cb7676">:</font><font color="#bd976a">25</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">0200</font>
-<font color="#dbd7ca">MODEL    </font><font color="#cb7676">:</font><font color="#dbd7ca"> Back-UPS BX750MI</font>
-<font color="#dbd7ca">STATUS   </font><font color="#cb7676">:</font><font color="#dbd7ca"> ONLINE</font>
-<font color="#dbd7ca">LINEV    </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">230.0</font><font color="#dbd7ca"> Volts</font>
-<font color="#dbd7ca">LOADPCT  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">4.0</font><font color="#dbd7ca"> Percent</font>
-<font color="#dbd7ca">BCHARGE  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">100.0</font><font color="#dbd7ca"> Percent</font>
-<font color="#dbd7ca">TIMELEFT </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">65.3</font><font color="#dbd7ca"> Minutes</font>
-<font color="#dbd7ca">MBATTCHG </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">5</font><font color="#dbd7ca"> Percent</font>
-<font color="#dbd7ca">MINTIMEL </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">3</font><font color="#dbd7ca"> Minutes</font>
-<font color="#dbd7ca">MAXTIME  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#dbd7ca"> Seconds</font>
-<font color="#dbd7ca">SENSE    </font><font color="#cb7676">:</font><font color="#dbd7ca"> Medium</font>
-<font color="#dbd7ca">LOTRANS  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">145.0</font><font color="#dbd7ca"> Volts</font>
-<font color="#dbd7ca">HITRANS  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">295.0</font><font color="#dbd7ca"> Volts</font>
-<font color="#dbd7ca">ALARMDEL </font><font color="#cb7676">:</font><font color="#dbd7ca"> No alarm</font>
-<font color="#dbd7ca">BATTV    </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">13.6</font><font color="#dbd7ca"> Volts</font>
-<font color="#dbd7ca">LASTXFER </font><font color="#cb7676">:</font><font color="#dbd7ca"> Automatic or explicit self </font><b><font color="#4d9375">test</font></b>
-<font color="#dbd7ca">NUMXFERS </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font>
-<font color="#dbd7ca">TONBATT  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#dbd7ca"> Seconds</font>
-<font color="#dbd7ca">CUMONBATT</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">0</font><font color="#dbd7ca"> Seconds</font>
-<font color="#dbd7ca">XOFFBATT </font><font color="#cb7676">:</font><font color="#dbd7ca"> N/A</font>
-<font color="#dbd7ca">SELFTEST </font><font color="#cb7676">:</font><font color="#dbd7ca"> NG</font>
-<font color="#dbd7ca">STATFLAG </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">0x05000008</font>
-<font color="#dbd7ca">SERIALNO </font><font color="#cb7676">:</font><font color="#dbd7ca"> 9B2414A03599</font>
-<font color="#dbd7ca">BATTDATE </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">2001</font><font color="#dbd7ca">-</font><font color="#bd976a">01</font><font color="#dbd7ca">-</font><font color="#bd976a">01</font>
-<font color="#dbd7ca">NOMINV   </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">230</font><font color="#dbd7ca"> Volts</font>
-<font color="#dbd7ca">NOMBATTV </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">12.0</font><font color="#dbd7ca"> Volts</font>
-<font color="#dbd7ca">NOMPOWER </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">410</font><font color="#dbd7ca"> Watts</font>
-<font color="#dbd7ca">END APC  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">2025</font><font color="#dbd7ca">-</font><font color="#bd976a">01</font><font color="#dbd7ca">-</font><font color="#bd976a">26</font><font color="#dbd7ca"> </font><font color="#bd976a">14</font><font color="#cb7676">:</font><font color="#bd976a">44</font><font color="#cb7676">:</font><font color="#bd976a">06</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">0200</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> apcaccess</span>
+<span style="color: #25231f">APC      </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">001</span><span style="color: #765924">,</span><span style="color: #8a450c">035</span><span style="color: #765924">,</span><span style="color: #8a450c">0857</span>
+<span style="color: #25231f">DATE     </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">2025</span><span style="color: #25231f">-</span><span style="color: #8a450c">01</span><span style="color: #25231f">-</span><span style="color: #8a450c">26</span><span style="color: #25231f"> </span><span style="color: #8a450c">14</span><span style="color: #765924">:</span><span style="color: #8a450c">43</span><span style="color: #765924">:</span><span style="color: #8a450c">27</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">0200</span>
+<span style="color: #25231f">HOSTNAME </span><span style="color: #765924">:</span><span style="color: #25231f"> f0</span><span style="color: #765924">.</span><span style="color: #25231f">lan</span><span style="color: #765924">.</span><span style="color: #25231f">buetow</span><span style="color: #765924">.</span><span style="color: #25231f">org</span>
+<span style="color: #25231f">VERSION  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">3.14</span><span style="color: #765924">.</span><span style="color: #8a450c">14</span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #8a450c">31</span><span style="color: #25231f"> May </span><span style="color: #8a450c">2016</span><span style="color: #765924">)</span><span style="color: #25231f"> freebsd</span>
+<span style="color: #25231f">UPSNAME  </span><span style="color: #765924">:</span><span style="color: #25231f"> f0</span><span style="color: #765924">.</span><span style="color: #25231f">lan</span><span style="color: #765924">.</span><span style="color: #25231f">buetow</span><span style="color: #765924">.</span><span style="color: #25231f">org</span>
+<span style="color: #25231f">CABLE    </span><span style="color: #765924">:</span><span style="color: #25231f"> USB Cable</span>
+<span style="color: #25231f">DRIVER   </span><span style="color: #765924">:</span><span style="color: #25231f"> USB UPS Driver</span>
+<span style="color: #25231f">UPSMODE  </span><span style="color: #765924">:</span><span style="color: #25231f"> Stand Alone</span>
+<span style="color: #25231f">STARTTIME</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">2025</span><span style="color: #25231f">-</span><span style="color: #8a450c">01</span><span style="color: #25231f">-</span><span style="color: #8a450c">26</span><span style="color: #25231f"> </span><span style="color: #8a450c">14</span><span style="color: #765924">:</span><span style="color: #8a450c">43</span><span style="color: #765924">:</span><span style="color: #8a450c">25</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">0200</span>
+<span style="color: #25231f">MODEL    </span><span style="color: #765924">:</span><span style="color: #25231f"> Back-UPS BX750MI</span>
+<span style="color: #25231f">STATUS   </span><span style="color: #765924">:</span><span style="color: #25231f"> ONLINE</span>
+<span style="color: #25231f">LINEV    </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">230.0</span><span style="color: #25231f"> Volts</span>
+<span style="color: #25231f">LOADPCT  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">4.0</span><span style="color: #25231f"> Percent</span>
+<span style="color: #25231f">BCHARGE  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">100.0</span><span style="color: #25231f"> Percent</span>
+<span style="color: #25231f">TIMELEFT </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">65.3</span><span style="color: #25231f"> Minutes</span>
+<span style="color: #25231f">MBATTCHG </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">5</span><span style="color: #25231f"> Percent</span>
+<span style="color: #25231f">MINTIMEL </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">3</span><span style="color: #25231f"> Minutes</span>
+<span style="color: #25231f">MAXTIME  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span><span style="color: #25231f"> Seconds</span>
+<span style="color: #25231f">SENSE    </span><span style="color: #765924">:</span><span style="color: #25231f"> Medium</span>
+<span style="color: #25231f">LOTRANS  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">145.0</span><span style="color: #25231f"> Volts</span>
+<span style="color: #25231f">HITRANS  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">295.0</span><span style="color: #25231f"> Volts</span>
+<span style="color: #25231f">ALARMDEL </span><span style="color: #765924">:</span><span style="color: #25231f"> No alarm</span>
+<span style="color: #25231f">BATTV    </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">13.6</span><span style="color: #25231f"> Volts</span>
+<span style="color: #25231f">LASTXFER </span><span style="color: #765924">:</span><span style="color: #25231f"> Automatic or explicit self </span><span style="font-weight: bold"><span style="color: #7b2934">test</span></span>
+<span style="color: #25231f">NUMXFERS </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span>
+<span style="color: #25231f">TONBATT  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span><span style="color: #25231f"> Seconds</span>
+<span style="color: #25231f">CUMONBATT</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span><span style="color: #25231f"> Seconds</span>
+<span style="color: #25231f">XOFFBATT </span><span style="color: #765924">:</span><span style="color: #25231f"> N/A</span>
+<span style="color: #25231f">SELFTEST </span><span style="color: #765924">:</span><span style="color: #25231f"> NG</span>
+<span style="color: #25231f">STATFLAG </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">0x05000008</span>
+<span style="color: #25231f">SERIALNO </span><span style="color: #765924">:</span><span style="color: #25231f"> 9B2414A03599</span>
+<span style="color: #25231f">BATTDATE </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">2001</span><span style="color: #25231f">-</span><span style="color: #8a450c">01</span><span style="color: #25231f">-</span><span style="color: #8a450c">01</span>
+<span style="color: #25231f">NOMINV   </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">230</span><span style="color: #25231f"> Volts</span>
+<span style="color: #25231f">NOMBATTV </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">12.0</span><span style="color: #25231f"> Volts</span>
+<span style="color: #25231f">NOMPOWER </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">410</span><span style="color: #25231f"> Watts</span>
+<span style="color: #25231f">END APC  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">2025</span><span style="color: #25231f">-</span><span style="color: #8a450c">01</span><span style="color: #25231f">-</span><span style="color: #8a450c">26</span><span style="color: #25231f"> </span><span style="color: #8a450c">14</span><span style="color: #765924">:</span><span style="color: #8a450c">44</span><span style="color: #765924">:</span><span style="color: #8a450c">06</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">0200</span>
 </pre>
 <br />
 <h2 style='display: inline' id='apc-info-on-partner-nodes'>APC Info on Partner Nodes:</h2><br />
@@ -274,10 +284,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f1</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> apcaccess -h f0</font><font color="#cb7676">.</font><font color="#dbd7ca">lan</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep Percent</font>
-<font color="#dbd7ca">LOADPCT  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">12.0</font><font color="#dbd7ca"> Percent</font>
-<font color="#dbd7ca">BCHARGE  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">94.0</font><font color="#dbd7ca"> Percent</font>
-<font color="#dbd7ca">MBATTCHG </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">5</font><font color="#dbd7ca"> Percent</font>
+<pre><span style="color: #25231f">paul@f1</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> apcaccess -h f0</span><span style="color: #765924">.</span><span style="color: #25231f">lan</span><span style="color: #765924">.</span><span style="color: #25231f">buetow</span><span style="color: #765924">.</span><span style="color: #25231f">org </span><span style="color: #765924">|</span><span style="color: #25231f"> grep Percent</span>
+<span style="color: #25231f">LOADPCT  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">12.0</span><span style="color: #25231f"> Percent</span>
+<span style="color: #25231f">BCHARGE  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">94.0</span><span style="color: #25231f"> Percent</span>
+<span style="color: #25231f">MBATTCHG </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">5</span><span style="color: #25231f"> Percent</span>
 </pre>
 <br />
 <span>But I want the daemon to be configured and enabled in such a way that it connects to the master UPS node (the one with the UPS connected via USB) so that it can also initiate a system shutdown when the UPS battery reaches low levels. For that, <span class='inlinecode'>apcupsd</span> itself needs to be aware of the UPS status.</span><br />
@@ -288,52 +298,52 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f2</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/etc/apcupsd </font><font color="#cb7676">%</font><font color="#dbd7ca"> diff -u apcupsd</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font><font color="#cb7676">.</font><font color="#dbd7ca">sample apcupsd</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font>
-<font color="#dbd7ca">--- apcupsd</font><font color="#cb7676">.</font><font color="#dbd7ca">conf</font><font color="#cb7676">.</font><font color="#dbd7ca">sample </font><font color="#bd976a">2024</font><font color="#dbd7ca">-</font><font color="#bd976a">11</font><font color="#dbd7ca">-</font><font color="#bd976a">01</font><font color="#dbd7ca"> </font><font color="#bd976a">16</font><font color="#cb7676">:</font><font color="#bd976a">40</font><font color="#cb7676">:</font><font color="#bd976a">42.000000000</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">0200</font>
-<font color="#cb7676">+++</font><font color="#dbd7ca"> apcupsd</font><font color="#cb7676">.</font><font color="#dbd7ca">conf        </font><font color="#bd976a">2025</font><font color="#dbd7ca">-</font><font color="#bd976a">01</font><font color="#dbd7ca">-</font><font color="#bd976a">26</font><font color="#dbd7ca"> </font><font color="#bd976a">15</font><font color="#cb7676">:</font><font color="#bd976a">52</font><font color="#cb7676">:</font><font color="#bd976a">45.108469000</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">0200</font>
-<font color="#dbd7ca">@@ -</font><font color="#bd976a">31</font><font color="#cb7676">,</font><font color="#bd976a">7</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">31</font><font color="#cb7676">,</font><font color="#bd976a">7</font><font color="#dbd7ca"> @@</font>
-<font color="#dbd7ca"> </font><i><font color="#666666">#     940-1524C, 940-0024G, 940-0095A, 940-0095B,</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#     940-0095C, 940-0625A, M-04-02-2000</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#</font></i>
-<font color="#dbd7ca">-UPSCABLE smart</font>
-<font color="#cb7676">+</font><font color="#dbd7ca">UPSCABLE ether</font>
+<pre><span style="color: #25231f">paul@f2</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/etc/apcupsd </span><span style="color: #765924">%</span><span style="color: #25231f"> diff -u apcupsd</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span><span style="color: #765924">.</span><span style="color: #25231f">sample apcupsd</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span>
+<span style="color: #25231f">--- apcupsd</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span><span style="color: #765924">.</span><span style="color: #25231f">sample </span><span style="color: #8a450c">2024</span><span style="color: #25231f">-</span><span style="color: #8a450c">11</span><span style="color: #25231f">-</span><span style="color: #8a450c">01</span><span style="color: #25231f"> </span><span style="color: #8a450c">16</span><span style="color: #765924">:</span><span style="color: #8a450c">40</span><span style="color: #765924">:</span><span style="color: #8a450c">42.000000000</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">0200</span>
+<span style="color: #765924">+++</span><span style="color: #25231f"> apcupsd</span><span style="color: #765924">.</span><span style="color: #25231f">conf        </span><span style="color: #8a450c">2025</span><span style="color: #25231f">-</span><span style="color: #8a450c">01</span><span style="color: #25231f">-</span><span style="color: #8a450c">26</span><span style="color: #25231f"> </span><span style="color: #8a450c">15</span><span style="color: #765924">:</span><span style="color: #8a450c">52</span><span style="color: #765924">:</span><span style="color: #8a450c">45.108469000</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">0200</span>
+<span style="color: #25231f">@@ -</span><span style="color: #8a450c">31</span><span style="color: #765924">,</span><span style="color: #8a450c">7</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">31</span><span style="color: #765924">,</span><span style="color: #8a450c">7</span><span style="color: #25231f"> @@</span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#     940-1524C, 940-0024G, 940-0095A, 940-0095B,</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#     940-0095C, 940-0625A, M-04-02-2000</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#</span></span>
+<span style="color: #25231f">-UPSCABLE smart</span>
+<span style="color: #765924">+</span><span style="color: #25231f">UPSCABLE ether</span>
 
-<font color="#dbd7ca"> </font><i><font color="#666666"># To get apcupsd to work, in addition to defining the cable</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666"># above, you must also define a UPSTYPE, which corresponds to</font></i>
-<font color="#dbd7ca">@@ -</font><font color="#bd976a">52</font><font color="#cb7676">,</font><font color="#bd976a">7</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">52</font><font color="#cb7676">,</font><font color="#bd976a">6</font><font color="#dbd7ca"> @@</font>
-<font color="#dbd7ca"> </font><i><font color="#666666">#                            Network Information Server. This is used if the</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#                            UPS powering your computer is connected to a</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#                            different computer for monitoring.</font></i>
-<font color="#dbd7ca">-</font><i><font color="#666666">#</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666"># snmp      hostname:port:vendor:community</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#                            SNMP network link to an SNMP-enabled UPS device.</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#                            Hostname is the ip address or hostname of the UPS</font></i>
-<font color="#dbd7ca">@@ -</font><font color="#bd976a">88</font><font color="#cb7676">,</font><font color="#bd976a">8</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">87</font><font color="#cb7676">,</font><font color="#bd976a">8</font><font color="#dbd7ca"> @@</font>
-<font color="#dbd7ca"> </font><i><font color="#666666">#                            that apcupsd binds to that particular unit</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#                            (helpful if you have more than one USB UPS).</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#</font></i>
-<font color="#dbd7ca">-UPSTYPE apcsmart</font>
-<font color="#dbd7ca">-DEVICE /dev/usv</font>
-<font color="#cb7676">+</font><font color="#dbd7ca">UPSTYPE net</font>
-<font color="#cb7676">+</font><font color="#dbd7ca">DEVICE f0</font><font color="#cb7676">.</font><font color="#dbd7ca">lan</font><font color="#cb7676">.</font><font color="#dbd7ca">buetow</font><font color="#cb7676">.</font><font color="#dbd7ca">org</font><font color="#cb7676">:</font><font color="#bd976a">3551</font>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># To get apcupsd to work, in addition to defining the cable</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># above, you must also define a UPSTYPE, which corresponds to</span></span>
+<span style="color: #25231f">@@ -</span><span style="color: #8a450c">52</span><span style="color: #765924">,</span><span style="color: #8a450c">7</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">52</span><span style="color: #765924">,</span><span style="color: #8a450c">6</span><span style="color: #25231f"> @@</span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#                            Network Information Server. This is used if the</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#                            UPS powering your computer is connected to a</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#                            different computer for monitoring.</span></span>
+<span style="color: #25231f">-</span><span style="font-style: italic"><span style="color: #685f50">#</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># snmp      hostname:port:vendor:community</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#                            SNMP network link to an SNMP-enabled UPS device.</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#                            Hostname is the ip address or hostname of the UPS</span></span>
+<span style="color: #25231f">@@ -</span><span style="color: #8a450c">88</span><span style="color: #765924">,</span><span style="color: #8a450c">8</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">87</span><span style="color: #765924">,</span><span style="color: #8a450c">8</span><span style="color: #25231f"> @@</span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#                            that apcupsd binds to that particular unit</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#                            (helpful if you have more than one USB UPS).</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#</span></span>
+<span style="color: #25231f">-UPSTYPE apcsmart</span>
+<span style="color: #25231f">-DEVICE /dev/usv</span>
+<span style="color: #765924">+</span><span style="color: #25231f">UPSTYPE net</span>
+<span style="color: #765924">+</span><span style="color: #25231f">DEVICE f0</span><span style="color: #765924">.</span><span style="color: #25231f">lan</span><span style="color: #765924">.</span><span style="color: #25231f">buetow</span><span style="color: #765924">.</span><span style="color: #25231f">org</span><span style="color: #765924">:</span><span style="color: #8a450c">3551</span>
 
-<font color="#dbd7ca"> </font><i><font color="#666666"># POLLTIME &lt;int&gt;</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666">#   Interval (in seconds) at which apcupsd polls the UPS for status. This</font></i>
-<font color="#dbd7ca">@@ -</font><font color="#bd976a">147</font><font color="#cb7676">,</font><font color="#bd976a">12</font><font color="#dbd7ca"> </font><font color="#cb7676">+</font><font color="#bd976a">146</font><font color="#cb7676">,</font><font color="#bd976a">12</font><font color="#dbd7ca"> @@</font>
-<font color="#dbd7ca"> </font><i><font color="#666666"># If during a power failure, the remaining battery percentage</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666"># (as reported by the UPS) is below or equal to BATTERYLEVEL,</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666"># apcupsd will initiate a system shutdown.</font></i>
-<font color="#dbd7ca">-BATTERYLEVEL </font><font color="#bd976a">5</font>
-<font color="#cb7676">+</font><font color="#dbd7ca">BATTERYLEVEL </font><font color="#bd976a">10</font>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># POLLTIME &lt;int&gt;</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50">#   Interval (in seconds) at which apcupsd polls the UPS for status. This</span></span>
+<span style="color: #25231f">@@ -</span><span style="color: #8a450c">147</span><span style="color: #765924">,</span><span style="color: #8a450c">12</span><span style="color: #25231f"> </span><span style="color: #765924">+</span><span style="color: #8a450c">146</span><span style="color: #765924">,</span><span style="color: #8a450c">12</span><span style="color: #25231f"> @@</span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># If during a power failure, the remaining battery percentage</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># (as reported by the UPS) is below or equal to BATTERYLEVEL,</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># apcupsd will initiate a system shutdown.</span></span>
+<span style="color: #25231f">-BATTERYLEVEL </span><span style="color: #8a450c">5</span>
+<span style="color: #765924">+</span><span style="color: #25231f">BATTERYLEVEL </span><span style="color: #8a450c">10</span>
 
-<font color="#dbd7ca"> </font><i><font color="#666666"># If during a power failure, the remaining runtime in minutes</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666"># (as calculated internally by the UPS) is below or equal to MINUTES,</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666"># apcupsd, will initiate a system shutdown.</font></i>
-<font color="#dbd7ca">-MINUTES </font><font color="#bd976a">3</font>
-<font color="#cb7676">+</font><font color="#dbd7ca">MINUTES </font><font color="#bd976a">6</font>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># If during a power failure, the remaining runtime in minutes</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># (as calculated internally by the UPS) is below or equal to MINUTES,</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># apcupsd, will initiate a system shutdown.</span></span>
+<span style="color: #25231f">-MINUTES </span><span style="color: #8a450c">3</span>
+<span style="color: #765924">+</span><span style="color: #25231f">MINUTES </span><span style="color: #8a450c">6</span>
 
-<font color="#dbd7ca"> </font><i><font color="#666666"># If during a power failure, the UPS has run on batteries for TIMEOUT</font></i>
-<font color="#dbd7ca"> </font><i><font color="#666666"># many seconds or longer, apcupsd will initiate a system shutdown.</font></i>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># If during a power failure, the UPS has run on batteries for TIMEOUT</span></span>
+<span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># many seconds or longer, apcupsd will initiate a system shutdown.</span></span>
 
 </pre>
 <span>So I also ran the following commands on <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>:</span><br />
@@ -342,10 +352,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f1</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/etc/apcupsd </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas sysrc </font><font color="#bd976a">apcupsd_enable</font><font color="#cb7676">=</font><font color="#dbd7ca">YES</font>
-<font color="#dbd7ca">apcupsd_enable</font><font color="#cb7676">:</font><font color="#dbd7ca">  -</font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> YES</font>
-<font color="#dbd7ca">paul@f1</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/etc/apcupsd </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas service apcupsd start</font>
-<font color="#dbd7ca">Starting apcupsd</font><font color="#cb7676">.</font>
+<pre><span style="color: #25231f">paul@f1</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/etc/apcupsd </span><span style="color: #765924">%</span><span style="color: #25231f"> doas sysrc </span><span style="color: #6d3c6d">apcupsd_enable</span><span style="color: #765924">=</span><span style="color: #25231f">YES</span>
+<span style="color: #25231f">apcupsd_enable</span><span style="color: #765924">:</span><span style="color: #25231f">  -</span><span style="color: #765924">&gt;</span><span style="color: #25231f"> YES</span>
+<span style="color: #25231f">paul@f1</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/etc/apcupsd </span><span style="color: #765924">%</span><span style="color: #25231f"> doas service apcupsd start</span>
+<span style="color: #25231f">Starting apcupsd</span><span style="color: #765924">.</span>
 </pre>
 <br />
 <span>And then I was able to connect to localhost via the <span class='inlinecode'>apcaccess</span> command:</span><br />
@@ -354,10 +364,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f1</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas apcaccess </font><font color="#cb7676">|</font><font color="#dbd7ca"> grep Percent</font>
-<font color="#dbd7ca">LOADPCT  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">5.0</font><font color="#dbd7ca"> Percent</font>
-<font color="#dbd7ca">BCHARGE  </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">95.0</font><font color="#dbd7ca"> Percent</font>
-<font color="#dbd7ca">MBATTCHG </font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">5</font><font color="#dbd7ca"> Percent</font>
+<pre><span style="color: #25231f">paul@f1</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas apcaccess </span><span style="color: #765924">|</span><span style="color: #25231f"> grep Percent</span>
+<span style="color: #25231f">LOADPCT  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">5.0</span><span style="color: #25231f"> Percent</span>
+<span style="color: #25231f">BCHARGE  </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">95.0</span><span style="color: #25231f"> Percent</span>
+<span style="color: #25231f">MBATTCHG </span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">5</span><span style="color: #25231f"> Percent</span>
 </pre>
 <br />
 <h2 style='display: inline' id='power-outage-simulation'>Power outage simulation</h2><br />
@@ -379,8 +389,8 @@ Power failure. Running on UPS batteries.
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:</font><font color="#dbd7ca">/usr/local/etc/apcupsd </font><font color="#cb7676">%</font><font color="#dbd7ca"> apcaccess -p TIMELEFT</font>
-<font color="#bd976a">63.9</font><font color="#dbd7ca"> Minutes</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:</span><span style="color: #25231f">/usr/local/etc/apcupsd </span><span style="color: #765924">%</span><span style="color: #25231f"> apcaccess -p TIMELEFT</span>
+<span style="color: #8a450c">63.9</span><span style="color: #25231f"> Minutes</span>
 </pre>
 <br />
 <span>And after around one hour (<span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span> a bit earlier, <span class='inlinecode'>f0</span> a bit later due to the different <span class='inlinecode'>BATTERYLEVEL</span> and <span class='inlinecode'>MINUTES</span> settings outlined earlier), the following broadcast was sent out:</span><br />
@@ -444,12 +454,13 @@ Jan 26 17:36:32 f2 apcupsd[2159]: apcupsd shutdown succeeded
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

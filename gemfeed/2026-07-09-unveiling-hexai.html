@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-07-09-unveiling-hexai.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2026-07-09-unveiling-hexai.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2026-07-09-unveiling-hexai.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2026-07-09-unveiling-hexai.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='unveiling-hexai-an-ai-companion-for-helix-and-the-terminal-in-general'>Unveiling Hexai: An AI companion for Helix and the terminal in general</h1><br />
 <br />
 <span class='quote'>Published at 2026-07-08T17:10:52+03:00</span><br />
@@ -69,10 +79,10 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/hexai/cmd/hexai@latest</font>
-<font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/hexai/cmd/hexai-lsp-server@latest</font>
-<font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/hexai/cmd/hexai-tmux-action@latest</font>
-<font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/hexai/cmd/ask@latest</font>
+<pre><span style="color: #25231f">go install github</span><span style="color: #765924">.</span><span style="color: #25231f">com/snonux/hexai/cmd/hexai@latest</span>
+<span style="color: #25231f">go install github</span><span style="color: #765924">.</span><span style="color: #25231f">com/snonux/hexai/cmd/hexai-lsp-server@latest</span>
+<span style="color: #25231f">go install github</span><span style="color: #765924">.</span><span style="color: #25231f">com/snonux/hexai/cmd/hexai-tmux-action@latest</span>
+<span style="color: #25231f">go install github</span><span style="color: #765924">.</span><span style="color: #25231f">com/snonux/hexai/cmd/ask@latest</span>
 </pre>
 <br />
 <span>If you prefer to build from a checkout, Hexai uses Mage:</span><br />
@@ -81,9 +91,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">go install github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/magefile/mage@latest</font>
-<font color="#dbd7ca">mage build</font>
-<font color="#dbd7ca">mage install</font>
+<pre><span style="color: #25231f">go install github</span><span style="color: #765924">.</span><span style="color: #25231f">com/magefile/mage@latest</span>
+<span style="color: #25231f">mage build</span>
+<span style="color: #25231f">mage install</span>
 </pre>
 <br />
 <span>That drops <span class='inlinecode'>hexai</span>, <span class='inlinecode'>hexai-lsp-server</span>, <span class='inlinecode'>hexai-tmux-action</span>, and <span class='inlinecode'>ask</span> into your <span class='inlinecode'>GOPATH/bin</span>.</span><br />
@@ -179,15 +189,15 @@ What is a Go slice?
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#cb7676">&gt;&gt;!</font><font color="#dbd7ca">document this function</font><font color="#cb7676">&gt;</font>
+<pre><span style="color: #765924">&gt;&gt;!</span><span style="color: #25231f">document this function</span><span style="color: #765924">&gt;</span>
 </pre>
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666">// Foo returns the square of n.</font></i>
-<b><font color="#4d9375">func</font></b><font color="#dbd7ca"> </font><font color="#5da994">Foo</font><font color="#cb7676">(</font><font color="#dbd7ca">n int</font><font color="#cb7676">)</font><font color="#dbd7ca"> int </font><font color="#dbd7ca">{</font><font color="#dbd7ca"> </font><b><font color="#4d9375">return</font></b><font color="#dbd7ca"> n </font><font color="#cb7676">*</font><font color="#dbd7ca"> n </font><font color="#dbd7ca">}</font>
+<pre><span style="font-style: italic"><span style="color: #685f50">// Foo returns the square of n.</span></span>
+<span style="font-weight: bold"><span style="color: #7b2934">func</span></span><span style="color: #25231f"> </span><span style="color: #265a79">Foo</span><span style="color: #765924">(</span><span style="color: #25231f">n int</span><span style="color: #765924">)</span><span style="color: #25231f"> int </span><span style="color: #765924">{</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> n </span><span style="color: #765924">*</span><span style="color: #25231f"> n </span><span style="color: #765924">}</span>
 </pre>
 <br />
 <span>Context is included automatically. For follow-ups, Hexai keeps the last few Q/A pairs above the cursor in mind, so you can ask related questions without repeating yourself.</span><br />
@@ -232,8 +242,8 @@ s  Skip
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">tmux new -s hx</font>
-<font color="#dbd7ca">hx some-file</font><font color="#cb7676">.</font><font color="#dbd7ca">go</font>
+<pre><span style="color: #25231f">tmux new -s hx</span>
+<span style="color: #25231f">hx some-file</span><span style="color: #765924">.</span><span style="color: #25231f">go</span>
 </pre>
 <br />
 <span>Then select code and hit Alt-a. No special <span class='inlinecode'>tmux.conf</span> is required for the popup itself; the only hard requirement is that Helix lives inside tmux (and tmux 3.2 or newer, since the popup uses tmux&#39;s popup feature).</span><br />
@@ -284,20 +294,20 @@ set -g status-right-length 120
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666"># Ask from stdin</font></i>
-<font color="#dbd7ca">cat some-file</font><font color="#cb7676">.</font><font color="#dbd7ca">go </font><font color="#cb7676">|</font><font color="#dbd7ca"> hexai</font>
+<pre><span style="font-style: italic"><span style="color: #685f50"># Ask from stdin</span></span>
+<span style="color: #25231f">cat some-file</span><span style="color: #765924">.</span><span style="color: #25231f">go </span><span style="color: #765924">|</span><span style="color: #25231f"> hexai</span>
 
-<i><font color="#666666"># Ask from an argument</font></i>
-<font color="#dbd7ca">hexai </font><font color="#bd976a">'explain this function'</font>
+<span style="font-style: italic"><span style="color: #685f50"># Ask from an argument</span></span>
+<span style="color: #25231f">hexai </span><span style="color: #3e5d36">'explain this function'</span>
 
-<i><font color="#666666"># Both stdin and argument are concatenated</font></i>
-<font color="#dbd7ca">cat some-file</font><font color="#cb7676">.</font><font color="#dbd7ca">go </font><font color="#cb7676">|</font><font color="#dbd7ca"> hexai </font><font color="#bd976a">'write unit tests for this'</font>
+<span style="font-style: italic"><span style="color: #685f50"># Both stdin and argument are concatenated</span></span>
+<span style="color: #25231f">cat some-file</span><span style="color: #765924">.</span><span style="color: #25231f">go </span><span style="color: #765924">|</span><span style="color: #25231f"> hexai </span><span style="color: #3e5d36">'write unit tests for this'</span>
 
-<i><font color="#666666"># Open the global config in $HEXAI_EDITOR or $EDITOR</font></i>
-<font color="#dbd7ca">hexai config</font>
+<span style="font-style: italic"><span style="color: #685f50"># Open the global config in $HEXAI_EDITOR or $EDITOR</span></span>
+<span style="color: #25231f">hexai config</span>
 
-<i><font color="#666666"># Simulate how fast a model feels without calling a provider</font></i>
-<font color="#dbd7ca">hexai --tps-simulation </font><font color="#bd976a">12</font><font color="#dbd7ca">-</font><font color="#bd976a">18</font>
+<span style="font-style: italic"><span style="color: #685f50"># Simulate how fast a model feels without calling a provider</span></span>
+<span style="color: #25231f">hexai --tps-simulation </span><span style="color: #8a450c">12</span><span style="color: #25231f">-</span><span style="color: #8a450c">18</span>
 </pre>
 <br />
 <span>A real one-shot looks like this (only stdout is shown):</span><br />
@@ -321,9 +331,9 @@ sudo dnf install ripgrep
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666"># Same tasks, raw Taskwarrior</font></i>
-<font color="#dbd7ca">task project</font><font color="#cb7676">:</font><font color="#dbd7ca">hexai list</font>
-<font color="#dbd7ca">task project</font><font color="#cb7676">:</font><font color="#dbd7ca">hexai </font><font color="#cb7676">+</font><font color="#dbd7ca">agent next</font>
+<pre><span style="font-style: italic"><span style="color: #685f50"># Same tasks, raw Taskwarrior</span></span>
+<span style="color: #25231f">task project</span><span style="color: #765924">:</span><span style="color: #25231f">hexai list</span>
+<span style="color: #25231f">task project</span><span style="color: #765924">:</span><span style="color: #25231f">hexai </span><span style="color: #765924">+</span><span style="color: #25231f">agent next</span>
 </pre>
 <br />
 <span><span class='inlinecode'>ask</span> just hides the project filter, the <span class='inlinecode'>+agent</span> tag, and the raw UUIDs so the day-to-day output stays small and project-local.</span><br />
@@ -334,18 +344,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><i><font color="#666666"># Add a task for the current project</font></i>
-<font color="#dbd7ca">ask add priority</font><font color="#cb7676">:</font><font color="#dbd7ca">H </font><font color="#bd976a">"implement config reload"</font>
+<pre><span style="font-style: italic"><span style="color: #685f50"># Add a task for the current project</span></span>
+<span style="color: #25231f">ask add priority</span><span style="color: #765924">:</span><span style="color: #25231f">H </span><span style="color: #3e5d36">"implement config reload"</span>
 
-<i><font color="#666666"># List pending agent tasks</font></i>
-<font color="#dbd7ca">ask list</font>
+<span style="font-style: italic"><span style="color: #685f50"># List pending agent tasks</span></span>
+<span style="color: #25231f">ask list</span>
 
-<i><font color="#666666"># Start and finish work (ask add prints the alias, e.g. os0)</font></i>
-<font color="#dbd7ca">ask start os0</font>
-<font color="#dbd7ca">ask </font><b><font color="#4d9375">done</font></b><font color="#dbd7ca"> os0</font>
+<span style="font-style: italic"><span style="color: #685f50"># Start and finish work (ask add prints the alias, e.g. os0)</span></span>
+<span style="color: #25231f">ask start os0</span>
+<span style="color: #25231f">ask </span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span><span style="color: #25231f"> os0</span>
 
-<i><font color="#666666"># See details without exposing raw UUIDs</font></i>
-<font color="#dbd7ca">ask info os0</font>
+<span style="font-style: italic"><span style="color: #685f50"># See details without exposing raw UUIDs</span></span>
+<span style="color: #25231f">ask info os0</span>
 </pre>
 <br />
 <span>The IDs shown are stable local aliases, not Taskwarrior&#39;s numeric IDs. Taskwarrior gives you two built-in identifiers: a numeric ID that isn&#39;t stable across syncs and exports, and a UUID that is stable but far too long to type by hand. <span class='inlinecode'>ask</span> keeps its own mapping from each task&#39;s UUID to a short, permanent alias (cached under Hexai&#39;s cache dir). The alias doesn&#39;t change when tasks above it get completed or deleted. <span class='inlinecode'>ask info</span> hides the raw UUID unless <span class='inlinecode'>HEXAI_DEBUG</span> is set, so the short alias is the one you actually use day to day.</span><br />
@@ -438,12 +448,13 @@ Reads a file and echoes each line. Returns early on open errors.
 <span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

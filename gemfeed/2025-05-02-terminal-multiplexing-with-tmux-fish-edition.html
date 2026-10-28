@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='terminal-multiplexing-with-tmux---fish-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Fish edition</h1><br />
 <br />
 <span class='quote'>Published at 2025-05-02T00:09:23+03:00</span><br />
@@ -187,14 +197,14 @@ set-option -g prefix C-g
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#5da994">function tmux</font><font color="#cb7676">::</font><font color="#dbd7ca">search</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">set</font></b><font color="#dbd7ca"> -l session </font><font color="#cb7676">(</font><font color="#dbd7ca">tmux list-sessions </font><font color="#cb7676">|</font><font color="#dbd7ca"> fzf </font><font color="#cb7676">|</font><font color="#dbd7ca"> cut -d</font><font color="#cb7676">:</font><font color="#dbd7ca"> -f</font><font color="#bd976a">1</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">if</font></b><font color="#dbd7ca"> </font><b><font color="#4d9375">test</font></b><font color="#dbd7ca"> -z </font><font color="#bd976a">"$TMUX"</font>
-<font color="#dbd7ca">        tmux attach-session -t </font><font color="#bd976a">$session</font>
-<font color="#dbd7ca">    </font><b><font color="#4d9375">else</font></b>
-<font color="#dbd7ca">        tmux switch -t </font><font color="#bd976a">$session</font>
-<font color="#dbd7ca">    end</font>
-<font color="#dbd7ca">end</font>
+<pre><span style="color: #265a79">function tmux</span><span style="color: #765924">::</span><span style="color: #25231f">search</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">set</span></span><span style="color: #25231f"> -l session </span><span style="color: #765924">(</span><span style="color: #25231f">tmux list-sessions </span><span style="color: #765924">|</span><span style="color: #25231f"> fzf </span><span style="color: #765924">|</span><span style="color: #25231f"> cut -d</span><span style="color: #765924">:</span><span style="color: #25231f"> -f</span><span style="color: #8a450c">1</span><span style="color: #765924">)</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">test</span></span><span style="color: #25231f"> -z </span><span style="color: #3e5d36">"$TMUX"</span>
+<span style="color: #25231f">        tmux attach-session -t </span><span style="color: #6d3c6d">$session</span>
+<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">else</span></span>
+<span style="color: #25231f">        tmux switch -t </span><span style="color: #6d3c6d">$session</span>
+<span style="color: #25231f">    end</span>
+<span style="color: #25231f">end</span>
 </pre>
 <br />
 <span>All it does is list all currently open sessions in <span class='inlinecode'>fzf</span>, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).</span><br />
@@ -402,12 +412,13 @@ bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf re
 <a class='textlink' href='./2024-06-23-terminal-multiplexing-with-tmux.html'>2024-06-23 Terminal multiplexing with <span class='inlinecode'>tmux</span> - Z-Shell edition</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

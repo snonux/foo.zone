@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2022-01-01-bash-golf-part-2.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2022-01-01-bash-golf-part-2.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2022-01-01-bash-golf-part-2.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='bash-golf-part-2'>Bash Golf Part 2</h1><br />
 <br />
 <span class='quote'>Published at 2022-01-01T23:36:15+00:00; Updated at 2022-01-05</span><br />
@@ -42,8 +52,8 @@ jgs^^^^^^^`^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 <li>⇢ <a href='#here'>HERE</a></li>
 <li>⇢ <a href='#random'>RANDOM</a></li>
 <li>⇢ <a href='#set--x-and-set--e-and-pipefile'>set -x and set -e and pipefile</a></li>
-<li>⇢ ⇢ <a href='#-x'>-x</a></li>
-<li>⇢ ⇢ <a href='#-e'>-e</a></li>
+<li>⇢ ⇢ <a href='#heading--x'>-x</a></li>
+<li>⇢ ⇢ <a href='#heading--e'>-e</a></li>
 <li>⇢ ⇢ <a href='#pipefail'>pipefail</a></li>
 </ul><br />
 <h2 style='display: inline' id='redirection'>Redirection</h2><br />
@@ -310,7 +320,7 @@ Continuing script execution...
 <br />
 <span>In my opinion, -x and -e and pipefile are the most useful Bash options. Let&#39;s have a look at them one after another.</span><br />
 <br />
-<h3 style='display: inline' id='-x'>-x</h3><br />
+<h3 style='display: inline' id='heading--x'>-x</h3><br />
 <br />
 <span>-x prints commands and their arguments as they are executed. This helps to develop and debug your Bash code:</span><br />
 <br />
@@ -352,7 +362,7 @@ Second line: for Great Good
 ❯
 </pre>
 <br />
-<h3 style='display: inline' id='-e'>-e</h3><br />
+<h3 style='display: inline' id='heading--e'>-e</h3><br />
 <br />
 <span>This is a very important option you want to use when you are paranoid. This means, you should always "set -e" in your scripts when you need to make absolutely sure that your script runs successfully (with that I mean that no command should exit with an unexpected status code).</span><br />
 <br />
@@ -523,12 +533,13 @@ PAUL:X:1000:1000:PAUL BUETOW:/HOME/PAUL:/BIN/BASH
 <a class='textlink' href='./2021-05-16-personal-bash-coding-style-guide.html'>2021-05-16 Personal Bash coding style guide</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>

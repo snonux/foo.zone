@@ -9,9 +9,19 @@
 <link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
+<div class="masthead">
+<p class="edition">A personal journal</p>
+<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
+<p class="strapline">Personal essays on technology &amp; everyday life</p>
+</div>
 <p class="header">
-<a href="https://foo.zone">Home</a> | <a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md">Markdown</a> | <a href="gemini://foo.zone/gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi">Gemini</a> | <a href="https://snonux.foo">Microblog</a> | <a href="https://irregular.ninja">Street photography</a>
+<a href="https://foo.zone">Home</a> <span class="separator">/</span>
+<a href="https://codeberg.org/snonux/foo.zone/src/branch/content-md/gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2023-05-01-unveiling-guprecords:-uptime-records-with-raku.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<a href="https://irregular.ninja">Street photography</a>
 </p>
+<div class="newsprint-content">
 <h1 style='display: inline' id='unveiling-guprecordsraku-global-uptime-records-with-raku'>Unveiling <span class='inlinecode'>guprecords.raku</span>: Global Uptime Records with Raku</h1><br />
 <br />
 <span class='quote'>Published at 2023-04-30T13:10:26+03:00, last updated Fri 20 Feb 21:18:46 EET 2026</span><br />
@@ -82,7 +92,7 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ raku guprecords</font><font color="#cb7676">.</font><font color="#dbd7ca">raku --stats</font><font color="#cb7676">=</font><font color="#bd976a">dir</font><font color="#cb7676">=</font><font color="#bd976a">$HOME</font><font color="#dbd7ca">/git/uprecords/stats --all</font>
+<pre><span style="color: #25231f">$ raku guprecords</span><span style="color: #765924">.</span><span style="color: #25231f">raku --stats</span><span style="color: #765924">=</span><span style="color: #6d3c6d">dir</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$HOME</span><span style="color: #25231f">/git/uprecords/stats --all</span>
 </pre>
 <br />
 <span>That prints the full report.</span><br />
@@ -191,12 +201,13 @@ no1 in   455 days, 18:52:44 | at                        Sun Jul 21 07:37:51 2024
 <a class='textlink' href='./2008-06-26-perl-poetry.html'>2008-06-26 Perl Poetry</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
+</div>
 <p class="footer">
-	Generated with <a href="https://codeberg.org/snonux/gemtexter">Gemtexter 3.0.1-develop</a> |
-	served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> |
-	<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-	<br />
-	Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> | <a href="https://shring.sh">shring</a> | <a href="https://shring.sh/foo.zone/next">next</a>
+Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
+<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
+<br />
+Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
 </p>
 </body>
 </html>
