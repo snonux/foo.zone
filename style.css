@@ -26,12 +26,12 @@
 
 html {
     background: #e6e0d2;
-    font-size: clamp(112.5%, 1.667vw, 150%);
+    font-size: clamp(90%, 1.3336vw, 120%);
 }
 
 body {
     box-sizing: border-box;
-    max-width: 1290px;
+    max-width: 1032px;
     margin: 2rem auto;
     padding: 2rem clamp(1.25rem, 4vw, 3.5rem);
     border: 1px solid #c9c0ae;
@@ -278,6 +278,7 @@ p.footer {
 @media screen and (max-width: 600px) {
     html {
         background: var(--paper);
+        font-size: 112.5%;
     }
 
     body {
@@ -285,6 +286,27 @@ p.footer {
         padding: 1.25rem;
         border: 0;
         box-shadow: none;
+        font-size: 2rem;
+    }
+
+    h1,
+    h2,
+    h3 {
+        hyphens: auto;
+    }
+
+    h2,
+    h3 {
+        font-size: 2rem;
+    }
+
+    .quote {
+        font-size: 1.15em;
+    }
+
+    pre {
+        padding: 0.75rem 0.5rem;
+        font-size: 0.8em;
     }
 
     .separator {
