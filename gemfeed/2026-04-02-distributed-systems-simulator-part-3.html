@@ -50,6 +50,8 @@
 <li>⇢ ⇢ <a href='#class-hierarchy'>Class Hierarchy</a></li>
 <li>⇢ ⇢ <a href='#implementing-a-custom-protocol'>Implementing a Custom Protocol</a></li>
 <li>⇢ ⇢ <a href='#available-api-methods'>Available API Methods</a></li>
+<li>⇢ ⇢ <a href='#implementing-a-custom-protocol'>Implementing a Custom Protocol</a></li>
+<li>⇢ ⇢ <a href='#available-api-methods'>Available API Methods</a></li>
 <li>⇢ ⇢ <a href='#example-reliable-multicast-implementation'>Example: Reliable Multicast Implementation</a></li>
 <li>⇢ <a href='#project-statistics'>Project Statistics</a></li>
 </ul><br />
@@ -131,7 +133,7 @@ for (i := 0; i &lt; n; i++) {
 <br />
 <h2 style='display: inline' id='protocol-api'>Protocol API</h2><br />
 <br />
-<span>You can implement your own protocols in Java by extending the <span class='inlinecode'>VSAbstractProtocol</span> base class. Each protocol has its own class in the <span class='inlinecode'>protocols.implementations</span> package.</span><br />
+<span>You can implement your own protocols in Java by extending the <span class='inlinecode'>VSAbstractProtocol</span> base class. Each of the built-in protocols (the ones covered in Part 2) has its own class in the <span class='inlinecode'>protocols.implementations</span> package, and they all inherit from <span class='inlinecode'>VSAbstractProtocol</span>.</span><br />
 <br />
 <h3 style='display: inline' id='class-hierarchy'>Class Hierarchy</h3><br />
 <br />
@@ -165,40 +167,23 @@ VSAbstractEvent
 </ul><br />
 <h3 style='display: inline' id='available-api-methods'>Available API Methods</h3><br />
 <br />
-<span>Methods inherited from <span class='inlinecode'>VSAbstractProtocol</span>:</span><br />
+<h3 style='display: inline' id='implementing-a-custom-protocol-2'>Implementing a Custom Protocol</h3><br />
+<br />
+<span>Each protocol class must implement the following methods:</span><br />
 <br />
 <ul>
-<li><span class='inlinecode'>sendMessage(VSMessage message)</span>: Sends a protocol message (automatically updates Lamport and Vector timestamps)</li>
-<li><span class='inlinecode'>hasOnServerStart()</span>: Whether the server or client initiates requests</li>
-<li><span class='inlinecode'>isServer()</span> / <span class='inlinecode'>isClient()</span>: Whether the current process has the protocol activated as server/client</li>
-<li><span class='inlinecode'>scheduleAt(long time)</span>: Creates an alarm that fires at the given local process time, triggering <span class='inlinecode'>onClientSchedule()</span> or <span class='inlinecode'>onServerSchedule()</span></li>
-<li><span class='inlinecode'>removeSchedules()</span>: Cancels all pending alarms in the current context</li>
-<li><span class='inlinecode'>getNumProcesses()</span>: Returns the total number of processes in the simulation</li>
+<li>A public constructor: Must specify whether the client or the server initiates requests, using <span class='inlinecode'>VSAbstractProtocol.HAS_ON_CLIENT_START</span> or <span class='inlinecode'>VSAbstractProtocol.HAS_ON_SERVER_START</span>.</li>
+<li><span class='inlinecode'>onClientInit()</span> / <span class='inlinecode'>onServerInit()</span>: Called once before the protocol is first used. Used to initialize protocol variables and attributes via the VSPrefs methods (e.g. <span class='inlinecode'>initVector</span>, <span class='inlinecode'>initLong</span>). Variables initialized this way appear in the process editor and can be configured by the user.</li>
+<li><span class='inlinecode'>onClientReset()</span> / <span class='inlinecode'>onServerReset()</span>: Called each time the simulation is reset.</li>
+<li><span class='inlinecode'>onClientStart()</span> / <span class='inlinecode'>onServerStart()</span>: Called when the client/server initiates a request. Typically creates and sends a <span class='inlinecode'>VSMessage</span> object.</li>
+<li><span class='inlinecode'>onClientRecv(VSMessage)</span> / <span class='inlinecode'>onServerRecv(VSMessage)</span>: Called when a message arrives.</li>
+<li><span class='inlinecode'>onClientSchedule()</span> / <span class='inlinecode'>onServerSchedule()</span>: Called when a scheduled alarm fires.</li>
+<li><span class='inlinecode'>toString()</span>: Optional. Customizes log output for this protocol.</li>
 </ul><br />
-<span>Process methods available via the inherited <span class='inlinecode'>process</span> attribute:</span><br />
+<h3 style='display: inline' id='available-api-methods-2'>Available API Methods</h3><br />
 <br />
-<ul>
-<li><span class='inlinecode'>getTime()</span> / <span class='inlinecode'>setTime(long)</span>: Get/set the local process time</li>
-<li><span class='inlinecode'>getGlobalTime()</span>: Get the current global simulation time</li>
-<li><span class='inlinecode'>getClockVariance()</span> / <span class='inlinecode'>setClockVariance(float)</span>: Get/set the clock drift</li>
-<li><span class='inlinecode'>getLamportTime()</span> / <span class='inlinecode'>setLamportTime(long)</span>: Get/set the Lamport timestamp</li>
-<li><span class='inlinecode'>getVectorTime()</span> / <span class='inlinecode'>updateVectorTime(VSVectorTime)</span>: Get/update the vector timestamp</li>
-<li><span class='inlinecode'>getProcessID()</span>: Get the process PID</li>
-<li><span class='inlinecode'>isCrashed()</span> / <span class='inlinecode'>isCrashed(boolean)</span>: Check or set crash state</li>
-<li><span class='inlinecode'>getRandomPercentage()</span>: Get a random value between 0 and 100</li>
-</ul><br />
-<span>Message methods (<span class='inlinecode'>VSMessage</span>):</span><br />
+<span>No need to list every inherited method here; the generated Javadoc covers the full set. The ones you&#39;ll use most: <span class='inlinecode'>sendMessage()</span> sends a protocol message (and updates the Lamport and vector timestamps), <span class='inlinecode'>scheduleAt()</span> sets an alarm that fires <span class='inlinecode'>onClientSchedule()</span> or <span class='inlinecode'>onServerSchedule()</span>, and <span class='inlinecode'>removeSchedules()</span> cancels pending alarms. Through the inherited <span class='inlinecode'>process</span> attribute you get the local and global time, the clock drift, the Lamport and vector timestamps, and the crash state. A <span class='inlinecode'>VSMessage</span> carries typed key/value data (<span class='inlinecode'>setBoolean</span>/<span class='inlinecode'>getBoolean</span>, <span class='inlinecode'>setInteger</span>/<span class='inlinecode'>getInteger</span>, <span class='inlinecode'>setLong</span>/<span class='inlinecode'>getLong</span>, <span class='inlinecode'>setString</span>/<span class='inlinecode'>getString</span>), the message ID, and a reference to the sending process.</span><br />
 <br />
-<ul>
-<li><span class='inlinecode'>new VSMessage()</span>: Create a new message</li>
-<li><span class='inlinecode'>getMessageID()</span>: Get the message NID</li>
-<li><span class='inlinecode'>setBoolean(key, value)</span> / <span class='inlinecode'>getBoolean(key)</span>: Set/get boolean data</li>
-<li><span class='inlinecode'>setInteger(key, value)</span> / <span class='inlinecode'>getInteger(key)</span>: Set/get integer data</li>
-<li><span class='inlinecode'>setLong(key, value)</span> / <span class='inlinecode'>getLong(key)</span>: Set/get long data</li>
-<li><span class='inlinecode'>setString(key, value)</span> / <span class='inlinecode'>getString(key)</span>: Set/get string data</li>
-<li><span class='inlinecode'>getSendingProcess()</span>: Get a reference to the sending process</li>
-<li><span class='inlinecode'>isServerMessage()</span>: Whether it&#39;s a server or client message</li>
-</ul><br />
 <h3 style='display: inline' id='example-reliable-multicast-implementation'>Example: Reliable Multicast Implementation</h3><br />
 <br />
 <span>Here is a condensed example showing key parts of the Reliable Multicast Protocol implementation:</span><br />
@@ -256,25 +241,8 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='project-statistics'>Project Statistics</h2><br />
 <br />
-<span>The original VS-Sim project (August 2008) was written in Java 6 and consisted of:</span><br />
+<span>For the record: the 2008 VS-Sim was 61 source files and roughly 15,710 lines of Java 6 across 12 packages; the modernized ds-sim is 146 files (117 main + 29 test) and roughly 27,900 lines (22,400 main + 5,500 test) across 19 packages, plus 208 unit tests, 12 built-in protocols, and 269 configurable settings.</span><br />
 <br />
-<ul>
-<li>61 source files across 12 Java packages</li>
-<li>Approximately 15,710 lines of code</li>
-<li>2.2 MB of generated Javadoc documentation</li>
-<li>142 KB compiled JAR file</li>
-<li>10 built-in protocols</li>
-<li>163 configurable settings</li>
-</ul><br />
-<span>The modernized successor ds-sim (version 1.1.0) has been updated to Java 21 and translated to English:</span><br />
-<br />
-<ul>
-<li>146 source files (117 main + 29 test) across 19 Java packages</li>
-<li>Approximately 27,900 lines of code (22,400 main + 5,500 test)</li>
-<li>12 built-in protocols</li>
-<li>208 unit tests</li>
-<li>269 configurable settings</li>
-</ul><br />
 <a class='textlink' href='https://github.com/snonux/ds-sim'>ds-sim source code on GitHub</a><br />
 <a class='textlink' href='https://github.com/snonux/vs-sim'>vs-sim source code on GitHub (original German version, 2008)</a><br />
 <br />

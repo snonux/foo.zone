@@ -30,14 +30,14 @@
 <br />
 <span>The answer is: well enough for small projects like this.</span><br />
 <br />
-<span><span class='inlinecode'>gt</span> is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than" — <span class='inlinecode'>gt</span> is a comparison operator the calculator supports. Plus it was free in my shell (<span class='inlinecode'>gt</span> command wasn&#39;t used yet by another tool) and I liked the short name.</span><br />
+<span><span class='inlinecode'>gt</span> is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than": <span class='inlinecode'>gt</span> is also a comparison operator the calculator supports. Plus it was free in my shell (<span class='inlinecode'>gt</span> command wasn&#39;t used yet by another tool) and I liked the short name.</span><br />
 <br />
 <span>If you want the full feature guide, the README links to a detailed doc for every feature covered here and more:</span><br />
 <br />
 <a class='textlink' href='https://github.com/snonux/gt'>gt on GitHub</a><br />
 <a href='./gt-calculator/logo.svg'><img alt='gt logo' title='gt logo' src='./gt-calculator/logo.svg' /></a><br />
 <br />
-<span>The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn&#39;t run them locally either — I rented Hyperstack VMs with NVidia GPU just to get a feel for the quality before investing in hardware. The point was to test models that don&#39;t require a cloud API and could realistically run on your own box.</span><br />
+<span>The whole thing (code, tests, documentation, even the logo) was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn&#39;t run them locally either; I rented Hyperstack VMs with NVidia GPU just to get a feel for the quality before investing in hardware. The point was to test models that don&#39;t require a cloud API and could realistically run on your own box.</span><br />
 <br />
 <a class='textlink' href='https://www.hyperstack.cloud/'>https://www.hyperstack.cloud/</a><br />
 <br />
@@ -76,15 +76,7 @@
 </ul><br />
 <h2 style='display: inline' id='the-motivation'>The motivation</h2><br />
 <br />
-<span>Four things drove this.</span><br />
-<br />
-<span>First, I wanted to test local LLMs as coding partners. Not the cloud-hosted ones, but the ones you can run yourself. I figured a calculator project is big enough to be interesting but small enough to finish.</span><br />
-<br />
-<span>Second, cloud independence is a thing I care about. I build tools that don&#39;t need a network connection to function. Writing software that talks to OpenAI or Anthropic APIs doesn&#39;t count as "running locally." Everything here runs offline.</span><br />
-<br />
-<span>Third, I wanted to learn more about how these models actually work in practice. Not benchmarks, the day-to-day experience: how do you operate them, how do you write the prompts, where do they struggle?</span><br />
-<br />
-<span>And the tool had to be useful. A toy that calculates <span class='inlinecode'>2 + 2</span> isn&#39;t worth the disk space. I wanted a calculator I&#39;d actually use.</span><br />
+<span>I wanted to test local LLMs as coding partners on a project big enough to be interesting and small enough to finish. Cloud independence is a thing I care about too: everything here runs offline, nothing talks to an OpenAI or Anthropic API. And I wanted to learn how these models behave day to day, not on benchmarks: how do you operate them, how do you write the prompts, where do they struggle? The tool itself had to be worth the disk space, a calculator I&#39;d actually use.</span><br />
 <br />
 <h2 style='display: inline' id='what-it-does'>What it does</h2><br />
 <br />
@@ -103,7 +95,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='percentage-calculations'>Percentage calculations</h2><br />
 <br />
-<span>This is the simplest entry point. Three forms, all case-insensitive, all with step-by-step output:</span><br />
+<span>This is the simplest entry point, all case-insensitive:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -114,11 +106,11 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">gt </span><span style="color: #3e5d36">'30 is 20% of what'</span><span style="color: #25231f">         </span><span style="font-style: italic"><span style="color: #685f50"># → 150.00</span></span>
 </pre>
 <br />
-<span>Every percentage result shows the formula and intermediate values, so you can verify the math. Useful for tips, discounts, tax, and any "what&#39;s the actual number?" moment.</span><br />
+<span>Every percentage result shows the formula and intermediate values.</span><br />
 <br />
 <h2 style='display: inline' id='rpn-arithmetic'>RPN arithmetic</h2><br />
 <br />
-<span>The main engine uses Reverse Polish Notation. No parentheses needed — the order of tokens determines the order of operations.</span><br />
+<span>The main engine uses RPN.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -130,9 +122,9 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">gt </span><span style="color: #3e5d36">'3 4 + 5 6 + *'</span><span style="color: #25231f">             </span><span style="font-style: italic"><span style="color: #685f50"># (3+4) × (5+6) = 77</span></span>
 </pre>
 <br />
-<span>Six basic operators: <span class='inlinecode'>+</span>, <span class='inlinecode'>-</span>, <span class='inlinecode'>*</span>, <span class='inlinecode'>/</span>, <span class='inlinecode'>^</span>, <span class='inlinecode'>%</span>. All work on the stack, popping operands and pushing the result.</span><br />
+<span>Basic operators: <span class='inlinecode'>+</span>, <span class='inlinecode'>-</span>, <span class='inlinecode'>*</span>, <span class='inlinecode'>/</span>, <span class='inlinecode'>^</span>, <span class='inlinecode'>%</span>.</span><br />
 <br />
-<span>The fast integer power operator <span class='inlinecode'>**</span> uses binary exponentiation (O(log n) instead of O(n)). So <span class='inlinecode'>2 100 **</span> does about 7 multiplications instead of 99. It only accepts integer exponents — use <span class='inlinecode'>^</span> for fractional powers.</span><br />
+<span>The fast integer power operator <span class='inlinecode'>**</span> uses binary exponentiation, so <span class='inlinecode'>2 100 **</span> does about 7 multiplications instead of 99. It only accepts integer exponents; use <span class='inlinecode'>^</span> for fractional powers.</span><br />
 <br />
 <h3 style='display: inline' id='modulo'>Modulo</h3><br />
 <br />
@@ -148,11 +140,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='logarithms'>Logarithms</h3><br />
 <br />
-<span>Three unary operators for when you need them:</span><br />
-<br />
-<span>- <span class='inlinecode'>lg</span> — base 2 (information theory, algorithm complexity)</span><br />
-<span>- <span class='inlinecode'>log</span> — base 10 (decibels, pH, order of magnitude)</span><br />
-<span>- <span class='inlinecode'>ln</span> — natural log (continuous growth, statistics)</span><br />
+<span>Unary logs: <span class='inlinecode'>lg</span> is base 2, <span class='inlinecode'>log</span> is base 10, and <span class='inlinecode'>ln</span> is the natural log.</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -177,7 +165,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">gt </span><span style="color: #3e5d36">'1000 2 2 2 2 [/]'</span><span style="color: #25231f">         </span><span style="font-style: italic"><span style="color: #685f50"># → 62.5</span></span>
 </pre>
 <br />
-<span>Full set: <span class='inlinecode'>[+]</span>, <span class='inlinecode'>[-]</span>, <span class='inlinecode'>[*]</span>, <span class='inlinecode'>[/]</span>, <span class='inlinecode'>[^]</span>, <span class='inlinecode'>[%]</span> for arithmetic, plus <span class='inlinecode'>[lg]</span>, <span class='inlinecode'>[log]</span>, <span class='inlinecode'>[ln]</span> for logarithms. The log hyper operators work differently from the arithmetic ones — they compute the sum of the log function applied to each value, not a left-associative reduction. A quick entropy calculation:</span><br />
+<span>Full set: <span class='inlinecode'>[+]</span>, <span class='inlinecode'>[-]</span>, <span class='inlinecode'>[*]</span>, <span class='inlinecode'>[/]</span>, <span class='inlinecode'>[^]</span>, <span class='inlinecode'>[%]</span> for arithmetic, plus <span class='inlinecode'>[lg]</span>, <span class='inlinecode'>[log]</span>, <span class='inlinecode'>[ln]</span> for logarithms. The log hyper operators work differently from the arithmetic ones: they compute the sum of the log function applied to each value, not a left-associative reduction. A quick entropy calculation:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -192,8 +180,6 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='comparisons-and-booleans'>Comparisons and booleans</h3><br />
 <br />
-<span>Six comparison operators, each with a symbolic alias:</span><br />
-<br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -203,7 +189,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">gt </span><span style="color: #3e5d36">'5 5 =='</span><span style="color: #25231f">                    </span><span style="font-style: italic"><span style="color: #685f50"># → true</span></span>
 </pre>
 <br />
-<span>Results are <span class='inlinecode'>true</span> or <span class='inlinecode'>false</span>, which coerce into arithmetic (true = 1, false = 0). That means you can do inline conditionals:</span><br />
+<span>Results are <span class='inlinecode'>true</span> or <span class='inlinecode'>false</span>, which coerce into arithmetic (true = 1, false = 0), so you get inline conditionals:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -223,7 +209,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">gt </span><span style="color: #3e5d36">'105 68 gte 100 lte +'</span><span style="color: #25231f">      </span><span style="font-style: italic"><span style="color: #685f50"># → 1 (out of range)</span></span>
 </pre>
 <br />
-<span>Booleans also do plain arithmetic, which is occasionally useful:</span><br />
+<span>Booleans also do plain arithmetic:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -235,7 +221,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='variables-and-symbols'>Variables and symbols</h2><br />
 <br />
-<span>Store values with three assignment styles:</span><br />
+<span>Assignment comes in a few styles:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -264,7 +250,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='built-in-constants'>Built-in constants</h2><br />
 <br />
-<span>Thirty-six of them. Use them directly as tokens:</span><br />
+<span>The built-in constants can be used directly as tokens:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -278,13 +264,13 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Greek letter aliases work too: <span class='inlinecode'>π</span>, <span class='inlinecode'>τ</span>, <span class='inlinecode'>φ</span>, <span class='inlinecode'>√2</span>, <span class='inlinecode'>√3</span>, <span class='inlinecode'>√5</span>.</span><br />
 <br />
-<span>There&#39;s also a <span class='inlinecode'>constants</span> command that lists all 36 in one shot. Edge cases are covered too — <span class='inlinecode'>inf</span>, <span class='inlinecode'>-inf</span>, and <span class='inlinecode'>nan</span> exist as constants if you ever need them.</span><br />
+<span><span class='inlinecode'>constants</span> lists them all. <span class='inlinecode'>inf</span>, <span class='inlinecode'>-inf</span>, and <span class='inlinecode'>nan</span> exist as constants too.</span><br />
 <br />
 <h2 style='display: inline' id='the-metrics-system'>The metrics system</h2><br />
 <br />
 <span>Every number carries a unit of measurement, and arithmetic understands those units.</span><br />
 <br />
-<span>Six built-in categories, plus <span class='inlinecode'>Cool</span> — the default unitless metric for plain numbers. The name comes from Raku&#39;s <span class='inlinecode'>Cool</span> role, which represents things that are "cool enough" to do basic operations (strings, numbers, etc.). In <span class='inlinecode'>gt</span>, Cool values absorb into any metric category during arithmetic, so <span class='inlinecode'>5 100Mbps +</span> treats the <span class='inlinecode'>5</span> as <span class='inlinecode'>5Mbps</span>.</span><br />
+<span>Built-in categories, plus <span class='inlinecode'>Cool</span>, the default unitless metric for plain numbers. The name comes from Raku&#39;s <span class='inlinecode'>Cool</span> role, which represents things that are "cool enough" to do basic operations (strings, numbers, etc.). In <span class='inlinecode'>gt</span>, Cool values absorb into any metric category during arithmetic, so <span class='inlinecode'>5 100Mbps +</span> treats the <span class='inlinecode'>5</span> as <span class='inlinecode'>5Mbps</span>.</span><br />
 <br />
 <span>- *DataRate*: bps, Kbps, Mbps, Gbps, Tbps</span><br />
 <span>- *DataSize*: bits, bytes, KB/MB/GB/TB/PB (SI), KiB/MiB/GiB/TiB/PiB (IEC)</span><br />
@@ -387,7 +373,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='discovering-metrics'>Discovering metrics</h3><br />
 <br />
-<span>You can explore what&#39;s available without leaving the REPL:</span><br />
+<span>Explore from the REPL:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -399,7 +385,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">Gbps</span><span style="color: #765924">,</span><span style="color: #25231f"> Kbps</span><span style="color: #765924">,</span><span style="color: #25231f"> Mbps</span><span style="color: #765924">,</span><span style="color: #25231f"> Tbps</span><span style="color: #765924">,</span><span style="color: #25231f"> bps</span>
 </pre>
 <br />
-<span><span class='inlinecode'>metric compatible</span> checks whether two values can be combined before you try:</span><br />
+<span><span class='inlinecode'>metric compatible</span> checks whether two values can be combined:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -413,21 +399,13 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='stack-manipulation'>Stack manipulation</h2><br />
 <br />
-<span>Five operators for managing the RPN stack:</span><br />
-<br />
-<span>- <span class='inlinecode'>dup</span> — duplicate the top value</span><br />
-<span>- <span class='inlinecode'>swap</span> — swap top two values</span><br />
-<span>- <span class='inlinecode'>pop</span> — discard the top value</span><br />
-<span>- <span class='inlinecode'>show</span> / <span class='inlinecode'>showstack</span> / <span class='inlinecode'>print</span> — display the stack without modifying it</span><br />
-<span>- <span class='inlinecode'>clear</span> — clear all variables and constants</span><br />
+<span>Stack operators: <span class='inlinecode'>dup</span>, <span class='inlinecode'>swap</span>, <span class='inlinecode'>pop</span>, <span class='inlinecode'>show</span>/<span class='inlinecode'>showstack</span>/<span class='inlinecode'>print</span>, and <span class='inlinecode'>clear</span>.</span><br />
 <br />
 <span><span class='inlinecode'>dup</span> and <span class='inlinecode'>swap</span> come up a lot. Square a number: <span class='inlinecode'>7 dup *</span> → 49. Reverse operand order: <span class='inlinecode'>2 10 swap /</span> → 5 (instead of 0.2). <span class='inlinecode'>pop</span> discards the top value if you pushed something by accident: <span class='inlinecode'>5 6 pop</span> → 5.</span><br />
 <br />
 <h2 style='display: inline' id='rational-number-mode'>Rational number mode</h2><br />
 <br />
-<span>"Rational" refers to rational numbers — numbers that can be expressed as an exact fraction of two integers (numerator/denominator). The name "rat" is just the shorthand command.</span><br />
-<br />
-<span>In the default float64 mode, numbers are stored as binary floating-point approximations. <span class='inlinecode'>0.1</span> cannot be represented exactly in binary, so it becomes something like <span class='inlinecode'>0.1000000000000000055511151231257827...</span>. This causes the classic problem:</span><br />
+<span>The default float64 mode has the classic problem:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -439,9 +417,9 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">-</span><span style="color: #8a450c">2.775557562e-17</span>
 </pre>
 <br />
-<span>The result should be <span class='inlinecode'>0</span>, but floating-point rounding errors accumulated. Silent wrong answer.</span><br />
+<span>The result should be <span class='inlinecode'>0</span>. Silent wrong answer.</span><br />
 <br />
-<span>Rational mode stores numbers as exact fractions using Go&#39;s <span class='inlinecode'>math/big.Rat</span>. <span class='inlinecode'>0.1</span> is stored as <span class='inlinecode'>1/10</span>, <span class='inlinecode'>0.2</span> as <span class='inlinecode'>2/10</span> (simplified to <span class='inlinecode'>1/5</span>), and all arithmetic operates on those exact values.</span><br />
+<span>Rational mode stores numbers as exact fractions using Go&#39;s <span class='inlinecode'>math/big.Rat</span>, and all arithmetic operates on those exact values.</span><br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
 http://www.lorenzobettini.it
@@ -453,7 +431,7 @@ http://www.gnu.org/software/src-highlite -->
 </pre>
 <br />
 <span>Internally, <span class='inlinecode'>1/3</span> stays as the exact fraction <span class='inlinecode'>1/3</span>, and <span class='inlinecode'>1/3 * 3</span> computes to exactly <span class='inlinecode'>3/3 = 1</span>.</span><br />
-<span>REPL-only. Has a known limitation with non-dyadic decimals and metric operations — the docs explain the why.</span><br />
+<span>REPL-only. There&#39;s a known limitation with non-dyadic decimals and metric operations; the docs explain why.</span><br />
 <br />
 <h2 style='display: inline' id='the-repl'>The REPL</h2><br />
 <br />
@@ -471,7 +449,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #765924">&gt;</span><span style="color: #25231f"> quit</span>
 </pre>
 <br />
-<span>Built-in REPL commands: <span class='inlinecode'>help</span>, <span class='inlinecode'>clear</span>, <span class='inlinecode'>quit</span>/<span class='inlinecode'>exit</span>, <span class='inlinecode'>rpn</span>/<span class='inlinecode'>calc</span>, <span class='inlinecode'>rat</span>, <span class='inlinecode'>stack</span>. <span class='inlinecode'>stack</span> is a shorthand hint for viewing the RPN stack. Tab-completes.</span><br />
+<span>Built-in REPL commands: <span class='inlinecode'>help</span>, <span class='inlinecode'>clear</span>, <span class='inlinecode'>quit</span>/<span class='inlinecode'>exit</span>, <span class='inlinecode'>rpn</span>/<span class='inlinecode'>calc</span>, <span class='inlinecode'>rat</span>, <span class='inlinecode'>stack</span>. Tab-completes.</span><br />
 <br />
 <span>Here&#39;s what a session looks like:</span><br />
 <br />
@@ -532,11 +510,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">Usage</span><span style="color: #765924">:</span><span style="color: #25231f"> clear</span>
 </pre>
 <br />
-<span>No need to leave the REPL or dig through docs when you forget a subcommand.</span><br />
-<br />
 <h2 style='display: inline' id='some-more-usage-examples'>Some more usage examples</h2><br />
-<br />
-<span>Here are some more <span class='inlinecode'>gt</span> usage examples:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -566,7 +540,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='fish-shell-completions'>Fish shell completions</h2><br />
 <br />
-<span><span class='inlinecode'>gt</span> ships with a fish completion script that covers everything: operators, constants, metric units, stack commands, the <span class='inlinecode'>metric</span> and <span class='inlinecode'>custom</span> subcommand trees, and boolean literals. It&#39;s context-aware — it won&#39;t suggest <span class='inlinecode'>metric</span> subcommands in the middle of an RPN expression, and it suppresses fish&#39;s default file completions so you only see calculator tokens.</span><br />
+<span><span class='inlinecode'>gt</span> ships with a fish completion script that covers operators, constants, metric units, stack commands, the <span class='inlinecode'>metric</span> and <span class='inlinecode'>custom</span> subcommand trees, and boolean literals. It won&#39;t suggest <span class='inlinecode'>metric</span> subcommands in the middle of an RPN expression, and it suppresses fish&#39;s default file completions.</span><br />
 <br />
 <span>Install it:</span><br />
 <br />
@@ -599,13 +573,13 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Or from the source directory: <span class='inlinecode'>mage install</span>.</span><br />
 <br />
-<span>One quirk: there are no <span class='inlinecode'>-h</span> or <span class='inlinecode'>--help</span> flags. <span class='inlinecode'>gt version</span> gives you the version, and bare <span class='inlinecode'>gt</span> with no TTY prints usage. If you pass <span class='inlinecode'>-h</span>, <span class='inlinecode'>gt</span> tries to evaluate it as RPN and errors. It&#39;s intentional and keeps the surface area small.</span><br />
+<span>One quirk: there are no <span class='inlinecode'>-h</span> or <span class='inlinecode'>--help</span> flags. <span class='inlinecode'>gt version</span> gives you the version, and bare <span class='inlinecode'>gt</span> with no TTY prints usage. If you pass <span class='inlinecode'>-h</span>, <span class='inlinecode'>gt</span> tries to evaluate it as RPN and errors. That&#39;s intentional.</span><br />
 <br />
 <h2 style='display: inline' id='wrapping-up'>Wrapping up</h2><br />
 <br />
 <span>The local LLM experiment worked. The code is clean enough, the tests pass, the docs are thorough, and I use the tool. The logo was generated by a local model too.</span><br />
 <br />
-<span>For the complete and always-up-to-date feature guide, detailed docs for every feature, and the source code, head to the repo.</span><br />
+<span>The repo has the full, always-up-to-date feature guide and the source code:</span><br />
 <br />
 <a class='textlink' href='https://github.com/snonux/gt'>gt on GitHub</a><br />
 <br />

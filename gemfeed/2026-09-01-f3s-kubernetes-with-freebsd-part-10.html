@@ -101,7 +101,7 @@
           (front)
 </pre>
 <br />
-<span><span class='inlinecode'>f3</span> sits at the top. It&#39;s not part of the k3s cluster — I run FreeBSD on the bare metal there plus a Rocky Linux bhyve VM for agent workloads. Below that is the 16-port DIGITUS gigabit switch. Then a 4-socket power strip feeding the Beelinks. <span class='inlinecode'>f2</span> is the next compute node, then a 1U brush panel for cables, then <span class='inlinecode'>f1</span>, another power strip for the Raspberry Pis, and finally <span class='inlinecode'>f0</span> at the bottom.</span><br />
+<span><span class='inlinecode'>f3</span> at the top isn&#39;t part of the k3s cluster — I run FreeBSD on the bare metal there plus a Rocky Linux bhyve VM for agent workloads. <span class='inlinecode'>f2</span>, <span class='inlinecode'>f1</span>, and <span class='inlinecode'>f0</span> are the k3s nodes.</span><br />
 <br />
 <a class='textlink' href='https://www.digitus.info'>DIGITUS</a><br />
 <br />
@@ -157,7 +157,7 @@
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-10/jetkvm.png'><img alt='JetKVM with its little dsplay showing the device IP' title='JetKVM with its little dsplay showing the device IP' src='./f3s-kubernetes-with-freebsd-part-10/jetkvm.png' /></a><br />
 <br />
-<span>This is huge for a homelab. When a FreeBSD box won&#39;t boot or you need to mess with UEFI settings, you don&#39;t want to drag a monitor and keyboard over. You open the JetKVM web UI and you&#39;re there.</span><br />
+<span>When a FreeBSD box won&#39;t boot or I need to mess with UEFI settings, I open the JetKVM web UI instead of dragging a monitor and keyboard over.</span><br />
 <br />
 <span>The rack mounts for the Beelink + JetKVM rows had to be 3D printed. I found a nice seller on Etsy who printed them for me. I needed four JetKVMs in total, but the the JetKVM had run out of stock. I could only get three directly. The fourth one I had to import from Japan to complete the setup.</span><br />
 <br />

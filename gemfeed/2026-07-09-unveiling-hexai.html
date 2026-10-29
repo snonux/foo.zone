@@ -59,14 +59,8 @@
 </ul><br />
 <h2 style='display: inline' id='what-it-is'>What it is</h2><br />
 <br />
-<span>Hexai is really a bundle of small tools that share the same configuration:</span><br />
+<span>Hexai is really a bundle of small tools that share the same configuration: <span class='inlinecode'>hexai-lsp-server</span> is the LSP server Helix talks to, <span class='inlinecode'>hexai</span> is a standalone CLI for quick LLM questions from the terminal or scripts, <span class='inlinecode'>hexai-tmux-action</span> is a Bubble Tea TUI that pops up inside tmux and runs code actions on the current selection, and <span class='inlinecode'>ask</span> is a tiny task management CLI for agent-managed project work.</span><br />
 <br />
-<ul>
-<li><span class='inlinecode'>hexai-lsp-server</span> — the LSP server that Helix talks to.</li>
-<li><span class='inlinecode'>hexai</span> — a standalone CLI for quick LLM questions from the terminal or scripts.</li>
-<li><span class='inlinecode'>hexai-tmux-action</span> — a Bubble Tea TUI that pops up inside tmux and runs code actions on the current selection.</li>
-<li><span class='inlinecode'>ask</span> — a tiny task management CLI for agent-managed project work.</li>
-</ul><br />
 <span>Everything uses the same <span class='inlinecode'>config.toml</span>, the same provider pool, and the same prompt overrides. I can switch models in one place and the LSP, CLI, and popup all follow along.</span><br />
 <br />
 <span>These are opinionated tools. They reflect how I work: Helix inside tmux, a terminal CLI, a thin Taskwarrior wrapper. If your workflow is different, you&#39;ll probably want to tweak the config or fork it.</span><br />
@@ -144,7 +138,7 @@ command = "hexai-lsp-server"
 <br />
 <span>You can add <span class='inlinecode'>hexai</span> after <span class='inlinecode'>gopls</span> or any other LSP. It does not replace them; it just adds completions, code actions, and chat on top.</span><br />
 <br />
-<span>Once the LSP is wired in, Hexai also offers inline auto-completions as you type. By default it fires after a short idle debounce (<span class='inlinecode'>completion_debounce_ms</span>, 800 ms) when you hit one of the trigger characters (<span class='inlinecode'>.</span> <span class='inlinecode'>:</span> <span class='inlinecode'>/</span> <span class='inlinecode'>_</span> space), and it waits for every configured backend before showing results (<span class='inlinecode'>completion_wait_all</span>). All of it is tunable in <span class='inlinecode'>config.toml</span>, and you can turn completions off for a session without restarting — see the slash commands below.</span><br />
+<span>Once the LSP is wired in, Hexai also offers inline auto-completions as you type. By default it fires after a short idle debounce (<span class='inlinecode'>completion_debounce_ms</span>, 800 ms) when you hit one of the trigger characters (<span class='inlinecode'>.</span> <span class='inlinecode'>:</span> <span class='inlinecode'>/</span> <span class='inlinecode'>_</span> space), and it waits for every configured backend before showing results (<span class='inlinecode'>completion_wait_all</span>). All of it is tunable in <span class='inlinecode'>config.toml</span>, and you can turn completions off for a session without restarting (see the slash commands below).</span><br />
 <br />
 <a href='./unveiling-hexai/05-helix.gif'><img alt='Requesting and accepting a code completion in Helix' title='Requesting and accepting a code completion in Helix' src='./unveiling-hexai/05-helix.gif' /></a><br />
 <br />
@@ -168,7 +162,7 @@ command = "hexai-lsp-server"
 <li>End a line with <span class='inlinecode'>?&gt;</span>, <span class='inlinecode'>!&gt;</span>, <span class='inlinecode'>:&gt;</span>, or <span class='inlinecode'>;&gt;</span> to ask a question. Hexai removes only the trailing <span class='inlinecode'>&gt;</span>, keeps the question, and inserts a <span class='inlinecode'>&gt; </span> quoted reply below the line.</li>
 <li>Type <span class='inlinecode'>&gt;!do something&gt;</span> inline to ask for a quick edit, or <span class='inlinecode'>&gt;&gt;!do something&gt;</span> to replace the whole line with the completion.</li>
 </ul><br />
-<span>Chat example — a question ending in <span class='inlinecode'>?&gt;</span>:</span><br />
+<span>Chat example, a question ending in <span class='inlinecode'>?&gt;</span>:</span><br />
 <br />
 <pre>
 What is a Go slice?&gt;
@@ -183,7 +177,7 @@ What is a Go slice?
 &gt; the backing array plus length and capacity.
 </pre>
 <br />
-<span>Inline example — <span class='inlinecode'>&gt;&gt;!</span> replaces the whole line with the completion:</span><br />
+<span>With <span class='inlinecode'>&gt;&gt;!</span> the whole line is replaced by the completion:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -200,18 +194,13 @@ http://www.gnu.org/software/src-highlite -->
 <span style="font-weight: bold"><span style="color: #7b2934">func</span></span><span style="color: #25231f"> </span><span style="color: #265a79">Foo</span><span style="color: #765924">(</span><span style="color: #25231f">n int</span><span style="color: #765924">)</span><span style="color: #25231f"> int </span><span style="color: #765924">{</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> n </span><span style="color: #765924">*</span><span style="color: #25231f"> n </span><span style="color: #765924">}</span>
 </pre>
 <br />
-<span>Context is included automatically. For follow-ups, Hexai keeps the last few Q/A pairs above the cursor in mind, so you can ask related questions without repeating yourself.</span><br />
+<span>Context is included automatically. Follow-ups keep the last few Q/A pairs above the cursor in mind.</span><br />
 <br />
 <span>There are a few slash commands you can type at the end of a chat line: <span class='inlinecode'>/reload&gt;</span> re-reads <span class='inlinecode'>config.toml</span> without restarting the LSP, <span class='inlinecode'>/disable&gt;</span> pauses auto-completions for the session, and <span class='inlinecode'>/enable&gt;</span> turns them back on.</span><br />
 <br />
-<span>In the editor buffer it ends up looking like this — the question stays, the reply is quoted below, and a follow-up picks up the same context:</span><br />
+<span>In the editor buffer the question stays, the reply is quoted below, and a follow-up picks up the same context:</span><br />
 <br />
 <pre>
-What is a Go slice?
-
-&gt; A slice is a dynamically-sized view into an array. It stores a pointer to
-&gt; the backing array plus length and capacity.
-
 And how do I append to one?
 
 &gt; Use the built-in append: s = append(s, x). It grows the backing array
@@ -317,7 +306,7 @@ $ hexai &#39;install ripgrep on fedora&#39;
 sudo dnf install ripgrep
 </pre>
 <br />
-<span>The provider label and the run summary (timing, token counts, rpm) go to stderr, so <span class='inlinecode'>stdout</span> stays clean for pipes — <span class='inlinecode'>hexai &#39;install ripgrep on fedora&#39; | sh</span> just works.</span><br />
+<span>The provider label and the run summary (timing, token counts, rpm) go to stderr, so <span class='inlinecode'>stdout</span> stays clean for pipes and <span class='inlinecode'>hexai &#39;install ripgrep on fedora&#39; | sh</span> just works.</span><br />
 <br />
 <a href='./unveiling-hexai/03-cli.gif'><img alt='Piping code into Hexai, saving an answer, and simulating streaming without an API call' title='Piping code into Hexai, saving an answer, and simulating streaming without an API call' src='./unveiling-hexai/03-cli.gif' /></a><br />
 <br />
@@ -364,7 +353,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>One detail worth knowing: the alias strings are reversed on purpose. The underlying counter is monotonic (1, 2, 3, …), and a naive encoding would make consecutive tasks share a leading character once the list grows past 36 (<span class='inlinecode'>00</span>, <span class='inlinecode'>01</span>, <span class='inlinecode'>02</span>, … all start with <span class='inlinecode'>0</span>), which kills shell tab-completion. Reversing the string makes the first character vary as fast as possible (<span class='inlinecode'>00</span>, <span class='inlinecode'>10</span>, <span class='inlinecode'>20</span>, … instead of <span class='inlinecode'>00</span>, <span class='inlinecode'>01</span>, <span class='inlinecode'>02</span>, …), so typing the first letter in Fish actually narrows the list. That is the whole reason the IDs look slightly odd.</span><br />
 <br />
-<span>To actually get those completions in Fish, run <span class='inlinecode'>ask fish | source</span> (or drop it into Fish&#39;s <span class='inlinecode'>conf.d</span>) — it gives you tab-completion for both subcommands and the reversed alias IDs.</span><br />
+<span>To actually get those completions in Fish, run <span class='inlinecode'>ask fish | source</span> (or drop it into Fish&#39;s <span class='inlinecode'>conf.d</span>) for tab-completion of both subcommands and the reversed alias IDs.</span><br />
 <br />
 <span><span class='inlinecode'>ask list</span> prints a compact table:</span><br />
 <br />
@@ -390,7 +379,7 @@ Tags:        agent
 <br />
 <a href='./unveiling-hexai/10-tasks.gif'><img alt='Creating, starting, inspecting, and completing a task, then trying Fish completion' title='Creating, starting, inspecting, and completing a task, then trying Fish completion' src='./unveiling-hexai/10-tasks.gif' /></a><br />
 <br />
-<span>This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of <span class='inlinecode'>ask</span>: the <span class='inlinecode'>agent-task-management</span> skill knows how to read and update the <span class='inlinecode'>ask</span> task list, and the <span class='inlinecode'>/work-on-tasks</span> command uses that skill to work through a whole backlog on its own — pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run <span class='inlinecode'>/work-on-tasks</span>, and it chews through the queue one task at a time.</span><br />
+<span>This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of <span class='inlinecode'>ask</span>: the <span class='inlinecode'>agent-task-management</span> skill knows how to read and update the <span class='inlinecode'>ask</span> task list, and the <span class='inlinecode'>/work-on-tasks</span> command uses that skill to work through a whole backlog on its own: pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run <span class='inlinecode'>/work-on-tasks</span>, and it chews through the queue one task at a time.</span><br />
 <br />
 <a class='textlink' href='https://github.com/snonux/dotfiles/tree/master/prompts/skills/agent-task-management'>agent-task-management skill</a><br />
 <a class='textlink' href='https://github.com/snonux/dotfiles/blob/master/prompts/commands/work-on-tasks.md'>/work-on-tasks command</a><br />

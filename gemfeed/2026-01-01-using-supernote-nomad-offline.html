@@ -26,11 +26,11 @@
 <br />
 <span class='quote'>Published at 2025-12-31T16:25:30+02:00</span><br />
 <br />
-<span>I am a note taker. For years, I&#39;ve been searching for a good digital device that could complement my paper notebooks. I&#39;ve finally found it in the Supernote Nomad. I use it completely offline without cloud-sync, and in this post, I&#39;ll explain why this is a benefit.</span><br />
+<span>I take a lot of notes. For years I&#39;ve been looking for a digital device to complement my paper notebooks, and the Supernote Nomad is it. I use it completely offline, no cloud sync, and in this post I&#39;ll explain why.</span><br />
 <br />
 <a class='textlink' href='https://supernote.com/pages/supernote-nomad'>Supernote Nomad</a><br />
 <br />
-<span>I initially bought it because Retta (the manufacturer of the Supernote) stated on their website that an open-source Linux firmware would be released soon. However, after over a year, there still hasn&#39;t been any progress (hopefully there will be someday). So I looked into alternative ways to use this device.</span><br />
+<span>I initially bought it because Ratta (the manufacturer of the Supernote) stated on their website that an open-source Linux firmware would be released soon. That was over a year ago, and there&#39;s still no sign of it (hopefully someday). In the meantime, I just use the Nomad as a plain offline device.</span><br />
 <br />
 <pre>
 ⣿⣿⣿⣿⣿⣿⡿⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
@@ -68,7 +68,7 @@
 <br />
 <span>With Wi-Fi off, the battery lasts about a week on a single charge (how convenient :-)).</span><br />
 <br />
-<span>Privacy was my main concern, though. I don&#39;t sync anything to Retta&#39;s cloud, so my notes stay mine. No one&#39;s reading or mining my stuff. Simple as that.</span><br />
+<span>Privacy was my main concern, though. I don&#39;t sync anything to Ratta&#39;s cloud, so my notes stay mine. No one&#39;s reading or mining my stuff. Simple as that.</span><br />
 <br />
 <a href='./using-supernote-nomad-offline/nomad2.jpg'><img alt='A picture of the Supernote Nomad' title='A picture of the Supernote Nomad' src='./using-supernote-nomad-offline/nomad2.jpg' /></a><br />
 <br />
@@ -84,7 +84,7 @@
 <br />
 <a class='textlink' href='https://github.com/jya-dev/supernote-tool'>https://github.com/jya-dev/supernote-tool</a><br />
 <br />
-<span>I&#39;ve created a small shell script to automate the conversion process using tis tool. This script, <span class='inlinecode'>convert-notes-to-pdfs.sh</span>, resides in my notes archive folder:</span><br />
+<span>I&#39;ve created a small shell script to automate the conversion process using this tool. This script, <span class='inlinecode'>convert-notes-to-pdfs.sh</span>, resides in my notes archive folder:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -118,12 +118,6 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">copy</span>
 </pre>
 <br />
-<span>This script does two things:</span><br />
-<br />
-<ul>
-<li>It finds all <span class='inlinecode'>.note</span> files in the current directory and converts them to PDF using <span class='inlinecode'>supernote-tool</span>.</li>
-<li>It copies the generated PDFs to my <span class='inlinecode'>~/Documents/Supernote</span> folder.</li>
-</ul><br />
 <h3 style='display: inline' id='syncing-to-my-phone'>Syncing to my Phone</h3><br />
 <br />
 <span>The <span class='inlinecode'>~/Documents/Supernote</span> folder on my laptop is synchronized with my phone using Syncthing. This way, I have access to all my notes in PDF format on my phone, wherever I go, without relying on any cloud service.</span><br />
@@ -132,13 +126,10 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='firmware-updates'>Firmware updates</h3><br />
 <br />
-<span>One usually updates the software or firmware of the Supernote Nomad via Wi-Fi. However, it is also possible to update it completely offline. To install the firmware update, follow the steps below (the following instructions were copied from the Supernote website):</span><br />
+<span>Firmware updates usually arrive over Wi-Fi, but you can install them completely offline too. I download the update from the Supernote website, connect the Nomad to my Linux laptop via USB, copy the firmware <span class='inlinecode'>.zip</span> (without unzipping it) into the <span class='inlinecode'>Export</span> folder, and restart the device. That&#39;s it.</span><br />
 <br />
-<ul>
-<li>Connect your Supernote to your PC with a USB-C cable. For macOS, an MTP software (e.g. OpenMTP or Android File Transfer) is required for your Supernote to show up on your Mac. </li>
-<li>For Manta, Nomad, A5 X and A6 X devices, copy the firmware (DO NOT UNZIP) to the "Export" folder of Supernote; for A5 and A6 devices, copy the firmware (DO NOT UNZIP) to the root directory of Supernote.</li>
-<li>Unplug the USB connection, tap “OK” on your Supernote to continue, and if no prompt pops up, please restart your device directly to proceed to update.</li>
-</ul><br />
+<a class='textlink' href='https://support.supernote.com/en_US/change-log/how-to-update-your-supernote'>How to update your Supernote</a><br />
+<br />
 <h2 style='display: inline' id='the-writing-experience'>The Writing Experience</h2><br />
 <br />
 <span>Writing on the Nomad feels great. The screen texture plus the ceramic pen nib comes close to real paper, and there&#39;s basically no lag. It makes me want to take more notes.</span><br />

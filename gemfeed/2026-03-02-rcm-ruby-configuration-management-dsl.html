@@ -145,22 +145,11 @@ http://www.gnu.org/software/src-highlite -->
 <span style="font-weight: bold"><span style="color: #7b2934">end</span></span>
 </pre>
 <br />
-<span>Ruby turns <span class='inlinecode'>file</span> into a method call and <span class='inlinecode'>&#39;/etc/hosts.test&#39;</span> into a normal argument. Inside RCM, that method builds a <span class='inlinecode'>File</span> resource object and stores it for later. The block you pass is just a Ruby block; RCM calls it with the file resource as <span class='inlinecode'>self</span>, so method calls like <span class='inlinecode'>line</span> configure that resource. There is no special parser here, just plain Ruby method and block dispatch.</span><br />
-<br />
-<span>The same goes for constructs like:</span><br />
-<br />
-<!-- Generator: GNU source-highlight 3.1.9
-by Lorenzo Bettini
-http://www.lorenzobettini.it
-http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">given </span><span style="color: #765924">{</span><span style="color: #25231f"> hostname is </span><span style="color: #765924">:</span><span style="color: #25231f">earth </span><span style="color: #765924">}</span>
-</pre>
-<br />
-<span>RCM uses Ruby&#39;s dynamic method lookup to interpret <span class='inlinecode'>hostname</span> and <span class='inlinecode'>is</span> in that block and to decide whether the rest of the configuration should run at all. Features like <span class='inlinecode'>method_missing</span>, blocks, and the ability to change what <span class='inlinecode'>self</span> means in a block make this kind of DSL possible with very little code. You still get all the power of Ruby (conditionals, loops, helper methods), but the surface reads like a small language of its own.</span><br />
+<span>Ruby turns <span class='inlinecode'>file</span> into a method call and <span class='inlinecode'>&#39;/etc/hosts.test&#39;</span> into a normal argument. Inside RCM, that method builds a <span class='inlinecode'>File</span> resource object and stores it for later. The block you pass is just a Ruby block; RCM calls it with the file resource as <span class='inlinecode'>self</span>, so method calls like <span class='inlinecode'>line</span> configure that resource. There is no special parser here, just plain Ruby method and block dispatch. Blocks, the ability to change what <span class='inlinecode'>self</span> means in a block, and <span class='inlinecode'>method_missing</span> make this kind of DSL possible with very little code.</span><br />
 <br />
 <h3 style='display: inline' id='a-bit-more-about-methodmissing'>A bit more about <span class='inlinecode'>method_missing</span></h3><br />
 <br />
-<span><span class='inlinecode'>method_missing</span> is one of the key tools that make the RCM DSL feel natural. In plain Ruby, if you call a method that does not exist, you get a <span class='inlinecode'>NoMethodError</span>. But before Ruby raises that error, it checks whether the object implements <span class='inlinecode'>method_missing</span>. If it does, Ruby calls that instead and lets the object decide what to do.</span><br />
+<span><span class='inlinecode'>method_missing</span> is one of the key tools that make the RCM DSL feel natural. In plain Ruby, a call to a method that doesn&#39;t exist ends up in <span class='inlinecode'>method_missing</span> before Ruby raises a <span class='inlinecode'>NoMethodError</span>, and the object gets to decide what to do instead.</span><br />
 <br />
 <span>In RCM, you can write things like:</span><br />
 <br />
@@ -200,7 +189,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">HostCondition</span><span style="color: #765924">.</span><span style="color: #25231f">new</span><span style="color: #765924">.</span><span style="color: #25231f">hostname</span><span style="color: #765924">.</span><span style="color: #25231f">is</span><span style="color: #765924">(:</span><span style="color: #25231f">earth</span><span style="color: #765924">)</span>
 </pre>
 <br />
-<span>RCM&#39;s real code is more sophisticated, but the idea is the same: Ruby happily calls <span class='inlinecode'>method_missing</span> for unknown methods like <span class='inlinecode'>hostname</span> and <span class='inlinecode'>is</span>, and the DSL turns those calls into a value (<span class='inlinecode'>true</span>/<span class='inlinecode'>false</span>) that decides whether the rest of the configuration should run.</span><br />
+<span>RCM&#39;s real code is more sophisticated, but the idea is the same.</span><br />
 <br />
 <h2 style='display: inline' id='ruby-metaprogramming-further-reading'>Ruby metaprogramming: further reading</h2><br />
 <br />

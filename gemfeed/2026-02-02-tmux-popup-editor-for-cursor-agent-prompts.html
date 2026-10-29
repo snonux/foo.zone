@@ -35,11 +35,9 @@
 <ul>
 <li><a href='#a-tmux-popup-editor-for-cursor-agent-cli-prompts'>A tmux popup editor for Cursor Agent CLI prompts</a></li>
 <li>⇢ <a href='#why-i-built-this'>Why I built this</a></li>
-<li>⇢ <a href='#what-it-is'>What it is</a></li>
 <li>⇢ <a href='#how-it-works-overview'>How it works (overview)</a></li>
 <li>⇢ ⇢ <a href='#workflow-diagram'>Workflow diagram</a></li>
 <li>⇢ <a href='#challenges-and-small-discoveries'>Challenges and small discoveries</a></li>
-<li>⇢ <a href='#test-cases-for-a-future-rewrite'>Test cases (for a future rewrite)</a></li>
 <li>⇢ <a href='#almost-works-with-any-editor-or-any-tui'>(Almost) works with any editor (or any TUI)</a></li>
 </ul><br />
 <h2 style='display: inline' id='why-i-built-this'>Why I built this</h2><br />
@@ -56,22 +54,11 @@
 <a class='textlink' href='https://www.vim.org'>https://www.vim.org</a><br />
 <a class='textlink' href='https://neovim.io'>https://neovim.io</a><br />
 <br />
-<span>So I built a tiny tmux popup editor. It opens <span class='inlinecode'>$EDITOR</span> (Helix for me), and when I close it, the buffer is sent back into the prompt. It sounds simple, but it feels surprisingly native.</span><br />
+<span>So I built a tiny tmux popup editor. It opens <span class='inlinecode'>$EDITOR</span> (Helix for me), and when I close it, the buffer is sent back into the prompt. It also pre-fills the temp file with whatever is already typed after Cursor Agent&#39;s <span class='inlinecode'>→</span> prompt, so I can continue where I left off. It sounds simple, but it feels surprisingly native.</span><br />
 <br />
 <span>This is how it looks like:</span><br />
 <br />
 <a href='./tmux-popup-editor-for-cursor-agent-prompts/demo1.png'><img alt='Popup editor in action' title='Popup editor in action' src='./tmux-popup-editor-for-cursor-agent-prompts/demo1.png' /></a><br />
-<br />
-<h2 style='display: inline' id='what-it-is'>What it is</h2><br />
-<br />
-<span>The idea is straightforward:</span><br />
-<br />
-<ul>
-<li>A tmux key binding <span class='inlinecode'>prefix-e</span> opens a popup overlay near the bottom of the screen.</li>
-<li>The popup starts <span class='inlinecode'>$EDITOR</span> on a temp file.</li>
-<li>When I exit the editor, the script sends the contents back to the original pane with <span class='inlinecode'>tmux send-keys</span>.</li>
-</ul><br />
-<span>It also pre-fills the temp file with whatever is already typed after Cursor Agent&#39;s <span class='inlinecode'>→</span> prompt, so I can continue where I left off.</span><br />
 <br />
 <h2 style='display: inline' id='how-it-works-overview'>How it works (overview)</h2><br />
 <br />
@@ -107,7 +94,7 @@ bind-key e run-shell -b "tmux display-message -p &#39;#{pane_id}&#39;
 <br />
 <span>And here is the full script. It is a bit ugly since it&#39;s shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go with proper unit tests, config-file, multi-agent support and release it once I have time. But it works well enough for now.</span><br />
 <br />
-<span class='quote'>Update 2026-02-08: This functionality has been integrated into the hexai project (https://github.com/snonux/hexai) with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode. The hexai version includes unit tests, configuration files, and better agent detection. While still experimental, it&#39;s more robust than this shell script. See the hexai-tmux-edit command for details.</span><br />
+<span class='quote'>Update 2026-02-08: I&#39;ve since integrated this into my hexai project, with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode (plus unit tests and config files). Still experimental, but it&#39;s more robust than this shell script. See the hexai-tmux-edit command for details.</span><br />
 <br />
 <a class='textlink' href='https://github.com/snonux/hexai'>https://github.com/snonux/hexai</a><br />
 <br />
@@ -372,24 +359,11 @@ http://www.gnu.org/software/src-highlite -->
 <li>The Cursor UI draws a nice box around the prompt, so the prompt line contains a <span class='inlinecode'>│</span> and other markers. I had to filter those out and strip the box-drawing characters.</li>
 <li>When I prefilled text and then sent it back, I sometimes duplicated the prompt. Stripping the prefilled prompt text from the submitted text fixed that.</li>
 </ul><br />
-<h2 style='display: inline' id='test-cases-for-a-future-rewrite'>Test cases (for a future rewrite)</h2><br />
-<br />
-<span>These are the cases I test whenever I touch the script:</span><br />
-<br />
-<ul>
-<li>Single-line prompt: capture everything after <span class='inlinecode'>→</span> and prefill the editor.</li>
-<li>Multi-line boxed prompt: capture the wrapped lines inside the <span class='inlinecode'>│ ... │</span> box and join them with spaces (no newline in the editor).</li>
-<li>Ignore UI noise: do not capture lines containing <span class='inlinecode'>INSERT</span> or <span class='inlinecode'>Add a follow-up</span>.</li>
-<li>Preserve appended text: if I add <span class='inlinecode'> juju</span> to an existing line, the space before <span class='inlinecode'>juju</span> must survive.</li>
-<li>No duplicate send: if the prefilled text is still at the start of the first line, it must be stripped once before sending back.</li>
-</ul><br />
 <h2 style='display: inline' id='almost-works-with-any-editor-or-any-tui'>(Almost) works with any editor (or any TUI)</h2><br />
 <br />
 <span>Although I use Helix, this is just <span class='inlinecode'>$EDITOR</span>. If you prefer Vim, Neovim, or something more exotic, it should work. The same mechanism can be used to feed text into any TUI that reads from a terminal pane, not just Cursor Agent.</span><br />
 <br />
 <span>One caveat: different agents draw different prompt UIs, so the capture logic depends on the prompt shape. A future version of this script should be more modular in that respect; for now this is just a PoC tailored to Cursor Agent.</span><br />
-<br />
-<span>Another thing is, what if Cursor decides to change the design of its TUI? I would need to change my script as well.</span><br />
 <br />
 <span>If I get a chance, I&#39;ll clean it up and rewrite it in Go (and release it properly or include it into Hexai, another AI related tool of mine, of which I haven&#39;t blogged about yet). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.</span><br />
 <br />

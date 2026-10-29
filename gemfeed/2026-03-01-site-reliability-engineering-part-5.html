@@ -41,7 +41,7 @@
    \___/
 </pre>
 <br />
-<span>This time I want to share some themes that build on what we&#39;ve already covered: how system design and incident analysis fit together, why observability should not be an afterthought, and how a design‑improvement loop keeps systems getting better.</span><br />
+<span>This time I want to talk about how system design and incident analysis fit together, and why observability shouldn&#39;t be an afterthought.</span><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
@@ -64,17 +64,15 @@
 <br />
 <h3 style='display: inline' id='learning-from-incidents'>Learning from incidents</h3><br />
 <br />
-<span>When incidents happen, analyse them. Every incident exposes a gap, either in tooling or in skills. Blaming "human error" doesn&#39;t help. Dig into the root causes and fix the system. Postmortems that focus on customer impact make it less likely we repeat the same failure.</span><br />
-<br />
-<span>System design and incident analysis form a feedback loop: we improve the design based on what we learn from incidents, and a better design reduces the impact of the next one.</span><br />
+<span>When incidents happen, analyse them. Every incident exposes a gap, either in tooling or in skills. Don&#39;t blame "human error"; dig into the root causes and fix the system. Postmortems that focus on customer impact make it less likely we repeat the same failure.</span><br />
 <br />
 <h2 style='display: inline' id='observability-don-t-leave-it-for-when-it-s-too-late'>Observability: Don&#39;t leave it for when it&#39;s too late</h2><br />
 <br />
-<span>Teams usually agree that "we need better observability" in the middle of an incident, when it&#39;s too late. Observability always loses against product features. But you need it in place before things go wrong: tools that can query high-cardinality data and tell you what is going on right now. Invest in it early.</span><br />
+<span>Teams usually agree that "we need better observability" in the middle of an incident, when it&#39;s too late. Observability always loses against product features. But you need it in place before things go wrong: tools that can query high-cardinality data and tell you what is going on right now.</span><br />
 <br />
 <h2 style='display: inline' id='the-iterative-spirit'>The iterative spirit</h2><br />
 <br />
-<span>We also accept that system design is never "done." We refine it based on real-world performance, incident learnings, and changing needs. SREs work with developers and incident response so that the whole system keeps improving. It&#39;s never done.</span><br />
+<span>System design is never "done." It gets refined based on real-world performance, incident learnings, and changing needs. SREs work with developers and incident response so that the whole system keeps improving.</span><br />
 <br />
 <h2 style='display: inline' id='book-tips'>Book tips</h2><br />
 <br />

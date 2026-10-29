@@ -53,8 +53,7 @@
 <li>⇢ ⇢ <a href='#protocols'>Protocols</a></li>
 <li>⇢ <a href='#graphical-user-interface-gui'>Graphical User Interface (GUI)</a></li>
 <li>⇢ ⇢ <a href='#simple-mode'>Simple Mode</a></li>
-<li>⇢ ⇢ <a href='#the-menu-bar'>The Menu Bar</a></li>
-<li>⇢ ⇢ <a href='#the-toolbar'>The Toolbar</a></li>
+<li>⇢ ⇢ <a href='#menu-bar-and-toolbar'>Menu Bar and Toolbar</a></li>
 <li>⇢ ⇢ <a href='#the-visualization'>The Visualization</a></li>
 <li>⇢ ⇢ <a href='#color-differentiation'>Color Differentiation</a></li>
 <li>⇢ ⇢ <a href='#the-sidebar'>The Sidebar</a></li>
@@ -137,7 +136,7 @@ Figure 1.1: Client/Server Model
 <br />
 <h3 style='display: inline' id='processes-and-their-roles'>Processes and Their Roles</h3><br />
 <br />
-<span>A distributed system is simulated using processes. Each process takes on one or more roles. For example, one process can take on the role of a client and another process the role of a server. The possibility of assigning both client and server roles to a process simultaneously is also provided. A process could also take on the roles of multiple servers and clients simultaneously. To identify a process, each one has a unique Process Identification Number (PID).</span><br />
+<span>A distributed system is simulated using processes. Each process takes on one or more roles. For example, one process can take on the role of a client and another process the role of a server. The possibility of assigning both client and server roles to a process simultaneously is also provided. A process could also take on the roles of multiple servers and clients simultaneously.</span><br />
 <br />
 <h3 style='display: inline' id='messages'>Messages</h3><br />
 <br />
@@ -204,24 +203,12 @@ Figure 1.2: Client/Server Protocols
 <br />
 <span>By default, the simulator starts in "simple mode". There is also an "expert mode", which will be discussed later.</span><br />
 <br />
-<h3 style='display: inline' id='the-menu-bar'>The Menu Bar</h3><br />
+<h3 style='display: inline' id='menu-bar-and-toolbar'>Menu Bar and Toolbar</h3><br />
 <br />
-<span>In the File menu, you can create new simulations or close the currently open simulation. New simulations open by default in a new tab. However, you can also open or close new simulation windows that have their own tabs. Each tab contains a simulation that is completely independent from the others. This allows any number of simulations to be run in parallel. The menu items "Open", "Save" and "Save As" are used for loading and saving simulations.</span><br />
+<span>The File menu takes care of new simulations and loading/saving them. Every simulation runs in its own tab, independent from the others, so any number of simulations can run in parallel. The Edit menu opens the simulation settings (discussed in more detail later) and lists all participating processes for editing. The Simulator menu repeats the toolbar.</span><br />
 <br />
-<span>Through the Edit menu, users can access the simulation settings, which will be discussed in more detail later. This menu also lists all participating processes for editing. If the user selects a process there, the corresponding process editor opens. The Simulator menu offers the same options as the toolbar, which is described in the next section.</span><br />
+<span>The toolbar has the four essentials: reset, repeat, pause, and start. Which of them is clickable depends on the current simulation state.</span><br />
 <br />
-<span>Some menu items are only accessible when a simulation has already been created or loaded in the current window.</span><br />
-<br />
-<h3 style='display: inline' id='the-toolbar'>The Toolbar</h3><br />
-<br />
-<span>The toolbar is located at the top left of the simulator. The toolbar contains the functions most frequently needed by users. The toolbar offers four different functions:</span><br />
-<br />
-<ul>
-<li>Reset simulation: can only be activated when the simulation has been paused or has finished</li>
-<li>Repeat simulation: cannot be activated if the simulation has not yet been started</li>
-<li>Pause simulation: can only be activated when the simulation is currently running</li>
-<li>Start simulation: can only be activated when the simulation is not currently running and has not yet finished</li>
-</ul><br />
 <h3 style='display: inline' id='the-visualization'>The Visualization</h3><br />
 <br />
 <span>The graphical simulation visualization is located in the center right. The X-axis shows the time in milliseconds, and all participating processes are listed on the Y-axis. The demo simulation ends after exactly 15 seconds. The visualization shows processes (with PIDs 1, 2, and 3), each with its own horizontal black bar. On these process bars, users can read the respective local process time. The vertical red line represents the global simulation time.</span><br />
@@ -255,7 +242,7 @@ Message Colors:
 <br />
 <span>To create a new event, the user can either right-click on a process bar and select "Insert local event", or select an event below the event table, enter the event occurrence time in the text field below, and click "Apply".</span><br />
 <br />
-<span>Right-clicking on the event editor allows you to either copy or delete all selected events. Using the Ctrl key, multiple events can be selected simultaneously. The entries in the Time and PID columns can be edited afterwards. This provides a convenient way to move already programmed events to a different time or assign them to a different process. However, users should ensure that they press the Enter key after changing the event occurrence time, otherwise the change will be ineffective.</span><br />
+<span>Right-clicking on the event editor allows you to either copy or delete all selected events. Using the Ctrl key, multiple events can be selected simultaneously. The entries in the Time and PID columns can be edited afterwards, to move an event to a different time or assign it to another process. Make sure to press Enter after changing the event occurrence time, otherwise the change has no effect.</span><br />
 <br />
 <span>In addition to the Events tab, the sidebar has another tab called "Variables". Behind this tab is the process editor of the currently selected process. There, all variables of the process can be edited, providing another way to access a process editor.</span><br />
 <br />
@@ -289,26 +276,8 @@ Message Colors:
 </ul><br />
 <h3 style='display: inline' id='configuration-settings'>Configuration Settings</h3><br />
 <br />
-<span>The simulation settings window allows configuring many aspects of the simulation. Key settings include:</span><br />
+<span>Most settings in the simulation settings window are self-explanatory (number of processes, simulation duration, playback speed). The ones that matter for the protocol examples are per-process: clock drift (a value of 1.0 means the clock runs at double speed), random crash probability, message loss probability, and the min/max transmission time range for messages. Two global ones worth knowing: "Average transmission times" averages the transmission times of sender and receiver, and "Show only relevant messages" hides messages sent to processes that don&#39;t support the protocol.</span><br />
 <br />
-<ul>
-<li>Processes receive own messages (default: false): Whether processes can receive messages they sent to themselves.</li>
-<li>Average message loss probabilities (default: true): Whether to average the loss probabilities of sender and receiver processes.</li>
-<li>Average transmission times (default: true): Whether to average the transmission times of sender and receiver processes.</li>
-<li>Show only relevant messages (default: true): Hides messages sent to processes that don&#39;t support the protocol.</li>
-<li>Expert mode (default: false): Enables expert mode features.</li>
-<li>Simulation speed (default: 0.5): The playback speed factor. A value of 1 means real-time, 0.5 means half speed.</li>
-<li>Number of processes (default: 3): Can also be changed during simulation via right-click.</li>
-<li>Simulation duration (default: 15s): Between 5 and 120 seconds.</li>
-</ul><br />
-<span>Each process also has individual settings:</span><br />
-<br />
-<ul>
-<li>Clock drift (default: 0.0): By what factor the local clock deviates. A value of 0.0 means no deviation. A value of 1.0 means double speed. Values &gt; -1.0 are allowed.</li>
-<li>Random crash probability (default: 0%): Probability that the process crashes randomly during the simulation.</li>
-<li>Message loss probability (default: 0%): Probability that a message sent by this process is lost in transit.</li>
-<li>Min/Max transmission time (default: 500ms/2000ms): The range for random message delivery times.</li>
-</ul><br />
 <span>Read the next post of this series:</span><br />
 <br />
 <a class='textlink' href='./2026-04-01-distributed-systems-simulator-part-2.html'>Distributed Systems Simulator - Part 2: Built-in Protocols</a><br />

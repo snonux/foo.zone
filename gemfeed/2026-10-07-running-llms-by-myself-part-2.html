@@ -226,42 +226,28 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <li>Prompt templates expand text when I invoke them. Slash commands can also run extension code, as <span class='inlinecode'>/handoff</span> and <span class='inlinecode'>/plan</span> do in my setup.</li>
 <li>Skills are folders with a <span class='inlinecode'>SKILL.md</span> and, sometimes, scripts or references. The model can choose one, or I can load it myself with <span class='inlinecode'>/skill:name</span>.</li>
 </ul><br />
-<span>Pi lists the skills available for automatic selection in the system prompt. A skill with <span class='inlinecode'>disable-model-invocation: true</span> stays out of that list; I have to invoke it myself. For the advertised skills, loading works in three steps:</span><br />
+<span>Pi lists the skills available for automatic selection in the system prompt. A skill with <span class='inlinecode'>disable-model-invocation: true</span> stays out of that list; I have to invoke it myself. For the advertised skills, the names, descriptions and paths go into the system prompt. The full <span class='inlinecode'>SKILL.md</span> only enters the conversation when the model reads it or I invoke <span class='inlinecode'>/skill:name</span>, and files the <span class='inlinecode'>SKILL.md</span> points to (reference docs, scripts) are only read if the task needs them.</span><br />
 <br />
-<ul>
-<li>Level 1 — names, descriptions and paths of the advertised skills go into the system prompt.</li>
-<li>Level 2 — the full <span class='inlinecode'>SKILL.md</span> enters the conversation when the model reads it or I invoke <span class='inlinecode'>/skill:name</span>.</li>
-<li>Level 3 — files the <span class='inlinecode'>SKILL.md</span> points to, like reference docs or scripts. Only read if the instructions for the task at hand need them.</li>
-</ul><br />
 <a href='./running-llms-by-myself/skill-loading.svg'><img alt='Progressive skill loading for automatically available skills' title='Progressive skill loading for automatically available skills' src='./running-llms-by-myself/skill-loading.svg' /></a><br />
 <a class='textlink' href='https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md'>Pi skills and explicit invocation</a><br />
 <br />
-<span>Those advertised descriptions cost context on every request, even for skills I never use. Levels 2 and 3 cost nothing until they&#39;re loaded. But once the model has read a <span class='inlinecode'>SKILL.md</span> or a reference file, it&#39;s a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a <span class='inlinecode'>/handoff</span> throws it out. My solid-principles skill is a good example: its <span class='inlinecode'>SKILL.md</span> is ~1.2K tokens, and the one reference file a single-principle check needs (say <span class='inlinecode'>srp.md</span>) is another ~1K. The other four reference files (~5K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~7K tokens, which is almost a quarter of a 32K preset.</span><br />
+<span>Those advertised descriptions cost context on every request, even for skills I never use. The <span class='inlinecode'>SKILL.md</span> and its reference files cost nothing until they&#39;re loaded. But once the model has read a <span class='inlinecode'>SKILL.md</span> or a reference file, it&#39;s a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a <span class='inlinecode'>/handoff</span> throws it out. My solid-principles skill is a good example: its <span class='inlinecode'>SKILL.md</span> is ~1.2K tokens, and the one reference file a single-principle check needs (say <span class='inlinecode'>srp.md</span>) is another ~1K. The other four reference files (~5K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~7K tokens, which is almost a quarter of a 32K preset.</span><br />
 <br />
 <span>I have 45 skills and 21 commands in my pi setup. The skill descriptions alone are ~17 KB of text. With names, paths and tags, the whole list is about 25 KB, roughly 6K tokens in every request. On the 262K daily driver, that&#39;s fine. On a 32K preset, it&#39;s almost a fifth of the context gone before I&#39;ve typed a word.</span><br />
 <br />
 <span>The bigger downside of too many skills isn&#39;t even the tokens, though. The model has to pick the right skill from the list, and with many similar descriptions, it picks the wrong one or none at all. Big frontier models handle that pretty well. Smaller self-hosted models get confused much more easily. So fewer, clearly distinct skills work better, especially with local models.</span><br />
 <br />
-<span>MCP (Model Context Protocol) connects a harness to tools and resources from another process or service, say a database or a browser. Current upstream pi supports MCP over stdio and HTTP. It can expose tools directly, load their definitions through tool search, or let the model call them through code. Connecting a server with dozens of tools doesn&#39;t have to put all their schemas into every request.</span><br />
-<br />
-<span>I don&#39;t use MCP in this setup. CLI tools and skills cover what I need so far. Mario Zechner&#39;s earlier post explains that approach, though its description of pi predates the current MCP support.</span><br />
+<span>I don&#39;t use MCP in this setup; CLI tools and skills cover what I need so far. Mario Zechner&#39;s earlier post explains that approach, though its description of pi predates the current MCP support.</span><br />
 <br />
 <a class='textlink' href='https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/mcp.md'>Pi&#39;s current MCP support</a><br />
 <a class='textlink' href='https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/'>What if you don&#39;t need MCP? (Mario Zechner)</a><br />
 <br />
 <h2 style='display: inline' id='why-the-harness-makes-the-model-look-smart-or-dumb'>Why the harness makes the model look smart (or dumb)</h2><br />
 <br />
-<span>Pi decides which project details the model gets to see and which tools it can use. A few things matter in practice:</span><br />
+<span>Pi decides which project details the model gets to see and which tools it can use. A few things matter in practice: the context the harness feeds in (the model can&#39;t fix code it has never seen), the feedback loops (running the tests, <span class='inlinecode'>go vet</span> or the compiler and feeding the errors back lets the model fix its own mistakes), and tolerance for quirks (the right chat template, tool-call parser and small repairs like <span class='inlinecode'>nemotron-tool-repair</span> keep one broken call from derailing a session).</span><br />
 <br />
-<ul>
-<li>Context selection — which files, logs and search results the harness feeds in. The model can&#39;t fix code it has never seen.</li>
-<li>System prompt and tool descriptions — clear instructions and well-named tools mean fewer wrong tool calls.</li>
-<li>Tool design — a precise "replace this exact snippet" edit tool is much easier for a model than rewriting a whole file.</li>
-<li>Feedback loops — running tests, <span class='inlinecode'>go vet</span> or the compiler and feeding the errors back lets the model fix its own mistakes.</li>
-<li>Context hygiene — compaction, <span class='inlinecode'>/handoff</span> and sub-agents keep the context short, and models get worse as the context fills up.</li>
-<li>Tolerance for quirks — the right chat template, tool-call parser and small repairs (like <span class='inlinecode'>nemotron-tool-repair</span>) keep one broken call from derailing a session.</li>
-<li>Settings — reasoning effort, temperature and the context limit are configured on the harness or provider side, not in the weights.</li>
-</ul><br />
+<span>Clear instructions and well-named, well-designed tools help too; a precise "replace this exact snippet" edit tool is much easier for a model than rewriting a whole file. Compaction, <span class='inlinecode'>/handoff</span> and sub-agents keep the context short, and models get worse as it fills up. Settings like reasoning effort and the context limit live on the harness or provider side, not in the weights.</span><br />
+<br />
 <span>The screenshot above is a good example. Qwen3.8 didn&#39;t just write the <span class='inlinecode'>version</span> command. It looked at how the other builtins are registered, added a matching help entry, and ran <span class='inlinecode'>go vet</span> and the tests before saying it was done. The model did the thinking, but it could only do that because pi gave it file reading, editing and a shell, and fed the test output back into the context.</span><br />
 <br />
 <span>This also matters for benchmarks. Scores like SWE-bench are measured with a specific agent setup around the model. Put the same weights into a different harness, and you get different results, sometimes a lot better or worse. So when a self-hosted model disappoints, it&#39;s worth checking the harness side (tools, context, parser, settings) before blaming the weights.</span><br />
@@ -272,21 +258,16 @@ POST http://hyperstack1.wg1:11434/v1/chat/completions
 <br />
 <a class='textlink' href='https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/security.md'>Pi&#39;s project trust and tool permissions</a><br />
 <br />
-<span>I use TypeScript extensions from the <span class='inlinecode'>hypr</span> repo for the rest. These are the ones I use daily:</span><br />
+<span>I use TypeScript extensions from the <span class='inlinecode'>hypr</span> repo for the rest. The five I use daily:</span><br />
 <br />
 <ul>
 <li><span class='inlinecode'>web-search</span> — <span class='inlinecode'>web_search</span> and <span class='inlinecode'>web_fetch</span> tools backed by DuckDuckGo (no API key), so the agent looks things up instead of guessing from training data.</li>
-<li><span class='inlinecode'>inline-bash</span> — <span class='inlinecode'>!{cmd}</span> in a prompt expands the command&#39;s output before it reaches the model; that is how <span class='inlinecode'>git status</span>, logs, and <span class='inlinecode'>nvidia-smi</span> output end up inside a question.</li>
-<li><span class='inlinecode'>ask-mode</span> — <span class='inlinecode'>/ask</span> flips the session into a read-only investigation mode: understand the codebase and read logs with editing tools disabled and shell commands filtered. This is a convenience mode, not an enforced read-only filesystem; its command filter can still allow writes. Before I let a model near code I don&#39;t fully know, this is the first call: <span class='inlinecode'>/ask why does the tunnel setup regenerate keys on the second run?</span></li>
-<li><span class='inlinecode'>loop-scheduler</span> — <span class='inlinecode'>/loop</span> re-sends a prompt on an interval and <span class='inlinecode'>/watch</span> fires when the agent goes idle or a response contains a substring. The two forms I actually use: <span class='inlinecode'>/loop 10m check the VM status and warn me if KV cache usage is above 80%</span> for the periodic check, and the reactive <span class='inlinecode'>/watch contains ERROR =&gt; summarize the latest error and propose a fix</span>. That is how I babysit long builds and flaky services.</li>
+<li><span class='inlinecode'>ask-mode</span> — <span class='inlinecode'>/ask</span> flips the session into a read-only investigation mode with editing tools disabled. Before I let a model near code I don&#39;t fully know, this is the first call: <span class='inlinecode'>/ask why does the tunnel setup regenerate keys on the second run?</span></li>
+<li><span class='inlinecode'>loop-scheduler</span> — <span class='inlinecode'>/loop</span> re-sends a prompt on an interval and <span class='inlinecode'>/watch</span> fires when the agent goes idle or a response contains a substring. That is how I babysit long builds and flaky services.</li>
 <li><span class='inlinecode'>handoff</span> — <span class='inlinecode'>/handoff &lt;goal&gt;</span> compacts the session into a self-contained prompt for a fresh one, so a long-lived agent does not drown in its own history.</li>
-<li><span class='inlinecode'>fresh-subagent</span> — the <span class='inlinecode'>subagent</span> tool and <span class='inlinecode'>/subagent</span> command run a self-contained task in a clean <span class='inlinecode'>pi</span> process with its own log file, while the main session stays focused: <span class='inlinecode'>/subagent review the last commit and list the risks</span> gives me the verdict without the digging.</li>
-<li><span class='inlinecode'>btw</span> — a mid-task question that must not derail the context: <span class='inlinecode'>/btw which file owns the SSH host key bootstrap logic?</span> The answer appears in a temporary overlay and stays out of the session history.</li>
-<li><span class='inlinecode'>agent-plan-mode</span> — <span class='inlinecode'>/plan</span> separates planning from execution: a read-only planning mode, a numbered plan, then the plan converted into real tasks before anything gets built. That is how the multi-step work in this repo stays on rails.</li>
-<li><span class='inlinecode'>modal-editor</span> — an in-TUI modal editor for composing long prompts without fighting the line editor.</li>
-<li><span class='inlinecode'>session-name</span> — labels a session with something more useful than the first prompt line.</li>
+<li><span class='inlinecode'>fresh-subagent</span> — the <span class='inlinecode'>subagent</span> tool and <span class='inlinecode'>/subagent</span> command run a self-contained task in a clean <span class='inlinecode'>pi</span> process with its own log file, while the main session stays focused: <span class='inlinecode'>/subagent review the last commit and list the risks</span>.</li>
 </ul><br />
-<span>The long tail is smaller: <span class='inlinecode'>nemotron-tool-repair</span> fixes the malformed tool calls the Nemotron models occasionally emit, and <span class='inlinecode'>prompt-history</span> quietly records the last 500 prompts.</span><br />
+<span>There are more small ones: <span class='inlinecode'>inline-bash</span> (<span class='inlinecode'>!{cmd}</span> expands a command&#39;s output into the prompt), <span class='inlinecode'>agent-plan-mode</span>, <span class='inlinecode'>btw</span>, <span class='inlinecode'>modal-editor</span>, <span class='inlinecode'>session-name</span>, <span class='inlinecode'>nemotron-tool-repair</span> (patches the malformed tool calls Nemotron occasionally emits) and <span class='inlinecode'>prompt-history</span>.</span><br />
 <br />
 <span>For the record: <span class='inlinecode'>handoff</span>, <span class='inlinecode'>inline-bash</span>, <span class='inlinecode'>session-name</span>, and <span class='inlinecode'>reload-runtime</span> are upstream pi examples installed locally; the rest are my own (created with the help of LLMs).</span><br />
 <br />
