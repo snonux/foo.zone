@@ -33,6 +33,8 @@ Stuff I'm currently up to:
 * Learning Bulgarian for the bulgarian citizenship
 * Learning how to use AI for engineering
 * Reading "Children of Time" in german by Adrian Tchaikovsky and Birgit Herden
+* Building my own FUSE-powered distributed file system HomelabFS on top of ZFS
+* Working on next DTail release
 
 ## Next
 
@@ -40,7 +42,6 @@ Stuff I'm planning to get to next:
 
 * Working on next DTail release
 * Releasing Gonf, my own configuration management system
-* Think about my own Jail or Container orchestrator for FreeBSD
 * Read the FreeBSD book Integrated by Design
 * Releasing GGaze, my own photo preview and optimizer tool for Linux.
 * Releasing Player, my own media server with web UI and Android client.
