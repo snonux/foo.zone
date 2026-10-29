@@ -31,9 +31,7 @@ These are my personal book notes of Emil Stolarsky's and Jaime Woo's "97 Things 
 
 ## Introduction
 
-That willingness to learn makes sense for SREs, given the need to work with complex systems. The systems change constantly, and the role requires someone wanting to ask questions about how they work. Curiosity is a trait found in many SREs.
-
-It's normal (and fine) for some of our work to deal with immediate needs, but teams that operate only on the urgent side of the Eisenhower matrix are limited in what they can achieve. Nothing is ever perfect, so don't aim for it. Ensure instead that you're aiming to be reliable just enough of the time. Because that's where the power is.
+Nothing is ever perfect, so don't aim for it. Be reliable just enough of the time, that's where the power is. And teams that operate only on the urgent side of the Eisenhower matrix are limited in what they can achieve.
 
 * Why didn't it work like it did yesterday? What changed?
 * It was as though production were a foreign land, and they needed me to accompany them as a translator.
@@ -43,7 +41,7 @@ It's normal (and fine) for some of our work to deal with immediate needs, but te
 
 ## Observability
 
-Observability would swamp most observability systems with an obscene amount of storage and scale. It would simply be impractical to pay for a system capable of doing that. Observability helps your investigation of problems pinpoint likely sources. Observability is not for debugging your code logic. It is for figuring out where in your systems to find the code you need to debug.
+Observing everything would swamp most observability systems with an obscene amount of storage and scale, and paying for a system capable of that would simply be impractical. Observability is not for debugging your code logic. It's for figuring out where in your systems to find the code you need to debug.
 
 ## The ancient art of writing things down
 
@@ -60,13 +58,13 @@ An SLO of 99.9% only tells you anything if you know what the service's owners co
 
 ## The team's health
 
-To decide, you must know what you value most in a job and what you can expect from companies. As we fine-tune SLOs and iterate on rotation design, it's equally important to keep in touch with the pulse of the team's health, and constantly ask: as a group, are we working in a way that is sustainable over the long haul?
+As we fine-tune SLOs and iterate on rotation design, it's equally important to keep in touch with the pulse of the team's health, and constantly ask: as a group, are we working in a way that is sustainable over the long haul?
 
 * Emotional exhaustion: spending too much time caring too much.
 * Depersonalization: feeling less empathy for others.
 * Decreased sense of accomplishment.
 
-The second notion was, "No one pays for generalists; you need to specialize." Now I'm an SRE. Burnout is a challenge. It will happen a few times, and each time you think, "I'll never fall for that again." Again, you will work too hard, too long, without reward or appreciation. It can permanently damage your health.
+"No one pays for generalists; you need to specialize." Now I'm an SRE. Burnout is a challenge. It will happen a few times, and each time you think, "I'll never fall for that again." Again, you will work too hard, too long, without reward or appreciation. It can permanently damage your health.
 
 * The young and invincible assume it won't happen to them.
 * Life is a marathon, not a sprint.
@@ -75,13 +73,13 @@ Dilemmas get easier when you ask, "In ten years, what will I wish I'd done?" Fee
 
 The efforts and personal sacrifices of engineers are meaningless if they do not resonate at a strategic level. The Space Shuttle Challenger was approved for launch by NASA managers seeking to avoid delays in an already beleaguered schedule, despite known engineer concerns about the safety of the orbiter vehicle in subzero launch temperatures.
 
-* When engineers engineer and leaders lead in isolated vacuums, introspective behaviors, shared empathy, and mutual trust for each other cannot flourish.
+* When engineers engineer and leaders lead in isolated vacuums, trust and empathy cannot flourish.
 * SRE offers a shared language for leveling the playing field between engineers and leaders.
 * Measure, analyze, decide, act, reflect and repeat: that's site reliability engineering in six words.
 
 ## Sharing responsibilities
 
-Embracing the idea "you build it, you run it" empowers everyone in your organization with shared responsibility for reliability and broad use of your team's skills.
+"You build it, you run it": everyone shares responsibility for reliability.
 
 * Through sharing the pain of running production services, opportunities to develop shared empathy and technical understanding necessary at scale are improved.
 * You can't fix it all.
@@ -91,7 +89,7 @@ Embracing the idea "you build it, you run it" empowers everyone in your organiza
 
 ## The roles and the solo SRE
 
-Three roles: incident manager, expert/operator, and communications. Typically, incident management roles include an incident commander, technical lead, and communications lead. Incident management is a natural progression after observability.
+Three roles: incident manager, expert/operator, and communications, usually an incident commander, a technical lead, and a communications lead.
 
 The most important point to remember in being a solo SRE is that although you can effect change within your organization, you cannot do it alone, so don't try to carry the weight of your organization's problems on your shoulders.
 
@@ -104,7 +102,7 @@ The most important point to remember in being a solo SRE is that although you ca
 
 ## Being customer-focused
 
-SRE is about being customer-focused. Regardless of the stage of development, it is critical to understand the bottlenecks in your system and communicate them to stakeholders. There is likely to be a strong push to ignore SRE capability work and focus on new features. However, for most enterprises, introducing SLOs and error budgets to business-critical services remains a key differentiator for establishing SRE.
+Understand the bottlenecks in your system and communicate them to stakeholders. There will be a strong push to ignore SRE work and focus on new features instead.
 
 * If SLOs are not status quo in your organization, be prepared to invest a significant amount of time teaching stakeholders about the importance of SLOs.
 * Textbook implementations of SRE rarely translate well in enterprises, given the diversity of businesses.
@@ -112,14 +110,11 @@ SRE is about being customer-focused. Regardless of the stage of development, it 
 
 ## Don't have all the answers
 
-There is unfortunate pressure on people to feel like they have all the answers. In meetings, we often see someone tap dancing nervously around an answer they don't have, especially when asked by someone higher up the management chain. It's not our role as engineers and leaders always to have the answers.
+There's pressure to feel like you have all the answers. In meetings, you see someone tap dancing nervously around an answer they don't have, especially when someone higher up the management chain asks. It's not our role as engineers and leaders to always have the answers.
 
 * A simple tactic to get your work recognized: write a document listing your accomplishments.
-* Ensure that you're being reliable enough.
 
 ## Runbooks
-
-Once a mental model can be recorded, reproduced, and shared, it becomes a general-purpose abstraction. It speeds communication and gives people standard tools to refer to when reasoning about behavior, outages, and proposed changes to the system.
 
 * Runbooks (also known as playbooks) are not a silver bullet (nothing is). They share all of documentation's pitfalls: accuracy, quality, maintainability, drift.
 * Runbooks are generally concerned with known unknowns, and we cannot anticipate every problem.
@@ -127,8 +122,6 @@ Once a mental model can be recorded, reproduced, and shared, it becomes a genera
 * Inaccurate or outdated runbooks can be more dangerous than no runbooks.
 * Runbook creation, maintenance, and review should be a whole-team activity.
 * Having too many runbooks is an anti-pattern.
-
-Runbooks cannot and will not solve every incident. But that's fine. As incidents become more novel, there is a point at which an investment in runbooks starts to show diminishing returns.
 
 * Playbooks: it's infeasible to assume that any playbook is absolutely complete, so expect it to be a tool that cannot fill the entire role of an SRE.
 * Playbooks help an on-caller resolve issues but can contain too much or too little detail.
@@ -152,14 +145,14 @@ As SREs, we see our job as balancing velocity with reliability.
 
 > You Don't Know for Sure Until It Runs in Production.
 
-We often view production as a house of cards, like a fragile ecosystem that needs to be approached with care, silk gloves, or bunker gear. Incident reviews are a perfect opportunity to target and remove detrimental complexity. Incidents give us the space to zoom out and notice detrimental complexity.
+We often view production as a house of cards, like a fragile ecosystem that needs to be approached with care, silk gloves, or bunker gear. Incidents give us the space to zoom out and notice detrimental complexity, and incident reviews are the place to remove it.
 
 Simpler systems that aren't perfect are usually better than complex ones. We often think of incidents in terms of TTx (time to x), like time to detect or time to mitigate, but these metrics provide little insight into what makes an incident interesting.
 
 * If an engineer is a hero, there's a gap in the process, the infrastructure, or the tooling.
 * Metrics are not SLIs (the measure-everything trap).
 
-"Measure everything" is a trap. Metrics are raw numbers: how many items in a queue, how many days since the last failure. SLIs are combinations of metrics that tell a story, like if the queue keeps filling at the current rate.
+Metrics are raw numbers: how many items in a queue, how many days since the last failure. SLIs are combinations of metrics that tell a story, like if the queue keeps filling at the current rate.
 
 * SLIs provide evidence of service efficiency and longevity.
 * Important to revisit your SLIs constantly.
@@ -201,7 +194,7 @@ Quiet time in the morning can be used to work on tasks with fewer interruptions.
 * On the flip side from burnout, creativity thrives in semi-constrained spaces.
 * Many insights result from detaching from a problem and finding insight elsewhere.
 
-It's important for mental and physical health to create and maintain personal margin to avoid burnout. Renewing activities counter environmental uncertainty: breaks, changes of scenery, and exercise. Incidents are unplanned investments in understanding systems. The learning budget is where you explore new, creative approaches.
+Create and maintain personal margin for your mental and physical health. Renewing activities counter environmental uncertainty: breaks, changes of scenery, and exercise. Incidents are unplanned investments in understanding systems. The learning budget is where you explore new, creative approaches.
 
 ## Error budget as a learning budget
 
@@ -213,7 +206,7 @@ Focus not just on a single night; rather, lay the groundwork for creating an ope
 
 Introducing SRE means overcoming inertia. It takes a lot of time to educate people and keep reinforcing the practices.
 
-Change is hard, especially in large organizations. Focus initially on the most critical behaviors to adapt and help spread awareness.
+Change is hard, especially in large organizations. Focus on the most critical behaviors first.
 
 * Identify culture carriers in your organization who empower others and build trust.
 * A team of rock-star SREs doesn't guarantee success.
@@ -228,15 +221,13 @@ The book also discusses several sources of complexity. The biggest and hardest t
 * Others may doubt the maturity of the company in adopting SRE principles without proper documentation.
 * Basic arguments for SLOs might conflict with existing goals, requiring patient explanation.
 
-SLOs, SLIs, and error budgets will require convincing within the organization. Some may prioritize feature velocity over reliability work. Once engineering, operations, and product teams buy in, go to senior leadership. Sell them on release velocity and early insight into the user experience.
-
-The key argument to leadership is that SRE practices will provide better feature velocity over time.
+SLOs, SLIs, and error budgets will require convincing within the organization. Some may prioritize feature velocity over reliability work. Once engineering, operations, and product teams buy in, go to senior leadership and sell them on release velocity and early insight into the user experience.
 
 ## Heroes and on-call practices
 
 Heroes are necessary, but hero culture is not. A hero culture can easily form, but an SRE mindset helps combat this. If no action is required, tweak thresholds or delete alerts. Treat every page as an exceptional circumstance. Include on-call behaviors in developmental and career progression frameworks. On-callers should shadow experienced engineers to practice incident response. Trial by fire is not a prerequisite for being good on call. Best improvement ideas often come from the on-callers themselves.
 
-Regular retrospectives and reflection improve on-call experiences. Good communication and collaboration multiply team efficiency. Successful teams frequently meet to improve processes and keep documentation up to date.
+Regular retrospectives improve on-call experiences. Successful teams frequently meet to improve processes and keep documentation up to date.
 
 * Technical literacy and hands-on experience contribute to on-call satisfaction.
 * Effective onboarding and training are essential.
@@ -275,7 +266,6 @@ Toil reduction is a goal for all engineering disciplines, not only SRE. Reliabil
 * Recognize tooling, operational, and resource gaps.
 * An SRE mindset will be key in hiring for every engineering role.
 * All engineers can incorporate SRE practices without needing dedicated SRE teams.
-* Effective communication and precise writing are invaluable for reliability.
 * SRE adoption is cultural, not merely about automating operations.
 
 Things will always break, and that can lead to burnout. Mental health comes first. Error budgets give you data to decide with. For incidents outside SRE's control, only a culture change helps in the long run.
@@ -288,7 +278,7 @@ Building a good team in a large enterprise is hard. A culture of knowledge shari
 
 SREs protect critical systems. That's exciting and a burnout risk. Reliable systems need quick improvements and no processes that slow everything down. Modernize incrementally with small, frequent deployments.
 
-A solid SRE culture is what makes it last. Documentation shouldn't go through the same review process as code. Heroes do their best work as part of a team; you don't need a hero culture.
+A solid SRE culture is what makes it last. Documentation shouldn't go through the same review process as code.
 
 * Happy, healthy on-call rotations lead to better results.
 * Incentivize, reduce pain points, mentor, and iterate rapidly.

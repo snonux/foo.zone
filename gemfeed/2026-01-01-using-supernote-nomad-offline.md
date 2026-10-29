@@ -2,11 +2,11 @@
 
 > Published at 2025-12-31T16:25:30+02:00
 
-I am a note taker. For years, I've been searching for a good digital device that could complement my paper notebooks. I've finally found it in the Supernote Nomad. I use it completely offline without cloud-sync, and in this post, I'll explain why this is a benefit.
+I take a lot of notes. For years I've been looking for a digital device to complement my paper notebooks, and the Supernote Nomad is it. I use it completely offline, no cloud sync, and in this post I'll explain why.
 
 [Supernote Nomad](https://supernote.com/pages/supernote-nomad)  
 
-I initially bought it because Retta (the manufacturer of the Supernote) stated on their website that an open-source Linux firmware would be released soon. However, after over a year, there still hasn't been any progress (hopefully there will be someday). So I looked into alternative ways to use this device.
+I initially bought it because Ratta (the manufacturer of the Supernote) stated on their website that an open-source Linux firmware would be released soon. That was over a year ago, and there's still no sign of it (hopefully someday). In the meantime, I just use the Nomad as a plain offline device.
 
 ```
 ⣿⣿⣿⣿⣿⣿⡿⠿⠿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿
@@ -43,7 +43,7 @@ I keep my Supernote Nomad offline at all times. No Wi-Fi, no cloud sync, just me
 
 With Wi-Fi off, the battery lasts about a week on a single charge (how convenient :-)).
 
-Privacy was my main concern, though. I don't sync anything to Retta's cloud, so my notes stay mine. No one's reading or mining my stuff. Simple as that.
+Privacy was my main concern, though. I don't sync anything to Ratta's cloud, so my notes stay mine. No one's reading or mining my stuff. Simple as that.
 
 [![A picture of the Supernote Nomad](./using-supernote-nomad-offline/nomad2.jpg "A picture of the Supernote Nomad")](./using-supernote-nomad-offline/nomad2.jpg)  
 
@@ -59,7 +59,7 @@ To make my notes accessible and shareable, I convert them from the proprietary `
 
 [https://github.com/jya-dev/supernote-tool](https://github.com/jya-dev/supernote-tool)  
 
-I've created a small shell script to automate the conversion process using tis tool. This script, `convert-notes-to-pdfs.sh`, resides in my notes archive folder:
+I've created a small shell script to automate the conversion process using this tool. This script, `convert-notes-to-pdfs.sh`, resides in my notes archive folder:
 
 ```bash
 #!/usr/bin/env bash
@@ -90,11 +90,6 @@ convert
 copy
 ```
 
-This script does two things:
-
-* It finds all `.note` files in the current directory and converts them to PDF using `supernote-tool`.
-* It copies the generated PDFs to my `~/Documents/Supernote` folder.
-
 ### Syncing to my Phone
 
 The `~/Documents/Supernote` folder on my laptop is synchronized with my phone using Syncthing. This way, I have access to all my notes in PDF format on my phone, wherever I go, without relying on any cloud service.
@@ -103,11 +98,9 @@ The `~/Documents/Supernote` folder on my laptop is synchronized with my phone us
 
 ### Firmware updates
 
-One usually updates the software or firmware of the Supernote Nomad via Wi-Fi. However, it is also possible to update it completely offline. To install the firmware update, follow the steps below (the following instructions were copied from the Supernote website):
+Firmware updates usually arrive over Wi-Fi, but you can install them completely offline too. I download the update from the Supernote website, connect the Nomad to my Linux laptop via USB, copy the firmware `.zip` (without unzipping it) into the `Export` folder, and restart the device. That's it.
 
-* Connect your Supernote to your PC with a USB-C cable. For macOS, an MTP software (e.g. OpenMTP or Android File Transfer) is required for your Supernote to show up on your Mac. 
-* For Manta, Nomad, A5 X and A6 X devices, copy the firmware (DO NOT UNZIP) to the "Export" folder of Supernote; for A5 and A6 devices, copy the firmware (DO NOT UNZIP) to the root directory of Supernote.
-* Unplug the USB connection, tap “OK” on your Supernote to continue, and if no prompt pops up, please restart your device directly to proceed to update.
+[How to update your Supernote](https://support.supernote.com/en_US/change-log/how-to-update-your-supernote)  
 
 ## The Writing Experience
 

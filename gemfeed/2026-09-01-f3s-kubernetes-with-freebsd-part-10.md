@@ -76,7 +76,7 @@ The front is where the action is. From top to bottom:
           (front)
 ```
 
-`f3` sits at the top. It's not part of the k3s cluster — I run FreeBSD on the bare metal there plus a Rocky Linux bhyve VM for agent workloads. Below that is the 16-port DIGITUS gigabit switch. Then a 4-socket power strip feeding the Beelinks. `f2` is the next compute node, then a 1U brush panel for cables, then `f1`, another power strip for the Raspberry Pis, and finally `f0` at the bottom.
+`f3` at the top isn't part of the k3s cluster — I run FreeBSD on the bare metal there plus a Rocky Linux bhyve VM for agent workloads. `f2`, `f1`, and `f0` are the k3s nodes.
 
 [DIGITUS](https://www.digitus.info)  
 
@@ -132,7 +132,7 @@ Each Beelink has its own JetKVM — a tiny USB-powered KVM-over-IP device. You p
 
 [![JetKVM with its little dsplay showing the device IP](./f3s-kubernetes-with-freebsd-part-10/jetkvm.png "JetKVM with its little dsplay showing the device IP")](./f3s-kubernetes-with-freebsd-part-10/jetkvm.png)  
 
-This is huge for a homelab. When a FreeBSD box won't boot or you need to mess with UEFI settings, you don't want to drag a monitor and keyboard over. You open the JetKVM web UI and you're there.
+When a FreeBSD box won't boot or I need to mess with UEFI settings, I open the JetKVM web UI instead of dragging a monitor and keyboard over.
 
 The rack mounts for the Beelink + JetKVM rows had to be 3D printed. I found a nice seller on Etsy who printed them for me. I needed four JetKVMs in total, but the the JetKVM had run out of stock. I could only get three directly. The fourth one I had to import from Japan to complete the setup.
 

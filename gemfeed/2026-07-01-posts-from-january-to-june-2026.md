@@ -29,7 +29,7 @@ These are from Mastodon and LinkedIn. Have a look at my about page for my social
 * [⇢ ⇢ ⇢ Very important: Eventually consistency in ...](#very-important-eventually-consistency-in-)
 * [⇢ ⇢ ⇢ Great wisdom about working remotely: ...](#great-wisdom-about-working-remotely-)
 * [⇢ ⇢ ⇢ One of my favorite books: "Some Thoughts on ...](#one-of-my-favorite-books-some-thoughts-on-)
-* [⇢ ⇢ ⇢ The Go flight recorder is a tool that allows ...](#the-go-flight-recorder-is-a-tool-that-allows-)
+* [⇢ ⇢ ⇢ Go gets a flight recorder for programs: record ...](#go-gets-a-flight-recorder-for-programs-record-)
 * [⇢ ⇢ ⇢ So true. I also keep everything in plain text/ ...](#so-true-i-also-keep-everything-in-plain-text-)
 * [⇢ ⇢ ⇢ I agree: you build it, you run it ...](#i-agree-you-build-it-you-run-it-)
 * [⇢ ⇢ ⇢ A great blog post about my favourite text ...](#a-great-blog-post-about-my-favourite-text-)
@@ -233,9 +233,9 @@ One of my favorite books: "Some Thoughts on Deep Work"
 
 [atthis.link/blog/2020/deepwork.html](https://atthis.link/blog/2020/deepwork.html)  
 
-### The Go flight recorder is a tool that allows ...
+### Go gets a flight recorder for programs: record ...
 
-The Go flight recorder is a tool that allows developers to capture and analyze the execution of Go programs. It provides insights into performance, memory usage, and other runtime characteristics by recording events and metrics during the program's execution. Yet another tool why Go is awesome! `#go` `#golang` `#tools`
+Go gets a flight recorder for programs: record what a running binary did and look at it after the fact. Yet another tool why Go is awesome! `#go` `#golang` `#tools`
 
 [go.dev/blog/flight-recorder](https://go.dev/blog/flight-recorder)  
 

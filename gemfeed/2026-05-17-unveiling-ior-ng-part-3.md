@@ -28,19 +28,19 @@ This is the third and final post in the series. Part 1 is the demo-driven tour: 
 
 Every traced syscall produces one row of structured data. The schema is what the parquet file (and the in-memory ring buffer behind the dashboard) stores, and it covers all the dimensions you'd want for a post-mortem:
 
-* `seq`: monotonically increasing sequence number, useful for joining/ordering across analysis tools.
+* `seq`: monotonically increasing sequence number.
 * `time_ns`: wall-clock timestamp at syscall entry, in nanoseconds since boot.
 * `latency_ns`: how long the syscall took, measured from `sys_enter_X` to `sys_exit_X` of the matching pair.
-* `gap_ns`: wall-clock interval since the previous syscall on the same TID (the userspace-side breathing room; see Part 1's Latency+Gaps tab section for the caveat about what "gap" actually means).
+* `gap_ns`: wall-clock interval since the previous syscall on the same TID (see Part 1's Latency+Gaps tab section for the caveat about what "gap" actually means).
 * `comm`: the program's `task->comm` string at the time of the syscall (16 chars max, that's a kernel limit, hence truncations like "notify-rs inoti" in the demo screenshots).
 * `pid`, `tid`: process and thread IDs.
 * `syscall`: the syscall name, e.g. `read`, `openat`, `mkdir`.
 * `fd`: the file descriptor passed in (or returned by `open*`).
-* `ret`: the syscall return value: number of bytes for read/write, the new fd for open*, 0 or a negative errno otherwise. This is also where exit codes for failed calls live; anything `< 0` is a `-errno`.
-* `bytes`: the byte count classified by direction. Bytes read for read-class syscalls, bytes written for write-class syscalls, bytes transferred for `sendfile`/`splice`/`copy_file_range`. Lets you answer "who is hogging disk throughput?" in one query.
+* `ret`: the syscall return value: number of bytes for read/write, the new fd for open*, 0 or a negative errno otherwise (anything `< 0` is a `-errno`).
+* `bytes`: the byte count classified by direction. Bytes read for read-class syscalls, bytes written for write-class syscalls, bytes transferred for `sendfile`/`splice`/`copy_file_range`.
 * `file`: the file path, where the kernel knows it. From `openat` it's the literal path argument; from `read`/`write` on an existing fd it's resolved via the fd-to-path map ior maintains in BPF.
-* `is_error`: boolean shortcut, true iff `ret < 0`. Saves you a `WHERE` clause in 90% of queries.
-* `filter_epoch`: bookkeeping for the global filter UI; you can ignore it for offline analysis.
+* `is_error`: boolean shortcut, true iff `ret < 0`.
+* `filter_epoch`: bookkeeping for the global filter UI.
 
 Aggregations the dashboard derives from this raw row stream — counts per syscall/comm/path, rolling rates, per-syscall latency histograms, gap histograms, top-N tables — are all just GROUP BYs over those columns.
 
@@ -68,7 +68,7 @@ The current numbers are 234 active tracepoint handlers (117 enter+exit pairs) an
 
 The codegen catches "did the kernel grow a new syscall I haven't seen?" but it can't catch "is the handler I generated actually emitting the right `bytes` value for `pwritev2`?" That second question is what `integrationtests/` exists for, and it's the part of the project that gives me the most confidence when bumping kernel versions or rewriting the BPF C side.
 
-The shape is straightforward. A small standalone Go binary, `ioworkload`, performs deterministic syscalls of one kind (a controlled number of `openat`s on a known path, exactly N `read`s of exactly M bytes, an `fcntl` sequence, an `io_uring` submission with a known shape, etc.). The harness runs ior against `ioworkload`'s PID with `-flamegraph -name <scenario>`, lets it run to completion, and parses the resulting `.ior.zst` aggregate. Each test file in `integrationtests/` (`open_test.go`, `read_test.go`, `mmap_test.go`, `iouring_test.go`, `pidfd_test.go`, `copy_file_range_test.go`, and friends) asserts that ior saw exactly what the workload did: counts, byte totals, error rates, file paths.
+The shape is straightforward. A small standalone Go binary, `ioworkload`, performs deterministic syscalls of one kind (a controlled number of `openat`s on a known path, exactly N `read`s of exactly M bytes, an `fcntl` sequence, an `io_uring` submission with a known shape, etc.). The harness runs ior against `ioworkload`'s PID with `-flamegraph -name <scenario>`, lets it run to completion, and parses the resulting `.ior.zst` aggregate. Each test file in `integrationtests/` covers one of the syscall wrappers (`open_test.go`, `read_test.go`, and friends) and asserts that ior saw exactly what the workload did: counts, byte totals, error rates, file paths.
 
 `mage integrationTest` builds both binaries and runs the suite in parallel up to `INTEGRATION_PARALLEL` (default `NumCPU * 2`). `mage integrationTestSerial` does the same one at a time, which is the right knob when triaging a flake. They need root because of `CAP_BPF`, and they self-skip when not root.
 
@@ -211,11 +211,11 @@ What works for me: capture parquet with `-parquet`, capture a `-plain` CSV slice
 
 ## What's new in v1.1.0
 
-One v1.1.0 change is directly relevant to the syscall-coverage story above: probe attach is now tolerant of missing tracepoints. The codegen safeguard still flags new arrivals at build time, but when the resulting binary lands on a kernel that lacks one of its handlers (because the syscall is newer than the host kernel, or the tracepoint name was renamed under it), ior logs a one-line warning per missing probe and keeps attaching the rest, instead of failing startup with a hard error. The new `ior.el8` build (Part 2's `mage buildDockerEl8` target, for RHEL/Rocky/Alma 8 hosts on 4.18 kernels) leans on this directly — it ships handlers for tracepoints that only exist on newer kernels, and now just skips them at attach instead of aborting.
+One v1.1.0 change is directly relevant to the syscall-coverage story above: probe attach is now tolerant of missing tracepoints. The codegen safeguard still flags new arrivals at build time, but when the binary lands on a kernel that lacks one of its handlers, ior logs a one-line warning per missing probe and keeps attaching the rest instead of failing startup. The `ior.el8` build for RHEL/Rocky/Alma 8 hosts (see Part 2) leans on this directly — it ships handlers for tracepoints that only exist on newer kernels and just skips them at attach.
 
 ## Wrapping up
 
-That's the bottom of the stack. For the dashboard surface (what ior looks like, how the seven tabs behave, how filtering and recording work in practice) Part 1 is the demo-driven tour with all the GIFs. For the install dance and the why-the-binary-is-portable story (eBPF, CO-RE, static linking), Part 2 is the install + portability companion.
+That's the bottom of the stack. Part 1 has the demo-driven tour with all the GIFs, Part 2 the install and portability story.
 
 [Source on GitHub](https://github.com/snonux/ior)  
 

@@ -63,7 +63,7 @@ to its efficiency and ease of deployme..."
 
 ## 34. Black Hole in ~125 Bytes
 
-Thi                                                                    le in your browser tab. No frameworks, no libraries, just code-golf magic. I stared at it way longer than I care to admit.
+A black hole rendered live in your browser tab in about 125 bytes of JavaScript. No frameworks, no libraries, just code-golf magic. I stared at it way longer than I care to admit.
 
 [Black Hole](https://aem1k.com/blackhole/)  
 
@@ -76,13 +76,7 @@ loss32 is a Linux distro where the entire desktop is classic Win32 apps running 
 
 ## 36. LLM Rescuer
 
-LLM Rescuer is a tiny Ruby gem that hooks into Ruby's method dispatch so that calling a method on `nil` doesn't crash — it asks an LLM what the return value should be instead. When a `NoMethodError` would normally explode, the gem catches it, packages up the context (what method was called, what the variable name suggests, maybe the surrounding code), fires that off to an actual LLM API, and returns whatever the model hallucinates as sensible.
-
-So `user.email` on a nil `user` doesn't die. It asks the LLM "someone called `.email` on a `user` that turned out to be nil, what should I return?" and the model says "probably `'no-reply@example.com'`". The gem swallows the error and hands you that string.
-
-It tries to keep API costs down by sending only minimal context — just the method name and variable name rather than your whole codebase — but every nil-hit still costs tokens and adds latency.
-
-So your nil bugs don't crash anymore, they silently return whatever the AI guessed. Imagine debugging that in production.
+A Ruby gem that monkey-patches `nil` so calling a method on it doesn't crash. Instead it asks an LLM what the return value should probably be and hands you whatever it guessed. Imagine debugging that in production.
 
 Examples:
 
