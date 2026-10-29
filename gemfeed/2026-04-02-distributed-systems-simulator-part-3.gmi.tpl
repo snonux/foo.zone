@@ -92,7 +92,7 @@ In production you'd have to stitch this sequence together from the logs of sever
 
 ## Protocol API
 
-You can implement your own protocols in Java by extending the `VSAbstractProtocol` base class. Each protocol has its own class in the `protocols.implementations` package.
+You can implement your own protocols in Java by extending the `VSAbstractProtocol` base class. Each of the built-in protocols (the ones covered in Part 2) has its own class in the `protocols.implementations` package, and they all inherit from `VSAbstractProtocol`.
 
 ### Class Hierarchy
 
@@ -125,36 +125,21 @@ Each protocol class must implement the following methods:
 
 ### Available API Methods
 
-Methods inherited from `VSAbstractProtocol`:
+### Implementing a Custom Protocol
 
-* `sendMessage(VSMessage message)`: Sends a protocol message (automatically updates Lamport and Vector timestamps)
-* `hasOnServerStart()`: Whether the server or client initiates requests
-* `isServer()` / `isClient()`: Whether the current process has the protocol activated as server/client
-* `scheduleAt(long time)`: Creates an alarm that fires at the given local process time, triggering `onClientSchedule()` or `onServerSchedule()`
-* `removeSchedules()`: Cancels all pending alarms in the current context
-* `getNumProcesses()`: Returns the total number of processes in the simulation
+Each protocol class must implement the following methods:
 
-Process methods available via the inherited `process` attribute:
+* A public constructor: Must specify whether the client or the server initiates requests, using `VSAbstractProtocol.HAS_ON_CLIENT_START` or `VSAbstractProtocol.HAS_ON_SERVER_START`.
+* `onClientInit()` / `onServerInit()`: Called once before the protocol is first used. Used to initialize protocol variables and attributes via the VSPrefs methods (e.g. `initVector`, `initLong`). Variables initialized this way appear in the process editor and can be configured by the user.
+* `onClientReset()` / `onServerReset()`: Called each time the simulation is reset.
+* `onClientStart()` / `onServerStart()`: Called when the client/server initiates a request. Typically creates and sends a `VSMessage` object.
+* `onClientRecv(VSMessage)` / `onServerRecv(VSMessage)`: Called when a message arrives.
+* `onClientSchedule()` / `onServerSchedule()`: Called when a scheduled alarm fires.
+* `toString()`: Optional. Customizes log output for this protocol.
 
-* `getTime()` / `setTime(long)`: Get/set the local process time
-* `getGlobalTime()`: Get the current global simulation time
-* `getClockVariance()` / `setClockVariance(float)`: Get/set the clock drift
-* `getLamportTime()` / `setLamportTime(long)`: Get/set the Lamport timestamp
-* `getVectorTime()` / `updateVectorTime(VSVectorTime)`: Get/update the vector timestamp
-* `getProcessID()`: Get the process PID
-* `isCrashed()` / `isCrashed(boolean)`: Check or set crash state
-* `getRandomPercentage()`: Get a random value between 0 and 100
+### Available API Methods
 
-Message methods (`VSMessage`):
-
-* `new VSMessage()`: Create a new message
-* `getMessageID()`: Get the message NID
-* `setBoolean(key, value)` / `getBoolean(key)`: Set/get boolean data
-* `setInteger(key, value)` / `getInteger(key)`: Set/get integer data
-* `setLong(key, value)` / `getLong(key)`: Set/get long data
-* `setString(key, value)` / `getString(key)`: Set/get string data
-* `getSendingProcess()`: Get a reference to the sending process
-* `isServerMessage()`: Whether it's a server or client message
+No need to list every inherited method here; the generated Javadoc covers the full set. The ones you'll use most: `sendMessage()` sends a protocol message (and updates the Lamport and vector timestamps), `scheduleAt()` sets an alarm that fires `onClientSchedule()` or `onServerSchedule()`, and `removeSchedules()` cancels pending alarms. Through the inherited `process` attribute you get the local and global time, the clock drift, the Lamport and vector timestamps, and the crash state. A `VSMessage` carries typed key/value data (`setBoolean`/`getBoolean`, `setInteger`/`getInteger`, `setLong`/`getLong`, `setString`/`getString`), the message ID, and a reference to the sending process.
 
 ### Example: Reliable Multicast Implementation
 
@@ -210,22 +195,7 @@ public class VSReliableMulticastProtocol extends VSAbstractProtocol {
 
 ## Project Statistics
 
-The original VS-Sim project (August 2008) was written in Java 6 and consisted of:
-
-* 61 source files across 12 Java packages
-* Approximately 15,710 lines of code
-* 2.2 MB of generated Javadoc documentation
-* 142 KB compiled JAR file
-* 10 built-in protocols
-* 163 configurable settings
-
-The modernized successor ds-sim (version 1.1.0) has been updated to Java 21 and translated to English:
-
-* 146 source files (117 main + 29 test) across 19 Java packages
-* Approximately 27,900 lines of code (22,400 main + 5,500 test)
-* 12 built-in protocols
-* 208 unit tests
-* 269 configurable settings
+For the record: the 2008 VS-Sim was 61 source files and roughly 15,710 lines of Java 6 across 12 packages; the modernized ds-sim is 146 files (117 main + 29 test) and roughly 27,900 lines (22,400 main + 5,500 test) across 19 packages, plus 208 unit tests, 12 built-in protocols, and 269 configurable settings.
 
 => https://github.com/snonux/ds-sim ds-sim source code on GitHub
 => https://github.com/snonux/vs-sim vs-sim source code on GitHub (original German version, 2008)

@@ -2,7 +2,7 @@
 
 > Published at 2025-12-31T16:08:33+02:00
 
-I am an reader, and for years I've been searching for a good digital e-reader to complement my paper books. I advocate for privacy-first and prefer open-source or self-hosted solutions. If that is not possible, I opt for offline solutions. Even if I don't have anything to hide, the tinkerer in me wants those things anyway. I found my ideal device in the Kobo Forma 7 years ago. Now, I use it without Kobo's cloud sync, and in this post, I'll show you how.
+I am a reader, and for years I've been searching for a good digital e-reader to complement my paper books. I advocate for privacy-first and prefer open-source or self-hosted solutions. If that is not possible, I opt for offline solutions. Even if I don't have anything to hide, the tinkerer in me wants those things anyway. I found my ideal device in the Kobo Forma 7 years ago. Now, I use it without Kobo's cloud sync, and in this post, I'll show you how.
 
 ```
 Art by Donovan Bake
@@ -19,11 +19,9 @@ Art by Donovan Bake
 << template::inline::toc
 
 
-I initially bought the Kobo Forma because I wanted a device with a large screen for reading PDFs and ePubs. However, as time went on, I became more concerned about the privacy implications of having all my reading data synced to the Kobo cloud. So, I looked into alternative ways to use this device.
+I initially bought the Kobo Forma because I wanted a large screen for reading PDFs and ePubs. It can't be purchased from Kobo directly anymore, but I love the form factor; it's much lighter than the Kobo Sage and still has a 7" screen. It's just that the stock firmware is becoming too slow and sluggish.
 
 => ./cloudless-kobo-forma-with-koreader/forma.jpg KOReader running on Kobo Forma
-
-The Kobo Forma is so old that it can't be purchased from Kobo directly anymore. But I love the form factor; it's much lighter than the Kobo Sage and still has a 7" screen. It's just that the stock firmware is becoming too slow and sluggish.
 
 => https://gl.kobobooks.com/products/kobo-forma Kobo Forma
 
@@ -43,13 +41,7 @@ Installing KOReader is straightforward. You can follow the official guide for th
 
 => https://github.com/koreader/koreader/wiki/Installation-on-desktop-linux
 
-Basically, what I had to do is to download a `.zip` file of the KOReader binary and an `install.sh` script. Then, I plugged in the Kobo Forma via USB and ran the install script, which did the rest for me.
-
-=> ./cloudless-kobo-forma-with-koreader/install.jpg KOReader installation via USB
-
-After the initial install, KOReader can update itself through its menus.
-
-=> ./cloudless-kobo-forma-with-koreader/update.jpg KOReader self-update menu
+Basically, what I had to do is to download a `.zip` file of the KOReader binary and an `install.sh` script. Then, I plugged in the Kobo Forma via USB and ran the install script, which did the rest for me. After the initial install, KOReader can update itself through its menus.
 
 Note that after the KOReader install, the Kobo Forma still boots into the proprietary window manager. To start KOReader, you have to select it from the new "Nickel Menu". KOReader will then stay open until you reboot the device. It's a small annoyance, but it's well worth it!
 
@@ -115,7 +107,7 @@ All the books I read you can see here:
 
 ## Conclusion
 
-I'm really happy with this setup. It's simple, it's private, and reading on it is great. Give it a try if you care about owning your data.
+I'm really happy with this setup. Give it a try if you care about owning your data.
 
 Other related posts:
 

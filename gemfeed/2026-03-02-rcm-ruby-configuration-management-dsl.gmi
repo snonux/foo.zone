@@ -109,19 +109,11 @@ file '/etc/hosts.test' do
 end
 ```
 
-Ruby turns `file` into a method call and `'/etc/hosts.test'` into a normal argument. Inside RCM, that method builds a `File` resource object and stores it for later. The block you pass is just a Ruby block; RCM calls it with the file resource as `self`, so method calls like `line` configure that resource. There is no special parser here, just plain Ruby method and block dispatch.
-
-The same goes for constructs like:
-
-```ruby
-given { hostname is :earth }
-```
-
-RCM uses Ruby's dynamic method lookup to interpret `hostname` and `is` in that block and to decide whether the rest of the configuration should run at all. Features like `method_missing`, blocks, and the ability to change what `self` means in a block make this kind of DSL possible with very little code. You still get all the power of Ruby (conditionals, loops, helper methods), but the surface reads like a small language of its own.
+Ruby turns `file` into a method call and `'/etc/hosts.test'` into a normal argument. Inside RCM, that method builds a `File` resource object and stores it for later. The block you pass is just a Ruby block; RCM calls it with the file resource as `self`, so method calls like `line` configure that resource. There is no special parser here, just plain Ruby method and block dispatch. Blocks, the ability to change what `self` means in a block, and `method_missing` make this kind of DSL possible with very little code.
 
 ### A bit more about `method_missing`
 
-`method_missing` is one of the key tools that make the RCM DSL feel natural. In plain Ruby, if you call a method that does not exist, you get a `NoMethodError`. But before Ruby raises that error, it checks whether the object implements `method_missing`. If it does, Ruby calls that instead and lets the object decide what to do.
+`method_missing` is one of the key tools that make the RCM DSL feel natural. In plain Ruby, a call to a method that doesn't exist ends up in `method_missing` before Ruby raises a `NoMethodError`, and the object gets to decide what to do instead.
 
 In RCM, you can write things like:
 
@@ -155,7 +147,7 @@ end
 HostCondition.new.hostname.is(:earth)
 ```
 
-RCM's real code is more sophisticated, but the idea is the same: Ruby happily calls `method_missing` for unknown methods like `hostname` and `is`, and the DSL turns those calls into a value (`true`/`false`) that decides whether the rest of the configuration should run.
+RCM's real code is more sophisticated, but the idea is the same.
 
 ## Ruby metaprogramming: further reading
 

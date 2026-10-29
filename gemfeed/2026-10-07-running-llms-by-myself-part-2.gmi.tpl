@@ -183,39 +183,27 @@ Pi has prompt templates and skills. I initially thought of them as manual versus
 * Prompt templates expand text when I invoke them. Slash commands can also run extension code, as `/handoff` and `/plan` do in my setup.
 * Skills are folders with a `SKILL.md` and, sometimes, scripts or references. The model can choose one, or I can load it myself with `/skill:name`.
 
-Pi lists the skills available for automatic selection in the system prompt. A skill with `disable-model-invocation: true` stays out of that list; I have to invoke it myself. For the advertised skills, loading works in three steps:
-
-* Level 1 — names, descriptions and paths of the advertised skills go into the system prompt.
-* Level 2 — the full `SKILL.md` enters the conversation when the model reads it or I invoke `/skill:name`.
-* Level 3 — files the `SKILL.md` points to, like reference docs or scripts. Only read if the instructions for the task at hand need them.
+Pi lists the skills available for automatic selection in the system prompt. A skill with `disable-model-invocation: true` stays out of that list; I have to invoke it myself. For the advertised skills, the names, descriptions and paths go into the system prompt. The full `SKILL.md` only enters the conversation when the model reads it or I invoke `/skill:name`, and files the `SKILL.md` points to (reference docs, scripts) are only read if the task needs them.
 
 => ./running-llms-by-myself/skill-loading.svg Progressive skill loading for automatically available skills
 => https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/skills.md Pi skills and explicit invocation
 
-Those advertised descriptions cost context on every request, even for skills I never use. Levels 2 and 3 cost nothing until they're loaded. But once the model has read a `SKILL.md` or a reference file, it's a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a `/handoff` throws it out. My solid-principles skill is a good example: its `SKILL.md` is ~1.2K tokens, and the one reference file a single-principle check needs (say `srp.md`) is another ~1K. The other four reference files (~5K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~7K tokens, which is almost a quarter of a 32K preset.
+Those advertised descriptions cost context on every request, even for skills I never use. The `SKILL.md` and its reference files cost nothing until they're loaded. But once the model has read a `SKILL.md` or a reference file, it's a tool result in the conversation, and it stays in the context (and the KV cache) for the rest of the session, until a compaction or a `/handoff` throws it out. My solid-principles skill is a good example: its `SKILL.md` is ~1.2K tokens, and the one reference file a single-principle check needs (say `srp.md`) is another ~1K. The other four reference files (~5K tokens) stay on disk unless a task asks for them. Loading everything up front would cost ~7K tokens, which is almost a quarter of a 32K preset.
 
 I have 45 skills and 21 commands in my pi setup. The skill descriptions alone are ~17 KB of text. With names, paths and tags, the whole list is about 25 KB, roughly 6K tokens in every request. On the 262K daily driver, that's fine. On a 32K preset, it's almost a fifth of the context gone before I've typed a word.
 
 The bigger downside of too many skills isn't even the tokens, though. The model has to pick the right skill from the list, and with many similar descriptions, it picks the wrong one or none at all. Big frontier models handle that pretty well. Smaller self-hosted models get confused much more easily. So fewer, clearly distinct skills work better, especially with local models.
 
-MCP (Model Context Protocol) connects a harness to tools and resources from another process or service, say a database or a browser. Current upstream pi supports MCP over stdio and HTTP. It can expose tools directly, load their definitions through tool search, or let the model call them through code. Connecting a server with dozens of tools doesn't have to put all their schemas into every request.
-
-I don't use MCP in this setup. CLI tools and skills cover what I need so far. Mario Zechner's earlier post explains that approach, though its description of pi predates the current MCP support.
+I don't use MCP in this setup; CLI tools and skills cover what I need so far. Mario Zechner's earlier post explains that approach, though its description of pi predates the current MCP support.
 
 => https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/mcp.md Pi's current MCP support
 => https://mariozechner.at/posts/2025-11-02-what-if-you-dont-need-mcp/ What if you don't need MCP? (Mario Zechner)
 
 ## Why the harness makes the model look smart (or dumb)
 
-Pi decides which project details the model gets to see and which tools it can use. A few things matter in practice:
+Pi decides which project details the model gets to see and which tools it can use. A few things matter in practice: the context the harness feeds in (the model can't fix code it has never seen), the feedback loops (running the tests, `go vet` or the compiler and feeding the errors back lets the model fix its own mistakes), and tolerance for quirks (the right chat template, tool-call parser and small repairs like `nemotron-tool-repair` keep one broken call from derailing a session).
 
-* Context selection — which files, logs and search results the harness feeds in. The model can't fix code it has never seen.
-* System prompt and tool descriptions — clear instructions and well-named tools mean fewer wrong tool calls.
-* Tool design — a precise "replace this exact snippet" edit tool is much easier for a model than rewriting a whole file.
-* Feedback loops — running tests, `go vet` or the compiler and feeding the errors back lets the model fix its own mistakes.
-* Context hygiene — compaction, `/handoff` and sub-agents keep the context short, and models get worse as the context fills up.
-* Tolerance for quirks — the right chat template, tool-call parser and small repairs (like `nemotron-tool-repair`) keep one broken call from derailing a session.
-* Settings — reasoning effort, temperature and the context limit are configured on the harness or provider side, not in the weights.
+Clear instructions and well-named, well-designed tools help too; a precise "replace this exact snippet" edit tool is much easier for a model than rewriting a whole file. Compaction, `/handoff` and sub-agents keep the context short, and models get worse as it fills up. Settings like reasoning effort and the context limit live on the harness or provider side, not in the weights.
 
 The screenshot above is a good example. Qwen3.8 didn't just write the `version` command. It looked at how the other builtins are registered, added a matching help entry, and ran `go vet` and the tests before saying it was done. The model did the thinking, but it could only do that because pi gave it file reading, editing and a shell, and fed the test output back into the context.
 
@@ -227,20 +215,15 @@ Pi has no built-in plan mode or sub-agents, and it doesn't ask for approval befo
 
 => https://github.com/earendil-works/pi/blob/main/packages/coding-agent/docs/security.md Pi's project trust and tool permissions
 
-I use TypeScript extensions from the `hypr` repo for the rest. These are the ones I use daily:
+I use TypeScript extensions from the `hypr` repo for the rest. The five I use daily:
 
 * `web-search` — `web_search` and `web_fetch` tools backed by DuckDuckGo (no API key), so the agent looks things up instead of guessing from training data.
-* `inline-bash` — `!{cmd}` in a prompt expands the command's output before it reaches the model; that is how `git status`, logs, and `nvidia-smi` output end up inside a question.
-* `ask-mode` — `/ask` flips the session into a read-only investigation mode: understand the codebase and read logs with editing tools disabled and shell commands filtered. This is a convenience mode, not an enforced read-only filesystem; its command filter can still allow writes. Before I let a model near code I don't fully know, this is the first call: `/ask why does the tunnel setup regenerate keys on the second run?`
-* `loop-scheduler` — `/loop` re-sends a prompt on an interval and `/watch` fires when the agent goes idle or a response contains a substring. The two forms I actually use: `/loop 10m check the VM status and warn me if KV cache usage is above 80%` for the periodic check, and the reactive `/watch contains ERROR => summarize the latest error and propose a fix`. That is how I babysit long builds and flaky services.
+* `ask-mode` — `/ask` flips the session into a read-only investigation mode with editing tools disabled. Before I let a model near code I don't fully know, this is the first call: `/ask why does the tunnel setup regenerate keys on the second run?`
+* `loop-scheduler` — `/loop` re-sends a prompt on an interval and `/watch` fires when the agent goes idle or a response contains a substring. That is how I babysit long builds and flaky services.
 * `handoff` — `/handoff <goal>` compacts the session into a self-contained prompt for a fresh one, so a long-lived agent does not drown in its own history.
-* `fresh-subagent` — the `subagent` tool and `/subagent` command run a self-contained task in a clean `pi` process with its own log file, while the main session stays focused: `/subagent review the last commit and list the risks` gives me the verdict without the digging.
-* `btw` — a mid-task question that must not derail the context: `/btw which file owns the SSH host key bootstrap logic?` The answer appears in a temporary overlay and stays out of the session history.
-* `agent-plan-mode` — `/plan` separates planning from execution: a read-only planning mode, a numbered plan, then the plan converted into real tasks before anything gets built. That is how the multi-step work in this repo stays on rails.
-* `modal-editor` — an in-TUI modal editor for composing long prompts without fighting the line editor.
-* `session-name` — labels a session with something more useful than the first prompt line.
+* `fresh-subagent` — the `subagent` tool and `/subagent` command run a self-contained task in a clean `pi` process with its own log file, while the main session stays focused: `/subagent review the last commit and list the risks`.
 
-The long tail is smaller: `nemotron-tool-repair` fixes the malformed tool calls the Nemotron models occasionally emit, and `prompt-history` quietly records the last 500 prompts.
+There are more small ones: `inline-bash` (`!{cmd}` expands a command's output into the prompt), `agent-plan-mode`, `btw`, `modal-editor`, `session-name`, `nemotron-tool-repair` (patches the malformed tool calls Nemotron occasionally emits) and `prompt-history`.
 
 For the record: `handoff`, `inline-bash`, `session-name`, and `reload-runtime` are upstream pi examples installed locally; the rest are my own (created with the help of LLMs).
 

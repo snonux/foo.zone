@@ -51,7 +51,7 @@ At the top is the S.M.S.L PL200T, a CD transport with anti-vibration design. It 
 
 => ./my-deskrack/deskrack-cdtransport.jpg CD transport and air-quality monitor on top
 
-A CD transport is not the same as a CD player. A CD player has a built-in DAC (digital-to-analog converter) and outputs analogue audio—you plug it into an amp or active speakers and you're done. A CD transport only reads the disc and outputs a digital signal (e.g. coaxial or optical S/PDIF). It has no DAC. You feed that digital stream into an external DAC, which then does the conversion. This way one DAC serves CDs and streaming, and I can swap the transport or the DAC independently.
+Why a transport instead of a regular CD player? The DAC in the rack already serves both CDs and streaming, so all I need is something that reads the disc and hands the bits to the DAC. And this way I can swap the transport or the DAC independently.
 
 I still like putting on a real CD. You own the disc, you pick an album and listen to it start to finish, and no algorithm gets in the way. And 16-bit/44.1 kHz is often better than a compressed stream anyway.
 
@@ -86,7 +86,7 @@ On the left of the rack are two cable holders to keep power and signal cables ti
 
 ## Next to the rack
 
-Right beside the rack is my Supernote Nomad, which I use for notes and reading and have written about elsewhere on this blog. It’s the small tablet-shaped device on the right side of the rack.
+Right beside the rack is my Supernote Nomad, which I use for notes and reading and have written about elsewhere on this blog. It's the small tablet-shaped device on the right side of the rack.
 
 => ./my-deskrack/deskrack-supernote.jpg Supernote Nomad (small tablet on the right of the rack)
 => https://supernote.com/pages/supernote-nomad Supernote Nomad (product page)
@@ -100,7 +100,5 @@ I have a second setup for high-res listening next to my bed. On the nightstand s
 
 => https://www.fiio.com Fiio K13 R2R
 => https://www.denon.com Denon AH-D9200
-
-That's the whole rack. I hope you found this interesting.
 
 E-Mail your comments to `paul@nospam.buetow.org` :-)

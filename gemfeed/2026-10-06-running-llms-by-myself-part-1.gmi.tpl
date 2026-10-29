@@ -48,11 +48,11 @@ Before the walkthrough, a short glossary of the things that matter when you run 
 
 * VRAM — the GPU's memory (or unified memory on Apple silicon or a DGX Spark). Holds the weights plus the KV cache.
 * KV cache — the model's working memory for everything in the context. Grows with context length and lives in VRAM.
-* Memory bandwidth — Speed is often limited by memory bandwidth. "Fits" (VRAM) and "feels fast" are different questions.
+* Memory bandwidth — often the real speed limit; "fits" (VRAM) and "feels fast" are different questions.
 * Token generation speed (decode tok/s) — the speed you feel while the agent "types".
 * Prefill speed (prompt tok/s) — how fast the prompt is read in. Decides how long you wait for the first token.
-* Parameter count vs quantization — bigger and less quantized is usually better, but costs VRAM. Newer small models can beat older big ones. It's highly dependent on the model, though.
-* MoE vs dense — MoE models only use a small part of their parameters per token. Faster, but not smaller. Quality depends on the particular models, not just this architecture choice. But usually dense models are a bit "smarter" but "slower" (at least after my own experience).
+* Parameter count vs quantization — bigger and less quantized is usually better but costs VRAM; newer small models can beat older big ones.
+* MoE vs dense — MoE models only use a small part of their parameters per token: faster, but not smaller; dense is usually a bit "smarter" but "slower" (my experience).
 * Context vs weights — weights and cached context share the same memory budget.
 * LLM reasoning level — Makes the LLM "think harder" in exchange for more tokens.
 * Tool-calling reliability — without working tool calls, you are back to copy-paste chat.
@@ -67,13 +67,9 @@ I wanted to understand where the time and memory go. This is what I learned.
 
 ### CUDA: how vLLM uses the GPU
 
-Running an LLM is mostly one kind of work: huge numbers of multiplications and additions on the model's weights. A CPU does these a few at a time. A GPU does thousands of them at once, which is why the model lives there.
+Running an LLM is mostly huge numbers of multiplications and additions on the model's weights, which is why the model lives on the GPU.
 
-CUDA is NVIDIA's toolkit for making a GPU do that work. The division of labour in my setup is simple:
-
-* The CPU runs vLLM itself. It accepts requests, groups them into batches and decides what to compute next.
-* CUDA is the messenger. Through it, vLLM hands the GPU small programs called kernels (nothing to do with the Linux kernel). Each one does a single job, like multiplying two matrices.
-* The GPU runs those kernels on the weights and the cached context, which both sit in its own memory (the VRAM).
+CUDA is NVIDIA's toolkit for making a GPU do that work. The division of labour in my setup is simple: the CPU runs vLLM itself, accepting requests, grouping them into batches and deciding what to compute next. Through CUDA, vLLM hands the GPU small programs called kernels (nothing to do with the Linux kernel), each doing a single job like multiplying two matrices. The GPU runs those kernels on the weights and the cached context, which both sit in its own memory (the VRAM).
 
 => ./running-llms-by-myself/cuda.svg CPU organises the work, CUDA launches it, GPU does the maths
 
@@ -85,16 +81,11 @@ The word kernel comes back later: when vLLM starts, it compiles kernels for this
 
 vLLM is an open-source inference engine: the program that takes a model's weights and turns prompts into tokens at high throughput. Ollama does the same job packaged for convenience: one command pulls a quantized model and it's serving. vLLM is the lower-level engine you run yourself, in Docker, with flags, and tune per model. Ollama optimizes for "make it run"; vLLM optimizes for throughput, context length, and batching, and exposes the knobs (`--max-model-len`, `--gpu-memory-utilization`, `--enable-prefix-caching`) so you can spend the VRAM the way your workload needs it.
 
-An LLM request has two phases:
-
-* Prefill — the model processes the prompt, doing work on many tokens together. Long prompts can be split into chunks. This phase makes good use of the GPU's parallel computing power.
-* Decode — generating the answer, normally one token at a time. Every new token depends on the previous ones. For a few concurrent conversations, reading the model weights and cached context can be the bottleneck. This is the phase you watch while the agent "types".
+An LLM request has two phases. Prefill processes the prompt, doing work on many tokens together (long prompts can be split into chunks), and makes good use of the GPU's parallel computing power. Decode generates the answer, normally one token at a time, since every new token depends on the previous ones. For a few concurrent conversations, reading the model weights and cached context can be the bottleneck. This is the phase you watch while the agent "types".
 
 => ./running-llms-by-myself/prefill-decode.svg One request: prefill, then decode
 
 The two phases show up as very different numbers. Prefill can process thousands of tokens per second; ordinary decode in my setup produces tens per conversation. During prefill, many tokens share the work of reading weights from GPU memory. During decode, that cost returns at each step. Batching conversations and speculative decoding (below) can get more tokens out of each pass. Prefill and any queueing affect the wait for the first token; decode affects how quickly the answer arrives after that.
-
-One more knob that is good to know about is the temperature: it controls how adventurous the model is when it picks the next token during decode. I currently have no temperature setting in my hypr setup, though.
 
 The key data structure is the KV cache. Full-attention layers reuse key and value tensors from earlier tokens instead of recomputing the whole history for each new token. Their cache grows with the context. My models also have layers that work differently: Qwen3.8-27B has 48 Gated DeltaNet layers with recurrent state and 16 full-attention layers; Gemma 4 mixes sliding-window and global attention. So the exact memory cost depends on the LLM architecture.
 
@@ -110,7 +101,7 @@ VRAM = model weights + KV/state cache pool + runtime overhead + headroom
 --max-model-len 262144          → max context: 262,144 tokens (the "262K")
 ```
 
-At startup, vLLM loads the weights, then budgets runtime memory and a pool of cache blocks within the allowed VRAM. That is why `nvidia-smi` (a CLI for NVIDIA cards) shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.
+At startup, vLLM loads the weights, then budgets runtime memory and a pool of cache blocks within the allowed VRAM. That is why `nvidia-smi` shows ~72–75 GiB "used" even when nothing is running. The pool is preallocated, not busy.
 
 => ./running-llms-by-myself/vram-budget.svg How three presets split the A100's 80 GB between weights and KV cache
 
@@ -128,19 +119,13 @@ vLLM's cache can retain prefixes from several conversations. Ollama has prefix r
 => https://docs.ollama.com/faq Ollama: Flash Attention and parallel requests
 => https://docs.ollama.com/context-length Ollama: configuring context length
 
-Ollama is still nicer if I just want a model serving quickly. For several coding agents, I prefer vLLM's batching and cache controls.
-
 ### Speculative decoding: 2.7× faster decode
 
 There's one more decode trick, and it turned out to be the biggest speedup in this whole setup: speculative decoding. The idea is to guess the next few tokens cheaply and let the big model check all the guesses in one go.
 
 => ./running-llms-by-myself/speculative.svg Speculative decoding: a cheap guess of 4 tokens, verified by the big model in one pass
 
-Here's a simplified example using greedy decoding, where the model always picks its highest-scoring token:
-
-* A cheap predictor drafts a few tokens. It might be a compatible smaller model or a built-in multi-token prediction (MTP) head.
-* The main model checks the draft positions together in one verification pass.
-* Matching guesses are accepted until the first mismatch, where the main model supplies the replacement. If every guess matches, it can also supply a bonus token.
+Here's a simplified example using greedy decoding, where the model always picks its highest-scoring token: a cheap predictor drafts a few tokens (either a compatible smaller model or a built-in multi-token prediction, MTP, head), the main model checks the draft positions together in one verification pass, and matching guesses are accepted until the first mismatch, where the main model supplies the replacement. If every guess matches, it can also supply a bonus token.
 
 => https://docs.vllm.ai/en/latest/features/speculative_decoding/ vLLM: speculative decoding and its guarantees
 
@@ -184,10 +169,9 @@ Each VM's TOML config defines named presets, so switching models does not mean r
 
 `ruby hyperstack.rb --vm 1 model switch nemotron-super` stops the running container, starts a new one with the preset's flags, and waits for readiness. The weights are cached on the VM's ephemeral NVMe disk after the first download, but a switch still takes minutes (see below).
 
-Two details:
+Two details: these observations used `vllm/vllm-openai:nightly`; I haven't recorded the exact image digest here, so this is a snapshot of that run, not a reproducible benchmark of today's nightly. Use a pinned, compatible release or digest when reproducing it.
 
-* These observations used `vllm/vllm-openai:nightly`. I haven't recorded the exact image digest here, so this is a snapshot of that run, not a reproducible benchmark of today's nightly. Use a pinned, compatible release or digest when reproducing it.
-* My Nemotron AWQ preset uses 32K (not 1M) context, disables prefix caching and CUDA graph capture (`--enforce-eager`), and raises `--gpu-memory-utilization` to 0.98. These are the settings I used to fit it on one A100, where weights take most of the memory. That tension between model size and context length is the core of VRAM budgeting (see the VRAM chart above).
+My Nemotron AWQ preset uses 32K (not 1M) context, disables prefix caching and CUDA graph capture (`--enforce-eager`), and raises `--gpu-memory-utilization` to 0.98. These are the settings I used to fit it on one A100, where weights take most of the memory. That tension between model size and context length is the core of VRAM budgeting (see the VRAM chart above).
 
 ### Why starting a model takes minutes
 
@@ -355,10 +339,9 @@ The chart shows their output charges; input costs come on top. My GPU bars charg
 => https://openrouter.ai/qwen/qwen3.8-27b OpenRouter's Qwen3.8 provider prices, checked 30 September 2026
 => https://raw.githubusercontent.com/vllm-project/vllm/main/vllm/v1/metrics/loggers.py vLLM's token accounting
 
-Buying still doesn't appeal to me:
+Buying still doesn't appeal to me. An RTX 5090 has 32 GB; my FP8 model with a full 262K context won't fit. Its bandwidth is close to the A100 PCIe's (1,792 versus 1,935 GB/s), so memory capacity is the problem here. Lower precision or CPU offloading would change what I could run.
 
-* An RTX 5090 has 32 GB. My FP8 model with a full 262K context won't fit. Its bandwidth is close to the A100 PCIe's (1,792 versus 1,935 GB/s); memory capacity is the problem here. Lower precision or CPU offloading would change what I could run.
-* A DGX Spark has 128 GB, but is now reported at $6,950, after $4,699 in February. The new 64 GB model starts at $4,999, available from 23 October. Its 273 GB/s bandwidth makes ordinary single-stream decode a concern. The advertised 200B model capacity assumes quantization and enough room left for runtime memory.
+A DGX Spark has 128 GB, but is now reported at $6,950, after $4,699 in February. The new 64 GB model starts at $4,999, available from 23 October. Its 273 GB/s bandwidth makes ordinary single-stream decode a concern. The advertised 200B model capacity assumes quantization and enough room left for runtime memory.
 
 => https://www.gainward.com/main/product/vga/pro/p01225/p01225_datasheet_129567a1dad803604.pdf RTX 5090 specifications
 => https://www.nvidia.com/en-us/data-center/a100/ A100 specifications

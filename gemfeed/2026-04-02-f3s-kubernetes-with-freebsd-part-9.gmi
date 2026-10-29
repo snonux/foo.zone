@@ -24,7 +24,6 @@ This is the 9th post in the f3s series about my self-hosting home lab. f3s? The 
 
 * ⇢ f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD
 * ⇢ ⇢ Introduction
-* ⇢ ⇢ GitOps in a Nutshell
 * ⇢ ⇢ ArgoCD
 * ⇢ ⇢ Why Bother for a Home Lab?
 * ⇢ ⇢ Deploying ArgoCD
@@ -47,41 +46,15 @@ This is the 9th post in the f3s series about my self-hosting home lab. f3s? The 
 
 ## Introduction
 
-In previous posts, I deployed applications to the k3s cluster using Helm charts and Justfiles--running `just install` or `just upgrade` to push changes to the cluster. That worked, but it had some drawbacks:
-
-* No single source of truth--cluster state depends on which commands were run and when
-* Every change requires manually running commands
-* No easy way to tell if the cluster drifted from the desired config
-* Rolling back means re-running old Helm commands
-* No audit trail for who changed what
-
-So I migrated everything to GitOps with ArgoCD. Now the Git repo is the single source of truth, and ArgoCD keeps the cluster in sync automatically.
-
-## GitOps in a Nutshell
-
-Describe your entire desired state in Git, and let an agent in the cluster pull that state and reconcile it continuously. Every change is a commit, so you get history and rollback for free.
-
-For Kubernetes specifically:
-
-* All manifests, Helm charts, and config live in a Git repo
-* ArgoCD watches that repo
-* Push a change, ArgoCD applies it
-* If someone manually tweaks something in the cluster, ArgoCD detects the drift and reverts it
+In previous posts, I deployed applications to the k3s cluster using Helm charts and Justfiles--running `just install` or `just upgrade` to push changes to the cluster. That worked, but there was no single source of truth: cluster state depended on which commands I'd run and when, drift was invisible, and rolling back meant re-running old Helm commands. So I migrated everything to GitOps with ArgoCD. Now the Git repo is the single source of truth, and ArgoCD keeps the cluster in sync automatically.
 
 ## ArgoCD
 
-ArgoCD is a GitOps CD tool for Kubernetes. It runs as a controller in the cluster, constantly comparing what's running against what's in Git.
+The GitOps idea is simple: the repo holds the entire desired state, and an agent in the cluster pulls it and reconciles continuously. Every change is a commit, so history and rollback come for free.
+
+ArgoCD is that agent. It runs as a controller in the cluster, compares what's running against what's in Git, and syncs the difference. Each app is an Application CRD, it tracks health status, sync waves control deployment order, and multi-source lets me combine upstream Helm charts with my own manifests.
 
 => https://argo-cd.readthedocs.io ArgoCD Documentation
-
-The features I care about most for f3s:
-
-* Automatic sync--monitors Git and applies changes to the cluster
-* Application CRDs--each app is a Kubernetes custom resource
-* Health checks--knows whether an app is healthy or degraded
-* Web UI--visual overview of all applications and their sync status
-* Sync waves and hooks--control deployment order and run post-deploy jobs
-* Multi-source--combine upstream Helm charts with custom manifests
 
 ## Why Bother for a Home Lab?
 
@@ -92,11 +65,11 @@ Honestly, the biggest reason is disaster recovery. If the cluster dies, I can:
 * Point it at the Git repo
 * Everything deploys automatically
 
-That's it. No "let me check my shell history to remember how I set this up."
+That's it. No "let me check my shell history to remember how I set this up." I haven't had to do it for real yet, but I've tested it and it works.
 
 It's also a good way to learn. Debugging sync issues, sync waves, secrets handling: I run into the same things at work.
 
-Beyond that: push to Git, things deploy. No SSH'ing to a workstation to run Helm commands. And if I manually tweak something while debugging and forget about it, ArgoCD reverts it back to the desired state. That's happened more than once.
+And if I manually tweak something while debugging and forget about it, ArgoCD quietly reverts it. That's happened more than once, and it's saved me some confusing "why is this behaving differently?" moments.
 
 ## Deploying ArgoCD
 
@@ -550,12 +523,10 @@ webdav                    https://kubernetes.default.svc  services     default  
 
 The practical difference is pretty big:
 
-* Clone the repo, look at `argocd-apps/`, and you know exactly what's running. No more `helm list` or guessing.
-* Edit a Helm value, commit, push. ArgoCD picks it up within a few minutes. No SSH, no `just upgrade`.
-* I've tweaked things manually for debugging, forgotten about it, and ArgoCD quietly reverted it. That's saved me from some confusing "why is this behaving differently?" moments.
-* Rollback is `git revert HEAD && git push`. ArgoCD syncs back to the previous state.
-* Disaster recovery: bootstrap k3s, install ArgoCD, apply the Application manifests, wait. I haven't had to do this for real yet, but I've tested it and it works.
-* The ArgoCD UI shows immediately if something is out of sync. Much better than running `kubectl` commands and comparing output by hand.
+* Clone the repo, look at `argocd-apps/`, and you know exactly what's running.
+* Edit a Helm value, commit, push. ArgoCD picks it up within a few minutes.
+* Rollback is `git revert HEAD && git push`.
+* The ArgoCD UI shows immediately if something is out of sync.
 
 ## Things that bit me
 

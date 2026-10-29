@@ -10,11 +10,9 @@
 
 * ⇢ A tmux popup editor for Cursor Agent CLI prompts
 * ⇢ ⇢ Why I built this
-* ⇢ ⇢ What it is
 * ⇢ ⇢ How it works (overview)
 * ⇢ ⇢ ⇢ Workflow diagram
 * ⇢ ⇢ Challenges and small discoveries
-* ⇢ ⇢ Test cases (for a future rewrite)
 * ⇢ ⇢ (Almost) works with any editor (or any TUI)
 
 ## Why I built this
@@ -31,21 +29,11 @@ Cursor Agent has a Vim editing mode, but not Helix. And even in Vim mode I can't
 => https://www.vim.org
 => https://neovim.io
 
-So I built a tiny tmux popup editor. It opens `$EDITOR` (Helix for me), and when I close it, the buffer is sent back into the prompt. It sounds simple, but it feels surprisingly native.
+So I built a tiny tmux popup editor. It opens `$EDITOR` (Helix for me), and when I close it, the buffer is sent back into the prompt. It also pre-fills the temp file with whatever is already typed after Cursor Agent's `→` prompt, so I can continue where I left off. It sounds simple, but it feels surprisingly native.
 
 This is how it looks like:
 
 => ./tmux-popup-editor-for-cursor-agent-prompts/demo1.png Popup editor in action
-
-## What it is
-
-The idea is straightforward:
-
-* A tmux key binding `prefix-e` opens a popup overlay near the bottom of the screen.
-* The popup starts `$EDITOR` on a temp file.
-* When I exit the editor, the script sends the contents back to the original pane with `tmux send-keys`.
-
-It also pre-fills the temp file with whatever is already typed after Cursor Agent's `→` prompt, so I can continue where I left off.
 
 ## How it works (overview)
 
@@ -81,7 +69,7 @@ And this is how it looks like after sending back the text to the Cursor Agent's 
 
 And here is the full script. It is a bit ugly since it's shell (written with Cursor Agent with GPT-5.2-Codex), and I might (let) rewrite it in Go with proper unit tests, config-file, multi-agent support and release it once I have time. But it works well enough for now.
 
-> Update 2026-02-08: This functionality has been integrated into the hexai project (https://github.com/snonux/hexai) with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode. The hexai version includes unit tests, configuration files, and better agent detection. While still experimental, it's more robust than this shell script. See the hexai-tmux-edit command for details.
+> Update 2026-02-08: I've since integrated this into my hexai project, with proper multi-agent support for Cursor Agent, Claude Code CLI, and Ampcode (plus unit tests and config files). Still experimental, but it's more robust than this shell script. See the hexai-tmux-edit command for details.
 
 => https://github.com/snonux/hexai
 
@@ -342,23 +330,11 @@ The problems were mostly small but annoying:
 * The Cursor UI draws a nice box around the prompt, so the prompt line contains a `│` and other markers. I had to filter those out and strip the box-drawing characters.
 * When I prefilled text and then sent it back, I sometimes duplicated the prompt. Stripping the prefilled prompt text from the submitted text fixed that.
 
-## Test cases (for a future rewrite)
-
-These are the cases I test whenever I touch the script:
-
-* Single-line prompt: capture everything after `→` and prefill the editor.
-* Multi-line boxed prompt: capture the wrapped lines inside the `│ ... │` box and join them with spaces (no newline in the editor).
-* Ignore UI noise: do not capture lines containing `INSERT` or `Add a follow-up`.
-* Preserve appended text: if I add ` juju` to an existing line, the space before `juju` must survive.
-* No duplicate send: if the prefilled text is still at the start of the first line, it must be stripped once before sending back.
-
 ## (Almost) works with any editor (or any TUI)
 
 Although I use Helix, this is just `$EDITOR`. If you prefer Vim, Neovim, or something more exotic, it should work. The same mechanism can be used to feed text into any TUI that reads from a terminal pane, not just Cursor Agent.
 
 One caveat: different agents draw different prompt UIs, so the capture logic depends on the prompt shape. A future version of this script should be more modular in that respect; for now this is just a PoC tailored to Cursor Agent.
-
-Another thing is, what if Cursor decides to change the design of its TUI? I would need to change my script as well.
 
 If I get a chance, I'll clean it up and rewrite it in Go (and release it properly or include it into Hexai, another AI related tool of mine, of which I haven't blogged about yet). For now, I am happy with this little hack. It already feels like a native editing workflow for Cursor Agent prompts.
 

@@ -34,12 +34,7 @@ Hexai has been an undercover pet project of mine since around mid-last year. As 
 
 ## What it is
 
-Hexai is really a bundle of small tools that share the same configuration:
-
-* `hexai-lsp-server` — the LSP server that Helix talks to.
-* `hexai` — a standalone CLI for quick LLM questions from the terminal or scripts.
-* `hexai-tmux-action` — a Bubble Tea TUI that pops up inside tmux and runs code actions on the current selection.
-* `ask` — a tiny task management CLI for agent-managed project work.
+Hexai is really a bundle of small tools that share the same configuration: `hexai-lsp-server` is the LSP server Helix talks to, `hexai` is a standalone CLI for quick LLM questions from the terminal or scripts, `hexai-tmux-action` is a Bubble Tea TUI that pops up inside tmux and runs code actions on the current selection, and `ask` is a tiny task management CLI for agent-managed project work.
 
 Everything uses the same `config.toml`, the same provider pool, and the same prompt overrides. I can switch models in one place and the LSP, CLI, and popup all follow along.
 
@@ -112,7 +107,7 @@ command = "hexai-lsp-server"
 
 You can add `hexai` after `gopls` or any other LSP. It does not replace them; it just adds completions, code actions, and chat on top.
 
-Once the LSP is wired in, Hexai also offers inline auto-completions as you type. By default it fires after a short idle debounce (`completion_debounce_ms`, 800 ms) when you hit one of the trigger characters (`.` `:` `/` `_` space), and it waits for every configured backend before showing results (`completion_wait_all`). All of it is tunable in `config.toml`, and you can turn completions off for a session without restarting — see the slash commands below.
+Once the LSP is wired in, Hexai also offers inline auto-completions as you type. By default it fires after a short idle debounce (`completion_debounce_ms`, 800 ms) when you hit one of the trigger characters (`.` `:` `/` `_` space), and it waits for every configured backend before showing results (`completion_wait_all`). All of it is tunable in `config.toml`, and you can turn completions off for a session without restarting (see the slash commands below).
 
 => ./unveiling-hexai/05-helix.gif Requesting and accepting a code completion in Helix
 
@@ -135,7 +130,7 @@ The LSP adds two lightweight ways to talk to the model without leaving the edito
 * End a line with `?>`, `!>`, `:>`, or `;>` to ask a question. Hexai removes only the trailing `>`, keeps the question, and inserts a `> ` quoted reply below the line.
 * Type `>!do something>` inline to ask for a quick edit, or `>>!do something>` to replace the whole line with the completion.
 
-Chat example — a question ending in `?>`:
+Chat example, a question ending in `?>`:
 
 ```text
 What is a Go slice?>
@@ -150,7 +145,7 @@ What is a Go slice?
 > the backing array plus length and capacity.
 ```
 
-Inline example — `>>!` replaces the whole line with the completion:
+With `>>!` the whole line is replaced by the completion:
 
 ```go
 >>!document this function>
@@ -161,18 +156,13 @@ Inline example — `>>!` replaces the whole line with the completion:
 func Foo(n int) int { return n * n }
 ```
 
-Context is included automatically. For follow-ups, Hexai keeps the last few Q/A pairs above the cursor in mind, so you can ask related questions without repeating yourself.
+Context is included automatically. Follow-ups keep the last few Q/A pairs above the cursor in mind.
 
 There are a few slash commands you can type at the end of a chat line: `/reload>` re-reads `config.toml` without restarting the LSP, `/disable>` pauses auto-completions for the session, and `/enable>` turns them back on.
 
-In the editor buffer it ends up looking like this — the question stays, the reply is quoted below, and a follow-up picks up the same context:
+In the editor buffer the question stays, the reply is quoted below, and a follow-up picks up the same context:
 
 ```text
-What is a Go slice?
-
-> A slice is a dynamically-sized view into an array. It stores a pointer to
-> the backing array plus length and capacity.
-
 And how do I append to one?
 
 > Use the built-in append: s = append(s, x). It grows the backing array
@@ -272,7 +262,7 @@ $ hexai 'install ripgrep on fedora'
 sudo dnf install ripgrep
 ```
 
-The provider label and the run summary (timing, token counts, rpm) go to stderr, so `stdout` stays clean for pipes — `hexai 'install ripgrep on fedora' | sh` just works.
+The provider label and the run summary (timing, token counts, rpm) go to stderr, so `stdout` stays clean for pipes and `hexai 'install ripgrep on fedora' | sh` just works.
 
 => ./unveiling-hexai/03-cli.gif Piping code into Hexai, saving an answer, and simulating streaming without an API call
 
@@ -313,7 +303,7 @@ The IDs shown are stable local aliases, not Taskwarrior's numeric IDs. Taskwarri
 
 One detail worth knowing: the alias strings are reversed on purpose. The underlying counter is monotonic (1, 2, 3, …), and a naive encoding would make consecutive tasks share a leading character once the list grows past 36 (`00`, `01`, `02`, … all start with `0`), which kills shell tab-completion. Reversing the string makes the first character vary as fast as possible (`00`, `10`, `20`, … instead of `00`, `01`, `02`, …), so typing the first letter in Fish actually narrows the list. That is the whole reason the IDs look slightly odd.
 
-To actually get those completions in Fish, run `ask fish | source` (or drop it into Fish's `conf.d`) — it gives you tab-completion for both subcommands and the reversed alias IDs.
+To actually get those completions in Fish, run `ask fish | source` (or drop it into Fish's `conf.d`) for tab-completion of both subcommands and the reversed alias IDs.
 
 `ask list` prints a compact table:
 
@@ -339,7 +329,7 @@ Tags:        agent
 
 => ./unveiling-hexai/10-tasks.gif Creating, starting, inspecting, and completing a task, then trying Fish completion
 
-This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of `ask`: the `agent-task-management` skill knows how to read and update the `ask` task list, and the `/work-on-tasks` command uses that skill to work through a whole backlog on its own — pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run `/work-on-tasks`, and it chews through the queue one task at a time.
+This is where it becomes useful for agentic coding. There is an agent skill and a slash command built on top of `ask`: the `agent-task-management` skill knows how to read and update the `ask` task list, and the `/work-on-tasks` command uses that skill to work through a whole backlog on its own: pick the next actionable task, hand it to a fresh sub-agent, mark it done, and continue until nothing actionable is left. That is pretty useful after a planning session where you created a bunch of tasks with their proper dependencies set: point the agent at the project, run `/work-on-tasks`, and it chews through the queue one task at a time.
 
 => https://github.com/snonux/dotfiles/tree/master/prompts/skills/agent-task-management agent-task-management skill
 => https://github.com/snonux/dotfiles/blob/master/prompts/commands/work-on-tasks.md /work-on-tasks command

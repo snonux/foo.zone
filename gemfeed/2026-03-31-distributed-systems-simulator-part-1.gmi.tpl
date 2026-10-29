@@ -88,7 +88,7 @@ The simulator is based on the client/server principle. Each simulation typically
 
 ### Processes and Their Roles
 
-A distributed system is simulated using processes. Each process takes on one or more roles. For example, one process can take on the role of a client and another process the role of a server. The possibility of assigning both client and server roles to a process simultaneously is also provided. A process could also take on the roles of multiple servers and clients simultaneously. To identify a process, each one has a unique Process Identification Number (PID).
+A distributed system is simulated using processes. Each process takes on one or more roles. For example, one process can take on the role of a client and another process the role of a server. The possibility of assigning both client and server roles to a process simultaneously is also provided. A process could also take on the roles of multiple servers and clients simultaneously.
 
 ### Messages
 
@@ -154,22 +154,11 @@ The simulator then presents itself with a main window. To create a new simulatio
 
 By default, the simulator starts in "simple mode". There is also an "expert mode", which will be discussed later.
 
-### The Menu Bar
+### Menu Bar and Toolbar
 
-In the File menu, you can create new simulations or close the currently open simulation. New simulations open by default in a new tab. However, you can also open or close new simulation windows that have their own tabs. Each tab contains a simulation that is completely independent from the others. This allows any number of simulations to be run in parallel. The menu items "Open", "Save" and "Save As" are used for loading and saving simulations.
+The File menu takes care of new simulations and loading/saving them. Every simulation runs in its own tab, independent from the others, so any number of simulations can run in parallel. The Edit menu opens the simulation settings (discussed in more detail later) and lists all participating processes for editing. The Simulator menu repeats the toolbar.
 
-Through the Edit menu, users can access the simulation settings, which will be discussed in more detail later. This menu also lists all participating processes for editing. If the user selects a process there, the corresponding process editor opens. The Simulator menu offers the same options as the toolbar, which is described in the next section.
-
-Some menu items are only accessible when a simulation has already been created or loaded in the current window.
-
-### The Toolbar
-
-The toolbar is located at the top left of the simulator. The toolbar contains the functions most frequently needed by users. The toolbar offers four different functions:
-
-* Reset simulation: can only be activated when the simulation has been paused or has finished
-* Repeat simulation: cannot be activated if the simulation has not yet been started
-* Pause simulation: can only be activated when the simulation is currently running
-* Start simulation: can only be activated when the simulation is not currently running and has not yet finished
+The toolbar has the four essentials: reset, repeat, pause, and start. Which of them is clickable depends on the current simulation state.
 
 ### The Visualization
 
@@ -204,7 +193,7 @@ The sidebar is used to program process events. At the top, the process to be man
 
 To create a new event, the user can either right-click on a process bar and select "Insert local event", or select an event below the event table, enter the event occurrence time in the text field below, and click "Apply".
 
-Right-clicking on the event editor allows you to either copy or delete all selected events. Using the Ctrl key, multiple events can be selected simultaneously. The entries in the Time and PID columns can be edited afterwards. This provides a convenient way to move already programmed events to a different time or assign them to a different process. However, users should ensure that they press the Enter key after changing the event occurrence time, otherwise the change will be ineffective.
+Right-clicking on the event editor allows you to either copy or delete all selected events. Using the Ctrl key, multiple events can be selected simultaneously. The entries in the Time and PID columns can be edited afterwards, to move an event to a different time or assign it to another process. Make sure to press Enter after changing the event occurrence time, otherwise the change has no effect.
 
 In addition to the Events tab, the sidebar has another tab called "Variables". Behind this tab is the process editor of the currently selected process. There, all variables of the process can be edited, providing another way to access a process editor.
 
@@ -237,23 +226,7 @@ In expert mode, the following additional features become available:
 
 ### Configuration Settings
 
-The simulation settings window allows configuring many aspects of the simulation. Key settings include:
-
-* Processes receive own messages (default: false): Whether processes can receive messages they sent to themselves.
-* Average message loss probabilities (default: true): Whether to average the loss probabilities of sender and receiver processes.
-* Average transmission times (default: true): Whether to average the transmission times of sender and receiver processes.
-* Show only relevant messages (default: true): Hides messages sent to processes that don't support the protocol.
-* Expert mode (default: false): Enables expert mode features.
-* Simulation speed (default: 0.5): The playback speed factor. A value of 1 means real-time, 0.5 means half speed.
-* Number of processes (default: 3): Can also be changed during simulation via right-click.
-* Simulation duration (default: 15s): Between 5 and 120 seconds.
-
-Each process also has individual settings:
-
-* Clock drift (default: 0.0): By what factor the local clock deviates. A value of 0.0 means no deviation. A value of 1.0 means double speed. Values > -1.0 are allowed.
-* Random crash probability (default: 0%): Probability that the process crashes randomly during the simulation.
-* Message loss probability (default: 0%): Probability that a message sent by this process is lost in transit.
-* Min/Max transmission time (default: 500ms/2000ms): The range for random message delivery times.
+Most settings in the simulation settings window are self-explanatory (number of processes, simulation duration, playback speed). The ones that matter for the protocol examples are per-process: clock drift (a value of 1.0 means the clock runs at double speed), random crash probability, message loss probability, and the min/max transmission time range for messages. Two global ones worth knowing: "Average transmission times" averages the transmission times of sender and receiver, and "Show only relevant messages" hides messages sent to processes that don't support the protocol.
 
 Read the next post of this series:
 

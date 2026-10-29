@@ -95,7 +95,7 @@ If you see `Probing for 5s` followed by CSV rows, the build is good. `mage build
 
 ## A short detour: eBPF and libbpfgo
 
-If you haven't touched eBPF before: it's a small in-kernel bytecode VM. You compile a tiny C program, the kernel verifies it can't crash or loop forever, and then it runs every time some hook fires — a syscall enter/exit, a kprobe, a tracepoint, a network packet. The program writes events into a ring buffer that userspace mmaps and drains. You don't need a kernel module, a patched kernel, or debug symbols.
+If you haven't touched eBPF before: it's a small in-kernel bytecode VM. You compile a tiny C program, the kernel verifies it, and it runs every time a hook fires — a syscall enter/exit, a kprobe, a tracepoint — writing events into a ring buffer that userspace drains. No kernel module, no patched kernel, no debug symbols.
 
 => https://ebpf.io eBPF — the project's umbrella site (docs, talks, ecosystem)
 
@@ -142,7 +142,7 @@ You build `ior` once, `scp ior other-host:/usr/local/bin/`, and it runs. There's
 
 ### Static linking
 
-The first is plain old static linking on the userspace side. A quick refresher on what that means, since it's central to why "scp the binary anywhere" works: when you build a normal Linux executable, the linker has two ways to wire library code into your program. Dynamic linking ("shared library") leaves a placeholder in the binary that says "at run time, find `libfoo.so.6` somewhere on `LD_LIBRARY_PATH` and pull in its symbols." Static linking pastes the library's machine code directly into your binary at build time, so there's nothing to look up later. Dynamic is smaller on disk and lets distros patch shared libs without rebuilding everything; static is bigger but self-contained, with no surprise about which version of the library the target box happens to have, no `error while loading shared libraries: libwhatever.so.6: cannot open shared object file` when the target ships a newer ABI.
+The first is plain old static linking on the userspace side: the linker bakes the library code straight into the binary instead of leaving placeholders for `.so` files to resolve at runtime. The binary gets bigger, but there's nothing to look up on the target box — no `error while loading shared libraries` surprises when the target ships a different ABI.
 
 ### Go programs are statically linked by default
 
@@ -239,7 +239,8 @@ Two changes since the `1.0.0` release this post was originally written against t
 
 If any of this sounds interesting and you want to learn how to write your own BPF programs, these two books are the ones to read:
 
-* "Learning eBPF" by Liz Rice (O'Reilly, 2023) is the friendlier on-ramp. It walks through writing your first programs end-to-end, covers CO-RE and BTF in plain English, and is the book I'd hand to someone who has never touched the kernel side before.* "BPF Performance Tools: Linux System and Application Observability" by Brendan Gregg (Addison-Wesley, 2019) is the encyclopedia. It's where you go after you've understood the basics and now want a complete reference for tracing every subsystem in the kernel — file systems, networking, scheduler, languages, applications — with worked tools for each. The flame-graph-driven analysis style throughout is also exactly how `ior`'s own flamegraph tab thinks about a workload.
+* "Learning eBPF" by Liz Rice (O'Reilly, 2023) is the friendlier on-ramp if you've never touched the kernel side before.
+* "BPF Performance Tools" by Brendan Gregg (Addison-Wesley, 2019) is the encyclopedia, a complete reference for tracing every kernel subsystem. Its flame-graph-driven analysis style is also how `ior`'s own flamegraph tab thinks about a workload.
 
 Read the next post of the series:
 

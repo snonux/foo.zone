@@ -6,14 +6,14 @@ I created a calculator. The world didn't need another one, but I wanted to test 
 
 The answer is: well enough for small projects like this.
 
-`gt` is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than" — `gt` is a comparison operator the calculator supports. Plus it was free in my shell (`gt` command wasn't used yet by another tool) and I liked the short name.
+`gt` is a command-line calculator written in Go that does RPN (Reverse Polish Notation), percentage calculations, unit conversion, and a fair bit more. The name stands for "greater than": `gt` is also a comparison operator the calculator supports. Plus it was free in my shell (`gt` command wasn't used yet by another tool) and I liked the short name.
 
 If you want the full feature guide, the README links to a detailed doc for every feature covered here and more:
 
 => https://github.com/snonux/gt gt on GitHub
 => ./gt-calculator/logo.svg gt logo
 
-The whole thing — code, tests, documentation, even the logo — was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn't run them locally either — I rented Hyperstack VMs with NVidia GPU just to get a feel for the quality before investing in hardware. The point was to test models that don't require a cloud API and could realistically run on your own box.
+The whole thing (code, tests, documentation, even the logo) was built using only LLMs that can run locally on reasonable hardware: Qwen, Gemma, Nemotron, GPT-OSS. To be honest, I didn't run them locally either; I rented Hyperstack VMs with NVidia GPU just to get a feel for the quality before investing in hardware. The point was to test models that don't require a cloud API and could realistically run on your own box.
 
 => https://www.hyperstack.cloud/
 
@@ -51,15 +51,7 @@ And no, this wasn't vibe-coded. I used a specific technique and a set of AI skil
 
 ## The motivation
 
-Four things drove this.
-
-First, I wanted to test local LLMs as coding partners. Not the cloud-hosted ones, but the ones you can run yourself. I figured a calculator project is big enough to be interesting but small enough to finish.
-
-Second, cloud independence is a thing I care about. I build tools that don't need a network connection to function. Writing software that talks to OpenAI or Anthropic APIs doesn't count as "running locally." Everything here runs offline.
-
-Third, I wanted to learn more about how these models actually work in practice. Not benchmarks, the day-to-day experience: how do you operate them, how do you write the prompts, where do they struggle?
-
-And the tool had to be useful. A toy that calculates `2 + 2` isn't worth the disk space. I wanted a calculator I'd actually use.
+I wanted to test local LLMs as coding partners on a project big enough to be interesting and small enough to finish. Cloud independence is a thing I care about too: everything here runs offline, nothing talks to an OpenAI or Anthropic API. And I wanted to learn how these models behave day to day, not on benchmarks: how do you operate them, how do you write the prompts, where do they struggle? The tool itself had to be worth the disk space, a calculator I'd actually use.
 
 ## What it does
 
@@ -75,7 +67,7 @@ You can also pipe into it: `echo '1000Mbps @Gbps convert' | gt` → `1`.
 
 ## Percentage calculations
 
-This is the simplest entry point. Three forms, all case-insensitive, all with step-by-step output:
+This is the simplest entry point, all case-insensitive:
 
 ```sh
 gt '20% of 150'                # → 30.00
@@ -83,11 +75,11 @@ gt '30 is what % of 150'       # → 20.00%
 gt '30 is 20% of what'         # → 150.00
 ```
 
-Every percentage result shows the formula and intermediate values, so you can verify the math. Useful for tips, discounts, tax, and any "what's the actual number?" moment.
+Every percentage result shows the formula and intermediate values.
 
 ## RPN arithmetic
 
-The main engine uses Reverse Polish Notation. No parentheses needed — the order of tokens determines the order of operations.
+The main engine uses RPN.
 
 ```sh
 gt '3 4 +'                     # 7
@@ -96,9 +88,9 @@ gt '100 10 / 5 +'              # 15
 gt '3 4 + 5 6 + *'             # (3+4) × (5+6) = 77
 ```
 
-Six basic operators: `+`, `-`, `*`, `/`, `^`, `%`. All work on the stack, popping operands and pushing the result.
+Basic operators: `+`, `-`, `*`, `/`, `^`, `%`.
 
-The fast integer power operator `**` uses binary exponentiation (O(log n) instead of O(n)). So `2 100 **` does about 7 multiplications instead of 99. It only accepts integer exponents — use `^` for fractional powers.
+The fast integer power operator `**` uses binary exponentiation, so `2 100 **` does about 7 multiplications instead of 99. It only accepts integer exponents; use `^` for fractional powers.
 
 ### Modulo
 
@@ -111,11 +103,7 @@ gt '100 7 %'                   # → 2
 
 ### Logarithms
 
-Three unary operators for when you need them:
-
-- `lg` — base 2 (information theory, algorithm complexity)
-- `log` — base 10 (decibels, pH, order of magnitude)
-- `ln` — natural log (continuous growth, statistics)
+Unary logs: `lg` is base 2, `log` is base 10, and `ln` is the natural log.
 
 ```sh
 gt '1024 lg'                   # → 10
@@ -134,7 +122,7 @@ gt '2 5 10 [*]'               # → 100 (product)
 gt '1000 2 2 2 2 [/]'         # → 62.5
 ```
 
-Full set: `[+]`, `[-]`, `[*]`, `[/]`, `[^]`, `[%]` for arithmetic, plus `[lg]`, `[log]`, `[ln]` for logarithms. The log hyper operators work differently from the arithmetic ones — they compute the sum of the log function applied to each value, not a left-associative reduction. A quick entropy calculation:
+Full set: `[+]`, `[-]`, `[*]`, `[/]`, `[^]`, `[%]` for arithmetic, plus `[lg]`, `[log]`, `[ln]` for logarithms. The log hyper operators work differently from the arithmetic ones: they compute the sum of the log function applied to each value, not a left-associative reduction. A quick entropy calculation:
 
 ```sh
 gt '0.25 0.5 0.25 [lg]'      # → -5  (information theory entropy bits)
@@ -146,15 +134,13 @@ The square-bracket syntax is inspired by Raku's hyper operators.
 
 ### Comparisons and booleans
 
-Six comparison operators, each with a symbolic alias:
-
 ```sh
 gt '5 3 gt'                    # → true
 gt '3 5 <'                     # → true
 gt '5 5 =='                    # → true
 ```
 
-Results are `true` or `false`, which coerce into arithmetic (true = 1, false = 0). That means you can do inline conditionals:
+Results are `true` or `false`, which coerce into arithmetic (true = 1, false = 0), so you get inline conditionals:
 
 ```sh
 gt '85 80 gt 10 *'             # → 10 (85 > 80, so 1 × 10)
@@ -168,7 +154,7 @@ gt '72 68 gte 100 lte +'       # → 2 (both checks pass, temp is in range)
 gt '105 68 gte 100 lte +'      # → 1 (out of range)
 ```
 
-Booleans also do plain arithmetic, which is occasionally useful:
+Booleans also do plain arithmetic:
 
 ```sh
 gt 'true true +'               # → 2 (1 + 1)
@@ -177,7 +163,7 @@ gt 'false 5 +'                 # → 5 (0 + 5)
 
 ## Variables and symbols
 
-Store values with three assignment styles:
+Assignment comes in a few styles:
 
 ```sh
 gt 'x 10 :='                   # right assignment
@@ -200,7 +186,7 @@ Bare identifiers that don't match any variable or constant also push as symbols.
 
 ## Built-in constants
 
-Thirty-six of them. Use them directly as tokens:
+The built-in constants can be used directly as tokens:
 
 ```sh
 gt 'pi 2 *'                    # → 6.283185307
@@ -211,13 +197,13 @@ gt 'sqrt2 sqrt3 *'             # → 2.449 (√6)
 
 Greek letter aliases work too: `π`, `τ`, `φ`, `√2`, `√3`, `√5`.
 
-There's also a `constants` command that lists all 36 in one shot. Edge cases are covered too — `inf`, `-inf`, and `nan` exist as constants if you ever need them.
+`constants` lists them all. `inf`, `-inf`, and `nan` exist as constants too.
 
 ## The metrics system
 
 Every number carries a unit of measurement, and arithmetic understands those units.
 
-Six built-in categories, plus `Cool` — the default unitless metric for plain numbers. The name comes from Raku's `Cool` role, which represents things that are "cool enough" to do basic operations (strings, numbers, etc.). In `gt`, Cool values absorb into any metric category during arithmetic, so `5 100Mbps +` treats the `5` as `5Mbps`.
+Built-in categories, plus `Cool`, the default unitless metric for plain numbers. The name comes from Raku's `Cool` role, which represents things that are "cool enough" to do basic operations (strings, numbers, etc.). In `gt`, Cool values absorb into any metric category during arithmetic, so `5 100Mbps +` treats the `5` as `5Mbps`.
 
 - *DataRate*: bps, Kbps, Mbps, Gbps, Tbps
 - *DataSize*: bits, bytes, KB/MB/GB/TB/PB (SI), KiB/MiB/GiB/TiB/PiB (IEC)
@@ -299,7 +285,7 @@ Data size units have two modes. SI (default) uses powers of 1000. IEC uses power
 
 ### Discovering metrics
 
-You can explore what's available without leaving the REPL:
+Explore from the REPL:
 
 ```sh
 > metric list
@@ -308,7 +294,7 @@ DataRate, DataSize, Distance, Speed, Time, Universal, Weight
 Gbps, Kbps, Mbps, Tbps, bps
 ```
 
-`metric compatible` checks whether two values can be combined before you try:
+`metric compatible` checks whether two values can be combined:
 
 ```sh
 > 1km 5mi metric compatible
@@ -319,21 +305,13 @@ Mbps (DataRate) and hr (Time): false
 
 ## Stack manipulation
 
-Five operators for managing the RPN stack:
-
-- `dup` — duplicate the top value
-- `swap` — swap top two values
-- `pop` — discard the top value
-- `show` / `showstack` / `print` — display the stack without modifying it
-- `clear` — clear all variables and constants
+Stack operators: `dup`, `swap`, `pop`, `show`/`showstack`/`print`, and `clear`.
 
 `dup` and `swap` come up a lot. Square a number: `7 dup *` → 49. Reverse operand order: `2 10 swap /` → 5 (instead of 0.2). `pop` discards the top value if you pushed something by accident: `5 6 pop` → 5.
 
 ## Rational number mode
 
-"Rational" refers to rational numbers — numbers that can be expressed as an exact fraction of two integers (numerator/denominator). The name "rat" is just the shorthand command.
-
-In the default float64 mode, numbers are stored as binary floating-point approximations. `0.1` cannot be represented exactly in binary, so it becomes something like `0.1000000000000000055511151231257827...`. This causes the classic problem:
+The default float64 mode has the classic problem:
 
 ```sh
 > rat off
@@ -342,9 +320,9 @@ Rational mode disabled (using float64)
 -2.775557562e-17
 ```
 
-The result should be `0`, but floating-point rounding errors accumulated. Silent wrong answer.
+The result should be `0`. Silent wrong answer.
 
-Rational mode stores numbers as exact fractions using Go's `math/big.Rat`. `0.1` is stored as `1/10`, `0.2` as `2/10` (simplified to `1/5`), and all arithmetic operates on those exact values.
+Rational mode stores numbers as exact fractions using Go's `math/big.Rat`, and all arithmetic operates on those exact values.
 ```sh
 > rat on
 Rational mode enabled
@@ -353,7 +331,7 @@ Rational mode enabled
 ```
 
 Internally, `1/3` stays as the exact fraction `1/3`, and `1/3 * 3` computes to exactly `3/3 = 1`.
-REPL-only. Has a known limitation with non-dyadic decimals and metric operations — the docs explain the why.
+REPL-only. There's a known limitation with non-dyadic decimals and metric operations; the docs explain why.
 
 ## The REPL
 
@@ -368,7 +346,7 @@ $ gt --log calc-session.log
 > quit
 ```
 
-Built-in REPL commands: `help`, `clear`, `quit`/`exit`, `rpn`/`calc`, `rat`, `stack`. `stack` is a shorthand hint for viewing the RPN stack. Tab-completes.
+Built-in REPL commands: `help`, `clear`, `quit`/`exit`, `rpn`/`calc`, `rat`, `stack`. Tab-completes.
 
 Here's what a session looks like:
 
@@ -423,11 +401,7 @@ clear - Clear the screen
 Usage: clear
 ```
 
-No need to leave the REPL or dig through docs when you forget a subcommand.
-
 ## Some more usage examples
-
-Here are some more `gt` usage examples:
 
 ```sh
 # Download volume at 1 Gbps for an hour
@@ -454,7 +428,7 @@ gt '1000 lg'                        # → 10 (bits needed)
 
 ## Fish shell completions
 
-`gt` ships with a fish completion script that covers everything: operators, constants, metric units, stack commands, the `metric` and `custom` subcommand trees, and boolean literals. It's context-aware — it won't suggest `metric` subcommands in the middle of an RPN expression, and it suppresses fish's default file completions so you only see calculator tokens.
+`gt` ships with a fish completion script that covers operators, constants, metric units, stack commands, the `metric` and `custom` subcommand trees, and boolean literals. It won't suggest `metric` subcommands in the middle of an RPN expression, and it suppresses fish's default file completions.
 
 Install it:
 
@@ -478,13 +452,13 @@ go install github.com/snonux/gt/cmd/gt@latest
 
 Or from the source directory: `mage install`.
 
-One quirk: there are no `-h` or `--help` flags. `gt version` gives you the version, and bare `gt` with no TTY prints usage. If you pass `-h`, `gt` tries to evaluate it as RPN and errors. It's intentional and keeps the surface area small.
+One quirk: there are no `-h` or `--help` flags. `gt version` gives you the version, and bare `gt` with no TTY prints usage. If you pass `-h`, `gt` tries to evaluate it as RPN and errors. That's intentional.
 
 ## Wrapping up
 
 The local LLM experiment worked. The code is clean enough, the tests pass, the docs are thorough, and I use the tool. The logo was generated by a local model too.
 
-For the complete and always-up-to-date feature guide, detailed docs for every feature, and the source code, head to the repo.
+The repo has the full, always-up-to-date feature guide and the source code:
 
 => https://github.com/snonux/gt gt on GitHub
 
