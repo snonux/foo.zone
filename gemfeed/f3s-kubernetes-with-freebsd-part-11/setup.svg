@@ -20,7 +20,7 @@
 <path d="M570 197 V235" class="wire"/>
 <path d="M955 197 V235" class="wire"/>
 <path d="M215 235 H955" fill="none" stroke="#64869e" stroke-width="2.5"/>
-<text x="600" y="266" text-anchor="middle" class="small note">HTTPS · f3s.buetow.org/cgi-bin/f3sctl/ · X-API-Key</text>
+<text x="600" y="266" text-anchor="middle" class="small note">HTTPS · f3s.foo.zone/cgi-bin/f3sctl/ · X-API-Key</text>
 <path d="M320 235 V295" class="wire"/>
 <path d="M880 235 V295" class="wire"/>
 <rect x="100" y="295" width="440" height="110" rx="12" class="box"/>

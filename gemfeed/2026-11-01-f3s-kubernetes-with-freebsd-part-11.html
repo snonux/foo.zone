@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl</title>
+<title>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl and RESTForge</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
 <link rel="stylesheet" href="style-override.css" />
@@ -16,15 +16,17 @@
 </div>
 <p class="header">
 <a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-11.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/DRAFT-f3s-kubernetes-with-freebsd-part-11.gmi">Gemini</a> <span class="separator">/</span>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2026-11-01-f3s-kubernetes-with-freebsd-part-11.md">Markdown</a> <span class="separator">/</span>
+<a href="gemini://foo.zone/gemfeed/2026-11-01-f3s-kubernetes-with-freebsd-part-11.gmi">Gemini</a> <span class="separator">/</span>
 <a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
 <a href="https://irregular.ninja">Street photography</a>
 </p>
 <div class="newsprint-content">
-<h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-11-remote-control-with-f3sctl'>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl</h1><br />
+<h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-11-remote-control-with-f3sctl-and-restforge'>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl and RESTForge</h1><br />
 <br />
-<span>Turning the cluster off is easy. Getting it back on while I&#39;m away from home needs a little more thought. This part of my f3s series is about <span class='inlinecode'>f3sctl</span>, the tool I wrote to control the hosts, their power plugs and monitoring from my laptop, phone, and even a Pebble watch.</span><br />
+<span class='quote'>Published at 2026-11-01T00:00:00+02:00</span><br />
+<br />
+<span>This is the 11th post in the f3s series about my self-hosting home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.</span><br />
 <br />
 <a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
 <a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
@@ -37,13 +39,18 @@
 <a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <a class='textlink' href='./2026-09-01-f3s-kubernetes-with-freebsd-part-10.html'>2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home</a><br />
+<a class='textlink' href='./2026-11-01-f3s-kubernetes-with-freebsd-part-11.html'>2026-11-01 f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl and RESTForge (You are currently reading this)</a><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<span>Some home labs run 24/7. My FreeBSD cluster doesn&#39;t. The power draw, fan noise and hardware wear aren&#39;t worth it when I don&#39;t need the machines, so the f-hosts stay off until I do. I wake the cluster when I need it and shut it down when I&#39;m done.</span><br />
+<br />
+<span>Turning the cluster off is mostly straightforward. Getting it back on while I&#39;m away from home needs a little more thought. This part of my f3s series is about <span class='inlinecode'>f3sctl</span>, the tool I created to control the hosts, their power plugs and monitoring from my laptop, phone, and even a Pebble watch.</span><br />
 <br />
 <h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
 <br />
 <ul>
-<li><a href='#f3s-kubernetes-with-freebsd---part-11-remote-control-with-f3sctl'>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl</a></li>
+<li><a href='#f3s-kubernetes-with-freebsd---part-11-remote-control-with-f3sctl-and-restforge'>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl and RESTForge</a></li>
 <li>⇢ <a href='#something-has-to-stay-on'>Something has to stay on</a></li>
 <li>⇢ <a href='#from-the-internet-to-the-rack'>From the internet to the rack</a></li>
 <li>⇢ <a href='#commands-from-earth'>Commands from earth</a></li>
@@ -66,19 +73,19 @@
 </ul><br />
 <h2 style='display: inline' id='something-has-to-stay-on'>Something has to stay on</h2><br />
 <br />
-<span>For anyone joining here: f3s stands for FreeBSD and k3s. My three FreeBSD mini-PCs, <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, each run a Rocky Linux virtual machine under bhyve. Those guests, <span class='inlinecode'>r0</span> through <span class='inlinecode'>r2</span>, form the Kubernetes cluster. A fourth FreeBSD host, <span class='inlinecode'>f3</span>, runs a separate Rocky Linux VM and isn&#39;t part of k3s.</span><br />
+<span>My three FreeBSD mini-PCs, <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, each run a Rocky Linux virtual machine under bhyve. Those guests, <span class='inlinecode'>r0</span> through <span class='inlinecode'>r2</span>, form the Kubernetes cluster. A fourth FreeBSD host, <span class='inlinecode'>f3</span>, runs a separate Rocky Linux VM and isn&#39;t part of k3s.</span><br />
 <br />
-<span>The remote control can&#39;t live only inside that cluster. Otherwise, after switching it off, I&#39;d have switched off the thing needed to wake it again. So the control service runs on <span class='inlinecode'>pi0</span> and <span class='inlinecode'>pi1</span>, my two always-on Raspberry Pis running NetBSD. They already serve static sites with bozohttpd, NetBSD&#39;s small web server. It can run CGI programs too, which is all f3sctl needs.</span><br />
+<span>The control service can&#39;t live inside the cluster: shutting down the cluster would shut down the only way to wake it again. So it runs on <span class='inlinecode'>pi0</span> and <span class='inlinecode'>pi1</span>, my two always-on Raspberry Pis running NetBSD. They already serve static sites with bozohttpd, NetBSD&#39;s small web server. It can run f3sctl as a CGI program too, starting it for each API request.</span><br />
 <br />
 <a class='textlink' href='https://github.com/snonux/f3sctl'>f3sctl source code</a><br />
 <br />
-<span>On the other side is <span class='inlinecode'>earth</span>, my main Fedora laptop. I can use the f3sctl command-line interface there, or browse the same API with RESTForge. RESTForge also has Android and Pebble OS apps. More on those below.</span><br />
+<span>I use <span class='inlinecode'>earth</span>, my main Fedora laptop, to run the f3sctl command-line interface or browse the same API with RESTForge, another tool I wrote. RESTForge also has Android and Pebble OS apps. More on those below.</span><br />
 <br />
 <a class='textlink' href='https://github.com/snonux/restforge'>RESTForge source code</a><br />
 <br />
 <h2 style='display: inline' id='from-the-internet-to-the-rack'>From the internet to the rack</h2><br />
 <br />
-<span>The public entry point is <span class='inlinecode'>https://f3s.buetow.org/cgi-bin/f3sctl/</span>. My two OpenBSD gateways, <span class='inlinecode'>fishfinger</span> and <span class='inlinecode'>blowfish</span>, run relayd. Either gateway can forward requests over WireGuard to the NetBSD Pis, with relayd balancing requests between <span class='inlinecode'>pi0</span> and <span class='inlinecode'>pi1</span>.</span><br />
+<span>The public entry point is <span class='inlinecode'>https://f3s.foo.zone/cgi-bin/f3sctl/</span>. My two OpenBSD gateways, <span class='inlinecode'>fishfinger</span> and <span class='inlinecode'>blowfish</span>, run relayd. Either gateway can forward requests over WireGuard to the NetBSD Pis, with relayd balancing requests between <span class='inlinecode'>pi0</span> and <span class='inlinecode'>pi1</span>.</span><br />
 <br />
 <a class='textlink' href='https://man.openbsd.org/relayd'>relayd manual</a><br />
 <a class='textlink' href='https://www.wireguard.com/'>WireGuard</a><br />
@@ -87,13 +94,25 @@
 <br />
 <span>HTTPS terminates at the gateways; the HTTP connection to the Pis travels inside WireGuard. The Pi receiving the request runs f3sctl as a CGI program under bozohttpd. For a longer operation, it starts a detached job and returns a job ID. The client can then follow progress without holding the original request open for the whole shutdown.</span><br />
 <br />
-<span>From the Pis, Wake-on-LAN packets wake the FreeBSD hosts, restricted SSH commands shut them down, and HTTP requests control the Shelly plugs. One plug powers the rack fans for <span class='inlinecode'>f0</span> through <span class='inlinecode'>f2</span>; another controls mains power for <span class='inlinecode'>f0</span> through <span class='inlinecode'>f3</span> and their JetKVMs. The Pis stay on their own power. f3sctl never switches them off.</span><br />
+<span>From the Pis, Wake-on-LAN packets wake the FreeBSD hosts, restricted SSH commands shut them down, and HTTP requests control the Shelly plugs. One plug powers the rack fans for <span class='inlinecode'>f0</span> through <span class='inlinecode'>f2</span>; another controls mains power for <span class='inlinecode'>f0</span> through <span class='inlinecode'>f3</span> and their JetKVM devices for remote console access. All three power branches come from the UPS (uninterruptible power supply). The Pis have an unswitched branch, so f3sctl never switches them off.</span><br />
 <br />
-<span>There are three modes in the same Go program: the CLI on earth, CGI on the Pis, and a restricted agent on the FreeBSD hosts. The OpenBSD gateways don&#39;t need the f3sctl binary. Apart from forwarding requests, they have a small forced-command script for setting and clearing the Gogios monitoring mute marker.</span><br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/power-lines.svg'><img alt='UPS-backed power: unswitched Pis, fans through Shelly 1, and f-hosts plus JetKVMs through Shelly 2' title='UPS-backed power: unswitched Pis, fans through Shelly 1, and f-hosts plus JetKVMs through Shelly 2' src='./f3s-kubernetes-with-freebsd-part-11/power-lines.svg' /></a><br />
+<br />
+<span>A Shelly plug is a smart socket with a relay and a small Wi-Fi server inside. It gets an IP address on my LAN and answers HTTP RPC calls. <span class='inlinecode'>Switch.Set?id=0&amp;on=true</span> closes the relay and turns on whatever is plugged in; <span class='inlinecode'>Switch.GetStatus</span> reads its state. Both calls need HTTP digest auth with the plug&#39;s admin password, which f3sctl reads from a protected file. The relay takes a moment to flip, so f3sctl reads the state back after every <span class='inlinecode'>Switch.Set</span> instead of trusting the acknowledgement. It all happens on the LAN, with no cloud in between.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/shelly-plug.jpg'><img alt='The Shelly Plug M Gen3' title='The Shelly Plug M Gen3' src='./f3s-kubernetes-with-freebsd-part-11/shelly-plug.jpg' /></a><br />
+<br />
+<span>The fan plug already showed up in Part 10, where a shell script on the Pis flipped the fans with a single HTTP request. f3sctl took over that job and later added the second plug for mains AC.</span><br />
+<br />
+<a class='textlink' href='./2026-09-01-f3s-kubernetes-with-freebsd-part-10.html'>f3s: Kubernetes with FreeBSD - Part 10: A New Home</a><br />
+<br />
+<span>The same Go program runs in three modes: as a CLI on earth, as CGI on the Pis, and as a restricted agent on the FreeBSD hosts. The OpenBSD gateways don&#39;t need the f3sctl binary. Besides forwarding requests, they run a small forced-command script to set and clear the Gogios mute marker. Gogios is my monitoring system, and I don&#39;t want alerts when I shut down the cluster on purpose.</span><br />
+<br />
+<a class='textlink' href='./2023-06-01-kiss-server-monitoring-with-gogios.html'>Read KISS server monitoring with Gogios</a><br />
 <br />
 <h2 style='display: inline' id='commands-from-earth'>Commands from earth</h2><br />
 <br />
-<span>The old <span class='inlinecode'>wol-f3s</span> shell script grew into f3sctl. The basic commands are still short. These examples assume the API URL and key are configured; they show commands to run, not a captured shutdown session:</span><br />
+<span>The basic commands are still short. These examples assume the API URL and key are configured; they show commands to run, not a captured shutdown session:</span><br />
 <br />
 <!-- Generator: GNU source-highlight 3.1.9
 by Lorenzo Bettini
@@ -104,9 +123,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #25231f">f3sctl --remote power off</span>
 </pre>
 <br />
-<span><span class='inlinecode'>--remote</span> matters when I&#39;m away from home. A Wake-on-LAN magic packet is a local broadcast; it doesn&#39;t magically cross the internet just because I have a WireGuard tunnel. With remote mode, a Pi sends it on the home LAN instead.</span><br />
-<br />
-<span>Shutdowns already go through the API by default, even when invoked from a Pi. Only the Pis hold the restricted SSH identity accepted for these operations. Waking, probing and plug control can run locally, which also leaves a way to wake the hosts from the LAN if the API is unavailable. <span class='inlinecode'>--local</span> explicitly selects that path, but it still needs the appropriate connectivity and credentials.</span><br />
+<span><span class='inlinecode'>--remote</span> sends the request to a Pi. That&#39;s important for Wake-on-LAN: its magic packet is a local broadcast, so a Pi must send it on the home LAN when I&#39;m away.</span><br />
 <br />
 <span>On earth, the per-user configuration is <span class='inlinecode'>~/.config/f3sctl.json</span>. For example, with the key stored separately in a private file:</span><br />
 <br />
@@ -115,18 +132,18 @@ by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
 <pre><span style="color: #765924">{</span>
-<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">api_url</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">https://f3s.buetow.org/cgi-bin/f3sctl/</span><span style="color: #25231f">"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">api_url</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">https://f3s.foo.zone/cgi-bin/f3sctl/</span><span style="color: #25231f">"</span><span style="color: #765924">,</span>
 <span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">api_key_file</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">/home/paul/.config/f3sctl/apikey</span><span style="color: #25231f">"</span>
 <span style="color: #765924">}</span>
 </pre>
 <br />
 <span>The API key travels in the <span class='inlinecode'>X-API-Key</span> header. Putting it in the URL would also put it in access logs, so the API doesn&#39;t accept that. Each client can have its own key; both Pis must accept the same set because either one may receive a request.</span><br />
 <br />
-<span>For troubleshooting, <span class='inlinecode'>f3sctl -v power status</span> traces the HTTP calls, their duration and which Pi answered. The verbose flag also selects remote mode. This is useful when two consecutive requests land on different Pis.</span><br />
+<a class='textlink' href='https://github.com/snonux/f3sctl/blob/main/docs/API-KEYS.md'>The full key management runbook</a><br />
 <br />
 <h2 style='display: inline' id='what-it-can-control-now'>What it can control now</h2><br />
 <br />
-<span>The current command set has six groups. The storage work described later is part of the shutdown procedure, rather than a separate storage administration interface.</span><br />
+<span>The current command set has six groups. The storage work described later is part of the shutdown procedure.</span><br />
 <br />
 <h3 style='display: inline' id='hosts-and-guests'>Hosts and guests</h3><br />
 <br />
@@ -137,23 +154,23 @@ http://www.gnu.org/software/src-highlite -->
 <li><span class='inlinecode'>power f0 on</span> and <span class='inlinecode'>power f0 off</span> target one host. The same works for <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span> and <span class='inlinecode'>f3</span>.</li>
 <li><span class='inlinecode'>power all cycle</span> shuts down all four hosts, cuts mains AC, restores it and wakes them again.</li>
 </ul><br />
-<span>A single-host shutdown leaves the fans and Gogios mute alone. It stops that host&#39;s guests as part of shutting the host down; there isn&#39;t a separate command here to start or stop an arbitrary VM or Kubernetes deployment.</span><br />
+<span>A single-host shutdown leaves the fans and Gogios mute alone. It stops that host&#39;s guests as part of shutting the host down; there isn&#39;t a separate command here to start or stop an arbitrary bhyve VM or Kubernetes deployment.</span><br />
 <br />
 <h3 style='display: inline' id='fans'>Fans</h3><br />
 <br />
-<span><span class='inlinecode'>fans status</span>, <span class='inlinecode'>fans on</span> and <span class='inlinecode'>fans off</span> control the fan plug. Switching the fans off is guarded while any of <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> or <span class='inlinecode'>f2</span> may still be running, or while a power job is in flight. <span class='inlinecode'>f3</span> sits separately and isn&#39;t cooled by these fans, so it doesn&#39;t keep them on.</span><br />
+<span><span class='inlinecode'>fans status</span>, <span class='inlinecode'>fans on</span> and <span class='inlinecode'>fans off</span> control the fan plug. f3sctl refuses to turn the fans off while any of <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> or <span class='inlinecode'>f2</span> may still be running, or while a power job is in flight. <span class='inlinecode'>f3</span> doesn&#39;t need these fans for its usual workload, so its power state doesn&#39;t keep them on.</span><br />
 <br />
 <h3 style='display: inline' id='mains-power'>Mains power</h3><br />
 <br />
-<span><span class='inlinecode'>ac status</span>, <span class='inlinecode'>ac on</span> and <span class='inlinecode'>ac off</span> control the f-host mains plug. This is separate from asking an operating system to shut down. Cutting AC is guarded while any f-host may be up, or while a power job is running.</span><br />
+<span>Sometimes a host gets stuck and only a cold power cycle helps. That happened once while I was away for a week. I had to run the Kubernetes cluster on two of its three nodes until I got back. That was annoying enough to make me add remote mains control.</span><br />
 <br />
-<span>Both plug-off commands have an explicit <span class='inlinecode'>--force</span> override. Switching a plug on remains available without the job guard, so a stale job record doesn&#39;t prevent restoring power or cooling.</span><br />
+<span><span class='inlinecode'>ac status</span>, <span class='inlinecode'>ac on</span> and <span class='inlinecode'>ac off</span> control the f-host mains plug. This is separate from asking an operating system to shut down. f3sctl refuses to cut AC while any f-host may be up or a power job is running.</span><br />
+<br />
+<span>Both <span class='inlinecode'>fans off</span> and <span class='inlinecode'>ac off</span> have an explicit <span class='inlinecode'>--force</span> override. Switching a plug on remains available without the job guard, so a stale job record doesn&#39;t prevent restoring power or cooling.</span><br />
 <br />
 <h3 style='display: inline' id='monitoring-mute'>Monitoring mute</h3><br />
 <br />
 <span><span class='inlinecode'>monitoring status</span>, <span class='inlinecode'>monitoring mute</span> and <span class='inlinecode'>monitoring unmute</span> report or change the Gogios alerting mute. A planned shutdown shouldn&#39;t page me about the hosts I just switched off! The explicit unmute command is also handy if an interrupted local wake left monitoring muted.</span><br />
-<br />
-<a class='textlink' href='https://github.com/snonux/gogios'>Gogios</a><br />
 <br />
 <h3 style='display: inline' id='monitoring-reports'>Monitoring reports</h3><br />
 <br />
@@ -176,19 +193,23 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='switching-off-in-the-right-order'>Switching off in the right order</h2><br />
 <br />
-<span>The interesting part of <span class='inlinecode'>power off</span> is what happens before the hosts disappear. Kubernetes uses storage exported by the FreeBSD machines, so shutting them down in an arbitrary order is asking for stuck NFS clients.</span><br />
+<span>The interesting part of <span class='inlinecode'>power off</span> is what happens before the hosts disappear. Kubernetes uses storage exported by the FreeBSD machines, so shutting them down in an arbitrary order is asking for stuck NFS (Network File System) clients. NFS is one of the pain points in my setup. I hope to replace it with my own filesystem one day; HomelabFS is an early attempt at that.</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/homelabfs'>HomelabFS on GitHub</a><br />
 <br />
 <span>The shutdown procedure first checks local NFS mounts and unmounts them, refusing to continue if they are stuck. It then unloads the removable <span class='inlinecode'>zusb</span> backup pool wherever it is imported, allowing its snapshot, clean export and disk spin-down to finish before losing power. Gogios gets muted before the hosts go away.</span><br />
 <br />
 <span>Next comes the storage failover pair. CARP is the mechanism that lets <span class='inlinecode'>f0</span> and <span class='inlinecode'>f1</span> share a virtual IP address for storage. During shutdown, f3sctl stops <span class='inlinecode'>devd</span> and <span class='inlinecode'>cron</span> on that pair so a failover or scheduled failback doesn&#39;t start storage services on a host that is itself going down. NFS stays available while the guests still need it.</span><br />
 <br />
-<span>The other selected hosts then shut down in parallel, with the configured storage master last. In my inventory that is <span class='inlinecode'>f0</span>. If quiescing the failover daemons fails, f3sctl falls back to a sequential shutdown. Guest shutdown has a bounded wait so it doesn&#39;t overrun the FreeBSD host&#39;s shutdown watchdog.</span><br />
+<span>The other selected hosts then shut down in parallel. The configured storage master, <span class='inlinecode'>f0</span>, shuts down last.</span><br />
 <br />
-<span>Finally, f3sctl checks that the hosts stopped answering, and only switches off the rack fans once <span class='inlinecode'>f0</span> through <span class='inlinecode'>f2</span> are down. A timing summary in the job log shows where the time went. Network silence is the check available here; it isn&#39;t a physical power sensor.</span><br />
+<span>Finally, f3sctl checks that the hosts stopped answering and switches off the rack fans only once <span class='inlinecode'>f0</span> through <span class='inlinecode'>f2</span> are down. A timing summary in the job log shows where the time went. Network silence is the check available here; it isn&#39;t a physical power sensor.</span><br />
 <br />
-<span>Waking does the reverse where needed: fans on, magic packets sent, then a wait for <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span> to answer before unmuting Gogios. While waiting, magic packets are sent again every two minutes. If a node never comes back before the timeout, monitoring is unmuted anyway and the wake reports a failure. Otherwise the broken host would remain conveniently hidden behind the mute.</span><br />
+<span>To wake the cluster, f3sctl turns on the fans, sends Wake-on-LAN magic packets, and waits for <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span> to answer before unmuting Gogios. It sends the packets again every two minutes while waiting. If a node never comes back before the timeout, f3sctl unmutes monitoring anyway and reports a failure. Otherwise the broken host would remain hidden behind the mute.</span><br />
 <br />
-<span>The full cold cycle adds two waits: 15 seconds with AC off, then 30 seconds after restoring AC before sending wake packets. It refuses to cut mains if shutdown hasn&#39;t completed. It also attempts to restore AC if the job is interrupted during the power-off wait. None of that helps if the Pi itself loses power, which is another reason to keep the control machines on a separate supply.</span><br />
+<span>The full cold cycle adds two waits: 15 seconds with AC off, then 30 seconds after restoring AC before sending wake packets. If any host still responds to pings, f3sctl refuses to cut mains. It also attempts to restore AC if the job is interrupted during the power-off wait.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/power-sequence.svg'><img alt='Shutdown order, then the optional AC cut and wake steps of a full cold cycle' title='Shutdown order, then the optional AC cut and wake steps of a full cold cycle' src='./f3s-kubernetes-with-freebsd-part-11/power-sequence.svg' /></a><br />
 <br />
 <h2 style='display: inline' id='two-pis-one-job'>Two Pis, one job</h2><br />
 <br />
@@ -196,31 +217,39 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>So clients must match the job ID. An old result from the other Pi doesn&#39;t mean the new job failed, and an empty response doesn&#39;t mean it finished. Every response also has an <span class='inlinecode'>X-F3sctl-Node</span> header to make the serving node visible.</span><br />
 <br />
-<span>Each Pi uses a local lock and checks its peer before starting a power job. This reduces conflicting operations, but it isn&#39;t a distributed lock. I don&#39;t have shared storage independent of the cluster that I&#39;m about to switch off. That limitation is worth keeping explicit.</span><br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/two-pis-one-job.svg'><img alt='A job started on pi0 can be polled through pi1; the client accepts progress only for the matching job ID' title='A job started on pi0 can be polled through pi1; the client accepts progress only for the matching job ID' src='./f3s-kubernetes-with-freebsd-part-11/two-pis-one-job.svg' /></a><br />
 <br />
-<span>The SSH side is deliberately narrow too. The FreeBSD agent accepts five bare verbs: <span class='inlinecode'>probe</span>, <span class='inlinecode'>zusb-status</span>, <span class='inlinecode'>zusb-unload</span>, <span class='inlinecode'>carp-quiesce</span> and <span class='inlinecode'>poweroff</span>. A dedicated account, source-address restrictions, an sshd <span class='inlinecode'>ForceCommand</span> and exact-command <span class='inlinecode'>doas</span> rules limit what the Pi&#39;s key can do. The CGI process itself doesn&#39;t need to run as root.</span><br />
+<span>Each Pi uses a local lock and checks its peer before starting a power job. That reduces conflicts, though it isn&#39;t a distributed lock. I don&#39;t have shared storage that&#39;s independent of the cluster I&#39;m switching off. For my home lab, the peer check is good enough.</span><br />
+<br />
+<span>The SSH side is deliberately narrow too. Normally, an SSH key can give you a shell on the remote machine. The Pis&#39; key can reach only the restricted f3sctl agent.</span><br />
+<br />
+<span>On each FreeBSD host, the <span class='inlinecode'>authorized_keys</span> entry for the agent account accepts the key only from <span class='inlinecode'>pi0</span> and <span class='inlinecode'>pi1</span>. <span class='inlinecode'>ForceCommand</span> in <span class='inlinecode'>sshd_config</span> runs <span class='inlinecode'>f3sctl agent</span> instead of a shell, regardless of the command the Pi asks for.</span><br />
+<br />
+<span>The agent accepts exactly five bare verbs: <span class='inlinecode'>probe</span>, <span class='inlinecode'>zusb-status</span>, <span class='inlinecode'>zusb-unload</span>, <span class='inlinecode'>carp-quiesce</span> and <span class='inlinecode'>poweroff</span>. One word, no arguments, nothing interpolated, nothing that reaches a shell. The verbs that need root re-enter the binary through <span class='inlinecode'>doas</span>, with an exact-command rule per verb rather than a general grant.</span><br />
+<br />
+<span>The agent account is unprivileged. Its <span class='inlinecode'>authorized_keys</span> file lives in a root-owned path outside its home directory, so the account can&#39;t add more keys.</span><br />
+<br />
+<span>On the Pis, the CGI process needs no special privileges: Wake-on-LAN is an unprivileged broadcast, ping comes from the setuid <span class='inlinecode'>ping</span> binary, and SSH uses the restricted identity.</span><br />
 <br />
 <h2 style='display: inline' id='restforge-let-the-api-supply-the-menu'>RESTForge: let the API supply the menu</h2><br />
 <br />
-<span>I don&#39;t always want to type a command. RESTForge is a browser for Siren, a JSON format for hypermedia APIs. “Hypermedia” sounds rather grand, but the idea is familiar from browsing a website: a response contains both information and links or actions I can follow next.</span><br />
+<span>RESTForge lets me use f3sctl without memorising commands. It browses Siren, a JSON format for hypermedia APIs. “Hypermedia” sounds rather grand, but the idea is familiar from browsing a website: a response contains information, plus links and actions I can follow.</span><br />
 <br />
 <a class='textlink' href='https://github.com/kevinswiber/siren'>Siren hypermedia format</a><br />
 <br />
 <span>In Siren, properties describe the current state, sub-entities describe related things, and links lead to other resources. An action describes something I can do: its name and title, the URL to submit to, the HTTP method and any input fields. So the server supplies enough information for RESTForge to draw the menu and submit a request without knowing what a particular button does to my homelab.</span><br />
 <br />
-<span>For f3sctl, the root leads to power control, AC control, Gogios and read-only resources. The API decides which operations to offer in the current state. RESTForge doesn&#39;t need a hard-coded list of f-hosts, shutdown rules or API paths. It knows how to display a Siren document and follow what that document offers.</span><br />
-<br />
-<span>All three RESTForge versions ask for confirmation before sending an action with an unsafe HTTP method, then fetch the document again afterwards. Here, “unsafe” is HTTP terminology for a method that may change state. Long-running operations are watched until the server reports their result. A stale action returning <span class='inlinecode'>409 Conflict</span> causes a refresh, rather than an automatic retry of a power command.</span><br />
+<span>For f3sctl, the root leads to power control, AC control, Gogios and read-only resources. The API decides which operations to offer in the current state. RESTForge doesn&#39;t need a hard-coded list of f-hosts, shutdown rules or API paths. It displays the Siren document and follows what that document offers.</span><br />
 <br />
 <h3 style='display: inline' id='a-second-shelly-plug-no-app-updates'>A second Shelly plug, no app updates</h3><br />
 <br />
 <span>I recently added a second Shelly plug to cut and restore mains power to all the f-hosts. The first plug controls the fans; this one lets me do a full power cycle. That meant adding the plug control and cold-cycle procedure to f3sctl, then exposing the new status, links and actions in its REST responses.</span><br />
 <br />
-<span>I didn&#39;t have to update any of the RESTForge apps. No new terminal-client build, Android APK or Pebble watchapp. When the existing clients fetched the updated Siren documents, they could display the AC controls and the full power-cycle action straight away. The labels and request details came from the server, just like the older controls.</span><br />
+<span>I didn&#39;t have to update any of the RESTForge apps. No new terminal build, Android APK or Pebble watch app. Once they fetched the updated Siren documents, they displayed the AC controls and full power-cycle action. The labels and request details came from the server, just like the older controls.</span><br />
 <br />
 <span>The whole shutdown, AC-off wait, AC restore and wake sequence still runs in f3sctl. RESTForge submits the advertised action and watches the resulting job. It doesn&#39;t need to know that I&#39;ve added another plug, which hosts that plug powers, or how long their power supplies need to drain.</span><br />
 <br />
-<span>That&#39;s the useful part of Siren for me: I can add homelab functionality on the server without maintaining the same feature in three different user interfaces. As long as the addition uses the Siren fields and job behaviour the clients already support, it is new data to browse. A new kind of interaction outside that contract would still need client work.</span><br />
+<span>That&#39;s the useful part of Siren for me: I can add features on the server without updating three clients. This works as long as the new feature uses Siren fields and job behaviour the clients already understand. A new kind of interaction would still need client changes.</span><br />
 <br />
 <h3 style='display: inline' id='the-same-api-on-three-screens'>The same API on three screens</h3><br />
 <br />
@@ -263,7 +292,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h3 style='display: inline' id='from-a-pebble-os-watch'>From a Pebble OS watch</h3><br />
 <br />
-<span>And then there is the smallest client: the RESTForge Pebble OS watchapp. It targets the Pebble Time 2 and Pebble Round 2. The same API menu fits on the watch, with physical buttons for moving between rows and selecting an entry. A long press on Select refreshes the document.</span><br />
+<span>And then there is the smallest client: the RESTForge Pebble OS watch app. It targets the Pebble Time 2 and Pebble Round 2. The same API menu fits on the watch, with physical buttons for moving between rows and selecting an entry. A long press on Select refreshes the document.</span><br />
 <br />
 <a href='./f3s-kubernetes-with-freebsd-part-11/restforge-pebble-round-row.svg'><img alt='Pebble Round 2: the f3sctl rack control menu and host status (left to right)' title='Pebble Round 2: the f3sctl rack control menu and host status (left to right)' src='./f3s-kubernetes-with-freebsd-part-11/restforge-pebble-round-row.svg' /></a><br />
 <a href='./f3s-kubernetes-with-freebsd-part-11/restforge-pebble-time-row.svg'><img alt='Pebble Time 2: f3sctl menu, power-off action before confirmation, and pantry demo job progress (left to right)' title='Pebble Time 2: f3sctl menu, power-off action before confirmation, and pantry demo job progress (left to right)' src='./f3s-kubernetes-with-freebsd-part-11/restforge-pebble-time-row.svg' /></a><br />
@@ -277,16 +306,11 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <h2 style='display: inline' id='a-remote-control-that-survives-the-shutdown'>A remote control that survives the shutdown</h2><br />
 <br />
-<span>The part I care about most is the two little NetBSD Pis staying available when the larger machines are off. The CLI, phone app and watch are different ways of reaching them. The ordering of the actual work stays in f3sctl, close to the hosts and plugs it controls.</span><br />
-<br />
-<span>A watch button is a funny place for a FreeBSD shutdown to begin. Underneath, it still has to wait for the guests, storage and hosts to finish in the right order. That is where most of the work went.</span><br />
-<br />
-<span>Read the previous post of this series:</span><br />
-<br />
-<a class='textlink' href='./2026-09-01-f3s-kubernetes-with-freebsd-part-10.html'>f3s: Kubernetes with FreeBSD - Part 10: A New Home</a><br />
+<span>A watch button is a funny place for a FreeBSD shutdown to begin. The request still goes through the always-on Pis, and f3sctl waits for the guests, storage and hosts in the right order. That&#39;s where most of the work went.</span><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
+<a class='textlink' href='./2026-11-01-f3s-kubernetes-with-freebsd-part-11.html'>2026-11-01 f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl and RESTForge (You are currently reading this)</a><br />
 <a class='textlink' href='./2026-09-01-f3s-kubernetes-with-freebsd-part-10.html'>2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home</a><br />
 <a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
