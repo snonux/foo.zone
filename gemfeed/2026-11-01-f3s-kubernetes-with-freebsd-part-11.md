@@ -44,7 +44,6 @@ Turning the cluster off is mostly straightforward. Getting it back on while I'm 
 * [⇢ ⇢ ⇢ In the terminal](#in-the-terminal)
 * [⇢ ⇢ ⇢ On Android](#on-android)
 * [⇢ ⇢ ⇢ From a Pebble OS watch](#from-a-pebble-os-watch)
-* [⇢ ⇢ A remote control that survives the shutdown](#a-remote-control-that-survives-the-shutdown)
 
 ## Something has to stay on
 
@@ -265,8 +264,6 @@ Backend configuration lives in the Pebble phone app's settings for RESTForge. Po
 
 [RESTForge Pebble OS app](https://github.com/snonux/restforge/tree/main/pebble)  
 [RESTForge in the Pebble Appstore](https://apps.repebble.com/restforge_931683527605431e96bf2772)  
-
-## A remote control that survives the shutdown
 
 A watch button is a funny place for a FreeBSD shutdown to begin. The request still goes through the always-on Pis, and f3sctl waits for the guests, storage and hosts in the right order. That's where most of the work went.
 
