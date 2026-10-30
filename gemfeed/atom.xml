@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-10-30T09:33:28+02:00</updated>
+    <updated>2026-10-30T11:13:16+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="https://foo.zone/gemfeed/atom.xml" rel="self" />
@@ -65,7 +65,6 @@
 <li>⇢ ⇢ <a href='#in-the-terminal'>In the terminal</a></li>
 <li>⇢ ⇢ <a href='#on-android'>On Android</a></li>
 <li>⇢ ⇢ <a href='#from-a-pebble-os-watch'>From a Pebble OS watch</a></li>
-<li>⇢ <a href='#a-remote-control-that-survives-the-shutdown'>A remote control that survives the shutdown</a></li>
 </ul><br />
 <h2 style='display: inline' id='something-has-to-stay-on'>Something has to stay on</h2><br />
 <br />
@@ -299,8 +298,6 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='https://github.com/snonux/restforge/tree/main/pebble'>RESTForge Pebble OS app</a><br />
 <a class='textlink' href='https://apps.repebble.com/restforge_931683527605431e96bf2772'>RESTForge in the Pebble Appstore</a><br />
-<br />
-<h2 style='display: inline' id='a-remote-control-that-survives-the-shutdown'>A remote control that survives the shutdown</h2><br />
 <br />
 <span>A watch button is a funny place for a FreeBSD shutdown to begin. The request still goes through the always-on Pis, and f3sctl waits for the guests, storage and hosts in the right order. That&#39;s where most of the work went.</span><br />
 <br />
