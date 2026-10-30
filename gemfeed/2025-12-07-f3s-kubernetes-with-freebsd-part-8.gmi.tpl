@@ -892,6 +892,10 @@ All configuration files are available on GitHub:
 => https://github.com/snonux/conf/tree/master/f3s/prometheus Prometheus, Grafana, and recording rules configuration
 => https://github.com/snonux/conf/tree/master/f3s/loki Loki and Alloy configuration
 
+Read the next post of this series:
+
+=> ./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.gmi f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo
+
 Other *BSD-related posts:
 
 << template::inline::rindex bsd

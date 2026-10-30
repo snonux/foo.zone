@@ -447,6 +447,10 @@ All config files are on GitHub:
 => https://github.com/snonux/conf/tree/master/f3s/loki Alloy configuration (updated for traces)
 => https://github.com/snonux/conf/tree/master/f3s/tracing-demo Demo tracing application
 
+Read the next post of this series:
+
+=> ./2026-04-02-f3s-kubernetes-with-freebsd-part-9.gmi f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD
+
 Other *BSD-related posts:
 
 << template::inline::rindex bsd

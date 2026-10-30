@@ -1,11 +1,335 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <updated>2026-10-29T08:30:17+02:00</updated>
+    <updated>2026-10-30T08:47:25+02:00</updated>
     <title>foo.zone feed</title>
     <subtitle>To be in the .zone!</subtitle>
     <link href="gemini://foo.zone/gemfeed/atom.xml" rel="self" />
     <link href="gemini://foo.zone/" />
     <id>gemini://foo.zone/</id>
+    <entry>
+        <title>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl</title>
+        <link href="gemini://foo.zone/gemfeed/2026-11-01-f3s-kubernetes-with-freebsd-part-11.gmi" />
+        <id>gemini://foo.zone/gemfeed/2026-11-01-f3s-kubernetes-with-freebsd-part-11.gmi</id>
+        <updated>2026-11-01T00:00:00+02:00</updated>
+        <author>
+            <name>Paul Buetow aka snonux</name>
+            <email>paul@dev.buetow.org</email>
+        </author>
+        <summary>This is the 11th post in the f3s series about my self-hosting home lab. f3s? The 'f' stands for FreeBSD, and the '3s' stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.</summary>
+        <content type="xhtml">
+            <div xmlns="http://www.w3.org/1999/xhtml">
+                <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-11-remote-control-with-f3sctl'>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl</h1><br />
+<br />
+<span class='quote'>Published at 2026-11-01T00:00:00+02:00</span><br />
+<br />
+<span>This is the 11th post in the f3s series about my self-hosting home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution I use on FreeBSD-based physical machines.</span><br />
+<br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
+<a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2026-09-01-f3s-kubernetes-with-freebsd-part-10.html'>2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png'><img alt='f3s logo' title='f3s logo' src='./f3s-kubernetes-with-freebsd-part-1/f3slogo.png' /></a><br />
+<br />
+<span>Some home labs run 24/7. Mine doesn&#39;t. Power draw, fan noise and hardware wear aren&#39;t worth it for machines that mostly don&#39;t serve anything what I don&#39;t use at the moment, so the f-hosts stay off unless I actually need the cluster. It runs on demand: wake it when I need it, shut it down when I&#39;m done.</span><br />
+<br />
+<span>Turning the cluster off is easy. Getting it back on while I&#39;m away from home needs a little more thought. This part of my f3s series is about <span class='inlinecode'>f3sctl</span>, the tool I created to control the hosts, their power plugs and monitoring from my laptop, phone, and even a Pebble watch.</span><br />
+<br />
+<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
+<br />
+<ul>
+<li><a href='#f3s-kubernetes-with-freebsd---part-11-remote-control-with-f3sctl'>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl</a></li>
+<li>⇢ <a href='#something-has-to-stay-on'>Something has to stay on</a></li>
+<li>⇢ <a href='#from-the-internet-to-the-rack'>From the internet to the rack</a></li>
+<li>⇢ <a href='#commands-from-earth'>Commands from earth</a></li>
+<li>⇢ <a href='#what-it-can-control-now'>What it can control now</a></li>
+<li>⇢ ⇢ <a href='#hosts-and-guests'>Hosts and guests</a></li>
+<li>⇢ ⇢ <a href='#fans'>Fans</a></li>
+<li>⇢ ⇢ <a href='#mains-power'>Mains power</a></li>
+<li>⇢ ⇢ <a href='#monitoring-mute'>Monitoring mute</a></li>
+<li>⇢ ⇢ <a href='#monitoring-reports'>Monitoring reports</a></li>
+<li>⇢ ⇢ <a href='#jobs-and-api-discovery'>Jobs and API discovery</a></li>
+<li>⇢ <a href='#switching-off-in-the-right-order'>Switching off in the right order</a></li>
+<li>⇢ <a href='#two-pis-one-job'>Two Pis, one job</a></li>
+<li>⇢ <a href='#restforge-let-the-api-supply-the-menu'>RESTForge: let the API supply the menu</a></li>
+<li>⇢ ⇢ <a href='#a-second-shelly-plug-no-app-updates'>A second Shelly plug, no app updates</a></li>
+<li>⇢ ⇢ <a href='#the-same-api-on-three-screens'>The same API on three screens</a></li>
+<li>⇢ ⇢ <a href='#in-the-terminal'>In the terminal</a></li>
+<li>⇢ ⇢ <a href='#on-android'>On Android</a></li>
+<li>⇢ ⇢ <a href='#from-a-pebble-os-watch'>From a Pebble OS watch</a></li>
+<li>⇢ <a href='#a-remote-control-that-survives-the-shutdown'>A remote control that survives the shutdown</a></li>
+</ul><br />
+<h2 style='display: inline' id='something-has-to-stay-on'>Something has to stay on</h2><br />
+<br />
+<span>For anyone joining here: f3s stands for FreeBSD and k3s. My three FreeBSD mini-PCs, <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, each run a Rocky Linux virtual machine under bhyve. Those guests, <span class='inlinecode'>r0</span> through <span class='inlinecode'>r2</span>, form the Kubernetes cluster. A fourth FreeBSD host, <span class='inlinecode'>f3</span>, runs a separate Rocky Linux VM and isn&#39;t part of k3s.</span><br />
+<br />
+<span>The remote control can&#39;t live only inside that cluster. Otherwise, after switching it off, I&#39;d have switched off the thing needed to wake it again. So the control service runs on <span class='inlinecode'>pi0</span> and <span class='inlinecode'>pi1</span>, my two always-on Raspberry Pis running NetBSD. They already serve static sites with bozohttpd, NetBSD&#39;s small web server. It can run CGI programs too, which is all f3sctl needs.</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/f3sctl'>f3sctl source code</a><br />
+<br />
+<span>On the other side is <span class='inlinecode'>earth</span>, my main Fedora laptop. I can use the f3sctl command-line interface there, or browse the same API with RESTForge. RESTForge also has Android and Pebble OS apps. More on those below.</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/restforge'>RESTForge source code</a><br />
+<br />
+<h2 style='display: inline' id='from-the-internet-to-the-rack'>From the internet to the rack</h2><br />
+<br />
+<span>The public entry point is <span class='inlinecode'>https://f3s.foo.zone/cgi-bin/f3sctl/</span>. My two OpenBSD gateways, <span class='inlinecode'>fishfinger</span> and <span class='inlinecode'>blowfish</span>, run relayd. Either gateway can forward requests over WireGuard to the NetBSD Pis, with relayd balancing requests between <span class='inlinecode'>pi0</span> and <span class='inlinecode'>pi1</span>.</span><br />
+<br />
+<a class='textlink' href='https://man.openbsd.org/relayd'>relayd manual</a><br />
+<a class='textlink' href='https://www.wireguard.com/'>WireGuard</a><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/setup.svg'><img alt='Remote control: laptop, Android and Pebble through the OpenBSD gateways to the always-on NetBSD Pis' title='Remote control: laptop, Android and Pebble through the OpenBSD gateways to the always-on NetBSD Pis' src='./f3s-kubernetes-with-freebsd-part-11/setup.svg' /></a><br />
+<br />
+<span>HTTPS terminates at the gateways; the HTTP connection to the Pis travels inside WireGuard. The Pi receiving the request runs f3sctl as a CGI program under bozohttpd. For a longer operation, it starts a detached job and returns a job ID. The client can then follow progress without holding the original request open for the whole shutdown.</span><br />
+<br />
+<span>From the Pis, Wake-on-LAN packets wake the FreeBSD hosts, restricted SSH commands shut them down, and HTTP requests control the Shelly plugs. One plug powers the rack fans for <span class='inlinecode'>f0</span> through <span class='inlinecode'>f2</span>; another controls mains power for <span class='inlinecode'>f0</span> through <span class='inlinecode'>f3</span> and their JetKVMs. All three power branches come from the UPS. The Pis have an unswitched branch, so f3sctl never switches them off.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/power-lines.svg'><img alt='UPS-backed power: unswitched Pis, fans through Shelly 1, and f-hosts plus JetKVMs through Shelly 2' title='UPS-backed power: unswitched Pis, fans through Shelly 1, and f-hosts plus JetKVMs through Shelly 2' src='./f3s-kubernetes-with-freebsd-part-11/power-lines.svg' /></a><br />
+<br />
+<span>A Shelly plug, for anyone who hasn&#39;t held one, is a smart socket: a relay and a small Wi-Fi server in a plug housing. It gets an IP on my LAN and answers a little HTTP RPC API. A call to <span class='inlinecode'>Switch.Set?id=0&amp;on=true</span> closes the relay and switches on whatever is plugged in, <span class='inlinecode'>Switch.GetStatus</span> reads the state back. Both calls need HTTP digest auth with the plug&#39;s admin password, which f3sctl reads from a protected file. The relay is slow to actually flip, so after every <span class='inlinecode'>Switch.Set</span> f3sctl reads the state back rather than trusting the acknowledgement. All of that happens on the LAN, no cloud in between.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/shelly-plug.jpg'><img alt='The Shelly Plug M Gen3' title='The Shelly Plug M Gen3' src='./f3s-kubernetes-with-freebsd-part-11/shelly-plug.jpg' /></a><br />
+<br />
+<span>The fan plug already showed up in Part 10, where a shell script on the Pis flipped the fans with a single HTTP request. f3sctl took over that job and later added the second plug for mains AC.</span><br />
+<br />
+<a class='textlink' href='./2026-09-01-f3s-kubernetes-with-freebsd-part-10.html'>f3s: Kubernetes with FreeBSD - Part 10: A New Home</a><br />
+<br />
+<span>There are three modes in the same Go program: the CLI on earth, CGI on the Pis, and a restricted agent on the FreeBSD hosts. The OpenBSD gateways don&#39;t need the f3sctl binary. Apart from forwarding requests, they have a small forced-command script for setting and clearing the Gogios monitoring mute marker.</span><br />
+<br />
+<h2 style='display: inline' id='commands-from-earth'>Commands from earth</h2><br />
+<br />
+<span>The old <span class='inlinecode'>wol-f3s</span> shell script grew into f3sctl. The basic commands are still short. These examples assume the API URL and key are configured; they show commands to run, not a captured shutdown session:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><span style="color: #25231f">f3sctl --remote power status</span>
+<span style="color: #25231f">f3sctl --remote power on</span>
+<span style="color: #25231f">f3sctl --remote power off</span>
+</pre>
+<br />
+<span><span class='inlinecode'>--remote</span> matters when I&#39;m away from home. A Wake-on-LAN magic packet is a local broadcast; it doesn&#39;t magically cross the internet just because I have a WireGuard tunnel. With remote mode, a Pi sends it on the home LAN instead.</span><br />
+<br />
+<span>Shutdowns already go through the API by default, even when invoked from a Pi. Only the Pis hold the restricted SSH identity accepted for these operations. Waking, probing and plug control can run locally, which also leaves a way to wake the hosts from the LAN if the API is unavailable. <span class='inlinecode'>--local</span> explicitly selects that path, but it still needs the appropriate connectivity and credentials.</span><br />
+<br />
+<span>On earth, the per-user configuration is <span class='inlinecode'>~/.config/f3sctl.json</span>. For example, with the key stored separately in a private file:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><span style="color: #765924">{</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">api_url</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">https://f3s.buetow.org/cgi-bin/f3sctl/</span><span style="color: #25231f">"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">api_key_file</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">/home/paul/.config/f3sctl/apikey</span><span style="color: #25231f">"</span>
+<span style="color: #765924">}</span>
+</pre>
+<br />
+<span>The API key travels in the <span class='inlinecode'>X-API-Key</span> header. Putting it in the URL would also put it in access logs, so the API doesn&#39;t accept that. Each client can have its own key; both Pis must accept the same set because either one may receive a request.</span><br />
+<br />
+<span>On the Pis, the accepted keys live in a plain text file, one key per line, with <span class='inlinecode'>#</span> comments labelling which client is which. The CGI re-reads that file on every request, so issuing or revoking a key takes effect immediately, with no restart. A revoked client just gets the same <span class='inlinecode'>401</span> as a wrong key; the API deliberately can&#39;t tell the difference. And if the file ever ends up empty, the API refuses everything rather than falling back to no authentication at all. That&#39;s the safe direction to fail. The comparison itself is constant-time, so a key can&#39;t be guessed a byte at a time.</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/f3sctl/blob/main/docs/API-KEYS.md'>The full key management runbook</a><br />
+<br />
+<span>For troubleshooting, <span class='inlinecode'>f3sctl -v power status</span> traces the HTTP calls, their duration and which Pi answered. The verbose flag also selects remote mode. This is useful when two consecutive requests land on different Pis.</span><br />
+<br />
+<h2 style='display: inline' id='what-it-can-control-now'>What it can control now</h2><br />
+<br />
+<span>The current command set has six groups. The storage work described later is part of the shutdown procedure, rather than a separate storage administration interface.</span><br />
+<br />
+<h3 style='display: inline' id='hosts-and-guests'>Hosts and guests</h3><br />
+<br />
+<ul>
+<li><span class='inlinecode'>power status</span> probes the FreeBSD hosts and the k3s nodes.</li>
+<li><span class='inlinecode'>power on</span> and <span class='inlinecode'>power off</span> operate on <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> and <span class='inlinecode'>f2</span>, with the rack fan and monitoring handling included.</li>
+<li><span class='inlinecode'>power all on</span> and <span class='inlinecode'>power all off</span> include the standalone <span class='inlinecode'>f3</span> host too.</li>
+<li><span class='inlinecode'>power f0 on</span> and <span class='inlinecode'>power f0 off</span> target one host. The same works for <span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span> and <span class='inlinecode'>f3</span>.</li>
+<li><span class='inlinecode'>power all cycle</span> shuts down all four hosts, cuts mains AC, restores it and wakes them again.</li>
+</ul><br />
+<span>A single-host shutdown leaves the fans and Gogios mute alone. It stops that host&#39;s guests as part of shutting the host down; there isn&#39;t a separate command here to start or stop an arbitrary VM or Kubernetes deployment.</span><br />
+<br />
+<h3 style='display: inline' id='fans'>Fans</h3><br />
+<br />
+<span><span class='inlinecode'>fans status</span>, <span class='inlinecode'>fans on</span> and <span class='inlinecode'>fans off</span> control the fan plug. Switching the fans off is guarded while any of <span class='inlinecode'>f0</span>, <span class='inlinecode'>f1</span> or <span class='inlinecode'>f2</span> may still be running, or while a power job is in flight. <span class='inlinecode'>f3</span> sits separately and isn&#39;t cooled by these fans, so it doesn&#39;t keep them on.</span><br />
+<br />
+<h3 style='display: inline' id='mains-power'>Mains power</h3><br />
+<br />
+<span><span class='inlinecode'>ac status</span>, <span class='inlinecode'>ac on</span> and <span class='inlinecode'>ac off</span> control the f-host mains plug. This is separate from asking an operating system to shut down. Cutting AC is guarded while any f-host may be up, or while a power job is running.</span><br />
+<br />
+<span>Both plug-off commands have an explicit <span class='inlinecode'>--force</span> override. Switching a plug on remains available without the job guard, so a stale job record doesn&#39;t prevent restoring power or cooling.</span><br />
+<br />
+<h3 style='display: inline' id='monitoring-mute'>Monitoring mute</h3><br />
+<br />
+<span><span class='inlinecode'>monitoring status</span>, <span class='inlinecode'>monitoring mute</span> and <span class='inlinecode'>monitoring unmute</span> report or change the Gogios alerting mute. A planned shutdown shouldn&#39;t page me about the hosts I just switched off! The explicit unmute command is also handy if an interrupted local wake left monitoring muted.</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/gogios'>Gogios</a><br />
+<br />
+<h3 style='display: inline' id='monitoring-reports'>Monitoring reports</h3><br />
+<br />
+<span><span class='inlinecode'>gogios</span> (or <span class='inlinecode'>gogios status</span>) shows the report overview. I can drill into <span class='inlinecode'>critical</span>, <span class='inlinecode'>warning</span>, <span class='inlinecode'>unknown</span>, <span class='inlinecode'>stale</span>, <span class='inlinecode'>suppressed</span> and <span class='inlinecode'>ok</span>, then ask for a check&#39;s full detail:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><span style="color: #25231f">f3sctl --remote gogios critical</span>
+<span style="color: #25231f">f3sctl --remote gogios detail </span><span style="color: #3e5d36">'name of a check from the report'</span>
+<span style="color: #25231f">f3sctl --remote gogios cache clear</span>
+</pre>
+<br />
+<span>The last command clears the report cache so the next read fetches it again. These reports and the mute controls are also browsable through the API.</span><br />
+<br />
+<h3 style='display: inline' id='jobs-and-api-discovery'>Jobs and API discovery</h3><br />
+<br />
+<span>The API exposes the current or last power job, including its ID, progress and outcome. It also exposes the host and plug status, the monitoring reports, and an OpenAPI description. RESTForge follows those links to display them. <span class='inlinecode'>version</span> prints the CLI version, while the API root reports its version and serving node too.</span><br />
+<br />
+<h2 style='display: inline' id='switching-off-in-the-right-order'>Switching off in the right order</h2><br />
+<br />
+<span>The interesting part of <span class='inlinecode'>power off</span> is what happens before the hosts disappear. Kubernetes uses storage exported by the FreeBSD machines, so shutting them down in an arbitrary order is asking for stuck NFS clients.</span><br />
+<br />
+<span>The shutdown procedure first checks local NFS mounts and unmounts them, refusing to continue if they are stuck. It then unloads the removable <span class='inlinecode'>zusb</span> backup pool wherever it is imported, allowing its snapshot, clean export and disk spin-down to finish before losing power. Gogios gets muted before the hosts go away.</span><br />
+<br />
+<span>Next comes the storage failover pair. CARP is the mechanism that lets <span class='inlinecode'>f0</span> and <span class='inlinecode'>f1</span> share a virtual IP address for storage. During shutdown, f3sctl stops <span class='inlinecode'>devd</span> and <span class='inlinecode'>cron</span> on that pair so a failover or scheduled failback doesn&#39;t start storage services on a host that is itself going down. NFS stays available while the guests still need it.</span><br />
+<br />
+<span>The other selected hosts then shut down in parallel, with the configured storage master last. In my inventory that is <span class='inlinecode'>f0</span>. If quiescing the failover daemons fails, f3sctl falls back to a sequential shutdown. Guest shutdown has a bounded wait so it doesn&#39;t overrun the FreeBSD host&#39;s shutdown watchdog.</span><br />
+<br />
+<span>Finally, f3sctl checks that the hosts stopped answering, and only switches off the rack fans once <span class='inlinecode'>f0</span> through <span class='inlinecode'>f2</span> are down. A timing summary in the job log shows where the time went. Network silence is the check available here; it isn&#39;t a physical power sensor.</span><br />
+<br />
+<span>Waking does the reverse where needed: fans on, magic packets sent, then a wait for <span class='inlinecode'>r0</span>, <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span> to answer before unmuting Gogios. While waiting, magic packets are sent again every two minutes. If a node never comes back before the timeout, monitoring is unmuted anyway and the wake reports a failure. Otherwise the broken host would remain conveniently hidden behind the mute.</span><br />
+<br />
+<span>The full cold cycle adds two waits: 15 seconds with AC off, then 30 seconds after restoring AC before sending wake packets. It refuses to cut mains if shutdown hasn&#39;t completed. It also attempts to restore AC if the job is interrupted during the power-off wait. None of that helps if the Pi itself loses power, which is another reason to keep the control machines on a separate supply.</span><br />
+<br />
+<h2 style='display: inline' id='two-pis-one-job'>Two Pis, one job</h2><br />
+<br />
+<span>There is a small complication with load balancing. A job can start on <span class='inlinecode'>pi0</span>, while the next status request lands on <span class='inlinecode'>pi1</span>. Host status describes the same physical machines from either Pi, but job state belongs to the Pi that ran the job.</span><br />
+<br />
+<span>So clients must match the job ID. An old result from the other Pi doesn&#39;t mean the new job failed, and an empty response doesn&#39;t mean it finished. Every response also has an <span class='inlinecode'>X-F3sctl-Node</span> header to make the serving node visible.</span><br />
+<br />
+<span>Each Pi uses a local lock and checks its peer before starting a power job. This reduces conflicting operations, but it isn&#39;t a distributed lock. I don&#39;t have shared storage independent of the cluster that I&#39;m about to switch off. That limitation is worth keeping explicit.</span><br />
+<br />
+<span>The SSH side is deliberately narrow too. Normally, an SSH key lets you run anything on the remote machine. Here, the key the Pis hold can do exactly one thing.</span><br />
+<br />
+<span>On each FreeBSD host, the <span class='inlinecode'>authorized_keys</span> entry for the agent account is restricted to the source addresses of <span class='inlinecode'>pi0</span> and <span class='inlinecode'>pi1</span>, so the key is worthless from anywhere else. <span class='inlinecode'>ForceCommand</span> in <span class='inlinecode'>sshd_config</span> then overrides whatever command the client asks for: no matter what the Pi sends, sshd runs <span class='inlinecode'>f3sctl agent</span> instead of a shell. The agent accepts exactly five bare verbs: <span class='inlinecode'>probe</span>, <span class='inlinecode'>zusb-status</span>, <span class='inlinecode'>zusb-unload</span>, <span class='inlinecode'>carp-quiesce</span> and <span class='inlinecode'>poweroff</span>. One word, no arguments, nothing interpolated, nothing that reaches a shell. The verbs that need root re-enter the binary through <span class='inlinecode'>doas</span>, with an exact-command rule per verb rather than a general grant.</span><br />
+<br />
+<span>The agent account itself is unprivileged, and its <span class='inlinecode'>authorized_keys</span> file lives in a root-owned path outside its home directory, so the account can&#39;t re-authorise itself with more keys. And on the Pis, the CGI process needs no privilege at all: Wake-on-LAN is an unprivileged broadcast, ping comes from the setuid <span class='inlinecode'>ping</span> binary, and the SSH calls use that one explicit identity.</span><br />
+<br />
+<h2 style='display: inline' id='restforge-let-the-api-supply-the-menu'>RESTForge: let the API supply the menu</h2><br />
+<br />
+<span>I don&#39;t always want to type a command. RESTForge is a browser for Siren, a JSON format for hypermedia APIs. “Hypermedia” sounds rather grand, but the idea is familiar from browsing a website: a response contains both information and links or actions I can follow next.</span><br />
+<br />
+<a class='textlink' href='https://github.com/kevinswiber/siren'>Siren hypermedia format</a><br />
+<br />
+<span>In Siren, properties describe the current state, sub-entities describe related things, and links lead to other resources. An action describes something I can do: its name and title, the URL to submit to, the HTTP method and any input fields. So the server supplies enough information for RESTForge to draw the menu and submit a request without knowing what a particular button does to my homelab.</span><br />
+<br />
+<span>For f3sctl, the root leads to power control, AC control, Gogios and read-only resources. The API decides which operations to offer in the current state. RESTForge doesn&#39;t need a hard-coded list of f-hosts, shutdown rules or API paths. It knows how to display a Siren document and follow what that document offers.</span><br />
+<br />
+<span>All three RESTForge versions ask for confirmation before sending an action with an unsafe HTTP method, then fetch the document again afterwards. Here, “unsafe” is HTTP terminology for a method that may change state. Long-running operations are watched until the server reports their result. A stale action returning <span class='inlinecode'>409 Conflict</span> causes a refresh, rather than an automatic retry of a power command.</span><br />
+<br />
+<h3 style='display: inline' id='a-second-shelly-plug-no-app-updates'>A second Shelly plug, no app updates</h3><br />
+<br />
+<span>I recently added a second Shelly plug to cut and restore mains power to all the f-hosts. The first plug controls the fans; this one lets me do a full power cycle. That meant adding the plug control and cold-cycle procedure to f3sctl, then exposing the new status, links and actions in its REST responses.</span><br />
+<br />
+<span>I didn&#39;t have to update any of the RESTForge apps. No new terminal-client build, Android APK or Pebble watchapp. When the existing clients fetched the updated Siren documents, they could display the AC controls and the full power-cycle action straight away. The labels and request details came from the server, just like the older controls.</span><br />
+<br />
+<span>The whole shutdown, AC-off wait, AC restore and wake sequence still runs in f3sctl. RESTForge submits the advertised action and watches the resulting job. It doesn&#39;t need to know that I&#39;ve added another plug, which hosts that plug powers, or how long their power supplies need to drain.</span><br />
+<br />
+<span>That&#39;s the useful part of Siren for me: I can add homelab functionality on the server without maintaining the same feature in three different user interfaces. As long as the addition uses the Siren fields and job behaviour the clients already support, it is new data to browse. A new kind of interaction outside that contract would still need client work.</span><br />
+<br />
+<h3 style='display: inline' id='the-same-api-on-three-screens'>The same API on three screens</h3><br />
+<br />
+<span>The terminal screenshots below come from RESTForge&#39;s repository and use its “pantry” demo API, with shelves and a kettle instead of servers and power plugs. The Android screenshots were captured in an emulator connected to my real f3sctl backend. The watch section also includes actual f3sctl screens, plus a labelled demo of job progress.</span><br />
+<br />
+<h3 style='display: inline' id='in-the-terminal'>In the terminal</h3><br />
+<br />
+<span>Running <span class='inlinecode'>restforge</span> opens the terminal user interface, or TUI. It has a backend picker, browsable documents, confirmation prompts, settings and saved shortcuts. Arrow keys or vi-style keys move through the rows, and <span class='inlinecode'>/</span> filters the list.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/restforge-tui-document.png'><img alt='RESTForge TUI: properties and links from the pantry demo API' title='RESTForge TUI: properties and links from the pantry demo API' src='./f3s-kubernetes-with-freebsd-part-11/restforge-tui-document.png' /></a><br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/restforge-tui-entities.png'><img alt='RESTForge TUI: embedded and linked shelf entities from the same demo' title='RESTForge TUI: embedded and linked shelf entities from the same demo' src='./f3s-kubernetes-with-freebsd-part-11/restforge-tui-entities.png' /></a><br />
+<br />
+<span>These two frames come from the repository&#39;s terminal recording. On earth, I can configure an <span class='inlinecode'>f3s</span> backend with the public API base URL, <span class='inlinecode'>X-API-Key</span> as the auth header, and my client key. Then I browse power control and monitoring in the same way.</span><br />
+<br />
+<span>There are one-shot commands as well. After configuring that backend, these are read-only examples:</span><br />
+<br />
+<!-- Generator: GNU source-highlight 3.1.9
+by Lorenzo Bettini
+http://www.lorenzobettini.it
+http://www.gnu.org/software/src-highlite -->
+<pre><span style="color: #25231f">restforge --backend f3s get</span>
+<span style="color: #25231f">restforge --backend f3s get --rel power</span>
+<span style="color: #25231f">restforge --backend f3s get --output json</span>
+</pre>
+<br />
+<span><span class='inlinecode'>restforge act</span> invokes a server-advertised action, with <span class='inlinecode'>--yes</span> providing confirmation for a state-changing request. For scripting a known homelab operation I can keep using f3sctl; for exploring what an API currently offers, RESTForge gives me a menu.</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/restforge/tree/main/cli'>RESTForge terminal client and usage</a><br />
+<br />
+<h3 style='display: inline' id='on-android'>On Android</h3><br />
+<br />
+<span>The Android version is written in Flutter. I add the backend URL and key in its settings, then tap through properties, links and actions. The app uses secure storage for the secret. The terminal version instead keeps it in its private TOML configuration file.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/restforge-android-row.svg'><img alt='RESTForge on Android, connected to the live f3sctl backend: host power and full power-cycle actions on the left, fan and mains AC controls on the right' title='RESTForge on Android, connected to the live f3sctl backend: host power and full power-cycle actions on the left, fan and mains AC controls on the right' src='./f3s-kubernetes-with-freebsd-part-11/restforge-android-row.svg' /></a><br />
+<br />
+<span>Here the app is showing the real host power and AC menus, including the full power-cycle action added for the second Shelly plug. These captures only browse the available controls; no power action was submitted to take them. Selecting an action opens its confirmation prompt. Once confirmed, the app follows the job and refreshes the document to find out what changed.</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/restforge/tree/main/flutter'>RESTForge Android app</a><br />
+<a class='textlink' href='https://github.com/snonux/fdroid'>My F-Droid repository, including RESTForge</a><br />
+<br />
+<h3 style='display: inline' id='from-a-pebble-os-watch'>From a Pebble OS watch</h3><br />
+<br />
+<span>And then there is the smallest client: the RESTForge Pebble OS watchapp. It targets the Pebble Time 2 and Pebble Round 2. The same API menu fits on the watch, with physical buttons for moving between rows and selecting an entry. A long press on Select refreshes the document.</span><br />
+<br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/restforge-pebble-round-row.svg'><img alt='Pebble Round 2: the f3sctl rack control menu and host status (left to right)' title='Pebble Round 2: the f3sctl rack control menu and host status (left to right)' src='./f3s-kubernetes-with-freebsd-part-11/restforge-pebble-round-row.svg' /></a><br />
+<a href='./f3s-kubernetes-with-freebsd-part-11/restforge-pebble-time-row.svg'><img alt='Pebble Time 2: f3sctl menu, power-off action before confirmation, and pantry demo job progress (left to right)' title='Pebble Time 2: f3sctl menu, power-off action before confirmation, and pantry demo job progress (left to right)' src='./f3s-kubernetes-with-freebsd-part-11/restforge-pebble-time-row.svg' /></a><br />
+<br />
+<span>The watch doesn&#39;t make the HTTP requests itself. PebbleKit JavaScript in the phone companion handles requests, navigation, API parsing and job polling. It sends rendered text to the watch; the watch sends back which row I pressed. The API key and URLs stay on the phone.</span><br />
+<br />
+<span>Backend configuration lives in the Pebble phone app&#39;s settings for RESTForge. Pointing it at f3sctl therefore gives the watch the same power and monitoring menus without teaching the watch anything about FreeBSD or Kubernetes. The phone needs to be connected for this to work; the standalone RESTForge Android app isn&#39;t the bridge used by the watch.</span><br />
+<br />
+<a class='textlink' href='https://github.com/snonux/restforge/tree/main/pebble'>RESTForge Pebble OS app</a><br />
+<a class='textlink' href='https://apps.repebble.com/restforge_931683527605431e96bf2772'>RESTForge in the Pebble Appstore</a><br />
+<br />
+<h2 style='display: inline' id='a-remote-control-that-survives-the-shutdown'>A remote control that survives the shutdown</h2><br />
+<br />
+<span>The part I care about most is the two little NetBSD Pis staying available when the larger machines are off. The CLI, phone app and watch are different ways of reaching them. The ordering of the actual work stays in f3sctl, close to the hosts and plugs it controls.</span><br />
+<br />
+<span>A watch button is a funny place for a FreeBSD shutdown to begin. Underneath, it still has to wait for the guests, storage and hosts to finish in the right order. That is where most of the work went.</span><br />
+<br />
+<span>Read the previous post of this series:</span><br />
+<br />
+<a class='textlink' href='./2026-09-01-f3s-kubernetes-with-freebsd-part-10.html'>f3s: Kubernetes with FreeBSD - Part 10: A New Home</a><br />
+<br />
+<span>Other *BSD-related posts:</span><br />
+<br />
+<a class='textlink' href='./2026-09-01-f3s-kubernetes-with-freebsd-part-10.html'>2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home</a><br />
+<a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
+<a class='textlink' href='./2025-12-07-f3s-kubernetes-with-freebsd-part-8.html'>2025-12-07 f3s: Kubernetes with FreeBSD - Part 8: Observability</a><br />
+<a class='textlink' href='./2025-10-02-f3s-kubernetes-with-freebsd-part-7.html'>2025-10-02 f3s: Kubernetes with FreeBSD - Part 7: k3s and first pod deployments</a><br />
+<a class='textlink' href='./2025-07-14-f3s-kubernetes-with-freebsd-part-6.html'>2025-07-14 f3s: Kubernetes with FreeBSD - Part 6: Storage</a><br />
+<a class='textlink' href='./2025-05-11-f3s-kubernetes-with-freebsd-part-5.html'>2025-05-11 f3s: Kubernetes with FreeBSD - Part 5: WireGuard mesh network</a><br />
+<a class='textlink' href='./2025-04-05-f3s-kubernetes-with-freebsd-part-4.html'>2025-04-05 f3s: Kubernetes with FreeBSD - Part 4: Rocky Linux Bhyve VMs</a><br />
+<a class='textlink' href='./2025-02-01-f3s-kubernetes-with-freebsd-part-3.html'>2025-02-01 f3s: Kubernetes with FreeBSD - Part 3: Protecting from power cuts</a><br />
+<a class='textlink' href='./2024-12-03-f3s-kubernetes-with-freebsd-part-2.html'>2024-12-03 f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</a><br />
+<a class='textlink' href='./2024-11-17-f3s-kubernetes-with-freebsd-part-1.html'>2024-11-17 f3s: Kubernetes with FreeBSD - Part 1: Setting the stage</a><br />
+<a class='textlink' href='./2024-04-01-KISS-high-availability-with-OpenBSD.html'>2024-04-01 KISS high-availability with OpenBSD</a><br />
+<a class='textlink' href='./2024-01-13-one-reason-why-i-love-openbsd.html'>2024-01-13 One reason why I love OpenBSD</a><br />
+<a class='textlink' href='./2022-10-30-installing-dtail-on-openbsd.html'>2022-10-30 Installing DTail on OpenBSD</a><br />
+<a class='textlink' href='./2022-07-30-lets-encrypt-with-openbsd-and-rex.html'>2022-07-30 Let&#39;s Encrypt with OpenBSD and Rex</a><br />
+<a class='textlink' href='./2016-04-09-jails-and-zfs-on-freebsd-with-puppet.html'>2016-04-09 Jails and ZFS with Puppet on FreeBSD</a><br />
+<br />
+<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
+<br />
+<a class='textlink' href='../'>Back to the main site</a><br />
+            </div>
+        </content>
+    </entry>
     <entry>
         <title>Running LLMs by myself - Part 2: The pi coding agent</title>
         <link href="gemini://foo.zone/gemfeed/2026-10-07-running-llms-by-myself-part-2.gmi" />
@@ -1036,6 +1360,10 @@ not include harmful code (c.f. § 2 (1) 5).
 <span>The whole thing is located in a corner I never used much. It doesn&#39;t take up space elswhere anymore and I can walk up to it with a small ladder when I need physical access.</span><br />
 <br />
 <span>It&#39;s not enterprise-grade, but it doesn&#39;t need to be. It&#39;s out of the TV area, it stays cool enough, and I can reach it without moving furniture. Good enough for me.</span><br />
+<br />
+<span>Read the next post of this series:</span><br />
+<br />
+<a class='textlink' href='./2026-11-01-f3s-kubernetes-with-freebsd-part-11.html'>f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
@@ -5054,6 +5382,10 @@ http://www.gnu.org/software/src-highlite -->
 <a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/argocd-apps'>github.com/snonux/conf/f3s/argocd-apps</a><br />
 <br />
 <span>I won&#39;t go back to running Helm commands by hand.</span><br />
+<br />
+<span>Read the next post of this series:</span><br />
+<br />
+<a class='textlink' href='./2026-09-01-f3s-kubernetes-with-freebsd-part-10.html'>f3s: Kubernetes with FreeBSD - Part 10: A New Home</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
@@ -9630,32 +9962,32 @@ opentelemetry-instrumentation-requests==0.49b0
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#666666">from</font><font color="#dbd7ca"> opentelemetry </font><font color="#666666">import</font><font color="#dbd7ca"> trace</font>
-<font color="#666666">from</font><font color="#dbd7ca"> opentelemetry</font><font color="#cb7676">.</font><font color="#dbd7ca">sdk</font><font color="#cb7676">.</font><font color="#dbd7ca">trace </font><font color="#666666">import</font><font color="#dbd7ca"> TracerProvider</font>
-<font color="#666666">from</font><font color="#dbd7ca"> opentelemetry</font><font color="#cb7676">.</font><font color="#dbd7ca">exporter</font><font color="#cb7676">.</font><font color="#dbd7ca">otlp</font><font color="#cb7676">.</font><font color="#dbd7ca">proto</font><font color="#cb7676">.</font><font color="#dbd7ca">grpc</font><font color="#cb7676">.</font><font color="#dbd7ca">trace_exporter </font><font color="#666666">import</font><font color="#dbd7ca"> OTLPSpanExporter</font>
-<font color="#666666">from</font><font color="#dbd7ca"> opentelemetry</font><font color="#cb7676">.</font><font color="#dbd7ca">instrumentation</font><font color="#cb7676">.</font><font color="#dbd7ca">flask </font><font color="#666666">import</font><font color="#dbd7ca"> FlaskInstrumentor</font>
-<font color="#666666">from</font><font color="#dbd7ca"> opentelemetry</font><font color="#cb7676">.</font><font color="#dbd7ca">instrumentation</font><font color="#cb7676">.</font><font color="#dbd7ca">requests </font><font color="#666666">import</font><font color="#dbd7ca"> RequestsInstrumentor</font>
-<font color="#666666">from</font><font color="#dbd7ca"> opentelemetry</font><font color="#cb7676">.</font><font color="#dbd7ca">sdk</font><font color="#cb7676">.</font><font color="#dbd7ca">resources </font><font color="#666666">import</font><font color="#dbd7ca"> Resource</font>
+<pre><span style="color: #7b2934">from</span><span style="color: #25231f"> opentelemetry </span><span style="color: #7b2934">import</span><span style="color: #25231f"> trace</span>
+<span style="color: #7b2934">from</span><span style="color: #25231f"> opentelemetry</span><span style="color: #765924">.</span><span style="color: #25231f">sdk</span><span style="color: #765924">.</span><span style="color: #25231f">trace </span><span style="color: #7b2934">import</span><span style="color: #25231f"> TracerProvider</span>
+<span style="color: #7b2934">from</span><span style="color: #25231f"> opentelemetry</span><span style="color: #765924">.</span><span style="color: #25231f">exporter</span><span style="color: #765924">.</span><span style="color: #25231f">otlp</span><span style="color: #765924">.</span><span style="color: #25231f">proto</span><span style="color: #765924">.</span><span style="color: #25231f">grpc</span><span style="color: #765924">.</span><span style="color: #25231f">trace_exporter </span><span style="color: #7b2934">import</span><span style="color: #25231f"> OTLPSpanExporter</span>
+<span style="color: #7b2934">from</span><span style="color: #25231f"> opentelemetry</span><span style="color: #765924">.</span><span style="color: #25231f">instrumentation</span><span style="color: #765924">.</span><span style="color: #25231f">flask </span><span style="color: #7b2934">import</span><span style="color: #25231f"> FlaskInstrumentor</span>
+<span style="color: #7b2934">from</span><span style="color: #25231f"> opentelemetry</span><span style="color: #765924">.</span><span style="color: #25231f">instrumentation</span><span style="color: #765924">.</span><span style="color: #25231f">requests </span><span style="color: #7b2934">import</span><span style="color: #25231f"> RequestsInstrumentor</span>
+<span style="color: #7b2934">from</span><span style="color: #25231f"> opentelemetry</span><span style="color: #765924">.</span><span style="color: #25231f">sdk</span><span style="color: #765924">.</span><span style="color: #25231f">resources </span><span style="color: #7b2934">import</span><span style="color: #25231f"> Resource</span>
 
-<font color="#dbd7ca">resource </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#5da994">Resource</font><font color="#cb7676">(</font><font color="#dbd7ca">attributes</font><font color="#cb7676">={</font>
-<font color="#dbd7ca">    </font><font color="#bd976a">"service.name"</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">"frontend"</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">    </font><font color="#bd976a">"service.namespace"</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">"tracing-demo"</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">    </font><font color="#bd976a">"service.version"</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#bd976a">"1.0.0"</font>
-<font color="#cb7676">})</font>
+<span style="color: #25231f">resource </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">Resource</span><span style="color: #765924">(</span><span style="color: #25231f">attributes</span><span style="color: #765924">={</span>
+<span style="color: #25231f">    </span><span style="color: #3e5d36">"service.name"</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"frontend"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">    </span><span style="color: #3e5d36">"service.namespace"</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"tracing-demo"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">    </span><span style="color: #3e5d36">"service.version"</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"1.0.0"</span>
+<span style="color: #765924">})</span>
 
-<font color="#dbd7ca">provider </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#5da994">TracerProvider</font><font color="#cb7676">(</font><font color="#dbd7ca">resource</font><font color="#cb7676">=</font><font color="#dbd7ca">resource</font><font color="#cb7676">)</font>
+<span style="color: #25231f">provider </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">TracerProvider</span><span style="color: #765924">(</span><span style="color: #25231f">resource</span><span style="color: #765924">=</span><span style="color: #25231f">resource</span><span style="color: #765924">)</span>
 
-<font color="#dbd7ca">otlp_exporter </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#5da994">OTLPSpanExporter</font><font color="#cb7676">(</font>
-<font color="#dbd7ca">    endpoint</font><font color="#cb7676">=</font><font color="#bd976a">"http://alloy.monitoring.svc.cluster.local:4317"</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">    insecure</font><font color="#cb7676">=</font><font color="#dbd7ca">True</font>
-<font color="#cb7676">)</font>
+<span style="color: #25231f">otlp_exporter </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">OTLPSpanExporter</span><span style="color: #765924">(</span>
+<span style="color: #25231f">    endpoint</span><span style="color: #765924">=</span><span style="color: #3e5d36">"http://alloy.monitoring.svc.cluster.local:4317"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">    insecure</span><span style="color: #765924">=</span><span style="color: #25231f">True</span>
+<span style="color: #765924">)</span>
 
-<font color="#dbd7ca">processor </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#5da994">BatchSpanProcessor</font><font color="#cb7676">(</font><font color="#dbd7ca">otlp_exporter</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">provider</font><font color="#cb7676">.</font><font color="#5da994">add_span_processor</font><font color="#cb7676">(</font><font color="#dbd7ca">processor</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">trace</font><font color="#cb7676">.</font><font color="#5da994">set_tracer_provider</font><font color="#cb7676">(</font><font color="#dbd7ca">provider</font><font color="#cb7676">)</font>
+<span style="color: #25231f">processor </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">BatchSpanProcessor</span><span style="color: #765924">(</span><span style="color: #25231f">otlp_exporter</span><span style="color: #765924">)</span>
+<span style="color: #25231f">provider</span><span style="color: #765924">.</span><span style="color: #265a79">add_span_processor</span><span style="color: #765924">(</span><span style="color: #25231f">processor</span><span style="color: #765924">)</span>
+<span style="color: #25231f">trace</span><span style="color: #765924">.</span><span style="color: #265a79">set_tracer_provider</span><span style="color: #765924">(</span><span style="color: #25231f">provider</span><span style="color: #765924">)</span>
 
-<font color="#5da994">FlaskInstrumentor</font><font color="#cb7676">().</font><font color="#5da994">instrument_app</font><font color="#cb7676">(</font><font color="#dbd7ca">app</font><font color="#cb7676">)</font>
-<font color="#5da994">RequestsInstrumentor</font><font color="#cb7676">().</font><font color="#5da994">instrument</font><font color="#cb7676">()</font>
+<span style="color: #265a79">FlaskInstrumentor</span><span style="color: #765924">().</span><span style="color: #265a79">instrument_app</span><span style="color: #765924">(</span><span style="color: #25231f">app</span><span style="color: #765924">)</span>
+<span style="color: #265a79">RequestsInstrumentor</span><span style="color: #765924">().</span><span style="color: #265a79">instrument</span><span style="color: #765924">()</span>
 </pre>
 <br />
 <span>The auto-instrumentation creates spans for HTTP requests, propagates trace context via W3C headers, and links parent/child spans across services automatically.</span><br />
@@ -9735,29 +10067,29 @@ curl -H "Host: tracing-demo.f3s.foo.zone" http://r0/api/process
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#cb7676">{</font>
-<font color="#dbd7ca">  </font><font color="#dbd7ca">"</font><font color="#dbd7ca">middleware_response</font><font color="#dbd7ca">"</font><font color="#dbd7ca">: </font><font color="#cb7676">{</font>
-<font color="#dbd7ca">    </font><font color="#dbd7ca">"</font><font color="#dbd7ca">backend_data</font><font color="#dbd7ca">"</font><font color="#dbd7ca">: </font><font color="#cb7676">{</font>
-<font color="#dbd7ca">      </font><font color="#dbd7ca">"</font><font color="#dbd7ca">data</font><font color="#dbd7ca">"</font><font color="#dbd7ca">: </font><font color="#cb7676">{</font>
-<font color="#dbd7ca">        </font><font color="#dbd7ca">"</font><font color="#dbd7ca">id</font><font color="#dbd7ca">"</font><font color="#dbd7ca">: </font><font color="#bd976a">12345</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">        </font><font color="#dbd7ca">"</font><font color="#dbd7ca">query_time_ms</font><font color="#dbd7ca">"</font><font color="#dbd7ca">: </font><font color="#bd976a">100.0</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">        </font><font color="#dbd7ca">"</font><font color="#dbd7ca">timestamp</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">2025-12-28T18:35:01.064538</font><font color="#dbd7ca">"</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">        </font><font color="#dbd7ca">"</font><font color="#dbd7ca">value</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">Sample data from backend service</font><font color="#dbd7ca">"</font>
-<font color="#dbd7ca">      </font><font color="#cb7676">},</font>
-<font color="#dbd7ca">      </font><font color="#dbd7ca">"</font><font color="#dbd7ca">service</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">backend</font><font color="#dbd7ca">"</font>
-<font color="#dbd7ca">    </font><font color="#cb7676">},</font>
-<font color="#dbd7ca">    </font><font color="#dbd7ca">"</font><font color="#dbd7ca">middleware_processed</font><font color="#dbd7ca">"</font><font color="#dbd7ca">: </font><b><font color="#4d9375">true</font></b><font color="#cb7676">,</font>
-<font color="#dbd7ca">    </font><font color="#dbd7ca">"</font><font color="#dbd7ca">original_data</font><font color="#dbd7ca">"</font><font color="#dbd7ca">: </font><font color="#cb7676">{</font>
-<font color="#dbd7ca">      </font><font color="#dbd7ca">"</font><font color="#dbd7ca">source</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">GET request</font><font color="#dbd7ca">"</font>
-<font color="#dbd7ca">    </font><font color="#cb7676">},</font>
-<font color="#dbd7ca">    </font><font color="#dbd7ca">"</font><font color="#dbd7ca">transformation_time_ms</font><font color="#dbd7ca">"</font><font color="#dbd7ca">: </font><font color="#bd976a">50</font>
-<font color="#dbd7ca">  </font><font color="#cb7676">},</font>
-<font color="#dbd7ca">  </font><font color="#dbd7ca">"</font><font color="#dbd7ca">request_data</font><font color="#dbd7ca">"</font><font color="#dbd7ca">: </font><font color="#cb7676">{</font>
-<font color="#dbd7ca">    </font><font color="#dbd7ca">"</font><font color="#dbd7ca">source</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">GET request</font><font color="#dbd7ca">"</font>
-<font color="#dbd7ca">  </font><font color="#cb7676">},</font>
-<font color="#dbd7ca">  </font><font color="#dbd7ca">"</font><font color="#dbd7ca">service</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">frontend</font><font color="#dbd7ca">"</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">  </font><font color="#dbd7ca">"</font><font color="#dbd7ca">status</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">success</font><font color="#dbd7ca">"</font>
-<font color="#cb7676">}</font>
+<pre><span style="color: #765924">{</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">middleware_response</span><span style="color: #25231f">"</span><span style="color: #25231f">: </span><span style="color: #765924">{</span>
+<span style="color: #25231f">    </span><span style="color: #25231f">"</span><span style="color: #25231f">backend_data</span><span style="color: #25231f">"</span><span style="color: #25231f">: </span><span style="color: #765924">{</span>
+<span style="color: #25231f">      </span><span style="color: #25231f">"</span><span style="color: #25231f">data</span><span style="color: #25231f">"</span><span style="color: #25231f">: </span><span style="color: #765924">{</span>
+<span style="color: #25231f">        </span><span style="color: #25231f">"</span><span style="color: #25231f">id</span><span style="color: #25231f">"</span><span style="color: #25231f">: </span><span style="color: #8a450c">12345</span><span style="color: #765924">,</span>
+<span style="color: #25231f">        </span><span style="color: #25231f">"</span><span style="color: #25231f">query_time_ms</span><span style="color: #25231f">"</span><span style="color: #25231f">: </span><span style="color: #8a450c">100.0</span><span style="color: #765924">,</span>
+<span style="color: #25231f">        </span><span style="color: #25231f">"</span><span style="color: #25231f">timestamp</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">2025-12-28T18:35:01.064538</span><span style="color: #25231f">"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">        </span><span style="color: #25231f">"</span><span style="color: #25231f">value</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">Sample data from backend service</span><span style="color: #25231f">"</span>
+<span style="color: #25231f">      </span><span style="color: #765924">},</span>
+<span style="color: #25231f">      </span><span style="color: #25231f">"</span><span style="color: #25231f">service</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">backend</span><span style="color: #25231f">"</span>
+<span style="color: #25231f">    </span><span style="color: #765924">},</span>
+<span style="color: #25231f">    </span><span style="color: #25231f">"</span><span style="color: #25231f">middleware_processed</span><span style="color: #25231f">"</span><span style="color: #25231f">: </span><span style="font-weight: bold"><span style="color: #7b2934">true</span></span><span style="color: #765924">,</span>
+<span style="color: #25231f">    </span><span style="color: #25231f">"</span><span style="color: #25231f">original_data</span><span style="color: #25231f">"</span><span style="color: #25231f">: </span><span style="color: #765924">{</span>
+<span style="color: #25231f">      </span><span style="color: #25231f">"</span><span style="color: #25231f">source</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">GET request</span><span style="color: #25231f">"</span>
+<span style="color: #25231f">    </span><span style="color: #765924">},</span>
+<span style="color: #25231f">    </span><span style="color: #25231f">"</span><span style="color: #25231f">transformation_time_ms</span><span style="color: #25231f">"</span><span style="color: #25231f">: </span><span style="color: #8a450c">50</span>
+<span style="color: #25231f">  </span><span style="color: #765924">},</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">request_data</span><span style="color: #25231f">"</span><span style="color: #25231f">: </span><span style="color: #765924">{</span>
+<span style="color: #25231f">    </span><span style="color: #25231f">"</span><span style="color: #25231f">source</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">GET request</span><span style="color: #25231f">"</span>
+<span style="color: #25231f">  </span><span style="color: #765924">},</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">service</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">frontend</span><span style="color: #25231f">"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">status</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">success</span><span style="color: #25231f">"</span>
+<span style="color: #765924">}</span>
 </pre>
 <br />
 <span>After a few seconds (batch export delay), search for traces via Tempo API:</span><br />
@@ -9774,12 +10106,12 @@ kubectl exec -n monitoring tempo-0 -- wget -qO- \
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#cb7676">{</font>
-<font color="#dbd7ca">  </font><font color="#dbd7ca">"</font><font color="#dbd7ca">traceID</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">4be1151c0bdcd5625ac7e02b98d95bd5</font><font color="#dbd7ca">"</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">  </font><font color="#dbd7ca">"</font><font color="#dbd7ca">rootServiceName</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">frontend</font><font color="#dbd7ca">"</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">  </font><font color="#dbd7ca">"</font><font color="#dbd7ca">rootTraceName</font><font color="#dbd7ca">"</font><font color="#dbd7ca">:</font><font color="#dbd7ca"> "</font><font color="#bd976a">GET /api/process</font><font color="#dbd7ca">"</font><font color="#cb7676">,</font>
-<font color="#dbd7ca">  </font><font color="#dbd7ca">"</font><font color="#dbd7ca">durationMs</font><font color="#dbd7ca">"</font><font color="#dbd7ca">: </font><font color="#bd976a">221</font>
-<font color="#cb7676">}</font>
+<pre><span style="color: #765924">{</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">traceID</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">4be1151c0bdcd5625ac7e02b98d95bd5</span><span style="color: #25231f">"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">rootServiceName</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">frontend</span><span style="color: #25231f">"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">rootTraceName</span><span style="color: #25231f">"</span><span style="color: #25231f">:</span><span style="color: #25231f"> "</span><span style="color: #3e5d36">GET /api/process</span><span style="color: #25231f">"</span><span style="color: #765924">,</span>
+<span style="color: #25231f">  </span><span style="color: #25231f">"</span><span style="color: #25231f">durationMs</span><span style="color: #25231f">"</span><span style="color: #25231f">: </span><span style="color: #8a450c">221</span>
+<span style="color: #765924">}</span>
 </pre>
 <br />
 <span>The full trace has 8 spans across 3 services:</span><br />
@@ -9843,6 +10175,10 @@ kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
 <a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/tempo'>Tempo configuration</a><br />
 <a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/loki'>Alloy configuration (updated for traces)</a><br />
 <a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/tracing-demo'>Demo tracing application</a><br />
+<br />
+<span>Read the next post of this series:</span><br />
+<br />
+<a class='textlink' href='./2026-04-02-f3s-kubernetes-with-freebsd-part-9.html'>f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
@@ -9970,10 +10306,10 @@ kubectl exec -n monitoring &lt;tempo-pod&gt; -- df -h /var/tempo
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ git clone https</font><font color="#cb7676">:</font><font color="#dbd7ca">//github</font><font color="#cb7676">.</font><font color="#dbd7ca">com/snonux/conf</font><font color="#cb7676">.</font><font color="#dbd7ca">git</font>
-<font color="#dbd7ca">$ cd conf</font>
-<font color="#dbd7ca">$ git checkout 15a86f3  </font><i><font color="#666666"># Last commit before ArgoCD migration</font></i>
-<font color="#dbd7ca">$ cd f3s/prometheus</font><font color="#cb7676">/</font>
+<pre><span style="color: #25231f">$ git clone https</span><span style="color: #765924">:</span><span style="color: #25231f">//github</span><span style="color: #765924">.</span><span style="color: #25231f">com/snonux/conf</span><span style="color: #765924">.</span><span style="color: #25231f">git</span>
+<span style="color: #25231f">$ cd conf</span>
+<span style="color: #25231f">$ git checkout 15a86f3  </span><span style="font-style: italic"><span style="color: #685f50"># Last commit before ArgoCD migration</span></span>
+<span style="color: #25231f">$ cd f3s/prometheus</span><span style="color: #765924">/</span>
 </pre>
 <br />
 <span>The current master branch contains the ArgoCD-managed versions with:</span><br />
@@ -10010,8 +10346,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ kubectl create namespace monitoring</font>
-<font color="#dbd7ca">namespace/monitoring created</font>
+<pre><span style="color: #25231f">$ kubectl create namespace monitoring</span>
+<span style="color: #25231f">namespace/monitoring created</span>
 </pre>
 <br />
 <h2 style='display: inline' id='installing-prometheus-and-grafana'>Installing Prometheus and Grafana</h2><br />
@@ -10026,8 +10362,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ helm repo add prometheus-community https</font><font color="#cb7676">:</font><font color="#dbd7ca">//prometheus-community</font><font color="#cb7676">.</font><font color="#dbd7ca">github</font><font color="#cb7676">.</font><font color="#dbd7ca">io/helm-charts</font>
-<font color="#dbd7ca">$ helm repo update</font>
+<pre><span style="color: #25231f">$ helm repo add prometheus-community https</span><span style="color: #765924">:</span><span style="color: #25231f">//prometheus-community</span><span style="color: #765924">.</span><span style="color: #25231f">github</span><span style="color: #765924">.</span><span style="color: #25231f">io/helm-charts</span>
+<span style="color: #25231f">$ helm repo update</span>
 </pre>
 <br />
 <span>Create the directories on the NFS server for persistent storage:</span><br />
@@ -10036,8 +10372,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#cb7676">[</font><font color="#dbd7ca">root@r0 </font><font color="#cb7676">~]</font><i><font color="#666666"># mkdir -p /data/nfs/k3svolumes/prometheus/data</font></i>
-<font color="#cb7676">[</font><font color="#dbd7ca">root@r0 </font><font color="#cb7676">~]</font><i><font color="#666666"># mkdir -p /data/nfs/k3svolumes/grafana/data</font></i>
+<pre><span style="color: #765924">[</span><span style="color: #25231f">root@r0 </span><span style="color: #765924">~]</span><span style="font-style: italic"><span style="color: #685f50"># mkdir -p /data/nfs/k3svolumes/prometheus/data</span></span>
+<span style="color: #765924">[</span><span style="color: #25231f">root@r0 </span><span style="color: #765924">~]</span><span style="font-style: italic"><span style="color: #685f50"># mkdir -p /data/nfs/k3svolumes/grafana/data</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='deploying-with-the-justfile'>Deploying with the Justfile</h3><br />
@@ -10053,18 +10389,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ cd conf/f3s/prometheus</font>
-<font color="#dbd7ca">$ just install</font>
-<font color="#dbd7ca">kubectl apply -f persistent-volumes</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
-<font color="#dbd7ca">persistentvolume/prometheus-data-pv created</font>
-<font color="#dbd7ca">persistentvolume/grafana-data-pv created</font>
-<font color="#dbd7ca">persistentvolumeclaim/grafana-data-pvc created</font>
-<font color="#dbd7ca">helm install prometheus prometheus-community/kube-prometheus-stack </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">    --namespace monitoring -f persistence-values</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
-<font color="#dbd7ca">NAME</font><font color="#cb7676">:</font><font color="#dbd7ca"> prometheus</font>
-<font color="#dbd7ca">LAST DEPLOYED</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">...</font>
-<font color="#dbd7ca">NAMESPACE</font><font color="#cb7676">:</font><font color="#dbd7ca"> monitoring</font>
-<font color="#dbd7ca">STATUS</font><font color="#cb7676">:</font><font color="#dbd7ca"> deployed</font>
+<pre><span style="color: #25231f">$ cd conf/f3s/prometheus</span>
+<span style="color: #25231f">$ just install</span>
+<span style="color: #25231f">kubectl apply -f persistent-volumes</span><span style="color: #765924">.</span><span style="color: #25231f">yaml</span>
+<span style="color: #25231f">persistentvolume/prometheus-data-pv created</span>
+<span style="color: #25231f">persistentvolume/grafana-data-pv created</span>
+<span style="color: #25231f">persistentvolumeclaim/grafana-data-pvc created</span>
+<span style="color: #25231f">helm install prometheus prometheus-community/kube-prometheus-stack </span><span style="color: #765924">\</span>
+<span style="color: #25231f">    --namespace monitoring -f persistence-values</span><span style="color: #765924">.</span><span style="color: #25231f">yaml</span>
+<span style="color: #25231f">NAME</span><span style="color: #765924">:</span><span style="color: #25231f"> prometheus</span>
+<span style="color: #25231f">LAST DEPLOYED</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">...</span>
+<span style="color: #25231f">NAMESPACE</span><span style="color: #765924">:</span><span style="color: #25231f"> monitoring</span>
+<span style="color: #25231f">STATUS</span><span style="color: #765924">:</span><span style="color: #25231f"> deployed</span>
 </pre>
 <br />
 <span><span class='inlinecode'>persistence-values.yaml</span> points Prometheus and Grafana at the NFS-backed volumes from above. It also enables scraping of etcd and kube-controller-manager metrics:</span><br />
@@ -10103,12 +10439,12 @@ kubeControllerManager:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#cb7676">[</font><font color="#dbd7ca">root@r0 </font><font color="#cb7676">~]</font><i><font color="#666666"># cat &gt;&gt; /etc/rancher/k3s/config.yaml &lt;&lt; 'EOF'</font></i>
-<font color="#dbd7ca">kube-controller-manager-arg</font><font color="#cb7676">:</font>
-<font color="#dbd7ca">  - bind-address</font><font color="#cb7676">=</font><font color="#bd976a">0.0</font><font color="#cb7676">.</font><font color="#bd976a">0.0</font>
-<font color="#dbd7ca">etcd-expose-metrics</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><b><font color="#4d9375">true</font></b>
-<font color="#dbd7ca">EOF</font>
-<font color="#cb7676">[</font><font color="#dbd7ca">root@r0 </font><font color="#cb7676">~]</font><i><font color="#666666"># systemctl restart k3s</font></i>
+<pre><span style="color: #765924">[</span><span style="color: #25231f">root@r0 </span><span style="color: #765924">~]</span><span style="font-style: italic"><span style="color: #685f50"># cat &gt;&gt; /etc/rancher/k3s/config.yaml &lt;&lt; 'EOF'</span></span>
+<span style="color: #25231f">kube-controller-manager-arg</span><span style="color: #765924">:</span>
+<span style="color: #25231f">  - bind-address</span><span style="color: #765924">=</span><span style="color: #8a450c">0.0</span><span style="color: #765924">.</span><span style="color: #8a450c">0.0</span>
+<span style="color: #25231f">etcd-expose-metrics</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">true</span></span>
+<span style="color: #25231f">EOF</span>
+<span style="color: #765924">[</span><span style="color: #25231f">root@r0 </span><span style="color: #765924">~]</span><span style="font-style: italic"><span style="color: #685f50"># systemctl restart k3s</span></span>
 </pre>
 <br />
 <span>Repeat for <span class='inlinecode'>r1</span> and <span class='inlinecode'>r2</span>. After restarting all nodes, the controller-manager metrics endpoint will be accessible and etcd metrics are available on port 2381. Prometheus can now scrape both.</span><br />
@@ -10119,8 +10455,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#cb7676">[</font><font color="#dbd7ca">root@r0 </font><font color="#cb7676">~]</font><i><font color="#666666"># curl -s http://127.0.0.1:2381/metrics | grep etcd_server_has_leader</font></i>
-<font color="#dbd7ca">etcd_server_has_leader </font><font color="#bd976a">1</font>
+<pre><span style="color: #765924">[</span><span style="color: #25231f">root@r0 </span><span style="color: #765924">~]</span><span style="font-style: italic"><span style="color: #685f50"># curl -s http://127.0.0.1:2381/metrics | grep etcd_server_has_leader</span></span>
+<span style="color: #25231f">etcd_server_has_leader </span><span style="color: #8a450c">1</span>
 </pre>
 <br />
 <span>The full <span class='inlinecode'>persistence-values.yaml</span> and all other Prometheus configuration files are available on GitHub:</span><br />
@@ -10141,9 +10477,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus</font>
-<font color="#dbd7ca">NAME                                    TYPE        CLUSTER-IP      PORT</font><font color="#cb7676">(</font><font color="#dbd7ca">S</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">prometheus-kube-prometheus-prometheus   ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">152.163</font><font color="#dbd7ca">   </font><font color="#bd976a">9090</font><font color="#dbd7ca">/TCP</font><font color="#cb7676">,</font><font color="#bd976a">8080</font><font color="#dbd7ca">/TCP</font>
+<pre><span style="color: #25231f">$ kubectl get svc -n monitoring prometheus-kube-prometheus-prometheus</span>
+<span style="color: #25231f">NAME                                    TYPE        CLUSTER-IP      PORT</span><span style="color: #765924">(</span><span style="color: #25231f">S</span><span style="color: #765924">)</span>
+<span style="color: #25231f">prometheus-kube-prometheus-prometheus   ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">152.163</span><span style="color: #25231f">   </span><span style="color: #8a450c">9090</span><span style="color: #25231f">/TCP</span><span style="color: #765924">,</span><span style="color: #8a450c">8080</span><span style="color: #25231f">/TCP</span>
 </pre>
 <br />
 <span>Grafana connects to Prometheus using the internal service URL <span class='inlinecode'>http://prometheus-kube-prometheus-prometheus.monitoring.svc.cluster.local:9090</span>. The default Grafana credentials are <span class='inlinecode'>admin</span>/<span class='inlinecode'>prom-operator</span>, which should be changed immediately after first login.</span><br />
@@ -10160,7 +10496,7 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <span>Alloy is Grafana&#39;s telemetry collector (the successor to Promtail). It runs as a DaemonSet on each node, tails container logs, and ships them to Loki.</span><br />
 <br />
-<h3 style='display: inline' id='prerequisites'>Prerequisites</h3><br />
+<h3 style='display: inline' id='prerequisites-2'>Prerequisites</h3><br />
 <br />
 <span>Create the data directory on the NFS server:</span><br />
 <br />
@@ -10168,7 +10504,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#cb7676">[</font><font color="#dbd7ca">root@r0 </font><font color="#cb7676">~]</font><i><font color="#666666"># mkdir -p /data/nfs/k3svolumes/loki/data</font></i>
+<pre><span style="color: #765924">[</span><span style="color: #25231f">root@r0 </span><span style="color: #765924">~]</span><span style="font-style: italic"><span style="color: #685f50"># mkdir -p /data/nfs/k3svolumes/loki/data</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='deploying-loki-and-alloy'>Deploying Loki and Alloy</h3><br />
@@ -10183,24 +10519,24 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ cd conf/f3s/loki</font>
-<font color="#dbd7ca">$ just install</font>
-<font color="#dbd7ca">helm repo add grafana https</font><font color="#cb7676">:</font><font color="#dbd7ca">//grafana</font><font color="#cb7676">.</font><font color="#dbd7ca">github</font><font color="#cb7676">.</font><font color="#dbd7ca">io/helm-charts </font><font color="#cb7676">||</font><font color="#dbd7ca"> </font><b><font color="#4d9375">true</font></b>
-<font color="#dbd7ca">helm repo update</font>
-<font color="#dbd7ca">kubectl apply -f persistent-volumes</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
-<font color="#dbd7ca">persistentvolume/loki-data-pv created</font>
-<font color="#dbd7ca">persistentvolumeclaim/loki-data-pvc created</font>
-<font color="#dbd7ca">helm install loki grafana/loki --namespace monitoring -f values</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
-<font color="#dbd7ca">NAME</font><font color="#cb7676">:</font><font color="#dbd7ca"> loki</font>
-<font color="#dbd7ca">LAST DEPLOYED</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">...</font>
-<font color="#dbd7ca">NAMESPACE</font><font color="#cb7676">:</font><font color="#dbd7ca"> monitoring</font>
-<font color="#dbd7ca">STATUS</font><font color="#cb7676">:</font><font color="#dbd7ca"> deployed</font>
-<font color="#cb7676">...</font>
-<font color="#dbd7ca">helm install alloy grafana/alloy --namespace monitoring -f alloy-values</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml</font>
-<font color="#dbd7ca">NAME</font><font color="#cb7676">:</font><font color="#dbd7ca"> alloy</font>
-<font color="#dbd7ca">LAST DEPLOYED</font><font color="#cb7676">:</font><font color="#dbd7ca"> </font><font color="#cb7676">...</font>
-<font color="#dbd7ca">NAMESPACE</font><font color="#cb7676">:</font><font color="#dbd7ca"> monitoring</font>
-<font color="#dbd7ca">STATUS</font><font color="#cb7676">:</font><font color="#dbd7ca"> deployed</font>
+<pre><span style="color: #25231f">$ cd conf/f3s/loki</span>
+<span style="color: #25231f">$ just install</span>
+<span style="color: #25231f">helm repo add grafana https</span><span style="color: #765924">:</span><span style="color: #25231f">//grafana</span><span style="color: #765924">.</span><span style="color: #25231f">github</span><span style="color: #765924">.</span><span style="color: #25231f">io/helm-charts </span><span style="color: #765924">||</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">true</span></span>
+<span style="color: #25231f">helm repo update</span>
+<span style="color: #25231f">kubectl apply -f persistent-volumes</span><span style="color: #765924">.</span><span style="color: #25231f">yaml</span>
+<span style="color: #25231f">persistentvolume/loki-data-pv created</span>
+<span style="color: #25231f">persistentvolumeclaim/loki-data-pvc created</span>
+<span style="color: #25231f">helm install loki grafana/loki --namespace monitoring -f values</span><span style="color: #765924">.</span><span style="color: #25231f">yaml</span>
+<span style="color: #25231f">NAME</span><span style="color: #765924">:</span><span style="color: #25231f"> loki</span>
+<span style="color: #25231f">LAST DEPLOYED</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">...</span>
+<span style="color: #25231f">NAMESPACE</span><span style="color: #765924">:</span><span style="color: #25231f"> monitoring</span>
+<span style="color: #25231f">STATUS</span><span style="color: #765924">:</span><span style="color: #25231f"> deployed</span>
+<span style="color: #765924">...</span>
+<span style="color: #25231f">helm install alloy grafana/alloy --namespace monitoring -f alloy-values</span><span style="color: #765924">.</span><span style="color: #25231f">yaml</span>
+<span style="color: #25231f">NAME</span><span style="color: #765924">:</span><span style="color: #25231f"> alloy</span>
+<span style="color: #25231f">LAST DEPLOYED</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">...</span>
+<span style="color: #25231f">NAMESPACE</span><span style="color: #765924">:</span><span style="color: #25231f"> monitoring</span>
+<span style="color: #25231f">STATUS</span><span style="color: #765924">:</span><span style="color: #25231f"> deployed</span>
 </pre>
 <br />
 <span>Loki runs in single-binary mode with a single replica (<span class='inlinecode'>loki-0</span>), which is appropriate for a home lab cluster. This means there&#39;s only one Loki pod running at any time. If the node hosting Loki fails, Kubernetes will automatically reschedule the pod to another worker node—but there will be a brief downtime (typically under a minute) while this happens. Fine for a home lab.</span><br />
@@ -10215,44 +10551,44 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">discovery</font><font color="#cb7676">.</font><font color="#dbd7ca">kubernetes </font><font color="#bd976a">"pods"</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  role </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"pod"</font>
-<font color="#dbd7ca">}</font>
+<pre><span style="color: #25231f">discovery</span><span style="color: #765924">.</span><span style="color: #25231f">kubernetes </span><span style="color: #3e5d36">"pods"</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  role </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"pod"</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">discovery</font><font color="#cb7676">.</font><font color="#dbd7ca">relabel </font><font color="#bd976a">"pods"</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  targets </font><font color="#cb7676">=</font><font color="#dbd7ca"> discovery</font><font color="#cb7676">.</font><font color="#dbd7ca">kubernetes</font><font color="#cb7676">.</font><font color="#dbd7ca">pods</font><font color="#cb7676">.</font><font color="#dbd7ca">targets</font>
+<span style="color: #25231f">discovery</span><span style="color: #765924">.</span><span style="color: #25231f">relabel </span><span style="color: #3e5d36">"pods"</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  targets </span><span style="color: #765924">=</span><span style="color: #25231f"> discovery</span><span style="color: #765924">.</span><span style="color: #25231f">kubernetes</span><span style="color: #765924">.</span><span style="color: #25231f">pods</span><span style="color: #765924">.</span><span style="color: #25231f">targets</span>
 
-<font color="#dbd7ca">  rule {</font>
-<font color="#dbd7ca">    source_labels </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#bd976a">"__meta_kubernetes_namespace"</font><font color="#cb7676">]</font>
-<font color="#dbd7ca">    target_label  </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"namespace"</font>
-<font color="#dbd7ca">  }</font>
+<span style="color: #25231f">  rule {</span>
+<span style="color: #25231f">    source_labels </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #3e5d36">"__meta_kubernetes_namespace"</span><span style="color: #765924">]</span>
+<span style="color: #25231f">    target_label  </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"namespace"</span>
+<span style="color: #25231f">  }</span>
 
-<font color="#dbd7ca">  rule {</font>
-<font color="#dbd7ca">    source_labels </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#bd976a">"__meta_kubernetes_pod_name"</font><font color="#cb7676">]</font>
-<font color="#dbd7ca">    target_label  </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"pod"</font>
-<font color="#dbd7ca">  }</font>
+<span style="color: #25231f">  rule {</span>
+<span style="color: #25231f">    source_labels </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #3e5d36">"__meta_kubernetes_pod_name"</span><span style="color: #765924">]</span>
+<span style="color: #25231f">    target_label  </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"pod"</span>
+<span style="color: #25231f">  }</span>
 
-<font color="#dbd7ca">  rule {</font>
-<font color="#dbd7ca">    source_labels </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#bd976a">"__meta_kubernetes_pod_container_name"</font><font color="#cb7676">]</font>
-<font color="#dbd7ca">    target_label  </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"container"</font>
-<font color="#dbd7ca">  }</font>
+<span style="color: #25231f">  rule {</span>
+<span style="color: #25231f">    source_labels </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #3e5d36">"__meta_kubernetes_pod_container_name"</span><span style="color: #765924">]</span>
+<span style="color: #25231f">    target_label  </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"container"</span>
+<span style="color: #25231f">  }</span>
 
-<font color="#dbd7ca">  rule {</font>
-<font color="#dbd7ca">    source_labels </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#bd976a">"__meta_kubernetes_pod_label_app"</font><font color="#cb7676">]</font>
-<font color="#dbd7ca">    target_label  </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"app"</font>
-<font color="#dbd7ca">  }</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">  rule {</span>
+<span style="color: #25231f">    source_labels </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #3e5d36">"__meta_kubernetes_pod_label_app"</span><span style="color: #765924">]</span>
+<span style="color: #25231f">    target_label  </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"app"</span>
+<span style="color: #25231f">  }</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">loki</font><font color="#cb7676">.</font><b><font color="#4d9375">source</font></b><font color="#cb7676">.</font><font color="#dbd7ca">kubernetes </font><font color="#bd976a">"pods"</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  targets    </font><font color="#cb7676">=</font><font color="#dbd7ca"> discovery</font><font color="#cb7676">.</font><font color="#dbd7ca">relabel</font><font color="#cb7676">.</font><font color="#dbd7ca">pods</font><font color="#cb7676">.</font><font color="#dbd7ca">output</font>
-<font color="#dbd7ca">  forward_to </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#cb7676">[</font><font color="#dbd7ca">loki</font><font color="#cb7676">.</font><font color="#dbd7ca">write</font><font color="#cb7676">.</font><font color="#dbd7ca">default</font><font color="#cb7676">.</font><font color="#dbd7ca">receiver</font><font color="#cb7676">]</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">loki</span><span style="color: #765924">.</span><span style="font-weight: bold"><span style="color: #7b2934">source</span></span><span style="color: #765924">.</span><span style="color: #25231f">kubernetes </span><span style="color: #3e5d36">"pods"</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  targets    </span><span style="color: #765924">=</span><span style="color: #25231f"> discovery</span><span style="color: #765924">.</span><span style="color: #25231f">relabel</span><span style="color: #765924">.</span><span style="color: #25231f">pods</span><span style="color: #765924">.</span><span style="color: #25231f">output</span>
+<span style="color: #25231f">  forward_to </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f">loki</span><span style="color: #765924">.</span><span style="color: #25231f">write</span><span style="color: #765924">.</span><span style="color: #25231f">default</span><span style="color: #765924">.</span><span style="color: #25231f">receiver</span><span style="color: #765924">]</span>
+<span style="color: #25231f">}</span>
 
-<font color="#dbd7ca">loki</font><font color="#cb7676">.</font><font color="#dbd7ca">write </font><font color="#bd976a">"default"</font><font color="#dbd7ca"> {</font>
-<font color="#dbd7ca">  endpoint {</font>
-<font color="#dbd7ca">    url </font><font color="#cb7676">=</font><font color="#dbd7ca"> </font><font color="#bd976a">"http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push"</font>
-<font color="#dbd7ca">  }</font>
-<font color="#dbd7ca">}</font>
+<span style="color: #25231f">loki</span><span style="color: #765924">.</span><span style="color: #25231f">write </span><span style="color: #3e5d36">"default"</span><span style="color: #25231f"> {</span>
+<span style="color: #25231f">  endpoint {</span>
+<span style="color: #25231f">    url </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"http://loki.monitoring.svc.cluster.local:3100/loki/api/v1/push"</span>
+<span style="color: #25231f">  }</span>
+<span style="color: #25231f">}</span>
 </pre>
 <br />
 <span>This configuration automatically labels each log line with the namespace, pod name, container name, and app label, making it easy to filter logs in Grafana.</span><br />
@@ -10265,9 +10601,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ kubectl get svc -n monitoring loki</font>
-<font color="#dbd7ca">NAME   TYPE        CLUSTER-IP    PORT</font><font color="#cb7676">(</font><font color="#dbd7ca">S</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">loki   ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">64.60</font><font color="#dbd7ca">   </font><font color="#bd976a">3100</font><font color="#dbd7ca">/TCP</font><font color="#cb7676">,</font><font color="#bd976a">9095</font><font color="#dbd7ca">/TCP</font>
+<pre><span style="color: #25231f">$ kubectl get svc -n monitoring loki</span>
+<span style="color: #25231f">NAME   TYPE        CLUSTER-IP    PORT</span><span style="color: #765924">(</span><span style="color: #25231f">S</span><span style="color: #765924">)</span>
+<span style="color: #25231f">loki   ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">64.60</span><span style="color: #25231f">   </span><span style="color: #8a450c">3100</span><span style="color: #25231f">/TCP</span><span style="color: #765924">,</span><span style="color: #8a450c">9095</span><span style="color: #25231f">/TCP</span>
 </pre>
 <br />
 <span>To add Loki as a data source in Grafana:</span><br />
@@ -10291,21 +10627,21 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ kubectl get pods -n monitoring</font>
-<font color="#dbd7ca">NAME                                                     READY   STATUS    RESTARTS   AGE</font>
-<font color="#dbd7ca">alertmanager-prometheus-kube-prometheus-alertmanager-</font><font color="#bd976a">0</font><font color="#dbd7ca">   </font><font color="#bd976a">2</font><font color="#cb7676">/</font><font color="#bd976a">2</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          42d</font>
-<font color="#dbd7ca">alloy-g5fgj                                              </font><font color="#bd976a">2</font><font color="#cb7676">/</font><font color="#bd976a">2</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          29m</font>
-<font color="#dbd7ca">alloy-nfw8w                                              </font><font color="#bd976a">2</font><font color="#cb7676">/</font><font color="#bd976a">2</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          29m</font>
-<font color="#dbd7ca">alloy-tg9vj                                              </font><font color="#bd976a">2</font><font color="#cb7676">/</font><font color="#bd976a">2</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          29m</font>
-<font color="#dbd7ca">loki-</font><font color="#bd976a">0</font><font color="#dbd7ca">                                                   </font><font color="#bd976a">2</font><font color="#cb7676">/</font><font color="#bd976a">2</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          25m</font>
-<font color="#dbd7ca">prometheus-grafana-868f9dc7cf-lg2vl                      </font><font color="#bd976a">3</font><font color="#cb7676">/</font><font color="#bd976a">3</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          42d</font>
-<font color="#dbd7ca">prometheus-kube-prometheus-operator-8d7bbc48c-p4sf4      </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          42d</font>
-<font color="#dbd7ca">prometheus-kube-state-metrics-7c5fb9d798-hh2fx           </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          42d</font>
-<font color="#dbd7ca">prometheus-prometheus-kube-prometheus-prometheus-</font><font color="#bd976a">0</font><font color="#dbd7ca">       </font><font color="#bd976a">2</font><font color="#cb7676">/</font><font color="#bd976a">2</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          42d</font>
-<font color="#dbd7ca">prometheus-prometheus-node-exporter-2nsg9                </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          42d</font>
-<font color="#dbd7ca">prometheus-prometheus-node-exporter-mqr</font><font color="#bd976a">25</font><font color="#dbd7ca">                </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          42d</font>
-<font color="#dbd7ca">prometheus-prometheus-node-exporter-wp4ds                </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          42d</font>
-<font color="#dbd7ca">tempo-</font><font color="#bd976a">0</font><font color="#dbd7ca">                                                  </font><font color="#bd976a">1</font><font color="#cb7676">/</font><font color="#bd976a">1</font><font color="#dbd7ca">     Running   </font><font color="#bd976a">0</font><font color="#dbd7ca">          1d</font>
+<pre><span style="color: #25231f">$ kubectl get pods -n monitoring</span>
+<span style="color: #25231f">NAME                                                     READY   STATUS    RESTARTS   AGE</span>
+<span style="color: #25231f">alertmanager-prometheus-kube-prometheus-alertmanager-</span><span style="color: #8a450c">0</span><span style="color: #25231f">   </span><span style="color: #8a450c">2</span><span style="color: #765924">/</span><span style="color: #8a450c">2</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          42d</span>
+<span style="color: #25231f">alloy-g5fgj                                              </span><span style="color: #8a450c">2</span><span style="color: #765924">/</span><span style="color: #8a450c">2</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          29m</span>
+<span style="color: #25231f">alloy-nfw8w                                              </span><span style="color: #8a450c">2</span><span style="color: #765924">/</span><span style="color: #8a450c">2</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          29m</span>
+<span style="color: #25231f">alloy-tg9vj                                              </span><span style="color: #8a450c">2</span><span style="color: #765924">/</span><span style="color: #8a450c">2</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          29m</span>
+<span style="color: #25231f">loki-</span><span style="color: #8a450c">0</span><span style="color: #25231f">                                                   </span><span style="color: #8a450c">2</span><span style="color: #765924">/</span><span style="color: #8a450c">2</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          25m</span>
+<span style="color: #25231f">prometheus-grafana-868f9dc7cf-lg2vl                      </span><span style="color: #8a450c">3</span><span style="color: #765924">/</span><span style="color: #8a450c">3</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          42d</span>
+<span style="color: #25231f">prometheus-kube-prometheus-operator-8d7bbc48c-p4sf4      </span><span style="color: #8a450c">1</span><span style="color: #765924">/</span><span style="color: #8a450c">1</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          42d</span>
+<span style="color: #25231f">prometheus-kube-state-metrics-7c5fb9d798-hh2fx           </span><span style="color: #8a450c">1</span><span style="color: #765924">/</span><span style="color: #8a450c">1</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          42d</span>
+<span style="color: #25231f">prometheus-prometheus-kube-prometheus-prometheus-</span><span style="color: #8a450c">0</span><span style="color: #25231f">       </span><span style="color: #8a450c">2</span><span style="color: #765924">/</span><span style="color: #8a450c">2</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          42d</span>
+<span style="color: #25231f">prometheus-prometheus-node-exporter-2nsg9                </span><span style="color: #8a450c">1</span><span style="color: #765924">/</span><span style="color: #8a450c">1</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          42d</span>
+<span style="color: #25231f">prometheus-prometheus-node-exporter-mqr</span><span style="color: #8a450c">25</span><span style="color: #25231f">                </span><span style="color: #8a450c">1</span><span style="color: #765924">/</span><span style="color: #8a450c">1</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          42d</span>
+<span style="color: #25231f">prometheus-prometheus-node-exporter-wp4ds                </span><span style="color: #8a450c">1</span><span style="color: #765924">/</span><span style="color: #8a450c">1</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          42d</span>
+<span style="color: #25231f">tempo-</span><span style="color: #8a450c">0</span><span style="color: #25231f">                                                  </span><span style="color: #8a450c">1</span><span style="color: #765924">/</span><span style="color: #8a450c">1</span><span style="color: #25231f">     Running   </span><span style="color: #8a450c">0</span><span style="color: #25231f">          1d</span>
 </pre>
 <br />
 <span>Note: Tempo (<span class='inlinecode'>tempo-0</span>) is deployed later in this post in the "Distributed Tracing with Grafana Tempo" section. It is included in the pod listing here for completeness.</span><br />
@@ -10316,19 +10652,19 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ kubectl get svc -n monitoring</font>
-<font color="#dbd7ca">NAME                                      TYPE        CLUSTER-IP      PORT</font><font color="#cb7676">(</font><font color="#dbd7ca">S</font><font color="#cb7676">)</font>
-<font color="#dbd7ca">alertmanager-operated                     ClusterIP   None            </font><font color="#bd976a">9093</font><font color="#dbd7ca">/TCP</font><font color="#cb7676">,</font><font color="#bd976a">9094</font><font color="#dbd7ca">/TCP</font>
-<font color="#dbd7ca">alloy                                     ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">74.14</font><font color="#dbd7ca">     </font><font color="#bd976a">12345</font><font color="#dbd7ca">/TCP</font>
-<font color="#dbd7ca">loki                                      ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">64.60</font><font color="#dbd7ca">     </font><font color="#bd976a">3100</font><font color="#dbd7ca">/TCP</font><font color="#cb7676">,</font><font color="#bd976a">9095</font><font color="#dbd7ca">/TCP</font>
-<font color="#dbd7ca">loki-headless                             ClusterIP   None            </font><font color="#bd976a">3100</font><font color="#dbd7ca">/TCP</font>
-<font color="#dbd7ca">prometheus-grafana                        ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">46.82</font><font color="#dbd7ca">     </font><font color="#bd976a">80</font><font color="#dbd7ca">/TCP</font>
-<font color="#dbd7ca">prometheus-kube-prometheus-alertmanager   ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">208.43</font><font color="#dbd7ca">    </font><font color="#bd976a">9093</font><font color="#dbd7ca">/TCP</font><font color="#cb7676">,</font><font color="#bd976a">8080</font><font color="#dbd7ca">/TCP</font>
-<font color="#dbd7ca">prometheus-kube-prometheus-operator       ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">246.121</font><font color="#dbd7ca">   </font><font color="#bd976a">443</font><font color="#dbd7ca">/TCP</font>
-<font color="#dbd7ca">prometheus-kube-prometheus-prometheus     ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">152.163</font><font color="#dbd7ca">   </font><font color="#bd976a">9090</font><font color="#dbd7ca">/TCP</font><font color="#cb7676">,</font><font color="#bd976a">8080</font><font color="#dbd7ca">/TCP</font>
-<font color="#dbd7ca">prometheus-kube-state-metrics             ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">64.26</font><font color="#dbd7ca">     </font><font color="#bd976a">8080</font><font color="#dbd7ca">/TCP</font>
-<font color="#dbd7ca">prometheus-prometheus-node-exporter       ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">127.242</font><font color="#dbd7ca">   </font><font color="#bd976a">9100</font><font color="#dbd7ca">/TCP</font>
-<font color="#dbd7ca">tempo                                     ClusterIP   </font><font color="#bd976a">10.43</font><font color="#cb7676">.</font><font color="#bd976a">91.44</font><font color="#dbd7ca">     </font><font color="#bd976a">3200</font><font color="#dbd7ca">/TCP</font><font color="#cb7676">,</font><font color="#bd976a">4317</font><font color="#dbd7ca">/TCP</font><font color="#cb7676">,</font><font color="#bd976a">4318</font><font color="#dbd7ca">/TCP</font>
+<pre><span style="color: #25231f">$ kubectl get svc -n monitoring</span>
+<span style="color: #25231f">NAME                                      TYPE        CLUSTER-IP      PORT</span><span style="color: #765924">(</span><span style="color: #25231f">S</span><span style="color: #765924">)</span>
+<span style="color: #25231f">alertmanager-operated                     ClusterIP   None            </span><span style="color: #8a450c">9093</span><span style="color: #25231f">/TCP</span><span style="color: #765924">,</span><span style="color: #8a450c">9094</span><span style="color: #25231f">/TCP</span>
+<span style="color: #25231f">alloy                                     ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">74.14</span><span style="color: #25231f">     </span><span style="color: #8a450c">12345</span><span style="color: #25231f">/TCP</span>
+<span style="color: #25231f">loki                                      ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">64.60</span><span style="color: #25231f">     </span><span style="color: #8a450c">3100</span><span style="color: #25231f">/TCP</span><span style="color: #765924">,</span><span style="color: #8a450c">9095</span><span style="color: #25231f">/TCP</span>
+<span style="color: #25231f">loki-headless                             ClusterIP   None            </span><span style="color: #8a450c">3100</span><span style="color: #25231f">/TCP</span>
+<span style="color: #25231f">prometheus-grafana                        ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">46.82</span><span style="color: #25231f">     </span><span style="color: #8a450c">80</span><span style="color: #25231f">/TCP</span>
+<span style="color: #25231f">prometheus-kube-prometheus-alertmanager   ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">208.43</span><span style="color: #25231f">    </span><span style="color: #8a450c">9093</span><span style="color: #25231f">/TCP</span><span style="color: #765924">,</span><span style="color: #8a450c">8080</span><span style="color: #25231f">/TCP</span>
+<span style="color: #25231f">prometheus-kube-prometheus-operator       ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">246.121</span><span style="color: #25231f">   </span><span style="color: #8a450c">443</span><span style="color: #25231f">/TCP</span>
+<span style="color: #25231f">prometheus-kube-prometheus-prometheus     ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">152.163</span><span style="color: #25231f">   </span><span style="color: #8a450c">9090</span><span style="color: #25231f">/TCP</span><span style="color: #765924">,</span><span style="color: #8a450c">8080</span><span style="color: #25231f">/TCP</span>
+<span style="color: #25231f">prometheus-kube-state-metrics             ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">64.26</span><span style="color: #25231f">     </span><span style="color: #8a450c">8080</span><span style="color: #25231f">/TCP</span>
+<span style="color: #25231f">prometheus-prometheus-node-exporter       ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">127.242</span><span style="color: #25231f">   </span><span style="color: #8a450c">9100</span><span style="color: #25231f">/TCP</span>
+<span style="color: #25231f">tempo                                     ClusterIP   </span><span style="color: #8a450c">10.43</span><span style="color: #765924">.</span><span style="color: #8a450c">91.44</span><span style="color: #25231f">     </span><span style="color: #8a450c">3200</span><span style="color: #25231f">/TCP</span><span style="color: #765924">,</span><span style="color: #8a450c">4317</span><span style="color: #25231f">/TCP</span><span style="color: #765924">,</span><span style="color: #8a450c">4318</span><span style="color: #25231f">/TCP</span>
 </pre>
 <br />
 <span>Let me break down what each pod does:</span><br />
@@ -10401,7 +10737,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas pkg install -y node_exporter</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas pkg install -y node_exporter</span>
 </pre>
 <br />
 <span>Enable the service to start at boot:</span><br />
@@ -10410,8 +10746,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas sysrc </font><font color="#bd976a">node_exporter_enable</font><font color="#cb7676">=</font><font color="#dbd7ca">YES</font>
-<font color="#dbd7ca">node_exporter_enable</font><font color="#cb7676">:</font><font color="#dbd7ca">  -</font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> YES</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas sysrc </span><span style="color: #6d3c6d">node_exporter_enable</span><span style="color: #765924">=</span><span style="color: #25231f">YES</span>
+<span style="color: #25231f">node_exporter_enable</span><span style="color: #765924">:</span><span style="color: #25231f">  -</span><span style="color: #765924">&gt;</span><span style="color: #25231f"> YES</span>
 </pre>
 <br />
 <span>Configure node_exporter to listen on the WireGuard interface. This ensures metrics are only accessible through the secure tunnel, not the public network. Replace the IP with the host&#39;s WireGuard address:</span><br />
@@ -10420,8 +10756,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas sysrc </font><font color="#bd976a">node_exporter_args</font><font color="#cb7676">=</font><font color="#bd976a">'--web.listen-address=192.168.2.130:9100'</font>
-<font color="#dbd7ca">node_exporter_args</font><font color="#cb7676">:</font><font color="#dbd7ca">  -</font><font color="#cb7676">&gt;</font><font color="#dbd7ca"> --web</font><font color="#cb7676">.</font><font color="#dbd7ca">listen-address</font><font color="#cb7676">=</font><font color="#bd976a">192.168</font><font color="#cb7676">.</font><font color="#bd976a">2.130</font><font color="#cb7676">:</font><font color="#bd976a">9100</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas sysrc </span><span style="color: #6d3c6d">node_exporter_args</span><span style="color: #765924">=</span><span style="color: #3e5d36">'--web.listen-address=192.168.2.130:9100'</span>
+<span style="color: #25231f">node_exporter_args</span><span style="color: #765924">:</span><span style="color: #25231f">  -</span><span style="color: #765924">&gt;</span><span style="color: #25231f"> --web</span><span style="color: #765924">.</span><span style="color: #25231f">listen-address</span><span style="color: #765924">=</span><span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">2.130</span><span style="color: #765924">:</span><span style="color: #8a450c">9100</span>
 </pre>
 <br />
 <span>Start the service:</span><br />
@@ -10430,8 +10766,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> doas service node_exporter start</font>
-<font color="#dbd7ca">Starting node_exporter</font><font color="#cb7676">.</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas service node_exporter start</span>
+<span style="color: #25231f">Starting node_exporter</span><span style="color: #765924">.</span>
 </pre>
 <br />
 <span>Verify it&#39;s running:</span><br />
@@ -10440,10 +10776,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">paul@f0</font><font color="#cb7676">:~</font><font color="#dbd7ca"> </font><font color="#cb7676">%</font><font color="#dbd7ca"> curl -s http</font><font color="#cb7676">://</font><font color="#bd976a">192.168</font><font color="#cb7676">.</font><font color="#bd976a">2.130</font><font color="#cb7676">:</font><font color="#bd976a">9100</font><font color="#dbd7ca">/metrics </font><font color="#cb7676">|</font><font color="#dbd7ca"> head -</font><font color="#bd976a">3</font>
-<i><font color="#666666"># HELP go_gc_duration_seconds A summary of the wall-time pause...</font></i>
-<i><font color="#666666"># TYPE go_gc_duration_seconds summary</font></i>
-<font color="#dbd7ca">go_gc_duration_seconds{</font><font color="#bd976a">quantile</font><font color="#cb7676">=</font><font color="#bd976a">"0"</font><font color="#dbd7ca">} </font><font color="#bd976a">0</font>
+<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> curl -s http</span><span style="color: #765924">://</span><span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">2.130</span><span style="color: #765924">:</span><span style="color: #8a450c">9100</span><span style="color: #25231f">/metrics </span><span style="color: #765924">|</span><span style="color: #25231f"> head -</span><span style="color: #8a450c">3</span>
+<span style="font-style: italic"><span style="color: #685f50"># HELP go_gc_duration_seconds A summary of the wall-time pause...</span></span>
+<span style="font-style: italic"><span style="color: #685f50"># TYPE go_gc_duration_seconds summary</span></span>
+<span style="color: #25231f">go_gc_duration_seconds{</span><span style="color: #6d3c6d">quantile</span><span style="color: #765924">=</span><span style="color: #3e5d36">"0"</span><span style="color: #25231f">} </span><span style="color: #8a450c">0</span>
 </pre>
 <br />
 <span>Repeat for the other FreeBSD hosts (<span class='inlinecode'>f1</span>, <span class='inlinecode'>f2</span>) with their respective WireGuard IPs.</span><br />
@@ -10471,9 +10807,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ kubectl create secret generic additional-scrape-configs </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">    --from-file</font><font color="#cb7676">=</font><font color="#dbd7ca">additional-scrape-configs</font><font color="#cb7676">.</font><font color="#dbd7ca">yaml </font><font color="#cb7676">\</font>
-<font color="#dbd7ca">    -n monitoring</font>
+<pre><span style="color: #25231f">$ kubectl create secret generic additional-scrape-configs </span><span style="color: #765924">\</span>
+<span style="color: #25231f">    --from-file</span><span style="color: #765924">=</span><span style="color: #25231f">additional-scrape-configs</span><span style="color: #765924">.</span><span style="color: #25231f">yaml </span><span style="color: #765924">\</span>
+<span style="color: #25231f">    -n monitoring</span>
 </pre>
 <br />
 <span>Update <span class='inlinecode'>persistence-values.yaml</span> to reference the secret:</span><br />
@@ -10493,7 +10829,7 @@ prometheus:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">$ just upgrade</font>
+<pre><span style="color: #25231f">$ just upgrade</span>
 </pre>
 <br />
 <span>After a minute or so, the FreeBSD hosts appear in the Prometheus targets and in the Node Exporter dashboards in Grafana.</span><br />
@@ -10793,10 +11129,10 @@ zfs_pool_free_bytes{pool="zdata"} 3.48809678848e+11
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">blowfish</font><font color="#cb7676">:~</font><font color="#dbd7ca"> $ doas pkg_add node_exporter</font>
-<font color="#dbd7ca">quirks-</font><font color="#bd976a">7.103</font><font color="#dbd7ca"> signed on </font><font color="#bd976a">2025</font><font color="#dbd7ca">-</font><font color="#bd976a">10</font><font color="#dbd7ca">-13T22</font><font color="#cb7676">:</font><font color="#bd976a">55</font><font color="#cb7676">:</font><font color="#dbd7ca">16Z</font>
-<font color="#dbd7ca">The following new rcscripts were installed</font><font color="#cb7676">:</font><font color="#dbd7ca"> /etc/rc</font><font color="#cb7676">.</font><font color="#dbd7ca">d/node_exporter</font>
-<font color="#dbd7ca">See rcctl</font><font color="#cb7676">(</font><font color="#bd976a">8</font><font color="#cb7676">)</font><font color="#dbd7ca"> </font><b><font color="#4d9375">for</font></b><font color="#dbd7ca"> details</font><font color="#cb7676">.</font>
+<pre><span style="color: #25231f">blowfish</span><span style="color: #765924">:~</span><span style="color: #25231f"> $ doas pkg_add node_exporter</span>
+<span style="color: #25231f">quirks-</span><span style="color: #8a450c">7.103</span><span style="color: #25231f"> signed on </span><span style="color: #8a450c">2025</span><span style="color: #25231f">-</span><span style="color: #8a450c">10</span><span style="color: #25231f">-13T22</span><span style="color: #765924">:</span><span style="color: #8a450c">55</span><span style="color: #765924">:</span><span style="color: #25231f">16Z</span>
+<span style="color: #25231f">The following new rcscripts were installed</span><span style="color: #765924">:</span><span style="color: #25231f"> /etc/rc</span><span style="color: #765924">.</span><span style="color: #25231f">d/node_exporter</span>
+<span style="color: #25231f">See rcctl</span><span style="color: #765924">(</span><span style="color: #8a450c">8</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> details</span><span style="color: #765924">.</span>
 </pre>
 <br />
 <span>Enable the service to start at boot:</span><br />
@@ -10805,7 +11141,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">blowfish</font><font color="#cb7676">:~</font><font color="#dbd7ca"> $ doas rcctl </font><b><font color="#4d9375">enable</font></b><font color="#dbd7ca"> node_exporter</font>
+<pre><span style="color: #25231f">blowfish</span><span style="color: #765924">:~</span><span style="color: #25231f"> $ doas rcctl </span><span style="font-weight: bold"><span style="color: #7b2934">enable</span></span><span style="color: #25231f"> node_exporter</span>
 </pre>
 <br />
 <span>Configure node_exporter to listen on the WireGuard interface. This ensures metrics are only accessible through the secure tunnel, not the public network. Replace the IP with the host&#39;s WireGuard address:</span><br />
@@ -10814,7 +11150,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">blowfish</font><font color="#cb7676">:~</font><font color="#dbd7ca"> $ doas rcctl </font><b><font color="#4d9375">set</font></b><font color="#dbd7ca"> node_exporter flags </font><font color="#bd976a">'--web.listen-address=192.168.2.110:9100'</font>
+<pre><span style="color: #25231f">blowfish</span><span style="color: #765924">:~</span><span style="color: #25231f"> $ doas rcctl </span><span style="font-weight: bold"><span style="color: #7b2934">set</span></span><span style="color: #25231f"> node_exporter flags </span><span style="color: #3e5d36">'--web.listen-address=192.168.2.110:9100'</span>
 </pre>
 <br />
 <span>Start the service:</span><br />
@@ -10823,8 +11159,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">blowfish</font><font color="#cb7676">:~</font><font color="#dbd7ca"> $ doas rcctl start node_exporter</font>
-<font color="#dbd7ca">node_exporter</font><font color="#cb7676">(</font><font color="#dbd7ca">ok</font><font color="#cb7676">)</font>
+<pre><span style="color: #25231f">blowfish</span><span style="color: #765924">:~</span><span style="color: #25231f"> $ doas rcctl start node_exporter</span>
+<span style="color: #25231f">node_exporter</span><span style="color: #765924">(</span><span style="color: #25231f">ok</span><span style="color: #765924">)</span>
 </pre>
 <br />
 <span>Verify it&#39;s running:</span><br />
@@ -10833,10 +11169,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><font color="#dbd7ca">blowfish</font><font color="#cb7676">:~</font><font color="#dbd7ca"> $ curl -s http</font><font color="#cb7676">://</font><font color="#bd976a">192.168</font><font color="#cb7676">.</font><font color="#bd976a">2.110</font><font color="#cb7676">:</font><font color="#bd976a">9100</font><font color="#dbd7ca">/metrics </font><font color="#cb7676">|</font><font color="#dbd7ca"> head -</font><font color="#bd976a">3</font>
-<i><font color="#666666"># HELP go_gc_duration_seconds A summary of the wall-time pause...</font></i>
-<i><font color="#666666"># TYPE go_gc_duration_seconds summary</font></i>
-<font color="#dbd7ca">go_gc_duration_seconds{</font><font color="#bd976a">quantile</font><font color="#cb7676">=</font><font color="#bd976a">"0"</font><font color="#dbd7ca">} </font><font color="#bd976a">0</font>
+<pre><span style="color: #25231f">blowfish</span><span style="color: #765924">:~</span><span style="color: #25231f"> $ curl -s http</span><span style="color: #765924">://</span><span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">2.110</span><span style="color: #765924">:</span><span style="color: #8a450c">9100</span><span style="color: #25231f">/metrics </span><span style="color: #765924">|</span><span style="color: #25231f"> head -</span><span style="color: #8a450c">3</span>
+<span style="font-style: italic"><span style="color: #685f50"># HELP go_gc_duration_seconds A summary of the wall-time pause...</span></span>
+<span style="font-style: italic"><span style="color: #685f50"># TYPE go_gc_duration_seconds summary</span></span>
+<span style="color: #25231f">go_gc_duration_seconds{</span><span style="color: #6d3c6d">quantile</span><span style="color: #765924">=</span><span style="color: #3e5d36">"0"</span><span style="color: #25231f">} </span><span style="color: #8a450c">0</span>
 </pre>
 <br />
 <span>Repeat for the other OpenBSD host (<span class='inlinecode'>fishfinger</span>) with its respective WireGuard IP (<span class='inlinecode'>192.168.2.111</span>).</span><br />
@@ -10916,6 +11252,10 @@ spec:
 <br />
 <a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/prometheus'>Prometheus, Grafana, and recording rules configuration</a><br />
 <a class='textlink' href='https://github.com/snonux/conf/tree/master/f3s/loki'>Loki and Alloy configuration</a><br />
+<br />
+<span>Read the next post of this series:</span><br />
+<br />
+<a class='textlink' href='./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.html'>f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo</a><br />
 <br />
 <span>Other *BSD-related posts:</span><br />
 <br />
@@ -19717,142 +20057,6 @@ bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf re
 <a class='textlink' href='./2026-02-02-tmux-popup-editor-for-cursor-agent-prompts.html'>2026-02-02 A tmux popup editor for Cursor Agent CLI prompts</a><br />
 <a class='textlink' href='./2025-05-02-terminal-multiplexing-with-tmux-fish-edition.html'>2025-05-02 Terminal multiplexing with <span class='inlinecode'>tmux</span> - Fish edition (You are currently reading this)</a><br />
 <a class='textlink' href='./2024-06-23-terminal-multiplexing-with-tmux.html'>2024-06-23 Terminal multiplexing with <span class='inlinecode'>tmux</span> - Z-Shell edition</a><br />
-<br />
-<a class='textlink' href='../'>Back to the main site</a><br />
-            </div>
-        </content>
-    </entry>
-    <entry>
-        <title>'When: The Scientific Secrets of Perfect Timing' book notes</title>
-        <link href="gemini://foo.zone/gemfeed/2025-04-19-when-book-notes.gmi" />
-        <id>gemini://foo.zone/gemfeed/2025-04-19-when-book-notes.gmi</id>
-        <updated>2025-04-19T10:26:05+03:00</updated>
-        <author>
-            <name>Paul Buetow aka snonux</name>
-            <email>paul@dev.buetow.org</email>
-        </author>
-        <summary>These are my personal book notes from Daniel Pink's 'When: The Scientific Secrets of Perfect Timing.' They are for me, but I hope they might be useful to you too.</summary>
-        <content type="xhtml">
-            <div xmlns="http://www.w3.org/1999/xhtml">
-                <h1 style='display: inline' id='when-the-scientific-secrets-of-perfect-timing-book-notes'>"When: The Scientific Secrets of Perfect Timing" book notes</h1><br />
-<br />
-<span class='quote'>Published at 2025-04-19T10:26:05+03:00</span><br />
-<br />
-<span>These are my personal book notes from Daniel Pink&#39;s "When: The Scientific Secrets of Perfect Timing." They are for me, but I hope they might be useful to you too.</span><br />
-<br />
-<pre>
-	  __
- (`/\
- `=\/\ __...--~~~~~-._   _.-~~~~~--...__
-  `=\/\               \ /               \\
-   `=\/                V                 \\
-   //_\___--~~~~~~-._  |  _.-~~~~~~--...__\\
-  //  ) (..----~~~~._\ | /_.~~~~----.....__\\
- ===( INK )==========\\|//====================
-__ejm\___/________dwb`---`______________________
-</pre>
-<br />
-<h2 style='display: inline' id='table-of-contents'>Table of Contents</h2><br />
-<br />
-<ul>
-<li><a href='#when-the-scientific-secrets-of-perfect-timing-book-notes'>"When: The Scientific Secrets of Perfect Timing" book notes</a></li>
-<li>⇢ <a href='#daily-rhythms'>Daily Rhythms</a></li>
-<li>⇢ <a href='#optimal-task-timing'>Optimal Task Timing</a></li>
-<li>⇢ <a href='#exercise-timing'>Exercise Timing</a></li>
-<li>⇢ <a href='#drinking-habits'>Drinking Habits</a></li>
-<li>⇢ <a href='#afternoon-challenges-bermuda-triangle'>Afternoon Challenges ("Bermuda Triangle")</a></li>
-<li>⇢ <a href='#breaks-and-productivity'>Breaks and Productivity</a></li>
-<li>⇢ <a href='#napping'>Napping</a></li>
-<li>⇢ <a href='#scheduling-breaks'>Scheduling Breaks</a></li>
-<li>⇢ <a href='#final-impressions'>Final Impressions</a></li>
-<li>⇢ <a href='#the-midlife-u-curve'>The Midlife U Curve</a></li>
-<li>⇢ <a href='#project-management-tips'>Project Management Tips</a></li>
-</ul><br />
-<span>You are a different kind of organism based on the time of day. For example, school tests show worse results later in the day, especially if there are fewer computers than students available. Every person has a chronotype, such as a late or early peaker, or somewhere in the middle (like most people). You can assess your chronotype here:</span><br />
-<br />
-<a class='textlink' href='https://www.danpink.com/mctq/'>Chronotype Assessment</a><br />
-<br />
-<span>Following your chronotype can lead to more happiness and higher job satisfaction.</span><br />
-<br />
-<h2 style='display: inline' id='daily-rhythms'>Daily Rhythms</h2><br />
-<br />
-<span>Peak, Trough, Rebound (Recovery): Most people experience these periods throughout the day. It&#39;s best to "eat the frog" or tackle daunting tasks during the peak. A twin peak exists every day, with mornings and early evenings being optimal for most people. Negative moods follow the opposite pattern, peaking in the afternoon. Light helps adjust but isn&#39;t the main driver of our internal clock. Like plants, humans have intrinsic rhythms.</span><br />
-<br />
-<h2 style='display: inline' id='optimal-task-timing'>Optimal Task Timing</h2><br />
-<br />
-<ul>
-<li>Analytical work requiring sharpness and focus is best at the peak.</li>
-<li>Creative work is more effective during non-peak times.</li>
-<li>Biorhythms can sway performance by up to twenty percent.</li>
-</ul><br />
-<h2 style='display: inline' id='exercise-timing'>Exercise Timing</h2><br />
-<br />
-<span>Exercise in the morning to lose weight; you burn up to twenty percent more fat if you exercise before eating. Exercising after eating aids muscle gain, using the energy from the food. Morning exercises elevate mood, with the effect lasting all day. They also make forming a habit easier. The late afternoon is best for athletic performance due to optimal body temperature, reducing injury risk.</span><br />
-<br />
-<h2 style='display: inline' id='drinking-habits'>Drinking Habits</h2><br />
-<br />
-<ul>
-<li>Drink water in the morning to counter mild dehydration upon waking.</li>
-<li>Delay coffee consumption until cortisol production peaks an hour or 90 minutes after waking. This helps avoid caffeine resistance.</li>
-<li>For an afternoon boost, have coffee once cortisol levels drop.</li>
-</ul><br />
-<h2 style='display: inline' id='afternoon-challenges-bermuda-triangle'>Afternoon Challenges ("Bermuda Triangle")</h2><br />
-<br />
-<ul>
-<li>Mistakes are more common in hospitals during this period, like incorrect antibiotic subscriptions or missed handwashing.</li>
-<li>Traffic accidents and unfavorable judge decisions occur more frequently in the afternoon.</li>
-<li>2:55 pm is the least productive time of the day.</li>
-</ul><br />
-<h2 style='display: inline' id='breaks-and-productivity'>Breaks and Productivity</h2><br />
-<br />
-<span>Short breaks help. Student exam results improved with a half-hour break beforehand. Even micro-breaks count: hourly five-minute walking breaks can boost productivity as much as 30-minute walks. Breaks in nature work better than indoor ones, and physical activity during breaks boosts concentration more than long walks do. The important part: fully detach from work during the break.</span><br />
-<br />
-<h2 style='display: inline' id='napping'>Napping</h2><br />
-<br />
-<span>Short naps (10-20 minutes) improve mood, alertness, learning, and problem-solving. Older people nap more, and it&#39;s good for mood and health. A "nappuccino," or napping after coffee, offers a double boost, as caffeine takes around 25 minutes to kick in.</span><br />
-<br />
-<h2 style='display: inline' id='scheduling-breaks'>Scheduling Breaks</h2><br />
-<br />
-<ul>
-<li>Track breaks just as you do with tasks—aim for three breaks a day.</li>
-<li>Every 25 minutes, look away and daydream for 20 seconds, or engage in short exercises.</li>
-<li>Even three minutes of meditation is a good break.</li>
-<li>The "Fresh Start Effect" (e.g., beginning a diet on January 1st or a new week) impacts motivation, as does recognizing progress. At the end of each day, spends two minutes to write down accomplishments.</li>
-</ul><br />
-<h2 style='display: inline' id='final-impressions'>Final Impressions</h2><br />
-<br />
-<ul>
-<li>The concluding experience of a vacation significantly influences overall memories.</li>
-<li>Restaurant reviews often hinge on the end of the visit, highlighting extras like wrong bills or additional desserts.</li>
-<li>Considering one&#39;s older future self can motivate improvements in the present.</li>
-</ul><br />
-<h2 style='display: inline' id='the-midlife-u-curve'>The Midlife U Curve</h2><br />
-<br />
-<span>Life satisfaction tends to dip in midlife, around the forties, but increases around age 54.</span><br />
-<br />
-<h2 style='display: inline' id='project-management-tips'>Project Management Tips</h2><br />
-<br />
-<ul>
-<li>Halfway through a project, there&#39;s a concentrated work effort ("Oh Oh Effect"), similar to an alarm when slightly behind schedule.</li>
-<li>Recognizing daily accomplishments can elevate motivation and satisfaction.</li>
-</ul><br />
-<span>E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
-<br />
-<span>Other book notes of mine are:</span><br />
-<br />
-<a class='textlink' href='./2026-08-07-97-things-every-sre-should-know-book-notes.html'>2026-08-07 &#39;97 Things Every SRE Should Know&#39; book notes</a><br />
-<a class='textlink' href='./2026-08-05-eat-that-frog-book-notes.html'>2026-08-05 &#39;Eat That Frog&#39; book notes</a><br />
-<a class='textlink' href='./2025-11-02-the-courage-to-be-disliked-book-notes.html'>2025-11-02 &#39;The Courage To Be Disliked&#39; book notes</a><br />
-<a class='textlink' href='./2025-06-07-a-monks-guide-to-happiness-book-notes.html'>2025-06-07 &#39;A Monk&#39;s Guide to Happiness&#39; book notes</a><br />
-<a class='textlink' href='./2025-04-19-when-book-notes.html'>2025-04-19 &#39;When: The Scientific Secrets of Perfect Timing&#39; book notes (You are currently reading this)</a><br />
-<a class='textlink' href='./2024-10-24-staff-engineer-book-notes.html'>2024-10-24 &#39;Staff Engineer&#39; book notes</a><br />
-<a class='textlink' href='./2024-07-07-the-stoic-challenge-book-notes.html'>2024-07-07 &#39;The Stoic Challenge&#39; book notes</a><br />
-<a class='textlink' href='./2024-05-01-slow-productivity-book-notes.html'>2024-05-01 &#39;Slow Productivity&#39; book notes</a><br />
-<a class='textlink' href='./2023-11-11-mind-management-book-notes.html'>2023-11-11 &#39;Mind Management&#39; book notes</a><br />
-<a class='textlink' href='./2023-07-17-career-guide-and-soft-skills-book-notes.html'>2023-07-17 &#39;Software Developers Career Guide and Soft Skills&#39; book notes</a><br />
-<a class='textlink' href='./2023-05-06-the-obstacle-is-the-way-book-notes.html'>2023-05-06 &#39;The Obstacle is the Way&#39; book notes</a><br />
-<a class='textlink' href='./2023-04-01-never-split-the-difference-book-notes.html'>2023-04-01 &#39;Never split the difference&#39; book notes</a><br />
-<a class='textlink' href='./2023-03-16-the-pragmatic-programmer-book-notes.html'>2023-03-16 &#39;The Pragmatic Programmer&#39; book notes</a><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
             </div>

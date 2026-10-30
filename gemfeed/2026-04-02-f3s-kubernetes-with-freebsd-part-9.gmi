@@ -564,6 +564,10 @@ ArgoCD Application manifests organized by namespace:
 
 I won't go back to running Helm commands by hand.
 
+Read the next post of this series:
+
+=> ./2026-09-01-f3s-kubernetes-with-freebsd-part-10.gmi f3s: Kubernetes with FreeBSD - Part 10: A New Home
+
 Other *BSD-related posts:
 
 => ./2026-09-01-f3s-kubernetes-with-freebsd-part-10.gmi 2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home

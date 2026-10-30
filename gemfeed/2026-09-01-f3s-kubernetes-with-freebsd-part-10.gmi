@@ -184,6 +184,10 @@ The whole thing is located in a corner I never used much. It doesn't take up spa
 
 It's not enterprise-grade, but it doesn't need to be. It's out of the TV area, it stays cool enough, and I can reach it without moving furniture. Good enough for me.
 
+Read the next post of this series:
+
+=> ./2026-11-01-f3s-kubernetes-with-freebsd-part-11.gmi f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl
+
 Other *BSD-related posts:
 
 => ./2026-09-01-f3s-kubernetes-with-freebsd-part-10.gmi 2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home (You are currently reading this)
