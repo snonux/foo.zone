@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="790" viewBox="0 0 1120 790" role="img" aria-labelledby="title desc">
+<title id="title">One f3sctl job across two Pis</title>
+<desc id="desc">A client starts job J42 through relayd on pi0. A later poll reaches pi1, whose local job state is empty or belongs to another job, so the client ignores it. Another poll reaches pi0 and returns matching job J42, which the client accepts. Each Pi keeps its own job state.</desc>
+<style>
+  text{font-family:DejaVu Sans,Arial,sans-serif;fill:#172c40}.bg{fill:#fff}
+  .heading{font-size:29px;font-weight:700}.sub{font-size:17px;fill:#4b6376}
+  .panel{fill:#f5f8fa;stroke:#cbd8e1;stroke-width:1.5}.client{fill:#eaf3fc;stroke:#417498;stroke-width:2}
+  .gateway{fill:#edf2f6;stroke:#6d8292;stroke-width:2}.pi0{fill:#e4f3e9;stroke:#397951;stroke-width:2}
+  .pi1{fill:#fff0db;stroke:#a57835;stroke-width:2}.name{font-size:20px;font-weight:700}.detail{font-size:16px}
+  .step{font-size:18px;font-weight:700}.result{font-size:16px;fill:#41576a}.number{font-size:18px;font-weight:700;fill:#fff}
+  .line{fill:none;stroke:#5b7b91;stroke-width:2.5;marker-end:url(#arrow)}
+  .circle{fill:#35576d}.note{font-size:16px;fill:#4b6376}
+  @media(prefers-color-scheme:dark){
+    .bg{fill:#14212d}text{fill:#edf3f8}.sub,.result,.note{fill:#b4cadc}
+    .panel{fill:#1d2b38;stroke:#456073}.client{fill:#233a50;stroke:#91b9dc}
+    .gateway{fill:#2c3a47;stroke:#a2b6c6}.pi0{fill:#213e32;stroke:#8bc7a3}
+    .pi1{fill:#493b28;stroke:#e0b579}.line{stroke:#b4cadc}.circle{fill:#638baa}
+  }
+</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5b7b91"/></marker></defs>
+<rect class="bg" width="1120" height="790"/>
+<text x="40" y="50" class="heading">One job, two Pis</text>
+<text x="40" y="81" class="sub">relayd may send each request to a different Pi. Job state stays on the Pi that ran it.</text>
+
+<rect x="40" y="117" width="1040" height="184" rx="13" class="panel"/>
+<circle cx="78" cy="151" r="21" class="circle"/><text x="78" y="158" text-anchor="middle" class="number">1</text>
+<text x="113" y="158" class="step">Start a power job</text>
+<rect x="65" y="179" width="250" height="77" rx="10" class="client"/>
+<text x="85" y="211" class="name">Client</text><text x="85" y="239" class="detail">Requests power off</text>
+<path d="M315 218 H385" class="line"/>
+<rect x="390" y="179" width="240" height="77" rx="10" class="gateway"/>
+<text x="410" y="211" class="name">relayd</text><text x="410" y="239" class="detail">Routes to pi0</text>
+<path d="M630 218 H700" class="line"/>
+<rect x="705" y="179" width="350" height="77" rx="10" class="pi0"/>
+<text x="725" y="211" class="name">pi0</text><text x="725" y="239" class="detail">Starts local job J42</text>
+<text x="65" y="282" class="result">Response: job ID J42. The client remembers J42.</text>
+
+<rect x="40" y="318" width="1040" height="184" rx="13" class="panel"/>
+<circle cx="78" cy="352" r="21" class="circle"/><text x="78" y="359" text-anchor="middle" class="number">2</text>
+<text x="113" y="359" class="step">Next status poll</text>
+<rect x="65" y="380" width="250" height="77" rx="10" class="client"/>
+<text x="85" y="412" class="name">Client</text><text x="85" y="440" class="detail">Expects job J42</text>
+<path d="M315 419 H385" class="line"/>
+<rect x="390" y="380" width="240" height="77" rx="10" class="gateway"/>
+<text x="410" y="412" class="name">relayd</text><text x="410" y="440" class="detail">Routes to pi1</text>
+<path d="M630 419 H700" class="line"/>
+<rect x="705" y="380" width="350" height="77" rx="10" class="pi1"/>
+<text x="725" y="412" class="name">pi1</text><text x="725" y="440" class="detail">No J42: empty or old job</text>
+<text x="65" y="483" class="result">Response has no matching ID. The client keeps waiting.</text>
+
+<rect x="40" y="519" width="1040" height="184" rx="13" class="panel"/>
+<circle cx="78" cy="553" r="21" class="circle"/><text x="78" y="560" text-anchor="middle" class="number">3</text>
+<text x="113" y="560" class="step">Following status poll</text>
+<rect x="65" y="581" width="250" height="77" rx="10" class="client"/>
+<text x="85" y="613" class="name">Client</text><text x="85" y="641" class="detail">Still expects J42</text>
+<path d="M315 620 H385" class="line"/>
+<rect x="390" y="581" width="240" height="77" rx="10" class="gateway"/>
+<text x="410" y="613" class="name">relayd</text><text x="410" y="641" class="detail">Routes to pi0</text>
+<path d="M630 620 H700" class="line"/>
+<rect x="705" y="581" width="350" height="77" rx="10" class="pi0"/>
+<text x="725" y="613" class="name">pi0</text><text x="725" y="641" class="detail">Returns job J42 progress</text>
+<text x="65" y="684" class="result">Response matches J42. The client accepts its progress or result.</text>
+
+<text x="560" y="750" text-anchor="middle" class="note">Peer checks reduce conflicting jobs; they do not share job state.</text>
+</svg>

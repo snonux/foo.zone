@@ -467,8 +467,13 @@ All config files are on GitHub:
 [Alloy configuration (updated for traces)](https://github.com/snonux/conf/tree/master/f3s/loki)  
 [Demo tracing application](https://github.com/snonux/conf/tree/master/f3s/tracing-demo)  
 
+Read the next post of this series:
+
+[f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD](./2026-04-02-f3s-kubernetes-with-freebsd-part-9.md)  
+
 Other *BSD-related posts:
 
+[2026-11-01 f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl and RESTForge](./2026-11-01-f3s-kubernetes-with-freebsd-part-11.md)  
 [2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home](./2026-09-01-f3s-kubernetes-with-freebsd-part-10.md)  
 [2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD](./2026-04-02-f3s-kubernetes-with-freebsd-part-9.md)  
 [2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo (You are currently reading this)](./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.md)  

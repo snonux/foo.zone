@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1120" height="850" viewBox="0 0 1120 850" role="img" aria-labelledby="title desc">
+<title id="title">f3s rack power lines</title>
+<desc id="desc">A wall socket feeds the UPS. Three parallel UPS-backed branches lead to the always-on pi0 and pi1 supply, Shelly 1 and the rack fans, and Shelly 2 and the power strip for f0 through f3 and their JetKVMs. The Shelly plugs independently switch only their downstream loads.</desc>
+<style>
+  text{font-family:DejaVu Sans,Arial,sans-serif;fill:#172c40}
+  .bg{fill:#fff}.heading{font-size:29px;font-weight:700}.sub{font-size:17px;fill:#4b6376}
+  .name{font-size:21px;font-weight:700}.detail{font-size:17px}.small{font-size:15px}
+  .wall{fill:#edf2f6;stroke:#6d8292;stroke-width:2}.ups{fill:#e4f3e9;stroke:#397951;stroke-width:2.5}
+  .direct{fill:#eaf3fc;stroke:#417498;stroke-width:2}.fan{fill:#fff0db;stroke:#a57835;stroke-width:2}
+  .host{fill:#f3eefd;stroke:#74569b;stroke-width:2}.line{fill:none;stroke:#35576d;stroke-width:3;stroke-linecap:round;stroke-linejoin:round}
+  .divider{stroke:#cbd8e1;stroke-width:1.5}.note{font-size:16px;fill:#4b6376}
+  @media(prefers-color-scheme:dark){
+    .bg{fill:#14212d}text{fill:#edf3f8}.sub,.note{fill:#b4cadc}
+    .wall{fill:#2c3a47;stroke:#a2b6c6}.ups{fill:#213e32;stroke:#8bc7a3}
+    .direct{fill:#233a50;stroke:#91b9dc}.fan{fill:#493b28;stroke:#e0b579}
+    .host{fill:#382e4c;stroke:#baa1de}.line{stroke:#b4cadc}.divider{stroke:#456073}
+  }
+</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" fill="#5b7b91"/></marker></defs>
+<rect class="bg" width="1120" height="850"/>
+<text x="40" y="52" class="heading">Power to the f3s rack</text>
+<text x="40" y="81" class="sub">The Shelly plugs sit downstream of the UPS, on separate switched branches.</text>
+
+<rect x="420" y="113" width="280" height="72" rx="12" class="wall"/>
+<text x="560" y="143" text-anchor="middle" class="name">Wall socket</text>
+<text x="560" y="168" text-anchor="middle" class="detail">Mains AC</text>
+<path d="M560 185 V220" class="line" marker-end="url(#arrow)"/>
+<rect x="350" y="225" width="420" height="102" rx="14" class="ups"/>
+<text x="560" y="266" text-anchor="middle" class="name">APC Back-UPS</text>
+<text x="560" y="295" text-anchor="middle" class="detail">Battery-backed AC output</text>
+
+<path d="M560 327 V365 H190 V408" class="line" marker-end="url(#arrow)"/>
+<path d="M560 365 V408" class="line" marker-end="url(#arrow)"/>
+<path d="M560 365 H930 V408" class="line" marker-end="url(#arrow)"/>
+
+<rect x="40" y="415" width="300" height="105" rx="12" class="direct"/>
+<text x="190" y="451" text-anchor="middle" class="name">Unswitched supply</text>
+<text x="190" y="480" text-anchor="middle" class="detail">Always on while UPS has power</text>
+<rect x="40" y="581" width="300" height="117" rx="12" class="direct"/>
+<text x="190" y="620" text-anchor="middle" class="name">pi0 · pi1</text>
+<text x="190" y="650" text-anchor="middle" class="detail">NetBSD control hosts</text>
+<text x="190" y="676" text-anchor="middle" class="small">Can reach both Shelly plugs</text>
+<path d="M190 520 V575" class="line" marker-end="url(#arrow)"/>
+
+<rect x="410" y="415" width="300" height="105" rx="12" class="fan"/>
+<text x="560" y="451" text-anchor="middle" class="name">Shelly 1 · fans</text>
+<text x="560" y="480" text-anchor="middle" class="detail">Switched AC relay</text>
+<rect x="410" y="581" width="300" height="117" rx="12" class="fan"/>
+<text x="560" y="620" text-anchor="middle" class="name">Rack fans</text>
+<text x="560" y="650" text-anchor="middle" class="detail">Cooling for f0 · f1 · f2</text>
+<path d="M560 520 V575" class="line" marker-end="url(#arrow)"/>
+
+<rect x="780" y="415" width="300" height="105" rx="12" class="host"/>
+<text x="930" y="451" text-anchor="middle" class="name">Shelly 2 · host AC</text>
+<text x="930" y="480" text-anchor="middle" class="detail">Switched AC relay</text>
+<rect x="780" y="581" width="300" height="117" rx="12" class="host"/>
+<text x="930" y="620" text-anchor="middle" class="name">Host power strip</text>
+<text x="930" y="650" text-anchor="middle" class="detail">f0 · f1 · f2 · f3</text>
+<text x="930" y="676" text-anchor="middle" class="small">and their JetKVMs</text>
+<path d="M930 520 V575" class="line" marker-end="url(#arrow)"/>
+
+<path d="M40 746 H1080" class="divider"/>
+<text x="560" y="779" text-anchor="middle" class="note">Opening either Shelly relay cuts only its own downstream branch.</text>
+<text x="560" y="808" text-anchor="middle" class="note">The Pis stay on the UPS so they can restore power to the switched branches.</text>
+</svg>

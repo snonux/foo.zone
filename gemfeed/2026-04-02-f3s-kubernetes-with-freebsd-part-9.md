@@ -15,6 +15,7 @@ This is the 9th post in the f3s series about my self-hosting home lab. f3s? The 
 [2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo](./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.md)  
 [2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD (You are currently reading this)](./2026-04-02-f3s-kubernetes-with-freebsd-part-9.md)  
 [2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home](./2026-09-01-f3s-kubernetes-with-freebsd-part-10.md)  
+[2026-11-01 f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl and RESTForge](./2026-11-01-f3s-kubernetes-with-freebsd-part-11.md)  
 
 [![f3s logo](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png "f3s logo")](./f3s-kubernetes-with-freebsd-part-1/f3slogo.png)  
 
@@ -564,8 +565,13 @@ ArgoCD Application manifests organized by namespace:
 
 I won't go back to running Helm commands by hand.
 
+Read the next post of this series:
+
+[f3s: Kubernetes with FreeBSD - Part 10: A New Home](./2026-09-01-f3s-kubernetes-with-freebsd-part-10.md)  
+
 Other *BSD-related posts:
 
+[2026-11-01 f3s: Kubernetes with FreeBSD - Part 11: Remote control with f3sctl and RESTForge](./2026-11-01-f3s-kubernetes-with-freebsd-part-11.md)  
 [2026-09-01 f3s: Kubernetes with FreeBSD - Part 10: A New Home](./2026-09-01-f3s-kubernetes-with-freebsd-part-10.md)  
 [2026-04-02 f3s: Kubernetes with FreeBSD - Part 9: GitOps with ArgoCD (You are currently reading this)](./2026-04-02-f3s-kubernetes-with-freebsd-part-9.md)  
 [2025-12-14 f3s: Kubernetes with FreeBSD - Part 8b: Distributed Tracing with Tempo](./2025-12-14-f3s-kubernetes-with-freebsd-part-8b.md)  
