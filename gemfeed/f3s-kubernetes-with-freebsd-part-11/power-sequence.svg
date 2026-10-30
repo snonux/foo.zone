@@ -1,0 +1,76 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="900" viewBox="0 0 1200 900" role="img" aria-labelledby="title desc">
+<title id="title">f3sctl shutdown and cold-cycle order</title>
+<desc id="desc">Power off proceeds through storage cleanup, monitoring mute, CARP failover quiescence, host shutdown with f0 last, and verification before the fans turn off. A full cold cycle then cuts AC through Shelly 2 for 15 seconds, restores AC and waits 30 seconds, turns on fans, sends Wake-on-LAN, waits for the k3s guests, and unmutes monitoring.</desc>
+<style>
+  text{font-family:DejaVu Sans,Arial,sans-serif;fill:#172c40}.bg{fill:#fff}
+  .heading{font-size:29px;font-weight:700}.sub{font-size:17px;fill:#4b6376}
+  .section{font-size:21px;font-weight:700}.step{font-size:19px;font-weight:700}.detail{font-size:16px}.number{font-size:18px;font-weight:700}
+  .left-head,.left-card{fill:#e4f3e9;stroke:#397951;stroke-width:2}
+  .right-head,.right-card{fill:#f3eefd;stroke:#74569b;stroke-width:2}
+  .right-optional{fill:#fff0db;stroke:#a57835;stroke-width:2}
+  .flow{fill:none;stroke:#5b7b91;stroke-width:2.5;marker-end:url(#arrow)}
+  .note{fill:#edf2f6;stroke:#cbd8e1;stroke-width:1.5}.note-text{font-size:16px;fill:#41576a}
+  @media(prefers-color-scheme:dark){
+    .bg{fill:#14212d}text{fill:#edf3f8}.sub,.note-text{fill:#b4cadc}
+    .left-head,.left-card{fill:#213e32;stroke:#8bc7a3}
+    .right-head,.right-card{fill:#382e4c;stroke:#baa1de}
+    .right-optional{fill:#493b28;stroke:#e0b579}
+    .flow{stroke:#b4cadc}.note{fill:#2c3a47;stroke:#456073}
+  }
+</style>
+<defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L10 5 L0 10 z" fill="#5b7b91"/></marker></defs>
+<rect class="bg" width="1200" height="900"/>
+<text x="40" y="50" class="heading">Power off, then a full cold cycle</text>
+<text x="40" y="81" class="sub">The right-hand path begins only after the left-hand shutdown completes.</text>
+
+<rect x="40" y="112" width="520" height="65" rx="12" class="left-head"/>
+<text x="60" y="152" class="section">Power off</text>
+<rect x="640" y="112" width="520" height="65" rx="12" class="right-head"/>
+<text x="660" y="152" class="section">Full cold cycle: AC cut and wake</text>
+
+<rect x="40" y="202" width="520" height="94" rx="12" class="left-card"/>
+<text x="60" y="238" class="number">1</text><text x="100" y="238" class="step">Prepare storage</text>
+<text x="100" y="267" class="detail">Unmount local NFS; unload the zusb backup pool.</text>
+<path d="M300 296 V312" class="flow"/>
+<rect x="40" y="317" width="520" height="94" rx="12" class="left-card"/>
+<text x="60" y="353" class="number">2</text><text x="100" y="353" class="step">Mute Gogios monitoring</text>
+<text x="100" y="382" class="detail">Planned shutdowns should not page me.</text>
+<path d="M300 411 V427" class="flow"/>
+<rect x="40" y="432" width="520" height="94" rx="12" class="left-card"/>
+<text x="60" y="468" class="number">3</text><text x="100" y="468" class="step">Quiesce the CARP pair</text>
+<text x="100" y="497" class="detail">Stop devd and cron on f0 and f1.</text>
+<path d="M300 526 V542" class="flow"/>
+<rect x="40" y="547" width="520" height="106" rx="12" class="left-card"/>
+<text x="60" y="583" class="number">4</text><text x="100" y="583" class="step">Shut down the hosts</text>
+<text x="100" y="612" class="detail">Other selected hosts in parallel;</text>
+<text x="100" y="636" class="detail">f0, the storage master, last.</text>
+<path d="M300 653 V669" class="flow"/>
+<rect x="40" y="674" width="520" height="106" rx="12" class="left-card"/>
+<text x="60" y="710" class="number">5</text><text x="100" y="710" class="step">Verify, then stop the fans</text>
+<text x="100" y="739" class="detail">Check that hosts stopped answering;</text>
+<text x="100" y="763" class="detail">fans off once f0–f2 are down.</text>
+
+<rect x="640" y="202" width="520" height="78" rx="12" class="right-optional"/>
+<text x="660" y="238" class="number">6</text><text x="700" y="238" class="step">Shelly 2: AC off</text>
+<text x="700" y="264" class="detail">Only after the shutdown succeeds.</text>
+<path d="M900 280 V296" class="flow"/>
+<rect x="640" y="301" width="520" height="78" rx="12" class="right-optional"/>
+<text x="660" y="348" class="number">7</text><text x="700" y="348" class="step">Wait 15 seconds</text>
+<path d="M900 379 V395" class="flow"/>
+<rect x="640" y="400" width="520" height="78" rx="12" class="right-optional"/>
+<text x="660" y="447" class="number">8</text><text x="700" y="447" class="step">Shelly 2: AC on</text>
+<path d="M900 478 V494" class="flow"/>
+<rect x="640" y="499" width="520" height="78" rx="12" class="right-optional"/>
+<text x="660" y="546" class="number">9</text><text x="700" y="546" class="step">Wait 30 seconds</text>
+<path d="M900 577 V593" class="flow"/>
+<rect x="640" y="598" width="520" height="78" rx="12" class="right-card"/>
+<text x="654" y="634" class="number">10</text><text x="700" y="634" class="step">Fans on, then Wake-on-LAN</text>
+<text x="700" y="660" class="detail">Wake the selected FreeBSD hosts.</text>
+<path d="M900 676 V692" class="flow"/>
+<rect x="640" y="697" width="520" height="83" rx="12" class="right-card"/>
+<text x="654" y="733" class="number">11</text><text x="700" y="733" class="step">Wait for r0–r2, then unmute</text>
+<text x="700" y="759" class="detail">Retry WoL; unmute even on timeout.</text>
+
+<rect x="40" y="811" width="1120" height="56" rx="10" class="note"/>
+<text x="600" y="846" text-anchor="middle" class="note-text">A normal wake starts at step 10. A full cold cycle runs steps 1–11.</text>
+</svg>
