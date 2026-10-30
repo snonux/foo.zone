@@ -234,8 +234,6 @@ Backend configuration lives in the Pebble phone app's settings for RESTForge. Po
 => https://github.com/snonux/restforge/tree/main/pebble RESTForge Pebble OS app
 => https://apps.repebble.com/restforge_931683527605431e96bf2772 RESTForge in the Pebble Appstore
 
-## A remote control that survives the shutdown
-
 A watch button is a funny place for a FreeBSD shutdown to begin. The request still goes through the always-on Pis, and f3sctl waits for the guests, storage and hosts in the right order. That's where most of the work went.
 
 Other *BSD-related posts:
