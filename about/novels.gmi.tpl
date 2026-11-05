@@ -91,6 +91,10 @@ Poseidons Children Series:
 * 2024 - Infinitia (german), Audiobook
 * 2024 - Der Riss (german), eBook
 
+### Adrian Tchaikovsky
+
+* 2015 - Children of Time (english) / Die Kinder der Zeit (german), eBook
+
 ### Collaborations (german)
 
 Origin-Trilogie (each volume written by a different author):
