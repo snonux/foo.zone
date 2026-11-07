@@ -8,6 +8,7 @@
 * [⇢ ⇢ ⇢ Alastair Reynolds](#alastair-reynolds)
 * [⇢ ⇢ ⇢ Arthur C. Clarke](#arthur-c-clarke)
 * [⇢ ⇢ ⇢ Andreas Brandhorst (german)](#andreas-brandhorst-german)
+* [⇢ ⇢ ⇢ Adrian Tchaikovsky](#adrian-tchaikovsky)
 * [⇢ ⇢ ⇢ Collaborations (german)](#collaborations-german)
 * [⇢ ⇢ ⇢ David Reimer (german)](#david-reimer-german)
 * [⇢ ⇢ ⇢ Ian Banks](#ian-banks)
@@ -102,6 +103,10 @@ Poseidons Children Series:
 * 2024 - Zeta (german), Audiobook
 * 2024 - Infinitia (german), Audiobook
 * 2024 - Der Riss (german), eBook
+
+### Adrian Tchaikovsky
+
+* 2015 - Children of Time (english) / Die Kinder der Zeit (german), eBook
 
 ### Collaborations (german)
 
