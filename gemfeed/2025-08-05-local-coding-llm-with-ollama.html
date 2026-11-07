@@ -6,22 +6,21 @@
 <title>Local LLM for Coding with Ollama on macOS</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-08-05-local-coding-llm-with-ollama.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-08-05-local-coding-llm-with-ollama.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2025-08-05-local-coding-llm-with-ollama.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='local-llm-for-coding-with-ollama-on-macos'>Local LLM for Coding with Ollama on macOS</h1><br />
 <br />
 <span class='quote'>Published at 2025-08-04T16:43:39+03:00, last updated Sat 03 Oct 18:26:24 EEST 2026</span><br />
@@ -114,9 +113,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">brew install ollama</span>
-<span style="color: #25231f">rehash</span>
-<span style="color: #25231f">ollama serve</span>
+<pre><span style="color: #292c29">brew install ollama</span>
+<span style="color: #292c29">rehash</span>
+<span style="color: #292c29">ollama serve</span>
 </pre>
 <br />
 <span>Which started up the Ollama server with something like this (the screenshots shows already some requests made):</span><br />
@@ -129,7 +128,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">ollama pull qwen2</span><span style="color: #765924">.</span><span style="color: #8a450c">5</span><span style="color: #25231f">-coder</span><span style="color: #765924">:</span><span style="color: #25231f">14b-instruct</span>
+<pre><span style="color: #292c29">ollama pull qwen2</span><span style="color: #292c29">.</span><span style="color: #6b5138">5</span><span style="color: #292c29">-coder</span><span style="color: #292c29">:</span><span style="color: #292c29">14b-instruct</span>
 </pre>
 <br />
 <span>Now, I was ready to go! It wasn&#39;t so difficult. Now, let&#39;s see how I used this model for coding tasks.</span><br />
@@ -142,27 +141,27 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">time echo </span><span style="color: #3e5d36">"Write a function in golang to print out the Nth fibonacci number, \</span>
-<span style="color: #3e5d36">  only the function without the boilerplate"</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> ollama run qwen2</span><span style="color: #765924">.</span><span style="color: #8a450c">5</span><span style="color: #25231f">-coder</span><span style="color: #765924">:</span><span style="color: #25231f">14b-instruct</span>
+<pre><span style="color: #292c29">time echo </span><span style="color: #6b5138">"Write a function in golang to print out the Nth fibonacci number, \</span>
+<span style="color: #6b5138">  only the function without the boilerplate"</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> ollama run qwen2</span><span style="color: #292c29">.</span><span style="color: #6b5138">5</span><span style="color: #292c29">-coder</span><span style="color: #292c29">:</span><span style="color: #292c29">14b-instruct</span>
 
-<span style="color: #25231f">Output</span><span style="color: #765924">:</span>
+<span style="color: #292c29">Output</span><span style="color: #292c29">:</span>
 
-<span style="color: #25231f">func fibonacci</span><span style="color: #765924">(</span><span style="color: #25231f">n int</span><span style="color: #765924">)</span><span style="color: #25231f"> int {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> n </span><span style="color: #765924">&lt;=</span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> n</span>
-<span style="color: #25231f">    }</span>
-<span style="color: #25231f">    a</span><span style="color: #765924">,</span><span style="color: #25231f"> b </span><span style="color: #765924">:=</span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> i </span><span style="color: #765924">:=</span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span><span style="color: #765924">;</span><span style="color: #25231f"> i </span><span style="color: #765924">&lt;=</span><span style="color: #25231f"> n</span><span style="color: #765924">;</span><span style="color: #25231f"> i</span><span style="color: #765924">++</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">        a</span><span style="color: #765924">,</span><span style="color: #25231f"> b </span><span style="color: #765924">=</span><span style="color: #25231f"> b</span><span style="color: #765924">,</span><span style="color: #25231f"> a</span><span style="color: #765924">+</span><span style="color: #25231f">b</span>
-<span style="color: #25231f">    }</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> b</span>
-<span style="color: #25231f">}</span>
+<span style="color: #292c29">func fibonacci</span><span style="color: #292c29">(</span><span style="color: #292c29">n int</span><span style="color: #292c29">)</span><span style="color: #292c29"> int {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> n </span><span style="color: #292c29">&lt;=</span><span style="color: #292c29"> </span><span style="color: #6b5138">1</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">return</span></span><span style="color: #292c29"> n</span>
+<span style="color: #292c29">    }</span>
+<span style="color: #292c29">    a</span><span style="color: #292c29">,</span><span style="color: #292c29"> b </span><span style="color: #292c29">:=</span><span style="color: #292c29"> </span><span style="color: #6b5138">0</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">1</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">for</span></span><span style="color: #292c29"> i </span><span style="color: #292c29">:=</span><span style="color: #292c29"> </span><span style="color: #6b5138">2</span><span style="color: #292c29">;</span><span style="color: #292c29"> i </span><span style="color: #292c29">&lt;=</span><span style="color: #292c29"> n</span><span style="color: #292c29">;</span><span style="color: #292c29"> i</span><span style="color: #292c29">++</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">        a</span><span style="color: #292c29">,</span><span style="color: #292c29"> b </span><span style="color: #292c29">=</span><span style="color: #292c29"> b</span><span style="color: #292c29">,</span><span style="color: #292c29"> a</span><span style="color: #292c29">+</span><span style="color: #292c29">b</span>
+<span style="color: #292c29">    }</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">return</span></span><span style="color: #292c29"> b</span>
+<span style="color: #292c29">}</span>
 
-<span style="color: #25231f">Execution Metrics</span><span style="color: #765924">:</span>
+<span style="color: #292c29">Execution Metrics</span><span style="color: #292c29">:</span>
 
-<span style="color: #25231f">Executed </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f">    </span><span style="color: #8a450c">4.90</span><span style="color: #25231f"> secs      fish           external</span>
-<span style="color: #25231f">   usr time   </span><span style="color: #8a450c">15.54</span><span style="color: #25231f"> millis    </span><span style="color: #8a450c">0.31</span><span style="color: #25231f"> millis   </span><span style="color: #8a450c">15.24</span><span style="color: #25231f"> millis</span>
-<span style="color: #25231f">   sys time   </span><span style="color: #8a450c">19.68</span><span style="color: #25231f"> millis    </span><span style="color: #8a450c">1.02</span><span style="color: #25231f"> millis   </span><span style="color: #8a450c">18.66</span><span style="color: #25231f"> millis</span>
+<span style="color: #292c29">Executed </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span><span style="color: #292c29">    </span><span style="color: #6b5138">4.90</span><span style="color: #292c29"> secs      fish           external</span>
+<span style="color: #292c29">   usr time   </span><span style="color: #6b5138">15.54</span><span style="color: #292c29"> millis    </span><span style="color: #6b5138">0.31</span><span style="color: #292c29"> millis   </span><span style="color: #6b5138">15.24</span><span style="color: #292c29"> millis</span>
+<span style="color: #292c29">   sys time   </span><span style="color: #6b5138">19.68</span><span style="color: #292c29"> millis    </span><span style="color: #6b5138">1.02</span><span style="color: #292c29"> millis   </span><span style="color: #6b5138">18.66</span><span style="color: #292c29"> millis</span>
 </pre>
 <br />
 <span class='quote'>Note, after having written this blog post, I tried the same with the newer model <span class='inlinecode'>qwen3-coder:30b-a3b-q4_K_M</span> (which "just" came out, and it&#39;s a quantised 30B model), and it was much faster:</span><br />
@@ -187,9 +186,9 @@ Executed in    1.83 secs      fish           external
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">brew install aider</span>
-<span style="color: #25231f">mkdir -p </span><span style="color: #765924">~</span><span style="color: #25231f">/git/aitest </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> cd </span><span style="color: #765924">~</span><span style="color: #25231f">/git/aitest </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> git init</span>
-<span style="color: #25231f">aider --model ollama_chat/qwen</span><span style="color: #8a450c">2.5</span><span style="color: #25231f">-coder</span><span style="color: #765924">:</span><span style="color: #25231f">14b-instruct</span>
+<pre><span style="color: #292c29">brew install aider</span>
+<span style="color: #292c29">mkdir -p </span><span style="color: #292c29">~</span><span style="color: #292c29">/git/aitest </span><span style="color: #292c29">&amp;&amp;</span><span style="color: #292c29"> cd </span><span style="color: #292c29">~</span><span style="color: #292c29">/git/aitest </span><span style="color: #292c29">&amp;&amp;</span><span style="color: #292c29"> git init</span>
+<span style="color: #292c29">aider --model ollama_chat/qwen</span><span style="color: #6b5138">2.5</span><span style="color: #292c29">-coder</span><span style="color: #292c29">:</span><span style="color: #292c29">14b-instruct</span>
 </pre>
 <br />
 <a class='textlink' href='https://aider.chat'>https://aider.chat</a><br />
@@ -232,11 +231,11 @@ Create a Go project with these files:
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">go build cmd/aitest/main</span><span style="color: #765924">.</span><span style="color: #25231f">go</span>
-<span style="color: #765924">.</span><span style="color: #25231f">/main -v</span>
-<span style="color: #8a450c">0.0</span><span style="color: #765924">.</span><span style="color: #8a450c">0</span>
-<span style="color: #765924">.</span><span style="color: #25231f">/main -dir </span><span style="color: #765924">.</span>
-<span style="color: #25231f">Number of files </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> directory </span><span style="color: #765924">.:</span><span style="color: #25231f"> </span><span style="color: #8a450c">4</span>
+<pre><span style="color: #292c29">go build cmd/aitest/main</span><span style="color: #292c29">.</span><span style="color: #292c29">go</span>
+<span style="color: #292c29">.</span><span style="color: #292c29">/main -v</span>
+<span style="color: #6b5138">0.0</span><span style="color: #292c29">.</span><span style="color: #6b5138">0</span>
+<span style="color: #292c29">.</span><span style="color: #292c29">/main -dir </span><span style="color: #292c29">.</span>
+<span style="color: #292c29">Number of files </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span><span style="color: #292c29"> directory </span><span style="color: #292c29">.:</span><span style="color: #292c29"> </span><span style="color: #6b5138">4</span>
 </pre>
 <br />
 <h3 style='display: inline' id='the-code'>The code</h3><br />
@@ -247,38 +246,38 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">package</span></span><span style="color: #25231f"> main</span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">package</span></span><span style="color: #292c29"> main</span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">import</span></span><span style="color: #25231f"> </span><span style="color: #765924">(</span>
-<span style="color: #25231f">	</span><span style="color: #3e5d36">"flag"</span>
-<span style="color: #25231f">	</span><span style="color: #3e5d36">"fmt"</span>
-<span style="color: #25231f">	</span><span style="color: #3e5d36">"os"</span>
+<span style="font-weight: bold"><span style="color: #38604f">import</span></span><span style="color: #292c29"> </span><span style="color: #292c29">(</span>
+<span style="color: #292c29">	</span><span style="color: #6b5138">"flag"</span>
+<span style="color: #292c29">	</span><span style="color: #6b5138">"fmt"</span>
+<span style="color: #292c29">	</span><span style="color: #6b5138">"os"</span>
 
-<span style="color: #25231f">	</span><span style="color: #3e5d36">"aitest/internal"</span>
-<span style="color: #765924">)</span>
+<span style="color: #292c29">	</span><span style="color: #6b5138">"aitest/internal"</span>
+<span style="color: #292c29">)</span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">func</span></span><span style="color: #25231f"> </span><span style="color: #265a79">main</span><span style="color: #765924">()</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
-<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">var</span></span><span style="color: #25231f"> versionFlag </span><span style="font-weight: bold"><span style="color: #235f72">bool</span></span>
-<span style="color: #25231f">	flag</span><span style="color: #765924">.</span><span style="color: #265a79">BoolVar</span><span style="color: #765924">(&amp;</span><span style="color: #25231f">versionFlag</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"v"</span><span style="color: #765924">,</span><span style="color: #25231f"> false</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"print version"</span><span style="color: #765924">)</span>
-<span style="color: #25231f">	dir </span><span style="color: #765924">:=</span><span style="color: #25231f"> flag</span><span style="color: #765924">.</span><span style="color: #265a79">String</span><span style="color: #765924">(</span><span style="color: #3e5d36">"dir"</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">""</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"directory to count files in"</span><span style="color: #765924">)</span>
-<span style="color: #25231f">	flag</span><span style="color: #765924">.</span><span style="color: #265a79">Parse</span><span style="color: #765924">()</span>
+<span style="font-weight: bold"><span style="color: #38604f">func</span></span><span style="color: #292c29"> </span><span style="color: #38604f">main</span><span style="color: #292c29">()</span><span style="color: #292c29"> </span><span style="color: #292c29">{</span>
+<span style="color: #292c29">	</span><span style="font-weight: bold"><span style="color: #38604f">var</span></span><span style="color: #292c29"> versionFlag </span><span style="color: #38604f">bool</span>
+<span style="color: #292c29">	flag</span><span style="color: #292c29">.</span><span style="color: #38604f">BoolVar</span><span style="color: #292c29">(&amp;</span><span style="color: #292c29">versionFlag</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">"v"</span><span style="color: #292c29">,</span><span style="color: #292c29"> false</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">"print version"</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">	dir </span><span style="color: #292c29">:=</span><span style="color: #292c29"> flag</span><span style="color: #292c29">.</span><span style="color: #38604f">String</span><span style="color: #292c29">(</span><span style="color: #6b5138">"dir"</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">""</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">"directory to count files in"</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">	flag</span><span style="color: #292c29">.</span><span style="color: #38604f">Parse</span><span style="color: #292c29">()</span>
 
-<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> versionFlag </span><span style="color: #765924">{</span>
-<span style="color: #25231f">		fmt</span><span style="color: #765924">.</span><span style="color: #265a79">Println</span><span style="color: #765924">(</span><span style="color: #25231f">internal</span><span style="color: #765924">.</span><span style="color: #265a79">GetVersion</span><span style="color: #765924">())</span>
-<span style="color: #25231f">		</span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span>
-<span style="color: #25231f">	</span><span style="color: #765924">}</span>
+<span style="color: #292c29">	</span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> versionFlag </span><span style="color: #292c29">{</span>
+<span style="color: #292c29">		fmt</span><span style="color: #292c29">.</span><span style="color: #38604f">Println</span><span style="color: #292c29">(</span><span style="color: #292c29">internal</span><span style="color: #292c29">.</span><span style="color: #38604f">GetVersion</span><span style="color: #292c29">())</span>
+<span style="color: #292c29">		</span><span style="font-weight: bold"><span style="color: #38604f">return</span></span>
+<span style="color: #292c29">	</span><span style="color: #292c29">}</span>
 
-<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">dir </span><span style="color: #765924">!=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">""</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
-<span style="color: #25231f">		fileCount</span><span style="color: #765924">,</span><span style="color: #25231f"> err </span><span style="color: #765924">:=</span><span style="color: #25231f"> internal</span><span style="color: #765924">.</span><span style="color: #265a79">CountFiles</span><span style="color: #765924">(*</span><span style="color: #25231f">dir</span><span style="color: #765924">)</span>
-<span style="color: #25231f">		</span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> err </span><span style="color: #765924">!=</span><span style="color: #25231f"> nil </span><span style="color: #765924">{</span>
-<span style="color: #25231f">			fmt</span><span style="color: #765924">.</span><span style="color: #265a79">Fprintf</span><span style="color: #765924">(</span><span style="color: #25231f">os</span><span style="color: #765924">.</span><span style="color: #25231f">Stderr</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"Error counting files: %v\n"</span><span style="color: #765924">,</span><span style="color: #25231f"> err</span><span style="color: #765924">)</span>
-<span style="color: #25231f">			os</span><span style="color: #765924">.</span><span style="color: #265a79">Exit</span><span style="color: #765924">(</span><span style="color: #8a450c">1</span><span style="color: #765924">)</span>
-<span style="color: #25231f">		</span><span style="color: #765924">}</span>
-<span style="color: #25231f">		fmt</span><span style="color: #765924">.</span><span style="color: #265a79">Printf</span><span style="color: #765924">(</span><span style="color: #3e5d36">"Number of files in directory %s: %d\n"</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f">dir</span><span style="color: #765924">,</span><span style="color: #25231f"> fileCount</span><span style="color: #765924">)</span>
-<span style="color: #25231f">	</span><span style="color: #765924">}</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">else</span></span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
-<span style="color: #25231f">		fmt</span><span style="color: #765924">.</span><span style="color: #265a79">Println</span><span style="color: #765924">(</span><span style="color: #3e5d36">"No directory specified. No count given."</span><span style="color: #765924">)</span>
-<span style="color: #25231f">	</span><span style="color: #765924">}</span>
-<span style="color: #765924">}</span>
+<span style="color: #292c29">	</span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">*</span><span style="color: #292c29">dir </span><span style="color: #292c29">!=</span><span style="color: #292c29"> </span><span style="color: #6b5138">""</span><span style="color: #292c29"> </span><span style="color: #292c29">{</span>
+<span style="color: #292c29">		fileCount</span><span style="color: #292c29">,</span><span style="color: #292c29"> err </span><span style="color: #292c29">:=</span><span style="color: #292c29"> internal</span><span style="color: #292c29">.</span><span style="color: #38604f">CountFiles</span><span style="color: #292c29">(*</span><span style="color: #292c29">dir</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">		</span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> err </span><span style="color: #292c29">!=</span><span style="color: #292c29"> nil </span><span style="color: #292c29">{</span>
+<span style="color: #292c29">			fmt</span><span style="color: #292c29">.</span><span style="color: #38604f">Fprintf</span><span style="color: #292c29">(</span><span style="color: #292c29">os</span><span style="color: #292c29">.</span><span style="color: #292c29">Stderr</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">"Error counting files: %v\n"</span><span style="color: #292c29">,</span><span style="color: #292c29"> err</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">			os</span><span style="color: #292c29">.</span><span style="color: #38604f">Exit</span><span style="color: #292c29">(</span><span style="color: #6b5138">1</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">		</span><span style="color: #292c29">}</span>
+<span style="color: #292c29">		fmt</span><span style="color: #292c29">.</span><span style="color: #38604f">Printf</span><span style="color: #292c29">(</span><span style="color: #6b5138">"Number of files in directory %s: %d\n"</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #292c29">*</span><span style="color: #292c29">dir</span><span style="color: #292c29">,</span><span style="color: #292c29"> fileCount</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">	</span><span style="color: #292c29">}</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">else</span></span><span style="color: #292c29"> </span><span style="color: #292c29">{</span>
+<span style="color: #292c29">		fmt</span><span style="color: #292c29">.</span><span style="color: #38604f">Println</span><span style="color: #292c29">(</span><span style="color: #6b5138">"No directory specified. No count given."</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">	</span><span style="color: #292c29">}</span>
+<span style="color: #292c29">}</span>
 </pre>
 <br />
 <span>The <span class='inlinecode'>./internal/version.go</span> file:</span><br />
@@ -287,13 +286,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">package</span></span><span style="color: #25231f"> internal</span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">package</span></span><span style="color: #292c29"> internal</span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">var</span></span><span style="color: #25231f"> Version </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"0.0.0"</span>
+<span style="font-weight: bold"><span style="color: #38604f">var</span></span><span style="color: #292c29"> Version </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">"0.0.0"</span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">func</span></span><span style="color: #25231f"> </span><span style="color: #265a79">GetVersion</span><span style="color: #765924">()</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #235f72">string</span></span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
-<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> Version</span>
-<span style="color: #765924">}</span>
+<span style="font-weight: bold"><span style="color: #38604f">func</span></span><span style="color: #292c29"> </span><span style="color: #38604f">GetVersion</span><span style="color: #292c29">()</span><span style="color: #292c29"> </span><span style="color: #38604f">string</span><span style="color: #292c29"> </span><span style="color: #292c29">{</span>
+<span style="color: #292c29">	</span><span style="font-weight: bold"><span style="color: #38604f">return</span></span><span style="color: #292c29"> Version</span>
+<span style="color: #292c29">}</span>
 </pre>
 <br />
 <span>The <span class='inlinecode'>./internal/count.go</span> file:</span><br />
@@ -302,27 +301,27 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">package</span></span><span style="color: #25231f"> internal</span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">package</span></span><span style="color: #292c29"> internal</span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">import</span></span><span style="color: #25231f"> </span><span style="color: #765924">(</span>
-<span style="color: #25231f">	</span><span style="color: #3e5d36">"os"</span>
-<span style="color: #765924">)</span>
+<span style="font-weight: bold"><span style="color: #38604f">import</span></span><span style="color: #292c29"> </span><span style="color: #292c29">(</span>
+<span style="color: #292c29">	</span><span style="color: #6b5138">"os"</span>
+<span style="color: #292c29">)</span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">func</span></span><span style="color: #25231f"> </span><span style="color: #265a79">CountFiles</span><span style="color: #765924">(</span><span style="color: #25231f">dir </span><span style="font-weight: bold"><span style="color: #235f72">string</span></span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #25231f">int</span><span style="color: #765924">,</span><span style="color: #25231f"> error</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
-<span style="color: #25231f">	files</span><span style="color: #765924">,</span><span style="color: #25231f"> err </span><span style="color: #765924">:=</span><span style="color: #25231f"> os</span><span style="color: #765924">.</span><span style="color: #265a79">ReadDir</span><span style="color: #765924">(</span><span style="color: #25231f">dir</span><span style="color: #765924">)</span>
-<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> err </span><span style="color: #765924">!=</span><span style="color: #25231f"> nil </span><span style="color: #765924">{</span>
-<span style="color: #25231f">		</span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span><span style="color: #765924">,</span><span style="color: #25231f"> err</span>
-<span style="color: #25231f">	</span><span style="color: #765924">}</span>
+<span style="font-weight: bold"><span style="color: #38604f">func</span></span><span style="color: #292c29"> </span><span style="color: #38604f">CountFiles</span><span style="color: #292c29">(</span><span style="color: #292c29">dir </span><span style="color: #38604f">string</span><span style="color: #292c29">)</span><span style="color: #292c29"> </span><span style="color: #292c29">(</span><span style="color: #292c29">int</span><span style="color: #292c29">,</span><span style="color: #292c29"> error</span><span style="color: #292c29">)</span><span style="color: #292c29"> </span><span style="color: #292c29">{</span>
+<span style="color: #292c29">	files</span><span style="color: #292c29">,</span><span style="color: #292c29"> err </span><span style="color: #292c29">:=</span><span style="color: #292c29"> os</span><span style="color: #292c29">.</span><span style="color: #38604f">ReadDir</span><span style="color: #292c29">(</span><span style="color: #292c29">dir</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">	</span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> err </span><span style="color: #292c29">!=</span><span style="color: #292c29"> nil </span><span style="color: #292c29">{</span>
+<span style="color: #292c29">		</span><span style="font-weight: bold"><span style="color: #38604f">return</span></span><span style="color: #292c29"> </span><span style="color: #6b5138">0</span><span style="color: #292c29">,</span><span style="color: #292c29"> err</span>
+<span style="color: #292c29">	</span><span style="color: #292c29">}</span>
 
-<span style="color: #25231f">	count </span><span style="color: #765924">:=</span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span>
-<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> _</span><span style="color: #765924">,</span><span style="color: #25231f"> file </span><span style="color: #765924">:=</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">range</span></span><span style="color: #25231f"> files </span><span style="color: #765924">{</span>
-<span style="color: #25231f">		</span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">!</span><span style="color: #25231f">file</span><span style="color: #765924">.</span><span style="color: #265a79">IsDir</span><span style="color: #765924">()</span><span style="color: #25231f"> </span><span style="color: #765924">{</span>
-<span style="color: #25231f">			count</span><span style="color: #765924">++</span>
-<span style="color: #25231f">		</span><span style="color: #765924">}</span>
-<span style="color: #25231f">	</span><span style="color: #765924">}</span>
+<span style="color: #292c29">	count </span><span style="color: #292c29">:=</span><span style="color: #292c29"> </span><span style="color: #6b5138">0</span>
+<span style="color: #292c29">	</span><span style="font-weight: bold"><span style="color: #38604f">for</span></span><span style="color: #292c29"> _</span><span style="color: #292c29">,</span><span style="color: #292c29"> file </span><span style="color: #292c29">:=</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">range</span></span><span style="color: #292c29"> files </span><span style="color: #292c29">{</span>
+<span style="color: #292c29">		</span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">!</span><span style="color: #292c29">file</span><span style="color: #292c29">.</span><span style="color: #38604f">IsDir</span><span style="color: #292c29">()</span><span style="color: #292c29"> </span><span style="color: #292c29">{</span>
+<span style="color: #292c29">			count</span><span style="color: #292c29">++</span>
+<span style="color: #292c29">		</span><span style="color: #292c29">}</span>
+<span style="color: #292c29">	</span><span style="color: #292c29">}</span>
 
-<span style="color: #25231f">	</span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> count</span><span style="color: #765924">,</span><span style="color: #25231f"> nil</span>
-<span style="color: #765924">}</span>
+<span style="color: #292c29">	</span><span style="font-weight: bold"><span style="color: #38604f">return</span></span><span style="color: #292c29"> count</span><span style="color: #292c29">,</span><span style="color: #292c29"> nil</span>
+<span style="color: #292c29">}</span>
 </pre>
 <br />
 <span>The code is quite straightforward, especially for generating boilerplate code this will be useful for many use cases!</span><br />
@@ -342,7 +341,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">cargo install lsp-ai</span>
+<pre><span style="color: #292c29">cargo install lsp-ai</span>
 </pre>
 <br />
 <h3 style='display: inline' id='helix-configuration'>Helix Configuration</h3><br />
@@ -482,12 +481,20 @@ content = "{CODE}"
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-08-05-local-coding-llm-with-ollama.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

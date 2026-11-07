@@ -6,22 +6,21 @@
 <title>X-RAG Observability Hackathon</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-12-24-x-rag-observability-hackathon.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-12-24-x-rag-observability-hackathon.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2025-12-24-x-rag-observability-hackathon.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='x-rag-observability-hackathon'>X-RAG Observability Hackathon</h1><br />
 <br />
 <span class='quote'>Published at 2025-12-24T09:45:29+02:00</span><br />
@@ -270,20 +269,20 @@ loki.write "default" {
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #7b2934">from</span><span style="color: #25231f"> prometheus_client </span><span style="color: #7b2934">import</span><span style="color: #25231f"> Histogram</span><span style="color: #765924">,</span><span style="color: #25231f"> Counter</span><span style="color: #765924">,</span><span style="color: #25231f"> Gauge</span>
+<pre><span style="color: #38604f">from</span><span style="color: #292c29"> prometheus_client </span><span style="color: #38604f">import</span><span style="color: #292c29"> Histogram</span><span style="color: #292c29">,</span><span style="color: #292c29"> Counter</span><span style="color: #292c29">,</span><span style="color: #292c29"> Gauge</span>
 
-<span style="color: #25231f">search_duration </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">Histogram</span><span style="color: #765924">(</span>
-<span style="color: #25231f">    </span><span style="color: #3e5d36">"search_service_request_duration_seconds"</span><span style="color: #765924">,</span>
-<span style="color: #25231f">    </span><span style="color: #3e5d36">"Total duration of Search Service requests"</span><span style="color: #765924">,</span>
-<span style="color: #25231f">    </span><span style="color: #765924">[</span><span style="color: #3e5d36">"method"</span><span style="color: #765924">],</span>
-<span style="color: #25231f">    buckets</span><span style="color: #765924">=[</span><span style="color: #8a450c">0.1</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">0.25</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">0.5</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">1.0</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">2.5</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">5.0</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">10.0</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">20.0</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">30.0</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">60.0</span><span style="color: #765924">],</span>
-<span style="color: #765924">)</span>
+<span style="color: #292c29">search_duration </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #38604f">Histogram</span><span style="color: #292c29">(</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">"search_service_request_duration_seconds"</span><span style="color: #292c29">,</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">"Total duration of Search Service requests"</span><span style="color: #292c29">,</span>
+<span style="color: #292c29">    </span><span style="color: #292c29">[</span><span style="color: #6b5138">"method"</span><span style="color: #292c29">],</span>
+<span style="color: #292c29">    buckets</span><span style="color: #292c29">=[</span><span style="color: #6b5138">0.1</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">0.25</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">0.5</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">1.0</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">2.5</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">5.0</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">10.0</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">20.0</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">30.0</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">60.0</span><span style="color: #292c29">],</span>
+<span style="color: #292c29">)</span>
 
-<span style="color: #25231f">errors_total </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #265a79">Counter</span><span style="color: #765924">(</span>
-<span style="color: #25231f">    </span><span style="color: #3e5d36">"search_service_errors_total"</span><span style="color: #765924">,</span>
-<span style="color: #25231f">    </span><span style="color: #3e5d36">"Error count by type"</span><span style="color: #765924">,</span>
-<span style="color: #25231f">    </span><span style="color: #765924">[</span><span style="color: #3e5d36">"method"</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"error_type"</span><span style="color: #765924">],</span>
-<span style="color: #765924">)</span>
+<span style="color: #292c29">errors_total </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #38604f">Counter</span><span style="color: #292c29">(</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">"search_service_errors_total"</span><span style="color: #292c29">,</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">"Error count by type"</span><span style="color: #292c29">,</span>
+<span style="color: #292c29">    </span><span style="color: #292c29">[</span><span style="color: #6b5138">"method"</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">"error_type"</span><span style="color: #292c29">],</span>
+<span style="color: #292c29">)</span>
 </pre>
 <br />
 <span>Initially, I used Prometheus scraping—each service exposed a /metrics endpoint, and Prometheus pulled metrics every 15 seconds. This worked, but I wanted a unified pipeline.</span><br />
@@ -526,17 +525,17 @@ traceparent: 00-0af7651916cd43dd8448eb211c80319c-b7ad6b7169203331-01
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #7b2934">from</span><span style="color: #25231f"> opentelemetry</span><span style="color: #765924">.</span><span style="color: #25231f">instrumentation</span><span style="color: #765924">.</span><span style="color: #25231f">fastapi </span><span style="color: #7b2934">import</span><span style="color: #25231f"> FastAPIInstrumentor</span>
-<span style="color: #7b2934">from</span><span style="color: #25231f"> opentelemetry</span><span style="color: #765924">.</span><span style="color: #25231f">instrumentation</span><span style="color: #765924">.</span><span style="color: #25231f">grpc </span><span style="color: #7b2934">import</span><span style="color: #25231f"> GrpcAioInstrumentorClient</span>
+<pre><span style="color: #38604f">from</span><span style="color: #292c29"> opentelemetry</span><span style="color: #292c29">.</span><span style="color: #292c29">instrumentation</span><span style="color: #292c29">.</span><span style="color: #292c29">fastapi </span><span style="color: #38604f">import</span><span style="color: #292c29"> FastAPIInstrumentor</span>
+<span style="color: #38604f">from</span><span style="color: #292c29"> opentelemetry</span><span style="color: #292c29">.</span><span style="color: #292c29">instrumentation</span><span style="color: #292c29">.</span><span style="color: #292c29">grpc </span><span style="color: #38604f">import</span><span style="color: #292c29"> GrpcAioInstrumentorClient</span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Auto-instrument frameworks</span></span>
-<span style="color: #25231f">FastAPIInstrumentor</span><span style="color: #765924">.</span><span style="color: #265a79">instrument_app</span><span style="color: #765924">(</span><span style="color: #25231f">app</span><span style="color: #765924">)</span>
-<span style="color: #265a79">GrpcAioInstrumentorClient</span><span style="color: #765924">().</span><span style="color: #265a79">instrument</span><span style="color: #765924">()</span>
+<span style="font-style: italic"><span style="color: #636760"># Auto-instrument frameworks</span></span>
+<span style="color: #292c29">FastAPIInstrumentor</span><span style="color: #292c29">.</span><span style="color: #38604f">instrument_app</span><span style="color: #292c29">(</span><span style="color: #292c29">app</span><span style="color: #292c29">)</span>
+<span style="color: #38604f">GrpcAioInstrumentorClient</span><span style="color: #292c29">().</span><span style="color: #38604f">instrument</span><span style="color: #292c29">()</span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Manual spans for custom operations</span></span>
-<span style="color: #25231f">with tracer</span><span style="color: #765924">.</span><span style="color: #265a79">start_as_current_span</span><span style="color: #765924">(</span><span style="color: #3e5d36">"llm.rag_completion"</span><span style="color: #765924">)</span><span style="color: #25231f"> as span</span><span style="color: #765924">:</span>
-<span style="color: #25231f">    span</span><span style="color: #765924">.</span><span style="color: #265a79">set_attribute</span><span style="color: #765924">(</span><span style="color: #3e5d36">"llm.model"</span><span style="color: #765924">,</span><span style="color: #25231f"> model_name</span><span style="color: #765924">)</span>
-<span style="color: #25231f">    result </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">await</span></span><span style="color: #25231f"> </span><span style="color: #265a79">generate_answer</span><span style="color: #765924">(</span><span style="color: #25231f">query</span><span style="color: #765924">,</span><span style="color: #25231f"> context</span><span style="color: #765924">)</span>
+<span style="font-style: italic"><span style="color: #636760"># Manual spans for custom operations</span></span>
+<span style="color: #292c29">with tracer</span><span style="color: #292c29">.</span><span style="color: #38604f">start_as_current_span</span><span style="color: #292c29">(</span><span style="color: #6b5138">"llm.rag_completion"</span><span style="color: #292c29">)</span><span style="color: #292c29"> as span</span><span style="color: #292c29">:</span>
+<span style="color: #292c29">    span</span><span style="color: #292c29">.</span><span style="color: #38604f">set_attribute</span><span style="color: #292c29">(</span><span style="color: #6b5138">"llm.model"</span><span style="color: #292c29">,</span><span style="color: #292c29"> model_name</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">    result </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">await</span></span><span style="color: #292c29"> </span><span style="color: #38604f">generate_answer</span><span style="color: #292c29">(</span><span style="color: #292c29">query</span><span style="color: #292c29">,</span><span style="color: #292c29"> context</span><span style="color: #292c29">)</span>
 </pre>
 <br />
 <span><span class='inlinecode'>Auto-instrumentation</span> is the quick win: one line of code and you get spans for every HTTP request, gRPC call, or database query. The instrumentor patches the framework at runtime, so existing code works without modification. The downside? You only get what the library authors decided to capture—generic HTTP attributes like <span class='inlinecode'>http.method</span> and <span class='inlinecode'>http.status_code</span>, but nothing domain-specific. Auto-instrumented spans also can&#39;t know your business logic, so a slow request shows up as "POST /api/search took 5 seconds" without revealing which internal operation caused the delay.</span><br />
@@ -923,12 +922,20 @@ $ curl -s -G "http://localhost:3200/api/search" \
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-12-24-x-rag-observability-hackathon.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

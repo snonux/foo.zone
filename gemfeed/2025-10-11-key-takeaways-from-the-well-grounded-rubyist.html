@@ -6,22 +6,21 @@
 <title>Key Takeaways from The Well-Grounded Rubyist</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-10-11-key-takeaways-from-the-well-grounded-rubyist.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2025-10-11-key-takeaways-from-the-well-grounded-rubyist.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-10-11-key-takeaways-from-the-well-grounded-rubyist.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2025-10-11-key-takeaways-from-the-well-grounded-rubyist.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='key-takeaways-from-the-well-grounded-rubyist'>Key Takeaways from The Well-Grounded Rubyist</h1><br />
 <br />
 <span class='quote'>Published at 2025-10-11T15:25:14+03:00</span><br />
@@ -65,19 +64,19 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-style: italic"><span style="color: #685f50"># At the top level, self is the main object</span></span>
-<span style="color: #25231f">p </span><span style="font-weight: bold"><span style="color: #7b2934">self</span></span>
-<span style="font-style: italic"><span style="color: #685f50"># =&gt; main</span></span>
-<span style="color: #25231f">p </span><span style="font-weight: bold"><span style="color: #7b2934">self</span></span><span style="color: #765924">.</span><span style="font-weight: bold"><span style="color: #7b2934">class</span></span>
-<span style="font-style: italic"><span style="color: #685f50"># =&gt; Object</span></span>
+<pre><span style="font-style: italic"><span style="color: #636760"># At the top level, self is the main object</span></span>
+<span style="color: #292c29">p </span><span style="font-weight: bold"><span style="color: #38604f">self</span></span>
+<span style="font-style: italic"><span style="color: #636760"># =&gt; main</span></span>
+<span style="color: #292c29">p </span><span style="font-weight: bold"><span style="color: #38604f">self</span></span><span style="color: #292c29">.</span><span style="font-weight: bold"><span style="color: #38604f">class</span></span>
+<span style="font-style: italic"><span style="color: #636760"># =&gt; Object</span></span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">def</span></span><span style="color: #25231f"> foo</span>
-<span style="color: #25231f">  </span><span style="font-style: italic"><span style="color: #685f50"># Inside a method, self is the object that received the call</span></span>
-<span style="color: #25231f">  p </span><span style="font-weight: bold"><span style="color: #7b2934">self</span></span>
-<span style="font-weight: bold"><span style="color: #7b2934">end</span></span>
+<span style="font-weight: bold"><span style="color: #38604f">def</span></span><span style="color: #292c29"> foo</span>
+<span style="color: #292c29">  </span><span style="font-style: italic"><span style="color: #636760"># Inside a method, self is the object that received the call</span></span>
+<span style="color: #292c29">  p </span><span style="font-weight: bold"><span style="color: #38604f">self</span></span>
+<span style="font-weight: bold"><span style="color: #38604f">end</span></span>
 
-<span style="color: #25231f">foo</span>
-<span style="font-style: italic"><span style="color: #685f50"># =&gt; main</span></span>
+<span style="color: #292c29">foo</span>
+<span style="font-style: italic"><span style="color: #636760"># =&gt; main</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='singleton-methods'>Singleton Methods</h3><br />
@@ -88,17 +87,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">obj </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"a string"</span>
+<pre><span style="color: #292c29">obj </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">"a string"</span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">def</span></span><span style="color: #25231f"> obj</span><span style="color: #765924">.</span><span style="color: #25231f">shout</span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">self</span></span><span style="color: #765924">.</span><span style="color: #25231f">upcase </span><span style="color: #765924">+</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"!"</span>
-<span style="font-weight: bold"><span style="color: #7b2934">end</span></span>
+<span style="font-weight: bold"><span style="color: #38604f">def</span></span><span style="color: #292c29"> obj</span><span style="color: #292c29">.</span><span style="color: #292c29">shout</span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">self</span></span><span style="color: #292c29">.</span><span style="color: #292c29">upcase </span><span style="color: #292c29">+</span><span style="color: #292c29"> </span><span style="color: #6b5138">"!"</span>
+<span style="font-weight: bold"><span style="color: #38604f">end</span></span>
 
-<span style="color: #25231f">p obj</span><span style="color: #765924">.</span><span style="color: #25231f">shout</span>
-<span style="font-style: italic"><span style="color: #685f50"># =&gt; "A STRING!"</span></span>
+<span style="color: #292c29">p obj</span><span style="color: #292c29">.</span><span style="color: #292c29">shout</span>
+<span style="font-style: italic"><span style="color: #636760"># =&gt; "A STRING!"</span></span>
 
-<span style="color: #25231f">obj2 </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"another string"</span>
-<span style="font-style: italic"><span style="color: #685f50"># obj2.shout would raise a NoMethodError</span></span>
+<span style="color: #292c29">obj2 </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">"another string"</span>
+<span style="font-style: italic"><span style="color: #636760"># obj2.shout would raise a NoMethodError</span></span>
 </pre>
 <br />
 <span><span class='inlinecode'>shout</span> only exists on <span class='inlinecode'>obj</span>.</span><br />
@@ -111,15 +110,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">MyClass </span><span style="color: #765924">=</span><span style="color: #25231f"> Class</span><span style="color: #765924">.</span><span style="color: #25231f">new </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">def</span></span><span style="color: #25231f"> say_hello</span>
-<span style="color: #25231f">    puts </span><span style="color: #3e5d36">"Hello from a dynamically created class!"</span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">end</span></span>
-<span style="font-weight: bold"><span style="color: #7b2934">end</span></span>
+<pre><span style="color: #292c29">MyClass </span><span style="color: #292c29">=</span><span style="color: #292c29"> Class</span><span style="color: #292c29">.</span><span style="color: #292c29">new </span><span style="font-weight: bold"><span style="color: #38604f">do</span></span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">def</span></span><span style="color: #292c29"> say_hello</span>
+<span style="color: #292c29">    puts </span><span style="color: #6b5138">"Hello from a dynamically created class!"</span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">end</span></span>
+<span style="font-weight: bold"><span style="color: #38604f">end</span></span>
 
-<span style="color: #25231f">instance </span><span style="color: #765924">=</span><span style="color: #25231f"> MyClass</span><span style="color: #765924">.</span><span style="color: #25231f">new</span>
-<span style="color: #25231f">instance</span><span style="color: #765924">.</span><span style="color: #25231f">say_hello</span>
-<span style="font-style: italic"><span style="color: #685f50"># =&gt; Hello from a dynamically created class!</span></span>
+<span style="color: #292c29">instance </span><span style="color: #292c29">=</span><span style="color: #292c29"> MyClass</span><span style="color: #292c29">.</span><span style="color: #292c29">new</span>
+<span style="color: #292c29">instance</span><span style="color: #292c29">.</span><span style="color: #292c29">say_hello</span>
+<span style="font-style: italic"><span style="color: #636760"># =&gt; Hello from a dynamically created class!</span></span>
 </pre>
 <br />
 <span>That&#39;s what the <span class='inlinecode'>class</span> keyword does behind the scenes.</span><br />
@@ -136,27 +135,27 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-style: italic"><span style="color: #685f50"># For ranges, it checks for inclusion</span></span>
-<span style="color: #25231f">p </span><span style="color: #765924">(</span><span style="color: #8a450c">1</span><span style="color: #765924">..</span><span style="color: #8a450c">5</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">===</span><span style="color: #25231f"> </span><span style="color: #8a450c">3</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># =&gt; true</span></span>
+<pre><span style="font-style: italic"><span style="color: #636760"># For ranges, it checks for inclusion</span></span>
+<span style="color: #292c29">p </span><span style="color: #292c29">(</span><span style="color: #6b5138">1</span><span style="color: #292c29">..</span><span style="color: #6b5138">5</span><span style="color: #292c29">)</span><span style="color: #292c29"> </span><span style="color: #292c29">===</span><span style="color: #292c29"> </span><span style="color: #6b5138">3</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># =&gt; true</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># For classes, it checks if the object is an instance of the class</span></span>
-<span style="color: #25231f">p String </span><span style="color: #765924">===</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"hello"</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># =&gt; true</span></span>
+<span style="font-style: italic"><span style="color: #636760"># For classes, it checks if the object is an instance of the class</span></span>
+<span style="color: #292c29">p String </span><span style="color: #292c29">===</span><span style="color: #292c29"> </span><span style="color: #6b5138">"hello"</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># =&gt; true</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># For regexes, it checks for a match</span></span>
-<span style="color: #25231f">p </span><span style="color: #25231f">/llo/</span><span style="color: #25231f"> </span><span style="color: #765924">===</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"hello"</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># =&gt; true</span></span>
+<span style="font-style: italic"><span style="color: #636760"># For regexes, it checks for a match</span></span>
+<span style="color: #292c29">p </span><span style="color: #292c29">/llo/</span><span style="color: #292c29"> </span><span style="color: #292c29">===</span><span style="color: #292c29"> </span><span style="color: #6b5138">"hello"</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># =&gt; true</span></span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">def</span></span><span style="color: #25231f"> check</span><span style="color: #765924">(</span><span style="color: #25231f">value</span><span style="color: #765924">)</span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">case</span></span><span style="color: #25231f"> value</span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">when</span></span><span style="color: #25231f"> String</span>
-<span style="color: #25231f">    </span><span style="color: #3e5d36">"It's a string"</span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">when</span></span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #8a450c">1</span><span style="color: #765924">..</span><span style="color: #8a450c">10</span><span style="color: #765924">)</span>
-<span style="color: #25231f">    </span><span style="color: #3e5d36">"It's a number between 1 and 10"</span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">else</span></span>
-<span style="color: #25231f">    </span><span style="color: #3e5d36">"Something else"</span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">end</span></span>
-<span style="font-weight: bold"><span style="color: #7b2934">end</span></span>
+<span style="font-weight: bold"><span style="color: #38604f">def</span></span><span style="color: #292c29"> check</span><span style="color: #292c29">(</span><span style="color: #292c29">value</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">case</span></span><span style="color: #292c29"> value</span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">when</span></span><span style="color: #292c29"> String</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">"It's a string"</span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">when</span></span><span style="color: #292c29"> </span><span style="color: #292c29">(</span><span style="color: #6b5138">1</span><span style="color: #292c29">..</span><span style="color: #6b5138">10</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">"It's a number between 1 and 10"</span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">else</span></span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">"Something else"</span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">end</span></span>
+<span style="font-weight: bold"><span style="color: #38604f">end</span></span>
 
-<span style="color: #25231f">p check</span><span style="color: #765924">(</span><span style="color: #8a450c">5</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># =&gt; "It's a number between 1 and 10"</span></span>
+<span style="color: #292c29">p check</span><span style="color: #292c29">(</span><span style="color: #6b5138">5</span><span style="color: #292c29">)</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># =&gt; "It's a number between 1 and 10"</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='blocks-and-yield'>Blocks and <span class='inlinecode'>yield</span></h3><br />
@@ -167,18 +166,18 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">def</span></span><span style="color: #25231f"> my_iterator</span>
-<span style="color: #25231f">  puts </span><span style="color: #3e5d36">"Entering the method"</span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">yield</span></span>
-<span style="color: #25231f">  puts </span><span style="color: #3e5d36">"Back in the method"</span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">yield</span></span>
-<span style="font-weight: bold"><span style="color: #7b2934">end</span></span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">def</span></span><span style="color: #292c29"> my_iterator</span>
+<span style="color: #292c29">  puts </span><span style="color: #6b5138">"Entering the method"</span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">yield</span></span>
+<span style="color: #292c29">  puts </span><span style="color: #6b5138">"Back in the method"</span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">yield</span></span>
+<span style="font-weight: bold"><span style="color: #38604f">end</span></span>
 
-<span style="color: #25231f">my_iterator </span><span style="color: #765924">{</span><span style="color: #25231f"> puts </span><span style="color: #3e5d36">"Inside the block"</span><span style="color: #25231f"> </span><span style="color: #765924">}</span>
-<span style="font-style: italic"><span style="color: #685f50"># Entering the method</span></span>
-<span style="font-style: italic"><span style="color: #685f50"># Inside the block</span></span>
-<span style="font-style: italic"><span style="color: #685f50"># Back in the method</span></span>
-<span style="font-style: italic"><span style="color: #685f50"># Inside the block</span></span>
+<span style="color: #292c29">my_iterator </span><span style="color: #292c29">{</span><span style="color: #292c29"> puts </span><span style="color: #6b5138">"Inside the block"</span><span style="color: #292c29"> </span><span style="color: #292c29">}</span>
+<span style="font-style: italic"><span style="color: #636760"># Entering the method</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Inside the block</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Back in the method</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Inside the block</span></span>
 </pre>
 <br />
 <span><span class='inlinecode'>yield</span> can also take arguments and return the block&#39;s value:</span><br />
@@ -187,13 +186,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">def</span></span><span style="color: #25231f"> with_return</span>
-<span style="color: #25231f">  result </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">yield</span></span><span style="color: #765924">(</span><span style="color: #8a450c">5</span><span style="color: #765924">)</span>
-<span style="color: #25231f">  puts </span><span style="color: #3e5d36">"The block returned #{result}"</span>
-<span style="font-weight: bold"><span style="color: #7b2934">end</span></span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">def</span></span><span style="color: #292c29"> with_return</span>
+<span style="color: #292c29">  result </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">yield</span></span><span style="color: #292c29">(</span><span style="color: #6b5138">5</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">  puts </span><span style="color: #6b5138">"The block returned #{result}"</span>
+<span style="font-weight: bold"><span style="color: #38604f">end</span></span>
 
-<span style="color: #25231f">with_return </span><span style="color: #765924">{</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f">n</span><span style="color: #765924">|</span><span style="color: #25231f"> n </span><span style="color: #765924">*</span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span><span style="color: #25231f"> </span><span style="color: #765924">}</span>
-<span style="font-style: italic"><span style="color: #685f50"># =&gt; The block returned 10</span></span>
+<span style="color: #292c29">with_return </span><span style="color: #292c29">{</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29">n</span><span style="color: #292c29">|</span><span style="color: #292c29"> n </span><span style="color: #292c29">*</span><span style="color: #292c29"> </span><span style="color: #6b5138">2</span><span style="color: #292c29"> </span><span style="color: #292c29">}</span>
+<span style="font-style: italic"><span style="color: #636760"># =&gt; The block returned 10</span></span>
 </pre>
 <br />
 <h2 style='display: inline' id='fun-with-data-types'>Fun with Data Types</h2><br />
@@ -206,17 +205,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-style: italic"><span style="color: #685f50"># Two strings with the same content are different objects</span></span>
-<span style="color: #25231f">p </span><span style="color: #3e5d36">"foo"</span><span style="color: #765924">.</span><span style="color: #25231f">object_id</span>
-<span style="color: #25231f">p </span><span style="color: #3e5d36">"foo"</span><span style="color: #765924">.</span><span style="color: #25231f">object_id</span>
+<pre><span style="font-style: italic"><span style="color: #636760"># Two strings with the same content are different objects</span></span>
+<span style="color: #292c29">p </span><span style="color: #6b5138">"foo"</span><span style="color: #292c29">.</span><span style="color: #292c29">object_id</span>
+<span style="color: #292c29">p </span><span style="color: #6b5138">"foo"</span><span style="color: #292c29">.</span><span style="color: #292c29">object_id</span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Two symbols with the same content are the same object</span></span>
-<span style="color: #25231f">p </span><span style="color: #765924">:</span><span style="color: #25231f">foo</span><span style="color: #765924">.</span><span style="color: #25231f">object_id</span>
-<span style="color: #25231f">p </span><span style="color: #765924">:</span><span style="color: #25231f">foo</span><span style="color: #765924">.</span><span style="color: #25231f">object_id</span>
+<span style="font-style: italic"><span style="color: #636760"># Two symbols with the same content are the same object</span></span>
+<span style="color: #292c29">p </span><span style="color: #292c29">:</span><span style="color: #292c29">foo</span><span style="color: #292c29">.</span><span style="color: #292c29">object_id</span>
+<span style="color: #292c29">p </span><span style="color: #292c29">:</span><span style="color: #292c29">foo</span><span style="color: #292c29">.</span><span style="color: #292c29">object_id</span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Modern hash syntax uses symbols as keys</span></span>
-<span style="color: #25231f">my_hash </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #765924">{</span><span style="color: #25231f"> name</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"Paul"</span><span style="color: #765924">,</span><span style="color: #25231f"> language</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"Ruby"</span><span style="color: #25231f"> </span><span style="color: #765924">}</span>
-<span style="color: #25231f">p my_hash</span><span style="color: #765924">[:</span><span style="color: #25231f">name</span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># =&gt; "Paul"</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Modern hash syntax uses symbols as keys</span></span>
+<span style="color: #292c29">my_hash </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #292c29">{</span><span style="color: #292c29"> name</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">"Paul"</span><span style="color: #292c29">,</span><span style="color: #292c29"> language</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">"Ruby"</span><span style="color: #292c29"> </span><span style="color: #292c29">}</span>
+<span style="color: #292c29">p my_hash</span><span style="color: #292c29">[:</span><span style="color: #292c29">name</span><span style="color: #292c29">]</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># =&gt; "Paul"</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='arrays-and-hashes'>Arrays and Hashes</h3><br />
@@ -227,13 +226,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-style: italic"><span style="color: #685f50"># Array of strings</span></span>
-<span style="color: #25231f">p </span><span style="color: #765924">%</span><span style="color: #25231f">w</span><span style="color: #765924">[</span><span style="color: #25231f">one two three</span><span style="color: #765924">]</span>
-<span style="font-style: italic"><span style="color: #685f50"># =&gt; ["one", "two", "three"]</span></span>
+<pre><span style="font-style: italic"><span style="color: #636760"># Array of strings</span></span>
+<span style="color: #292c29">p </span><span style="color: #292c29">%</span><span style="color: #292c29">w</span><span style="color: #292c29">[</span><span style="color: #292c29">one two three</span><span style="color: #292c29">]</span>
+<span style="font-style: italic"><span style="color: #636760"># =&gt; ["one", "two", "three"]</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Array of symbols</span></span>
-<span style="color: #25231f">p </span><span style="color: #765924">%</span><span style="color: #25231f">i</span><span style="color: #765924">[</span><span style="color: #25231f">one two three</span><span style="color: #765924">]</span>
-<span style="font-style: italic"><span style="color: #685f50"># =&gt; [:one, :two, :three]</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Array of symbols</span></span>
+<span style="color: #292c29">p </span><span style="color: #292c29">%</span><span style="color: #292c29">i</span><span style="color: #292c29">[</span><span style="color: #292c29">one two three</span><span style="color: #292c29">]</span>
+<span style="font-style: italic"><span style="color: #636760"># =&gt; [:one, :two, :three]</span></span>
 </pre>
 <br />
 <span><span class='inlinecode'>values_at</span> fetches several elements at once:</span><br />
@@ -242,13 +241,13 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">arr </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #8a450c">10</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">20</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">30</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">40</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">50</span><span style="color: #765924">]</span>
-<span style="color: #25231f">p arr</span><span style="color: #765924">.</span><span style="color: #25231f">values_at</span><span style="color: #765924">(</span><span style="color: #8a450c">0</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">4</span><span style="color: #765924">)</span>
-<span style="font-style: italic"><span style="color: #685f50"># =&gt; [10, 30, 50]</span></span>
+<pre><span style="color: #292c29">arr </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #6b5138">10</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">20</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">30</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">40</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">50</span><span style="color: #292c29">]</span>
+<span style="color: #292c29">p arr</span><span style="color: #292c29">.</span><span style="color: #292c29">values_at</span><span style="color: #292c29">(</span><span style="color: #6b5138">0</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">2</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">4</span><span style="color: #292c29">)</span>
+<span style="font-style: italic"><span style="color: #636760"># =&gt; [10, 30, 50]</span></span>
 
-<span style="color: #25231f">hash </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #765924">{</span><span style="color: #25231f"> a</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span><span style="color: #765924">,</span><span style="color: #25231f"> b</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span><span style="color: #765924">,</span><span style="color: #25231f"> c</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">3</span><span style="color: #25231f"> </span><span style="color: #765924">}</span>
-<span style="color: #25231f">p hash</span><span style="color: #765924">.</span><span style="color: #25231f">values_at</span><span style="color: #765924">(:</span><span style="color: #25231f">a</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #765924">:</span><span style="color: #25231f">c</span><span style="color: #765924">)</span>
-<span style="font-style: italic"><span style="color: #685f50"># =&gt; [1, 3]</span></span>
+<span style="color: #292c29">hash </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #292c29">{</span><span style="color: #292c29"> a</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">1</span><span style="color: #292c29">,</span><span style="color: #292c29"> b</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">2</span><span style="color: #292c29">,</span><span style="color: #292c29"> c</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">3</span><span style="color: #292c29"> </span><span style="color: #292c29">}</span>
+<span style="color: #292c29">p hash</span><span style="color: #292c29">.</span><span style="color: #292c29">values_at</span><span style="color: #292c29">(:</span><span style="color: #292c29">a</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #292c29">:</span><span style="color: #292c29">c</span><span style="color: #292c29">)</span>
+<span style="font-style: italic"><span style="color: #636760"># =&gt; [1, 3]</span></span>
 </pre>
 <br />
 <h2 style='display: inline' id='final-thoughts'>Final Thoughts</h2><br />
@@ -265,12 +264,20 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-10-11-key-takeaways-from-the-well-grounded-rubyist.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

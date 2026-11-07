@@ -6,22 +6,21 @@
 <title>Terminal multiplexing with `tmux` - Z-Shell edition</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='terminal-multiplexing-with-tmux---z-shell-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Z-Shell edition</h1><br />
 <br />
 <span class='quote'>Published at 2024-06-23T22:41:59+03:00, last updated Fri 02 May 00:10:49 EEST 2025</span><br />
@@ -95,13 +94,13 @@ jgs   `-=========-`()
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">tm</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">tl</span><span style="color: #765924">=</span><span style="color: #3e5d36">'tmux list-sessions'</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">tn</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #25231f">new</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">ta</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #25231f">attach</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">tx</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #25231f">remote</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">ts</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #25231f">search</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">tssh</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #25231f">cluster_ssh</span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">tm</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">tl</span><span style="color: #292c29">=</span><span style="color: #6b5138">'tmux list-sessions'</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">tn</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">new</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">ta</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">attach</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">tx</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">remote</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">ts</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">search</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">tssh</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">cluster_ssh</span>
 </pre>
 <br />
 <span>Note all <span class='inlinecode'>tmux::...</span>; those are custom shell functions doing certain things, and they aren&#39;t part of the Tmux distribution. But let&#39;s run through every alias one by one. </span><br />
@@ -116,23 +115,23 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-style: italic"><span style="color: #685f50"># Create new session and if already exists attach to it</span></span>
-<span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #265a79">new ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">readonly</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">session</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$1</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">date</span><span style="color: #765924">=</span><span style="color: #25231f">date</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> where gdate </span><span style="color: #765924">&amp;&gt;</span><span style="color: #25231f">/dev/null</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">        </span><span style="color: #6d3c6d">date</span><span style="color: #765924">=</span><span style="color: #25231f">gdate</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
+<pre><span style="font-style: italic"><span style="color: #636760"># Create new session and if already exists attach to it</span></span>
+<span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #38604f">new ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">readonly</span></span><span style="color: #292c29"> </span><span style="color: #292c29">session</span><span style="color: #292c29">=</span><span style="color: #292c29">$1</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> </span><span style="color: #292c29">date</span><span style="color: #292c29">=</span><span style="color: #292c29">date</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> where gdate </span><span style="color: #292c29">&amp;&gt;</span><span style="color: #292c29">/dev/null</span><span style="color: #292c29">;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">        </span><span style="color: #292c29">date</span><span style="color: #292c29">=</span><span style="color: #292c29">gdate</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
 
-<span style="color: #25231f">    tmux</span><span style="color: #765924">::</span><span style="color: #25231f">cleanup_default</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> -z </span><span style="color: #3e5d36">"$session"</span><span style="color: #25231f"> </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">        tmux</span><span style="color: #765924">::</span><span style="color: #25231f">new T</span><span style="color: #6d3c6d">$($date</span><span style="color: #25231f"> </span><span style="color: #765924">+%</span><span style="color: #25231f">s</span><span style="color: #765924">)</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">else</span></span>
-<span style="color: #25231f">        tmux new-session -d -s </span><span style="color: #6d3c6d">$session</span>
-<span style="color: #25231f">        tmux -</span><span style="color: #8a450c">2</span><span style="color: #25231f"> attach-session -t </span><span style="color: #6d3c6d">$session</span><span style="color: #25231f"> </span><span style="color: #765924">||</span><span style="color: #25231f"> tmux -</span><span style="color: #8a450c">2</span><span style="color: #25231f"> switch-client -t </span><span style="color: #6d3c6d">$session</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
-<span style="color: #25231f">}</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">tn</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #25231f">new</span>
+<span style="color: #292c29">    tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">cleanup_default</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #292c29"> -z </span><span style="color: #6b5138">"$session"</span><span style="color: #292c29"> </span><span style="color: #292c29">];</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">        tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">new T</span><span style="color: #292c29">$($date</span><span style="color: #292c29"> </span><span style="color: #292c29">+%</span><span style="color: #292c29">s</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">else</span></span>
+<span style="color: #292c29">        tmux new-session -d -s </span><span style="color: #292c29">$session</span>
+<span style="color: #292c29">        tmux -</span><span style="color: #6b5138">2</span><span style="color: #292c29"> attach-session -t </span><span style="color: #292c29">$session</span><span style="color: #292c29"> </span><span style="color: #292c29">||</span><span style="color: #292c29"> tmux -</span><span style="color: #6b5138">2</span><span style="color: #292c29"> switch-client -t </span><span style="color: #292c29">$session</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
+<span style="color: #292c29">}</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">tn</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">new</span>
 </pre>
 <br />
 <span>There is a lot going on here. Let&#39;s have a detailed look at what it is doing. As a note, the function relies on GNU Date, so MacOS is looking for the <span class='inlinecode'>gdate</span> commands to be available. Otherwise, it will fall back to <span class='inlinecode'>date</span>. You need to install GNU Date for Mac, as it isn&#39;t installed by default there. As I use Fedora Linux on my personal Laptop and a MacBook for work, I have to make it work for both.</span><br />
@@ -147,14 +146,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #265a79">cleanup_default ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> s</span>
-<span style="color: #25231f">    tmux list-sessions </span><span style="color: #765924">|</span><span style="color: #25231f"> grep </span><span style="color: #3e5d36">'^T.*: '</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> grep -F -v attached </span><span style="color: #765924">|</span>
-<span style="color: #25231f">    cut -d</span><span style="color: #765924">:</span><span style="color: #25231f"> -f</span><span style="color: #8a450c">1</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">while</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">read</span></span><span style="color: #25231f"> -r s</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span>
-<span style="color: #25231f">        echo </span><span style="color: #3e5d36">"Killing $s"</span>
-<span style="color: #25231f">        tmux kill-session -t </span><span style="color: #3e5d36">"$s"</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span>
-<span style="color: #25231f">}</span>
+<pre><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #38604f">cleanup_default ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> s</span>
+<span style="color: #292c29">    tmux list-sessions </span><span style="color: #292c29">|</span><span style="color: #292c29"> grep </span><span style="color: #6b5138">'^T.*: '</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> grep -F -v attached </span><span style="color: #292c29">|</span>
+<span style="color: #292c29">    cut -d</span><span style="color: #292c29">:</span><span style="color: #292c29"> -f</span><span style="color: #6b5138">1</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">while</span></span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">read</span></span><span style="color: #292c29"> -r s</span><span style="color: #292c29">;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">do</span></span>
+<span style="color: #292c29">        echo </span><span style="color: #6b5138">"Killing $s"</span>
+<span style="color: #292c29">        tmux kill-session -t </span><span style="color: #6b5138">"$s"</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">done</span></span>
+<span style="color: #292c29">}</span>
 </pre>
 <br />
 <span>The cleanup function kills all open Tmux sessions that haven&#39;t been renamed properly yet—but only if they aren&#39;t attached (e.g., don&#39;t run in the foreground in any terminal). Cleaning them up automatically keeps my Tmux sessions as neat and tidy as possible. </span><br />
@@ -171,16 +170,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #265a79">attach ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">readonly</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">session</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$1</span>
+<pre><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #38604f">attach ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">readonly</span></span><span style="color: #292c29"> </span><span style="color: #292c29">session</span><span style="color: #292c29">=</span><span style="color: #292c29">$1</span>
 
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> -z </span><span style="color: #3e5d36">"$session"</span><span style="color: #25231f"> </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">        tmux attach-session </span><span style="color: #765924">||</span><span style="color: #25231f"> tmux</span><span style="color: #765924">::</span><span style="color: #25231f">new</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">else</span></span>
-<span style="color: #25231f">        tmux attach-session -t </span><span style="color: #6d3c6d">$session</span><span style="color: #25231f"> </span><span style="color: #765924">||</span><span style="color: #25231f"> tmux</span><span style="color: #765924">::</span><span style="color: #25231f">new </span><span style="color: #6d3c6d">$session</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
-<span style="color: #25231f">}</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">ta</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #25231f">attach</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #292c29"> -z </span><span style="color: #6b5138">"$session"</span><span style="color: #292c29"> </span><span style="color: #292c29">];</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">        tmux attach-session </span><span style="color: #292c29">||</span><span style="color: #292c29"> tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">new</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">else</span></span>
+<span style="color: #292c29">        tmux attach-session -t </span><span style="color: #292c29">$session</span><span style="color: #292c29"> </span><span style="color: #292c29">||</span><span style="color: #292c29"> tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">new </span><span style="color: #292c29">$session</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
+<span style="color: #292c29">}</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">ta</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">attach</span>
 </pre>
 <br />
 <span>If no session is specified (as the argument of the function), it will try to attach to the first open session. If no Tmux server is running, it will create a new one with <span class='inlinecode'>tmux::new</span>. Otherwise, with a session name given as the argument, it will attach to it. If unsuccessful (e.g., the session doesn&#39;t exist), it will be created and attached to.</span><br />
@@ -193,12 +192,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #265a79">remote ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">readonly</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">server</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$1</span>
-<span style="color: #25231f">    tmux new -s </span><span style="color: #6d3c6d">$server</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"ssh -t $server 'tmux attach-session || tmux'"</span><span style="color: #25231f"> </span><span style="color: #765924">||</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
-<span style="color: #25231f">        tmux attach-session -d -t </span><span style="color: #6d3c6d">$server</span>
-<span style="color: #25231f">}</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">tr</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #25231f">remote</span>
+<pre><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #38604f">remote ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">readonly</span></span><span style="color: #292c29"> </span><span style="color: #292c29">server</span><span style="color: #292c29">=</span><span style="color: #292c29">$1</span>
+<span style="color: #292c29">    tmux new -s </span><span style="color: #292c29">$server</span><span style="color: #292c29"> </span><span style="color: #6b5138">"ssh -t $server 'tmux attach-session || tmux'"</span><span style="color: #292c29"> </span><span style="color: #292c29">||</span><span style="color: #292c29"> </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">        tmux attach-session -d -t </span><span style="color: #292c29">$server</span>
+<span style="color: #292c29">}</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">tr</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">remote</span>
 </pre>
 <br />
 <h3 style='display: inline' id='change-of-the-tmux-prefix-for-better-nesting'>Change of the Tmux prefix for better nesting</h3><br />
@@ -221,15 +220,15 @@ set-option -g prefix C-g
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #265a79">search ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">session</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$(</span><span style="color: #25231f">tmux list-sessions </span><span style="color: #765924">|</span><span style="color: #25231f"> fzf </span><span style="color: #765924">|</span><span style="color: #25231f"> cut -d</span><span style="color: #765924">:</span><span style="color: #25231f"> -f</span><span style="color: #8a450c">1</span><span style="color: #765924">)</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> -z </span><span style="color: #3e5d36">"$TMUX"</span><span style="color: #25231f"> </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">        tmux attach-session -t </span><span style="color: #6d3c6d">$session</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">else</span></span>
-<span style="color: #25231f">        tmux switch -t </span><span style="color: #6d3c6d">$session</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
-<span style="color: #25231f">}</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">ts</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #25231f">search</span>
+<pre><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #38604f">search ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> -r </span><span style="color: #292c29">session</span><span style="color: #292c29">=</span><span style="color: #292c29">$(</span><span style="color: #292c29">tmux list-sessions </span><span style="color: #292c29">|</span><span style="color: #292c29"> fzf </span><span style="color: #292c29">|</span><span style="color: #292c29"> cut -d</span><span style="color: #292c29">:</span><span style="color: #292c29"> -f</span><span style="color: #6b5138">1</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #292c29"> -z </span><span style="color: #6b5138">"$TMUX"</span><span style="color: #292c29"> </span><span style="color: #292c29">];</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">        tmux attach-session -t </span><span style="color: #292c29">$session</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">else</span></span>
+<span style="color: #292c29">        tmux switch -t </span><span style="color: #292c29">$session</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
+<span style="color: #292c29">}</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">ts</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">search</span>
 </pre>
 <br />
 <span>All it does is list all currently open sessions in <span class='inlinecode'>fzf</span>, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).</span><br />
@@ -256,15 +255,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #265a79">cluster_ssh ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> -f </span><span style="color: #3e5d36">"$1"</span><span style="color: #25231f"> </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">        tmux</span><span style="color: #765924">::</span><span style="color: #25231f">tssh_from_file </span><span style="color: #6d3c6d">$1</span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
+<pre><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #38604f">cluster_ssh ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #292c29"> -f </span><span style="color: #6b5138">"$1"</span><span style="color: #292c29"> </span><span style="color: #292c29">];</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">        tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">tssh_from_file </span><span style="color: #292c29">$1</span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">return</span></span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
 
-<span style="color: #25231f">    tmux</span><span style="color: #765924">::</span><span style="color: #25231f">tssh_from_argument </span><span style="color: #6d3c6d">$@</span>
-<span style="color: #25231f">}</span>
-<span style="font-weight: bold"><span style="color: #7b2934">alias</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">tssh</span><span style="color: #765924">=</span><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #25231f">cluster_ssh</span>
+<span style="color: #292c29">    tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">tssh_from_argument </span><span style="color: #292c29">$@</span>
+<span style="color: #292c29">}</span>
+<span style="font-weight: bold"><span style="color: #38604f">alias</span></span><span style="color: #292c29"> </span><span style="color: #292c29">tssh</span><span style="color: #292c29">=</span><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">cluster_ssh</span>
 </pre>
 <br />
 <span>This function is just a wrapper around the more complex <span class='inlinecode'>tmux::tssh_from_file</span> and <span class='inlinecode'>tmux::tssh_from_argument</span> functions, as you have learned already. Most of the magic happens there.</span><br />
@@ -277,23 +276,23 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #265a79">tssh_from_argument ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">session</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$1</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">shift</span></span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">first_server</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$1</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">shift</span></span>
+<pre><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #38604f">tssh_from_argument ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> -r </span><span style="color: #292c29">session</span><span style="color: #292c29">=</span><span style="color: #292c29">$1</span><span style="color: #292c29">;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">shift</span></span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> </span><span style="color: #292c29">first_server</span><span style="color: #292c29">=</span><span style="color: #292c29">$1</span><span style="color: #292c29">;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">shift</span></span>
 
-<span style="color: #25231f">    tmux new-session -d -s </span><span style="color: #6d3c6d">$session</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"ssh -t $first_server"</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">!</span><span style="color: #25231f"> tmux list-session </span><span style="color: #765924">|</span><span style="color: #25231f"> grep </span><span style="color: #3e5d36">"^$session:"</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">        echo </span><span style="color: #3e5d36">"Could not create session $session"</span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
+<span style="color: #292c29">    tmux new-session -d -s </span><span style="color: #292c29">$session</span><span style="color: #292c29"> </span><span style="color: #6b5138">"ssh -t $first_server"</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">!</span><span style="color: #292c29"> tmux list-session </span><span style="color: #292c29">|</span><span style="color: #292c29"> grep </span><span style="color: #6b5138">"^$session:"</span><span style="color: #292c29">;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">        echo </span><span style="color: #6b5138">"Could not create session $session"</span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">return</span></span><span style="color: #292c29"> </span><span style="color: #6b5138">2</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
 
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> server </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">"${@[@]}"</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span>
-<span style="color: #25231f">        tmux split-window -t </span><span style="color: #6d3c6d">$session</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"tmux select-layout tiled; ssh -t $server"</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">for</span></span><span style="color: #292c29"> server </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span><span style="color: #292c29"> </span><span style="color: #6b5138">"${@[@]}"</span><span style="color: #292c29">;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">do</span></span>
+<span style="color: #292c29">        tmux split-window -t </span><span style="color: #292c29">$session</span><span style="color: #292c29"> </span><span style="color: #6b5138">"tmux select-layout tiled; ssh -t $server"</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">done</span></span>
 
-<span style="color: #25231f">    tmux setw -t </span><span style="color: #6d3c6d">$session</span><span style="color: #25231f"> synchronize-panes on</span>
-<span style="color: #25231f">    tmux -</span><span style="color: #8a450c">2</span><span style="color: #25231f"> attach-session -t </span><span style="color: #6d3c6d">$session</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> tmux -</span><span style="color: #8a450c">2</span><span style="color: #25231f"> switch-client -t </span><span style="color: #6d3c6d">$session</span>
-<span style="color: #25231f">}</span>
+<span style="color: #292c29">    tmux setw -t </span><span style="color: #292c29">$session</span><span style="color: #292c29"> synchronize-panes on</span>
+<span style="color: #292c29">    tmux -</span><span style="color: #6b5138">2</span><span style="color: #292c29"> attach-session -t </span><span style="color: #292c29">$session</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> tmux -</span><span style="color: #6b5138">2</span><span style="color: #292c29"> switch-client -t </span><span style="color: #292c29">$session</span>
+<span style="color: #292c29">}</span>
 </pre>
 <br />
 <span>It expects at least two arguments. The first argument is the session name to create for the clustered SSH session. All other arguments are server hostnames or FQDNs to which to connect. The first one is used to make the initial session. All remaining ones are added to that session with <span class='inlinecode'>tmux split-window -t $session...</span>. At the end, we enable synchronized panes by default, so whenever you type, the commands will be sent to every SSH connection, thus allowing the neat ClusterSSH feature to run commands on multiple servers simultaneously. Once done, we attach (or switch, if already in Tmux) to it.</span><br />
@@ -313,12 +312,12 @@ bind-key P setw synchronize-panes on
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">tmux</span><span style="color: #765924">::</span><span style="color: #265a79">tssh_from_file ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">serverlist</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$1</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">shift</span></span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">session</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$(</span><span style="color: #25231f">basename </span><span style="color: #6d3c6d">$serverlist</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> cut -d</span><span style="color: #765924">.</span><span style="color: #25231f"> -f</span><span style="color: #8a450c">1</span><span style="color: #765924">)</span>
+<pre><span style="color: #292c29">tmux</span><span style="color: #292c29">::</span><span style="color: #38604f">tssh_from_file ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> -r </span><span style="color: #292c29">serverlist</span><span style="color: #292c29">=</span><span style="color: #292c29">$1</span><span style="color: #292c29">;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">shift</span></span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> -r </span><span style="color: #292c29">session</span><span style="color: #292c29">=</span><span style="color: #292c29">$(</span><span style="color: #292c29">basename </span><span style="color: #292c29">$serverlist</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> cut -d</span><span style="color: #292c29">.</span><span style="color: #292c29"> -f</span><span style="color: #6b5138">1</span><span style="color: #292c29">)</span>
 
-<span style="color: #25231f">    tmux</span><span style="color: #765924">::</span><span style="color: #25231f">tssh_from_argument </span><span style="color: #6d3c6d">$session</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$(</span><span style="color: #25231f">awk </span><span style="color: #3e5d36">'{ print $1} '</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$serverlist</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> sed </span><span style="color: #3e5d36">'s/.lan./.lan/g'</span><span style="color: #765924">)</span>
-<span style="color: #25231f">}</span>
+<span style="color: #292c29">    tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">tssh_from_argument </span><span style="color: #292c29">$session</span><span style="color: #292c29"> </span><span style="color: #292c29">$(</span><span style="color: #292c29">awk </span><span style="color: #6b5138">'{ print $1} '</span><span style="color: #292c29"> </span><span style="color: #292c29">$serverlist</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> sed </span><span style="color: #6b5138">'s/.lan./.lan/g'</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">}</span>
 </pre>
 <br />
 <h3 style='display: inline' id='tssh-examples'><span class='inlinecode'>tssh</span> examples</h3><br />
@@ -449,12 +448,20 @@ bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf re
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2024-06-23-terminal-multiplexing-with-tmux.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

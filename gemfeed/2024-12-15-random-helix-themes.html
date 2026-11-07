@@ -6,22 +6,21 @@
 <title>Random Helix Themes</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2024-12-15-random-helix-themes.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2024-12-15-random-helix-themes.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2024-12-15-random-helix-themes.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='random-helix-themes'>Random Helix Themes</h1><br />
 <br />
 <span class='quote'>Published at 2024-12-15T13:55:05+02:00; Last updated 2024-12-18</span><br />
@@ -36,33 +35,33 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">EDITOR</span><span style="color: #765924">=</span><span style="color: #25231f">hx</span>
-<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">VISUAL</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$EDITOR</span>
-<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">GIT_EDITOR</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$EDITOR</span>
-<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">HELIX_CONFIG_DIR</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$HOME</span><span style="color: #765924">/.</span><span style="color: #25231f">config/helix</span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">export</span></span><span style="color: #292c29"> </span><span style="color: #292c29">EDITOR</span><span style="color: #292c29">=</span><span style="color: #292c29">hx</span>
+<span style="font-weight: bold"><span style="color: #38604f">export</span></span><span style="color: #292c29"> </span><span style="color: #292c29">VISUAL</span><span style="color: #292c29">=</span><span style="color: #292c29">$EDITOR</span>
+<span style="font-weight: bold"><span style="color: #38604f">export</span></span><span style="color: #292c29"> </span><span style="color: #292c29">GIT_EDITOR</span><span style="color: #292c29">=</span><span style="color: #292c29">$EDITOR</span>
+<span style="font-weight: bold"><span style="color: #38604f">export</span></span><span style="color: #292c29"> </span><span style="color: #292c29">HELIX_CONFIG_DIR</span><span style="color: #292c29">=</span><span style="color: #292c29">$HOME</span><span style="color: #292c29">/.</span><span style="color: #292c29">config/helix</span>
 
-<span style="color: #25231f">editor</span><span style="color: #765924">::</span><span style="color: #25231f">helix</span><span style="color: #765924">::</span><span style="color: #265a79">random_theme ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># May add more theme search paths based on OS. This one is</span></span>
-<span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># for Fedora Linux, but there is also MacOS, etc.</span></span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">theme_dir</span><span style="color: #765924">=</span><span style="color: #25231f">/usr/share/helix/runtime/themes</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> </span><span style="color: #765924">!</span><span style="color: #25231f"> -d </span><span style="color: #6d3c6d">$theme_dir</span><span style="color: #25231f"> </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">        echo </span><span style="color: #3e5d36">"Helix theme dir $theme_dir doesnt exist"</span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">return</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
+<span style="color: #292c29">editor</span><span style="color: #292c29">::</span><span style="color: #292c29">helix</span><span style="color: #292c29">::</span><span style="color: #38604f">random_theme ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-style: italic"><span style="color: #636760"># May add more theme search paths based on OS. This one is</span></span>
+<span style="color: #292c29">    </span><span style="font-style: italic"><span style="color: #636760"># for Fedora Linux, but there is also MacOS, etc.</span></span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> -r </span><span style="color: #292c29">theme_dir</span><span style="color: #292c29">=</span><span style="color: #292c29">/usr/share/helix/runtime/themes</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #292c29"> </span><span style="color: #292c29">!</span><span style="color: #292c29"> -d </span><span style="color: #292c29">$theme_dir</span><span style="color: #292c29"> </span><span style="color: #292c29">];</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">        echo </span><span style="color: #6b5138">"Helix theme dir $theme_dir doesnt exist"</span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">return</span></span><span style="color: #292c29"> </span><span style="color: #6b5138">1</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
 
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">config_file</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$HELIX_CONFIG_DIR</span><span style="color: #25231f">/config</span><span style="color: #765924">.</span><span style="color: #25231f">toml</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">random_theme</span><span style="color: #765924">=</span><span style="color: #3e5d36">"$(basename "</span><span style="color: #6d3c6d">$(</span><span style="color: #25231f">ls </span><span style="color: #6d3c6d">$theme_dir</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
-<span style="color: #25231f">        </span><span style="color: #765924">|</span><span style="color: #25231f"> grep -v random</span><span style="color: #765924">.</span><span style="color: #25231f">toml </span><span style="color: #765924">|</span><span style="color: #25231f"> grep </span><span style="color: #765924">.</span><span style="color: #25231f">toml </span><span style="color: #765924">|</span><span style="color: #25231f"> sort -R </span><span style="color: #765924">\</span>
-<span style="color: #25231f">        </span><span style="color: #765924">|</span><span style="color: #25231f"> head -n </span><span style="color: #8a450c">1</span><span style="color: #765924">)</span><span style="color: #3e5d36">" | cut -d. -f1)"</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> -r </span><span style="color: #292c29">config_file</span><span style="color: #292c29">=</span><span style="color: #292c29">$HELIX_CONFIG_DIR</span><span style="color: #292c29">/config</span><span style="color: #292c29">.</span><span style="color: #292c29">toml</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> -r </span><span style="color: #292c29">random_theme</span><span style="color: #292c29">=</span><span style="color: #6b5138">"$(basename "</span><span style="color: #292c29">$(</span><span style="color: #292c29">ls </span><span style="color: #292c29">$theme_dir</span><span style="color: #292c29"> </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">        </span><span style="color: #292c29">|</span><span style="color: #292c29"> grep -v random</span><span style="color: #292c29">.</span><span style="color: #292c29">toml </span><span style="color: #292c29">|</span><span style="color: #292c29"> grep </span><span style="color: #292c29">.</span><span style="color: #292c29">toml </span><span style="color: #292c29">|</span><span style="color: #292c29"> sort -R </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">        </span><span style="color: #292c29">|</span><span style="color: #292c29"> head -n </span><span style="color: #6b5138">1</span><span style="color: #292c29">)</span><span style="color: #6b5138">" | cut -d. -f1)"</span>
 
-<span style="color: #25231f">    sed </span><span style="color: #3e5d36">"/^theme =/ { s/.*/theme = </span><span style="color: #7f3b73">\"</span><span style="color: #3e5d36">$random_theme</span><span style="color: #7f3b73">\"</span><span style="color: #3e5d36">/; }"</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
-<span style="color: #25231f">        </span><span style="color: #6d3c6d">$config_file</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$config_file</span><span style="color: #765924">.</span><span style="color: #25231f">tmp </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> </span>
-<span style="color: #25231f">        mv </span><span style="color: #6d3c6d">$config_file</span><span style="color: #765924">.</span><span style="color: #25231f">tmp </span><span style="color: #6d3c6d">$config_file</span>
-<span style="color: #25231f">}</span>
+<span style="color: #292c29">    sed </span><span style="color: #6b5138">"/^theme =/ { s/.*/theme = </span><span style="color: #292c29">\"</span><span style="color: #6b5138">$random_theme</span><span style="color: #292c29">\"</span><span style="color: #6b5138">/; }"</span><span style="color: #292c29"> </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">        </span><span style="color: #292c29">$config_file</span><span style="color: #292c29"> </span><span style="color: #292c29">&gt;</span><span style="color: #292c29"> </span><span style="color: #292c29">$config_file</span><span style="color: #292c29">.</span><span style="color: #292c29">tmp </span><span style="color: #292c29">&amp;&amp;</span><span style="color: #292c29"> </span>
+<span style="color: #292c29">        mv </span><span style="color: #292c29">$config_file</span><span style="color: #292c29">.</span><span style="color: #292c29">tmp </span><span style="color: #292c29">$config_file</span>
+<span style="color: #292c29">}</span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> -f </span><span style="color: #6d3c6d">$HELIX_CONFIG_DIR</span><span style="color: #25231f">/config</span><span style="color: #765924">.</span><span style="color: #25231f">toml </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">    editor</span><span style="color: #765924">::</span><span style="color: #25231f">helix</span><span style="color: #765924">::</span><span style="color: #25231f">random_theme</span>
-<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
+<span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #292c29"> -f </span><span style="color: #292c29">$HELIX_CONFIG_DIR</span><span style="color: #292c29">/config</span><span style="color: #292c29">.</span><span style="color: #292c29">toml </span><span style="color: #292c29">];</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">    editor</span><span style="color: #292c29">::</span><span style="color: #292c29">helix</span><span style="color: #292c29">::</span><span style="color: #292c29">random_theme</span>
+<span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
 </pre>
 <br />
 <span>So every time I open a new terminal or shell, <span class='inlinecode'>editor::helix::random_theme</span> gets called, which randomly selects a theme from all installed ones and updates the helix config accordingly.</span><br />
@@ -71,16 +70,16 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> editor</span><span style="color: #765924">::</span><span style="color: #25231f">helix</span><span style="color: #765924">::</span><span style="color: #25231f">random_theme</span>
-<span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> head -n </span><span style="color: #8a450c">1</span><span style="color: #25231f"> </span><span style="color: #765924">~/.</span><span style="color: #25231f">config/helix/config</span><span style="color: #765924">.</span><span style="color: #25231f">toml</span>
-<span style="color: #25231f">theme </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"jellybeans"</span>
-<span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> editor</span><span style="color: #765924">::</span><span style="color: #25231f">helix</span><span style="color: #765924">::</span><span style="color: #25231f">random_theme</span>
-<span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> head -n </span><span style="color: #8a450c">1</span><span style="color: #25231f"> </span><span style="color: #765924">~/.</span><span style="color: #25231f">config/helix/config</span><span style="color: #765924">.</span><span style="color: #25231f">toml</span>
-<span style="color: #25231f">theme </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"rose_pine"</span>
-<span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> editor</span><span style="color: #765924">::</span><span style="color: #25231f">helix</span><span style="color: #765924">::</span><span style="color: #25231f">random_theme</span>
-<span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> head -n </span><span style="color: #8a450c">1</span><span style="color: #25231f"> </span><span style="color: #765924">~/.</span><span style="color: #25231f">config/helix/config</span><span style="color: #765924">.</span><span style="color: #25231f">toml</span>
-<span style="color: #25231f">theme </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"noctis"</span>
-<span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="color: #765924">~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span>
+<pre><span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]</span><span style="color: #292c29"> </span><span style="color: #292c29">~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> editor</span><span style="color: #292c29">::</span><span style="color: #292c29">helix</span><span style="color: #292c29">::</span><span style="color: #292c29">random_theme</span>
+<span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]</span><span style="color: #292c29"> </span><span style="color: #292c29">~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> head -n </span><span style="color: #6b5138">1</span><span style="color: #292c29"> </span><span style="color: #292c29">~/.</span><span style="color: #292c29">config/helix/config</span><span style="color: #292c29">.</span><span style="color: #292c29">toml</span>
+<span style="color: #292c29">theme </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">"jellybeans"</span>
+<span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]</span><span style="color: #292c29"> </span><span style="color: #292c29">~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> editor</span><span style="color: #292c29">::</span><span style="color: #292c29">helix</span><span style="color: #292c29">::</span><span style="color: #292c29">random_theme</span>
+<span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]</span><span style="color: #292c29"> </span><span style="color: #292c29">~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> head -n </span><span style="color: #6b5138">1</span><span style="color: #292c29"> </span><span style="color: #292c29">~/.</span><span style="color: #292c29">config/helix/config</span><span style="color: #292c29">.</span><span style="color: #292c29">toml</span>
+<span style="color: #292c29">theme </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">"rose_pine"</span>
+<span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]</span><span style="color: #292c29"> </span><span style="color: #292c29">~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> editor</span><span style="color: #292c29">::</span><span style="color: #292c29">helix</span><span style="color: #292c29">::</span><span style="color: #292c29">random_theme</span>
+<span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]</span><span style="color: #292c29"> </span><span style="color: #292c29">~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> head -n </span><span style="color: #6b5138">1</span><span style="color: #292c29"> </span><span style="color: #292c29">~/.</span><span style="color: #292c29">config/helix/config</span><span style="color: #292c29">.</span><span style="color: #292c29">toml</span>
+<span style="color: #292c29">theme </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">"noctis"</span>
+<span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]</span><span style="color: #292c29"> </span><span style="color: #292c29">~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span>
 </pre>
 <br />
 <h2 style='display: inline' id='a-better-version'>A better version</h2><br />
@@ -91,45 +90,53 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">EDITOR</span><span style="color: #765924">=</span><span style="color: #25231f">hx</span>
-<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">VISUAL</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$EDITOR</span>
-<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">GIT_EDITOR</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$EDITOR</span>
-<span style="font-weight: bold"><span style="color: #7b2934">export</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">HELIX_CONFIG_DIR</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$HOME</span><span style="color: #765924">/.</span><span style="color: #25231f">config/helix</span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">export</span></span><span style="color: #292c29"> </span><span style="color: #292c29">EDITOR</span><span style="color: #292c29">=</span><span style="color: #292c29">hx</span>
+<span style="font-weight: bold"><span style="color: #38604f">export</span></span><span style="color: #292c29"> </span><span style="color: #292c29">VISUAL</span><span style="color: #292c29">=</span><span style="color: #292c29">$EDITOR</span>
+<span style="font-weight: bold"><span style="color: #38604f">export</span></span><span style="color: #292c29"> </span><span style="color: #292c29">GIT_EDITOR</span><span style="color: #292c29">=</span><span style="color: #292c29">$EDITOR</span>
+<span style="font-weight: bold"><span style="color: #38604f">export</span></span><span style="color: #292c29"> </span><span style="color: #292c29">HELIX_CONFIG_DIR</span><span style="color: #292c29">=</span><span style="color: #292c29">$HOME</span><span style="color: #292c29">/.</span><span style="color: #292c29">config/helix</span>
 
-<span style="color: #25231f">editor</span><span style="color: #765924">::</span><span style="color: #25231f">helix</span><span style="color: #765924">::</span><span style="color: #25231f">theme</span><span style="color: #765924">::</span><span style="color: #265a79">get_random ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> dir </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$(</span><span style="color: #25231f">hx --health </span><span style="color: #765924">\</span>
-<span style="color: #25231f">        </span><span style="color: #765924">|</span><span style="color: #25231f"> awk </span><span style="color: #3e5d36">'/^Runtime directories/ { print $3 }'</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> tr </span><span style="color: #3e5d36">';'</span><span style="color: #25231f"> </span><span style="color: #3e5d36">' '</span><span style="color: #765924">);</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> -d </span><span style="color: #6d3c6d">$dir</span><span style="color: #25231f">/themes </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">            ls </span><span style="color: #6d3c6d">$dir</span><span style="color: #25231f">/themes</span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> grep -F </span><span style="color: #765924">.</span><span style="color: #25231f">toml </span><span style="color: #765924">|</span><span style="color: #25231f"> sort -R </span><span style="color: #765924">|</span><span style="color: #25231f"> head -n </span><span style="color: #8a450c">1</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> cut -d</span><span style="color: #765924">.</span><span style="color: #25231f"> -f</span><span style="color: #8a450c">1</span>
-<span style="color: #25231f">}</span>
+<span style="color: #292c29">editor</span><span style="color: #292c29">::</span><span style="color: #292c29">helix</span><span style="color: #292c29">::</span><span style="color: #292c29">theme</span><span style="color: #292c29">::</span><span style="color: #38604f">get_random ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">for</span></span><span style="color: #292c29"> dir </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span><span style="color: #292c29"> </span><span style="color: #292c29">$(</span><span style="color: #292c29">hx --health </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">        </span><span style="color: #292c29">|</span><span style="color: #292c29"> awk </span><span style="color: #6b5138">'/^Runtime directories/ { print $3 }'</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> tr </span><span style="color: #6b5138">';'</span><span style="color: #292c29"> </span><span style="color: #6b5138">' '</span><span style="color: #292c29">);</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">do</span></span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #292c29"> -d </span><span style="color: #292c29">$dir</span><span style="color: #292c29">/themes </span><span style="color: #292c29">];</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">            ls </span><span style="color: #292c29">$dir</span><span style="color: #292c29">/themes</span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">done</span></span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> grep -F </span><span style="color: #292c29">.</span><span style="color: #292c29">toml </span><span style="color: #292c29">|</span><span style="color: #292c29"> sort -R </span><span style="color: #292c29">|</span><span style="color: #292c29"> head -n </span><span style="color: #6b5138">1</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> cut -d</span><span style="color: #292c29">.</span><span style="color: #292c29"> -f</span><span style="color: #6b5138">1</span>
+<span style="color: #292c29">}</span>
 
-<span style="color: #25231f">editor</span><span style="color: #765924">::</span><span style="color: #25231f">helix</span><span style="color: #765924">::</span><span style="color: #25231f">theme</span><span style="color: #765924">::</span><span style="color: #265a79">set ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">theme</span><span style="color: #765924">=</span><span style="color: #3e5d36">"$1"</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">shift</span></span>
+<span style="color: #292c29">editor</span><span style="color: #292c29">::</span><span style="color: #292c29">helix</span><span style="color: #292c29">::</span><span style="color: #292c29">theme</span><span style="color: #292c29">::</span><span style="color: #38604f">set ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> -r </span><span style="color: #292c29">theme</span><span style="color: #292c29">=</span><span style="color: #6b5138">"$1"</span><span style="color: #292c29">;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">shift</span></span>
 
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -r </span><span style="color: #6d3c6d">config_file</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$HELIX_CONFIG_DIR</span><span style="color: #25231f">/config</span><span style="color: #765924">.</span><span style="color: #25231f">toml</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> -r </span><span style="color: #292c29">config_file</span><span style="color: #292c29">=</span><span style="color: #292c29">$HELIX_CONFIG_DIR</span><span style="color: #292c29">/config</span><span style="color: #292c29">.</span><span style="color: #292c29">toml</span>
 
-<span style="color: #25231f">    sed </span><span style="color: #3e5d36">"/^theme =/ { s/.*/theme = </span><span style="color: #7f3b73">\"</span><span style="color: #3e5d36">$theme</span><span style="color: #7f3b73">\"</span><span style="color: #3e5d36">/; }"</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
-<span style="color: #25231f">        </span><span style="color: #6d3c6d">$config_file</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$config_file</span><span style="color: #765924">.</span><span style="color: #25231f">tmp </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> </span>
-<span style="color: #25231f">        mv </span><span style="color: #6d3c6d">$config_file</span><span style="color: #765924">.</span><span style="color: #25231f">tmp </span><span style="color: #6d3c6d">$config_file</span>
-<span style="color: #25231f">}</span>
+<span style="color: #292c29">    sed </span><span style="color: #6b5138">"/^theme =/ { s/.*/theme = </span><span style="color: #292c29">\"</span><span style="color: #6b5138">$theme</span><span style="color: #292c29">\"</span><span style="color: #6b5138">/; }"</span><span style="color: #292c29"> </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">        </span><span style="color: #292c29">$config_file</span><span style="color: #292c29"> </span><span style="color: #292c29">&gt;</span><span style="color: #292c29"> </span><span style="color: #292c29">$config_file</span><span style="color: #292c29">.</span><span style="color: #292c29">tmp </span><span style="color: #292c29">&amp;&amp;</span><span style="color: #292c29"> </span>
+<span style="color: #292c29">        mv </span><span style="color: #292c29">$config_file</span><span style="color: #292c29">.</span><span style="color: #292c29">tmp </span><span style="color: #292c29">$config_file</span>
+<span style="color: #292c29">}</span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> -f </span><span style="color: #6d3c6d">$HELIX_CONFIG_DIR</span><span style="color: #25231f">/config</span><span style="color: #765924">.</span><span style="color: #25231f">toml </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">    editor</span><span style="color: #765924">::</span><span style="color: #25231f">helix</span><span style="color: #765924">::</span><span style="color: #25231f">theme</span><span style="color: #765924">::</span><span style="font-weight: bold"><span style="color: #7b2934">set</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$(editor::helix::theme::get_random)</span>
-<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
+<span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #292c29"> -f </span><span style="color: #292c29">$HELIX_CONFIG_DIR</span><span style="color: #292c29">/config</span><span style="color: #292c29">.</span><span style="color: #292c29">toml </span><span style="color: #292c29">];</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">    editor</span><span style="color: #292c29">::</span><span style="color: #292c29">helix</span><span style="color: #292c29">::</span><span style="color: #292c29">theme</span><span style="color: #292c29">::</span><span style="font-weight: bold"><span style="color: #38604f">set</span></span><span style="color: #292c29"> </span><span style="color: #292c29">$(editor::helix::theme::get_random)</span>
+<span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
 </pre>
 <br />
 <span>I hope you had some fun. E-Mail your comments to <span class='inlinecode'>paul@nospam.buetow.org</span> :-)</span><br />
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2024-12-15-random-helix-themes.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

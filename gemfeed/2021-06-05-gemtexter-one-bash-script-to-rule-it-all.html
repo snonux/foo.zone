@@ -6,22 +6,21 @@
 <title>Gemtexter - One Bash script to rule it all</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='gemtexter---one-bash-script-to-rule-it-all'>Gemtexter - One Bash script to rule it all</h1><br />
 <br />
 <span class='quote'>Published at 2021-06-05T19:03:32+01:00</span><br />
@@ -125,18 +124,18 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">paul </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> uranus </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> gemtexter on 🌱 main</span>
-<span style="color: #25231f">❯ wc -l gemtexter lib</span><span style="color: #765924">/*</span>
-<span style="color: #25231f">    </span><span style="color: #8a450c">117</span><span style="color: #25231f"> gemtexter</span>
-<span style="color: #25231f">     </span><span style="color: #8a450c">59</span><span style="color: #25231f"> lib/assert</span><span style="color: #765924">.</span><span style="font-weight: bold"><span style="color: #7b2934">source</span></span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
-<span style="color: #25231f">    </span><span style="color: #8a450c">128</span><span style="color: #25231f"> lib/atomfeed</span><span style="color: #765924">.</span><span style="font-weight: bold"><span style="color: #7b2934">source</span></span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
-<span style="color: #25231f">     </span><span style="color: #8a450c">64</span><span style="color: #25231f"> lib/gemfeed</span><span style="color: #765924">.</span><span style="font-weight: bold"><span style="color: #7b2934">source</span></span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
-<span style="color: #25231f">    </span><span style="color: #8a450c">161</span><span style="color: #25231f"> lib/generate</span><span style="color: #765924">.</span><span style="font-weight: bold"><span style="color: #7b2934">source</span></span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
-<span style="color: #25231f">     </span><span style="color: #8a450c">50</span><span style="color: #25231f"> lib/git</span><span style="color: #765924">.</span><span style="font-weight: bold"><span style="color: #7b2934">source</span></span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
-<span style="color: #25231f">    </span><span style="color: #8a450c">162</span><span style="color: #25231f"> lib/html</span><span style="color: #765924">.</span><span style="font-weight: bold"><span style="color: #7b2934">source</span></span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
-<span style="color: #25231f">     </span><span style="color: #8a450c">30</span><span style="color: #25231f"> lib/log</span><span style="color: #765924">.</span><span style="font-weight: bold"><span style="color: #7b2934">source</span></span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
-<span style="color: #25231f">     </span><span style="color: #8a450c">63</span><span style="color: #25231f"> lib/md</span><span style="color: #765924">.</span><span style="font-weight: bold"><span style="color: #7b2934">source</span></span><span style="color: #765924">.</span><span style="color: #25231f">sh</span>
-<span style="color: #25231f">     </span><span style="color: #8a450c">834</span><span style="color: #25231f"> total</span>
+<pre><span style="color: #292c29">paul </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span><span style="color: #292c29"> uranus </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span><span style="color: #292c29"> gemtexter on 🌱 main</span>
+<span style="color: #292c29">❯ wc -l gemtexter lib</span><span style="color: #292c29">/*</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">117</span><span style="color: #292c29"> gemtexter</span>
+<span style="color: #292c29">     </span><span style="color: #6b5138">59</span><span style="color: #292c29"> lib/assert</span><span style="color: #292c29">.</span><span style="font-weight: bold"><span style="color: #38604f">source</span></span><span style="color: #292c29">.</span><span style="color: #292c29">sh</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">128</span><span style="color: #292c29"> lib/atomfeed</span><span style="color: #292c29">.</span><span style="font-weight: bold"><span style="color: #38604f">source</span></span><span style="color: #292c29">.</span><span style="color: #292c29">sh</span>
+<span style="color: #292c29">     </span><span style="color: #6b5138">64</span><span style="color: #292c29"> lib/gemfeed</span><span style="color: #292c29">.</span><span style="font-weight: bold"><span style="color: #38604f">source</span></span><span style="color: #292c29">.</span><span style="color: #292c29">sh</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">161</span><span style="color: #292c29"> lib/generate</span><span style="color: #292c29">.</span><span style="font-weight: bold"><span style="color: #38604f">source</span></span><span style="color: #292c29">.</span><span style="color: #292c29">sh</span>
+<span style="color: #292c29">     </span><span style="color: #6b5138">50</span><span style="color: #292c29"> lib/git</span><span style="color: #292c29">.</span><span style="font-weight: bold"><span style="color: #38604f">source</span></span><span style="color: #292c29">.</span><span style="color: #292c29">sh</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">162</span><span style="color: #292c29"> lib/html</span><span style="color: #292c29">.</span><span style="font-weight: bold"><span style="color: #38604f">source</span></span><span style="color: #292c29">.</span><span style="color: #292c29">sh</span>
+<span style="color: #292c29">     </span><span style="color: #6b5138">30</span><span style="color: #292c29"> lib/log</span><span style="color: #292c29">.</span><span style="font-weight: bold"><span style="color: #38604f">source</span></span><span style="color: #292c29">.</span><span style="color: #292c29">sh</span>
+<span style="color: #292c29">     </span><span style="color: #6b5138">63</span><span style="color: #292c29"> lib/md</span><span style="color: #292c29">.</span><span style="font-weight: bold"><span style="color: #38604f">source</span></span><span style="color: #292c29">.</span><span style="color: #292c29">sh</span>
+<span style="color: #292c29">     </span><span style="color: #6b5138">834</span><span style="color: #292c29"> total</span>
 </pre>
 <br />
 <span>This way, the script could grow far beyond 1000 lines of code and still be maintainable. With more features, execution speed may slowly become a problem, though. I already notice that Gemtexter doesn&#39;t produce results instantly but requires few seconds of runtime already. That&#39;s not a problem yet, though. </span><br />
@@ -171,9 +170,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #6d3c6d">gemtext</span><span style="color: #765924">=</span><span style="color: #3e5d36">'=&gt; http://example.org Description of the link'</span>
-<span style="color: #25231f">assert</span><span style="color: #765924">::</span><span style="color: #25231f">equals </span><span style="color: #3e5d36">"$(generate::make_link html "</span><span style="color: #6d3c6d">$gemtext</span><span style="color: #3e5d36">")"</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
-<span style="color: #25231f">    </span><span style="color: #3e5d36">'&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'</span>
+<pre><span style="color: #292c29">gemtext</span><span style="color: #292c29">=</span><span style="color: #6b5138">'=&gt; http://example.org Description of the link'</span>
+<span style="color: #292c29">assert</span><span style="color: #292c29">::</span><span style="color: #292c29">equals </span><span style="color: #6b5138">"$(generate::make_link html "</span><span style="color: #292c29">$gemtext</span><span style="color: #6b5138">")"</span><span style="color: #292c29"> </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">'&lt;a class="textlink" href="http://example.org"&gt;Description of the link&lt;/a&gt;&lt;br /&gt;'</span>
 </pre>
 <br />
 <h3 style='display: inline' id='markdown-unit-test-example'>Markdown unit test example</h3><br />
@@ -182,9 +181,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #6d3c6d">gemtext</span><span style="color: #765924">=</span><span style="color: #3e5d36">'=&gt; http://example.org Description of the link'</span>
-<span style="color: #25231f">assert</span><span style="color: #765924">::</span><span style="color: #25231f">equals </span><span style="color: #3e5d36">"$(generate::make_link md "</span><span style="color: #6d3c6d">$gemtext</span><span style="color: #3e5d36">")"</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
-<span style="color: #25231f">    </span><span style="color: #3e5d36">'[Description of the link](http://example.org)  '</span>
+<pre><span style="color: #292c29">gemtext</span><span style="color: #292c29">=</span><span style="color: #6b5138">'=&gt; http://example.org Description of the link'</span>
+<span style="color: #292c29">assert</span><span style="color: #292c29">::</span><span style="color: #292c29">equals </span><span style="color: #6b5138">"$(generate::make_link md "</span><span style="color: #292c29">$gemtext</span><span style="color: #6b5138">")"</span><span style="color: #292c29"> </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">    </span><span style="color: #6b5138">'[Description of the link](http://example.org)  '</span>
 </pre>
 <br />
 <h2 style='display: inline' id='handcrafted-html-styles'>Handcrafted HTML styles</h2><br />
@@ -233,12 +232,20 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2021-06-05-gemtexter-one-bash-script-to-rule-it-all.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

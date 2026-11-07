@@ -6,22 +6,21 @@
 <title>`gt` calculator - a calculator built with local LLMs</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2026-06-01-gt-calculator.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2026-06-01-gt-calculator.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2026-06-01-gt-calculator.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2026-06-01-gt-calculator.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='gt-calculator---a-calculator-built-with-local-llms'><span class='inlinecode'>gt</span> calculator - a calculator built with local LLMs</h1><br />
 <br />
 <span class='quote'>Published at 2026-05-31T14:24:10+03:00</span><br />
@@ -86,9 +85,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'3 4 +'</span><span style="color: #25231f">                     </span><span style="font-style: italic"><span style="color: #685f50"># one-liner: RPN</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'20% of 150'</span><span style="color: #25231f">                </span><span style="font-style: italic"><span style="color: #685f50"># one-liner: percentage</span></span>
-<span style="color: #25231f">gt                             </span><span style="font-style: italic"><span style="color: #685f50"># interactive REPL</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'3 4 +'</span><span style="color: #292c29">                     </span><span style="font-style: italic"><span style="color: #636760"># one-liner: RPN</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'20% of 150'</span><span style="color: #292c29">                </span><span style="font-style: italic"><span style="color: #636760"># one-liner: percentage</span></span>
+<span style="color: #292c29">gt                             </span><span style="font-style: italic"><span style="color: #636760"># interactive REPL</span></span>
 </pre>
 <br />
 <span>You can also pipe into it: <span class='inlinecode'>echo &#39;1000Mbps @Gbps convert&#39; | gt</span> → <span class='inlinecode'>1</span>.</span><br />
@@ -101,9 +100,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'20% of 150'</span><span style="color: #25231f">                </span><span style="font-style: italic"><span style="color: #685f50"># → 30.00</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'30 is what % of 150'</span><span style="color: #25231f">       </span><span style="font-style: italic"><span style="color: #685f50"># → 20.00%</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'30 is 20% of what'</span><span style="color: #25231f">         </span><span style="font-style: italic"><span style="color: #685f50"># → 150.00</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'20% of 150'</span><span style="color: #292c29">                </span><span style="font-style: italic"><span style="color: #636760"># → 30.00</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'30 is what % of 150'</span><span style="color: #292c29">       </span><span style="font-style: italic"><span style="color: #636760"># → 20.00%</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'30 is 20% of what'</span><span style="color: #292c29">         </span><span style="font-style: italic"><span style="color: #636760"># → 150.00</span></span>
 </pre>
 <br />
 <span>Every percentage result shows the formula and intermediate values.</span><br />
@@ -116,10 +115,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'3 4 +'</span><span style="color: #25231f">                     </span><span style="font-style: italic"><span style="color: #685f50"># 7</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'2 10 ^'</span><span style="color: #25231f">                    </span><span style="font-style: italic"><span style="color: #685f50"># 1024</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'100 10 / 5 +'</span><span style="color: #25231f">              </span><span style="font-style: italic"><span style="color: #685f50"># 15</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'3 4 + 5 6 + *'</span><span style="color: #25231f">             </span><span style="font-style: italic"><span style="color: #685f50"># (3+4) × (5+6) = 77</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'3 4 +'</span><span style="color: #292c29">                     </span><span style="font-style: italic"><span style="color: #636760"># 7</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'2 10 ^'</span><span style="color: #292c29">                    </span><span style="font-style: italic"><span style="color: #636760"># 1024</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'100 10 / 5 +'</span><span style="color: #292c29">              </span><span style="font-style: italic"><span style="color: #636760"># 15</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'3 4 + 5 6 + *'</span><span style="color: #292c29">             </span><span style="font-style: italic"><span style="color: #636760"># (3+4) × (5+6) = 77</span></span>
 </pre>
 <br />
 <span>Basic operators: <span class='inlinecode'>+</span>, <span class='inlinecode'>-</span>, <span class='inlinecode'>*</span>, <span class='inlinecode'>/</span>, <span class='inlinecode'>^</span>, <span class='inlinecode'>%</span>.</span><br />
@@ -134,8 +133,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'17 5 %'</span><span style="color: #25231f">                    </span><span style="font-style: italic"><span style="color: #685f50"># → 2</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'100 7 %'</span><span style="color: #25231f">                   </span><span style="font-style: italic"><span style="color: #685f50"># → 2</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'17 5 %'</span><span style="color: #292c29">                    </span><span style="font-style: italic"><span style="color: #636760"># → 2</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'100 7 %'</span><span style="color: #292c29">                   </span><span style="font-style: italic"><span style="color: #636760"># → 2</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='logarithms'>Logarithms</h3><br />
@@ -146,9 +145,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'1024 lg'</span><span style="color: #25231f">                   </span><span style="font-style: italic"><span style="color: #685f50"># → 10</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'1000 log'</span><span style="color: #25231f">                  </span><span style="font-style: italic"><span style="color: #685f50"># → 3</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'e ln'</span><span style="color: #25231f">                      </span><span style="font-style: italic"><span style="color: #685f50"># → 1.0000000000</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'1024 lg'</span><span style="color: #292c29">                   </span><span style="font-style: italic"><span style="color: #636760"># → 10</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'1000 log'</span><span style="color: #292c29">                  </span><span style="font-style: italic"><span style="color: #636760"># → 3</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'e ln'</span><span style="color: #292c29">                      </span><span style="font-style: italic"><span style="color: #636760"># → 1.0000000000</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='hyper-operators-n-ary'>Hyper operators (n-ary)</h3><br />
@@ -159,10 +158,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'1 2 3 4 5 [+]'</span><span style="color: #25231f">            </span><span style="font-style: italic"><span style="color: #685f50"># → 15 (sum of all)</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'100 10 20 30 5 [-]'</span><span style="color: #25231f">       </span><span style="font-style: italic"><span style="color: #685f50"># → 35 (100-10-20-30-5)</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'2 5 10 [*]'</span><span style="color: #25231f">               </span><span style="font-style: italic"><span style="color: #685f50"># → 100 (product)</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'1000 2 2 2 2 [/]'</span><span style="color: #25231f">         </span><span style="font-style: italic"><span style="color: #685f50"># → 62.5</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'1 2 3 4 5 [+]'</span><span style="color: #292c29">            </span><span style="font-style: italic"><span style="color: #636760"># → 15 (sum of all)</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'100 10 20 30 5 [-]'</span><span style="color: #292c29">       </span><span style="font-style: italic"><span style="color: #636760"># → 35 (100-10-20-30-5)</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'2 5 10 [*]'</span><span style="color: #292c29">               </span><span style="font-style: italic"><span style="color: #636760"># → 100 (product)</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'1000 2 2 2 2 [/]'</span><span style="color: #292c29">         </span><span style="font-style: italic"><span style="color: #636760"># → 62.5</span></span>
 </pre>
 <br />
 <span>Full set: <span class='inlinecode'>[+]</span>, <span class='inlinecode'>[-]</span>, <span class='inlinecode'>[*]</span>, <span class='inlinecode'>[/]</span>, <span class='inlinecode'>[^]</span>, <span class='inlinecode'>[%]</span> for arithmetic, plus <span class='inlinecode'>[lg]</span>, <span class='inlinecode'>[log]</span>, <span class='inlinecode'>[ln]</span> for logarithms. The log hyper operators work differently from the arithmetic ones: they compute the sum of the log function applied to each value, not a left-associative reduction. A quick entropy calculation:</span><br />
@@ -171,7 +170,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'0.25 0.5 0.25 [lg]'</span><span style="color: #25231f">      </span><span style="font-style: italic"><span style="color: #685f50"># → -5  (information theory entropy bits)</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'0.25 0.5 0.25 [lg]'</span><span style="color: #292c29">      </span><span style="font-style: italic"><span style="color: #636760"># → -5  (information theory entropy bits)</span></span>
 </pre>
 <br />
 <span>The square-bracket syntax is inspired by Raku&#39;s hyper operators.</span><br />
@@ -184,9 +183,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'5 3 gt'</span><span style="color: #25231f">                    </span><span style="font-style: italic"><span style="color: #685f50"># → true</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'3 5 &lt;'</span><span style="color: #25231f">                     </span><span style="font-style: italic"><span style="color: #685f50"># → true</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'5 5 =='</span><span style="color: #25231f">                    </span><span style="font-style: italic"><span style="color: #685f50"># → true</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'5 3 gt'</span><span style="color: #292c29">                    </span><span style="font-style: italic"><span style="color: #636760"># → true</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'3 5 &lt;'</span><span style="color: #292c29">                     </span><span style="font-style: italic"><span style="color: #636760"># → true</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'5 5 =='</span><span style="color: #292c29">                    </span><span style="font-style: italic"><span style="color: #636760"># → true</span></span>
 </pre>
 <br />
 <span>Results are <span class='inlinecode'>true</span> or <span class='inlinecode'>false</span>, which coerce into arithmetic (true = 1, false = 0), so you get inline conditionals:</span><br />
@@ -195,8 +194,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'85 80 gt 10 *'</span><span style="color: #25231f">             </span><span style="font-style: italic"><span style="color: #685f50"># → 10 (85 &gt; 80, so 1 × 10)</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'50 80 gt 10 *'</span><span style="color: #25231f">             </span><span style="font-style: italic"><span style="color: #685f50"># → 0  (50 &lt; 80, so 0 × 10)</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'85 80 gt 10 *'</span><span style="color: #292c29">             </span><span style="font-style: italic"><span style="color: #636760"># → 10 (85 &gt; 80, so 1 × 10)</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'50 80 gt 10 *'</span><span style="color: #292c29">             </span><span style="font-style: italic"><span style="color: #636760"># → 0  (50 &lt; 80, so 0 × 10)</span></span>
 </pre>
 <br />
 <span>Range validation works by summing boolean results:</span><br />
@@ -205,8 +204,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'72 68 gte 100 lte +'</span><span style="color: #25231f">       </span><span style="font-style: italic"><span style="color: #685f50"># → 2 (both checks pass, temp is in range)</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'105 68 gte 100 lte +'</span><span style="color: #25231f">      </span><span style="font-style: italic"><span style="color: #685f50"># → 1 (out of range)</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'72 68 gte 100 lte +'</span><span style="color: #292c29">       </span><span style="font-style: italic"><span style="color: #636760"># → 2 (both checks pass, temp is in range)</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'105 68 gte 100 lte +'</span><span style="color: #292c29">      </span><span style="font-style: italic"><span style="color: #636760"># → 1 (out of range)</span></span>
 </pre>
 <br />
 <span>Booleans also do plain arithmetic:</span><br />
@@ -215,8 +214,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'true true +'</span><span style="color: #25231f">               </span><span style="font-style: italic"><span style="color: #685f50"># → 2 (1 + 1)</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'false 5 +'</span><span style="color: #25231f">                 </span><span style="font-style: italic"><span style="color: #685f50"># → 5 (0 + 5)</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'true true +'</span><span style="color: #292c29">               </span><span style="font-style: italic"><span style="color: #636760"># → 2 (1 + 1)</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'false 5 +'</span><span style="color: #292c29">                 </span><span style="font-style: italic"><span style="color: #636760"># → 5 (0 + 5)</span></span>
 </pre>
 <br />
 <h2 style='display: inline' id='variables-and-symbols'>Variables and symbols</h2><br />
@@ -227,9 +226,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'x 10 :='</span><span style="color: #25231f">                   </span><span style="font-style: italic"><span style="color: #685f50"># right assignment</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'20 y =:'</span><span style="color: #25231f">                   </span><span style="font-style: italic"><span style="color: #685f50"># left assignment</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'rate 100Mbps ='</span><span style="color: #25231f">            </span><span style="font-style: italic"><span style="color: #685f50"># standard (or rate = 100Mbps)</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'x 10 :='</span><span style="color: #292c29">                   </span><span style="font-style: italic"><span style="color: #636760"># right assignment</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'20 y =:'</span><span style="color: #292c29">                   </span><span style="font-style: italic"><span style="color: #636760"># left assignment</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'rate 100Mbps ='</span><span style="color: #292c29">            </span><span style="font-style: italic"><span style="color: #636760"># standard (or rate = 100Mbps)</span></span>
 </pre>
 <br />
 <span><span class='inlinecode'>vars</span> lists them, <span class='inlinecode'>clear</span> wipes all variables and constants, <span class='inlinecode'>:name d</span> deletes one. In REPL mode, variables persist to disk between sessions.</span><br />
@@ -240,10 +239,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">&gt;</span><span style="color: #25231f"> x </span><span style="color: #8a450c">10</span><span style="color: #25231f"> </span><span style="color: #765924">:=</span><span style="color: #25231f">                     </span><span style="font-style: italic"><span style="color: #685f50"># define x</span></span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> x                           </span><span style="font-style: italic"><span style="color: #685f50"># pushes 10 (variable resolved)</span></span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> </span><span style="color: #765924">:</span><span style="color: #25231f">x                          </span><span style="font-style: italic"><span style="color: #685f50"># pushes :x (the symbol itself)</span></span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> </span><span style="color: #765924">:</span><span style="color: #25231f">x d                        </span><span style="font-style: italic"><span style="color: #685f50"># deletes the variable x</span></span>
+<pre><span style="color: #292c29">&gt;</span><span style="color: #292c29"> x </span><span style="color: #6b5138">10</span><span style="color: #292c29"> </span><span style="color: #292c29">:=</span><span style="color: #292c29">                     </span><span style="font-style: italic"><span style="color: #636760"># define x</span></span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> x                           </span><span style="font-style: italic"><span style="color: #636760"># pushes 10 (variable resolved)</span></span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> </span><span style="color: #292c29">:</span><span style="color: #292c29">x                          </span><span style="font-style: italic"><span style="color: #636760"># pushes :x (the symbol itself)</span></span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> </span><span style="color: #292c29">:</span><span style="color: #292c29">x d                        </span><span style="font-style: italic"><span style="color: #636760"># deletes the variable x</span></span>
 </pre>
 <br />
 <span>Bare identifiers that don&#39;t match any variable or constant also push as symbols.</span><br />
@@ -256,10 +255,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'pi 2 *'</span><span style="color: #25231f">                    </span><span style="font-style: italic"><span style="color: #685f50"># → 6.283185307</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'euler'</span><span style="color: #25231f">                     </span><span style="font-style: italic"><span style="color: #685f50"># → 2.718281828</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'phi 10 *'</span><span style="color: #25231f">                  </span><span style="font-style: italic"><span style="color: #685f50"># → 16.18 (golden rectangle)</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'sqrt2 sqrt3 *'</span><span style="color: #25231f">             </span><span style="font-style: italic"><span style="color: #685f50"># → 2.449 (√6)</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'pi 2 *'</span><span style="color: #292c29">                    </span><span style="font-style: italic"><span style="color: #636760"># → 6.283185307</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'euler'</span><span style="color: #292c29">                     </span><span style="font-style: italic"><span style="color: #636760"># → 2.718281828</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'phi 10 *'</span><span style="color: #292c29">                  </span><span style="font-style: italic"><span style="color: #636760"># → 16.18 (golden rectangle)</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'sqrt2 sqrt3 *'</span><span style="color: #292c29">             </span><span style="font-style: italic"><span style="color: #636760"># → 2.449 (√6)</span></span>
 </pre>
 <br />
 <span>Greek letter aliases work too: <span class='inlinecode'>π</span>, <span class='inlinecode'>τ</span>, <span class='inlinecode'>φ</span>, <span class='inlinecode'>√2</span>, <span class='inlinecode'>√3</span>, <span class='inlinecode'>√5</span>.</span><br />
@@ -287,10 +286,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'100Mbps'</span><span style="color: #25231f">                   </span><span style="font-style: italic"><span style="color: #685f50"># 100 megabits per second</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'5GB'</span><span style="color: #25231f">                       </span><span style="font-style: italic"><span style="color: #685f50"># 5 gigabytes</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'1hr'</span><span style="color: #25231f">                       </span><span style="font-style: italic"><span style="color: #685f50"># 1 hour</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'70kg'</span><span style="color: #25231f">                      </span><span style="font-style: italic"><span style="color: #685f50"># 70 kilograms</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'100Mbps'</span><span style="color: #292c29">                   </span><span style="font-style: italic"><span style="color: #636760"># 100 megabits per second</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'5GB'</span><span style="color: #292c29">                       </span><span style="font-style: italic"><span style="color: #636760"># 5 gigabytes</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'1hr'</span><span style="color: #292c29">                       </span><span style="font-style: italic"><span style="color: #636760"># 1 hour</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'70kg'</span><span style="color: #292c29">                      </span><span style="font-style: italic"><span style="color: #636760"># 70 kilograms</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='unit-conversion'>Unit conversion</h3><br />
@@ -301,10 +300,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'1000Mbps @Gbps convert'</span><span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># → 1</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'1km @mi convert'</span><span style="color: #25231f">           </span><span style="font-style: italic"><span style="color: #685f50"># → 0.6213711922</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'60mph @kmh convert'</span><span style="color: #25231f">        </span><span style="font-style: italic"><span style="color: #685f50"># → 96.56</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'3day @s convert'</span><span style="color: #25231f">           </span><span style="font-style: italic"><span style="color: #685f50"># → 259200</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'1000Mbps @Gbps convert'</span><span style="color: #292c29">    </span><span style="font-style: italic"><span style="color: #636760"># → 1</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'1km @mi convert'</span><span style="color: #292c29">           </span><span style="font-style: italic"><span style="color: #636760"># → 0.6213711922</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'60mph @kmh convert'</span><span style="color: #292c29">        </span><span style="font-style: italic"><span style="color: #636760"># → 96.56</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'3day @s convert'</span><span style="color: #292c29">           </span><span style="font-style: italic"><span style="color: #636760"># → 259200</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='metric-aware-arithmetic'>Metric-aware arithmetic</h3><br />
@@ -315,8 +314,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'1km 500m +'</span><span style="color: #25231f">                </span><span style="font-style: italic"><span style="color: #685f50"># → 1.5 (converted to km)</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'1Gbps 500Mbps -'</span><span style="color: #25231f">           </span><span style="font-style: italic"><span style="color: #685f50"># → 500 (in Mbps)</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'1km 500m +'</span><span style="color: #292c29">                </span><span style="font-style: italic"><span style="color: #636760"># → 1.5 (converted to km)</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'1Gbps 500Mbps -'</span><span style="color: #292c29">           </span><span style="font-style: italic"><span style="color: #636760"># → 500 (in Mbps)</span></span>
 </pre>
 <br />
 <span>Multiplication and division do cross-category inference:</span><br />
@@ -325,9 +324,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'100Mbps 1hr *'</span><span style="color: #25231f">             </span><span style="font-style: italic"><span style="color: #685f50"># rate × time = data transferred</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'10GB 2hr /'</span><span style="color: #25231f">                </span><span style="font-style: italic"><span style="color: #685f50"># data / time = rate</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'100kmh 1hr * @mi convert'</span><span style="color: #25231f">  </span><span style="font-style: italic"><span style="color: #685f50"># → 62.14 miles traveled</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'100Mbps 1hr *'</span><span style="color: #292c29">             </span><span style="font-style: italic"><span style="color: #636760"># rate × time = data transferred</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'10GB 2hr /'</span><span style="color: #292c29">                </span><span style="font-style: italic"><span style="color: #636760"># data / time = rate</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'100kmh 1hr * @mi convert'</span><span style="color: #292c29">  </span><span style="font-style: italic"><span style="color: #636760"># → 62.14 miles traveled</span></span>
 </pre>
 <br />
 <span>Comparison operators are metric-aware too:</span><br />
@@ -336,8 +335,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">gt </span><span style="color: #3e5d36">'1km 1000m eq'</span><span style="color: #25231f">              </span><span style="font-style: italic"><span style="color: #685f50"># → true</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'1GB 1024MB eq'</span><span style="color: #25231f">             </span><span style="font-style: italic"><span style="color: #685f50"># → false (SI: 1GB = 1000MB)</span></span>
+<pre><span style="color: #292c29">gt </span><span style="color: #6b5138">'1km 1000m eq'</span><span style="color: #292c29">              </span><span style="font-style: italic"><span style="color: #636760"># → true</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'1GB 1024MB eq'</span><span style="color: #292c29">             </span><span style="font-style: italic"><span style="color: #636760"># → false (SI: 1GB = 1000MB)</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='custom-metrics'>Custom metrics</h3><br />
@@ -348,9 +347,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">custom define reel </span><span style="color: #8a450c">304.8</span><span style="color: #25231f"> Distance      </span><span style="font-style: italic"><span style="color: #685f50"># surveyor's reel</span></span>
-<span style="color: #25231f">custom define fortnight </span><span style="color: #8a450c">1209600</span><span style="color: #25231f"> Time   </span><span style="font-style: italic"><span style="color: #685f50"># 14 days</span></span>
-<span style="color: #25231f">custom define cup </span><span style="color: #8a450c">240</span><span style="color: #25231f"> Weight           </span><span style="font-style: italic"><span style="color: #685f50"># cooking measure</span></span>
+<pre><span style="color: #292c29">custom define reel </span><span style="color: #6b5138">304.8</span><span style="color: #292c29"> Distance      </span><span style="font-style: italic"><span style="color: #636760"># surveyor's reel</span></span>
+<span style="color: #292c29">custom define fortnight </span><span style="color: #6b5138">1209600</span><span style="color: #292c29"> Time   </span><span style="font-style: italic"><span style="color: #636760"># 14 days</span></span>
+<span style="color: #292c29">custom define cup </span><span style="color: #6b5138">240</span><span style="color: #292c29"> Weight           </span><span style="font-style: italic"><span style="color: #636760"># cooking measure</span></span>
 </pre>
 <br />
 <span>Then use them like built-ins:</span><br />
@@ -359,12 +358,12 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">&gt;</span><span style="color: #25231f"> 5reel @m convert</span>
-<span style="color: #8a450c">1524</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> 2fortnight @day convert</span>
-<span style="color: #8a450c">28</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> 3cup @g convert</span>
-<span style="color: #8a450c">720</span>
+<pre><span style="color: #292c29">&gt;</span><span style="color: #292c29"> 5reel @m convert</span>
+<span style="color: #6b5138">1524</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> 2fortnight @day convert</span>
+<span style="color: #6b5138">28</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> 3cup @g convert</span>
+<span style="color: #6b5138">720</span>
 </pre>
 <br />
 <h3 style='display: inline' id='si-vs-iec-modes'>SI vs IEC modes</h3><br />
@@ -379,10 +378,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">&gt;</span><span style="color: #25231f"> metric list</span>
-<span style="color: #25231f">DataRate</span><span style="color: #765924">,</span><span style="color: #25231f"> DataSize</span><span style="color: #765924">,</span><span style="color: #25231f"> Distance</span><span style="color: #765924">,</span><span style="color: #25231f"> Speed</span><span style="color: #765924">,</span><span style="color: #25231f"> Time</span><span style="color: #765924">,</span><span style="color: #25231f"> Universal</span><span style="color: #765924">,</span><span style="color: #25231f"> Weight</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> metric DataRate</span>
-<span style="color: #25231f">Gbps</span><span style="color: #765924">,</span><span style="color: #25231f"> Kbps</span><span style="color: #765924">,</span><span style="color: #25231f"> Mbps</span><span style="color: #765924">,</span><span style="color: #25231f"> Tbps</span><span style="color: #765924">,</span><span style="color: #25231f"> bps</span>
+<pre><span style="color: #292c29">&gt;</span><span style="color: #292c29"> metric list</span>
+<span style="color: #292c29">DataRate</span><span style="color: #292c29">,</span><span style="color: #292c29"> DataSize</span><span style="color: #292c29">,</span><span style="color: #292c29"> Distance</span><span style="color: #292c29">,</span><span style="color: #292c29"> Speed</span><span style="color: #292c29">,</span><span style="color: #292c29"> Time</span><span style="color: #292c29">,</span><span style="color: #292c29"> Universal</span><span style="color: #292c29">,</span><span style="color: #292c29"> Weight</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> metric DataRate</span>
+<span style="color: #292c29">Gbps</span><span style="color: #292c29">,</span><span style="color: #292c29"> Kbps</span><span style="color: #292c29">,</span><span style="color: #292c29"> Mbps</span><span style="color: #292c29">,</span><span style="color: #292c29"> Tbps</span><span style="color: #292c29">,</span><span style="color: #292c29"> bps</span>
 </pre>
 <br />
 <span><span class='inlinecode'>metric compatible</span> checks whether two values can be combined:</span><br />
@@ -391,10 +390,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">&gt;</span><span style="color: #25231f"> 1km 5mi metric compatible</span>
-<span style="color: #25231f">km </span><span style="color: #765924">(</span><span style="color: #25231f">Distance</span><span style="color: #765924">)</span><span style="color: #25231f"> and mi </span><span style="color: #765924">(</span><span style="color: #25231f">Distance</span><span style="color: #765924">):</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">true</span></span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> 100Mbps 2hr metric compatible</span>
-<span style="color: #25231f">Mbps </span><span style="color: #765924">(</span><span style="color: #25231f">DataRate</span><span style="color: #765924">)</span><span style="color: #25231f"> and hr </span><span style="color: #765924">(</span><span style="color: #25231f">Time</span><span style="color: #765924">):</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">false</span></span>
+<pre><span style="color: #292c29">&gt;</span><span style="color: #292c29"> 1km 5mi metric compatible</span>
+<span style="color: #292c29">km </span><span style="color: #292c29">(</span><span style="color: #292c29">Distance</span><span style="color: #292c29">)</span><span style="color: #292c29"> and mi </span><span style="color: #292c29">(</span><span style="color: #292c29">Distance</span><span style="color: #292c29">):</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">true</span></span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> 100Mbps 2hr metric compatible</span>
+<span style="color: #292c29">Mbps </span><span style="color: #292c29">(</span><span style="color: #292c29">DataRate</span><span style="color: #292c29">)</span><span style="color: #292c29"> and hr </span><span style="color: #292c29">(</span><span style="color: #292c29">Time</span><span style="color: #292c29">):</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">false</span></span>
 </pre>
 <br />
 <h2 style='display: inline' id='stack-manipulation'>Stack manipulation</h2><br />
@@ -411,10 +410,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">&gt;</span><span style="color: #25231f"> rat off</span>
-<span style="color: #25231f">Rational mode disabled </span><span style="color: #765924">(</span><span style="color: #25231f">using float64</span><span style="color: #765924">)</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> </span><span style="color: #8a450c">0.3</span><span style="color: #25231f"> </span><span style="color: #8a450c">0.1</span><span style="color: #25231f"> - </span><span style="color: #8a450c">0.2</span><span style="color: #25231f"> -</span>
-<span style="color: #25231f">-</span><span style="color: #8a450c">2.775557562e-17</span>
+<pre><span style="color: #292c29">&gt;</span><span style="color: #292c29"> rat off</span>
+<span style="color: #292c29">Rational mode disabled </span><span style="color: #292c29">(</span><span style="color: #292c29">using float64</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> </span><span style="color: #6b5138">0.3</span><span style="color: #292c29"> </span><span style="color: #6b5138">0.1</span><span style="color: #292c29"> - </span><span style="color: #6b5138">0.2</span><span style="color: #292c29"> -</span>
+<span style="color: #292c29">-</span><span style="color: #6b5138">2.775557562e-17</span>
 </pre>
 <br />
 <span>The result should be <span class='inlinecode'>0</span>. Silent wrong answer.</span><br />
@@ -424,10 +423,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">&gt;</span><span style="color: #25231f"> rat on</span>
-<span style="color: #25231f">Rational mode enabled</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> </span><span style="color: #8a450c">0.1</span><span style="color: #25231f"> </span><span style="color: #8a450c">0.2</span><span style="color: #25231f"> </span><span style="color: #765924">+</span>
-<span style="color: #8a450c">0.3000000000</span>
+<pre><span style="color: #292c29">&gt;</span><span style="color: #292c29"> rat on</span>
+<span style="color: #292c29">Rational mode enabled</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> </span><span style="color: #6b5138">0.1</span><span style="color: #292c29"> </span><span style="color: #6b5138">0.2</span><span style="color: #292c29"> </span><span style="color: #292c29">+</span>
+<span style="color: #6b5138">0.3000000000</span>
 </pre>
 <br />
 <span>Internally, <span class='inlinecode'>1/3</span> stays as the exact fraction <span class='inlinecode'>1/3</span>, and <span class='inlinecode'>1/3 * 3</span> computes to exactly <span class='inlinecode'>3/3 = 1</span>.</span><br />
@@ -443,10 +442,10 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">$ gt --log calc-session</span><span style="color: #765924">.</span><span style="color: #25231f">log</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> 1Gbps 1hr </span><span style="color: #765924">*</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> @GB convert</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> quit</span>
+<pre><span style="color: #292c29">$ gt --log calc-session</span><span style="color: #292c29">.</span><span style="color: #292c29">log</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> 1Gbps 1hr </span><span style="color: #292c29">*</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> @GB convert</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> quit</span>
 </pre>
 <br />
 <span>Built-in REPL commands: <span class='inlinecode'>help</span>, <span class='inlinecode'>clear</span>, <span class='inlinecode'>quit</span>/<span class='inlinecode'>exit</span>, <span class='inlinecode'>rpn</span>/<span class='inlinecode'>calc</span>, <span class='inlinecode'>rat</span>, <span class='inlinecode'>stack</span>. Tab-completes.</span><br />
@@ -457,41 +456,41 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">$ gt</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> rate 100Mbps </span><span style="color: #765924">=</span>
-<span style="color: #25231f">rate </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">100</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> time 2hr </span><span style="color: #765924">=</span>
-<span style="color: #25231f">time </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> rate time </span><span style="color: #765924">*</span>
-<span style="color: #8a450c">200</span><span style="color: #25231f"> Mbps</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> metric show</span>
-<span style="color: #25231f">Mbps</span><span style="color: #765924">,</span><span style="color: #25231f"> DataRate</span><span style="color: #765924">,</span><span style="color: #25231f"> base</span><span style="color: #765924">:</span><span style="color: #25231f"> bps</span><span style="color: #765924">,</span><span style="color: #25231f"> factor</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">1e+06</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> download 50GB </span><span style="color: #765924">=</span>
-<span style="color: #25231f">download </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">50</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> speed 100Mbps </span><span style="color: #765924">=</span>
-<span style="color: #25231f">speed </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">100</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> download speed </span><span style="color: #765924">/</span><span style="color: #25231f"> @min convert</span>
-<span style="color: #8a450c">83.33333333</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> custom define reel </span><span style="color: #8a450c">304.8</span><span style="color: #25231f"> Distance</span>
-<span style="color: #25231f">defined custom metric </span><span style="color: #3e5d36">"reel"</span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #25231f">factor</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">304.8</span><span style="color: #765924">,</span><span style="color: #25231f"> category</span><span style="color: #765924">:</span><span style="color: #25231f"> Distance</span><span style="color: #765924">)</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> 5reel @m convert</span>
-<span style="color: #8a450c">1524</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> 100Mbps 50Mbps swap -</span>
-<span style="color: #8a450c">50</span><span style="color: #25231f"> Mbps</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> show</span>
-<span style="color: #8a450c">50</span><span style="color: #25231f"> Mbps</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> </span><span style="color: #8a450c">20</span><span style="color: #765924">%</span><span style="color: #25231f"> of </span><span style="color: #8a450c">150</span>
-<span style="color: #8a450c">20.00</span><span style="color: #765924">%</span><span style="color: #25231f"> of </span><span style="color: #8a450c">150.00</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">30.00</span>
-<span style="color: #25231f">  Steps</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #765924">(</span><span style="color: #8a450c">20.00</span><span style="color: #25231f"> </span><span style="color: #765924">/</span><span style="color: #25231f"> </span><span style="color: #8a450c">100</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f"> </span><span style="color: #8a450c">150.00</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">0.20</span><span style="color: #25231f"> </span><span style="color: #765924">*</span><span style="color: #25231f"> </span><span style="color: #8a450c">150.00</span><span style="color: #25231f"> </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">30.00</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> rat on</span>
-<span style="color: #25231f">Rational mode enabled</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span><span style="color: #25231f"> </span><span style="color: #8a450c">3</span><span style="color: #25231f"> </span><span style="color: #765924">/</span><span style="color: #25231f"> </span><span style="color: #8a450c">3</span><span style="color: #25231f"> </span><span style="color: #765924">*</span>
-<span style="color: #8a450c">1.0000000000</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> vars</span>
-<span style="color: #25231f">rate </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">100</span>
-<span style="color: #25231f">time </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span>
-<span style="color: #25231f">download </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">50</span>
-<span style="color: #25231f">speed </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="color: #8a450c">100</span>
+<pre><span style="color: #292c29">$ gt</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> rate 100Mbps </span><span style="color: #292c29">=</span>
+<span style="color: #292c29">rate </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">100</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> time 2hr </span><span style="color: #292c29">=</span>
+<span style="color: #292c29">time </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">2</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> rate time </span><span style="color: #292c29">*</span>
+<span style="color: #6b5138">200</span><span style="color: #292c29"> Mbps</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> metric show</span>
+<span style="color: #292c29">Mbps</span><span style="color: #292c29">,</span><span style="color: #292c29"> DataRate</span><span style="color: #292c29">,</span><span style="color: #292c29"> base</span><span style="color: #292c29">:</span><span style="color: #292c29"> bps</span><span style="color: #292c29">,</span><span style="color: #292c29"> factor</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">1e+06</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> download 50GB </span><span style="color: #292c29">=</span>
+<span style="color: #292c29">download </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">50</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> speed 100Mbps </span><span style="color: #292c29">=</span>
+<span style="color: #292c29">speed </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">100</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> download speed </span><span style="color: #292c29">/</span><span style="color: #292c29"> @min convert</span>
+<span style="color: #6b5138">83.33333333</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> custom define reel </span><span style="color: #6b5138">304.8</span><span style="color: #292c29"> Distance</span>
+<span style="color: #292c29">defined custom metric </span><span style="color: #6b5138">"reel"</span><span style="color: #292c29"> </span><span style="color: #292c29">(</span><span style="color: #292c29">factor</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">304.8</span><span style="color: #292c29">,</span><span style="color: #292c29"> category</span><span style="color: #292c29">:</span><span style="color: #292c29"> Distance</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> 5reel @m convert</span>
+<span style="color: #6b5138">1524</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> 100Mbps 50Mbps swap -</span>
+<span style="color: #6b5138">50</span><span style="color: #292c29"> Mbps</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> show</span>
+<span style="color: #6b5138">50</span><span style="color: #292c29"> Mbps</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> </span><span style="color: #6b5138">20</span><span style="color: #292c29">%</span><span style="color: #292c29"> of </span><span style="color: #6b5138">150</span>
+<span style="color: #6b5138">20.00</span><span style="color: #292c29">%</span><span style="color: #292c29"> of </span><span style="color: #6b5138">150.00</span><span style="color: #292c29"> </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">30.00</span>
+<span style="color: #292c29">  Steps</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #292c29">(</span><span style="color: #6b5138">20.00</span><span style="color: #292c29"> </span><span style="color: #292c29">/</span><span style="color: #292c29"> </span><span style="color: #6b5138">100</span><span style="color: #292c29">)</span><span style="color: #292c29"> </span><span style="color: #292c29">*</span><span style="color: #292c29"> </span><span style="color: #6b5138">150.00</span><span style="color: #292c29"> </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">0.20</span><span style="color: #292c29"> </span><span style="color: #292c29">*</span><span style="color: #292c29"> </span><span style="color: #6b5138">150.00</span><span style="color: #292c29"> </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">30.00</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> rat on</span>
+<span style="color: #292c29">Rational mode enabled</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> </span><span style="color: #6b5138">1</span><span style="color: #292c29"> </span><span style="color: #6b5138">3</span><span style="color: #292c29"> </span><span style="color: #292c29">/</span><span style="color: #292c29"> </span><span style="color: #6b5138">3</span><span style="color: #292c29"> </span><span style="color: #292c29">*</span>
+<span style="color: #6b5138">1.0000000000</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> vars</span>
+<span style="color: #292c29">rate </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">100</span>
+<span style="color: #292c29">time </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">2</span>
+<span style="color: #292c29">download </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">50</span>
+<span style="color: #292c29">speed </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="color: #6b5138">100</span>
 </pre>
 <br />
 <span>Inline help is built in. Bare <span class='inlinecode'>help</span> lists all commands, and <span class='inlinecode'>help &lt;command&gt;</span> drills into one topic:</span><br />
@@ -500,14 +499,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">&gt;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">help</span></span><span style="color: #25231f"> rat</span>
-<span style="color: #25231f">rat on/off/toggle - Switch between float64 and rational number modes</span>
-<span style="color: #25231f">  rat on       Enable rational mode </span><span style="color: #765924">(</span><span style="color: #25231f">exact fractions</span><span style="color: #765924">)</span>
-<span style="color: #25231f">  rat off      Disable rational mode </span><span style="color: #765924">(</span><span style="color: #25231f">use float64</span><span style="color: #765924">)</span>
-<span style="color: #25231f">  rat toggle   Toggle current mode</span>
-<span style="color: #765924">&gt;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">help</span></span><span style="color: #25231f"> clear</span>
-<span style="color: #25231f">clear - Clear the screen</span>
-<span style="color: #25231f">Usage</span><span style="color: #765924">:</span><span style="color: #25231f"> clear</span>
+<pre><span style="color: #292c29">&gt;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">help</span></span><span style="color: #292c29"> rat</span>
+<span style="color: #292c29">rat on/off/toggle - Switch between float64 and rational number modes</span>
+<span style="color: #292c29">  rat on       Enable rational mode </span><span style="color: #292c29">(</span><span style="color: #292c29">exact fractions</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">  rat off      Disable rational mode </span><span style="color: #292c29">(</span><span style="color: #292c29">use float64</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">  rat toggle   Toggle current mode</span>
+<span style="color: #292c29">&gt;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">help</span></span><span style="color: #292c29"> clear</span>
+<span style="color: #292c29">clear - Clear the screen</span>
+<span style="color: #292c29">Usage</span><span style="color: #292c29">:</span><span style="color: #292c29"> clear</span>
 </pre>
 <br />
 <h2 style='display: inline' id='some-more-usage-examples'>Some more usage examples</h2><br />
@@ -516,26 +515,26 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-style: italic"><span style="color: #685f50"># Download volume at 1 Gbps for an hour</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'1Gbps 1hr * @GB convert'</span><span style="color: #25231f">        </span><span style="font-style: italic"><span style="color: #685f50"># → 450</span></span>
+<pre><span style="font-style: italic"><span style="color: #636760"># Download volume at 1 Gbps for an hour</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'1Gbps 1hr * @GB convert'</span><span style="color: #292c29">        </span><span style="font-style: italic"><span style="color: #636760"># → 450</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Internet speed threshold in scripts</span></span>
-<span style="color: #6d3c6d">MIN_SPEED</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$(</span><span style="color: #25231f">gt </span><span style="color: #3e5d36">'1Gbps @Mbps convert'</span><span style="color: #765924">)</span><span style="color: #25231f">  </span><span style="font-style: italic"><span style="color: #685f50"># → 1000</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Internet speed threshold in scripts</span></span>
+<span style="color: #292c29">MIN_SPEED</span><span style="color: #292c29">=</span><span style="color: #292c29">$(</span><span style="color: #292c29">gt </span><span style="color: #6b5138">'1Gbps @Mbps convert'</span><span style="color: #292c29">)</span><span style="color: #292c29">  </span><span style="font-style: italic"><span style="color: #636760"># → 1000</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Travel planning</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'500mi @km convert'</span><span style="color: #25231f">              </span><span style="font-style: italic"><span style="color: #685f50"># → 804.67</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'65mph @kmh convert'</span><span style="color: #25231f">             </span><span style="font-style: italic"><span style="color: #685f50"># → 104.86</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Travel planning</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'500mi @km convert'</span><span style="color: #292c29">              </span><span style="font-style: italic"><span style="color: #636760"># → 804.67</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'65mph @kmh convert'</span><span style="color: #292c29">             </span><span style="font-style: italic"><span style="color: #636760"># → 104.86</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Tips, discounts, whatever</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'18% of 63.40'</span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'15% of 89.99'</span>
+<span style="font-style: italic"><span style="color: #636760"># Tips, discounts, whatever</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'18% of 63.40'</span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'15% of 89.99'</span>
 
-<span style="font-style: italic"><span style="color: #685f50"># File sizes in MiB instead of bytes</span></span>
-<span style="color: #25231f">find </span><span style="color: #765924">.</span><span style="color: #25231f"> -exec wc -c {} </span><span style="color: #765924">+</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> awk </span><span style="color: #3e5d36">'{print $1}'</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> xargs -I{} gt </span><span style="color: #3e5d36">'{} @MiB convert'</span>
+<span style="font-style: italic"><span style="color: #636760"># File sizes in MiB instead of bytes</span></span>
+<span style="color: #292c29">find </span><span style="color: #292c29">.</span><span style="color: #292c29"> -exec wc -c {} </span><span style="color: #292c29">+</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> awk </span><span style="color: #6b5138">'{print $1}'</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> xargs -I{} gt </span><span style="color: #6b5138">'{} @MiB convert'</span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Quick math</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'pi 5 5 * *'</span><span style="color: #25231f">                     </span><span style="font-style: italic"><span style="color: #685f50"># circle area, r=5 → 78.54</span></span>
-<span style="color: #25231f">gt </span><span style="color: #3e5d36">'1000 lg'</span><span style="color: #25231f">                        </span><span style="font-style: italic"><span style="color: #685f50"># → 10 (bits needed)</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Quick math</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'pi 5 5 * *'</span><span style="color: #292c29">                     </span><span style="font-style: italic"><span style="color: #636760"># circle area, r=5 → 78.54</span></span>
+<span style="color: #292c29">gt </span><span style="color: #6b5138">'1000 lg'</span><span style="color: #292c29">                        </span><span style="font-style: italic"><span style="color: #636760"># → 10 (bits needed)</span></span>
 </pre>
 <br />
 <h2 style='display: inline' id='fish-shell-completions'>Fish shell completions</h2><br />
@@ -548,7 +547,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">cp completions/gt</span><span style="color: #765924">.</span><span style="color: #25231f">fish </span><span style="color: #765924">~/.</span><span style="color: #25231f">config/fish/completions</span><span style="color: #765924">/</span>
+<pre><span style="color: #292c29">cp completions/gt</span><span style="color: #292c29">.</span><span style="color: #292c29">fish </span><span style="color: #292c29">~/.</span><span style="color: #292c29">config/fish/completions</span><span style="color: #292c29">/</span>
 </pre>
 <br />
 <span>Or system-wide:</span><br />
@@ -557,7 +556,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">sudo cp completions/gt</span><span style="color: #765924">.</span><span style="color: #25231f">fish /usr/local/share/fish/vendor_completions</span><span style="color: #765924">.</span><span style="color: #25231f">d</span><span style="color: #765924">/</span>
+<pre><span style="color: #292c29">sudo cp completions/gt</span><span style="color: #292c29">.</span><span style="color: #292c29">fish /usr/local/share/fish/vendor_completions</span><span style="color: #292c29">.</span><span style="color: #292c29">d</span><span style="color: #292c29">/</span>
 </pre>
 <br />
 <span><span class='inlinecode'>custom define</span> even completes the category names.</span><br />
@@ -568,7 +567,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">go install github</span><span style="color: #765924">.</span><span style="color: #25231f">com/snonux/gt/cmd/gt@latest</span>
+<pre><span style="color: #292c29">go install github</span><span style="color: #292c29">.</span><span style="color: #292c29">com/snonux/gt/cmd/gt@latest</span>
 </pre>
 <br />
 <span>Or from the source directory: <span class='inlinecode'>mage install</span>.</span><br />
@@ -600,12 +599,20 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2026-06-01-gt-calculator.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

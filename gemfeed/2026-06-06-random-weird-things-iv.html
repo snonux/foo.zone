@@ -6,22 +6,21 @@
 <title>Random Weird Things - Part Ⅳ</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2026-06-06-random-weird-things-iv.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2026-06-06-random-weird-things-iv.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2026-06-06-random-weird-things-iv.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='random-weird-things---part-'>Random Weird Things - Part Ⅳ</h1><br />
 <br />
 <span class='quote'>Published at 2026-06-06T08:54:00+03:00</span><br />
@@ -79,14 +78,14 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">$ dig @ch</span><span style="color: #765924">.</span><span style="color: #25231f">at </span><span style="color: #3e5d36">"what is golang"</span><span style="color: #25231f"> TXT </span><span style="color: #765924">+</span><span style="color: #25231f">short</span>
-<span style="color: #3e5d36">"Golang, or Go, is an open-source programming language developed by Google.</span>
-<span style="color: #3e5d36">It was created to simplify the development of reliable and efficient software.</span>
-<span style="color: #3e5d36">Go is known for its simplicity, strong concurrency support, and performance</span>
-<span style="color: #3e5d36">comparable to C or C++. I"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"t features garbage collection, type safety, and</span>
-<span style="color: #3e5d36">built-in support for concurrent programming through goroutines and channels.</span>
-<span style="color: #3e5d36">Go is widely used for web servers, cloud services, and distributed systems due</span>
-<span style="color: #3e5d36">to its efficiency and ease of deployme..."</span>
+<pre><span style="color: #292c29">$ dig @ch</span><span style="color: #292c29">.</span><span style="color: #292c29">at </span><span style="color: #6b5138">"what is golang"</span><span style="color: #292c29"> TXT </span><span style="color: #292c29">+</span><span style="color: #292c29">short</span>
+<span style="color: #6b5138">"Golang, or Go, is an open-source programming language developed by Google.</span>
+<span style="color: #6b5138">It was created to simplify the development of reliable and efficient software.</span>
+<span style="color: #6b5138">Go is known for its simplicity, strong concurrency support, and performance</span>
+<span style="color: #6b5138">comparable to C or C++. I"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"t features garbage collection, type safety, and</span>
+<span style="color: #6b5138">built-in support for concurrent programming through goroutines and channels.</span>
+<span style="color: #6b5138">Go is widely used for web servers, cloud services, and distributed systems due</span>
+<span style="color: #6b5138">to its efficiency and ease of deployme..."</span>
 </pre>
 <br />
 <h2 style='display: inline' id='heading-34-black-hole-in-125-bytes'>34. Black Hole in ~125 Bytes</h2><br />
@@ -112,22 +111,22 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-style: italic"><span style="color: #685f50"># Classic nil safety</span></span>
-<span style="color: #25231f">user </span><span style="color: #765924">=</span><span style="color: #25231f"> find_user</span><span style="color: #765924">(</span><span style="color: #25231f">id</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"nonexistent"</span><span style="color: #765924">)</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># returns nil</span></span>
-<span style="color: #25231f">puts user</span><span style="color: #765924">.</span><span style="color: #25231f">email</span>
-<span style="font-style: italic"><span style="color: #685f50"># AI: "Analyzing context... user seems to need an email...</span></span>
-<span style="font-style: italic"><span style="color: #685f50">#      returning 'no-reply@example.com'"</span></span>
+<pre><span style="font-style: italic"><span style="color: #636760"># Classic nil safety</span></span>
+<span style="color: #292c29">user </span><span style="color: #292c29">=</span><span style="color: #292c29"> find_user</span><span style="color: #292c29">(</span><span style="color: #292c29">id</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">"nonexistent"</span><span style="color: #292c29">)</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># returns nil</span></span>
+<span style="color: #292c29">puts user</span><span style="color: #292c29">.</span><span style="color: #292c29">email</span>
+<span style="font-style: italic"><span style="color: #636760"># AI: "Analyzing context... user seems to need an email...</span></span>
+<span style="font-style: italic"><span style="color: #636760">#      returning 'no-reply@example.com'"</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Shopping cart magic</span></span>
-<span style="color: #25231f">cart </span><span style="color: #765924">=</span><span style="color: #25231f"> session</span><span style="color: #765924">[:</span><span style="color: #25231f">cart</span><span style="color: #765924">]</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># nil because session expired</span></span>
-<span style="color: #25231f">total </span><span style="color: #765924">=</span><span style="color: #25231f"> cart</span><span style="color: #765924">.</span><span style="color: #25231f">total_price</span>
-<span style="font-style: italic"><span style="color: #685f50"># AI: "This looks like e-commerce. Based on similar patterns,</span></span>
-<span style="font-style: italic"><span style="color: #685f50">#      I'll return 0.0 to avoid charging $nil"</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Shopping cart magic</span></span>
+<span style="color: #292c29">cart </span><span style="color: #292c29">=</span><span style="color: #292c29"> session</span><span style="color: #292c29">[:</span><span style="color: #292c29">cart</span><span style="color: #292c29">]</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># nil because session expired</span></span>
+<span style="color: #292c29">total </span><span style="color: #292c29">=</span><span style="color: #292c29"> cart</span><span style="color: #292c29">.</span><span style="color: #292c29">total_price</span>
+<span style="font-style: italic"><span style="color: #636760"># AI: "This looks like e-commerce. Based on similar patterns,</span></span>
+<span style="font-style: italic"><span style="color: #636760">#      I'll return 0.0 to avoid charging $nil"</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># The existential crisis</span></span>
-<span style="color: #25231f">meaning_of_life </span><span style="color: #765924">=</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">nil</span></span>
-<span style="color: #25231f">answer </span><span style="color: #765924">=</span><span style="color: #25231f"> meaning_of_life</span><span style="color: #765924">.</span><span style="color: #25231f">to_i</span>
-<span style="font-style: italic"><span style="color: #685f50"># AI: "Clearly this should be 42. I've read Douglas Adams."</span></span>
+<span style="font-style: italic"><span style="color: #636760"># The existential crisis</span></span>
+<span style="color: #292c29">meaning_of_life </span><span style="color: #292c29">=</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">nil</span></span>
+<span style="color: #292c29">answer </span><span style="color: #292c29">=</span><span style="color: #292c29"> meaning_of_life</span><span style="color: #292c29">.</span><span style="color: #292c29">to_i</span>
+<span style="font-style: italic"><span style="color: #636760"># AI: "Clearly this should be 42. I've read Douglas Adams."</span></span>
 </pre>
 <br />
 <a class='textlink' href='https://github.com/barodeur/llm_rescuer'>LLM Rescuer</a><br />
@@ -142,25 +141,25 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">$ echo </span><span style="color: #3e5d36">"a nginx config for a reverse proxy to localhost:8080"</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /mnt/llmfs/nginx</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span>
-<span style="color: #25231f">$ cat /mnt/llmfs/nginx</span><span style="color: #765924">.</span><span style="color: #25231f">conf</span>
-<span style="color: #25231f">server {</span>
-<span style="color: #25231f">    listen </span><span style="color: #8a450c">80</span><span style="color: #765924">;</span>
-<span style="color: #25231f">    location </span><span style="color: #765924">/</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">        proxy_pass http</span><span style="color: #765924">:</span><span style="color: #25231f">//localhost</span><span style="color: #765924">:</span><span style="color: #8a450c">8080</span><span style="color: #765924">;</span>
-<span style="color: #25231f">    }</span>
-<span style="color: #25231f">}</span>
+<pre><span style="color: #292c29">$ echo </span><span style="color: #6b5138">"a nginx config for a reverse proxy to localhost:8080"</span><span style="color: #292c29"> </span><span style="color: #292c29">&gt;</span><span style="color: #292c29"> /mnt/llmfs/nginx</span><span style="color: #292c29">.</span><span style="color: #292c29">conf</span>
+<span style="color: #292c29">$ cat /mnt/llmfs/nginx</span><span style="color: #292c29">.</span><span style="color: #292c29">conf</span>
+<span style="color: #292c29">server {</span>
+<span style="color: #292c29">    listen </span><span style="color: #6b5138">80</span><span style="color: #292c29">;</span>
+<span style="color: #292c29">    location </span><span style="color: #292c29">/</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">        proxy_pass http</span><span style="color: #292c29">:</span><span style="color: #292c29">//localhost</span><span style="color: #292c29">:</span><span style="color: #6b5138">8080</span><span style="color: #292c29">;</span>
+<span style="color: #292c29">    }</span>
+<span style="color: #292c29">}</span>
 
-<span style="color: #25231f">$ echo </span><span style="color: #3e5d36">"my todo list for today"</span><span style="color: #25231f"> </span><span style="color: #765924">&gt;</span><span style="color: #25231f"> /mnt/llmfs/todo</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
-<span style="color: #25231f">$ cat /mnt/llmfs/todo</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
-<span style="color: #25231f">- Write blog post</span>
-<span style="color: #25231f">- Fix that bug </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> prod</span>
-<span style="color: #25231f">- Drink coffee</span>
+<span style="color: #292c29">$ echo </span><span style="color: #6b5138">"my todo list for today"</span><span style="color: #292c29"> </span><span style="color: #292c29">&gt;</span><span style="color: #292c29"> /mnt/llmfs/todo</span><span style="color: #292c29">.</span><span style="color: #292c29">txt</span>
+<span style="color: #292c29">$ cat /mnt/llmfs/todo</span><span style="color: #292c29">.</span><span style="color: #292c29">txt</span>
+<span style="color: #292c29">- Write blog post</span>
+<span style="color: #292c29">- Fix that bug </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span><span style="color: #292c29"> prod</span>
+<span style="color: #292c29">- Drink coffee</span>
 
-<span style="color: #25231f">$ cat /mnt/llmfs/todo</span><span style="color: #765924">.</span><span style="color: #25231f">txt</span>
-<span style="color: #25231f">- Write blog post </span><span style="color: #765924">(</span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span><span style="color: #765924">?)</span>
-<span style="color: #25231f">- Fix that bug </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> prod</span>
-<span style="color: #25231f">- Drink more coffee</span>
+<span style="color: #292c29">$ cat /mnt/llmfs/todo</span><span style="color: #292c29">.</span><span style="color: #292c29">txt</span>
+<span style="color: #292c29">- Write blog post </span><span style="color: #292c29">(</span><span style="font-weight: bold"><span style="color: #38604f">done</span></span><span style="color: #292c29">?)</span>
+<span style="color: #292c29">- Fix that bug </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span><span style="color: #292c29"> prod</span>
+<span style="color: #292c29">- Drink more coffee</span>
 </pre>
 <br />
 <span>The LLM hallucinates the file contents every single read. Your todo list literally mutates when you look at it. Want a config file? Just describe it in the filename or write a prompt into it.</span><br />
@@ -202,12 +201,20 @@ int main(void) {
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2026-06-06-random-weird-things-iv.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

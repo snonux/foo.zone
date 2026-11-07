@@ -6,22 +6,21 @@
 <title>Gemtexter 1.1.0 - Let's Gemtext again</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='gemtexter-110---let-s-gemtext-again'>Gemtexter 1.1.0 - Let&#39;s Gemtext again</h1><br />
 <br />
 <span class='quote'>Published at 2022-08-27T18:25:57+01:00</span><br />
@@ -68,23 +67,23 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #265a79">check_dependencies ()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># At least, Bash 5 is required</span></span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> -i </span><span style="color: #6d3c6d">required_version</span><span style="color: #765924">=</span><span style="color: #8a450c">5</span>
-<span style="color: #25231f">    </span><span style="color: #6d3c6d">IFS</span><span style="color: #765924">=.</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">read</span></span><span style="color: #25231f"> -ra version </span><span style="color: #765924">&lt;&lt;&lt;</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$BASH_VERSION"</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"${version[0]}"</span><span style="color: #25231f"> -lt </span><span style="color: #6d3c6d">$required_version</span><span style="color: #25231f"> </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">        log ERROR </span><span style="color: #3e5d36">"ERROR, </span><span style="color: #7f3b73">\"</span><span style="color: #3e5d36">bash</span><span style="color: #7f3b73">\"</span><span style="color: #3e5d36"> must be at least at major version $required_version!"</span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
+<pre><span style="color: #38604f">check_dependencies ()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-style: italic"><span style="color: #636760"># At least, Bash 5 is required</span></span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> -i </span><span style="color: #292c29">required_version</span><span style="color: #292c29">=</span><span style="color: #6b5138">5</span>
+<span style="color: #292c29">    </span><span style="color: #292c29">IFS</span><span style="color: #292c29">=.</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">read</span></span><span style="color: #292c29"> -ra version </span><span style="color: #292c29">&lt;&lt;&lt;</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$BASH_VERSION"</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #292c29"> </span><span style="color: #6b5138">"${version[0]}"</span><span style="color: #292c29"> -lt </span><span style="color: #292c29">$required_version</span><span style="color: #292c29"> </span><span style="color: #292c29">];</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">        log ERROR </span><span style="color: #6b5138">"ERROR, </span><span style="color: #292c29">\"</span><span style="color: #6b5138">bash</span><span style="color: #292c29">\"</span><span style="color: #6b5138"> must be at least at major version $required_version!"</span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">exit</span></span><span style="color: #292c29"> </span><span style="color: #6b5138">2</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
 
-<span style="color: #25231f">    </span><span style="font-style: italic"><span style="color: #685f50"># These must be the GNU versions of the commands</span></span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">for</span></span><span style="color: #25231f"> tool </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$DATE</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$SED</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$GREP</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">do</span></span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">!</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">$tool</span><span style="color: #25231f"> --version </span><span style="color: #765924">|</span><span style="color: #25231f"> grep -q GNU</span><span style="color: #765924">;</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">            log ERROR </span><span style="color: #3e5d36">"ERROR, </span><span style="color: #7f3b73">\"</span><span style="color: #3e5d36">$tool</span><span style="color: #7f3b73">\"</span><span style="color: #3e5d36"> command is not the GNU version, please install!"</span>
-<span style="color: #25231f">            </span><span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">done</span></span>
-<span style="color: #25231f">}</span>
+<span style="color: #292c29">    </span><span style="font-style: italic"><span style="color: #636760"># These must be the GNU versions of the commands</span></span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">for</span></span><span style="color: #292c29"> tool </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span><span style="color: #292c29"> </span><span style="color: #292c29">$DATE</span><span style="color: #292c29"> </span><span style="color: #292c29">$SED</span><span style="color: #292c29"> </span><span style="color: #292c29">$GREP</span><span style="color: #292c29">;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">do</span></span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">!</span><span style="color: #292c29"> </span><span style="color: #292c29">$tool</span><span style="color: #292c29"> --version </span><span style="color: #292c29">|</span><span style="color: #292c29"> grep -q GNU</span><span style="color: #292c29">;</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">            log ERROR </span><span style="color: #6b5138">"ERROR, </span><span style="color: #292c29">\"</span><span style="color: #6b5138">$tool</span><span style="color: #292c29">\"</span><span style="color: #6b5138"> command is not the GNU version, please install!"</span>
+<span style="color: #292c29">            </span><span style="font-weight: bold"><span style="color: #38604f">exit</span></span><span style="color: #292c29"> </span><span style="color: #6b5138">2</span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">done</span></span>
+<span style="color: #292c29">}</span>
 </pre>
 <br />
 <span>Especially macOS users didn&#39;t read the <span class='inlinecode'>README</span> carefully enough to install GNU Grep, GNU Sed and GNU Date before using Gemtexter.</span><br />
@@ -105,7 +104,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">.</span><span style="color: #25231f">/gemtexter --generate </span><span style="color: #3e5d36">'.*hello.*'</span>
+<pre><span style="color: #292c29">.</span><span style="color: #292c29">/gemtexter --generate </span><span style="color: #6b5138">'.*hello.*'</span>
 </pre>
 <br />
 <h3 style='display: inline' id='revamped-git-support'>Revamped <span class='inlinecode'>git</span> support</h3><br />
@@ -142,12 +141,20 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2022-08-27-gemtexter-1.1.0-lets-gemtext-again.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

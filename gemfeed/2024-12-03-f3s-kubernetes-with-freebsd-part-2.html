@@ -6,22 +6,21 @@
 <title>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='f3s-kubernetes-with-freebsd---part-2-hardware-and-base-installation'>f3s: Kubernetes with FreeBSD - Part 2: Hardware and base installation</h1><br />
 <br />
 <span class='quote'>Published at 2024-12-02T23:48:21+02:00, last updated Sun 11 Jan 10:30:00 EET 2026</span><br />
@@ -145,9 +144,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]~</span><span style="color: #25231f">/Downloads</span><span style="color: #765924">%</span><span style="color: #25231f"> sudo dd </span><span style="color: #765924">\</span>
-<span style="color: #25231f">  </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #765924">=</span><span style="color: #25231f">FreeBSD-</span><span style="color: #8a450c">14.1</span><span style="color: #25231f">-RELEASE-amd</span><span style="color: #8a450c">64</span><span style="color: #25231f">-bootonly</span><span style="color: #765924">.</span><span style="color: #25231f">iso </span><span style="color: #765924">\</span>
-<span style="color: #25231f">  </span><span style="color: #6d3c6d">of</span><span style="color: #765924">=</span><span style="color: #25231f">/dev/sda </span><span style="color: #6d3c6d">conv</span><span style="color: #765924">=</span><span style="color: #25231f">sync</span>
+<pre><span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]~</span><span style="color: #292c29">/Downloads</span><span style="color: #292c29">%</span><span style="color: #292c29"> sudo dd </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">  </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29">=</span><span style="color: #292c29">FreeBSD-</span><span style="color: #6b5138">14.1</span><span style="color: #292c29">-RELEASE-amd</span><span style="color: #6b5138">64</span><span style="color: #292c29">-bootonly</span><span style="color: #292c29">.</span><span style="color: #292c29">iso </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">  </span><span style="color: #292c29">of</span><span style="color: #292c29">=</span><span style="color: #292c29">/dev/sda </span><span style="color: #292c29">conv</span><span style="color: #292c29">=</span><span style="color: #292c29">sync</span>
 </pre>
 <br />
 <span>Next, I plugged the Beelinks (one after another) into my monitor via HDMI (the resolution of the FreeBSD text console seems strangely stretched, as I am using the LG Dual Up monitor), connected Ethernet, an external USB keyboard, and the FreeBSD USB stick, and booted the devices up. With F7, I entered the boot menu and selected the USB stick for the FreeBSD installation.</span><br />
@@ -173,9 +172,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># freebsd-update fetch</span></span>
-<span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># freebsd-update install</span></span>
-<span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># freebsd-update reboot</span></span>
+<pre><span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># freebsd-update fetch</span></span>
+<span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># freebsd-update install</span></span>
+<span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># freebsd-update reboot</span></span>
 </pre>
 <br />
 <span>I also added the following entries for the three FreeBSD boxes to the <span class='inlinecode'>/etc/hosts</span> file:</span><br />
@@ -184,11 +183,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># cat &lt;&lt;END &gt;&gt;/etc/hosts</span></span>
-<span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">1.130</span><span style="color: #25231f"> f0 f0</span><span style="color: #765924">.</span><span style="color: #25231f">lan f0</span><span style="color: #765924">.</span><span style="color: #25231f">lan</span><span style="color: #765924">.</span><span style="color: #25231f">buetow</span><span style="color: #765924">.</span><span style="color: #25231f">org</span>
-<span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">1.131</span><span style="color: #25231f"> f1 f1</span><span style="color: #765924">.</span><span style="color: #25231f">lan f1</span><span style="color: #765924">.</span><span style="color: #25231f">lan</span><span style="color: #765924">.</span><span style="color: #25231f">buetow</span><span style="color: #765924">.</span><span style="color: #25231f">org</span>
-<span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">1.132</span><span style="color: #25231f"> f2 f2</span><span style="color: #765924">.</span><span style="color: #25231f">lan f2</span><span style="color: #765924">.</span><span style="color: #25231f">lan</span><span style="color: #765924">.</span><span style="color: #25231f">buetow</span><span style="color: #765924">.</span><span style="color: #25231f">org</span>
-<span style="color: #25231f">END</span>
+<pre><span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># cat &lt;&lt;END &gt;&gt;/etc/hosts</span></span>
+<span style="color: #6b5138">192.168</span><span style="color: #292c29">.</span><span style="color: #6b5138">1.130</span><span style="color: #292c29"> f0 f0</span><span style="color: #292c29">.</span><span style="color: #292c29">lan f0</span><span style="color: #292c29">.</span><span style="color: #292c29">lan</span><span style="color: #292c29">.</span><span style="color: #292c29">buetow</span><span style="color: #292c29">.</span><span style="color: #292c29">org</span>
+<span style="color: #6b5138">192.168</span><span style="color: #292c29">.</span><span style="color: #6b5138">1.131</span><span style="color: #292c29"> f1 f1</span><span style="color: #292c29">.</span><span style="color: #292c29">lan f1</span><span style="color: #292c29">.</span><span style="color: #292c29">lan</span><span style="color: #292c29">.</span><span style="color: #292c29">buetow</span><span style="color: #292c29">.</span><span style="color: #292c29">org</span>
+<span style="color: #6b5138">192.168</span><span style="color: #292c29">.</span><span style="color: #6b5138">1.132</span><span style="color: #292c29"> f2 f2</span><span style="color: #292c29">.</span><span style="color: #292c29">lan f2</span><span style="color: #292c29">.</span><span style="color: #292c29">lan</span><span style="color: #292c29">.</span><span style="color: #292c29">buetow</span><span style="color: #292c29">.</span><span style="color: #292c29">org</span>
+<span style="color: #292c29">END</span>
 </pre>
 <br />
 <span>You might wonder why bother using the hosts file? Why not use DNS properly? The reason is simplicity. I don&#39;t manage 100 hosts, only a few here and there. Having an OpenWRT router in my home, I could also configure everything there, but maybe I&#39;ll do that later. For now, keep it simple and straightforward.</span><br />
@@ -201,7 +200,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># pkg install helix doas zfs-periodic uptimed</span></span>
+<pre><span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># pkg install helix doas zfs-periodic uptimed</span></span>
 </pre>
 <br />
 <h3 style='display: inline' id='helix-editor'>Helix editor</h3><br />
@@ -218,7 +217,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf</span></span>
+<pre><span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># cp /usr/local/etc/doas.conf.sample /usr/local/etc/doas.conf</span></span>
 </pre>
 <br />
 <a class='textlink' href='https://man.openbsd.org/doas'>https://man.openbsd.org/doas</a><br />
@@ -231,17 +230,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># cat &lt;&lt;END &gt;&gt;/etc/periodic.conf</span></span>
-<span style="color: #6d3c6d">daily_zfs_snapshot_enable</span><span style="color: #765924">=</span><span style="color: #3e5d36">"YES"</span>
-<span style="color: #6d3c6d">daily_zfs_snapshot_pools</span><span style="color: #765924">=</span><span style="color: #3e5d36">"zroot"</span>
-<span style="color: #6d3c6d">daily_zfs_snapshot_keep</span><span style="color: #765924">=</span><span style="color: #3e5d36">"7"</span>
-<span style="color: #6d3c6d">weekly_zfs_snapshot_enable</span><span style="color: #765924">=</span><span style="color: #3e5d36">"YES"</span>
-<span style="color: #6d3c6d">weekly_zfs_snapshot_pools</span><span style="color: #765924">=</span><span style="color: #3e5d36">"zroot"</span>
-<span style="color: #6d3c6d">weekly_zfs_snapshot_keep</span><span style="color: #765924">=</span><span style="color: #3e5d36">"5"</span>
-<span style="color: #6d3c6d">monthly_zfs_snapshot_enable</span><span style="color: #765924">=</span><span style="color: #3e5d36">"YES"</span>
-<span style="color: #6d3c6d">monthly_zfs_snapshot_pools</span><span style="color: #765924">=</span><span style="color: #3e5d36">"zroot"</span>
-<span style="color: #6d3c6d">monthly_zfs_snapshot_keep</span><span style="color: #765924">=</span><span style="color: #3e5d36">"6"</span>
-<span style="color: #25231f">END</span>
+<pre><span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># cat &lt;&lt;END &gt;&gt;/etc/periodic.conf</span></span>
+<span style="color: #292c29">daily_zfs_snapshot_enable</span><span style="color: #292c29">=</span><span style="color: #6b5138">"YES"</span>
+<span style="color: #292c29">daily_zfs_snapshot_pools</span><span style="color: #292c29">=</span><span style="color: #6b5138">"zroot"</span>
+<span style="color: #292c29">daily_zfs_snapshot_keep</span><span style="color: #292c29">=</span><span style="color: #6b5138">"7"</span>
+<span style="color: #292c29">weekly_zfs_snapshot_enable</span><span style="color: #292c29">=</span><span style="color: #6b5138">"YES"</span>
+<span style="color: #292c29">weekly_zfs_snapshot_pools</span><span style="color: #292c29">=</span><span style="color: #6b5138">"zroot"</span>
+<span style="color: #292c29">weekly_zfs_snapshot_keep</span><span style="color: #292c29">=</span><span style="color: #6b5138">"5"</span>
+<span style="color: #292c29">monthly_zfs_snapshot_enable</span><span style="color: #292c29">=</span><span style="color: #6b5138">"YES"</span>
+<span style="color: #292c29">monthly_zfs_snapshot_pools</span><span style="color: #292c29">=</span><span style="color: #6b5138">"zroot"</span>
+<span style="color: #292c29">monthly_zfs_snapshot_keep</span><span style="color: #292c29">=</span><span style="color: #6b5138">"6"</span>
+<span style="color: #292c29">END</span>
 </pre>
 <br />
 <a class='textlink' href='https://github.com/ross/zfs-periodic'>https://github.com/ross/zfs-periodic</a><br />
@@ -256,9 +255,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># cp /usr/local/mimecast/etc/uptimed.conf-dist \</span></span>
-<span style="color: #25231f">  /usr/local/mimecast/etc/uptimed</span><span style="color: #765924">.</span><span style="color: #25231f">conf </span>
-<span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># hx /usr/local/mimecast/etc/uptimed.conf</span></span>
+<pre><span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># cp /usr/local/mimecast/etc/uptimed.conf-dist \</span></span>
+<span style="color: #292c29">  /usr/local/mimecast/etc/uptimed</span><span style="color: #292c29">.</span><span style="color: #292c29">conf </span>
+<span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># hx /usr/local/mimecast/etc/uptimed.conf</span></span>
 </pre>
 <br />
 <span>In the Helix editor session, I changed <span class='inlinecode'>LOG_MAXIMUM_ENTRIES</span> to <span class='inlinecode'>0</span> to keep all uptime entries forever and not cut off at 50 (the default config). After that, I enabled and started <span class='inlinecode'>uptimed</span>:</span><br />
@@ -267,8 +266,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># service uptimed enable</span></span>
-<span style="color: #25231f">root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># service uptimed start</span></span>
+<pre><span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># service uptimed enable</span></span>
+<span style="color: #292c29">root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># service uptimed start</span></span>
 </pre>
 <br />
 <span>To check the current uptime stats, I can now run <span class='inlinecode'>uprecords</span>:</span><br />
@@ -277,15 +276,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f"> root@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="font-style: italic"><span style="color: #685f50"># uprecords</span></span>
-<span style="color: #25231f">     </span><span style="font-style: italic"><span style="color: #685f50">#               Uptime | System                                     Boot up</span></span>
-<span style="color: #25231f">----------------------------</span><span style="color: #765924">+</span><span style="color: #25231f">---------------------------------------------------</span>
-<span style="color: #25231f">-</span><span style="color: #765924">&gt;</span><span style="color: #25231f">   </span><span style="color: #8a450c">1</span><span style="color: #25231f">     </span><span style="color: #8a450c">0</span><span style="color: #25231f"> days</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">00</span><span style="color: #765924">:</span><span style="color: #8a450c">07</span><span style="color: #765924">:</span><span style="color: #8a450c">34</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> FreeBSD </span><span style="color: #8a450c">14.1</span><span style="color: #25231f">-RELEASE      Mon Dec  </span><span style="color: #8a450c">2</span><span style="color: #25231f"> </span><span style="color: #8a450c">12</span><span style="color: #765924">:</span><span style="color: #8a450c">21</span><span style="color: #765924">:</span><span style="color: #8a450c">44</span><span style="color: #25231f"> </span><span style="color: #8a450c">2024</span>
-<span style="color: #25231f">----------------------------</span><span style="color: #765924">+</span><span style="color: #25231f">---------------------------------------------------</span>
-<span style="color: #25231f">NewRec     </span><span style="color: #8a450c">0</span><span style="color: #25231f"> days</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">00</span><span style="color: #765924">:</span><span style="color: #8a450c">07</span><span style="color: #765924">:</span><span style="color: #8a450c">33</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> since                     Mon Dec  </span><span style="color: #8a450c">2</span><span style="color: #25231f"> </span><span style="color: #8a450c">12</span><span style="color: #765924">:</span><span style="color: #8a450c">21</span><span style="color: #765924">:</span><span style="color: #8a450c">44</span><span style="color: #25231f"> </span><span style="color: #8a450c">2024</span>
-<span style="color: #25231f">    up     </span><span style="color: #8a450c">0</span><span style="color: #25231f"> days</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">00</span><span style="color: #765924">:</span><span style="color: #8a450c">07</span><span style="color: #765924">:</span><span style="color: #8a450c">34</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> since                     Mon Dec  </span><span style="color: #8a450c">2</span><span style="color: #25231f"> </span><span style="color: #8a450c">12</span><span style="color: #765924">:</span><span style="color: #8a450c">21</span><span style="color: #765924">:</span><span style="color: #8a450c">44</span><span style="color: #25231f"> </span><span style="color: #8a450c">2024</span>
-<span style="color: #25231f">  down     </span><span style="color: #8a450c">0</span><span style="color: #25231f"> days</span><span style="color: #765924">,</span><span style="color: #25231f"> </span><span style="color: #8a450c">00</span><span style="color: #765924">:</span><span style="color: #8a450c">00</span><span style="color: #765924">:</span><span style="color: #8a450c">00</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> since                     Mon Dec  </span><span style="color: #8a450c">2</span><span style="color: #25231f"> </span><span style="color: #8a450c">12</span><span style="color: #765924">:</span><span style="color: #8a450c">21</span><span style="color: #765924">:</span><span style="color: #8a450c">44</span><span style="color: #25231f"> </span><span style="color: #8a450c">2024</span>
-<span style="color: #25231f">   </span><span style="color: #765924">%</span><span style="color: #25231f">up              </span><span style="color: #8a450c">100.000</span><span style="color: #25231f"> </span><span style="color: #765924">|</span><span style="color: #25231f"> since                     Mon Dec  </span><span style="color: #8a450c">2</span><span style="color: #25231f"> </span><span style="color: #8a450c">12</span><span style="color: #765924">:</span><span style="color: #8a450c">21</span><span style="color: #765924">:</span><span style="color: #8a450c">44</span><span style="color: #25231f"> </span><span style="color: #8a450c">2024</span>
+<pre><span style="color: #292c29"> root@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="font-style: italic"><span style="color: #636760"># uprecords</span></span>
+<span style="color: #292c29">     </span><span style="font-style: italic"><span style="color: #636760">#               Uptime | System                                     Boot up</span></span>
+<span style="color: #292c29">----------------------------</span><span style="color: #292c29">+</span><span style="color: #292c29">---------------------------------------------------</span>
+<span style="color: #292c29">-</span><span style="color: #292c29">&gt;</span><span style="color: #292c29">   </span><span style="color: #6b5138">1</span><span style="color: #292c29">     </span><span style="color: #6b5138">0</span><span style="color: #292c29"> days</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">00</span><span style="color: #292c29">:</span><span style="color: #6b5138">07</span><span style="color: #292c29">:</span><span style="color: #6b5138">34</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> FreeBSD </span><span style="color: #6b5138">14.1</span><span style="color: #292c29">-RELEASE      Mon Dec  </span><span style="color: #6b5138">2</span><span style="color: #292c29"> </span><span style="color: #6b5138">12</span><span style="color: #292c29">:</span><span style="color: #6b5138">21</span><span style="color: #292c29">:</span><span style="color: #6b5138">44</span><span style="color: #292c29"> </span><span style="color: #6b5138">2024</span>
+<span style="color: #292c29">----------------------------</span><span style="color: #292c29">+</span><span style="color: #292c29">---------------------------------------------------</span>
+<span style="color: #292c29">NewRec     </span><span style="color: #6b5138">0</span><span style="color: #292c29"> days</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">00</span><span style="color: #292c29">:</span><span style="color: #6b5138">07</span><span style="color: #292c29">:</span><span style="color: #6b5138">33</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> since                     Mon Dec  </span><span style="color: #6b5138">2</span><span style="color: #292c29"> </span><span style="color: #6b5138">12</span><span style="color: #292c29">:</span><span style="color: #6b5138">21</span><span style="color: #292c29">:</span><span style="color: #6b5138">44</span><span style="color: #292c29"> </span><span style="color: #6b5138">2024</span>
+<span style="color: #292c29">    up     </span><span style="color: #6b5138">0</span><span style="color: #292c29"> days</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">00</span><span style="color: #292c29">:</span><span style="color: #6b5138">07</span><span style="color: #292c29">:</span><span style="color: #6b5138">34</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> since                     Mon Dec  </span><span style="color: #6b5138">2</span><span style="color: #292c29"> </span><span style="color: #6b5138">12</span><span style="color: #292c29">:</span><span style="color: #6b5138">21</span><span style="color: #292c29">:</span><span style="color: #6b5138">44</span><span style="color: #292c29"> </span><span style="color: #6b5138">2024</span>
+<span style="color: #292c29">  down     </span><span style="color: #6b5138">0</span><span style="color: #292c29"> days</span><span style="color: #292c29">,</span><span style="color: #292c29"> </span><span style="color: #6b5138">00</span><span style="color: #292c29">:</span><span style="color: #6b5138">00</span><span style="color: #292c29">:</span><span style="color: #6b5138">00</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> since                     Mon Dec  </span><span style="color: #6b5138">2</span><span style="color: #292c29"> </span><span style="color: #6b5138">12</span><span style="color: #292c29">:</span><span style="color: #6b5138">21</span><span style="color: #292c29">:</span><span style="color: #6b5138">44</span><span style="color: #292c29"> </span><span style="color: #6b5138">2024</span>
+<span style="color: #292c29">   </span><span style="color: #292c29">%</span><span style="color: #292c29">up              </span><span style="color: #6b5138">100.000</span><span style="color: #292c29"> </span><span style="color: #292c29">|</span><span style="color: #292c29"> since                     Mon Dec  </span><span style="color: #6b5138">2</span><span style="color: #292c29"> </span><span style="color: #6b5138">12</span><span style="color: #292c29">:</span><span style="color: #6b5138">21</span><span style="color: #292c29">:</span><span style="color: #6b5138">44</span><span style="color: #292c29"> </span><span style="color: #6b5138">2024</span>
 </pre>
 <br />
 <span>This is how I track the uptimes for all of my host:</span><br />
@@ -303,17 +302,17 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> ifconfig re0</span>
-<span style="color: #25231f">re0</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #6d3c6d">flags</span><span style="color: #765924">=</span><span style="color: #8a450c">1008843</span><span style="color: #765924">&lt;</span><span style="color: #25231f">UP</span><span style="color: #765924">,</span><span style="color: #25231f">BROADCAST</span><span style="color: #765924">,</span><span style="color: #25231f">RUNNING</span><span style="color: #765924">,</span><span style="color: #25231f">SIMPLEX</span><span style="color: #765924">,</span><span style="color: #25231f">MULTICAST</span><span style="color: #765924">,</span><span style="color: #25231f">LOWER_UP</span><span style="color: #765924">&gt;</span><span style="color: #25231f"> metric </span><span style="color: #8a450c">0</span><span style="color: #25231f"> mtu </span><span style="color: #8a450c">1500</span>
-<span style="color: #25231f">        </span><span style="color: #6d3c6d">options</span><span style="color: #765924">=</span><span style="color: #25231f">8209b</span><span style="color: #765924">&lt;</span><span style="color: #25231f">RXCSUM</span><span style="color: #765924">,</span><span style="color: #25231f">TXCSUM</span><span style="color: #765924">,</span><span style="color: #25231f">VLAN_MTU</span><span style="color: #765924">,</span><span style="color: #25231f">VLAN_HWTAGGING</span><span style="color: #765924">,</span><span style="color: #25231f">VLAN_HWCSUM</span><span style="color: #765924">,</span><span style="color: #25231f">WOL_MAGIC</span><span style="color: #765924">,</span><span style="color: #25231f">LINKSTATE</span><span style="color: #765924">&gt;</span>
-<span style="color: #25231f">        ether e8</span><span style="color: #765924">:</span><span style="color: #25231f">ff</span><span style="color: #765924">:</span><span style="color: #25231f">1e</span><span style="color: #765924">:</span><span style="color: #25231f">d7</span><span style="color: #765924">:</span><span style="color: #25231f">1c</span><span style="color: #765924">:</span><span style="color: #25231f">ac</span>
-<span style="color: #25231f">        inet </span><span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">1.130</span><span style="color: #25231f"> netmask </span><span style="color: #8a450c">0xffffff00</span><span style="color: #25231f"> broadcast </span><span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">1.255</span>
-<span style="color: #25231f">        inet6 fe80</span><span style="color: #765924">::</span><span style="color: #25231f">eaff</span><span style="color: #765924">:</span><span style="color: #25231f">1eff</span><span style="color: #765924">:</span><span style="color: #25231f">fed7</span><span style="color: #765924">:</span><span style="color: #25231f">1cac</span><span style="color: #765924">%</span><span style="color: #25231f">re0 prefixlen </span><span style="color: #8a450c">64</span><span style="color: #25231f"> scopeid </span><span style="color: #8a450c">0x1</span>
-<span style="color: #25231f">        inet6 fd22</span><span style="color: #765924">:</span><span style="color: #25231f">c702</span><span style="color: #765924">:</span><span style="color: #25231f">acb7</span><span style="color: #765924">:</span><span style="color: #8a450c">0</span><span style="color: #765924">:</span><span style="color: #25231f">eaff</span><span style="color: #765924">:</span><span style="color: #25231f">1eff</span><span style="color: #765924">:</span><span style="color: #25231f">fed7</span><span style="color: #765924">:</span><span style="color: #25231f">1cac prefixlen </span><span style="color: #8a450c">64</span><span style="color: #25231f"> detached autoconf</span>
-<span style="color: #25231f">        inet6 2a01</span><span style="color: #765924">:</span><span style="color: #25231f">5a8</span><span style="color: #765924">:</span><span style="color: #8a450c">304</span><span style="color: #765924">:</span><span style="color: #25231f">1d5c</span><span style="color: #765924">:</span><span style="color: #25231f">eaff</span><span style="color: #765924">:</span><span style="color: #25231f">1eff</span><span style="color: #765924">:</span><span style="color: #25231f">fed7</span><span style="color: #765924">:</span><span style="color: #25231f">1cac prefixlen </span><span style="color: #8a450c">64</span><span style="color: #25231f"> autoconf pltime </span><span style="color: #8a450c">10800</span><span style="color: #25231f"> vltime </span><span style="color: #8a450c">14400</span>
-<span style="color: #25231f">        media</span><span style="color: #765924">:</span><span style="color: #25231f"> Ethernet autoselect </span><span style="color: #765924">(</span><span style="color: #25231f">1000baseT </span><span style="color: #765924">&lt;</span><span style="color: #25231f">full-duplex</span><span style="color: #765924">&gt;)</span>
-<span style="color: #25231f">        status</span><span style="color: #765924">:</span><span style="color: #25231f"> active</span>
-<span style="color: #25231f">        nd6 </span><span style="color: #6d3c6d">options</span><span style="color: #765924">=</span><span style="color: #8a450c">23</span><span style="color: #765924">&lt;</span><span style="color: #25231f">PERFORMNUD</span><span style="color: #765924">,</span><span style="color: #25231f">ACCEPT_RTADV</span><span style="color: #765924">,</span><span style="color: #25231f">AUTO_LINKLOCAL</span><span style="color: #765924">&gt;</span>
+<pre><span style="color: #292c29">paul@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> ifconfig re0</span>
+<span style="color: #292c29">re0</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #292c29">flags</span><span style="color: #292c29">=</span><span style="color: #6b5138">1008843</span><span style="color: #292c29">&lt;</span><span style="color: #292c29">UP</span><span style="color: #292c29">,</span><span style="color: #292c29">BROADCAST</span><span style="color: #292c29">,</span><span style="color: #292c29">RUNNING</span><span style="color: #292c29">,</span><span style="color: #292c29">SIMPLEX</span><span style="color: #292c29">,</span><span style="color: #292c29">MULTICAST</span><span style="color: #292c29">,</span><span style="color: #292c29">LOWER_UP</span><span style="color: #292c29">&gt;</span><span style="color: #292c29"> metric </span><span style="color: #6b5138">0</span><span style="color: #292c29"> mtu </span><span style="color: #6b5138">1500</span>
+<span style="color: #292c29">        </span><span style="color: #292c29">options</span><span style="color: #292c29">=</span><span style="color: #292c29">8209b</span><span style="color: #292c29">&lt;</span><span style="color: #292c29">RXCSUM</span><span style="color: #292c29">,</span><span style="color: #292c29">TXCSUM</span><span style="color: #292c29">,</span><span style="color: #292c29">VLAN_MTU</span><span style="color: #292c29">,</span><span style="color: #292c29">VLAN_HWTAGGING</span><span style="color: #292c29">,</span><span style="color: #292c29">VLAN_HWCSUM</span><span style="color: #292c29">,</span><span style="color: #292c29">WOL_MAGIC</span><span style="color: #292c29">,</span><span style="color: #292c29">LINKSTATE</span><span style="color: #292c29">&gt;</span>
+<span style="color: #292c29">        ether e8</span><span style="color: #292c29">:</span><span style="color: #292c29">ff</span><span style="color: #292c29">:</span><span style="color: #292c29">1e</span><span style="color: #292c29">:</span><span style="color: #292c29">d7</span><span style="color: #292c29">:</span><span style="color: #292c29">1c</span><span style="color: #292c29">:</span><span style="color: #292c29">ac</span>
+<span style="color: #292c29">        inet </span><span style="color: #6b5138">192.168</span><span style="color: #292c29">.</span><span style="color: #6b5138">1.130</span><span style="color: #292c29"> netmask </span><span style="color: #6b5138">0xffffff00</span><span style="color: #292c29"> broadcast </span><span style="color: #6b5138">192.168</span><span style="color: #292c29">.</span><span style="color: #6b5138">1.255</span>
+<span style="color: #292c29">        inet6 fe80</span><span style="color: #292c29">::</span><span style="color: #292c29">eaff</span><span style="color: #292c29">:</span><span style="color: #292c29">1eff</span><span style="color: #292c29">:</span><span style="color: #292c29">fed7</span><span style="color: #292c29">:</span><span style="color: #292c29">1cac</span><span style="color: #292c29">%</span><span style="color: #292c29">re0 prefixlen </span><span style="color: #6b5138">64</span><span style="color: #292c29"> scopeid </span><span style="color: #6b5138">0x1</span>
+<span style="color: #292c29">        inet6 fd22</span><span style="color: #292c29">:</span><span style="color: #292c29">c702</span><span style="color: #292c29">:</span><span style="color: #292c29">acb7</span><span style="color: #292c29">:</span><span style="color: #6b5138">0</span><span style="color: #292c29">:</span><span style="color: #292c29">eaff</span><span style="color: #292c29">:</span><span style="color: #292c29">1eff</span><span style="color: #292c29">:</span><span style="color: #292c29">fed7</span><span style="color: #292c29">:</span><span style="color: #292c29">1cac prefixlen </span><span style="color: #6b5138">64</span><span style="color: #292c29"> detached autoconf</span>
+<span style="color: #292c29">        inet6 2a01</span><span style="color: #292c29">:</span><span style="color: #292c29">5a8</span><span style="color: #292c29">:</span><span style="color: #6b5138">304</span><span style="color: #292c29">:</span><span style="color: #292c29">1d5c</span><span style="color: #292c29">:</span><span style="color: #292c29">eaff</span><span style="color: #292c29">:</span><span style="color: #292c29">1eff</span><span style="color: #292c29">:</span><span style="color: #292c29">fed7</span><span style="color: #292c29">:</span><span style="color: #292c29">1cac prefixlen </span><span style="color: #6b5138">64</span><span style="color: #292c29"> autoconf pltime </span><span style="color: #6b5138">10800</span><span style="color: #292c29"> vltime </span><span style="color: #6b5138">14400</span>
+<span style="color: #292c29">        media</span><span style="color: #292c29">:</span><span style="color: #292c29"> Ethernet autoselect </span><span style="color: #292c29">(</span><span style="color: #292c29">1000baseT </span><span style="color: #292c29">&lt;</span><span style="color: #292c29">full-duplex</span><span style="color: #292c29">&gt;)</span>
+<span style="color: #292c29">        status</span><span style="color: #292c29">:</span><span style="color: #292c29"> active</span>
+<span style="color: #292c29">        nd6 </span><span style="color: #292c29">options</span><span style="color: #292c29">=</span><span style="color: #6b5138">23</span><span style="color: #292c29">&lt;</span><span style="color: #292c29">PERFORMNUD</span><span style="color: #292c29">,</span><span style="color: #292c29">ACCEPT_RTADV</span><span style="color: #292c29">,</span><span style="color: #292c29">AUTO_LINKLOCAL</span><span style="color: #292c29">&gt;</span>
 </pre>
 <br />
 <h2 style='display: inline' id='ram'>RAM</h2><br />
@@ -324,8 +323,8 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> sysctl hw</span><span style="color: #765924">.</span><span style="color: #25231f">physmem</span>
-<span style="color: #25231f">hw</span><span style="color: #765924">.</span><span style="color: #25231f">physmem</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">16902905856</span>
+<pre><span style="color: #292c29">paul@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> sysctl hw</span><span style="color: #292c29">.</span><span style="color: #292c29">physmem</span>
+<span style="color: #292c29">hw</span><span style="color: #292c29">.</span><span style="color: #292c29">physmem</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">16902905856</span>
 
 </pre>
 <br />
@@ -337,11 +336,11 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> sysctl dev</span><span style="color: #765924">.</span><span style="color: #25231f">cpu </span><span style="color: #765924">|</span><span style="color: #25231f"> grep freq</span><span style="color: #765924">:</span>
-<span style="color: #25231f">dev</span><span style="color: #765924">.</span><span style="color: #25231f">cpu</span><span style="color: #765924">.</span><span style="color: #8a450c">3</span><span style="color: #765924">.</span><span style="color: #25231f">freq</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">705</span>
-<span style="color: #25231f">dev</span><span style="color: #765924">.</span><span style="color: #25231f">cpu</span><span style="color: #765924">.</span><span style="color: #8a450c">2</span><span style="color: #765924">.</span><span style="color: #25231f">freq</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">705</span>
-<span style="color: #25231f">dev</span><span style="color: #765924">.</span><span style="color: #25231f">cpu</span><span style="color: #765924">.</span><span style="color: #8a450c">1</span><span style="color: #765924">.</span><span style="color: #25231f">freq</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">604</span>
-<span style="color: #25231f">dev</span><span style="color: #765924">.</span><span style="color: #25231f">cpu</span><span style="color: #765924">.</span><span style="color: #8a450c">0</span><span style="color: #765924">.</span><span style="color: #25231f">freq</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">604</span>
+<pre><span style="color: #292c29">paul@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> sysctl dev</span><span style="color: #292c29">.</span><span style="color: #292c29">cpu </span><span style="color: #292c29">|</span><span style="color: #292c29"> grep freq</span><span style="color: #292c29">:</span>
+<span style="color: #292c29">dev</span><span style="color: #292c29">.</span><span style="color: #292c29">cpu</span><span style="color: #292c29">.</span><span style="color: #6b5138">3</span><span style="color: #292c29">.</span><span style="color: #292c29">freq</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">705</span>
+<span style="color: #292c29">dev</span><span style="color: #292c29">.</span><span style="color: #292c29">cpu</span><span style="color: #292c29">.</span><span style="color: #6b5138">2</span><span style="color: #292c29">.</span><span style="color: #292c29">freq</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">705</span>
+<span style="color: #292c29">dev</span><span style="color: #292c29">.</span><span style="color: #292c29">cpu</span><span style="color: #292c29">.</span><span style="color: #6b5138">1</span><span style="color: #292c29">.</span><span style="color: #292c29">freq</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">604</span>
+<span style="color: #292c29">dev</span><span style="color: #292c29">.</span><span style="color: #292c29">cpu</span><span style="color: #292c29">.</span><span style="color: #6b5138">0</span><span style="color: #292c29">.</span><span style="color: #292c29">freq</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">604</span>
 </pre>
 <br />
 <h2 style='display: inline' id='cpu-throttling'>CPU throttling</h2><br />
@@ -352,14 +351,14 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> doas pkg install ubench</span>
-<span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> rehash </span><span style="font-style: italic"><span style="color: #685f50"># For tcsh to find the newly installed command</span></span>
-<span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> ubench </span><span style="color: #765924">&amp;</span>
-<span style="color: #25231f">paul@f0</span><span style="color: #765924">:~</span><span style="color: #25231f"> </span><span style="color: #765924">%</span><span style="color: #25231f"> sysctl dev</span><span style="color: #765924">.</span><span style="color: #25231f">cpu </span><span style="color: #765924">|</span><span style="color: #25231f"> grep freq</span><span style="color: #765924">:</span>
-<span style="color: #25231f">dev</span><span style="color: #765924">.</span><span style="color: #25231f">cpu</span><span style="color: #765924">.</span><span style="color: #8a450c">3</span><span style="color: #765924">.</span><span style="color: #25231f">freq</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">2922</span>
-<span style="color: #25231f">dev</span><span style="color: #765924">.</span><span style="color: #25231f">cpu</span><span style="color: #765924">.</span><span style="color: #8a450c">2</span><span style="color: #765924">.</span><span style="color: #25231f">freq</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">2922</span>
-<span style="color: #25231f">dev</span><span style="color: #765924">.</span><span style="color: #25231f">cpu</span><span style="color: #765924">.</span><span style="color: #8a450c">1</span><span style="color: #765924">.</span><span style="color: #25231f">freq</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">2923</span>
-<span style="color: #25231f">dev</span><span style="color: #765924">.</span><span style="color: #25231f">cpu</span><span style="color: #765924">.</span><span style="color: #8a450c">0</span><span style="color: #765924">.</span><span style="color: #25231f">freq</span><span style="color: #765924">:</span><span style="color: #25231f"> </span><span style="color: #8a450c">2922</span>
+<pre><span style="color: #292c29">paul@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> doas pkg install ubench</span>
+<span style="color: #292c29">paul@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> rehash </span><span style="font-style: italic"><span style="color: #636760"># For tcsh to find the newly installed command</span></span>
+<span style="color: #292c29">paul@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> ubench </span><span style="color: #292c29">&amp;</span>
+<span style="color: #292c29">paul@f0</span><span style="color: #292c29">:~</span><span style="color: #292c29"> </span><span style="color: #292c29">%</span><span style="color: #292c29"> sysctl dev</span><span style="color: #292c29">.</span><span style="color: #292c29">cpu </span><span style="color: #292c29">|</span><span style="color: #292c29"> grep freq</span><span style="color: #292c29">:</span>
+<span style="color: #292c29">dev</span><span style="color: #292c29">.</span><span style="color: #292c29">cpu</span><span style="color: #292c29">.</span><span style="color: #6b5138">3</span><span style="color: #292c29">.</span><span style="color: #292c29">freq</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">2922</span>
+<span style="color: #292c29">dev</span><span style="color: #292c29">.</span><span style="color: #292c29">cpu</span><span style="color: #292c29">.</span><span style="color: #6b5138">2</span><span style="color: #292c29">.</span><span style="color: #292c29">freq</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">2922</span>
+<span style="color: #292c29">dev</span><span style="color: #292c29">.</span><span style="color: #292c29">cpu</span><span style="color: #292c29">.</span><span style="color: #6b5138">1</span><span style="color: #292c29">.</span><span style="color: #292c29">freq</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">2923</span>
+<span style="color: #292c29">dev</span><span style="color: #292c29">.</span><span style="color: #292c29">cpu</span><span style="color: #292c29">.</span><span style="color: #6b5138">0</span><span style="color: #292c29">.</span><span style="color: #292c29">freq</span><span style="color: #292c29">:</span><span style="color: #292c29"> </span><span style="color: #6b5138">2922</span>
 </pre>
 <br />
 <span>Idle, all three Beelinks plus the switch consumed 26.2W. But with <span class='inlinecode'>ubench</span> stressing all the CPUs, it went up to 38.8W.</span><br />
@@ -382,7 +381,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]~%</span><span style="color: #25231f"> sudo dnf install -y wol</span>
+<pre><span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]~%</span><span style="color: #292c29"> sudo dnf install -y wol</span>
 </pre>
 <br />
 <span>Next, I created a simple script (<span class='inlinecode'>~/bin/wol-f3s</span>) to wake and shutdown the machines:</span><br />
@@ -391,68 +390,68 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-style: italic"><span style="color: #685f50">#!/bin/bash</span></span>
-<span style="font-style: italic"><span style="color: #685f50"># Wake-on-LAN and shutdown script for f3s cluster (f0, f1, f2)</span></span>
+<pre><span style="font-style: italic"><span style="color: #636760">#!/bin/bash</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Wake-on-LAN and shutdown script for f3s cluster (f0, f1, f2)</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># MAC addresses</span></span>
-<span style="color: #6d3c6d">F0_MAC</span><span style="color: #765924">=</span><span style="color: #3e5d36">"e8:ff:1e:d7:1c:ac"</span><span style="color: #25231f">  </span><span style="font-style: italic"><span style="color: #685f50"># f0 (192.168.1.130)</span></span>
-<span style="color: #6d3c6d">F1_MAC</span><span style="color: #765924">=</span><span style="color: #3e5d36">"e8:ff:1e:d7:1e:44"</span><span style="color: #25231f">  </span><span style="font-style: italic"><span style="color: #685f50"># f1 (192.168.1.131)</span></span>
-<span style="color: #6d3c6d">F2_MAC</span><span style="color: #765924">=</span><span style="color: #3e5d36">"e8:ff:1e:d7:1c:a0"</span><span style="color: #25231f">  </span><span style="font-style: italic"><span style="color: #685f50"># f2 (192.168.1.132)</span></span>
+<span style="font-style: italic"><span style="color: #636760"># MAC addresses</span></span>
+<span style="color: #292c29">F0_MAC</span><span style="color: #292c29">=</span><span style="color: #6b5138">"e8:ff:1e:d7:1c:ac"</span><span style="color: #292c29">  </span><span style="font-style: italic"><span style="color: #636760"># f0 (192.168.1.130)</span></span>
+<span style="color: #292c29">F1_MAC</span><span style="color: #292c29">=</span><span style="color: #6b5138">"e8:ff:1e:d7:1e:44"</span><span style="color: #292c29">  </span><span style="font-style: italic"><span style="color: #636760"># f1 (192.168.1.131)</span></span>
+<span style="color: #292c29">F2_MAC</span><span style="color: #292c29">=</span><span style="color: #6b5138">"e8:ff:1e:d7:1c:a0"</span><span style="color: #292c29">  </span><span style="font-style: italic"><span style="color: #636760"># f2 (192.168.1.132)</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># IP addresses</span></span>
-<span style="color: #6d3c6d">F0_IP</span><span style="color: #765924">=</span><span style="color: #3e5d36">"192.168.1.130"</span>
-<span style="color: #6d3c6d">F1_IP</span><span style="color: #765924">=</span><span style="color: #3e5d36">"192.168.1.131"</span>
-<span style="color: #6d3c6d">F2_IP</span><span style="color: #765924">=</span><span style="color: #3e5d36">"192.168.1.132"</span>
+<span style="font-style: italic"><span style="color: #636760"># IP addresses</span></span>
+<span style="color: #292c29">F0_IP</span><span style="color: #292c29">=</span><span style="color: #6b5138">"192.168.1.130"</span>
+<span style="color: #292c29">F1_IP</span><span style="color: #292c29">=</span><span style="color: #6b5138">"192.168.1.131"</span>
+<span style="color: #292c29">F2_IP</span><span style="color: #292c29">=</span><span style="color: #6b5138">"192.168.1.132"</span>
 
-<span style="font-style: italic"><span style="color: #685f50"># SSH user</span></span>
-<span style="color: #6d3c6d">SSH_USER</span><span style="color: #765924">=</span><span style="color: #3e5d36">"paul"</span>
+<span style="font-style: italic"><span style="color: #636760"># SSH user</span></span>
+<span style="color: #292c29">SSH_USER</span><span style="color: #292c29">=</span><span style="color: #6b5138">"paul"</span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Broadcast address for your LAN</span></span>
-<span style="color: #6d3c6d">BROADCAST</span><span style="color: #765924">=</span><span style="color: #3e5d36">"192.168.1.255"</span>
+<span style="font-style: italic"><span style="color: #636760"># Broadcast address for your LAN</span></span>
+<span style="color: #292c29">BROADCAST</span><span style="color: #292c29">=</span><span style="color: #6b5138">"192.168.1.255"</span>
 
-<span style="color: #265a79">wake()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">name</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$1</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">mac</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$2</span>
-<span style="color: #25231f">    echo </span><span style="color: #3e5d36">"Sending WoL packet to $name ($mac)..."</span>
-<span style="color: #25231f">    wol -i </span><span style="color: #3e5d36">"$BROADCAST"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$mac"</span>
-<span style="color: #25231f">}</span>
+<span style="color: #38604f">wake()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> </span><span style="color: #292c29">name</span><span style="color: #292c29">=</span><span style="color: #292c29">$1</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> </span><span style="color: #292c29">mac</span><span style="color: #292c29">=</span><span style="color: #292c29">$2</span>
+<span style="color: #292c29">    echo </span><span style="color: #6b5138">"Sending WoL packet to $name ($mac)..."</span>
+<span style="color: #292c29">    wol -i </span><span style="color: #6b5138">"$BROADCAST"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$mac"</span>
+<span style="color: #292c29">}</span>
 
-<span style="color: #265a79">shutdown_host()</span><span style="color: #25231f"> {</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">name</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$1</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">local</span></span><span style="color: #25231f"> </span><span style="color: #6d3c6d">ip</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$2</span>
-<span style="color: #25231f">    echo </span><span style="color: #3e5d36">"Shutting down $name ($ip)..."</span>
-<span style="color: #25231f">    ssh -o </span><span style="color: #6d3c6d">ConnectTimeout</span><span style="color: #765924">=</span><span style="color: #8a450c">5</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$SSH_USER@$ip"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"doas poweroff"</span><span style="color: #25231f"> </span><span style="color: #8a450c">2</span><span style="color: #765924">&gt;</span><span style="color: #25231f">/dev/null </span><span style="color: #765924">&amp;&amp;</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
-<span style="color: #25231f">        echo </span><span style="color: #3e5d36">"  ✓ Shutdown command sent to $name"</span><span style="color: #25231f"> </span><span style="color: #765924">||</span><span style="color: #25231f"> </span><span style="color: #765924">\</span>
-<span style="color: #25231f">        echo </span><span style="color: #3e5d36">"  ✗ Failed to reach $name (already down?)"</span>
-<span style="color: #25231f">}</span>
+<span style="color: #38604f">shutdown_host()</span><span style="color: #292c29"> {</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> </span><span style="color: #292c29">name</span><span style="color: #292c29">=</span><span style="color: #292c29">$1</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">local</span></span><span style="color: #292c29"> </span><span style="color: #292c29">ip</span><span style="color: #292c29">=</span><span style="color: #292c29">$2</span>
+<span style="color: #292c29">    echo </span><span style="color: #6b5138">"Shutting down $name ($ip)..."</span>
+<span style="color: #292c29">    ssh -o </span><span style="color: #292c29">ConnectTimeout</span><span style="color: #292c29">=</span><span style="color: #6b5138">5</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$SSH_USER@$ip"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"doas poweroff"</span><span style="color: #292c29"> </span><span style="color: #6b5138">2</span><span style="color: #292c29">&gt;</span><span style="color: #292c29">/dev/null </span><span style="color: #292c29">&amp;&amp;</span><span style="color: #292c29"> </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">        echo </span><span style="color: #6b5138">"  ✓ Shutdown command sent to $name"</span><span style="color: #292c29"> </span><span style="color: #292c29">||</span><span style="color: #292c29"> </span><span style="color: #292c29">\</span>
+<span style="color: #292c29">        echo </span><span style="color: #6b5138">"  ✗ Failed to reach $name (already down?)"</span>
+<span style="color: #292c29">}</span>
 
-<span style="color: #6d3c6d">ACTION</span><span style="color: #765924">=</span><span style="color: #3e5d36">"${1:-all}"</span>
+<span style="color: #292c29">ACTION</span><span style="color: #292c29">=</span><span style="color: #6b5138">"${1:-all}"</span>
 
-<span style="font-weight: bold"><span style="color: #7b2934">case</span></span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$ACTION"</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span>
-<span style="color: #25231f">    f0</span><span style="color: #765924">)</span><span style="color: #25231f"> wake </span><span style="color: #3e5d36">"f0"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$F0_MAC"</span><span style="color: #25231f"> </span><span style="color: #765924">;;</span>
-<span style="color: #25231f">    f1</span><span style="color: #765924">)</span><span style="color: #25231f"> wake </span><span style="color: #3e5d36">"f1"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$F1_MAC"</span><span style="color: #25231f"> </span><span style="color: #765924">;;</span>
-<span style="color: #25231f">    f2</span><span style="color: #765924">)</span><span style="color: #25231f"> wake </span><span style="color: #3e5d36">"f2"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$F2_MAC"</span><span style="color: #25231f"> </span><span style="color: #765924">;;</span>
-<span style="color: #25231f">    all</span><span style="color: #765924">|</span><span style="color: #3e5d36">""</span><span style="color: #765924">)</span>
-<span style="color: #25231f">        wake </span><span style="color: #3e5d36">"f0"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$F0_MAC"</span>
-<span style="color: #25231f">        wake </span><span style="color: #3e5d36">"f1"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$F1_MAC"</span>
-<span style="color: #25231f">        wake </span><span style="color: #3e5d36">"f2"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$F2_MAC"</span>
-<span style="color: #25231f">        </span><span style="color: #765924">;;</span>
-<span style="color: #25231f">    shutdown</span><span style="color: #765924">|</span><span style="color: #25231f">poweroff</span><span style="color: #765924">|</span><span style="color: #25231f">down</span><span style="color: #765924">)</span>
-<span style="color: #25231f">        shutdown_host </span><span style="color: #3e5d36">"f0"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$F0_IP"</span>
-<span style="color: #25231f">        shutdown_host </span><span style="color: #3e5d36">"f1"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$F1_IP"</span>
-<span style="color: #25231f">        shutdown_host </span><span style="color: #3e5d36">"f2"</span><span style="color: #25231f"> </span><span style="color: #3e5d36">"$F2_IP"</span>
-<span style="color: #25231f">        echo </span><span style="color: #3e5d36">""</span>
-<span style="color: #25231f">        echo </span><span style="color: #3e5d36">"✓ Shutdown commands sent to all machines."</span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">0</span>
-<span style="color: #25231f">        </span><span style="color: #765924">;;</span>
-<span style="color: #25231f">    </span><span style="color: #765924">*)</span>
-<span style="color: #25231f">        echo </span><span style="color: #3e5d36">"Usage: $0 [f0|f1|f2|all|shutdown]"</span>
-<span style="color: #25231f">        </span><span style="font-weight: bold"><span style="color: #7b2934">exit</span></span><span style="color: #25231f"> </span><span style="color: #8a450c">1</span>
-<span style="color: #25231f">        </span><span style="color: #765924">;;</span>
-<span style="font-weight: bold"><span style="color: #7b2934">esac</span></span>
+<span style="font-weight: bold"><span style="color: #38604f">case</span></span><span style="color: #292c29"> </span><span style="color: #6b5138">"$ACTION"</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span>
+<span style="color: #292c29">    f0</span><span style="color: #292c29">)</span><span style="color: #292c29"> wake </span><span style="color: #6b5138">"f0"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$F0_MAC"</span><span style="color: #292c29"> </span><span style="color: #292c29">;;</span>
+<span style="color: #292c29">    f1</span><span style="color: #292c29">)</span><span style="color: #292c29"> wake </span><span style="color: #6b5138">"f1"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$F1_MAC"</span><span style="color: #292c29"> </span><span style="color: #292c29">;;</span>
+<span style="color: #292c29">    f2</span><span style="color: #292c29">)</span><span style="color: #292c29"> wake </span><span style="color: #6b5138">"f2"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$F2_MAC"</span><span style="color: #292c29"> </span><span style="color: #292c29">;;</span>
+<span style="color: #292c29">    all</span><span style="color: #292c29">|</span><span style="color: #6b5138">""</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">        wake </span><span style="color: #6b5138">"f0"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$F0_MAC"</span>
+<span style="color: #292c29">        wake </span><span style="color: #6b5138">"f1"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$F1_MAC"</span>
+<span style="color: #292c29">        wake </span><span style="color: #6b5138">"f2"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$F2_MAC"</span>
+<span style="color: #292c29">        </span><span style="color: #292c29">;;</span>
+<span style="color: #292c29">    shutdown</span><span style="color: #292c29">|</span><span style="color: #292c29">poweroff</span><span style="color: #292c29">|</span><span style="color: #292c29">down</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">        shutdown_host </span><span style="color: #6b5138">"f0"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$F0_IP"</span>
+<span style="color: #292c29">        shutdown_host </span><span style="color: #6b5138">"f1"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$F1_IP"</span>
+<span style="color: #292c29">        shutdown_host </span><span style="color: #6b5138">"f2"</span><span style="color: #292c29"> </span><span style="color: #6b5138">"$F2_IP"</span>
+<span style="color: #292c29">        echo </span><span style="color: #6b5138">""</span>
+<span style="color: #292c29">        echo </span><span style="color: #6b5138">"✓ Shutdown commands sent to all machines."</span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">exit</span></span><span style="color: #292c29"> </span><span style="color: #6b5138">0</span>
+<span style="color: #292c29">        </span><span style="color: #292c29">;;</span>
+<span style="color: #292c29">    </span><span style="color: #292c29">*)</span>
+<span style="color: #292c29">        echo </span><span style="color: #6b5138">"Usage: $0 [f0|f1|f2|all|shutdown]"</span>
+<span style="color: #292c29">        </span><span style="font-weight: bold"><span style="color: #38604f">exit</span></span><span style="color: #292c29"> </span><span style="color: #6b5138">1</span>
+<span style="color: #292c29">        </span><span style="color: #292c29">;;</span>
+<span style="font-weight: bold"><span style="color: #38604f">esac</span></span>
 
-<span style="color: #25231f">echo </span><span style="color: #3e5d36">""</span>
-<span style="color: #25231f">echo </span><span style="color: #3e5d36">"✓ WoL packets sent. Machines should boot in a few seconds."</span>
+<span style="color: #292c29">echo </span><span style="color: #6b5138">""</span>
+<span style="color: #292c29">echo </span><span style="color: #6b5138">"✓ WoL packets sent. Machines should boot in a few seconds."</span>
 </pre>
 <br />
 <span>After making the script executable with <span class='inlinecode'>chmod +x ~/bin/wol-f3s</span>, I can now control the machines with simple commands:</span><br />
@@ -461,9 +460,9 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]~%</span><span style="color: #25231f"> wol-f3s          </span><span style="font-style: italic"><span style="color: #685f50"># Wake all three</span></span>
-<span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]~%</span><span style="color: #25231f"> wol-f3s f0       </span><span style="font-style: italic"><span style="color: #685f50"># Wake only f0</span></span>
-<span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]~%</span><span style="color: #25231f"> wol-f3s shutdown </span><span style="font-style: italic"><span style="color: #685f50"># Shutdown all three via SSH</span></span>
+<pre><span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]~%</span><span style="color: #292c29"> wol-f3s          </span><span style="font-style: italic"><span style="color: #636760"># Wake all three</span></span>
+<span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]~%</span><span style="color: #292c29"> wol-f3s f0       </span><span style="font-style: italic"><span style="color: #636760"># Wake only f0</span></span>
+<span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]~%</span><span style="color: #292c29"> wol-f3s shutdown </span><span style="font-style: italic"><span style="color: #636760"># Shutdown all three via SSH</span></span>
 </pre>
 <br />
 <h2 style='display: inline' id='testing-wol-and-shutdown'>Testing WoL and Shutdown</h2><br />
@@ -474,15 +473,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]~%</span><span style="color: #25231f"> wol-f3s shutdown</span>
-<span style="color: #25231f">Shutting down f0 </span><span style="color: #765924">(</span><span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">1.130</span><span style="color: #765924">)...</span>
-<span style="color: #25231f">  ✓ Shutdown </span><span style="font-weight: bold"><span style="color: #7b2934">command</span></span><span style="color: #25231f"> sent to f0</span>
-<span style="color: #25231f">Shutting down f1 </span><span style="color: #765924">(</span><span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">1.131</span><span style="color: #765924">)...</span>
-<span style="color: #25231f">  ✓ Shutdown </span><span style="font-weight: bold"><span style="color: #7b2934">command</span></span><span style="color: #25231f"> sent to f1</span>
-<span style="color: #25231f">Shutting down f2 </span><span style="color: #765924">(</span><span style="color: #8a450c">192.168</span><span style="color: #765924">.</span><span style="color: #8a450c">1.132</span><span style="color: #765924">)...</span>
-<span style="color: #25231f">  ✓ Shutdown </span><span style="font-weight: bold"><span style="color: #7b2934">command</span></span><span style="color: #25231f"> sent to f2</span>
+<pre><span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]~%</span><span style="color: #292c29"> wol-f3s shutdown</span>
+<span style="color: #292c29">Shutting down f0 </span><span style="color: #292c29">(</span><span style="color: #6b5138">192.168</span><span style="color: #292c29">.</span><span style="color: #6b5138">1.130</span><span style="color: #292c29">)...</span>
+<span style="color: #292c29">  ✓ Shutdown </span><span style="font-weight: bold"><span style="color: #38604f">command</span></span><span style="color: #292c29"> sent to f0</span>
+<span style="color: #292c29">Shutting down f1 </span><span style="color: #292c29">(</span><span style="color: #6b5138">192.168</span><span style="color: #292c29">.</span><span style="color: #6b5138">1.131</span><span style="color: #292c29">)...</span>
+<span style="color: #292c29">  ✓ Shutdown </span><span style="font-weight: bold"><span style="color: #38604f">command</span></span><span style="color: #292c29"> sent to f1</span>
+<span style="color: #292c29">Shutting down f2 </span><span style="color: #292c29">(</span><span style="color: #6b5138">192.168</span><span style="color: #292c29">.</span><span style="color: #6b5138">1.132</span><span style="color: #292c29">)...</span>
+<span style="color: #292c29">  ✓ Shutdown </span><span style="font-weight: bold"><span style="color: #38604f">command</span></span><span style="color: #292c29"> sent to f2</span>
 
-<span style="color: #25231f">✓ Shutdown commands sent to all machines</span><span style="color: #765924">.</span>
+<span style="color: #292c29">✓ Shutdown commands sent to all machines</span><span style="color: #292c29">.</span>
 </pre>
 <br />
 <span>After waiting for them to fully power down (about 1 minute), I sent the WoL magic packets:</span><br />
@@ -491,15 +490,15 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">[</span><span style="color: #25231f">paul@earth</span><span style="color: #765924">]~%</span><span style="color: #25231f"> wol-f3s</span>
-<span style="color: #25231f">Sending WoL packet to f0 </span><span style="color: #765924">(</span><span style="color: #25231f">e8</span><span style="color: #765924">:</span><span style="color: #25231f">ff</span><span style="color: #765924">:</span><span style="color: #25231f">1e</span><span style="color: #765924">:</span><span style="color: #25231f">d7</span><span style="color: #765924">:</span><span style="color: #25231f">1c</span><span style="color: #765924">:</span><span style="color: #25231f">ac</span><span style="color: #765924">)...</span>
-<span style="color: #25231f">Waking up e8</span><span style="color: #765924">:</span><span style="color: #25231f">ff</span><span style="color: #765924">:</span><span style="color: #25231f">1e</span><span style="color: #765924">:</span><span style="color: #25231f">d7</span><span style="color: #765924">:</span><span style="color: #25231f">1c</span><span style="color: #765924">:</span><span style="color: #25231f">ac</span><span style="color: #765924">...</span>
-<span style="color: #25231f">Sending WoL packet to f1 </span><span style="color: #765924">(</span><span style="color: #25231f">e8</span><span style="color: #765924">:</span><span style="color: #25231f">ff</span><span style="color: #765924">:</span><span style="color: #25231f">1e</span><span style="color: #765924">:</span><span style="color: #25231f">d7</span><span style="color: #765924">:</span><span style="color: #25231f">1e</span><span style="color: #765924">:</span><span style="color: #8a450c">44</span><span style="color: #765924">)...</span>
-<span style="color: #25231f">Waking up e8</span><span style="color: #765924">:</span><span style="color: #25231f">ff</span><span style="color: #765924">:</span><span style="color: #25231f">1e</span><span style="color: #765924">:</span><span style="color: #25231f">d7</span><span style="color: #765924">:</span><span style="color: #25231f">1e</span><span style="color: #765924">:</span><span style="color: #8a450c">44</span><span style="color: #765924">...</span>
-<span style="color: #25231f">Sending WoL packet to f2 </span><span style="color: #765924">(</span><span style="color: #25231f">e8</span><span style="color: #765924">:</span><span style="color: #25231f">ff</span><span style="color: #765924">:</span><span style="color: #25231f">1e</span><span style="color: #765924">:</span><span style="color: #25231f">d7</span><span style="color: #765924">:</span><span style="color: #25231f">1c</span><span style="color: #765924">:</span><span style="color: #25231f">a0</span><span style="color: #765924">)...</span>
-<span style="color: #25231f">Waking up e8</span><span style="color: #765924">:</span><span style="color: #25231f">ff</span><span style="color: #765924">:</span><span style="color: #25231f">1e</span><span style="color: #765924">:</span><span style="color: #25231f">d7</span><span style="color: #765924">:</span><span style="color: #25231f">1c</span><span style="color: #765924">:</span><span style="color: #25231f">a0</span><span style="color: #765924">...</span>
+<pre><span style="color: #292c29">[</span><span style="color: #292c29">paul@earth</span><span style="color: #292c29">]~%</span><span style="color: #292c29"> wol-f3s</span>
+<span style="color: #292c29">Sending WoL packet to f0 </span><span style="color: #292c29">(</span><span style="color: #292c29">e8</span><span style="color: #292c29">:</span><span style="color: #292c29">ff</span><span style="color: #292c29">:</span><span style="color: #292c29">1e</span><span style="color: #292c29">:</span><span style="color: #292c29">d7</span><span style="color: #292c29">:</span><span style="color: #292c29">1c</span><span style="color: #292c29">:</span><span style="color: #292c29">ac</span><span style="color: #292c29">)...</span>
+<span style="color: #292c29">Waking up e8</span><span style="color: #292c29">:</span><span style="color: #292c29">ff</span><span style="color: #292c29">:</span><span style="color: #292c29">1e</span><span style="color: #292c29">:</span><span style="color: #292c29">d7</span><span style="color: #292c29">:</span><span style="color: #292c29">1c</span><span style="color: #292c29">:</span><span style="color: #292c29">ac</span><span style="color: #292c29">...</span>
+<span style="color: #292c29">Sending WoL packet to f1 </span><span style="color: #292c29">(</span><span style="color: #292c29">e8</span><span style="color: #292c29">:</span><span style="color: #292c29">ff</span><span style="color: #292c29">:</span><span style="color: #292c29">1e</span><span style="color: #292c29">:</span><span style="color: #292c29">d7</span><span style="color: #292c29">:</span><span style="color: #292c29">1e</span><span style="color: #292c29">:</span><span style="color: #6b5138">44</span><span style="color: #292c29">)...</span>
+<span style="color: #292c29">Waking up e8</span><span style="color: #292c29">:</span><span style="color: #292c29">ff</span><span style="color: #292c29">:</span><span style="color: #292c29">1e</span><span style="color: #292c29">:</span><span style="color: #292c29">d7</span><span style="color: #292c29">:</span><span style="color: #292c29">1e</span><span style="color: #292c29">:</span><span style="color: #6b5138">44</span><span style="color: #292c29">...</span>
+<span style="color: #292c29">Sending WoL packet to f2 </span><span style="color: #292c29">(</span><span style="color: #292c29">e8</span><span style="color: #292c29">:</span><span style="color: #292c29">ff</span><span style="color: #292c29">:</span><span style="color: #292c29">1e</span><span style="color: #292c29">:</span><span style="color: #292c29">d7</span><span style="color: #292c29">:</span><span style="color: #292c29">1c</span><span style="color: #292c29">:</span><span style="color: #292c29">a0</span><span style="color: #292c29">)...</span>
+<span style="color: #292c29">Waking up e8</span><span style="color: #292c29">:</span><span style="color: #292c29">ff</span><span style="color: #292c29">:</span><span style="color: #292c29">1e</span><span style="color: #292c29">:</span><span style="color: #292c29">d7</span><span style="color: #292c29">:</span><span style="color: #292c29">1c</span><span style="color: #292c29">:</span><span style="color: #292c29">a0</span><span style="color: #292c29">...</span>
 
-<span style="color: #25231f">✓ WoL packets sent</span><span style="color: #765924">.</span><span style="color: #25231f"> Machines should boot </span><span style="font-weight: bold"><span style="color: #7b2934">in</span></span><span style="color: #25231f"> a few seconds</span><span style="color: #765924">.</span>
+<span style="color: #292c29">✓ WoL packets sent</span><span style="color: #292c29">.</span><span style="color: #292c29"> Machines should boot </span><span style="font-weight: bold"><span style="color: #38604f">in</span></span><span style="color: #292c29"> a few seconds</span><span style="color: #292c29">.</span>
 </pre>
 <br />
 <span>After 30-50 seconds, all three were up and reachable via SSH.</span><br />
@@ -551,12 +550,20 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2024-12-03-f3s-kubernetes-with-freebsd-part-2.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

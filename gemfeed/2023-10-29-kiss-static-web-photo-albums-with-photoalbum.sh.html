@@ -6,22 +6,21 @@
 <title>KISS static web photo albums with `photoalbum.sh`</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='kiss-static-web-photo-albums-with-photoalbumsh'>KISS static web photo albums with <span class='inlinecode'>photoalbum.sh</span></h1><br />
 <br />
 <span class='quote'>Published at 2023-10-29T22:25:04+02:00</span><br />
@@ -141,42 +140,42 @@ photoalbum makemake
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #765924">%</span><span style="color: #25231f"> photoalbum makemake</span>
-<span style="color: #25231f">You may now customize </span><span style="color: #765924">.</span><span style="color: #25231f">/photoalbumrc and run make</span>
+<pre><span style="color: #292c29">%</span><span style="color: #292c29"> photoalbum makemake</span>
+<span style="color: #292c29">You may now customize </span><span style="color: #292c29">.</span><span style="color: #292c29">/photoalbumrc and run make</span>
 
-<span style="color: #765924">%</span><span style="color: #25231f"> cat Makefile</span>
-<span style="color: #25231f">all</span><span style="color: #765924">:</span>
-<span style="color: #25231f">	photoalbum generate photoalbumrc</span>
-<span style="color: #25231f">clean</span><span style="color: #765924">:</span>
-<span style="color: #25231f">	photoalbum clean photoalbumrc</span>
+<span style="color: #292c29">%</span><span style="color: #292c29"> cat Makefile</span>
+<span style="color: #292c29">all</span><span style="color: #292c29">:</span>
+<span style="color: #292c29">	photoalbum generate photoalbumrc</span>
+<span style="color: #292c29">clean</span><span style="color: #292c29">:</span>
+<span style="color: #292c29">	photoalbum clean photoalbumrc</span>
 
-<span style="color: #765924">%</span><span style="color: #25231f"> cat photoalbumrc</span>
-<span style="font-style: italic"><span style="color: #685f50"># The title of the photoalbum</span></span>
-<span style="color: #6d3c6d">TITLE</span><span style="color: #765924">=</span><span style="color: #3e5d36">'A simple Photoalbum'</span>
+<span style="color: #292c29">%</span><span style="color: #292c29"> cat photoalbumrc</span>
+<span style="font-style: italic"><span style="color: #636760"># The title of the photoalbum</span></span>
+<span style="color: #292c29">TITLE</span><span style="color: #292c29">=</span><span style="color: #6b5138">'A simple Photoalbum'</span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Thumbnail height geometry</span></span>
-<span style="color: #6d3c6d">THUMBHEIGHT</span><span style="color: #765924">=</span><span style="color: #8a450c">300</span>
-<span style="font-style: italic"><span style="color: #685f50"># Normal geometry height (when viewing photo). Uncomment, to keep original size.</span></span>
-<span style="color: #6d3c6d">HEIGHT</span><span style="color: #765924">=</span><span style="color: #8a450c">1200</span>
-<span style="font-style: italic"><span style="color: #685f50"># Max previews per page.</span></span>
-<span style="color: #6d3c6d">MAXPREVIEWS</span><span style="color: #765924">=</span><span style="color: #8a450c">40</span>
-<span style="font-style: italic"><span style="color: #685f50"># Randomly shuffle all previews.</span></span>
-<span style="font-style: italic"><span style="color: #685f50"># SHUFFLE=yes</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Thumbnail height geometry</span></span>
+<span style="color: #292c29">THUMBHEIGHT</span><span style="color: #292c29">=</span><span style="color: #6b5138">300</span>
+<span style="font-style: italic"><span style="color: #636760"># Normal geometry height (when viewing photo). Uncomment, to keep original size.</span></span>
+<span style="color: #292c29">HEIGHT</span><span style="color: #292c29">=</span><span style="color: #6b5138">1200</span>
+<span style="font-style: italic"><span style="color: #636760"># Max previews per page.</span></span>
+<span style="color: #292c29">MAXPREVIEWS</span><span style="color: #292c29">=</span><span style="color: #6b5138">40</span>
+<span style="font-style: italic"><span style="color: #636760"># Randomly shuffle all previews.</span></span>
+<span style="font-style: italic"><span style="color: #636760"># SHUFFLE=yes</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Diverse directories, need to be full paths, not relative!</span></span>
-<span style="color: #6d3c6d">INCOMING_DIR</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/incoming</span>
-<span style="color: #6d3c6d">DIST_DIR</span><span style="color: #765924">=</span><span style="color: #6d3c6d">$(pwd)</span><span style="color: #25231f">/dist</span>
-<span style="color: #6d3c6d">TEMPLATE_DIR</span><span style="color: #765924">=</span><span style="color: #25231f">/usr/share/photoalbum/templates/default</span>
-<span style="font-style: italic"><span style="color: #685f50">#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Diverse directories, need to be full paths, not relative!</span></span>
+<span style="color: #292c29">INCOMING_DIR</span><span style="color: #292c29">=</span><span style="color: #292c29">$(pwd)</span><span style="color: #292c29">/incoming</span>
+<span style="color: #292c29">DIST_DIR</span><span style="color: #292c29">=</span><span style="color: #292c29">$(pwd)</span><span style="color: #292c29">/dist</span>
+<span style="color: #292c29">TEMPLATE_DIR</span><span style="color: #292c29">=</span><span style="color: #292c29">/usr/share/photoalbum/templates/default</span>
+<span style="font-style: italic"><span style="color: #636760">#TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</span></span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Includes a .tar of the incoming dir in the dist, can be yes or no</span></span>
-<span style="color: #6d3c6d">TARBALL_INCLUDE</span><span style="color: #765924">=</span><span style="color: #25231f">yes</span>
-<span style="color: #6d3c6d">TARBALL_SUFFIX</span><span style="color: #765924">=.</span><span style="color: #25231f">tar</span>
-<span style="color: #6d3c6d">TAR_OPTS</span><span style="color: #765924">=</span><span style="color: #3e5d36">'-c'</span>
+<span style="font-style: italic"><span style="color: #636760"># Includes a .tar of the incoming dir in the dist, can be yes or no</span></span>
+<span style="color: #292c29">TARBALL_INCLUDE</span><span style="color: #292c29">=</span><span style="color: #292c29">yes</span>
+<span style="color: #292c29">TARBALL_SUFFIX</span><span style="color: #292c29">=.</span><span style="color: #292c29">tar</span>
+<span style="color: #292c29">TAR_OPTS</span><span style="color: #292c29">=</span><span style="color: #6b5138">'-c'</span>
 
-<span style="font-style: italic"><span style="color: #685f50"># Some debugging options</span></span>
-<span style="font-style: italic"><span style="color: #685f50">#set -e</span></span>
-<span style="font-style: italic"><span style="color: #685f50">#set -x</span></span>
+<span style="font-style: italic"><span style="color: #636760"># Some debugging options</span></span>
+<span style="font-style: italic"><span style="color: #636760">#set -e</span></span>
+<span style="font-style: italic"><span style="color: #636760">#set -x</span></span>
 </pre>
 <br />
 <span>In the case for <span class='inlinecode'>irregular.ninja</span>, I changed the defaults to the following:</span><br />
@@ -185,38 +184,38 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #25231f">--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200</span>
-<span style="color: #25231f">+++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300</span>
-<span style="color: #25231f">@@ -1,23 +1,24 @@</span>
-<span style="color: #25231f"> # The title of the photoalbum</span>
-<span style="color: #25231f">-TITLE='A simple Photoalbum'</span>
-<span style="color: #25231f">+TITLE='Irregular.Ninja'</span>
+<pre><span style="color: #292c29">--- photoalbumrc        2023-10-29 21:42:00.894202045 +0200</span>
+<span style="color: #292c29">+++ photoalbumrc.new 2023-06-04 10:40:08.030994440 +0300</span>
+<span style="color: #292c29">@@ -1,23 +1,24 @@</span>
+<span style="color: #292c29"> # The title of the photoalbum</span>
+<span style="color: #292c29">-TITLE='A simple Photoalbum'</span>
+<span style="color: #292c29">+TITLE='Irregular.Ninja'</span>
 
-<span style="color: #25231f"> # Thumbnail height geometry</span>
-<span style="color: #25231f">-THUMBHEIGHT=300</span>
-<span style="color: #25231f">+THUMBHEIGHT=400</span>
-<span style="color: #25231f"> # Normal geometry height (when viewing photo). Uncomment, to keep original size.</span>
-<span style="color: #25231f">-HEIGHT=1200</span>
-<span style="color: #25231f">+HEIGHT=1800</span>
-<span style="color: #25231f"> # Max previews per page.</span>
-<span style="color: #25231f"> MAXPREVIEWS=40</span>
-<span style="color: #25231f">-# Randomly shuffle all previews.</span>
-<span style="color: #25231f">-# SHUFFLE=yes</span>
-<span style="color: #25231f">+# Randomly shuffle</span>
-<span style="color: #25231f">+SHUFFLE=yes</span>
+<span style="color: #292c29"> # Thumbnail height geometry</span>
+<span style="color: #292c29">-THUMBHEIGHT=300</span>
+<span style="color: #292c29">+THUMBHEIGHT=400</span>
+<span style="color: #292c29"> # Normal geometry height (when viewing photo). Uncomment, to keep original size.</span>
+<span style="color: #292c29">-HEIGHT=1200</span>
+<span style="color: #292c29">+HEIGHT=1800</span>
+<span style="color: #292c29"> # Max previews per page.</span>
+<span style="color: #292c29"> MAXPREVIEWS=40</span>
+<span style="color: #292c29">-# Randomly shuffle all previews.</span>
+<span style="color: #292c29">-# SHUFFLE=yes</span>
+<span style="color: #292c29">+# Randomly shuffle</span>
+<span style="color: #292c29">+SHUFFLE=yes</span>
 
-<span style="color: #25231f"> # Diverse directories, need to be full paths, not relative!</span>
-<span style="color: #25231f">-INCOMING_DIR=$(pwd)/incoming</span>
-<span style="color: #25231f">+INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja</span>
-<span style="color: #25231f"> DIST_DIR=$(pwd)/dist</span>
-<span style="color: #25231f"> TEMPLATE_DIR=/usr/share/photoalbum/templates/default</span>
-<span style="color: #25231f"> #TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</span>
+<span style="color: #292c29"> # Diverse directories, need to be full paths, not relative!</span>
+<span style="color: #292c29">-INCOMING_DIR=$(pwd)/incoming</span>
+<span style="color: #292c29">+INCOMING_DIR=~/Nextcloud/Photos/irregular.ninja</span>
+<span style="color: #292c29"> DIST_DIR=$(pwd)/dist</span>
+<span style="color: #292c29"> TEMPLATE_DIR=/usr/share/photoalbum/templates/default</span>
+<span style="color: #292c29"> #TEMPLATE_DIR=/usr/share/photoalbum/templates/minimal</span>
 
-<span style="color: #25231f"> # Includes a .tar of the incoming dir in the dist, can be yes or no</span>
-<span style="color: #25231f">-TARBALL_INCLUDE=yes</span>
-<span style="color: #25231f">+TARBALL_INCLUDE=no</span>
-<span style="color: #25231f"> TARBALL_SUFFIX=.tar</span>
-<span style="color: #25231f"> TAR_OPTS='-c'</span>
+<span style="color: #292c29"> # Includes a .tar of the incoming dir in the dist, can be yes or no</span>
+<span style="color: #292c29">-TARBALL_INCLUDE=yes</span>
+<span style="color: #292c29">+TARBALL_INCLUDE=no</span>
+<span style="color: #292c29"> TARBALL_SUFFIX=.tar</span>
+<span style="color: #292c29"> TAR_OPTS='-c'</span>
 </pre>
 <br />
 <span>So I changed the album title, adjusted some image and thumbnail dimensions, and I want all images to be randomly shuffled every time the album is generated! I also have all my photos in my Nextcloud Photo directory and don&#39;t want to copy them to the local <span class='inlinecode'>incoming</span> directory. Also, a tarball containing the whole album as a download isn&#39;t provided.</span><br />
@@ -317,12 +316,20 @@ blurs  html  index.html  photos  thumbs
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2023-10-29-kiss-static-web-photo-albums-with-photoalbum.sh.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

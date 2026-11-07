@@ -6,22 +6,21 @@
 <title>Gemtexter 2.1.0 - Let's Gemtext again³</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='gemtexter-210---let-s-gemtext-again'>Gemtexter 2.1.0 - Let&#39;s Gemtext again³</h1><br />
 <br />
 <span class='quote'>Published at 2023-07-21T10:19:31+03:00</span><br />
@@ -83,9 +82,9 @@
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="color: #765924">[</span><span style="color: #25231f"> -n </span><span style="color: #3e5d36">"$foo"</span><span style="color: #25231f"> </span><span style="color: #765924">];</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">then</span></span>
-<span style="color: #25231f">  echo </span><span style="color: #3e5d36">"$foo"</span>
-<span style="font-weight: bold"><span style="color: #7b2934">fi</span></span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="color: #292c29">[</span><span style="color: #292c29"> -n </span><span style="color: #6b5138">"$foo"</span><span style="color: #292c29"> </span><span style="color: #292c29">];</span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">then</span></span>
+<span style="color: #292c29">  echo </span><span style="color: #6b5138">"$foo"</span>
+<span style="font-weight: bold"><span style="color: #38604f">fi</span></span>
 </pre>
 <br />
 <span>Please run <span class='inlinecode'>source-highlight --lang-list</span> for a list of all supported languages.</span><br />
@@ -110,7 +109,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">declare</span></span><span style="color: #25231f"> -xr </span><span style="color: #6d3c6d">MASTODON_URI</span><span style="color: #765924">=</span><span style="color: #3e5d36">'https://fosstodon.org/@snonux'</span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">declare</span></span><span style="color: #292c29"> -xr </span><span style="color: #292c29">MASTODON_URI</span><span style="color: #292c29">=</span><span style="color: #6b5138">'https://fosstodon.org/@snonux'</span>
 </pre>
 <br />
 <span>and add the following into your <span class='inlinecode'>index.gmi</span>:</span><br />
@@ -125,7 +124,7 @@ http://www.gnu.org/software/src-highlite -->
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-weight: bold"><span style="color: #7b2934">&lt;a</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #235f72">href</span></span><span style="color: #765924">=</span><span style="color: #3e5d36">'https://fosstodon.org/@snonux'</span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #235f72">rel</span></span><span style="color: #765924">=</span><span style="color: #3e5d36">'me'</span><span style="font-weight: bold"><span style="color: #7b2934">&gt;</span></span><span style="color: #25231f">Me at Mastodon</span><span style="font-weight: bold"><span style="color: #7b2934">&lt;/a&gt;</span></span>
+<pre><span style="font-weight: bold"><span style="color: #38604f">&lt;a</span></span><span style="color: #292c29"> </span><span style="color: #38604f">href</span><span style="color: #292c29">=</span><span style="color: #6b5138">'https://fosstodon.org/@snonux'</span><span style="color: #292c29"> </span><span style="color: #38604f">rel</span><span style="color: #292c29">=</span><span style="color: #6b5138">'me'</span><span style="font-weight: bold"><span style="color: #38604f">&gt;</span></span><span style="color: #292c29">Me at Mastodon</span><span style="font-weight: bold"><span style="color: #38604f">&lt;/a&gt;</span></span>
 </pre>
 <br />
 <h2 style='display: inline' id='more'>More</h2><br />
@@ -145,12 +144,20 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2023-07-21-gemtexter-2.1.0-lets-gemtext-again-3.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

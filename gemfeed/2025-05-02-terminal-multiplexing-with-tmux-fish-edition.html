@@ -6,22 +6,21 @@
 <title>Terminal multiplexing with `tmux` - Fish edition</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='terminal-multiplexing-with-tmux---fish-edition'>Terminal multiplexing with <span class='inlinecode'>tmux</span> - Fish edition</h1><br />
 <br />
 <span class='quote'>Published at 2025-05-02T00:09:23+03:00</span><br />
@@ -197,14 +196,14 @@ set-option -g prefix C-g
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="color: #265a79">function tmux</span><span style="color: #765924">::</span><span style="color: #25231f">search</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">set</span></span><span style="color: #25231f"> -l session </span><span style="color: #765924">(</span><span style="color: #25231f">tmux list-sessions </span><span style="color: #765924">|</span><span style="color: #25231f"> fzf </span><span style="color: #765924">|</span><span style="color: #25231f"> cut -d</span><span style="color: #765924">:</span><span style="color: #25231f"> -f</span><span style="color: #8a450c">1</span><span style="color: #765924">)</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">if</span></span><span style="color: #25231f"> </span><span style="font-weight: bold"><span style="color: #7b2934">test</span></span><span style="color: #25231f"> -z </span><span style="color: #3e5d36">"$TMUX"</span>
-<span style="color: #25231f">        tmux attach-session -t </span><span style="color: #6d3c6d">$session</span>
-<span style="color: #25231f">    </span><span style="font-weight: bold"><span style="color: #7b2934">else</span></span>
-<span style="color: #25231f">        tmux switch -t </span><span style="color: #6d3c6d">$session</span>
-<span style="color: #25231f">    end</span>
-<span style="color: #25231f">end</span>
+<pre><span style="color: #38604f">function tmux</span><span style="color: #292c29">::</span><span style="color: #292c29">search</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">set</span></span><span style="color: #292c29"> -l session </span><span style="color: #292c29">(</span><span style="color: #292c29">tmux list-sessions </span><span style="color: #292c29">|</span><span style="color: #292c29"> fzf </span><span style="color: #292c29">|</span><span style="color: #292c29"> cut -d</span><span style="color: #292c29">:</span><span style="color: #292c29"> -f</span><span style="color: #6b5138">1</span><span style="color: #292c29">)</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">if</span></span><span style="color: #292c29"> </span><span style="font-weight: bold"><span style="color: #38604f">test</span></span><span style="color: #292c29"> -z </span><span style="color: #6b5138">"$TMUX"</span>
+<span style="color: #292c29">        tmux attach-session -t </span><span style="color: #292c29">$session</span>
+<span style="color: #292c29">    </span><span style="font-weight: bold"><span style="color: #38604f">else</span></span>
+<span style="color: #292c29">        tmux switch -t </span><span style="color: #292c29">$session</span>
+<span style="color: #292c29">    end</span>
+<span style="color: #292c29">end</span>
 </pre>
 <br />
 <span>All it does is list all currently open sessions in <span class='inlinecode'>fzf</span>, where one of them can be searched and selected through fuzzy find, and then either switch (if already inside a session) to the other session or attach to the other session (if not yet in Tmux).</span><br />
@@ -413,12 +412,20 @@ bind-key r source-file ~/.config/tmux/tmux.conf \; display-message "tmux.conf re
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2025-05-02-terminal-multiplexing-with-tmux-fish-edition.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>

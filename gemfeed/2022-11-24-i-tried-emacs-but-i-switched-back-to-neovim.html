@@ -6,22 +6,21 @@
 <title>I tried (Doom) Emacs, but I switched back to (Neo)Vim</title>
 <link rel="shortcut icon" type="image/gif" href="/favicon.ico" />
 <link rel="stylesheet" href="../style.css" />
-<link rel="stylesheet" href="style-override.css" />
 </head>
 <body>
-<div class="masthead">
-<p class="edition">A personal journal</p>
-<p class="nameplate"><a href="https://foo.zone">foo.zone</a></p>
-<p class="strapline">Personal essays on technology &amp; everyday life</p>
-</div>
-<p class="header">
-<a href="https://foo.zone">Home</a> <span class="separator">/</span>
-<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.md">Markdown</a> <span class="separator">/</span>
-<a href="gemini://foo.zone/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi">Gemini</a> <span class="separator">/</span>
-<a href="https://snonux.foo">Microblog</a> <span class="separator">/</span>
+<div class="header">
+<a class="site-name" href="https://foo.zone">foo.zone</a>
+<div class="navigation">
+<a href="https://foo.zone">Home</a>
+<a href="https://foo.zone/gemfeed/index.html">Journal</a>
+<a href="https://foo.zone/about/index.html">About</a>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.md">Markdown</a>
+<a href="gemini://foo.zone/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.gmi">Gemini</a>
+<a href="https://snonux.foo">Microblog</a>
 <a href="https://irregular.ninja">Street photography</a>
-</p>
-<div class="newsprint-content">
+</div>
+</div>
+<div class="focused-content">
 <h1 style='display: inline' id='i-tried-doom-emacs-but-i-switched-back-to-neovim'>I tried (Doom) Emacs, but I switched back to (Neo)Vim</h1><br />
 <br />
 <span class='quote'>Published at 2022-11-24T11:17:15+02:00; Updated at 2022-11-26</span><br />
@@ -105,10 +104,10 @@ Art by      \ \_!  / __!
 by Lorenzo Bettini
 http://www.lorenzobettini.it
 http://www.gnu.org/software/src-highlite -->
-<pre><span style="font-style: italic"><span style="color: #685f50">" Clipboard</span></span>
-<span style="color: #25231f">vnoremap ,</span><span style="font-weight: bold"><span style="color: #7b2934">y</span></span><span style="color: #25231f"> !pbcopy</span><span style="color: #25231f">&lt;CR&gt;</span><span style="color: #25231f">ugv</span>
-<span style="color: #25231f">vnoremap ,</span><span style="font-weight: bold"><span style="color: #7b2934">i</span></span><span style="color: #25231f"> !pbpaste</span><span style="color: #25231f">&lt;CR&gt;</span>
-<span style="color: #25231f">nmap ,</span><span style="font-weight: bold"><span style="color: #7b2934">i</span></span><span style="color: #25231f"> !wpbpaste</span><span style="color: #25231f">&lt;CR&gt;</span>
+<pre><span style="font-style: italic"><span style="color: #636760">" Clipboard</span></span>
+<span style="color: #292c29">vnoremap ,</span><span style="font-weight: bold"><span style="color: #38604f">y</span></span><span style="color: #292c29"> !pbcopy</span><span style="color: #292c29">&lt;CR&gt;</span><span style="color: #292c29">ugv</span>
+<span style="color: #292c29">vnoremap ,</span><span style="font-weight: bold"><span style="color: #38604f">i</span></span><span style="color: #292c29"> !pbpaste</span><span style="color: #292c29">&lt;CR&gt;</span>
+<span style="color: #292c29">nmap ,</span><span style="font-weight: bold"><span style="color: #38604f">i</span></span><span style="color: #292c29"> !wpbpaste</span><span style="color: #292c29">&lt;CR&gt;</span>
 </pre>
 <br />
 <span>That&#39;s only a very few lines and does precisely what I want. It&#39;s quick and dirty but get&#39;s the job done! If VimScript becomes too cumbersome, I can use Lua for NeoVim scripting.</span><br />
@@ -153,12 +152,20 @@ http://www.gnu.org/software/src-highlite -->
 <br />
 <a class='textlink' href='../'>Back to the main site</a><br />
 </div>
-<p class="footer">
-Generated with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a> &middot;
-served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a> &middot;
-<a href="https://foo.zone/site-mirrors.html">Site Mirrors</a>
-<br />
-Webring: <a href="https://shring.sh/foo.zone/previous">previous</a> &middot; <a href="https://shring.sh">shring</a> &middot; <a href="https://shring.sh/foo.zone/next">next</a>
+<div class="footer">
+<p>
+<a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2022-11-24-i-tried-emacs-but-i-switched-back-to-neovim.md">Markdown</a>
+<a href="https://snonux.foo">Microblog</a>
+<a href="https://irregular.ninja">Photography</a>
+<a href="https://foo.zone/site-mirrors.html">Mirrors</a>
 </p>
+<p>Made with <a href="https://github.com/snonux/gemtexter">Gemtexter 3.0.1-develop</a>,
+served by <a href="https://www.OpenBSD.org">OpenBSD</a>/<a href="https://man.openbsd.org/relayd.8">relayd(8)</a>+<a href="https://man.openbsd.org/httpd.8">httpd(8)</a></p>
+<p class="webring">
+<a href="https://shring.sh/foo.zone/previous">Previous</a>
+<a href="https://shring.sh">shring</a>
+<a href="https://shring.sh/foo.zone/next">Next</a>
+</p>
+</div>
 </body>
 </html>
