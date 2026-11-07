@@ -32,9 +32,9 @@ Stuff I'm currently up to:
 * Being a father to my 3 year old daughter
 * Learning Bulgarian for the bulgarian citizenship
 * Learning how to use AI for engineering
-* Reading "Children of Time" in german by Adrian Tchaikovsky and Birgit Herden
+* Reading "Children of Ruin" in german by Adrian Tchaikovsky
 * Building my own FUSE-powered distributed file system HomelabFS on top of ZFS
-* Working on next DTail release
+* Reading how to manage your home without losing your mind
 
 ## Next
 

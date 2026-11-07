@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-10-27
+Generated on: 2026-11-03
 
 => showcase-rank-history.svg Interactive Project Rank History Graph (SVG)
 
@@ -12,19 +12,19 @@ This page showcases my side projects, providing an overview of what each project
 * ⇢ ⇢ Overall Statistics
 * ⇢ ⇢ Projects
 * ⇢ ⇢ ⇢ 1. conf
-* ⇢ ⇢ ⇢ 2. homelabfs
-* ⇢ ⇢ ⇢ 3. comicredr
-* ⇢ ⇢ ⇢ 4. snonux.foo
+* ⇢ ⇢ ⇢ 2. comicredr
+* ⇢ ⇢ ⇢ 3. snonux.foo
+* ⇢ ⇢ ⇢ 4. dotfiles
 * ⇢ ⇢ ⇢ 5. gunrunners
-* ⇢ ⇢ ⇢ 6. dotfiles
-* ⇢ ⇢ ⇢ 7. player
+* ⇢ ⇢ ⇢ 6. player
+* ⇢ ⇢ ⇢ 7. homelabfs
 * ⇢ ⇢ ⇢ 8. turbolaunch
 * ⇢ ⇢ ⇢ 9. turbomon
 * ⇢ ⇢ ⇢ 10. turbonotes
 * ⇢ ⇢ ⇢ 11. quicklog
-* ⇢ ⇢ ⇢ 12. s3tools
-* ⇢ ⇢ ⇢ 13. gonf
-* ⇢ ⇢ ⇢ 14. ior
+* ⇢ ⇢ ⇢ 12. gonf
+* ⇢ ⇢ ⇢ 13. ior
+* ⇢ ⇢ ⇢ 14. s3tools
 * ⇢ ⇢ ⇢ 15. bgtutor-mcp
 * ⇢ ⇢ ⇢ 16. hexai
 * ⇢ ⇢ ⇢ 17. f3sctl
@@ -32,13 +32,13 @@ This page showcases my side projects, providing an overview of what each project
 * ⇢ ⇢ ⇢ 19. comicredr-training-assets
 * ⇢ ⇢ ⇢ 20. foo.zone
 * ⇢ ⇢ ⇢ 21. bgtutor-assets
-* ⇢ ⇢ ⇢ 22. fdroid
-* ⇢ ⇢ ⇢ 23. timesamurai
-* ⇢ ⇢ ⇢ 24. tasksamurai
+* ⇢ ⇢ ⇢ 22. timesamurai
+* ⇢ ⇢ ⇢ 23. tasksamurai
+* ⇢ ⇢ ⇢ 24. fdroid
 * ⇢ ⇢ ⇢ 25. restforge
 * ⇢ ⇢ ⇢ 26. gitsyncer
-* ⇢ ⇢ ⇢ 27. ebpf-for-sres
-* ⇢ ⇢ ⇢ 28. syncmaster
+* ⇢ ⇢ ⇢ 27. syncmaster
+* ⇢ ⇢ ⇢ 28. ebpf-for-sres
 * ⇢ ⇢ ⇢ 29. comicforge
 * ⇢ ⇢ ⇢ 30. foostore
 * ⇢ ⇢ ⇢ 31. shuriken.sh
@@ -46,8 +46,8 @@ This page showcases my side projects, providing an overview of what each project
 * ⇢ ⇢ ⇢ 33. totalrecall
 * ⇢ ⇢ ⇢ 34. fastforge
 * ⇢ ⇢ ⇢ 35. goprecords
-* ⇢ ⇢ ⇢ 36. hypr
-* ⇢ ⇢ ⇢ 37. gt
+* ⇢ ⇢ ⇢ 36. gt
+* ⇢ ⇢ ⇢ 37. hypr
 * ⇢ ⇢ ⇢ 38. gogios
 * ⇢ ⇢ ⇢ 39. ds-sim
 * ⇢ ⇢ ⇢ 40. irregular.ninja
@@ -103,25 +103,25 @@ This page showcases my side projects, providing an overview of what each project
 ## Overall Statistics
 
 * 📦 Total Projects: 88
-* 📊 Total Commits: 18,799
-* 📈 Total Lines of Code: 1,873,412
-* 📄 Total Lines of Documentation: 158,038
-* 💻 Languages: Go (42.5%), C++ (15.5%), Dart (11.5%), C (6.8%), Shell (4.6%), JavaScript (3.7%), Java (3.2%), JSON (1.9%), Python (1.8%), YAML (1.7%), XML (1.2%), C/C++ (1.2%), Perl (0.9%), TypeScript (0.7%), CSS (0.5%), HTML (0.5%), Kotlin (0.4%), Ruby (0.4%), Config (0.3%), TOML (0.2%), HCL (0.1%), Make (0.1%)
-* 📚 Documentation: Markdown (80.7%), Text (17.2%), LaTeX (2.2%)
+* 📊 Total Commits: 18,838
+* 📈 Total Lines of Code: 1,876,736
+* 📄 Total Lines of Documentation: 158,334
+* 💻 Languages: Go (42.6%), C++ (15.5%), Dart (11.5%), C (6.7%), Shell (4.6%), JavaScript (3.7%), Java (3.2%), JSON (1.9%), Python (1.8%), YAML (1.7%), XML (1.2%), C/C++ (1.2%), Perl (0.9%), TypeScript (0.7%), CSS (0.5%), HTML (0.5%), Kotlin (0.4%), Ruby (0.4%), Config (0.3%), TOML (0.2%), HCL (0.1%), Make (0.1%)
+* 📚 Documentation: Markdown (80.7%), Text (17.1%), LaTeX (2.2%)
 * 🚀 Release Status: 56 released, 32 experimental (63.6% with releases, 36.4% experimental)
 
 ## Projects
 
 ### 1. conf
 
-* 💻 Languages: YAML (51.3%), Shell (17.3%), Go (15.0%), Python (10.8%), Perl (3.3%), Make (0.7%), JSON (0.6%), Config (0.6%), Docker (0.2%)
+* 💻 Languages: YAML (49.1%), Go (18.3%), Shell (16.6%), Python (10.4%), Perl (3.2%), JSON (0.8%), Make (0.7%), Config (0.5%), Docker (0.2%)
 * 📚 Documentation: Markdown (98.7%), Text (1.3%)
-* 📊 Commits: 1636
-* 📈 Lines of Code: 57051
-* 📄 Lines of Documentation: 17459
+* 📊 Commits: 1664
+* 📈 Lines of Code: 59549
+* 📄 Lines of Documentation: 17746
 * 🏷️ Tags: 2
-* 📅 Development Period: 2021-12-28 to 2026-10-26
-* 🏆 Score: 149.1 (combines recent activity, code size, tags, and release status)
+* 📅 Development Period: 2021-12-28 to 2026-11-03
+* 🏆 Score: 71.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -134,33 +134,7 @@ It's implemented on top of gonf, a Go configuration-management library (pinned i
 
 ---
 
-### 2. homelabfs
-
-* 💻 Languages: JSON (93.1%), Shell (4.2%), Python (1.8%), Go (0.9%)
-* 📚 Documentation: Text (51.3%), Markdown (48.7%)
-* 📊 Commits: 14
-* 📈 Lines of Code: 11258
-* 📄 Lines of Documentation: 4257
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-10-24 to 2026-10-25
-* 🏆 Score: 111.2 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: BSD-3-Clause
-* 🧪 Status: Experimental (no releases yet)
-
-
-=> showcase/homelabfs/image-1.svg homelabfs screenshot
-
-HomelabFS is a planned distributed filesystem for a personal homelab ("f3s"), designed to replace NFS with highly available, POSIX-style file storage that Kubernetes workloads require. It is currently in the concept phase—containing architecture notes, design documents, and experimental compatibility probes rather than a working distributed implementation—but the core design is well developed: each workload owns an independent persistent volume, with reads and writes served by a primary node while other nodes hold replicas (different nodes can be primary for different workloads simultaneously). Writes are acknowledged after local journal durability plus an in-memory receipt from a synchronous partner, with a third asynchronous replica receiving operations via replayable backlog—a deliberate durability tradeoff the design documents openly acknowledge.
-
-=> showcase/homelabfs/image-2.png homelabfs screenshot
-
-Implementation is built around a Go core running on FreeBSD hosts with local ZFS storage, coordinating ownership via etcd (kept outside the per-operation I/O path) and replicating over an existing WireGuard mesh. Kubernetes pods running in Rocky Linux bhyve VMs access volumes through a 9p path: guest kernel 9p client → virtio-9p → a HomelabFS FUSE mount on the FreeBSD host → local ZFS plus peer replication. Failover promotes a replica when a pod moves, but blocks I/O until fencing, authoritative recovery, and synchronous-partner readiness complete, with an explicit emergency mode for single-node operation. The access-path components (native FUSE/ZFS on FreeBSD guests and the Rocky 9p/FUSE stack) have passed proof-of-concept validation, but the distributed protocol, failover, and fault-injection testing remain to be built.
-
-=> https://github.com/snonux/homelabfs View on GitHub
-
----
-
-### 3. comicredr
+### 2. comicredr
 
 * 💻 Languages: Dart (74.8%), Shell (14.2%), Python (4.8%), TOML (2.4%), JSON (1.6%), YAML (0.5%), C++ (0.4%), Make (0.4%), Kotlin (0.3%), CMake (0.3%), XML (0.1%), C (0.1%)
 * 📚 Documentation: Markdown (96.6%), Text (3.4%)
@@ -169,7 +143,7 @@ Implementation is built around a Go core running on FreeBSD hosts with local ZFS
 * 📄 Lines of Documentation: 7718
 * 🏷️ Tags: 29
 * 📅 Development Period: 2026-09-24 to 2026-10-26
-* 🏆 Score: 108.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 51.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Apache-2.0
 * 🏷️ Latest Release: v0.9.10 (2026-10-26)
 
@@ -186,7 +160,7 @@ The implementation centers on a small built-in detector model that runs locally 
 
 ---
 
-### 4. snonux.foo
+### 3. snonux.foo
 
 * 💻 Languages: JavaScript (67.7%), JSON (15.6%), Go (8.4%), CSS (6.5%), Python (1.8%)
 * 📚 Documentation: Markdown (51.2%), Text (48.8%)
@@ -195,7 +169,7 @@ The implementation centers on a small built-in detector model that runs locally 
 * 📄 Lines of Documentation: 2862
 * 🏷️ Tags: 42
 * 📅 Development Period: 2026-04-06 to 2026-10-21
-* 🏆 Score: 95.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 48.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.21.0 (2026-10-21)
 
@@ -208,6 +182,28 @@ The implementation is a single Go binary with all templates, themes, fonts, and 
 
 ---
 
+### 4. dotfiles
+
+* 💻 Languages: Shell (80.9%), Python (6.3%), Go (5.9%), Config (1.9%), TOML (1.6%), CSS (1.4%), Ruby (0.8%), JSON (0.7%), YAML (0.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 1563
+* 📈 Lines of Code: 23709
+* 📄 Lines of Documentation: 13750
+* 🏷️ Tags: 2
+* 📅 Development Period: 2023-07-30 to 2026-11-03
+* 🏆 Score: 47.4 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+This is a personal dotfiles repository for a multi-machine Linux/macOS/FreeBSD fleet, covering shell configurations (bash, fish, zsh), editor and terminal tooling (helix, tmux, ghostty), a Wayland desktop (sway, waybar), git and task management configs, plus a collection of ~30 utility scripts (AI editor integration, backups, video stabilization, Immich sync, etc.). It also holds reusable agent prompts and skills that get symlinked into various AI coding tools (Cursor, Claude Code, Codex, OpenCode). Deployment is handled by gonf, a companion tool invoked via `./gonf.sh`, which can apply tasks locally or stream a plan over SSH to remote hosts, with dry-run and profile-override support.
+
+The architecture is task-based: each `home_*`, `pkg_*`, and `system_*` task is a gonf recipe guarded by OS profile and hostname checks (e.g., `pkg_fedora` runs only on Fedora, `system_wireguard` only on specific hosts). Guards are serializable and evaluated on the destination, so pushed plans adapt to the target machine automatically. Unprivileged tasks mostly symlink or copy files into `$HOME`, while privileged tasks handle system-level state like package installation, WireGuard units, `/etc/hosts` blocks, and login shells — all idempotently and without touching unrelated host configuration. Layout is one directory per tool, with dated notes and runbooks kept alongside the configs.
+
+=> https://github.com/snonux/dotfiles View on GitHub
+
+---
+
 ### 5. gunrunners
 
 * 💻 Languages: C++ (92.3%), Python (4.3%), C (1.9%), Shell (0.4%), HTML (0.3%), CMake (0.2%), CSS (0.2%), JavaScript (0.2%)
@@ -217,7 +213,7 @@ The implementation is a single Go binary with all templates, themes, fonts, and 
 * 📄 Lines of Documentation: 13954
 * 🏷️ Tags: 26
 * 📅 Development Period: 2026-10-08 to 2026-10-23
-* 🏆 Score: 84.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 46.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: GPL-2.0
 * 🏷️ Latest Release: v0.11.7 (2026-10-23)
 
@@ -234,29 +230,7 @@ Architecturally, the game is a single C++ codebase (built with CMake) that compi
 
 ---
 
-### 6. dotfiles
-
-* 💻 Languages: Shell (80.4%), Python (6.5%), Go (6.0%), Config (2.0%), TOML (1.6%), CSS (1.4%), Ruby (0.8%), JSON (0.7%), YAML (0.5%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 1552
-* 📈 Lines of Code: 22883
-* 📄 Lines of Documentation: 13741
-* 🏷️ Tags: 2
-* 📅 Development Period: 2023-07-30 to 2026-10-26
-* 🏆 Score: 80.9 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-This is a personal dotfiles repository for a multi-machine Linux/macOS/FreeBSD fleet, covering shell configurations (bash, fish, zsh), editor and terminal tooling (helix, tmux, ghostty), a Wayland desktop (sway, waybar), git and task management configs, plus a collection of ~30 utility scripts (AI editor integration, backups, video stabilization, Immich sync, etc.). It also holds reusable agent prompts and skills that get symlinked into various AI coding tools (Cursor, Claude Code, Codex, OpenCode). Deployment is handled by gonf, a companion tool invoked via `./gonf.sh`, which can apply tasks locally or stream a plan over SSH to remote hosts, with dry-run and profile-override support.
-
-The architecture is task-based: each `home_*`, `pkg_*`, and `system_*` task is a gonf recipe guarded by OS profile and hostname checks (e.g., `pkg_fedora` runs only on Fedora, `system_wireguard` only on specific hosts). Guards are serializable and evaluated on the destination, so pushed plans adapt to the target machine automatically. Unprivileged tasks mostly symlink or copy files into `$HOME`, while privileged tasks handle system-level state like package installation, WireGuard units, `/etc/hosts` blocks, and login shells — all idempotently and without touching unrelated host configuration. Layout is one directory per tool, with dated notes and runbooks kept alongside the configs.
-
-=> https://github.com/snonux/dotfiles View on GitHub
-
----
-
-### 7. player
+### 6. player
 
 * 💻 Languages: Dart (44.1%), Go (39.5%), JavaScript (7.5%), TypeScript (5.4%), CSS (1.3%), Python (0.5%), HTML (0.5%), Kotlin (0.4%), YAML (0.2%), Shell (0.2%), JSON (0.2%)
 * 📚 Documentation: Markdown (99.9%), Text (0.1%)
@@ -265,7 +239,7 @@ The architecture is task-based: each `home_*`, `pkg_*`, and `system_*` task is a
 * 📄 Lines of Documentation: 9659
 * 🏷️ Tags: 24
 * 📅 Development Period: 2026-04-28 to 2026-10-21
-* 🏆 Score: 64.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 38.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.10.1 (2026-10-21)
 
@@ -282,6 +256,32 @@ The project is structured as a monorepo with two components: a Go server (`playe
 
 ---
 
+### 7. homelabfs
+
+* 💻 Languages: JSON (93.1%), Shell (4.2%), Python (1.8%), Go (0.9%)
+* 📚 Documentation: Text (51.3%), Markdown (48.7%)
+* 📊 Commits: 14
+* 📈 Lines of Code: 11258
+* 📄 Lines of Documentation: 4257
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-10-24 to 2026-10-25
+* 🏆 Score: 36.0 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: BSD-3-Clause
+* 🧪 Status: Experimental (no releases yet)
+
+
+=> showcase/homelabfs/image-1.svg homelabfs screenshot
+
+HomelabFS is a planned distributed filesystem for a personal homelab ("f3s"), designed to replace NFS with highly available, POSIX-style file storage that Kubernetes workloads require. It is currently in the concept phase—containing architecture notes, design documents, and experimental compatibility probes rather than a working distributed implementation—but the core design is well developed: each workload owns an independent persistent volume, with reads and writes served by a primary node while other nodes hold replicas (different nodes can be primary for different workloads simultaneously). Writes are acknowledged after local journal durability plus an in-memory receipt from a synchronous partner, with a third asynchronous replica receiving operations via replayable backlog—a deliberate durability tradeoff the design documents openly acknowledge.
+
+=> showcase/homelabfs/image-2.png homelabfs screenshot
+
+Implementation is built around a Go core running on FreeBSD hosts with local ZFS storage, coordinating ownership via etcd (kept outside the per-operation I/O path) and replicating over an existing WireGuard mesh. Kubernetes pods running in Rocky Linux bhyve VMs access volumes through a 9p path: guest kernel 9p client → virtio-9p → a HomelabFS FUSE mount on the FreeBSD host → local ZFS plus peer replication. Failover promotes a replica when a pod moves, but blocks I/O until fencing, authoritative recovery, and synchronous-partner readiness complete, with an explicit emergency mode for single-node operation. The access-path components (native FUSE/ZFS on FreeBSD guests and the Rocky 9p/FUSE stack) have passed proof-of-concept validation, but the distributed protocol, failover, and fault-injection testing remain to be built.
+
+=> https://github.com/snonux/homelabfs View on GitHub
+
+---
+
 ### 8. turbolaunch
 
 * 💻 Languages: Dart (74.6%), Shell (12.7%), Kotlin (9.6%), YAML (1.7%), XML (1.5%)
@@ -291,7 +291,7 @@ The project is structured as a monorepo with two components: a Go server (`playe
 * 📄 Lines of Documentation: 1005
 * 🏷️ Tags: 15
 * 📅 Development Period: 2026-10-08 to 2026-10-21
-* 🏆 Score: 43.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 29.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.3.12 (2026-10-20)
 
@@ -317,7 +317,7 @@ Privacy and multi-device consistency drive the design: there's no tracking and n
 * 📄 Lines of Documentation: 1376
 * 🏷️ Tags: 3
 * 📅 Development Period: 2026-10-10 to 2026-10-21
-* 🏆 Score: 36.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 25.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.2.1 (2026-10-15)
 
@@ -343,7 +343,7 @@ The project follows a layered architecture. Core functionality works out of the 
 * 📄 Lines of Documentation: 1061
 * 🏷️ Tags: 8
 * 📅 Development Period: 2026-10-07 to 2026-10-21
-* 🏆 Score: 35.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 24.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.4.0 (2026-10-21)
 
@@ -369,7 +369,7 @@ The app is built around fast navigation and non-destructive editing. A sidebar f
 * 📄 Lines of Documentation: 1381
 * 🏷️ Tags: 26
 * 📅 Development Period: 2024-01-20 to 2026-10-21
-* 🏆 Score: 30.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 22.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.5.4 (2026-10-16)
 
@@ -386,29 +386,7 @@ Architecturally, Quicklog supports three storage modes — **Local only** (defau
 
 ---
 
-### 12. s3tools
-
-* 💻 Languages: Go (99.5%), Docker (0.5%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 26
-* 📈 Lines of Code: 6074
-* 📄 Lines of Documentation: 232
-* 🏷️ Tags: 5
-* 📅 Development Period: 2026-10-07 to 2026-10-21
-* 🏆 Score: 28.8 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🏷️ Latest Release: v0.1.4 (2026-10-17)
-
-
-`s3rm` is a command-line tool, written in Go, for safely deleting selected top-level prefixes (i.e., "folders") from S3-compatible object storage, supporting AWS S3, Ceph RADOS Gateway, and Garage. Its core value is making bulk deletion safe: rather than exposing a bare destructive command, it layers multiple safeguards, including protected prefixes that can't be deleted, exact bucket-name confirmation, a `--dry-run` mode that previews eligible object counts and total bytes without touching data, progress reporting, and post-deletion verification. Because these checks can run non-interactively (e.g., `s3rm --prefix=old-exports/ --confirm-bucket=photos`), the tool works equally well in a terminal or embedded in containers and automated pipelines.
-
-Architecturally, the project follows a conventional Go CLI layout with configuration resolved from a TOML file (`~/.config/s3rm/config.toml`) or environment variables (`S3RM_BUCKET`, `S3RM_REGION`, and standard credentials). Development is driven by Mage task targets—`mage build`, `mage test`, and `mage check`—where the check target enforces code quality via `go vet`, race-detector-enabled tests, `gofmt` formatting compliance, and static error-handling analysis with `errcheck`. The documentation also references Docker support for containerized usage, consistent with its dual interactive/automation design.
-
-=> https://github.com/snonux/s3tools View on GitHub
-
----
-
-### 13. gonf
+### 12. gonf
 
 * 💻 Languages: Go (99.6%), Config (0.3%)
 * 📚 Documentation: Markdown (99.9%)
@@ -417,7 +395,7 @@ Architecturally, the project follows a conventional Go CLI layout with configura
 * 📄 Lines of Documentation: 17209
 * 🏷️ Tags: 64
 * 📅 Development Period: 2026-07-04 to 2026-10-21
-* 🏆 Score: 28.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 22.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.25.2 (2026-10-12)
 
@@ -432,7 +410,7 @@ Architecturally, execution is plan-based: registered tasks are recorded into a v
 
 ---
 
-### 14. ior
+### 13. ior
 
 * 💻 Languages: Go (90.0%), C (9.3%), C/C++ (0.4%), Shell (0.2%)
 * 📚 Documentation: Markdown (63.4%), Text (36.6%)
@@ -441,7 +419,7 @@ Architecturally, execution is plan-based: registered tasks are recorded into a v
 * 📄 Lines of Documentation: 10100
 * 🏷️ Tags: 11
 * 📅 Development Period: 2024-01-18 to 2026-10-05
-* 🏆 Score: 28.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 21.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v1.2.0 (2026-10-05)
 
@@ -458,6 +436,28 @@ Implementation-wise, it targets Linux/amd64 on kernels with BTF and follows an e
 
 ---
 
+### 14. s3tools
+
+* 💻 Languages: Go (99.5%), Docker (0.5%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 26
+* 📈 Lines of Code: 6074
+* 📄 Lines of Documentation: 232
+* 🏷️ Tags: 5
+* 📅 Development Period: 2026-10-07 to 2026-10-21
+* 🏆 Score: 21.1 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🏷️ Latest Release: v0.1.4 (2026-10-17)
+
+
+`s3rm` is a command-line tool, written in Go, for safely deleting selected top-level prefixes (i.e., "folders") from S3-compatible object storage, supporting AWS S3, Ceph RADOS Gateway, and Garage. Its core value is making bulk deletion safe: rather than exposing a bare destructive command, it layers multiple safeguards, including protected prefixes that can't be deleted, exact bucket-name confirmation, a `--dry-run` mode that previews eligible object counts and total bytes without touching data, progress reporting, and post-deletion verification. Because these checks can run non-interactively (e.g., `s3rm --prefix=old-exports/ --confirm-bucket=photos`), the tool works equally well in a terminal or embedded in containers and automated pipelines.
+
+Architecturally, the project follows a conventional Go CLI layout with configuration resolved from a TOML file (`~/.config/s3rm/config.toml`) or environment variables (`S3RM_BUCKET`, `S3RM_REGION`, and standard credentials). Development is driven by Mage task targets—`mage build`, `mage test`, and `mage check`—where the check target enforces code quality via `go vet`, race-detector-enabled tests, `gofmt` formatting compliance, and static error-handling analysis with `errcheck`. The documentation also references Docker support for containerized usage, consistent with its dual interactive/automation design.
+
+=> https://github.com/snonux/s3tools View on GitHub
+
+---
+
 ### 15. bgtutor-mcp
 
 * 💻 Languages: Go (89.6%), JSON (9.0%), Docker (0.7%), YAML (0.7%)
@@ -467,7 +467,7 @@ Implementation-wise, it targets Linux/amd64 on kernels with BTF and follows an e
 * 📄 Lines of Documentation: 616
 * 🏷️ Tags: 1
 * 📅 Development Period: 2026-09-30 to 2026-10-21
-* 🏆 Score: 27.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 19.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.30.0 (2026-10-03)
 
@@ -489,7 +489,7 @@ The architecture separates offline preparation from runtime serving. During prep
 * 📄 Lines of Documentation: 2790
 * 🏷️ Tags: 125
 * 📅 Development Period: 2025-08-01 to 2026-10-24
-* 🏆 Score: 23.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 19.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.44.4 (2026-10-24)
 
@@ -515,7 +515,7 @@ The project is written in Go and distributed as multiple binaries—most notably
 * 📄 Lines of Documentation: 1662
 * 🏷️ Tags: 29
 * 📅 Development Period: 2026-08-08 to 2026-10-23
-* 🏆 Score: 22.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 17.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.11.3 (2026-09-29)
 
@@ -537,7 +537,7 @@ It's a single Go binary with three runtime modes: a CLI, a CGI handler under boz
 * 📄 Lines of Documentation: 5096
 * 🏷️ Tags: 5
 * 📅 Development Period: 2026-07-12 to 2026-10-15
-* 🏆 Score: 20.9 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 16.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: GPL-3.0
 * 🏷️ Latest Release: v0.2.1 (2026-10-15)
 
@@ -563,7 +563,7 @@ It's written in plain C on GTK4 and libadwaita, built with Meson/ninja, and orga
 * 📄 Lines of Documentation: 682
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-10-10 to 2026-10-10
-* 🏆 Score: 19.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 13.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -585,7 +585,7 @@ Implementation-wise, `border_pages.py` scans PDFs, CBZ/ZIP files and image folde
 * 📄 Lines of Documentation: 178
 * 🏷️ Tags: 0
 * 📅 Development Period: 2021-04-29 to 2026-10-20
-* 🏆 Score: 15.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 12.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -607,7 +607,7 @@ In terms of architecture, the site is built with [gemtexter](https://codeberg.or
 * 📄 Lines of Documentation: 4038
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-09-25 to 2026-10-03
-* 🏆 Score: 14.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 11.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -620,33 +620,7 @@ Episodes follow a defined production workflow: they are prepared in a `totalreca
 
 ---
 
-### 22. fdroid
-
-* 💻 Languages: YAML (70.2%), Python (28.8%), HTML (1.0%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 30
-* 📈 Lines of Code: 496
-* 📄 Lines of Documentation: 815
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-09-26 to 2026-10-21
-* 🏆 Score: 13.6 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: MIT
-* 🧪 Status: Experimental (no releases yet)
-
-
-=> showcase/fdroid/image-1.svg fdroid screenshot
-
-This project is a personal F-Droid repository that distributes the author's Android apps—utilities like TurboNotes (markdown editing), TurboLaunch (search-first launcher), TurboMon (system monitor), RESTForge (hypermedia API browser), and a game—so they can be installed and updated through the F-Droid client instead of sideloading APKs manually. Users add the repo via a one-tap link, QR code, or by entering the GitHub Pages URL and signing fingerprint, after which apps appear and update like any other F-Droid package. Because APKs are served unchanged and keep their original developer signature, an app installed from this repo can also be updated from any other compatible source.
-
-=> showcase/fdroid/image-2.png fdroid screenshot
-
-The implementation is deliberately build-free: each app's own repository builds and signs its APKs and attaches them to GitHub releases on version tags. Here, a GitHub Actions publish workflow (triggered by pushes, a six-hour schedule, on-demand runs, or `repository_dispatch` events from app repos) uses `scripts/sync_apps.py` to fetch the two newest releases of every app listed in `apps.yml`, along with their fastlane metadata and screenshots. It then runs `fdroid update` to generate and sign the repository index with a signing key stored in Actions secrets, and deploys the result to GitHub Pages—so a new app release reaches phones within six hours with no manual work in this repo.
-
-=> https://github.com/snonux/fdroid View on GitHub
-
----
-
-### 23. timesamurai
+### 22. timesamurai
 
 * 💻 Languages: Go (98.5%), Shell (1.1%), JSON (0.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -655,7 +629,7 @@ The implementation is deliberately build-free: each app's own repository builds 
 * 📄 Lines of Documentation: 210
 * 🏷️ Tags: 17
 * 📅 Development Period: 2025-06-25 to 2026-10-10
-* 🏆 Score: 12.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 11.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.10.3 (2026-10-10)
 
@@ -670,7 +644,7 @@ Architecturally, storage is a simple, durable append-only JSONL store, which kee
 
 ---
 
-### 24. tasksamurai
+### 23. tasksamurai
 
 * 💻 Languages: Go (99.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -679,7 +653,7 @@ Architecturally, storage is a simple, durable append-only JSONL store, which kee
 * 📄 Lines of Documentation: 743
 * 🏷️ Tags: 43
 * 📅 Development Period: 2025-06-19 to 2026-10-11
-* 🏆 Score: 12.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 11.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.24.2 (2026-10-11)
 
@@ -696,6 +670,32 @@ Architecturally, it acts as a rich wrapper around the `task` CLI rather than rei
 
 ---
 
+### 24. fdroid
+
+* 💻 Languages: YAML (70.2%), Python (28.8%), HTML (1.0%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 30
+* 📈 Lines of Code: 496
+* 📄 Lines of Documentation: 815
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-09-26 to 2026-10-21
+* 🏆 Score: 10.3 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🧪 Status: Experimental (no releases yet)
+
+
+=> showcase/fdroid/image-1.svg fdroid screenshot
+
+This project is a personal F-Droid repository that distributes the author's Android apps—utilities like TurboNotes (markdown editing), TurboLaunch (search-first launcher), TurboMon (system monitor), RESTForge (hypermedia API browser), and a game—so they can be installed and updated through the F-Droid client instead of sideloading APKs manually. Users add the repo via a one-tap link, QR code, or by entering the GitHub Pages URL and signing fingerprint, after which apps appear and update like any other F-Droid package. Because APKs are served unchanged and keep their original developer signature, an app installed from this repo can also be updated from any other compatible source.
+
+=> showcase/fdroid/image-2.png fdroid screenshot
+
+The implementation is deliberately build-free: each app's own repository builds and signs its APKs and attaches them to GitHub releases on version tags. Here, a GitHub Actions publish workflow (triggered by pushes, a six-hour schedule, on-demand runs, or `repository_dispatch` events from app repos) uses `scripts/sync_apps.py` to fetch the two newest releases of every app listed in `apps.yml`, along with their fastlane metadata and screenshots. It then runs `fdroid update` to generate and sign the repository index with a signing key stored in Actions secrets, and deploys the result to GitHub Pages—so a new app release reaches phones within six hours with no manual work in this repo.
+
+=> https://github.com/snonux/fdroid View on GitHub
+
+---
+
 ### 25. restforge
 
 * 💻 Languages: Go (48.0%), Dart (31.5%), JavaScript (14.0%), C (3.1%), C/C++ (1.0%), Python (0.5%), Shell (0.5%), CMake (0.5%), C++ (0.3%), XML (0.3%), Kotlin (0.2%), YAML (0.2%)
@@ -705,7 +705,7 @@ Architecturally, it acts as a rich wrapper around the `task` CLI rather than rei
 * 📄 Lines of Documentation: 3303
 * 🏷️ Tags: 9
 * 📅 Development Period: 2026-08-08 to 2026-10-21
-* 🏆 Score: 11.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 10.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.7.0 (2026-09-26)
 
@@ -729,7 +729,7 @@ The repository implements the same browser three times, as sibling projects that
 * 📄 Lines of Documentation: 2500
 * 🏷️ Tags: 59
 * 📅 Development Period: 2025-06-23 to 2026-10-13
-* 🏆 Score: 11.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 10.2 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: BSD-2-Clause
 * 🏷️ Latest Release: v0.21.5 (2026-10-13)
 
@@ -742,29 +742,7 @@ Architecturally, GitSyncer clones a repository from the first configured organiz
 
 ---
 
-### 27. ebpf-for-sres
-
-* 💻 Languages: HTML (65.0%), Shell (19.2%), C (11.1%), Make (2.5%), JSON (2.2%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 1
-* 📈 Lines of Code: 811
-* 📄 Lines of Documentation: 160
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-09-26 to 2026-09-26
-* 🏆 Score: 10.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-**eBPF for SREs** is an educational project that introduces site reliability engineers to eBPF, covering what BPF is, why it's valuable during on-call incident response, and how it's applied in practice through [ior](https://github.com/snonux/ior) (I/O Riot NG), a tool that uses eBPF to trace I/O syscalls. The project pairs theory with hands-on learning: alongside the presentation, it ships every example from the slides as runnable scripts with a test harness, so learners can verify the concepts work on their own systems rather than just reading about them. This makes it useful both as conference/training material and as a self-serve lab for engineers wanting to build practical eBPF observability skills.
-
-Architecturally, the project is split into two main components. The `presentation/` directory holds a 23-slide deck implemented as individual HTML files (1920×1080, in the Claude Slides artifact format), with a `deck.json` defining slide order, sections, and fonts, plus speaker notes in markdown. The `examples/` directory contains the executable scripts and a test runner (`run-all.sh`) that runs each example for a few seconds under a synthetic file I/O workload and reports PASS/FAIL, targeting Rocky Linux 9 via a setup script. In verification on a 6.18 kernel with bpftrace 0.20.2, 7 of 9 examples passed; the kprobe-based variant and bcc tools could not run there due to the kernel lacking kprobe support and headers, and remain unverified on Rocky 9.
-
-=> https://github.com/snonux/ebpf-for-sres View on GitHub
-
----
-
-### 28. syncmaster
+### 27. syncmaster
 
 * 💻 Languages: Go (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -773,7 +751,7 @@ Architecturally, the project is split into two main components. The `presentatio
 * 📄 Lines of Documentation: 675
 * 🏷️ Tags: 9
 * 📅 Development Period: 2026-08-24 to 2026-09-13
-* 🏆 Score: 9.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 8.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v0.6.1 (2026-09-13)
 
@@ -786,6 +764,28 @@ The implementation centers on a **pluggable driver architecture**: the orchestra
 
 ---
 
+### 28. ebpf-for-sres
+
+* 💻 Languages: HTML (65.0%), Shell (19.2%), C (11.1%), Make (2.5%), JSON (2.2%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 1
+* 📈 Lines of Code: 811
+* 📄 Lines of Documentation: 160
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-09-26 to 2026-09-26
+* 🏆 Score: 8.2 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+**eBPF for SREs** is an educational project that introduces site reliability engineers to eBPF, covering what BPF is, why it's valuable during on-call incident response, and how it's applied in practice through [ior](https://github.com/snonux/ior) (I/O Riot NG), a tool that uses eBPF to trace I/O syscalls. The project pairs theory with hands-on learning: alongside the presentation, it ships every example from the slides as runnable scripts with a test harness, so learners can verify the concepts work on their own systems rather than just reading about them. This makes it useful both as conference/training material and as a self-serve lab for engineers wanting to build practical eBPF observability skills.
+
+Architecturally, the project is split into two main components. The `presentation/` directory holds a 23-slide deck implemented as individual HTML files (1920×1080, in the Claude Slides artifact format), with a `deck.json` defining slide order, sections, and fonts, plus speaker notes in markdown. The `examples/` directory contains the executable scripts and a test runner (`run-all.sh`) that runs each example for a few seconds under a synthetic file I/O workload and reports PASS/FAIL, targeting Rocky Linux 9 via a setup script. In verification on a 6.18 kernel with bpftrace 0.20.2, 7 of 9 examples passed; the kprobe-based variant and bcc tools could not run there due to the kernel lacking kprobe support and headers, and remain unverified on Rocky 9.
+
+=> https://github.com/snonux/ebpf-for-sres View on GitHub
+
+---
+
 ### 29. comicforge
 
 * 💻 Languages: Go (99.4%), YAML (0.6%)
@@ -795,7 +795,7 @@ The implementation centers on a **pluggable driver architecture**: the orchestra
 * 📄 Lines of Documentation: 1239
 * 🏷️ Tags: 3
 * 📅 Development Period: 2026-04-19 to 2026-10-21
-* 🏆 Score: 8.8 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 7.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.1.1 (2026-08-22)
 
@@ -819,7 +819,7 @@ The implementation follows a configurable, pipeline-based architecture: users su
 * 📄 Lines of Documentation: 390
 * 🏷️ Tags: 16
 * 📅 Development Period: 2018-05-26 to 2026-10-21
-* 🏆 Score: 6.3 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.9.2 (2026-09-24)
 
@@ -841,7 +841,7 @@ Architecturally, the project has two backends: the original `geheim` backend (AE
 * 📄 Lines of Documentation: 951
 * 🏷️ Tags: 36
 * 📅 Development Period: 2011-11-19 to 2026-08-04
-* 🏆 Score: 6.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.14.1 (2026-08-04)
 
@@ -865,7 +865,7 @@ The project is implemented in Bash (5.1+) with ImageMagick handling image proces
 * 📄 Lines of Documentation: 568
 * 🏷️ Tags: 11
 * 📅 Development Period: 2008-05-15 to 2026-10-04
-* 🏆 Score: 6.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 5.7 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.9.5 (2026-08-14)
 
@@ -887,7 +887,7 @@ Architecturally, ychat is a single C++ server built entirely inside a multi-stag
 * 📄 Lines of Documentation: 400
 * 🏷️ Tags: 45
 * 📅 Development Period: 2025-07-14 to 2026-09-30
-* 🏆 Score: 4.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.29.6 (2026-09-30)
 
@@ -913,7 +913,7 @@ Architecturally, the tool is built around pluggable AI backends selected via con
 * 📄 Lines of Documentation: 278
 * 🏷️ Tags: 9
 * 📅 Development Period: 2026-04-06 to 2026-09-10
-* 🏆 Score: 4.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v1.6.0 (2026-09-10)
 
@@ -939,7 +939,7 @@ On the implementation side, the project targets Rebble SDK 4.9+ and uses the mod
 * 📄 Lines of Documentation: 1075
 * 🏷️ Tags: 20
 * 📅 Development Period: 2013-03-22 to 2026-10-24
-* 🏆 Score: 4.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 4.0 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.6.2 (2026-10-24)
 
@@ -952,31 +952,7 @@ The implementation is architected around three interchangeable modes: direct rep
 
 ---
 
-### 36. hypr
-
-* 💻 Languages: TypeScript (49.4%), Ruby (32.3%), JSON (9.3%), Shell (4.2%), TOML (4.0%), Python (0.8%)
-* 📚 Documentation: Markdown (100.0%)
-* 📊 Commits: 165
-* 📈 Lines of Code: 11368
-* 📄 Lines of Documentation: 3142
-* 🏷️ Tags: 0
-* 📅 Development Period: 2026-03-21 to 2026-10-26
-* 🏆 Score: 4.1 (combines recent activity, code size, tags, and release status)
-* ⚖️ License: No license found
-* 🧪 Status: Experimental (no releases yet)
-
-
-=> showcase/hypr/image-1.svg hypr screenshot
-
-**hypr** is a Ruby-based automation tool that manages the full lifecycle of GPU cloud VMs on Hyperstack—from creation and provisioning through teardown—so you can run your own self-hosted LLM inference for coding agents. It provisions two concurrent A100 80GB VMs, each serving a different model via vLLM (e.g., Qwen3.8 27B FP8 on one and Qwen3.8 Flash Next AWQ-INT4 on the other), and connects Pi coding agents (running inside a tmux session on a Linux bhyve VM on a FreeBSD host) to each endpoint. The setup is useful for anyone who wants the speed and capability of a local-feeling LLM for coding—full 262K context, no per-token API costs, and control over model choice—without exposing inference endpoints to the public internet: vLLM listens only on a WireGuard overlay network (192.168.3.0/24), firewalled so just your machine's tunnel interface can reach it.
-
-Implementation-wise, a single CLI (`ruby hyperstack.rb --vm 1|2|both <command>`) drives everything via per-VM TOML configs: `create` boots the VM, runs `wg1-setup.sh` to wire up a single WireGuard interface with one peer block per VM, deploys vLLM as a Docker container on port 11434, and verifies with end-to-end inference tests. Named model presets in the TOML allow hot-switching models (including speculative decoding via Qwen's MTP head) without reprovisioning, and a `watch` command renders a live dashboard of GPU utilization, VRAM, throughput, and KV-cache stats. On the client side, Pi is configured through a symlinked `~/.pi` directory containing `models.json` (OpenAI-compatible providers pointing at each VM's tunnel IP), fish shell abbreviations for quick launches, and TypeScript extensions adding tools like web search, ask-mode, and loop scheduling. The project chooses vLLM over Ollama for its FlashAttention v2 prefill, block-level prefix caching, and better VRAM efficiency.
-
-=> https://github.com/snonux/hypr View on GitHub
-
----
-
-### 37. gt
+### 36. gt
 
 * 💻 Languages: Go (98.0%), Shell (2.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -985,7 +961,7 @@ Implementation-wise, a single CLI (`ruby hyperstack.rb --vm 1|2|both <command>`)
 * 📄 Lines of Documentation: 4351
 * 🏷️ Tags: 8
 * 📅 Development Period: 2025-11-25 to 2026-09-06
-* 🏆 Score: 4.0 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.8 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.5.2 (2026-08-22)
 
@@ -1000,6 +976,30 @@ Architecturally, `gt` is a single Go binary with its entry point in `cmd/gt`, in
 
 ---
 
+### 37. hypr
+
+* 💻 Languages: TypeScript (49.4%), Ruby (32.3%), JSON (9.3%), Shell (4.2%), TOML (4.0%), Python (0.8%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 165
+* 📈 Lines of Code: 11368
+* 📄 Lines of Documentation: 3142
+* 🏷️ Tags: 0
+* 📅 Development Period: 2026-03-21 to 2026-10-26
+* 🏆 Score: 3.8 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: No license found
+* 🧪 Status: Experimental (no releases yet)
+
+
+=> showcase/hypr/image-1.svg hypr screenshot
+
+**hypr** is a Ruby-based automation tool that manages the full lifecycle of GPU cloud VMs on Hyperstack—from creation and provisioning through teardown—so you can run your own self-hosted LLM inference for coding agents. It provisions two concurrent A100 80GB VMs, each serving a different model via vLLM (e.g., Qwen3.8 27B FP8 on one and Qwen3.8 Flash Next AWQ-INT4 on the other), and connects Pi coding agents (running inside a tmux session on a Linux bhyve VM on a FreeBSD host) to each endpoint. The setup is useful for anyone who wants the speed and capability of a local-feeling LLM for coding—full 262K context, no per-token API costs, and control over model choice—without exposing inference endpoints to the public internet: vLLM listens only on a WireGuard overlay network (192.168.3.0/24), firewalled so just your machine's tunnel interface can reach it.
+
+Implementation-wise, a single CLI (`ruby hyperstack.rb --vm 1|2|both <command>`) drives everything via per-VM TOML configs: `create` boots the VM, runs `wg1-setup.sh` to wire up a single WireGuard interface with one peer block per VM, deploys vLLM as a Docker container on port 11434, and verifies with end-to-end inference tests. Named model presets in the TOML allow hot-switching models (including speculative decoding via Qwen's MTP head) without reprovisioning, and a `watch` command renders a live dashboard of GPU utilization, VRAM, throughput, and KV-cache stats. On the client side, Pi is configured through a symlinked `~/.pi` directory containing `models.json` (OpenAI-compatible providers pointing at each VM's tunnel IP), fish shell abbreviations for quick launches, and TypeScript extensions adding tools like web search, ask-mode, and loop scheduling. The project chooses vLLM over Ollama for its FlashAttention v2 prefill, block-level prefix caching, and better VRAM efficiency.
+
+=> https://github.com/snonux/hypr View on GitHub
+
+---
+
 ### 38. gogios
 
 * 💻 Languages: Go (99.7%), JSON (0.3%)
@@ -1009,7 +1009,7 @@ Architecturally, `gt` is a single Go binary with its entry point in `cmd/gt`, in
 * 📄 Lines of Documentation: 641
 * 🏷️ Tags: 19
 * 📅 Development Period: 2023-04-17 to 2026-09-26
-* 🏆 Score: 3.6 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 3.5 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: v1.7.1 (2026-09-26)
 
@@ -1033,7 +1033,7 @@ Architecturally, Gogios is invoked by CRON rather than running as a daemon, and 
 * 📄 Lines of Documentation: 3103
 * 🏷️ Tags: 2
 * 📅 Development Period: 2008-05-15 to 2026-10-21
-* 🏆 Score: 2.5 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 2.4 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: Custom License
 * 🏷️ Latest Release: 1.1.0 (2026-03-27)
 
@@ -1057,7 +1057,7 @@ The project is built on Java 21 and Maven, with a clean modular architecture: a 
 * 📄 Lines of Documentation: 48
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-06-15 to 2026-07-18
-* 🏆 Score: 2.1 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.9 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1127,7 +1127,7 @@ Posts are started via `gosc` (or `gos --compose`) which opens `$EDITOR` on a `.t
 * 📄 Lines of Documentation: 196
 * 🏷️ Tags: 9
 * 📅 Development Period: 2025-10-01 to 2026-03-07
-* 🏆 Score: 1.7 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.6 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.4.0 (2026-01-28)
 
@@ -1175,7 +1175,7 @@ Architecturally, the project's centerpiece is Ruby metaprogramming: undefined me
 * 📄 Lines of Documentation: 901
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-01-25 to 2026-09-26
-* 🏆 Score: 1.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1197,7 +1197,7 @@ Architecturally, the site uses vanilla HTML, CSS, and JavaScript with a clean se
 * 📄 Lines of Documentation: 119
 * 🏷️ Tags: 0
 * 📅 Development Period: 2026-01-09 to 2026-10-21
-* 🏆 Score: 1.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🧪 Status: Experimental (no releases yet)
 
@@ -1219,7 +1219,7 @@ The tool is implemented in Java 17 with Maven and packages as a self-contained e
 * 📄 Lines of Documentation: 99
 * 🏷️ Tags: 5
 * 📅 Development Period: 2025-06-25 to 2026-01-02
-* 🏆 Score: 1.2 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 1.1 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: MIT
 * 🏷️ Latest Release: v0.3.0 (2026-01-02)
 
@@ -1400,7 +1400,7 @@ The implementation follows a clean class-based architecture in Raku: an `Aggrega
 * 📄 Lines of Documentation: 108
 * 🏷️ Tags: 4
 * 📅 Development Period: 2018-05-26 to 2026-03-07
-* 🏆 Score: 0.4 (combines recent activity, code size, tags, and release status)
+* 🏆 Score: 0.3 (combines recent activity, code size, tags, and release status)
 * ⚖️ License: No license found
 * 🏷️ Latest Release: v0.3.1 (2025-11-01)
 
