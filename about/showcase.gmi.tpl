@@ -1,6 +1,6 @@
 # Project Showcase
 
-Generated on: 2026-11-11
+Generated on: 2026-11-12
 
 => showcase-rank-history.svg Interactive Project Rank History Graph (SVG)
 
@@ -10,13 +10,13 @@ This page showcases my side projects, providing an overview of what each project
 
 ## Overall Statistics
 
-* 📦 Total Projects: 89
-* 📊 Total Commits: 19,269
-* 📈 Total Lines of Code: 1,901,301
-* 📄 Total Lines of Documentation: 169,464
-* 💻 Languages: Go (42.6%), C++ (15.3%), Dart (11.3%), C (6.7%), Shell (4.9%), JavaScript (3.7%), Java (3.1%), Python (2.1%), JSON (1.9%), YAML (1.7%), XML (1.2%), C/C++ (1.1%), Perl (0.9%), TypeScript (0.7%), CSS (0.5%), HTML (0.5%), Kotlin (0.4%), Ruby (0.4%), Config (0.3%), TOML (0.2%), HCL (0.1%), Make (0.1%)
-* 📚 Documentation: Markdown (81.9%), Text (16.0%), LaTeX (2.0%)
-* 🚀 Release Status: 57 released, 32 experimental (64.0% with releases, 36.0% experimental)
+* 📦 Total Projects: 90
+* 📊 Total Commits: 19,747
+* 📈 Total Lines of Code: 2,029,918
+* 📄 Total Lines of Documentation: 181,226
+* 💻 Languages: Go (46.0%), C++ (14.3%), Dart (10.6%), C (6.2%), Shell (4.7%), JavaScript (3.5%), Java (2.9%), Python (2.0%), JSON (1.8%), YAML (1.6%), XML (1.1%), C/C++ (1.1%), Perl (0.9%), TypeScript (0.7%), CSS (0.5%), HTML (0.4%), Kotlin (0.4%), Ruby (0.4%), Config (0.3%), TOML (0.2%), Make (0.1%), HCL (0.1%)
+* 📚 Documentation: Markdown (80.7%), Text (17.4%), LaTeX (1.9%)
+* 🚀 Release Status: 58 released, 32 experimental (64.4% with releases, 35.6% experimental)
 
 ## Projects
 
@@ -1208,7 +1208,34 @@ The implementation follows a five-step workflow driven by a single `ioriot` CLI:
 
 ---
 
-### 51. sillybench
+### 51. dtail
+
+* 💻 Languages: Go (95.6%), Shell (2.3%), Python (0.8%), JSON (0.6%), C (0.3%), Make (0.2%)
+* 📚 Documentation: Markdown (62.8%), Text (37.2%)
+* 📊 Commits: 478
+* 📈 Lines of Code: 128617
+* 📄 Lines of Documentation: 11762
+* 🏷️ Tags: 30
+* 📅 Development Period: 2020-01-09 to 2026-11-11
+* 🏆 Score: 0.8 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: Apache-2.0
+* 🏷️ Latest Release: v4.3.3 (2024-08-23)
+
+⚠️  **Notice**: This project appears to be inactive or no longer maintained. The average age of its last 42 commits exceeds 2 years. Use at your own risk.
+
+=> showcase/dtail/image-1.png dtail screenshot
+
+DTail is a distributed log-tailing tool written in Go that lets engineers follow, cat, and grep log files across many machines at once. It is useful for DevOps and SRE workflows because it reduces the need to manually SSH into individual hosts, supports compressed logs with gzip and zstd, and can scale to thousands of servers from a single client.
+
+=> showcase/dtail/image-2.gif dtail screenshot
+
+Architecturally, DTail runs as either a client or server binary. The server component is installed on target machines, while the client connects to many servers concurrently over SSH, using SSH for transport encryption and authorization. It respects standard UNIX file permissions and ACLs, and it can perform distributed MapReduce-style aggregations across hosts, making it a lightweight but powerful tool for large-scale log inspection and analysis.
+
+=> https://github.com/snonux/dtail View on GitHub
+
+---
+
+### 52. sillybench
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1230,7 +1257,7 @@ From what's provided, the only things I can confidently say are:
 
 ---
 
-### 52. terraform
+### 53. terraform
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1253,7 +1280,7 @@ The implementation is organized as a set of layered Terraform modules across sep
 
 ---
 
-### 53. photoalbum
+### 54. photoalbum
 
 * 💻 Languages: Shell (92.5%), Make (4.6%), Config (2.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1276,7 +1303,7 @@ Architecturally, the project is a single Bash script that delegates image proces
 
 ---
 
-### 54. guprecords
+### 55. guprecords
 
 * 💻 Languages: Raku (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1299,7 +1326,7 @@ The implementation follows a clean class-based architecture in Raku: an `Aggrega
 
 ---
 
-### 55. geheim
+### 56. geheim
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1322,7 +1349,7 @@ The tool is built for command-line use across macOS, Linux, and Android (via Ter
 
 ---
 
-### 56. failunderd
+### 57. failunderd
 
 * 💻 Languages: Perl (89.7%), Config (5.0%), Make (3.1%), Shell (2.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1345,7 +1372,7 @@ Architecturally, it is implemented as a single-purpose OpenBSD daemon that runs 
 
 ---
 
-### 57. gorum
+### 58. gorum
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1368,7 +1395,7 @@ Beyond that, the README provides almost no detail on implementation or architect
 
 ---
 
-### 58. docker-radicale-server
+### 59. docker-radicale-server
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1391,7 +1418,7 @@ If you paste the full README or documentation, I'd be happy to write the 1-2 par
 
 ---
 
-### 59. randomjournalpage
+### 60. randomjournalpage
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1414,7 +1441,7 @@ Implementation-wise, the script is intentionally minimal and leans on two standa
 
 ---
 
-### 60. algorithms
+### 61. algorithms
 
 * 💻 Languages: Go (96.5%), Make (2.0%), Config (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1437,7 +1464,7 @@ Implementation-wise, the project is driven by a Makefile with two main targets: 
 
 ---
 
-### 61. staticfarm-apache-handlers
+### 62. staticfarm-apache-handlers
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1460,7 +1487,7 @@ The most important takeaway is the project's status: it is **deprecated** and re
 
 ---
 
-### 62. ipv6test
+### 63. ipv6test
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1483,7 +1510,7 @@ Architecturally, the project leans heavily on DNS to make the protocol testing p
 
 ---
 
-### 63. sway-autorotate
+### 64. sway-autorotate
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1506,7 +1533,7 @@ Architecturally, the script works by consuming the event stream from `monitor-se
 
 ---
 
-### 64. mon
+### 65. mon
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -1529,7 +1556,7 @@ The tool is designed with automation and safety in mind: it's useful both for in
 
 ---
 
-### 65. fapi
+### 66. fapi
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -1552,7 +1579,7 @@ Architecturally, fapi is a Python application that delegates all BigIP communica
 
 ---
 
-### 66. pingdomfetch
+### 67. pingdomfetch
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1575,7 +1602,7 @@ Architecturally, the tool is configured through layered INI-style config files �
 
 ---
 
-### 67. fype
+### 68. fype
 
 * 💻 Languages: C (77.3%), C/C++ (13.1%), HTML (7.5%), Make (2.1%)
 * 📚 Documentation: Text (65.8%), LaTeX (20.5%), Markdown (13.7%)
@@ -1598,7 +1625,7 @@ A notable architectural feature is its "synonym" system, where `\foo` creates an
 
 ---
 
-### 68. loadbars
+### 69. loadbars
 
 * 💻 Languages: Perl (97.4%), Make (2.6%)
 * 📚 Documentation: Text (93.5%), Markdown (6.5%)
@@ -1621,7 +1648,7 @@ The project is implemented as a simple script rather than a daemon or GUI applic
 
 ---
 
-### 69. pwgrep
+### 70. pwgrep
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (75.0%), Markdown (25.0%)
@@ -1644,7 +1671,7 @@ The implementation is deliberately lean: a compact set of Bash scripts and GNU A
 
 ---
 
-### 70. xerl
+### 71. xerl
 
 * 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
 * 📊 Commits: 143
@@ -1665,7 +1692,7 @@ Xerl was a Perl-based web framework (now deprecated and unmaintained) built arou
 
 ---
 
-### 71. playground
+### 72. playground
 
 * 💻 Languages: Ruby (100.0%)
 * 📊 Commits: 5
@@ -1686,7 +1713,7 @@ You can paste in things like:
 
 ---
 
-### 72. japi
+### 73. japi
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1709,7 +1736,7 @@ The tool is built on the `JIRA::REST` CPAN module (which must be installed manua
 
 ---
 
-### 73. gotop
+### 74. gotop
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
 * 📚 Documentation: Markdown (60.0%), Text (40.0%)
@@ -1732,7 +1759,7 @@ On the implementation side, the README itself is sparse, but based on the descri
 
 ---
 
-### 74. awksite
+### 75. awksite
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
 * 📚 Documentation: Markdown (50.0%), Text (50.0%)
@@ -1755,7 +1782,7 @@ The project's usefulness lies in this simplicity and portability: anyone with a 
 
 ---
 
-### 75. perldaemon
+### 76. perldaemon
 
 * 💻 Languages: Perl (72.7%), Shell (23.9%), Config (3.4%)
 * 📊 Commits: 111
@@ -1776,7 +1803,7 @@ Architecturally, the daemon runs an event loop with a configurable interval (e.g
 
 ---
 
-### 76. rubyfy
+### 77. rubyfy
 
 * 💻 Languages: Ruby (98.5%), JSON (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1799,7 +1826,7 @@ Implementation-wise, it's a single self-contained Ruby script (`rubyfy.rb`) with
 
 ---
 
-### 77. netdiff
+### 78. netdiff
 
 * 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
 * 📚 Documentation: Text (100.0%)
@@ -1822,7 +1849,7 @@ Architecturally, the script uses a peer-to-peer client/server model: based on th
 
 ---
 
-### 78. perl-c-fibonacci
+### 79. perl-c-fibonacci
 
 * 💻 Languages: C (80.4%), Make (19.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1845,7 +1872,7 @@ Once you provide that, I'll give you a concise 1-2 paragraph summary covering wh
 
 ---
 
-### 79. muttdelay
+### 80. muttdelay
 
 * 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1868,7 +1895,7 @@ The implementation relies on three coordinated components: a Vim plugin, a cron 
 
 ---
 
-### 80. cpuinfo
+### 81. cpuinfo
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1891,7 +1918,7 @@ The implementation is strikingly simple and embodies the Unix philosophy of doin
 
 ---
 
-### 81. dyndns
+### 82. dyndns
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1914,7 +1941,7 @@ Architecturally, the system consists of a server-side component and a client-sid
 
 ---
 
-### 82. debroid
+### 83. debroid
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1939,7 +1966,7 @@ Implementation proceeds in two debootstrap stages. On a desktop Linux host, a 5G
 
 ---
 
-### 83. netcalendar
+### 84. netcalendar
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
 * 📚 Documentation: Text (89.5%), Markdown (10.5%)
@@ -1966,7 +1993,7 @@ The implementation requires only a JRE 6+ and ships as a single executable JAR, 
 
 ---
 
-### 84. jsmstrade
+### 85. jsmstrade
 
 * 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1991,7 +2018,7 @@ Architecturally, the tool acts as a thin front-end over the smstrade.de API: bas
 
 ---
 
-### 85. template
+### 86. template
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -2014,7 +2041,7 @@ This project is a template (now deprecated and unmaintained) that provides a rea
 
 ---
 
-### 86. vs-sim
+### 87. vs-sim
 
 * 💻 Languages: Java (98.8%), Shell (0.7%), XML (0.4%)
 * 📚 Documentation: LaTeX (98.3%), Text (1.4%), Markdown (0.3%)
@@ -2039,7 +2066,7 @@ On the implementation side, VS-Sim is written entirely in Java, making it cross-
 
 ---
 
-### 87. perl-poetry
+### 88. perl-poetry
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -2062,7 +2089,7 @@ In terms of implementation, the project is deliberately minimal: there is no fra
 
 ---
 
-### 88. hsbot
+### 89. hsbot
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 81
@@ -2083,7 +2110,7 @@ From these dependencies alone, I can only infer a few things:
 
 ---
 
-### 89. jailman
+### 90. jailman
 
 * 📊 Commits: 0
 * 📈 Lines of Code: 0
