@@ -10,13 +10,13 @@ This page showcases my side projects, providing an overview of what each project
 
 ## Overall Statistics
 
-* 📦 Total Projects: 90
-* 📊 Total Commits: 19,803
-* 📈 Total Lines of Code: 2,035,530
-* 📄 Total Lines of Documentation: 181,710
-* 💻 Languages: Go (46.2%), C++ (14.3%), Dart (10.6%), C (6.2%), Shell (4.7%), JavaScript (3.5%), Java (2.9%), Python (2.0%), JSON (1.8%), YAML (1.6%), XML (1.1%), C/C++ (1.1%), Perl (0.8%), TypeScript (0.7%), CSS (0.5%), HTML (0.4%), Kotlin (0.4%), Ruby (0.4%), Config (0.3%), TOML (0.2%), Make (0.1%), HCL (0.1%)
-* 📚 Documentation: Markdown (80.8%), Text (17.3%), LaTeX (1.9%)
-* 🚀 Release Status: 58 released, 32 experimental (64.4% with releases, 35.6% experimental)
+* 📦 Total Projects: 91
+* 📊 Total Commits: 19,850
+* 📈 Total Lines of Code: 2,037,338
+* 📄 Total Lines of Documentation: 182,182
+* 💻 Languages: Go (46.2%), C++ (14.2%), Dart (10.6%), C (6.2%), Shell (4.7%), JavaScript (3.5%), Java (2.9%), Python (2.0%), JSON (1.8%), YAML (1.6%), XML (1.1%), C/C++ (1.1%), Perl (0.8%), TypeScript (0.7%), CSS (0.5%), HTML (0.4%), Kotlin (0.4%), Ruby (0.4%), Config (0.3%), TOML (0.2%), Make (0.1%), HCL (0.1%)
+* 📚 Documentation: Markdown (80.9%), Text (17.3%), LaTeX (1.9%)
+* 🚀 Release Status: 59 released, 32 experimental (64.8% with releases, 35.2% experimental)
 
 ## Projects
 
@@ -1258,7 +1258,33 @@ The implementation follows a five-step workflow driven by a single `ioriot` CLI:
 
 ---
 
-### 53. sillybench
+### 53. quicklogger
+
+* 💻 Languages: Go (84.1%), Shell (11.4%), Java (4.0%), TOML (0.4%)
+* 📚 Documentation: Markdown (100.0%)
+* 📊 Commits: 47
+* 📈 Lines of Code: 1808
+* 📄 Lines of Documentation: 472
+* 🏷️ Tags: 7
+* 📅 Development Period: 2024-01-20 to 2026-08-08
+* 🏆 Score: 0.8 (combines recent activity, code size, tags, and release status)
+* ⚖️ License: MIT
+* 🏷️ Latest Release: v0.2.0 (2026-08-08)
+
+
+=> showcase/quicklogger/image-1.png quicklogger screenshot
+
+Quick Logger is a small, cross-platform GUI application written in Go with the Fyne toolkit that lets users quickly capture short messages or ideas and save them as plain-text files. It is mainly intended as a lightweight Android app for logging thoughts on the go, with the log files later synchronized to a desktop machine using tools such as Syncthing. The project is now deprecated in favor of Quicklog, because Fyne has notable limitations on Android—especially around shared-text handling and keyboard behavior—that make the original implementation awkward to maintain.
+
+=> showcase/quicklogger/image-2.png quicklogger screenshot
+
+Architecturally, the app is intentionally simple: a Fyne-based front end provides a text editor and basic controls, while the core functionality writes the entered text to a user-selected log directory. Build and deployment are automated with Mage tasks for desktop builds, local Android packaging, and containerized cross-compilation using `fyne-cross`. Android “Share” support is implemented by post-processing the generated APK to add a `ShareActivity`, an `ACTION_SEND` intent filter, and optional IME-related tweaks, allowing users to share text from other apps directly into Quick Logger.
+
+=> https://github.com/snonux/quicklogger View on GitHub
+
+---
+
+### 54. sillybench
 
 * 💻 Languages: Go (90.9%), Shell (9.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1280,7 +1306,7 @@ From what's provided, the only things I can confidently say are:
 
 ---
 
-### 54. terraform
+### 55. terraform
 
 * 💻 Languages: HCL (96.6%), Make (1.9%), YAML (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1303,7 +1329,7 @@ The implementation is organized as a set of layered Terraform modules across sep
 
 ---
 
-### 55. photoalbum
+### 56. photoalbum
 
 * 💻 Languages: Shell (92.5%), Make (4.6%), Config (2.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1326,7 +1352,7 @@ Architecturally, the project is a single Bash script that delegates image proces
 
 ---
 
-### 56. guprecords
+### 57. guprecords
 
 * 💻 Languages: Raku (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1349,7 +1375,7 @@ The implementation follows a clean class-based architecture in Raku: an `Aggrega
 
 ---
 
-### 57. geheim
+### 58. geheim
 
 * 💻 Languages: Ruby (86.7%), Shell (13.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1372,7 +1398,7 @@ The tool is built for command-line use across macOS, Linux, and Android (via Ter
 
 ---
 
-### 58. failunderd
+### 59. failunderd
 
 * 💻 Languages: Perl (89.7%), Config (5.0%), Make (3.1%), Shell (2.1%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1395,7 +1421,7 @@ Architecturally, it is implemented as a single-purpose OpenBSD daemon that runs 
 
 ---
 
-### 59. gorum
+### 60. gorum
 
 * 💻 Languages: Go (91.3%), JSON (6.4%), YAML (2.3%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1418,7 +1444,7 @@ Beyond that, the README provides almost no detail on implementation or architect
 
 ---
 
-### 60. docker-radicale-server
+### 61. docker-radicale-server
 
 * 💻 Languages: Make (57.5%), Docker (42.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1441,7 +1467,7 @@ If you paste the full README or documentation, I'd be happy to write the 1-2 par
 
 ---
 
-### 61. randomjournalpage
+### 62. randomjournalpage
 
 * 💻 Languages: Shell (94.1%), Make (5.9%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1464,7 +1490,7 @@ Implementation-wise, the script is intentionally minimal and leans on two standa
 
 ---
 
-### 62. algorithms
+### 63. algorithms
 
 * 💻 Languages: Go (96.5%), Make (2.0%), Config (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1487,7 +1513,7 @@ Implementation-wise, the project is driven by a Makefile with two main targets: 
 
 ---
 
-### 63. staticfarm-apache-handlers
+### 64. staticfarm-apache-handlers
 
 * 💻 Languages: Perl (96.4%), Make (3.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1510,7 +1536,7 @@ The most important takeaway is the project's status: it is **deprecated** and re
 
 ---
 
-### 64. ipv6test
+### 65. ipv6test
 
 * 💻 Languages: Perl (65.8%), Docker (34.2%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1533,7 +1559,7 @@ Architecturally, the project leans heavily on DNS to make the protocol testing p
 
 ---
 
-### 65. sway-autorotate
+### 66. sway-autorotate
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1556,7 +1582,7 @@ Architecturally, the script works by consuming the event stream from `monitor-se
 
 ---
 
-### 66. mon
+### 67. mon
 
 * 💻 Languages: Perl (96.5%), Shell (1.8%), Make (1.2%), Config (0.4%)
 * 📚 Documentation: Text (100.0%)
@@ -1579,7 +1605,7 @@ The tool is designed with automation and safety in mind: it's useful both for in
 
 ---
 
-### 67. fapi
+### 68. fapi
 
 * 💻 Languages: Python (96.6%), Make (3.1%), Config (0.3%)
 * 📚 Documentation: Text (98.3%), Markdown (1.7%)
@@ -1602,7 +1628,7 @@ Architecturally, fapi is a Python application that delegates all BigIP communica
 
 ---
 
-### 68. pingdomfetch
+### 69. pingdomfetch
 
 * 💻 Languages: Perl (97.3%), Make (2.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1625,7 +1651,7 @@ Architecturally, the tool is configured through layered INI-style config files �
 
 ---
 
-### 69. fype
+### 70. fype
 
 * 💻 Languages: C (77.3%), C/C++ (13.1%), HTML (7.5%), Make (2.1%)
 * 📚 Documentation: Text (65.8%), LaTeX (20.5%), Markdown (13.7%)
@@ -1648,7 +1674,7 @@ A notable architectural feature is its "synonym" system, where `\foo` creates an
 
 ---
 
-### 70. pwgrep
+### 71. pwgrep
 
 * 💻 Languages: Shell (85.0%), Make (15.0%)
 * 📚 Documentation: Text (75.0%), Markdown (25.0%)
@@ -1671,7 +1697,7 @@ The implementation is deliberately lean: a compact set of Bash scripts and GNU A
 
 ---
 
-### 71. xerl
+### 72. xerl
 
 * 💻 Languages: Perl (98.3%), Config (1.2%), Make (0.5%)
 * 📊 Commits: 143
@@ -1692,7 +1718,7 @@ Xerl was a Perl-based web framework (now deprecated and unmaintained) built arou
 
 ---
 
-### 72. playground
+### 73. playground
 
 * 💻 Languages: Ruby (100.0%)
 * 📊 Commits: 5
@@ -1713,7 +1739,7 @@ You can paste in things like:
 
 ---
 
-### 73. japi
+### 74. japi
 
 * 💻 Languages: Perl (78.3%), Make (21.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1736,7 +1762,7 @@ The tool is built on the `JIRA::REST` CPAN module (which must be installed manua
 
 ---
 
-### 74. gotop
+### 75. gotop
 
 * 💻 Languages: Go (98.0%), Make (2.0%)
 * 📚 Documentation: Markdown (60.0%), Text (40.0%)
@@ -1759,7 +1785,7 @@ On the implementation side, the README itself is sparse, but based on the descri
 
 ---
 
-### 75. awksite
+### 76. awksite
 
 * 💻 Languages: AWK (72.1%), HTML (16.4%), Config (11.5%)
 * 📚 Documentation: Markdown (50.0%), Text (50.0%)
@@ -1782,7 +1808,7 @@ The project's usefulness lies in this simplicity and portability: anyone with a 
 
 ---
 
-### 76. perldaemon
+### 77. perldaemon
 
 * 💻 Languages: Perl (72.7%), Shell (23.9%), Config (3.4%)
 * 📊 Commits: 111
@@ -1803,7 +1829,7 @@ Architecturally, the daemon runs an event loop with a configurable interval (e.g
 
 ---
 
-### 77. rubyfy
+### 78. rubyfy
 
 * 💻 Languages: Ruby (98.5%), JSON (1.5%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1826,7 +1852,7 @@ Implementation-wise, it's a single self-contained Ruby script (`rubyfy.rb`) with
 
 ---
 
-### 78. netdiff
+### 79. netdiff
 
 * 💻 Languages: Shell (52.2%), Make (46.3%), Config (1.5%)
 * 📚 Documentation: Text (100.0%)
@@ -1849,7 +1875,7 @@ Architecturally, the script uses a peer-to-peer client/server model: based on th
 
 ---
 
-### 79. perl-c-fibonacci
+### 80. perl-c-fibonacci
 
 * 💻 Languages: C (80.4%), Make (19.6%)
 * 📚 Documentation: Text (100.0%)
@@ -1872,7 +1898,7 @@ Once you provide that, I'll give you a concise 1-2 paragraph summary covering wh
 
 ---
 
-### 80. muttdelay
+### 81. muttdelay
 
 * 💻 Languages: Make (47.1%), Shell (46.3%), Vim Script (5.9%), Config (0.7%)
 * 📚 Documentation: Text (100.0%)
@@ -1895,7 +1921,7 @@ The implementation relies on three coordinated components: a Vim plugin, a cron 
 
 ---
 
-### 81. cpuinfo
+### 82. cpuinfo
 
 * 💻 Languages: Shell (53.2%), Make (46.8%)
 * 📚 Documentation: Text (100.0%)
@@ -1918,7 +1944,7 @@ The implementation is strikingly simple and embodies the Unix philosophy of doin
 
 ---
 
-### 82. dyndns
+### 83. dyndns
 
 * 💻 Languages: Shell (100.0%)
 * 📚 Documentation: Text (100.0%)
@@ -1941,7 +1967,7 @@ Architecturally, the system consists of a server-side component and a client-sid
 
 ---
 
-### 83. debroid
+### 84. debroid
 
 * 💻 Languages: Shell (92.0%), Make (8.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -1966,7 +1992,7 @@ Implementation proceeds in two debootstrap stages. On a desktop Linux host, a 5G
 
 ---
 
-### 84. netcalendar
+### 85. netcalendar
 
 * 💻 Languages: Java (83.0%), HTML (12.9%), XML (3.0%), CSS (0.8%), Make (0.2%)
 * 📚 Documentation: Text (89.5%), Markdown (10.5%)
@@ -1993,7 +2019,7 @@ The implementation requires only a JRE 6+ and ships as a single executable JAR, 
 
 ---
 
-### 85. jsmstrade
+### 86. jsmstrade
 
 * 💻 Languages: Java (76.0%), Shell (15.4%), XML (8.6%)
 * 📚 Documentation: Markdown (100.0%)
@@ -2018,7 +2044,7 @@ Architecturally, the tool acts as a thin front-end over the smstrade.de API: bas
 
 ---
 
-### 86. template
+### 87. template
 
 * 💻 Languages: Make (89.2%), Shell (10.8%)
 * 📚 Documentation: Text (100.0%)
@@ -2041,7 +2067,7 @@ This project is a template (now deprecated and unmaintained) that provides a rea
 
 ---
 
-### 87. vs-sim
+### 88. vs-sim
 
 * 💻 Languages: Java (98.8%), Shell (0.7%), XML (0.4%)
 * 📚 Documentation: LaTeX (98.3%), Text (1.4%), Markdown (0.3%)
@@ -2066,7 +2092,7 @@ On the implementation side, VS-Sim is written entirely in Java, making it cross-
 
 ---
 
-### 88. perl-poetry
+### 89. perl-poetry
 
 * 💻 Languages: Perl (100.0%)
 * 📚 Documentation: Markdown (100.0%)
@@ -2089,7 +2115,7 @@ In terms of implementation, the project is deliberately minimal: there is no fra
 
 ---
 
-### 89. hsbot
+### 90. hsbot
 
 * 💻 Languages: Haskell (98.5%), Make (1.5%)
 * 📊 Commits: 81
@@ -2110,7 +2136,7 @@ From these dependencies alone, I can only infer a few things:
 
 ---
 
-### 90. jailman
+### 91. jailman
 
 * 📊 Commits: 0
 * 📈 Lines of Code: 0
