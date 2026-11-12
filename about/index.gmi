@@ -28,8 +28,7 @@ Stuff I'm currently up to:
 * Listening to the Audiobook "The Courage to be Happy"
 * Reading the eBook "Designing Data Intensive Applications 2nd Edition"
 * Working on next ior aka I/O Riot NG release
-* House refurbishment
-* Being a father to my 3 year old daughter
+* Refurbishment of our old Family house in nothern Bulgaria
 * Learning Bulgarian for the bulgarian citizenship
 * Learning how to use AI for engineering
 * Reading "Children of Ruin" in german by Adrian Tchaikovsky
@@ -44,7 +43,6 @@ Stuff I'm planning to get to next:
 * Releasing Gonf, my own configuration management system
 * Read the FreeBSD book Integrated by Design
 * Releasing GGaze, my own photo preview and optimizer tool for Linux.
-* Releasing Player, my own media server with web UI and Android client.
 
 ## My sites
 
