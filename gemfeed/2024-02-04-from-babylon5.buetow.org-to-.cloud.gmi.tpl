@@ -2,6 +2,8 @@
 
 > Published at 2024-02-04T00:50:50+02:00
 
+> Update (2026-11-14): Since this post was written, I have migrated all of my configuration management from Rex/Rexify to Gonf, my own configuration management system. The Rex material below is historical.
+
 Recently, my employer sent me to a week-long AWS course. After the course, there wasn't any hands-on project I could dive into immediately, so I moved parts of my personal infrastructure to AWS to level up a bit through practical hands-on.
 
 So, I migrated all of my Docker-based self-hosted services to AWS. Usually, I am not a big fan of big cloud providers and instead use smaller hosters or indie providers and self-made solutions. However, I also must go with the times and try out technologies currently hot on the job market. I don't want to become the old man who yells at cloud :D

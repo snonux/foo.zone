@@ -2,6 +2,8 @@
 
 > Published at 2023-06-01T21:10:17+03:00
 
+> Update (2026-11-14): Since this post was written, I have migrated all of my configuration management from Rex/Rexify to Gonf, my own configuration management system.
+
 Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for `foo.zone`, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.
 
 It runs standard Nagios check plugins and is meant for a handful of hosts. In theory, Gogios scales to a couple of thousand checks, though. You can clone it from GitHub here:
@@ -99,7 +101,7 @@ export GOARCH=amd64
 go build -o gogios cmd/gogios/main.go
 ```
 
-On your OpenBSD system, copy the binary to `/usr/local/bin/gogios` and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I use Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.
+On your OpenBSD system, copy the binary to `/usr/local/bin/gogios` and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I used Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.
 
 => https://www.rexify.org
 

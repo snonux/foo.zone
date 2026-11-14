@@ -2,6 +2,8 @@
 
 > Published at 2025-07-13T16:44:29+03:00, last updated Sun 10 May 2026
 
+> Update (2026-11-14): Since this post was written, I have migrated all of my configuration management from Rex/Rexify to Gonf, my own configuration management system. The Rex command below is historical.
+
 This is the sixth blog post about the f3s series for self-hosting demands in a home lab. f3s? The "f" stands for FreeBSD, and the "3s" stands for k3s, the Kubernetes distribution used on FreeBSD-based physical machines.
 
 << template::inline::index f3s-kubernetes-with-freebsd-part

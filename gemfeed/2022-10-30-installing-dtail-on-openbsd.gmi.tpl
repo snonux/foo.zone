@@ -2,6 +2,8 @@
 
 > Published at 2022-10-30T11:03:19+02:00
 
+> Update (2026-11-14): Since this post was written, I have migrated all of my configuration management from Rex/Rexify to Gonf, my own configuration management system. The Rex material below is historical.
+
 This will be a quick blog post, as I am busy with my personal life now. I have relocated to a different country and am still busy arranging things. So bear with me :-)
 
  In this post, I want to give a quick overview (or how-to) about installing DTail on OpenBSD, as the official documentation only covers Red Hat and Fedora Linux! And this blog post will also be used as my reference!

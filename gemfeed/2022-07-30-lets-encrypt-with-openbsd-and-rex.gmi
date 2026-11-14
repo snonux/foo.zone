@@ -2,6 +2,8 @@
 
 > Published at 2022-07-30T12:14:31+01:00
 
+> Update (2026-11-14): Since this post was written, I have migrated all of my configuration management from Rex/Rexify to Gonf, my own configuration management system. The Rex material below is historical.
+
 I was amazed at how easy it is to automatically generate and update Let's Encrypt certificates with OpenBSD.
 
 ```
