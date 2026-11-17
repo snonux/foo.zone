@@ -2,6 +2,8 @@
 
 > Published at 2022-06-15T08:47:44+01:00; Updated at 2022-06-18
 
+> Update (2026-11-14): Since this post was written, I have migrated all of my configuration management from Rex/Rexify to Gonf, my own configuration management system. The Rex material below is historical.
+
 This blog post is a bit different from the others. It consists of multiple but smaller projects worth mentioning. I got inspired by Julia Evan's "Tiny programs" blog post and the side projects of The Sephist, so I thought I would also write a blog posts listing a couple of small projects of mine:
 
 [Tiny programs](https://jvns.ca/blog/2022/03/08/tiny-programs/)  
@@ -158,7 +160,7 @@ This all is of no real practical use but fun!
 
 ## Server configuration management
 
-The `rexfiles` project contains all Rex files for my (personal) server setup automation. A `Rexfile` is written in a Perl DSL run by the Rex configuration management system. It's pretty much KISS and that's why I love it. It suits my personal needs perfectly. 
+The `rexfiles` project contains all Rex files for my (personal) server setup automation. A `Rexfile` is written in a Perl DSL run by the Rex configuration management system. It's pretty much KISS and that's why I love it. It suits my personal needs perfectly.
 
 [https://github.com/snonux/conf](https://github.com/snonux/conf)  
 [https://www.rexify.org](https://www.rexify.org)  
