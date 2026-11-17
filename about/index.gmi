@@ -28,6 +28,7 @@ Stuff I'm currently up to:
 * Listening to the Audiobook "The Courage to be Happy"
 * Reading the eBook "Designing Data Intensive Applications 2nd Edition"
 * Working on next ior aka I/O Riot NG release
+* Working on next DTail release
 * Refurbishment of our old Family house in nothern Bulgaria
 * Learning Bulgarian for the bulgarian citizenship
 * Learning how to use AI for engineering
@@ -39,10 +40,11 @@ Stuff I'm currently up to:
 
 Stuff I'm planning to get to next:
 
-* Working on next DTail release
 * Releasing Gonf, my own configuration management system
 * Read the FreeBSD book Integrated by Design
 * Releasing GGaze, my own photo preview and optimizer tool for Linux.
+* Hacking the Outdoor cams of the previous owner of this apartment so I can use them through my home-lab.
+* Installing a pair of OpenPaper L e-ink photo frames in my home-office corner based on FOSS
 
 ## My sites
 
