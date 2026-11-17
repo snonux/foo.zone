@@ -12,7 +12,6 @@
 <a class="site-name" href="https://foo.zone">foo.zone</a>
 <div class="navigation">
 <a href="https://foo.zone">Home</a>
-<a href="https://foo.zone/gemfeed/index.html">Journal</a>
 <a href="https://foo.zone/about/index.html">About</a>
 <a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.md">Markdown</a>
 <a href="gemini://foo.zone/gemfeed/2023-06-01-kiss-server-monitoring-with-gogios.gmi">Gemini</a>
@@ -24,6 +23,8 @@
 <h1 style='display: inline' id='kiss-server-monitoring-with-gogios'>KISS server monitoring with Gogios</h1><br />
 <br />
 <span class='quote'>Published at 2023-06-01T21:10:17+03:00</span><br />
+<br />
+<span class='quote'>Update (2026-11-14): Since this post was written, I have migrated all of my configuration management from Rex/Rexify to Gonf, my own configuration management system.</span><br />
 <br />
 <span>Gogios is a minimalistic and easy-to-use monitoring tool I programmed in Google Go designed specifically for small-scale self-hosted servers and virtual machines. The primary purpose of Gogios is to monitor my personal server infrastructure for <span class='inlinecode'>foo.zone</span>, my MTAs, my authoritative DNS servers, my NextCloud, Wallabag and Anki sync server installations, etc.</span><br />
 <br />
@@ -145,7 +146,7 @@ http://www.gnu.org/software/src-highlite -->
 <span style="color: #292c29">go build -o gogios cmd/gogios/main</span><span style="color: #292c29">.</span><span style="color: #292c29">go</span>
 </pre>
 <br />
-<span>On your OpenBSD system, copy the binary to <span class='inlinecode'>/usr/local/bin/gogios</span> and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I use Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.</span><br />
+<span>On your OpenBSD system, copy the binary to <span class='inlinecode'>/usr/local/bin/gogios</span> and set the correct permissions as described in the previous section. All steps described here you could automate with your configuration management system of choice. I used Rexify, the friendly configuration management system, to automate the installation, but that is out of the scope of this document.</span><br />
 <br />
 <a class='textlink' href='https://www.rexify.org'>https://www.rexify.org</a><br />
 <br />

@@ -12,7 +12,6 @@
 <a class="site-name" href="https://foo.zone">foo.zone</a>
 <div class="navigation">
 <a href="https://foo.zone">Home</a>
-<a href="https://foo.zone/gemfeed/index.html">Journal</a>
 <a href="https://foo.zone/about/index.html">About</a>
 <a href="https://github.com/snonux/foo.zone/blob/content-md/gemfeed/2022-05-27-perl-is-still-a-great-choice.md">Markdown</a>
 <a href="gemini://foo.zone/gemfeed/2022-05-27-perl-is-still-a-great-choice.gmi">Gemini</a>
@@ -24,6 +23,8 @@
 <h1 style='display: inline' id='perl-is-still-a-great-choice'>Perl is still a great choice</h1><br />
 <br />
 <span class='quote'>Published at 2022-05-27T07:50:12+01:00; Updated at 2023-01-28</span><br />
+<br />
+<span class='quote'>Update (2026-11-14): Since this post was written, I have migrated all of my configuration management from Rex/Rexify to Gonf, my own configuration management system.</span><br />
 <br />
 <span>Perl (the Practical Extraction and Report Language) is a battle-tested, mature, multi-paradigm dynamic programming language. Note that it&#39;s not called PERL, neither P.E.R.L. nor Pearl. "Perl" is the name of the language and <span class='inlinecode'>perl</span> the name of the interpreter or the interpreter command.</span><br />
 <br />
@@ -158,7 +159,7 @@
 <h2 style='display: inline' id='where-do-i-personally-still-use-perl'>Where do I personally still use perl?</h2><br />
 <br />
 <ul>
-<li>I use Rexify for my OpenBSD server automation. Rexify is a configuration management system developed in Perl with similar features to Ansible but less bloated. It suits my personal needs perfectly.</li>
+<li>I used Rexify for my OpenBSD server automation. Rexify was a configuration management system developed in Perl with similar features to Ansible but less bloated. It suited my personal needs perfectly.</li>
 <li>I have written a couple of smaller to medium-sized Perl scripts which I (mostly) still use regularly. You can find them on my GitHub page.</li>
 <li>My day-to-day workflow heavily relies on "ack-grep". Ack is a tool developed in Perl aimed at programmers and can be used for quick searches on source code at the command line.</li>
 <li>I aim to leave my OpenBSD servers as "vanilla" as possible (trying to rely only on the standard/base installation without installing additional software from the packaging system or ports tree). All my scripts are written either Bourne shell or in Perl here. So there is no need to install additional interpreters.</li>
