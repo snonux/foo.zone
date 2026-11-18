@@ -4,7 +4,7 @@
 
 Welcome to the foo.zone!
 
-Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, coding, programming and sometimes also about self-improvement here.
+Everything you read on this site is my personal opinion and experience. You can call me a Linux/*BSD enthusiast and hobbyist. I mainly write about tech, IT, coding, programming, a bit about AI and sometimes also about self-improvement here.
 
 ## Some links
 
