@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-label="iormesh logo">
+  <title>iormesh — BPF-based process observability mesh</title>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1026"/>
+      <stop offset=".55" stop-color="#151c46"/>
+      <stop offset="1" stop-color="#2b1055"/>
+    </linearGradient>
+    <radialGradient id="halo" cx=".5" cy=".46" r=".55">
+      <stop offset="0" stop-color="#22d3ee" stop-opacity=".28"/>
+      <stop offset=".7" stop-color="#3b82f6" stop-opacity=".08"/>
+      <stop offset="1" stop-color="#3b82f6" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="node" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#7ff0ff"/>
+      <stop offset="1" stop-color="#3b82f6"/>
+    </linearGradient>
+    <linearGradient id="hot" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#fb7185"/>
+      <stop offset="1" stop-color="#e11d48"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 L10 5 L0 10 z" fill="#fb7185"/>
+    </marker>
+  </defs>
+
+  <!-- badge -->
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#bg)"/>
+  <rect x="16" y="16" width="480" height="480" rx="112" fill="url(#halo)"/>
+  <rect x="22" y="22" width="468" height="468" rx="107" fill="none" stroke="#38bdf8" stroke-opacity=".18" stroke-width="2"/>
+
+  <!-- faint orbits: the map being drawn -->
+  <g fill="none" stroke="#38bdf8">
+    <circle cx="256" cy="256" r="96" stroke-opacity=".10" stroke-width="1.5"/>
+    <circle cx="256" cy="256" r="168" stroke-opacity=".07" stroke-width="1.5" stroke-dasharray="2 7"/>
+    <circle cx="256" cy="256" r="236" stroke-opacity=".05" stroke-width="1.5"/>
+  </g>
+
+  <!-- mesh edges -->
+  <g stroke="#7dd3fc" stroke-opacity=".5" stroke-width="3" stroke-linecap="round">
+    <line x1="256" y1="256" x2="120" y2="140"/>
+    <line x1="256" y1="256" x2="386" y2="130"/>
+    <line x1="256" y1="256" x2="404" y2="330"/>
+    <line x1="256" y1="256" x2="150" y2="386"/>
+    <line x1="120" y1="140" x2="150" y2="386" stroke-opacity=".2"/>
+    <line x1="386" y1="130" x2="404" y2="330" stroke-opacity=".2"/>
+  </g>
+
+  <!-- propagation: a peer deploys toward a newborn node -->
+  <line x1="404" y1="330" x2="436" y2="430" stroke="#fb7185" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="2 9" marker-end="url(#arrow)"/>
+  <circle cx="420" cy="374" r="5" fill="#fb7185"/>
+  <circle cx="431" cy="406" r="5" fill="#f43f5e" fill-opacity=".85"/>
+
+  <!-- satellite nodes -->
+  <g>
+    <circle cx="120" cy="140" r="22" fill="url(#node)"/>
+    <circle cx="120" cy="140" r="29" fill="none" stroke="#7dd3fc" stroke-opacity=".35" stroke-width="2"/>
+    <circle cx="386" cy="130" r="17" fill="url(#node)"/>
+    <circle cx="404" cy="330" r="20" fill="url(#node)"/>
+    <circle cx="404" cy="330" r="27" fill="none" stroke="#7dd3fc" stroke-opacity=".35" stroke-width="2"/>
+    <circle cx="150" cy="386" r="17" fill="url(#node)"/>
+  </g>
+
+  <!-- newborn node, dashed ring: joining the mesh -->
+  <circle cx="448" cy="448" r="13" fill="url(#hot)"/>
+  <circle cx="448" cy="448" r="21" fill="none" stroke="#fb7185" stroke-opacity=".7" stroke-width="2" stroke-dasharray="4 5"/>
+
+  <!-- central hub: the traced process -->
+  <circle cx="256" cy="256" r="78" fill="none" stroke="#22d3ee" stroke-opacity=".25" stroke-width="2"/>
+  <circle cx="256" cy="256" r="60" fill="none" stroke="#22d3ee" stroke-opacity=".9" stroke-width="3"/>
+  <circle cx="256" cy="256" r="44" fill="url(#node)"/>
+  <circle cx="256" cy="256" r="12" fill="#0b1026"/>
+</svg>
