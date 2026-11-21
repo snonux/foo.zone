@@ -45,6 +45,7 @@ Stuff I'm planning to get to next:
 * Releasing GGaze, my own photo preview and optimizer tool for Linux.
 * Hacking the Outdoor cams of the previous owner of this apartment so I can use them through my home-lab.
 * Installing a pair of OpenPaper L e-ink photo frames in my home-office corner based on FOSS
+* Reading the book "Site Reliability Engineering" 2nd edition
 
 ## My sites
 
